@@ -140,6 +140,14 @@
   .feat-metrics .m .l{font-size:.78rem; color:var(--dim); text-transform:uppercase; letter-spacing:.5px}
   .feat-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px}
 
+  /* POSTER */
+  .poster-wrap{display:grid; grid-template-columns:.85fr 1.15fr; gap:40px; align-items:center}
+  .poster-frame{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:14px; box-shadow:0 20px 60px rgba(0,0,0,.45)}
+  .poster-frame img{width:100%; display:block; border-radius:8px}
+  .poster-copy p{color:var(--muted); margin-bottom:16px}
+  .poster-copy p strong{color:var(--txt)}
+  .poster-note{font-family:var(--mono); font-size:12.5px; color:var(--dim); border:1px dashed var(--line2); border-radius:10px; padding:14px 16px; margin-top:6px}
+
   /* WRITING */
   .post{display:flex; gap:18px; padding:20px; background:var(--panel); border:1px solid var(--line); border-radius:12px; margin-bottom:14px; transition:.2s}
   .post:hover{border-color:var(--cyan); transform:translateX(4px)}
@@ -166,13 +174,14 @@
     .nav-toggle{display:block}
     .nav-links{position:absolute; top:60px; left:0; right:0; flex-direction:column; gap:0;
       background:var(--bg2); border-bottom:1px solid var(--line); max-height:0; overflow:hidden; transition:max-height .3s}
-    #nc:checked~.nav-links{max-height:360px}
+    #nc:checked~.nav-links{max-height:400px}
     #nc:checked~.nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     #nc:checked~.nav-toggle span:nth-child(2){opacity:0}
     #nc:checked~.nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
     .nav-links li{border-top:1px solid var(--line)}
     .nav-links a{display:block; padding:14px 22px}
     .about-grid{grid-template-columns:1fr}
+    .poster-wrap{grid-template-columns:1fr}
     header.hero{padding:64px 0 56px}
   }
 </style>
@@ -191,6 +200,7 @@
       <li><a href="#skills">expertise</a></li>
       <li><a href="#experience">experience</a></li>
       <li><a href="#work">work</a></li>
+      <li><a href="#poster">poster</a></li>
       <li><a href="#writing">writing</a></li>
       <li><a href="#contact">contact</a></li>
     </ul>
@@ -206,6 +216,7 @@
     <p class="lead">I design and operate the controls that decide who can touch what — and prove it. My focus is Privileged Access Management, Zero Trust architecture, and turning hard security problems into systems that hold up under real-world adversaries. I also publish independent, public-interest security research.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#work">▸ View featured work</a>
+      <a class="btn btn-ghost" href="Roshan_Trivedi_Resume.pdf" download>⬇ Resume</a>
       <a class="btn btn-ghost" href="#contact">Get in touch</a>
     </div>
     <div class="hero-stats">
@@ -300,7 +311,7 @@
         <p>Author and publish open, non-commercial security architecture proposals for problems of national importance — most recently a full zero-trust reference architecture to secure India's national examinations.</p>
       </div>
     </div>
-    <p style="font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-top:18px">// Full role history &amp; specifics available on <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener">LinkedIn</a></p>
+    <p style="font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-top:18px">// Full role history &amp; specifics available on <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener">LinkedIn</a> or in my <a href="Roshan_Trivedi_Resume.pdf" download>full resume (PDF)</a></p>
   </div>
 </section>
 
@@ -330,10 +341,30 @@
   </div>
 </section>
 
+<!-- POSTER -->
+<section id="poster">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Poster</h2><span class="sec-line"></span></div>
+    <div class="poster-wrap">
+      <div class="poster-frame">
+        <img src="poster-zero-trust.png" alt="Zero Trust security poster — Never trust, always verify. Five principles: verify explicitly, least-privilege access, assume breach, continuous monitoring, micro-segmentation." loading="lazy">
+      </div>
+      <div class="poster-copy">
+        <p><strong>Zero Trust, in one frame.</strong> A poster distilling the five principles I design around every day — verify explicitly, least-privilege access, assume breach, continuous monitoring, and micro-segmentation.</p>
+        <p>Free to use for security awareness training, conference walls, or your own team's onboarding deck.</p>
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="poster-zero-trust.png" download>⬇ Download poster (PNG)</a>
+        </div>
+        <p class="poster-note">// Original artwork, designed by Claude for this site — not a stock image.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WRITING -->
 <section id="writing">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Writing &amp; Research</h2><span class="sec-line"></span></div>
+    <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Writing &amp; Research</h2><span class="sec-line"></span></div>
     <a class="post" href="secure-india-exams/index.html">
       <div class="date">2026 · 07</div>
       <div>
@@ -349,7 +380,7 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap contact">
-    <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Contact</h2><span class="sec-line"></span></div>
+    <div class="sec-head"><span class="sec-num">07</span><h2 class="sec-title">Contact</h2><span class="sec-line"></span></div>
     <p class="lead">Open to collaboration on identity security, zero-trust architecture, and public-interest research. Reach me on any of these — I read everything.</p>
     <div class="socials">
       <a class="soc" href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener"><span class="d"></span>LinkedIn</a>
