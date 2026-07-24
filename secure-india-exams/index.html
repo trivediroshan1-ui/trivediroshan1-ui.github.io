@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Roshan Trivedi, CIAM">
+  <meta name="description" content="A zero-trust reference architecture to prevent exam paper leaks, protect merit, and rebuild public trust in India's national examination system.">
+  <meta name="keywords" content="India exam security, NEET, JEE, zero trust, cybersecurity, paper leak prevention, NTA, CERT-In, Roshan Trivedi">
+  <link rel="canonical" href="https://roshantrivedi.co.in/secure-india-exams/">
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Securing India's National Exams">
+  <meta property="og:title" content="Securing India's National Exams — Zero Trust Architecture">
+  <meta property="og:description" content="A complete zero-trust security architecture covering AI-assisted paper creation, student identity, physical security, breach response, governance, and data protection.">
+  <meta property="og:url" content="https://roshantrivedi.co.in/secure-india-exams/">
+  <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@roshi_007">
+  <meta name="twitter:title" content="Securing India's National Exams — Zero Trust Architecture">
+  <meta name="twitter:description" content="A complete, open policy proposal to prevent exam paper leaks in India.">
+  <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png">
+  <!-- Favicon: India tricolour drawn as inline SVG -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='20' y='0' fill='%23FF9933'/%3E%3Crect width='60' height='20' y='20' fill='%23ffffff'/%3E%3Crect width='60' height='20' y='40' fill='%23138808'/%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%23000080' stroke-width='1.5'/%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23000080'/%3E%3C/svg%3E">
+  <title>Securing India's National Exams | Roshan Trivedi, CIAM</title>
+  <style>
+    :root {
+      --navy:#1a237e; --navy-mid:#283593; --navy-light:#3949ab;
+      --teal:#00897b; --teal-light:#00acc1;
+      --amber:#ff8f00; --saffron:#ff6d00; --green-ind:#388e3c;
+      --white:#ffffff; --off-white:#f8f9fa; --light-bg:#e8eaf6;
+      --grey-200:#eeeeee; --grey-600:#757575; --dark:#212121;
+      --radius:8px;
+      --shadow:0 2px 12px rgba(26,35,126,.12);
+      --shadow-lg:0 8px 32px rgba(26,35,126,.18);
+      --font:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);color:var(--dark);background:var(--white);line-height:1.7;font-size:16px}
+    a{color:var(--teal);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* TRICOLOR */
+    .tricolor{height:5px;display:flex}
+    .tricolor div{flex:1}
+    .tri-saffron{background:#ff6d00}
+    .tri-white{background:#fff}
+    .tri-green{background:#388e3c}
+
+    /* NAV */
+    .nav{position:sticky;top:0;z-index:100;background:var(--navy);box-shadow:var(--shadow-lg)}
+    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:58px}
+    .nav-brand{display:flex;align-items:center;gap:10px;color:var(--white);font-weight:700;font-size:15px;text-decoration:none}
+    .nav-links{display:flex;gap:2px;list-style:none;flex-wrap:wrap}
+    .nav-links a{color:rgba(255,255,255,.85);padding:5px 9px;border-radius:4px;font-size:12.5px;font-weight:500;transition:background .2s}
+    .nav-links a:hover{background:rgba(255,255,255,.15);color:var(--white);text-decoration:none}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,#1b5e20 100%);color:var(--white);text-align:center;padding:72px 24px 56px;position:relative;overflow:hidden}
+    .hero-flag{font-size:52px;display:block;margin-bottom:16px}
+    .hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.2;margin-bottom:16px}
+    .hero p{font-size:clamp(1rem,2vw,1.2rem);opacity:.88;max-width:720px;margin:0 auto 24px}
+    .hero-meta{font-size:13px;opacity:.7;border-top:1px solid rgba(255,255,255,.2);padding-top:16px;margin-top:16px}
+    .hero-toc{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+    .hero-toc a{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9);padding:6px 16px;border-radius:20px;font-size:13px;font-weight:600;transition:background .2s}
+    .hero-toc a:hover{background:rgba(255,255,255,.28);text-decoration:none}
+
+    /* STATS */
+    .stats{background:var(--navy-light);color:var(--white);display:flex;flex-wrap:wrap;justify-content:center}
+    .stat{flex:1 1 150px;text-align:center;padding:18px 14px;border-right:1px solid rgba(255,255,255,.15)}
+    .stat:last-child{border-right:none}
+    .stat-num{font-size:2rem;font-weight:800;color:var(--amber);line-height:1}
+    .stat-label{font-size:11.5px;opacity:.85;margin-top:4px}
+
+    /* SECTIONS */
+    .section{padding:56px 24px}
+    .section-alt{background:var(--off-white)}
+    .section-dark{background:var(--navy);color:var(--white)}
+    .container{max-width:1100px;margin:0 auto}
+    .section-anchor{display:block;position:relative;top:-72px;visibility:hidden}
+    .section-tag{display:inline-block;background:var(--teal);color:var(--white);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+    .section-dark .section-tag{background:rgba(255,255,255,.2)}
+    h2.section-title{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--navy);margin-bottom:10px;line-height:1.3}
+    .section-dark h2.section-title{color:var(--white)}
+    h2.section-title .accent{color:var(--teal)}
+    .section-sub{font-size:1.02rem;color:var(--grey-600);max-width:720px;margin-bottom:32px}
+    h3.sub-head{font-size:1.05rem;color:var(--navy);margin:28px 0 10px;font-weight:700}
+
+    /* GRIDS */
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+
+    /* CARDS */
+    .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;border-top:4px solid var(--teal)}
+    .card-navy{border-top-color:var(--navy)}
+    .card-amber{border-top-color:var(--amber)}
+    .card-green{border-top-color:var(--green-ind)}
+    .card-icon{font-size:1.8rem;margin-bottom:10px;display:block}
+    .card h3{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:6px}
+    .card p{font-size:.9rem;color:var(--grey-600);line-height:1.6}
+
+    /* PILLARS */
+    .pillar{display:flex;gap:20px;padding:24px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:18px;align-items:flex-start;border-left:6px solid var(--teal)}
+    .pillar-num{flex-shrink:0;width:48px;height:48px;background:var(--navy);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem}
+    .pillar-body h3{font-size:1.05rem;color:var(--navy);margin-bottom:5px}
+    .pillar-body p{font-size:.9rem;color:var(--grey-600);margin-bottom:8px}
+
+    /* CALLOUT */
+    .callout{background:var(--light-bg);border-left:5px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;padding:18px 22px;margin:24px 0;font-style:italic;color:var(--navy);font-size:1rem;line-height:1.7}
+    .callout-teal{border-left-color:var(--teal);color:var(--teal)}
+    .callout-amber{border-left-color:var(--amber);background:#fff8e1;color:#5d3a00}
+
+    /* TIMELINE */
+    .timeline{list-style:none;padding:0}
+    .timeline li{display:flex;gap:18px;padding:14px 0;border-bottom:1px solid var(--grey-200)}
+    .timeline li:last-child{border-bottom:none}
+    .tl-badge{flex-shrink:0;width:70px;background:var(--navy);color:var(--white);text-align:center;padding:5px 4px;border-radius:var(--radius);font-weight:700;font-size:11.5px;line-height:1.3}
+    .tl-content h4{font-size:.93rem;font-weight:700;color:var(--navy);margin-bottom:3px}
+    .tl-content p{font-size:.86rem;color:var(--grey-600)}
+
+    /* TABLE */
+    .tbl-wrap{overflow-x:auto;margin:20px 0}
+    table{width:100%;border-collapse:collapse;font-size:.86rem}
+    thead th{background:var(--navy);color:var(--white);padding:9px 13px;text-align:left;font-size:.8rem;font-weight:700}
+    tbody tr:nth-child(even){background:var(--light-bg)}
+    tbody td{padding:8px 13px;border-bottom:1px solid var(--grey-200);vertical-align:top}
+    tbody td:first-child{font-weight:600;color:var(--navy)}
+
+    /* RACI */
+    .raci-r{background:#2e7d32;color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
+    .raci-a{background:var(--navy);color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
+    .raci-c{background:var(--amber);color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
+    .raci-i{background:var(--grey-600);color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
+
+    /* FLOW */
+    .flow{display:flex;flex-wrap:wrap;gap:0;margin:20px 0}
+    .flow-step{flex:1 1 130px;background:var(--light-bg);padding:14px 10px;text-align:center;position:relative;font-size:.8rem}
+    .flow-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:1.2rem;color:var(--navy);font-weight:700;z-index:1}
+    .flow-step .flow-icon{font-size:1.3rem;display:block;margin-bottom:5px}
+    .flow-step strong{display:block;color:var(--navy);font-weight:700;font-size:.78rem;margin-bottom:2px}
+    .flow-step.highlight{background:var(--navy);color:var(--white)}
+    .flow-step.highlight strong{color:var(--white)}
+
+    /* STEPS */
+    .steps{counter-reset:step;list-style:none;padding:0}
+    .steps li{counter-increment:step;display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+    .steps li::before{content:counter(step);flex-shrink:0;width:32px;height:32px;background:var(--teal);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.88rem}
+    .steps li div h4{font-size:.93rem;color:var(--navy);margin-bottom:3px}
+    .steps li div p{font-size:.86rem;color:var(--grey-600)}
+
+    /* BADGES */
+    .badge-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+    .badge{background:var(--light-bg);color:var(--navy);padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:600;border:1px solid rgba(26,35,126,.2)}
+    .badge-teal{background:#e0f2f1;color:var(--teal);border-color:rgba(0,137,123,.2)}
+    .badge-amber{background:#fff8e1;color:#5d3a00;border-color:rgba(255,143,0,.3)}
+    .badge-green{background:#e8f5e9;color:var(--green-ind);border-color:rgba(56,142,60,.2)}
+
+    /* DIVIDER */
+    .page-divider{height:6px;background:linear-gradient(90deg,var(--saffron),var(--white),var(--green-ind));margin:0}
+
+    /* FOOTER */
+    .footer{background:var(--dark);color:rgba(255,255,255,.75);padding:44px 24px 20px}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;margin-bottom:28px}
+    .footer h4{color:var(--white);font-size:.88rem;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+    .footer p,.footer a{font-size:.84rem;line-height:1.8;color:rgba(255,255,255,.6)}
+    .footer a:hover{color:var(--teal);text-decoration:none}
+    .footer-social{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .social-pill{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);padding:4px 12px;border-radius:20px;font-size:.78rem;transition:background .2s}
+    .social-pill:hover{background:var(--teal);color:var(--white);text-decoration:none}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:.76rem;color:rgba(255,255,255,.38);text-align:center}
+
+    /* UTILS */
+    .text-center{text-align:center}
+    .mt-6{margin-top:24px}
+    .mt-8{margin-top:32px}
+    .mb-4{margin-bottom:16px}
+
+    /* Hamburger toggle (hidden on desktop) */
+    .nav-toggle{display:none;background:none;border:0;cursor:pointer;width:34px;height:30px;padding:5px}
+    .nav-toggle span{display:block;height:2.5px;background:#fff;margin:4px 0;border-radius:2px;transition:.25s}
+    #navchk{display:none}
+    @media(max-width:820px){
+      .nav-toggle{display:block}
+      .nav-links{
+        position:absolute;top:58px;left:0;right:0;background:var(--navy);
+        flex-direction:column;gap:0;max-height:0;overflow:hidden;
+        transition:max-height .3s ease;box-shadow:var(--shadow-lg)}
+      #navchk:checked ~ .nav-links{max-height:520px}
+      .nav-links li{width:100%;border-top:1px solid rgba(255,255,255,.1)}
+      .nav-links a{display:block;padding:12px 20px;font-size:14px}
+      #navchk:checked ~ .nav-toggle span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+      #navchk:checked ~ .nav-toggle span:nth-child(2){opacity:0}
+      #navchk:checked ~ .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+      .hero{padding:48px 20px 36px}
+      .section{padding:44px 18px}
+      .flow-step:not(:last-child)::after{display:none}
+      .pillar{flex-direction:column}
+    }
+
+    /* PRINT / PDF */
+    @media print{
+      .nav,.hero-toc{display:none}
+      .section{page-break-inside:avoid}
+      .page-divider{page-break-before:always;height:0}
+      body{font-size:13px}
+    }
+  </style>
+</head>
+<body>
+
+<div class="tricolor"><div class="tri-saffron"></div><div class="tri-white"></div><div class="tri-green"></div></div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#home">🇮🇳 Securing India's Exams</a>
+    <input type="checkbox" id="navchk" aria-label="Toggle navigation menu">
+    <label class="nav-toggle" for="navchk" aria-hidden="true"><span></span><span></span><span></span></label>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#lifecycle">Lifecycle</a></li>
+      <li><a href="#identity">Identity</a></li>
+      <li><a href="#threat">Threat &amp; Risk</a></li>
+      <li><a href="#ai-security">AI Security</a></li>
+      <li><a href="#governance">Governance</a></li>
+      <li><a href="#compliance">Compliance</a></li>
+      <li><a href="#resilience">Resilience</a></li>
+      <li><a href="#implementation">Implementation</a></li>
+      <li><a href="#breach-response">Breach</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<span class="section-anchor" id="home"></span>
+<section class="hero">
+  <span class="hero-flag">🇮🇳</span>
+  <h1>Securing India's National Examinations</h1>
+  <p>A zero-trust reference architecture to <strong>prevent paper leaks</strong>, protect merit, and rebuild public trust — covering every stage from AI-assisted paper creation to post-exam destruction.</p>
+  <div class="hero-meta">
+    Prepared by <strong>Roshan Trivedi, CIAM</strong> &nbsp;·&nbsp; PAM Product Owner | Identity &amp; Access Management &nbsp;·&nbsp; 24 July 2026<br>
+    Version 2.0 &nbsp;·&nbsp; Classification: Public — Policy Discussion
+  </div>
+  <nav class="hero-toc">
+    <a href="#problem">The Problem</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#lifecycle">Exam Lifecycle</a>
+    <a href="#identity">Identity &amp; Access</a>
+    <a href="#threat">Threat &amp; Risk</a>
+    <a href="#ai-security">AI Security</a>
+    <a href="#governance">Governance</a>
+    <a href="#compliance">Compliance</a>
+    <a href="#resilience">Resilience</a>
+    <a href="#implementation">Implementation</a>
+    <a href="#breach-response">Breach Response</a>
+    <a href="#glossary">Glossary</a>
+  </nav>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">60L+</div><div class="stat-label">Candidates per year (NTA)</div></div>
+  <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Exam centres</div></div>
+  <div class="stat"><div class="stat-num">90+</div><div class="stat-label">Exams annually</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-label">Security pillars</div></div>
+  <div class="stat"><div class="stat-num">₹79</div><div class="stat-label">Cost per candidate / year</div></div>
+  <div class="stat"><div class="stat-num">0</div><div class="stat-label">Target paper leaks</div></div>
+</div>
+
+<!-- ═══════════════════════ HINDI SUMMARY ═══════════════════════ -->
+<section class="section section-alt" lang="hi" style="padding:36px 24px">
+  <div class="container">
+    <span class="section-tag">सारांश · Summary in Hindi</span>
+    <h2 class="section-title">एक दृष्टि में (At a Glance)</h2>
+    <p style="font-size:1rem;color:var(--dark);line-height:1.9;max-width:900px">
+      भारत की राष्ट्रीय परीक्षाओं में हर वर्ष <strong>60 लाख से अधिक अभ्यर्थी</strong> 5,000 से अधिक केंद्रों पर सम्मिलित
+      होते हैं। प्रश्नपत्र लीक की बार-बार होने वाली घटनाएँ यह दर्शाती हैं कि केवल प्रक्रियागत उपाय परीक्षा की अखंडता की
+      रक्षा नहीं कर सकते। यह प्रस्ताव एक <strong>ज़ीरो ट्रस्ट (Zero Trust)</strong> सुरक्षा वास्तुकला प्रस्तुत करता है —
+      जिसमें बायोमेट्रिक पहचान, प्रश्नपत्रों का एन्क्रिप्शन, कृत्रिम बुद्धिमत्ता (AI) आधारित निगरानी, तथा सभी केंद्रों की
+      भौतिक सुरक्षा सम्मिलित है। तीन वर्षों की कुल लागत <strong>₹1,419 करोड़</strong> है — प्रति अभ्यर्थी प्रति वर्ष केवल
+      <strong>₹79</strong> — जो एक भी परीक्षा रद्द होने से बचाने पर ही अपनी लागत वसूल कर लेती है।
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ THE PROBLEM ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="problem"></span>
+<section class="section">
+  <div class="container">
+    <span class="section-tag">The Problem</span>
+    <h2 class="section-title">Why India's Exams Are Vulnerable</h2>
+    <p class="section-sub">India operates the world's largest examination infrastructure. A single paper leak cancels an exam for millions and signals that merit doesn't decide outcomes.</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Examination</th><th>Candidates (2024)</th><th>Centres</th><th>Stakes</th></tr></thead>
+        <tbody>
+          <tr><td>NEET-UG</td><td>24.06 lakh</td><td>~4,750</td><td>Only gateway to MBBS/BDS in India</td></tr>
+          <tr><td>JEE Main</td><td>11.68 lakh</td><td>500+</td><td>Gateway to IITs, NITs, IIITs</td></tr>
+          <tr><td>CUET-UG</td><td>13.48 lakh</td><td>313 cities</td><td>Central university admissions</td></tr>
+          <tr><td>UGC-NET</td><td>9+ lakh</td><td>300+</td><td>Lectureship &amp; PhD eligibility</td></tr>
+          <tr><td>UPSC CSE</td><td>~13 lakh</td><td>72</td><td>IAS, IPS, IFS civil services</td></tr>
+          <tr><td>SSC / Banking / Railways</td><td>5+ crore</td><td>Thousands</td><td>Government employment</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">Root Causes of Leaks</h3>
+    <div class="grid-2">
+      <div class="card card-navy"><span class="card-icon">🎯</span><h3>Insider Threat</h3><p>Officials with standing access to papers leak them for financial gain. No SOP prevents a trusted insider from photographing a paper they already hold.</p></div>
+      <div class="card card-amber"><span class="card-icon">📦</span><h3>Physical Custody Failure</h3><p>Papers transported without cryptographic protection can be opened and photographed mid-transit with no detection until after the exam.</p></div>
+      <div class="card"><span class="card-icon">💻</span><h3>Weak Digital Controls</h3><p>Systems with weak access controls allow unauthorised bulk downloads of question bank content — often undetected without continuous monitoring.</p></div>
+      <div class="card card-green"><span class="card-icon">🧍</span><h3>Impersonation</h3><p>Proxies sit examinations using forged credentials. Without biometric verification, centres cannot confirm the candidate is who they claim to be.</p></div>
+      <div class="card"><span class="card-icon">📡</span><h3>No Centralised Monitoring</h3><p>Without a Security Operations Centre, anomalous access at 2 AM before an exam — a classic pre-leak signal — goes completely undetected.</p></div>
+      <div class="card card-navy"><span class="card-icon">🏗️</span><h3>Procedural vs. Architectural Security</h3><p>Current security relies on humans following rules under pressure. Architecture-level controls are not optional — they are the only reliable solution.</p></div>
+    </div>
+
+    <div class="callout callout-amber mt-6">
+      <strong>The NEET 2024 controversy</strong> affected 24 lakh candidates, triggered a Supreme Court intervention, and cost an estimated <strong>₹700–1,250 crore</strong> in direct and indirect costs. The full 3-year security programme costs ₹1,419 crore — it pays for itself by preventing a single cancellation.
+    </div>
+
+    <h3 class="sub-head">Cost of Inaction</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Cost Category</th><th>Estimate (₹ Crore)</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Re-examination logistics</td><td>150–250</td><td>Centre hiring, staff, paper, printing, transport</td></tr>
+          <tr><td>Candidate travel &amp; accommodation</td><td>200–400</td><td>Millions of families absorbing repeat costs</td></tr>
+          <tr><td>Academic year delay</td><td>300–500</td><td>Colleges at partial capacity; delayed intake</td></tr>
+          <tr><td>Legal &amp; judicial process</td><td>50–100</td><td>SC hearings, RTI responses, investigations</td></tr>
+          <tr><td>Mental health &amp; societal impact</td><td>Unquantified</td><td>Erosion of meritocracy narrative</td></tr>
+          <tr><td><strong>Total (single NEET-scale event)</strong></td><td><strong>700–1,250+</strong></td><td>Conservative estimate</td></tr>
+          <tr><td><strong>3-year security programme</strong></td><td><strong>1,419</strong></td><td>This proposal — breaks even on one prevented event</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ARCHITECTURE ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="architecture"></span>
+<section class="section section-alt">
+  <div class="container">
+    <span class="section-tag">Security Architecture</span>
+    <h2 class="section-title">Four-Pillar <span class="accent">Zero Trust</span> Architecture</h2>
+    <p class="section-sub">Four mutually reinforcing pillars, unified by the National Exam-SOC — making a paper leak structurally impossible, not just procedurally prohibited.</p>
+
+    <div class="badge-row">
+      <span class="badge">Zero Trust, Least Privilege</span>
+      <span class="badge badge-teal">Assume Breach, Monitor Always</span>
+      <span class="badge badge-amber">Secure &amp; Private by Design</span>
+      <span class="badge">Cryptographic Enforcement</span>
+      <span class="badge badge-green">Immutable Accountability</span>
+      <span class="badge">NIST SP 800-207 aligned</span>
+    </div>
+
+    <div class="callout">
+      No user, device, session, or network is trusted by default. Every access request is <strong>authenticated, authorised, and logged</strong> — regardless of network location or seniority. This applies to ministers, paper setters, and janitors equally.
+    </div>
+
+    <div class="pillar"><div class="pillar-num">01</div><div class="pillar-body"><h3>🔐 Identity &amp; Access (Zero Trust)</h3><p>Biometric verification, zero standing privileges, and just-in-time access for every person who touches an examination. No account — including administrator accounts — holds permanent access to examination content. All access is JIT, dual-authorised, time-limited, and auto-revoked.</p><p>PAM platform vaults all privileged credentials. Full session recording. Critical operations require two people to authenticate simultaneously. Re-authentication every 15 minutes.</p></div></div>
+    <div class="pillar"><div class="pillar-num">02</div><div class="pillar-body"><h3>📦 Secure Content Lifecycle</h3><p>Papers encrypted from AI-assisted authoring through HSM vaulting to geo-fenced, time-locked decryption at the exam hall. Three simultaneous conditions required for decryption: correct GPS location, authorised time window, two authenticated administrators. Fail any one — paper stays encrypted.</p><p>Digital watermarking: every copy carries a unique invisible watermark encoding centre ID, session, and batch. If a photo leaks online, forensic extraction identifies the source centre within minutes.</p></div></div>
+    <div class="pillar"><div class="pillar-num">03</div><div class="pillar-body"><h3>🛡️ Threat Detection &amp; Security Ops</h3><p>AI-driven UEBA establishes behaviour baselines for every user. Deviations — after-hours access, bulk downloads, unusual location — trigger automated risk scoring. 24×7 National Exam-SOC with SIEM/SOAR. 20 pre-built response playbooks execute automatically in under 2 minutes. Dark web and social media monitoring for paper leaks round the clock.</p></div></div>
+    <div class="pillar"><div class="pillar-num">04</div><div class="pillar-body"><h3>🏫 Managed Exam Infrastructure (MEI)</h3><p>Every centre hardened with certificate-enrolled cameras, metal detectors, signal management, and immutable digital chain of custody. Dedicated encrypted network per centre. Local HSM cache device. Computer vision proctoring at Tier A centres. GPS tamper detection on all physical paper packets.</p></div></div>
+
+    <h3 class="sub-head">AI-Assisted Paper Creation Workflow</h3>
+    <p style="color:var(--grey-600);font-size:.9rem;margin-bottom:16px">Questions are created through a secure, AI-augmented process with mandatory human oversight at every gate. Paper setters work in physical isolation on air-gapped NTA terminals — no personal devices, no internet, no external communication.</p>
+    <div class="flow">
+      <div class="flow-step"><span class="flow-icon">🤖</span><strong>AI Generation</strong>Generates question pool from approved syllabus</div>
+      <div class="flow-step"><span class="flow-icon">👨‍🏫</span><strong>SME Review</strong>Teachers review, reject, edit each AI question</div>
+      <div class="flow-step highlight"><span class="flow-icon">✅</span><strong>Approval Gate</strong>Min. 2 subject experts sign off digitally</div>
+      <div class="flow-step"><span class="flow-icon">🔍</span><strong>Moderation</strong>Senior examiner checks balance &amp; clarity</div>
+      <div class="flow-step"><span class="flow-icon">🔒</span><strong>Encryption</strong>HSM encrypts &amp; signs final paper immediately</div>
+      <div class="flow-step highlight"><span class="flow-icon">🏦</span><strong>Vaulting</strong>Encrypted paper enters secure digital vault</div>
+    </div>
+
+    <h3 class="sub-head">Centre Security by Tier</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Control</th><th>Tier A (Urban, 500)</th><th>Tier B (District, 2,000)</th><th>Tier C (Rural, 2,500)</th></tr></thead>
+        <tbody>
+          <tr><td>Network</td><td>Dedicated MPLS</td><td>VPN + LTE failover</td><td>VSAT satellite primary</td></tr>
+          <tr><td>Endpoints</td><td>Locked-down terminals, EDR, signed OS</td><td>Same</td><td>Same</td></tr>
+          <tr><td>Local HSM cache</td><td>✅</td><td>✅</td><td>✅</td></tr>
+          <tr><td>Camera enrollment</td><td>Full certificate-based</td><td>Full</td><td>Full</td></tr>
+          <tr><td>AI proctoring</td><td>AI-assisted + human</td><td>Human primary</td><td>Human primary</td></tr>
+          <tr><td>Power backup</td><td>4-hour UPS + generator</td><td>2-hour UPS</td><td>2-hour UPS</td></tr>
+          <tr><td>GPS tamper device</td><td>✅</td><td>✅</td><td>✅</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ LIFECYCLE ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="lifecycle"></span>
+<section class="section">
+  <div class="container">
+    <span class="section-tag">Exam Lifecycle Security</span>
+    <h2 class="section-title">From Paper Creation to Destruction</h2>
+    <p class="section-sub">Every step from the moment a question is generated to the moment all copies are destroyed — secured, logged, and automated.</p>
+
+    <h3 class="sub-head">Pre-Exam Timeline</h3>
+    <ul class="timeline">
+      <li><div class="tl-badge">D-60</div><div class="tl-content"><h4>SME Isolation Begins</h4><p>Paper setters enter isolation protocol. Devices surrendered. Work only on air-gapped NTA terminals. No external communication.</p></div></li>
+      <li><div class="tl-badge">D-45</div><div class="tl-content"><h4>AI-Assisted Paper Creation</h4><p>AI generates question pool. SMEs review, edit, and digitally sign approved questions. Multi-layer moderation. Final paper signed and encrypted into HSM immediately.</p></div></li>
+      <li><div class="tl-badge">D-30</div><div class="tl-content"><h4>Centre Pre-Inspection</h4><p>NTA teams inspect all centres. MEI compliance check. Non-compliant centres decertified and replaced.</p></div></li>
+      <li><div class="tl-badge">D-21</div><div class="tl-content"><h4>Invigilator Duty Assignment</h4><p>Randomised centre assignments generated. Invigilators informed only of exam date — not centre — until D-1.</p></div></li>
+      <li><div class="tl-badge">D-14</div><div class="tl-content"><h4>Encrypted Paper Distribution</h4><p>Encrypted paper files distributed from NIC vault to regional secure vaults via certificate-authenticated channels. Chain of custody hash recorded at every hop.</p></div></li>
+      <li><div class="tl-badge">D-7</div><div class="tl-content"><h4>Police Coordination Activated</h4><p>State police duty officers briefed. Cyber cells put on standby. Flying squad routes assigned. CERT-In duty officer notified.</p></div></li>
+      <li><div class="tl-badge">D-3</div><div class="tl-content"><h4>Building Lockdown</h4><p>Exam centre sealed. Only authorised staff with pre-enrolled identity may enter. CCTV recording begins continuous loop.</p></div></li>
+      <li><div class="tl-badge">D-1</div><div class="tl-content"><h4>Hardware Health Check</h4><p>All exam terminals, biometric devices, cameras, and network connections verified. HSM local cache loaded. Exam-SOC confirms centre readiness.</p></div></li>
+      <li><div class="tl-badge">D-1 Night</div><div class="tl-content"><h4>Invigilator Centre Reveal</h4><p>Invigilators receive their centre assignment via encrypted notification. Must report at T-2 hours on exam day.</p></div></li>
+    </ul>
+
+    <h3 class="sub-head">Exam Day Protocol</h3>
+    <ul class="timeline">
+      <li><div class="tl-badge">T-4h</div><div class="tl-content"><h4>Exam-SOC Heightened Readiness</h4><p>All Tier 1 &amp; Tier 2 analysts on shift. Real-time dashboard live. Dark web channel active. CERT-In duty officer confirmed.</p></div></li>
+      <li><div class="tl-badge">T-2h</div><div class="tl-content"><h4>Candidate Arrival</h4><p>Biometric verification at gate. QR admit ticket scanned. Fingerprint + face match against enrolment record. Metal detector sweep. Signal management zone active.</p></div></li>
+      <li><div class="tl-badge">T-30m</div><div class="tl-content"><h4>Decryption Window Opens</h4><p>Geo-fencing confirmed. Time window authorised. Two centre administrators authenticate simultaneously. Paper decrypts. Watermark confirmed.</p></div></li>
+      <li><div class="tl-badge">T-0</div><div class="tl-content"><h4>Exam Commences</h4><p>Computer vision proctoring active. Human invigilators monitoring. Any phone or prohibited device detected triggers immediate alert. Police stationed at perimeter.</p></div></li>
+      <li><div class="tl-badge">End</div><div class="tl-content"><h4>Answer Sheet Collection</h4><p>Dual-authorised collection. Digital chain of custody recorded. Scanned on-site. Physical sheets sealed under CCTV and transported under GPS tracking.</p></div></li>
+    </ul>
+
+    <h3 class="sub-head">Paper Vaulting — Where Papers Live at Each Stage</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Stage</th><th>Location</th><th>Protection</th><th>Access Control</th></tr></thead>
+        <tbody>
+          <tr><td>Authoring</td><td>Air-gapped NTA terminal</td><td>No network; device certificate; encrypted local storage</td><td>SME biometric + PAM</td></tr>
+          <tr><td>Post-signing (master)</td><td>NIC National HSM Vault (primary + DR)</td><td>HSM-encrypted; FIPS 140-2 L3; M-of-N key ceremony</td><td>DG NTA + 2 custodians</td></tr>
+          <tr><td>Regional distribution</td><td>Regional NIC Secure Vault (4 regions)</td><td>AES-256-GCM; regional key fragment</td><td>Regional NTA officer</td></tr>
+          <tr><td>Centre cache</td><td>Centre HSM local cache device</td><td>Encrypted; geo-locked; time-locked</td><td>Two admins + geo-fence + time window</td></tr>
+          <tr><td>Post-exam (digital)</td><td>NIC archive vault</td><td>7-year retention; WORM storage</td><td>Legal/RTI access only; dual authorised</td></tr>
+          <tr><td>Physical copies</td><td>Centre vault → shredding facility</td><td>Tamper-evident seal; GPS tracked</td><td>Dual-authorised shredding within 24h</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">🚔 Police &amp; Flying Squad Coordination</h3>
+    <div class="grid-2">
+      <div class="card"><h3>State Police Integration</h3><ul style="font-size:.88rem;color:var(--grey-600);padding-left:20px;line-height:2"><li>District SP briefed at D-7 with centre locations</li><li>Police stationed at perimeter of each centre</li><li>Plain-clothes officers near Tier A centres</li><li>Exam-SOC has direct radio contact with centre police officer</li><li>Any physical security alert triggers immediate police response</li></ul></div>
+      <div class="card card-navy"><h3>Flying Squads &amp; Cyber Cells</h3><ul style="font-size:.88rem;color:var(--grey-600);padding-left:20px;line-height:2"><li>NTA flying squads make surprise inspections at 10% of centres</li><li>State cyber cells monitor WhatsApp, Telegram for paper distribution</li><li>CERT-In cyber cell on standby for digital forensics</li><li>FIR registration within 2 hours of confirmed leak, with watermark evidence</li></ul></div>
+    </div>
+
+    <h3 class="sub-head">Automation Map</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Activity</th><th>Automation</th><th>Human Role</th></tr></thead>
+        <tbody>
+          <tr><td>UEBA risk scoring</td><td>Fully automated (AI)</td><td>Review alerts above threshold</td></tr>
+          <tr><td>Session suspension (risk &gt;85)</td><td>Automated</td><td>SOC analyst confirms within 5 min</td></tr>
+          <tr><td>Paper decryption</td><td>Automated (time + geo check)</td><td>Two admins must authenticate</td></tr>
+          <tr><td>CERT-In notification</td><td>Automated (SOAR playbook)</td><td>SOC manager reviews before send</td></tr>
+          <tr><td>Watermark extraction</td><td>Automated (image analysis)</td><td>Forensics analyst confirms</td></tr>
+          <tr><td>Camera health monitoring</td><td>Automated (SOC dashboard)</td><td>SOC alerts centre if outage</td></tr>
+          <tr><td>Chain of custody logging</td><td>Fully automated (immutable log)</td><td>Auditor reviews post-exam</td></tr>
+          <tr><td>Biometric gate entry</td><td>Automated match</td><td>Officer verifies failures</td></tr>
+          <tr><td>FIR / legal action</td><td>Not automated</td><td>NTA Director + legal team</td></tr>
+          <tr><td>Paper shredding</td><td>Not automated</td><td>Dual-authorised (mandatory)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ IDENTITY ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="identity"></span>
+<section class="section section-alt">
+  <div class="container">
+    <span class="section-tag">Identity &amp; Access</span>
+    <h2 class="section-title">Every Person. Every Device. Verified.</h2>
+    <p class="section-sub">Students, teachers, invigilators, and surveillance devices all have verified, audited digital identities. No anonymous access. No standing privileges.</p>
+
+    <h3 class="sub-head">Student Digital Identity — Documents &amp; Process</h3>
+    <div class="grid-2">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Document</th><th>Purpose</th><th>Verification</th></tr></thead>
+          <tbody>
+            <tr><td>Aadhaar Card</td><td>Primary identity anchor</td><td>UIDAI API real-time check</td></tr>
+            <tr><td>Class 10 / 12 Marksheet</td><td>Eligibility confirmation</td><td>DigiLocker pull from Board</td></tr>
+            <tr><td>Category Certificate</td><td>Reservation eligibility</td><td>Issuing authority digital stamp</td></tr>
+            <tr><td>Passport photograph</td><td>Visual identity</td><td>AI face quality check + liveness</td></tr>
+            <tr><td>Mobile number</td><td>OTP-based 2FA</td><td>Telecom KYC verification</td></tr>
+            <tr><td>Email address</td><td>Communication</td><td>Verified via OTP</td></tr>
+            <tr><td>Signature</td><td>Consent &amp; legal declaration</td><td>Stored; matched at exam hall</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <ol class="steps">
+          <li><div><h4>Online Application + Aadhaar Verification</h4><p>Candidate submits form; Aadhaar number verified against UIDAI in real time. Name and DOB must match exactly.</p></div></li>
+          <li><div><h4>Document Upload + AI Verification</h4><p>Marksheets pulled from DigiLocker. Photo checked for quality, liveness, and consistency with Aadhaar photo.</p></div></li>
+          <li><div><h4>Biometric Enrolment Centre Visit</h4><p>For high-stakes exams: candidate attends an enrolment centre. Fingerprints + iris captured and linked to their Examination Identity Number (EIN).</p></div></li>
+          <li><div><h4>Digital Admit Card Issued</h4><p>Time-limited digitally signed QR code (valid 24 hours before exam). Contains encrypted biometric reference. Cannot be forged or transferred.</p></div></li>
+          <li><div><h4>Exam Hall Entry</h4><p>QR scanned at gate. Fingerprint matched to enrolment record. Face verified by AI camera. Seat assigned by randomised system on exam morning only.</p></div></li>
+        </ol>
+      </div>
+    </div>
+
+    <h3 class="sub-head">Subject Matter Expert (Teacher) Selection &amp; Identity</h3>
+    <div class="grid-2">
+      <div class="card card-navy">
+        <h3>Eligibility Criteria</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2.1">
+          <li>Minimum 10 years teaching/research experience</li>
+          <li>Postgraduate or doctoral qualification in subject</li>
+          <li>No prior disciplinary action or conviction</li>
+          <li>Not related to any registered candidate</li>
+          <li>Not employed by a coaching institution in the subject</li>
+          <li>Not from the same state as any exam centre</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Selection &amp; Isolation Process</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2.1">
+          <li>Randomly drawn from NTA's encrypted National Examiner Registry</li>
+          <li>Identity known only to DG NTA + one Oversight Board member</li>
+          <li>Criminal background check (state police + court records)</li>
+          <li>Confidentiality agreement with ₹1 crore penalty clause</li>
+          <li>Personal devices surrendered; work on air-gapped NTA terminal only</li>
+          <li>Physical isolation: live-in secure facility for session duration</li>
+          <li>All sessions video-recorded (CCTV + screen capture)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub-head">Invigilator Selection &amp; Randomised Deployment</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Selection Criteria</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2.1">
+          <li>State/central government employee or accredited institution staff</li>
+          <li>Must not teach the subject being examined</li>
+          <li>Must not be from the same institution as any registered candidate</li>
+          <li>No criminal record; police clearance required</li>
+          <li>Not assigned same centre two consecutive examinations</li>
+        </ul>
+      </div>
+      <div class="card card-navy">
+        <h3>Randomised Assignment</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2.1">
+          <li><strong style="color:white">D-21:</strong> Notified they are on duty (exam date only)</li>
+          <li><strong style="color:white">D-1 (8 PM):</strong> Encrypted message reveals centre assignment</li>
+          <li><strong style="color:white">Exam day:</strong> Must report by T-2 hours; biometric at gate</li>
+          <li><strong style="color:white">Rotation:</strong> Invigilators moved between halls randomly mid-exam</li>
+          <li><strong style="color:white">Flying squad:</strong> May replace any invigilator at any time</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub-head">📷 Camera &amp; Device Enrollment</h3>
+    <div class="grid-3">
+      <div class="card"><span class="card-icon">🔏</span><h3>Device Certificate</h3><p>Each CCTV, biometric reader, and exam terminal is issued a unique device certificate from NE-PKI. Device must present this certificate to connect to NTA systems.</p></div>
+      <div class="card card-navy"><span class="card-icon">🚨</span><h3>Tamper Detection</h3><p>Cover attempts, power interruptions, or physical movement trigger an immediate Exam-SOC alert. Any camera offline &gt;2 minutes on exam day triggers police notification.</p></div>
+      <div class="card"><span class="card-icon">🎭</span><h3>Anti-Spoof</h3><p>Video feeds are checked for looping signatures and static image patterns. A looped recording from a compromised camera is detectable by frame-fingerprint analysis.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ THREAT MODEL & RISK ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="threat"></span>
+<section class="section">
+  <div class="container">
+    <span class="section-tag">Threat Model &amp; Risk</span>
+    <h2 class="section-title">Derived From an Explicit <span class="accent">Threat Model</span></h2>
+    <p class="section-sub">A security architecture is only credible if it is built from a clear picture of who the adversaries are, what they want, and what they can do. This is the analysis a government evaluation committee looks for first.</p>
+
+    <h3 class="sub-head">Adversary Personas</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Adversary</th><th>Motivation</th><th>Capability</th><th>Primary Vector</th></tr></thead>
+        <tbody>
+          <tr><td>Malicious insider (setter / admin)</td><td>Financial gain, coercion</td><td>High — legitimate access</td><td>Exfiltrate content they can access</td></tr>
+          <tr><td>Organised leak syndicate</td><td>Profit (sell papers / proxies)</td><td>High — funded, persistent</td><td>Bribe insiders; impersonation rings</td></tr>
+          <tr><td>External cyber attacker</td><td>Profit, notoriety, disruption</td><td>Medium–High</td><td>Exploit systems, phishing, malware</td></tr>
+          <tr><td>Nation-state actor</td><td>Strategic institutional disruption</td><td>Very high</td><td>Supply chain, zero-days, persistence</td></tr>
+          <tr><td>Opportunist candidate</td><td>Personal advantage</td><td>Low</td><td>Devices, impersonation, copying</td></tr>
+          <tr><td>Compromised vendor</td><td>Varies (often unwitting)</td><td>Medium</td><td>Supply-chain implant, weak update</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">STRIDE Threat Analysis</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Category</th><th>Example Threat</th><th>Primary Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>Spoofing</td><td>Proxy candidate; forged admit card; fake camera feed</td><td>Biometric + liveness; signed QR; device certs + anti-spoof</td></tr>
+          <tr><td>Tampering</td><td>Paper altered in transit; log manipulation</td><td>HSM signing; immutable WORM log; hash chain of custody</td></tr>
+          <tr><td>Repudiation</td><td>Insider denies accessing a paper</td><td>PAM session recording; non-repudiable digital signatures</td></tr>
+          <tr><td>Information Disclosure</td><td>Paper leak; PII exposure</td><td>AES-256-GCM; ZSP; geo/time-locked decryption; watermarking</td></tr>
+          <tr><td>Denial of Service</td><td>Exam-day outage; network attack</td><td>Offline HSM cache; DR failover; DDoS protection</td></tr>
+          <tr><td>Elevation of Privilege</td><td>Admin escalates to key access</td><td>Zero standing privileges; JIT + dual auth; M-of-N keys</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">Risk Register (Top Risks)</h3>
+    <p style="color:var(--grey-600);font-size:.9rem;margin-bottom:12px">Likelihood (L) &amp; Impact (I) scored 1–5. Inherent = before controls; Residual = after this architecture's controls.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>Risk</th><th>L</th><th>I</th><th>Inherent</th><th>Key Control</th><th>Residual</th></tr></thead>
+        <tbody>
+          <tr><td>R1</td><td>Insider leaks pre-exam paper</td><td>4</td><td>5</td><td>20 Critical</td><td>ZSP, PAM, watermarking, UEBA</td><td>6 Medium</td></tr>
+          <tr><td>R2</td><td>Paper intercepted in distribution</td><td>3</td><td>5</td><td>15 High</td><td>End-to-end encryption, hash custody</td><td>3 Low</td></tr>
+          <tr><td>R3</td><td>Candidate impersonation</td><td>4</td><td>4</td><td>16 High</td><td>Biometric + liveness at gate</td><td>4 Low</td></tr>
+          <tr><td>R4</td><td>Cyber intrusion into exam systems</td><td>3</td><td>5</td><td>15 High</td><td>Zero Trust, SOC, segmentation</td><td>4 Low</td></tr>
+          <tr><td>R5</td><td>AI paper-tool manipulated</td><td>3</td><td>5</td><td>15 High</td><td>Air-gap, human gates, output validation</td><td>3 Low</td></tr>
+          <tr><td>R6</td><td>Biometric data breach</td><td>2</td><td>5</td><td>10 High</td><td>Encryption, DPDP controls, no export</td><td>3 Low</td></tr>
+          <tr><td>R7</td><td>Exam-day system outage</td><td>3</td><td>4</td><td>12 High</td><td>Offline cache, DR, UPS</td><td>4 Low</td></tr>
+          <tr><td>R8</td><td>Supply-chain compromise</td><td>2</td><td>5</td><td>10 High</td><td>SBOM, sovereign sourcing, audit</td><td>4 Low</td></tr>
+          <tr><td>R9</td><td>Physical breach at centre</td><td>3</td><td>3</td><td>9 Medium</td><td>MEI, police, signal mgmt, CCTV</td><td>3 Low</td></tr>
+          <tr><td>R10</td><td>Collusion (multiple insiders)</td><td>2</td><td>5</td><td>10 High</td><td>Separation of duties, M-of-N, red team</td><td>4 Low</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">Every detection playbook in the Exam-SOC is mapped to <strong>MITRE ATT&amp;CK</strong> techniques, giving measurable detection coverage and a clear gap analysis during red-team exercises.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ AI SECURITY ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="ai-security"></span>
+<section class="section section-alt">
+  <div class="container">
+    <span class="section-tag">AI Security &amp; Governance</span>
+    <h2 class="section-title">Securing the AI That Creates Papers</h2>
+    <p class="section-sub">Because AI assists paper creation, proctoring, and anomaly detection, AI itself is an attack surface. Any modern reviewer will ask how it is secured. Here is the answer.</p>
+
+    <div class="grid-3">
+      <div class="card card-navy"><span class="card-icon">💉</span><h3>Prompt Injection</h3><p>Air-gapped model, sanitised templated prompts, no free-text external input, and output validation prevent the model being steered to leak or bias content.</p></div>
+      <div class="card"><span class="card-icon">☠️</span><h3>Data Poisoning</h3><p>The syllabus corpus is signed, version-controlled, and integrity-hashed. Every generated question is reviewed by human subject experts.</p></div>
+      <div class="card card-amber"><span class="card-icon">🎭</span><h3>Deepfake Impersonation</h3><p>Liveness detection, multi-modal biometrics (fingerprint + iris + face), and challenge-response defeat synthetic face/voice attacks.</p></div>
+      <div class="card"><span class="card-icon">🧬</span><h3>Model Theft</h3><p>On-premise sovereign hosting, no public API, PAM-gated access, and query-rate monitoring prevent extraction of question patterns.</p></div>
+      <div class="card card-navy"><span class="card-icon">🌀</span><h3>Hallucinated Questions</h3><p>Mandatory dual-SME approval and a moderation gate mean no unreviewed AI question is ever used in a live paper.</p></div>
+      <div class="card card-green"><span class="card-icon">🔌</span><h3>Kill Switch</h3><p>AI assistance can be disabled instantly, reverting to a fully manual, human-only workflow with no loss of security.</p></div>
+    </div>
+
+    <div class="callout callout-teal">
+      <strong>Human-in-the-loop is mandatory.</strong> No AI output — a question, a proctoring flag, or a risk score — is ever actioned autonomously where it affects a candidate. AI accelerates and assists; humans decide. Every AI capability has a manual fallback and a mandatory human decision gate.
+    </div>
+
+    <h3 class="sub-head">AI Model Governance Framework</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Control</th><th>Requirement</th></tr></thead>
+        <tbody>
+          <tr><td>Model registry</td><td>Every model version registered, signed, and traceable with an approved-use record</td></tr>
+          <tr><td>Model risk assessment</td><td>Bias, fairness, robustness, and adversarial testing before deployment</td></tr>
+          <tr><td>Explainability</td><td>Proctoring and anomaly models must justify every flag in human-readable terms</td></tr>
+          <tr><td>Sovereign hosting</td><td>All models run on Govt of India (MeghRaj / GI Cloud) or NIC — no foreign cloud, no external LLM API</td></tr>
+          <tr><td>Continuous red-teaming</td><td>The AI paper tool is adversarially tested each cycle for injection and leakage</td></tr>
+          <tr><td>Audit logging</td><td>Every prompt, output, and human decision logged immutably for post-exam audit</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--grey-600);font-size:.85rem;margin-top:8px">Aligned to the NIST AI Risk Management Framework and OWASP Top 10 for LLM Applications.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════ GOVERNANCE ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="governance"></span>
+<section class="section">
+  <div class="container">
+    <span class="section-tag">Governance &amp; Authority</span>
+    <h2 class="section-title">Who Is In Charge &amp; How the System Is Audited</h2>
+    <p class="section-sub">A three-tier governance structure with clear accountability at each level, independent oversight, and public transparency reporting.</p>
+
+    <h3 class="sub-head">Authority Structure</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Body</th><th>Chair &amp; Members</th><th>Authority</th><th>Cadence</th></tr></thead>
+        <tbody>
+          <tr><td>National Examination Security Council (NESC) <em>(proposed)</em></td><td>MoE Secretary (Chair), DG NTA, DG NIC, DG CERT-In, retired SC judge, 2 independent experts</td><td>Final policy authority; approves architecture changes; reviews audit reports</td><td>Quarterly + emergency</td></tr>
+          <tr><td>Programme Steering Committee</td><td>NTA Director General (Chair), NIC Programme Director, CERT-In rep</td><td>Operational decisions; budget releases; vendor approvals; escalation</td><td>Monthly</td></tr>
+          <tr><td>Technical Working Group</td><td>Lead architects (NTA + NIC), Exam-SOC lead, PAM admin</td><td>Technical design, configuration changes, playbook revisions</td><td>Weekly</td></tr>
+          <tr><td>State Security Coordinator</td><td>State-level officer liaising with NTA and district police</td><td>Centre compliance; local police coordination</td><td>Per exam cycle</td></tr>
+          <tr><td>Independent Oversight Board</td><td>2 academics, 1 retired IPS, 1 civil society rep, 1 student rep</td><td>Watchdog; review annual audit; publish public transparency report</td><td>Annual</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout mt-6">
+      <strong>Core principle:</strong> No single official — including the Director General of NTA — has unilateral authority over examination content or security controls. Every critical action requires dual authorisation.
+    </div>
+
+    <h3 class="sub-head">Full Exam Audit Lifecycle</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Audit Type</th><th>Timing</th><th>Auditor</th><th>Scope</th></tr></thead>
+        <tbody>
+          <tr><td>Centre inspection</td><td>D-30</td><td>NTA inspection team</td><td>MEI compliance, physical security, device certification</td></tr>
+          <tr><td>System readiness</td><td>D-1</td><td>Exam-SOC</td><td>All systems green, HSM health, connectivity</td></tr>
+          <tr><td>Real-time monitoring</td><td>Exam day</td><td>Exam-SOC</td><td>All centres, all systems, all access events</td></tr>
+          <tr><td>Post-exam debrief</td><td>Within 4 hours</td><td>SOC + NTA ops</td><td>Incidents, near-misses, custody complete?</td></tr>
+          <tr><td>Chain of custody audit</td><td>Within 7 days</td><td>NTA Internal Audit</td><td>Every event in immutable log verified</td></tr>
+          <tr><td>Independent security audit</td><td>Annual</td><td>NABCB-accredited auditor</td><td>ISO 27001 surveillance; full system review</td></tr>
+          <tr><td>Red team exercise</td><td>Bi-annual</td><td>External red team</td><td>Full attempt to compromise system using real TTPs</td></tr>
+          <tr><td>Parliamentary transparency</td><td>Annual</td><td>Independent Oversight Board</td><td>Public KPI report; incident summary</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">Data Security, Classification &amp; DPDP Act 2023</h3>
+    <div class="grid-2">
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Class</th><th>Examples</th><th>Controls</th></tr></thead>
+          <tbody>
+            <tr><td>Top Secret</td><td>Question papers (pre-exam)</td><td>HSM-only; dual auth; zero standing access</td></tr>
+            <tr><td>Secret</td><td>Biometric data; PAM recordings</td><td>Encrypted; PAM-controlled; no export</td></tr>
+            <tr><td>Confidential</td><td>Candidate PII; staff identity</td><td>Encrypted; DPDP consent required</td></tr>
+            <tr><td>Internal</td><td>SOC logs; audit trails</td><td>Encrypted; 7-year WORM retention</td></tr>
+            <tr><td>Public</td><td>Exam schedules; results</td><td>Digitally signed; integrity-verified</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="card card-navy">
+          <h3>DPDP Act 2023 Compliance</h3>
+          <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2.1">
+            <li>Informed consent at registration for biometric processing</li>
+            <li>Purpose limitation: biometric used only for examination identity verification</li>
+            <li>Data minimisation: only required data collected and retained</li>
+            <li>Breach notification to CERT-In + Data Protection Board within 6 hours</li>
+            <li>Right to erasure: candidate data deleted 3 years post-exam</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-head">Data Analysis &amp; Fraud Detection</h3>
+    <div class="grid-3">
+      <div class="card"><span class="card-icon">🔍</span><h3>Answer Pattern Analysis</h3><p>Candidates with identical wrong answers (beyond statistical probability) are flagged. Seat adjacency mapping identifies suspected copying rings.</p></div>
+      <div class="card card-navy"><span class="card-icon">📍</span><h3>Geographic Clustering</h3><p>Unusual registration clusters from a single locality, coaching centre, or IP address range are flagged as potential proxy rings.</p></div>
+      <div class="card"><span class="card-icon">🕸️</span><h3>Network Analysis</h3><p>Social network analysis of registration data identifies clusters linked by phone number, email domain, payment instrument, or device fingerprint — signals of organised fraud.</p></div>
+      <div class="card card-amber"><span class="card-icon">⏱️</span><h3>Timing Analysis</h3><p>Candidates completing an exam in statistically abnormal time (too fast, or with suspiciously consistent response cadence) are flagged for review.</p></div>
+      <div class="card"><span class="card-icon">📈</span><h3>Score Anomaly Detection</h3><p>Statistically improbable score jumps between attempts, or scores inconsistent with prior academic record, trigger secondary identity verification.</p></div>
+      <div class="card card-green"><span class="card-icon">🏆</span><h3>Historical Pattern Learning</h3><p>ML models trained on historical leak incidents identify early warning signatures — access pattern changes in the weeks before an exam that preceded past leaks.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ COMPLIANCE MATRIX ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="compliance"></span>
+<section class="section section-alt">
+  <div class="container">
+    <span class="section-tag">Standards &amp; Legal Compliance</span>
+    <h2 class="section-title">Auditable Against Standards &amp; Indian Law</h2>
+    <p class="section-sub">The decisive question for any government committee: is this certifiable and legally compliant? Every control maps to a recognised framework or statute — the system is designed to be audited, not just admired.</p>
+
+    <h3 class="sub-head">NIST Cybersecurity Framework 2.0</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>How This Architecture Satisfies It</th></tr></thead>
+        <tbody>
+          <tr><td>Govern</td><td>NESC, Steering Committee, Oversight Board; documented policy and RACI</td></tr>
+          <tr><td>Identify</td><td>Threat model, risk register, asset &amp; data classification</td></tr>
+          <tr><td>Protect</td><td>Zero Trust, PAM, HSM/PKI encryption, MEI hardening, ZSP</td></tr>
+          <tr><td>Detect</td><td>UEBA, SIEM, dark-web monitoring, 24×7 Exam-SOC</td></tr>
+          <tr><td>Respond</td><td>SOAR playbooks, breach-response scenarios, CERT-In notification</td></tr>
+          <tr><td>Recover</td><td>BCP/DR, backups, rollback checklist, re-examination protocol</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">Indian Legal &amp; Regulatory Alignment</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Instrument</th><th>Obligation</th><th>How It Is Met</th></tr></thead>
+        <tbody>
+          <tr><td>DPDP Act 2023</td><td>Lawful processing of personal &amp; biometric data</td><td>Consent, purpose limitation, minimisation, 6-hour breach notice, erasure at 3 years, DPIA</td></tr>
+          <tr><td>CERT-In Directions 2022</td><td>6-hour incident reporting; log retention</td><td>SOAR auto-notification; 180-day+ logs; ICT clock sync</td></tr>
+          <tr><td>IT Act 2000</td><td>Legal validity of e-records &amp; signatures</td><td>NE-PKI digital signatures; non-repudiation; Sec. 43A reasonable security</td></tr>
+          <tr><td>Public Examinations Act 2024</td><td>Criminalises leaks &amp; organised cheating</td><td>Watermark forensics + immutable logs give court-admissible evidence</td></tr>
+          <tr><td>Aadhaar Act &amp; UIDAI regs</td><td>Lawful, minimal Aadhaar use</td><td>Authentication-only (no number storage beyond token); UIDAI-compliant APIs</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">Compliance is <strong>designed-in, not bolted-on</strong>. The system is certifiable (ISO 27001), auditable (CERT-In empanelled), and produces court-admissible evidence under the 2024 Act. Also aligned to ISO/IEC 27001:2022 Annex A across organisational, people, physical, and technological controls.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ RESILIENCE & ASSURANCE ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="resilience"></span>
+<section class="section">
+  <div class="container">
+    <span class="section-tag">Resilience &amp; Assurance</span>
+    <h2 class="section-title">When Systems Fail, and How We Prove It Works</h2>
+    <p class="section-sub">Closing the grey areas experienced reviewers probe: continuity when systems fail, a trusted supply chain, independent proof of security, privacy in law and practice, and inclusion of every eligible candidate.</p>
+
+    <h3 class="sub-head">Business Continuity &amp; Disaster Recovery</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>System</th><th>RTO</th><th>RPO</th><th>Resilience Measure</th></tr></thead>
+        <tbody>
+          <tr><td>Paper decryption at centre</td><td>0 (no downtime)</td><td>0</td><td>Offline local HSM cache; backup HSM device per centre</td></tr>
+          <tr><td>National HSM vault</td><td>&lt; 15 min</td><td>0</td><td>Active-active primary + DR site; M-of-N key recovery</td></tr>
+          <tr><td>Exam-SOC</td><td>&lt; 5 min</td><td>&lt; 1 min</td><td>Redundant hot-standby SOC in second region</td></tr>
+          <tr><td>Identity / biometric service</td><td>&lt; 10 min</td><td>&lt; 5 min</td><td>Cached templates at centre; queued sync on recovery</td></tr>
+          <tr><td>Network (per centre)</td><td>&lt; 5 min</td><td>N/A</td><td>VPN + LTE + VSAT failover by tier</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--grey-600);font-size:.9rem">Backups follow a <strong>3-2-1 strategy</strong> (3 copies, 2 media, 1 off-site, all encrypted). DR drills run quarterly with documented recovery-time evidence.</p>
+
+    <div class="grid-2">
+      <div class="card card-navy">
+        <h3>🔗 Supply-Chain &amp; Vendor Security</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2">
+          <li>Tier-1 due diligence for any vendor touching content or crypto</li>
+          <li>SBOM required for every component; continuous vuln scanning</li>
+          <li>Sovereign sourcing (STQC / Common Criteria); Make-in-India via GeM</li>
+          <li>Cryptographically signed, staged software/firmware updates</li>
+          <li>Open standards (PKCS#11, OIDC, STIX/TAXII) — no vendor lock-in</li>
+        </ul>
+      </div>
+      <div class="card card-amber">
+        <h3>🔬 Security Assurance &amp; Testing</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2">
+          <li>VAPT quarterly + pre-exam (CERT-In empanelled)</li>
+          <li>Bi-annual independent red / purple team</li>
+          <li>Continuous responsible-disclosure / bug bounty</li>
+          <li>Annual ISO 27001 certification &amp; surveillance</li>
+          <li>STQC / Common Criteria evaluation per procurement</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub-head">Privacy by Design &amp; Accessibility</h3>
+    <div class="grid-2">
+      <div class="card">
+        <h3>🔐 Privacy (DPDP + DPIA)</h3>
+        <p style="font-size:.9rem;color:var(--grey-600)">A mandatory Data Protection Impact Assessment before processing, refreshed annually. Data minimisation, purpose limitation, biometric templates deleted 3 years post-exam, consent at registration, and data localisation within India. A Data Protection Officer answers to the Oversight Board.</p>
+      </div>
+      <div class="card card-green">
+        <h3>♿ Inclusion Without Weakening Security</h3>
+        <p style="font-size:.9rem;color:var(--grey-600)">Persons with disabilities (Divyang) get vetted, biometrically-enrolled scribes, extra time, and assistive tech. Rural candidates use VSAT + offline cache. Multi-language papers are each separately watermarked. Every accommodation preserves full cryptographic control.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-head">Security Maturity Roadmap</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Level</th><th>Stage</th><th>Milestone</th></tr></thead>
+        <tbody>
+          <tr><td>1 — Initial</td><td>Today</td><td>Procedural controls; no continuous monitoring</td></tr>
+          <tr><td>2 — Managed</td><td>End of Phase 1</td><td>SOC live; PAM &amp; HSM deployed; pilot centres</td></tr>
+          <tr><td>3 — Defined</td><td>End of Phase 2</td><td>Standardised controls across 2,500 centres; universal watermarking</td></tr>
+          <tr><td>4 — Quantified</td><td>End of Phase 3</td><td>All 5,000 centres; measured KPIs; ISO 27001 certified</td></tr>
+          <tr><td>5 — Optimising</td><td>Year 4+</td><td>Continuous red-teaming; post-quantum crypto; predictive threat intel</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ IMPLEMENTATION ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="implementation"></span>
+<section class="section section-alt">
+  <div class="container">
+    <span class="section-tag">Implementation &amp; Budget</span>
+    <h2 class="section-title">36-Month Rollout Across 5,000 Centres</h2>
+    <p class="section-sub">A phased programme with clear milestones, ₹1,419 crore budget, RACI accountability, and measurable KPIs.</p>
+
+    <div class="grid-3">
+      <div class="card card-navy"><h3>Phase 1 — Foundation (M1–6)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>Stand up National Exam-SOC</li><li>Deploy PAM for NTA central staff</li><li>Procure HSMs; establish NE-PKI</li><li>Deploy UEBA baselines</li><li>Pilot 200 high-risk centres</li><li>Security awareness training</li></ul><p style="margin-top:12px;font-weight:700;color:var(--amber)">₹385 crore</p></div>
+      <div class="card"><h3>Phase 2 — Core Deployment (M7–18)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>Full encrypted paper distribution</li><li>Digital watermarking on all exams</li><li>Biometric enrolment (80% staff)</li><li>MEI rollout — 2,000 Tier B centres</li><li>AI proctoring at 500 Tier A centres</li><li>Dark web monitoring live</li></ul><p style="margin-top:12px;font-weight:700;color:var(--amber)">₹539 crore</p></div>
+      <div class="card card-green"><h3>Phase 3 — Full Scale (M19–36)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>All 5,000 centres on MEI</li><li>Rural VSAT connectivity rollout</li><li>100% biometric coverage</li><li>Post-quantum cryptography</li><li>ISO 27001 certification</li><li>Standing red team programme</li></ul><p style="margin-top:12px;font-weight:700;color:var(--amber)">₹495 crore</p></div>
+    </div>
+
+    <h3 class="sub-head">Budget by Line Item</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Budget Line</th><th>Phase 1 (₹Cr)</th><th>Phase 2 (₹Cr)</th><th>Phase 3 (₹Cr)</th><th>Total (₹Cr)</th></tr></thead>
+        <tbody>
+          <tr><td>National Exam-SOC</td><td>80</td><td>40</td><td>20</td><td>140</td></tr>
+          <tr><td>HSM / PKI infrastructure</td><td>60</td><td>30</td><td>20</td><td>110</td></tr>
+          <tr><td>PAM platform</td><td>30</td><td>10</td><td>5</td><td>45</td></tr>
+          <tr><td>SIEM / SOAR</td><td>40</td><td>20</td><td>10</td><td>70</td></tr>
+          <tr><td>UEBA platform</td><td>25</td><td>10</td><td>5</td><td>40</td></tr>
+          <tr><td>Biometric enrolment &amp; devices</td><td>20</td><td>60</td><td>40</td><td>120</td></tr>
+          <tr><td>MEI — Tier A (500 centres)</td><td>75</td><td>0</td><td>0</td><td>75</td></tr>
+          <tr><td>MEI — Tier B (2,000 centres)</td><td>0</td><td>240</td><td>0</td><td>240</td></tr>
+          <tr><td>MEI — Tier C (2,500 centres)</td><td>0</td><td>0</td><td>250</td><td>250</td></tr>
+          <tr><td>Computer vision proctoring</td><td>0</td><td>50</td><td>30</td><td>80</td></tr>
+          <tr><td>Rural VSAT connectivity</td><td>0</td><td>0</td><td>50</td><td>50</td></tr>
+          <tr><td>Training &amp; change management</td><td>15</td><td>20</td><td>10</td><td>45</td></tr>
+          <tr><td>Audits &amp; red team</td><td>5</td><td>10</td><td>10</td><td>25</td></tr>
+          <tr><td>Contingency (10%)</td><td>35</td><td>49</td><td>45</td><td>129</td></tr>
+          <tr><td><strong>TOTAL</strong></td><td><strong>385</strong></td><td><strong>539</strong></td><td><strong>495</strong></td><td><strong>1,419</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout callout-teal">
+      <strong>₹79 per candidate per year</strong> — less than 5% addition to the current exam fee. Annual operating cost from Year 4: ₹210 crore. Break-even: one prevented NEET-scale cancellation.
+    </div>
+
+    <h3 class="sub-head">Key Performance Indicators</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>KPI</th><th>Baseline</th><th>Year 1</th><th>Year 3</th></tr></thead>
+        <tbody>
+          <tr><td>Paper leak incidents / year</td><td>3–5</td><td>&le; 1</td><td>0</td></tr>
+          <tr><td>Exam cancellations due to leaks</td><td>1–2 / year</td><td>0</td><td>0</td></tr>
+          <tr><td>Mean time to detect anomaly</td><td>Unknown</td><td>&lt; 30 min</td><td>&lt; 5 min</td></tr>
+          <tr><td>Staff with zero standing privileges</td><td>0%</td><td>80%</td><td>100%</td></tr>
+          <tr><td>Centres at MEI baseline</td><td>0%</td><td>20%</td><td>100%</td></tr>
+          <tr><td>Papers with digital watermark</td><td>0%</td><td>100%</td><td>100%</td></tr>
+          <tr><td>Biometric false rejection rate</td><td>N/A</td><td>&lt; 0.5%</td><td>&lt; 0.1%</td></tr>
+          <tr><td>System uptime on exam day</td><td>~95%</td><td>99.5%</td><td>99.9%</td></tr>
+          <tr><td>Staff trained in security awareness</td><td>0%</td><td>70%</td><td>100%</td></tr>
+          <tr><td>Annual independent audit completed</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">RACI Matrix</h3>
+    <div style="font-size:.85rem;margin-bottom:12px">
+      <span class="raci-r">R</span> Responsible &nbsp;
+      <span class="raci-a">A</span> Accountable &nbsp;
+      <span class="raci-c">C</span> Consulted &nbsp;
+      <span class="raci-i">I</span> Informed
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Activity</th><th>MoE</th><th>NTA</th><th>NIC</th><th>CERT-In</th><th>Centres</th><th>Auditors</th></tr></thead>
+        <tbody>
+          <tr><td>Define security policy</td><td><span class="raci-a">A</span></td><td><span class="raci-r">R</span></td><td><span class="raci-c">C</span></td><td><span class="raci-c">C</span></td><td><span class="raci-i">I</span></td><td><span class="raci-i">I</span></td></tr>
+          <tr><td>Architecture design</td><td><span class="raci-c">C</span></td><td><span class="raci-a">A</span></td><td><span class="raci-r">R</span></td><td><span class="raci-c">C</span></td><td><span class="raci-i">I</span></td><td><span class="raci-c">C</span></td></tr>
+          <tr><td>Deploy HSM / NE-PKI</td><td><span class="raci-i">I</span></td><td><span class="raci-c">C</span></td><td><span class="raci-a">A/R</span></td><td><span class="raci-c">C</span></td><td><span class="raci-i">I</span></td><td><span class="raci-c">C</span></td></tr>
+          <tr><td>Operate Exam-SOC</td><td><span class="raci-i">I</span></td><td><span class="raci-a">A</span></td><td><span class="raci-r">R</span></td><td><span class="raci-c">C</span></td><td><span class="raci-i">I</span></td><td><span class="raci-i">I</span></td></tr>
+          <tr><td>Respond to cyber incidents</td><td><span class="raci-i">I</span></td><td><span class="raci-a">A</span></td><td><span class="raci-r">R</span></td><td><span class="raci-r">R</span></td><td><span class="raci-c">C</span></td><td><span class="raci-i">I</span></td></tr>
+          <tr><td>Centre MEI deployment</td><td><span class="raci-i">I</span></td><td><span class="raci-a">A</span></td><td><span class="raci-r">R</span></td><td><span class="raci-i">I</span></td><td><span class="raci-r">R</span></td><td><span class="raci-c">C</span></td></tr>
+          <tr><td>Annual security audits</td><td><span class="raci-a">A</span></td><td><span class="raci-c">C</span></td><td><span class="raci-c">C</span></td><td><span class="raci-c">C</span></td><td><span class="raci-c">C</span></td><td><span class="raci-r">R</span></td></tr>
+          <tr><td>SME selection &amp; isolation</td><td><span class="raci-i">I</span></td><td><span class="raci-a">A/R</span></td><td><span class="raci-c">C</span></td><td><span class="raci-i">I</span></td><td><span class="raci-i">I</span></td><td><span class="raci-i">I</span></td></tr>
+          <tr><td>Police coordination</td><td><span class="raci-c">C</span></td><td><span class="raci-a">A</span></td><td><span class="raci-i">I</span></td><td><span class="raci-c">C</span></td><td><span class="raci-r">R</span></td><td><span class="raci-i">I</span></td></tr>
+          <tr><td>Public transparency report</td><td><span class="raci-a">A</span></td><td><span class="raci-r">R</span></td><td><span class="raci-i">I</span></td><td><span class="raci-i">I</span></td><td><span class="raci-i">I</span></td><td><span class="raci-c">C</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ ROLLBACK / BREACH RESPONSE ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="breach-response"></span>
+<section class="section section-alt">
+  <div class="container">
+    <span class="section-tag">Breach Response &amp; Rollback</span>
+    <h2 class="section-title">What Happens When <span class="accent">Something Goes Wrong</span></h2>
+    <p class="section-sub">Security architecture cannot guarantee zero incidents — it guarantees a structured, fast, and documented response that limits damage, preserves evidence, and restores integrity. This plan covers human insiders, external attackers, and automated/AI threats.</p>
+
+    <div class="callout callout-amber">
+      <strong>Core principle:</strong> The moment a breach is suspected, the default action is <strong>contain first, investigate second, communicate third</strong>. No single person has authority to suppress or delay breach response. The Exam-SOC duty officer has authority to suspend any session, revoke any credential, and isolate any system without escalation approval.
+    </div>
+
+    <h3 class="sub-head">Incident Severity Classification</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Severity</th><th>Description</th><th>Response Time</th><th>Decision Authority</th></tr></thead>
+        <tbody>
+          <tr><td><strong style="color:#c62828">P1 — Critical</strong></td><td>Paper leak confirmed; HSM compromise; biometric system breach; active attacker in exam systems</td><td>Immediate (&lt; 5 min)</td><td>Exam-SOC duty officer (auto-contain) + NTA DG notified</td></tr>
+          <tr><td><strong style="color:#ff8f00">P2 — High</strong></td><td>Suspected leak; credential theft; camera system outage; insider access anomaly above UEBA threshold 85</td><td>&lt; 15 min</td><td>Exam-SOC Tier 2 analyst + NTA security head</td></tr>
+          <tr><td><strong style="color:#388e3c">P3 — Medium</strong></td><td>Single centre connectivity failure; device tamper alert; failed biometric above baseline; suspicious login</td><td>&lt; 30 min</td><td>Exam-SOC Tier 1 analyst</td></tr>
+          <tr><td><strong>P4 — Low</strong></td><td>Individual access anomaly; failed login attempts below threshold; minor physical irregularity</td><td>&lt; 2 hours</td><td>SOC alert queue</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">Universal 5-Phase Response (All Breach Types)</h3>
+    <div class="flow" style="flex-wrap:nowrap">
+      <div class="flow-step highlight"><span class="flow-icon">🔍</span><strong>1. Detect</strong>UEBA / SIEM alert or human report</div>
+      <div class="flow-step"><span class="flow-icon">🔒</span><strong>2. Contain</strong>Isolate affected system / session / user</div>
+      <div class="flow-step highlight"><span class="flow-icon">🧹</span><strong>3. Eradicate</strong>Remove threat; rotate credentials</div>
+      <div class="flow-step"><span class="flow-icon">🔁</span><strong>4. Recover</strong>Restore clean state; verify integrity</div>
+      <div class="flow-step highlight"><span class="flow-icon">📋</span><strong>5. Review</strong>Root cause analysis; control improvement</div>
+    </div>
+
+    <h3 class="sub-head">Scenario Playbooks</h3>
+
+    <h4 style="color:var(--navy);margin:20px 0 8px;font-size:.98rem">🟥 Scenario 1: Paper Leak Confirmed (Human Insider)</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Step</th><th>Action</th><th>Owner</th><th>Time Target</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>SOAR playbook: suspend all active sessions for suspect user; revoke PAM credentials; preserve session recordings</td><td>Exam-SOC (auto)</td><td>T+0 min</td></tr>
+          <tr><td>2</td><td>Watermark extraction from leaked image to identify source centre and batch</td><td>Exam-SOC forensics</td><td>T+5 min</td></tr>
+          <tr><td>3</td><td>Notify NTA DG, MoE security cell, CERT-In duty officer</td><td>SOC duty officer</td><td>T+10 min</td></tr>
+          <tr><td>4</td><td>Police escalation: contact state SP and district police for suspect's location; begin FIR</td><td>NTA legal + police</td><td>T+15 min</td></tr>
+          <tr><td>5</td><td>Decision gate: Can exam continue with this paper? (rotate questions if pool available) or must be halted?</td><td>NTA DG + MoE</td><td>T+20 min</td></tr>
+          <tr><td>6</td><td>If exam halted: trigger re-examination protocol; notify candidates via official channels only</td><td>NTA communications</td><td>T+30 min</td></tr>
+          <tr><td>7</td><td>Forensic evidence package prepared for legal proceedings; chain of custody documented</td><td>NTA legal + forensics</td><td>T+4 hours</td></tr>
+          <tr><td>8</td><td>CERT-In incident report submitted (within 6-hour mandate)</td><td>Exam-SOC</td><td>T+6 hours</td></tr>
+          <tr><td>9</td><td>Root cause analysis and control gap remediation plan</td><td>Technical Working Group</td><td>Within 14 days</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="color:var(--navy);margin:20px 0 8px;font-size:.98rem">🟥 Scenario 2: External Attacker / Cyber Intrusion</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Step</th><th>Action</th><th>Owner</th><th>Time Target</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>SIEM detects anomalous network pattern; SOAR auto-isolates affected system segment from examination network</td><td>Exam-SOC (auto)</td><td>T+0 min</td></tr>
+          <tr><td>2</td><td>Activate network segmentation: exam centres switch to local HSM cache mode (offline-capable)</td><td>NIC network team</td><td>T+5 min</td></tr>
+          <tr><td>3</td><td>CERT-In cyber cell engaged for joint incident response; threat intelligence shared</td><td>Exam-SOC + CERT-In</td><td>T+10 min</td></tr>
+          <tr><td>4</td><td>Verify HSM integrity via tamper evidence logs; check for key exposure; initiate key rotation if any doubt</td><td>NIC HSM custodians</td><td>T+15 min</td></tr>
+          <tr><td>5</td><td>Forensic snapshot of all affected systems before any remediation (evidence preservation)</td><td>NIC forensics</td><td>T+20 min</td></tr>
+          <tr><td>6</td><td>Attacker TTPs documented against MITRE ATT&amp;CK; IOCs shared with CERT-In</td><td>Exam-SOC Threat Intel</td><td>T+1 hour</td></tr>
+          <tr><td>7</td><td>Clean rebuild of compromised systems from verified images; credential rotation across all systems</td><td>NIC operations</td><td>T+4 hours</td></tr>
+          <tr><td>8</td><td>Exam continuation decision based on whether content or candidate data was accessed</td><td>NTA DG + MoE</td><td>T+2 hours</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="color:var(--navy);margin:20px 0 8px;font-size:.98rem">🟧 Scenario 3: Biometric / Identity System Failure</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Rollback Action</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td>Biometric reader failure at centre gate</td><td>Fallback: manual document check + photo verification by two invigilators; incident logged; device flagged for replacement</td><td>Centre administrator</td></tr>
+          <tr><td>UIDAI API unavailable (cannot verify Aadhaar)</td><td>Use locally cached enrolment biometric template (pre-loaded to centre HSM at D-1); admission proceeds with local match; sync queued</td><td>Centre HSM (auto)</td></tr>
+          <tr><td>Biometric system compromised (fake templates injected)</td><td>Halt biometric admission; revert to manual admit card + photo; escalate to Exam-SOC P1; notify UIDAI; forensic review of all admissions since compromise</td><td>Exam-SOC + NTA</td></tr>
+          <tr><td>AI proctoring system producing false positives at scale</td><td>Disable AI proctoring; human invigilators take over; log all AI flags for manual review post-exam</td><td>Exam-SOC duty officer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 style="color:var(--navy);margin:20px 0 8px;font-size:.98rem">🟧 Scenario 4: HSM / Decryption Failure on Exam Day</h4>
+    <div class="grid-2">
+      <div class="card card-amber">
+        <h3>If Centre HSM Fails</h3>
+        <ol style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2">
+          <li>Centre switches to backup HSM device (mandatory spare at each centre)</li>
+          <li>Regional vault pushes re-encrypted copy to backup HSM via authenticated channel</li>
+          <li>If regional vault unreachable: Exam-SOC authorises emergency decryption using split key (requires NTA DG + MoE security official simultaneously)</li>
+          <li>Maximum delay tolerance before exam rescheduled at that centre: 90 minutes</li>
+          <li>Physical paper backup (sealed, dual-custody) at Tier A centres only — opened under CCTV, dual authorisation, police witness</li>
+        </ol>
+      </div>
+      <div class="card card-navy">
+        <h3>If Geo-fence / Time-lock Fails to Resolve</h3>
+        <ol style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2">
+          <li>Centre administrator contacts Exam-SOC with GPS coordinates and NTP timestamp proof</li>
+          <li>SOC verifies independently using satellite imagery and network time</li>
+          <li>If legitimate failure: SOC issues time-extended decryption token (one-time, 30-min window)</li>
+          <li>Token requires two SOC analyst approvals and is logged immutably</li>
+          <li>If geo-fence dispute: exam delayed; CERT-In notified; physical inspection of centre GPS device</li>
+        </ol>
+      </div>
+    </div>
+
+    <h4 style="color:var(--navy);margin:20px 0 8px;font-size:.98rem">🟨 Scenario 5: Physical Security Breach (On-site)</h4>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Threat</th><th>Response</th><th>Exam Decision</th></tr></thead>
+        <tbody>
+          <tr><td>Prohibited device (phone) found in exam hall</td><td>Candidate excluded; device seized; SOC notified; dark web scan for paper content immediately</td><td>Exam continues; candidate barred</td></tr>
+          <tr><td>Camera offline / covered</td><td>SOC alerts centre immediately; flying squad dispatched; invigilator to visually verify hall; camera replaced if possible</td><td>Exam continues if visual supervision maintained</td></tr>
+          <tr><td>External mob / disturbance at centre</td><td>Police on-site respond; SOC puts centre on heightened alert; exam may be suspended at that centre only</td><td>Per NTA DG decision; re-exam at centre if disrupted</td></tr>
+          <tr><td>Physical paper packet seal broken before authorised time</td><td>Immediate halt; seal photo documented; police and flying squad to centre; forensic custody of packet</td><td>Exam cancelled at that centre; re-examination announced</td></tr>
+          <tr><td>Invigilator suspected of assisting candidate</td><td>Flying squad replaces invigilator immediately; statement taken; legal action initiated; answer scripts of proximate candidates reviewed</td><td>Exam continues under new invigilator</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">Exam Continuation vs. Cancellation Decision Tree</h3>
+    <div class="callout">
+      <strong>Rule:</strong> An exam is cancelled only when there is reasonable evidence that <em>exam integrity cannot be maintained going forward</em>. A past breach does not automatically require cancellation — the question is whether the remaining exam can be conducted fairly.
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Situation</th><th>Decision</th><th>Authority</th></tr></thead>
+        <tbody>
+          <tr><td>Paper leaked before exam starts (confirmed)</td><td>Cancel; rotate questions if pool available; otherwise reschedule</td><td>NTA DG + MoE Secretary</td></tr>
+          <tr><td>Paper leaked after exam has started (&gt; 50% through)</td><td>Continue exam; enhanced monitoring; full post-exam statistical analysis for affected scores</td><td>NTA DG</td></tr>
+          <tr><td>Single centre disrupted (physical/connectivity)</td><td>Cancel at that centre; other centres unaffected; re-examination for affected candidates</td><td>NTA DG</td></tr>
+          <tr><td>Central system outage (SOC, HSM) lasting &gt; 2 hours on exam day</td><td>Suspend all decryptions; delay exam by 3 hours maximum; if unresolved, reschedule</td><td>NTA DG + Programme Director</td></tr>
+          <tr><td>Insider access confirmed but no evidence of leak</td><td>Continue exam; suspect suspended; forensic investigation; result held pending clearance</td><td>NTA DG</td></tr>
+          <tr><td>External attacker in system but no paper access confirmed</td><td>Continue exam in local HSM mode; online connectivity severed; results not released until forensics complete</td><td>NTA DG + CERT-In</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">Post-Incident Rollback Checklist</h3>
+    <div class="grid-2">
+      <div class="card card-navy">
+        <h3>Immediate (0–24 hours)</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2.1">
+          <li>All compromised credentials rotated globally</li>
+          <li>Forensic snapshots taken (no system modified before this)</li>
+          <li>Evidence chain of custody documented</li>
+          <li>CERT-In notification sent (within 6-hour mandate)</li>
+          <li>Communication issued to candidates (factual, no speculation)</li>
+          <li>MoE and NESC briefed</li>
+          <li>Media statement coordinated through NTA communications</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Short-Term (1–14 days)</h3>
+        <ul style="font-size:.88rem;color:var(--grey-600);padding-left:18px;line-height:2.1">
+          <li>Root cause analysis completed and reported to Steering Committee</li>
+          <li>Control gap identified and remediation plan drafted</li>
+          <li>Red team re-test of specific attack vector exploited</li>
+          <li>Legal proceedings initiated where applicable</li>
+          <li>Re-examination schedule announced if required</li>
+          <li>Affected candidates notified individually with clear guidance</li>
+          <li>Independent auditor engaged to verify remediation</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout callout-teal mt-6">
+      <strong>Transparency requirement:</strong> Within 30 days of any P1 or P2 incident, a public incident summary (non-sensitive details) must be published by the Independent Oversight Board. Concealing a breach is itself a governance failure — the architecture is designed so that all incident records are immutable and auditable by the Oversight Board regardless of NTA or MoE preference.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ GLOSSARY ═══════════════════════ -->
+<div class="page-divider"></div>
+<span class="section-anchor" id="glossary"></span>
+<section class="section">
+  <div class="container">
+    <span class="section-tag">Glossary &amp; References</span>
+    <h2 class="section-title">Key Terms &amp; Sources</h2>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:150px">Term</th><th>Definition</th></tr></thead>
+        <tbody>
+          <tr><td>Aadhaar</td><td>India's national biometric identity system (UIDAI). 12-digit unique identity backed by fingerprint and iris biometrics for ~1.3 billion residents.</td></tr>
+          <tr><td>AES-256-GCM</td><td>Advanced Encryption Standard, 256-bit key, Galois/Counter Mode — symmetric encryption providing confidentiality and integrity.</td></tr>
+          <tr><td>CERT-In</td><td>Indian Computer Emergency Response Team — national cyber incident response authority under MeitY.</td></tr>
+          <tr><td>CRYSTALS-Kyber</td><td>Post-quantum key encapsulation mechanism standardised by NIST (FIPS 203). Quantum-resistant alternative to RSA/ECDH.</td></tr>
+          <tr><td>CRYSTALS-Dilithium</td><td>Post-quantum digital signature algorithm standardised by NIST (FIPS 204). Quantum-resistant alternative to RSA/ECDSA.</td></tr>
+          <tr><td>DPDP Act 2023</td><td>Digital Personal Data Protection Act 2023 — India's primary data protection legislation covering biometrics and personal data processing.</td></tr>
+          <tr><td>EIN</td><td>Examination Identity Number — unique identifier assigned to every person in the examination ecosystem, linked to Aadhaar.</td></tr>
+          <tr><td>Exam-SOC</td><td>National Examination Security Operations Centre — 24x7 facility monitoring all examination systems.</td></tr>
+          <tr><td>Geo-fencing</td><td>A virtual geographic boundary. Decryption of papers is permitted only when the requesting device is within the authorised boundary.</td></tr>
+          <tr><td>HSM</td><td>Hardware Security Module — FIPS 140-2 Level 3 device that generates, stores, and manages cryptographic keys in hardware. Keys never exist in plaintext outside the HSM.</td></tr>
+          <tr><td>IGA</td><td>Identity Governance &amp; Administration — platform managing the lifecycle of user identities, roles, and access rights.</td></tr>
+          <tr><td>JIT Access</td><td>Just-In-Time Access — access rights granted only at the moment needed, for the minimum duration, automatically revoked thereafter.</td></tr>
+          <tr><td>MEI</td><td>Managed Exam Infrastructure — the security baseline all NTA-approved examination centres must meet.</td></tr>
+          <tr><td>NE-PKI</td><td>National Examination PKI — dedicated Public Key Infrastructure hierarchy for the examination security programme.</td></tr>
+          <tr><td>NIC</td><td>National Informatics Centre — Government of India's primary IT infrastructure organisation under MeitY.</td></tr>
+          <tr><td>NIST SP 800-207</td><td>NIST Special Publication on Zero Trust Architecture — the definitive guide to ZTA principles and implementation.</td></tr>
+          <tr><td>NTA</td><td>National Testing Agency — autonomous examination authority conducting national entrance and recruitment examinations in India.</td></tr>
+          <tr><td>PAM</td><td>Privileged Access Management — security platform governing access by privileged users to sensitive systems and data.</td></tr>
+          <tr><td>SIEM</td><td>Security Information &amp; Event Management — platform aggregating and correlating logs to detect threats.</td></tr>
+          <tr><td>SOAR</td><td>Security Orchestration, Automation &amp; Response — platform automating security response actions (session suspension, alerting, forensics).</td></tr>
+          <tr><td>UEBA</td><td>User and Entity Behaviour Analytics — AI/ML technology establishing behaviour baselines and alerting on deviations.</td></tr>
+          <tr><td>VSAT</td><td>Very Small Aperture Terminal — satellite communications for rural examination centres where broadband is unavailable.</td></tr>
+          <tr><td>Zero Trust</td><td>"Never trust, always verify." All access requests are authenticated and authorised regardless of network location or user seniority.</td></tr>
+          <tr><td>ZSP</td><td>Zero Standing Privileges — no account holds permanent access; all privileges are time-limited and automatically revoked.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">References</h3>
+    <ol style="padding-left:22px;line-height:2.2;font-size:.9rem;color:var(--grey-600)">
+      <li>National Testing Agency. <em>Annual Report 2023–24.</em> nta.ac.in</li>
+      <li>NIST. <em>SP 800-207: Zero Trust Architecture.</em> 2020.</li>
+      <li>NIST. <em>FIPS 203: ML-KEM (CRYSTALS-Kyber).</em> 2024.</li>
+      <li>NIST. <em>FIPS 204: ML-DSA (CRYSTALS-Dilithium).</em> 2024.</li>
+      <li>NIST. <em>Cybersecurity Framework 2.0.</em> 2024.</li>
+      <li>ISO/IEC 27001:2022. <em>Information Security Management Systems.</em></li>
+      <li>MeitY. <em>CERT-In Directions under Section 70B(6) of the IT Act 2000.</em> April 2022.</li>
+      <li>Ministry of Electronics &amp; IT. <em>Digital Personal Data Protection Act 2023.</em></li>
+      <li>Ministry of Education. <em>National Education Policy 2020.</em></li>
+      <li>Ministry of Education. <em>Public Examinations (Prevention of Unfair Means) Act 2024.</em></li>
+      <li>Supreme Court of India. <em>WP (Civil) No. 552/2024 — NEET-UG 2024.</em></li>
+      <li>National Informatics Centre. <em>GIPKI Framework.</em> nic.in</li>
+      <li>MITRE Corporation. <em>ATT&amp;CK Framework for Enterprise.</em> attack.mitre.org</li>
+      <li>UIDAI. <em>Aadhaar Authentication API documentation.</em> uidai.gov.in</li>
+      <li>Trivedi, Roshan. <em>Securing India's National Exams — Zero-Trust Reference Architecture.</em> LinkedIn, July 2026.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<div class="page-divider"></div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <h4>🇮🇳 India Confident</h4>
+        <p>A zero-trust reference architecture to prevent exam paper leaks, protect merit, and rebuild public trust in India's national examination system.</p>
+        <p style="margin-top:10px;font-style:italic;color:rgba(255,255,255,.5)">"Every paper leak is preventable — if we design systems that expect failure."</p>
+      </div>
+      <div>
+        <h4>Document</h4>
+        <p>
+          Author: <strong style="color:rgba(255,255,255,.85)">Roshan Trivedi, CIAM</strong><br>
+          PAM Product Owner | Identity &amp; Access Management<br>
+          Version 2.0 &nbsp;·&nbsp; 24 July 2026<br>
+          Classification: Public — Policy Discussion
+        </p>
+      </div>
+      <div>
+        <h4>Connect &amp; Download</h4>
+        <div class="footer-social">
+          <a class="social-pill" href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="social-pill" href="https://github.com/trivediroshan1-ui" target="_blank" rel="noopener">GitHub</a>
+          <a class="social-pill" href="https://x.com/roshi_007" target="_blank" rel="noopener">X / Twitter</a>
+          <a class="social-pill" href="https://www.instagram.com/roshi_007" target="_blank" rel="noopener">Instagram</a>
+          <a class="social-pill" href="https://www.facebook.com/share/1Jsv6psuJB/" target="_blank" rel="noopener">Facebook</a>
+        </div>
+        <div class="footer-social" style="margin-top:12px">
+          <a class="social-pill" href="Securing_India_Exams_Master.pdf" style="background:var(--teal);color:#fff" download>⬇ Full PDF (30 pages)</a>
+        </div>
+        <p style="margin-top:12px;font-size:.82rem">
+          Read online:<br>
+          <a href="https://roshantrivedi.co.in/secure-india-exams/" style="color:var(--teal-light)">roshantrivedi.co.in</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Roshan Trivedi, CIAM. All rights reserved. Original work — no reproduction without written permission, except for government policy review or academic discussion.<br>
+      <span style="opacity:.7">Read the full document online at <a href="https://roshantrivedi.co.in/secure-india-exams/" style="color:rgba(255,255,255,.6)">roshantrivedi.co.in</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
