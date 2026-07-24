@@ -3,5 +3,6 @@ description: "Identity & Access Management, PAM, Zero Trust, and independent sec
 url: "https://roshantrivedi.co.in"
 permalink: /writing/:title/
 markdown: kramdown
+future: true
 exclude:
   - README.md
