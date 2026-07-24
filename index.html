@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roshan Trivedi — Identity &amp; Security</title>
+<meta name="description" content="Roshan Trivedi, CIAM — Identity &amp; Security. Cybersecurity professional specialising in Identity &amp; Access Management, Privileged Access Management, and Zero Trust. Independent, public-interest security research.">
+<meta name="author" content="Roshan Trivedi">
+<link rel="canonical" href="https://roshantrivedi.co.in/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roshan Trivedi — Identity &amp; Security">
+<meta property="og:title" content="Roshan Trivedi — Identity &amp; Security">
+<meta property="og:description" content="Identity &amp; Security. IAM · PAM · Zero Trust. Independent security research.">
+<meta property="og:url" content="https://roshantrivedi.co.in/">
+<meta property="og:image" content="https://roshantrivedi.co.in/og-home.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@roshi_007">
+<meta name="twitter:title" content="Roshan Trivedi — Identity &amp; Security">
+<meta name="twitter:description" content="Identity &amp; Security. IAM · PAM · Zero Trust. Independent security research.">
+<meta name="twitter:image" content="https://roshantrivedi.co.in/og-home.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1117'/%3E%3Ctext x='32' y='44' font-family='monospace' font-size='34' font-weight='bold' fill='%2300e5cc' text-anchor='middle'%3ERT%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0a0e17; --bg2:#0d1117; --panel:#111827; --panel2:#141c2b;
+    --line:#1f2a3d; --line2:#26344d;
+    --cyan:#00e5cc; --cyan2:#00acc1; --blue:#3b82f6;
+    --txt:#e6edf3; --muted:#8b98ac; --dim:#5b6a80;
+    --saff:#ff9933; --grn:#3ddc84;
+    --mono:'JetBrains Mono','SF Mono',ui-monospace,'Cascadia Code',Menlo,Consolas,monospace;
+    --sans:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--txt); font-family:var(--sans);
+    line-height:1.7; font-size:16px; overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--cyan); text-decoration:none; transition:.2s}
+  a:hover{color:var(--cyan2)}
+  ::selection{background:var(--cyan); color:#04121a}
+
+  /* grid backdrop */
+  body::before{
+    content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:44px 44px; opacity:.20;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%);
+  }
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px; position:relative; z-index:1}
+
+  /* top tricolour hairline — subtle Indian nod */
+  .flagline{height:3px; display:flex; position:sticky; top:0; z-index:60}
+  .flagline i{flex:1}
+  .flagline .s{background:var(--saff)} .flagline .w{background:#e8eef5} .flagline .g{background:var(--grn)}
+
+  /* NAV */
+  nav{position:sticky; top:3px; z-index:50; backdrop-filter:blur(12px);
+      background:rgba(10,14,23,.82); border-bottom:1px solid var(--line)}
+  .nav-in{display:flex; align-items:center; justify-content:space-between; height:60px}
+  .brand{font-family:var(--mono); font-weight:700; font-size:15px; color:var(--txt); letter-spacing:.5px}
+  .brand b{color:var(--cyan)}
+  .brand .cursor{color:var(--cyan); animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .nav-links{display:flex; gap:6px; list-style:none}
+  .nav-links a{font-family:var(--mono); font-size:13px; color:var(--muted); padding:7px 12px; border-radius:6px}
+  .nav-links a:hover{color:var(--cyan); background:rgba(0,229,204,.08)}
+  .nav-toggle{display:none; background:none; border:0; cursor:pointer; width:36px; height:32px; padding:6px}
+  .nav-toggle span{display:block; height:2px; background:var(--cyan); margin:5px 0; border-radius:2px; transition:.25s}
+  #nc{display:none}
+
+  /* HERO */
+  header.hero{padding:96px 0 80px; position:relative}
+  .term-tag{font-family:var(--mono); font-size:13px; color:var(--cyan); margin-bottom:20px;
+            display:inline-flex; align-items:center; gap:8px}
+  .term-tag::before{content:'>'; color:var(--dim)}
+  h1{font-size:clamp(2.4rem,6vw,4.2rem); line-height:1.05; font-weight:800; letter-spacing:-1.5px; margin-bottom:14px}
+  h1 .grad{background:linear-gradient(120deg,var(--cyan),var(--blue)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+  .role{font-family:var(--mono); font-size:clamp(1rem,2.4vw,1.35rem); color:var(--muted); margin-bottom:26px}
+  .role .hl{color:var(--cyan)}
+  .lead{font-size:1.1rem; color:var(--muted); max-width:640px; margin-bottom:34px}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap}
+  .btn{font-family:var(--mono); font-size:14px; font-weight:600; padding:13px 24px; border-radius:8px; cursor:pointer; display:inline-flex; align-items:center; gap:9px; transition:.2s; border:1px solid transparent}
+  .btn-primary{background:var(--cyan); color:#04121a}
+  .btn-primary:hover{background:#2af0da; color:#04121a; transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,229,204,.28)}
+  .btn-ghost{border-color:var(--line2); color:var(--txt); background:rgba(255,255,255,.02)}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan); transform:translateY(-2px)}
+
+  .hero-stats{display:flex; gap:34px; flex-wrap:wrap; margin-top:52px; padding-top:30px; border-top:1px solid var(--line)}
+  .hstat .n{font-family:var(--mono); font-size:1.7rem; font-weight:700; color:var(--cyan)}
+  .hstat .l{font-size:.82rem; color:var(--dim); text-transform:uppercase; letter-spacing:1px}
+
+  /* SECTION scaffolding */
+  section{padding:72px 0; position:relative}
+  .sec-head{display:flex; align-items:center; gap:14px; margin-bottom:34px}
+  .sec-num{font-family:var(--mono); font-size:14px; color:var(--cyan)}
+  .sec-title{font-size:clamp(1.5rem,3.5vw,2.1rem); font-weight:800; letter-spacing:-.5px}
+  .sec-line{flex:1; height:1px; background:linear-gradient(90deg,var(--line2),transparent)}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1.4fr .9fr; gap:40px; align-items:start}
+  .about p{color:var(--muted); margin-bottom:16px; font-size:1.02rem}
+  .about p strong{color:var(--txt); font-weight:600}
+  .card{background:linear-gradient(160deg,var(--panel),var(--bg2)); border:1px solid var(--line); border-radius:14px; padding:24px}
+  .idcard{font-family:var(--mono); font-size:13.5px}
+  .idcard .row{display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px dashed var(--line2)}
+  .idcard .row:last-child{border-bottom:0}
+  .idcard .k{color:var(--dim)} .idcard .v{color:var(--txt); text-align:right}
+  .idcard .v.on{color:var(--grn)}
+
+  /* SKILLS */
+  .skill-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px}
+  .skill{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; transition:.2s}
+  .skill:hover{border-color:var(--cyan); transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,.4)}
+  .skill h3{font-size:1.02rem; margin-bottom:10px; display:flex; align-items:center; gap:10px}
+  .skill h3 .ic{color:var(--cyan); font-family:var(--mono)}
+  .skill p{font-size:.9rem; color:var(--muted)}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+  .chip{font-family:var(--mono); font-size:11.5px; color:var(--cyan); background:rgba(0,229,204,.08); border:1px solid rgba(0,229,204,.22); padding:4px 10px; border-radius:20px}
+
+  /* EXPERIENCE timeline */
+  .tl{position:relative; padding-left:28px}
+  .tl::before{content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--line2)}
+  .tl-item{position:relative; margin-bottom:26px}
+  .tl-item::before{content:''; position:absolute; left:-27px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 4px rgba(0,229,204,.15)}
+  .tl-item h3{font-size:1.08rem; margin-bottom:3px}
+  .tl-item .meta{font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-bottom:8px}
+  .tl-item p{color:var(--muted); font-size:.95rem}
+
+  /* FEATURED PROJECT */
+  .feat{background:linear-gradient(150deg,#0e1a2b,#0b1220); border:1px solid var(--line2); border-radius:18px; padding:38px; position:relative; overflow:hidden}
+  .feat::before{content:''; position:absolute; top:-40%; right:-10%; width:340px; height:340px; background:radial-gradient(circle,rgba(0,229,204,.14),transparent 70%)}
+  .feat-tag{font-family:var(--mono); font-size:12px; color:var(--cyan); letter-spacing:1px; text-transform:uppercase}
+  .feat h3{font-size:clamp(1.5rem,3.5vw,2rem); font-weight:800; margin:10px 0 14px; letter-spacing:-.5px}
+  .feat p{color:var(--muted); max-width:640px; margin-bottom:20px}
+  .feat-metrics{display:flex; gap:28px; flex-wrap:wrap; margin:22px 0 26px}
+  .feat-metrics .m .n{font-family:var(--mono); font-size:1.4rem; color:var(--cyan); font-weight:700}
+  .feat-metrics .m .l{font-size:.78rem; color:var(--dim); text-transform:uppercase; letter-spacing:.5px}
+  .feat-tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px}
+
+  /* WRITING */
+  .post{display:flex; gap:18px; padding:20px; background:var(--panel); border:1px solid var(--line); border-radius:12px; margin-bottom:14px; transition:.2s}
+  .post:hover{border-color:var(--cyan); transform:translateX(4px)}
+  .post .date{font-family:var(--mono); font-size:12px; color:var(--dim); white-space:nowrap; padding-top:3px}
+  .post h3{font-size:1.05rem; margin-bottom:5px}
+  .post p{font-size:.9rem; color:var(--muted)}
+  .post .tagline{font-family:var(--mono); font-size:11px; color:var(--cyan); margin-top:8px}
+  .soon{font-family:var(--mono); font-size:13px; color:var(--dim); border:1px dashed var(--line2); border-radius:10px; padding:16px 20px; text-align:center}
+
+  /* CONTACT */
+  .contact{text-align:center}
+  .contact .lead{margin:0 auto 30px}
+  .socials{display:flex; gap:14px; flex-wrap:wrap; justify-content:center}
+  .soc{font-family:var(--mono); font-size:13.5px; color:var(--txt); border:1px solid var(--line2); background:var(--panel); padding:12px 20px; border-radius:10px; display:inline-flex; align-items:center; gap:9px; transition:.2s}
+  .soc:hover{border-color:var(--cyan); color:var(--cyan); transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.4)}
+  .soc .d{width:7px; height:7px; border-radius:50%; background:var(--cyan)}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line); padding:30px 0; text-align:center}
+  footer .fmono{font-family:var(--mono); font-size:12.5px; color:var(--dim)}
+  footer .fmono b{color:var(--muted)}
+
+  @media(max-width:820px){
+    .nav-toggle{display:block}
+    .nav-links{position:absolute; top:60px; left:0; right:0; flex-direction:column; gap:0;
+      background:var(--bg2); border-bottom:1px solid var(--line); max-height:0; overflow:hidden; transition:max-height .3s}
+    #nc:checked~.nav-links{max-height:360px}
+    #nc:checked~.nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    #nc:checked~.nav-toggle span:nth-child(2){opacity:0}
+    #nc:checked~.nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .nav-links li{border-top:1px solid var(--line)}
+    .nav-links a{display:block; padding:14px 22px}
+    .about-grid{grid-template-columns:1fr}
+    header.hero{padding:64px 0 56px}
+  }
+</style>
+</head>
+<body>
+
+<div class="flagline"><i class="s"></i><i class="w"></i><i class="g"></i></div>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">~/roshan<b>_trivedi</b><span class="cursor">_</span></a>
+    <input type="checkbox" id="nc">
+    <label class="nav-toggle" for="nc" aria-label="Menu"><span></span><span></span><span></span></label>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">expertise</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#work">work</a></li>
+      <li><a href="#writing">writing</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="term-tag">whoami</div>
+    <h1>Roshan Trivedi<br><span class="grad">secures identity at scale.</span></h1>
+    <p class="role">Cybersecurity Professional · <span class="hl">Identity &amp; Access Management</span> · <span class="hl">PAM</span> · Zero Trust</p>
+    <p class="lead">I design and operate the controls that decide who can touch what — and prove it. My focus is Privileged Access Management, Zero Trust architecture, and turning hard security problems into systems that hold up under real-world adversaries. I also publish independent, public-interest security research.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#work">▸ View featured work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="n">CIAM</div><div class="l">Certified IAM</div></div>
+      <div class="hstat"><div class="n">PAM</div><div class="l">Product Owner</div></div>
+      <div class="hstat"><div class="n">Zero&nbsp;Trust</div><div class="l">Architecture</div></div>
+      <div class="hstat"><div class="n">30-pg</div><div class="l">Published proposal</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2 class="sec-title">About</h2><span class="sec-line"></span></div>
+    <div class="about-grid">
+      <div class="about">
+        <p>I'm a cybersecurity professional specialising in <strong>Identity &amp; Access Management (IAM)</strong> and <strong>Privileged Access Management (PAM)</strong>. Day to day, I work as a PAM Product Owner — building and running the platforms that govern privileged access, enforce least privilege, and make every sensitive action accountable.</p>
+        <p>My conviction is simple: <strong>security should be architectural, not procedural.</strong> Controls that depend on people remembering to do the right thing fail under pressure. Controls built into the system — zero standing privileges, just-in-time access, cryptographic enforcement, continuous monitoring — hold.</p>
+        <p>Beyond my day job, I'm passionate about applying security engineering to problems that matter at national scale. I research and publish <strong>independent, open, public-interest proposals</strong> — the kind of work I believe should exist whether or not anyone asks for it.</p>
+      </div>
+      <div class="card idcard">
+        <div class="row"><span class="k">whoami</span><span class="v">Roshan Trivedi</span></div>
+        <div class="row"><span class="k">role</span><span class="v">PAM Product Owner</span></div>
+        <div class="row"><span class="k">domain</span><span class="v">IAM · PAM · ZeroTrust</span></div>
+        <div class="row"><span class="k">cert</span><span class="v">CIAM</span></div>
+        <div class="row"><span class="k">focus</span><span class="v">Identity Security</span></div>
+        <div class="row"><span class="k">based_in</span><span class="v">Bengaluru, KA · India 🇮🇳</span></div>
+        <div class="row"><span class="k">status</span><span class="v on">● open to collaborate</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2 class="sec-title">Expertise</h2><span class="sec-line"></span></div>
+    <div class="skill-grid">
+      <div class="skill">
+        <h3><span class="ic">[+]</span> Identity &amp; Access</h3>
+        <p>Lifecycle governance, authentication, authorization, and identity federation across enterprise systems.</p>
+        <div class="chips"><span class="chip">IAM</span><span class="chip">IGA</span><span class="chip">SSO / MFA</span><span class="chip">SAML / OIDC</span></div>
+      </div>
+      <div class="skill">
+        <h3><span class="ic">[+]</span> Privileged Access</h3>
+        <p>PAM platform ownership — credential vaulting, session recording, just-in-time and zero standing privileges.</p>
+        <div class="chips"><span class="chip">PAM</span><span class="chip">JIT</span><span class="chip">ZSP</span><span class="chip">Secrets Mgmt</span></div>
+      </div>
+      <div class="skill">
+        <h3><span class="ic">[+]</span> Zero Trust</h3>
+        <p>Architecting "never trust, always verify" — continuous verification, least privilege, micro-segmentation.</p>
+        <div class="chips"><span class="chip">NIST 800-207</span><span class="chip">ZTNA</span><span class="chip">Least Privilege</span></div>
+      </div>
+      <div class="skill">
+        <h3><span class="ic">[+]</span> Cryptography &amp; PKI</h3>
+        <p>Key management, HSMs, certificate infrastructure, and encryption for data at rest and in transit.</p>
+        <div class="chips"><span class="chip">PKI</span><span class="chip">HSM</span><span class="chip">AES / RSA</span><span class="chip">Post-Quantum</span></div>
+      </div>
+      <div class="skill">
+        <h3><span class="ic">[+]</span> Threat &amp; SecOps</h3>
+        <p>Threat modelling, detection engineering, and security operations — UEBA, SIEM/SOAR, incident response.</p>
+        <div class="chips"><span class="chip">STRIDE</span><span class="chip">MITRE ATT&amp;CK</span><span class="chip">SIEM/SOAR</span><span class="chip">UEBA</span></div>
+      </div>
+      <div class="skill">
+        <h3><span class="ic">[+]</span> Governance &amp; Compliance</h3>
+        <p>Aligning controls to recognised frameworks and regulation, and making systems auditable by design.</p>
+        <div class="chips"><span class="chip">ISO 27001</span><span class="chip">NIST CSF</span><span class="chip">DPDP</span><span class="chip">CERT-In</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2 class="sec-title">Experience</h2><span class="sec-line"></span></div>
+    <div class="tl">
+      <div class="tl-item">
+        <h3>PAM Product Owner — Identity &amp; Access Management</h3>
+        <div class="meta">Enterprise Cybersecurity · Present</div>
+        <p>Own the Privileged Access Management product: strategy, roadmap, and operations. Drive adoption of just-in-time access and zero standing privileges, credential vaulting and rotation, and full session accountability across the enterprise.</p>
+      </div>
+      <div class="tl-item">
+        <h3>Identity &amp; Access Management Engineering</h3>
+        <div class="meta">IAM / Security Engineering</div>
+        <p>Design and deliver identity governance, authentication, and access-control capabilities — integrating IAM controls with the broader Zero Trust and security-operations stack.</p>
+      </div>
+      <div class="tl-item">
+        <h3>Independent Security Research &amp; Publication</h3>
+        <div class="meta">Public-interest · Ongoing</div>
+        <p>Author and publish open, non-commercial security architecture proposals for problems of national importance — most recently a full zero-trust reference architecture to secure India's national examinations.</p>
+      </div>
+    </div>
+    <p style="font-family:var(--mono); font-size:12.5px; color:var(--dim); margin-top:18px">// Full role history &amp; specifics available on <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener">LinkedIn</a></p>
+  </div>
+</section>
+
+<!-- FEATURED WORK -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2 class="sec-title">Featured Work</h2><span class="sec-line"></span></div>
+    <div class="feat">
+      <div class="feat-tag">🇮🇳 Public-interest security research</div>
+      <h3>Securing India's National Examinations</h3>
+      <p>A complete, open zero-trust reference architecture to prevent examination paper leaks, protect merit, and rebuild public trust — covering every stage from AI-assisted paper creation to post-exam destruction. A 30-page government-grade proposal with a threat model, AI-security controls, a standards &amp; legal compliance matrix, breach-response playbooks, budget, and KPIs.</p>
+      <div class="feat-metrics">
+        <div class="m"><div class="n">4</div><div class="l">Security pillars</div></div>
+        <div class="m"><div class="n">₹1,419 Cr</div><div class="l">3-yr programme</div></div>
+        <div class="m"><div class="n">5,000+</div><div class="l">Centres</div></div>
+        <div class="m"><div class="n">30 pp</div><div class="l">Full whitepaper</div></div>
+      </div>
+      <div class="feat-tags">
+        <span class="chip">Zero Trust</span><span class="chip">HSM / PKI</span><span class="chip">Threat Model</span>
+        <span class="chip">AI Security</span><span class="chip">DPDP · ISO 27001</span><span class="chip">Breach Response</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="secure-india-exams/index.html">▸ Read the proposal</a>
+        <a class="btn btn-ghost" href="Securing_India_Exams_Master.pdf" download>⬇ Download PDF (30 pp)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2 class="sec-title">Writing &amp; Research</h2><span class="sec-line"></span></div>
+    <a class="post" href="secure-india-exams/index.html">
+      <div class="date">2026 · 07</div>
+      <div>
+        <h3>Securing India's National Examinations — A Zero-Trust Reference Architecture</h3>
+        <p>Why exam paper leaks are an architecture problem, not a corruption problem — and a full, buildable proposal to fix it.</p>
+        <div class="tagline">whitepaper · zero-trust · public policy →</div>
+      </div>
+    </a>
+    <div class="soon">// more independent research coming soon — subscribe via <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://x.com/roshi_007" target="_blank" rel="noopener">X</a></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact">
+    <div class="sec-head"><span class="sec-num">06</span><h2 class="sec-title">Contact</h2><span class="sec-line"></span></div>
+    <p class="lead">Open to collaboration on identity security, zero-trust architecture, and public-interest research. Reach me on any of these — I read everything.</p>
+    <div class="socials">
+      <a class="soc" href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener"><span class="d"></span>LinkedIn</a>
+      <a class="soc" href="https://github.com/trivediroshan1-ui" target="_blank" rel="noopener"><span class="d"></span>GitHub</a>
+      <a class="soc" href="https://x.com/roshi_007" target="_blank" rel="noopener"><span class="d"></span>X / Twitter</a>
+      <a class="soc" href="https://www.instagram.com/roshi_007" target="_blank" rel="noopener"><span class="d"></span>Instagram</a>
+      <a class="soc" href="https://www.facebook.com/share/1Jsv6psuJB/" target="_blank" rel="noopener"><span class="d"></span>Facebook</a>
+      <a class="soc" href="mailto:trivedi.roshan1@gmail.com"><span class="d"></span>trivedi.roshan1@gmail.com</a>
+      <a class="soc" href="tel:+919740870946"><span class="d"></span>+91 97408 70946</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="fmono">© 2026 <b>Roshan Trivedi — Identity &amp; Security</b> · roshantrivedi.co.in</p>
+    <p class="fmono" style="margin-top:6px">IAM · PAM · Zero Trust · Independent Security Research</p>
+  </div>
+</footer>
+
+</body>
+</html>
