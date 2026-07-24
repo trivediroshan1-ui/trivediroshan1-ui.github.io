@@ -1,0 +1,4 @@
+Contact: mailto:trivedi.roshan1@gmail.com
+Expires: 2027-07-24T00:00:00.000Z
+Preferred-Languages: en, hi
+Canonical: https://roshantrivedi.co.in/.well-known/security.txt
