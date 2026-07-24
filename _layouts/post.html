@@ -1,0 +1,43 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }} — Roshan Trivedi</title>
+<meta name="description" content="{{ page.description }}">
+<style>
+  body {
+    background: #0a0a0a;
+    color: #e5e5e5;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+  a { color: #7dd3fc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .back { display: inline-block; margin-bottom: 2rem; color: #888; font-family: monospace; }
+  .meta { color: #888; font-size: 0.9rem; margin-bottom: 2rem; font-family: monospace; }
+  h1 { font-size: 2rem; line-height: 1.25; margin-bottom: 0.5rem; }
+  h2 { font-size: 1.4rem; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 0.4rem; }
+  hr { border: none; border-top: 1px solid #333; margin: 2rem 0; }
+  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+  th, td { border: 1px solid #333; padding: 0.6rem; text-align: left; vertical-align: top; }
+  th { background: #161616; }
+  code { background: #161616; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
+  blockquote { border-left: 3px solid #444; margin-left: 0; padding-left: 1rem; color: #aaa; }
+  .tags { font-family: monospace; color: #7dd3fc; font-size: 0.85rem; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+  <a class="back" href="/">← back to roshantrivedi.co.in</a>
+  <div class="meta">{{ page.date | date: "%d %b %Y" }} · {{ page.author }}</div>
+  <div class="tags">{% for tag in page.tags %}#{{ tag }} {% endfor %}</div>
+  {{ content }}
+  <hr>
+  <p style="color:#666; font-size:0.85rem;">© 2026 Roshan Trivedi — <a href="/">roshantrivedi.co.in</a></p>
+</body>
+</html>
