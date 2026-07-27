@@ -1,1385 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roshan Trivedi â Identity &amp; Access Security</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roshan Trivedi Â· PAM Product Owner Â· Identity &amp; Access Security</title>
+  <meta name="description" content="Roshan Trivedi â PAM Product Owner and cybersecurity professional specialising in Identity &amp; Access Management, Privileged Access Management, and Zero Trust Architecture. CIAM Certified. Bengaluru, India." />
+  <meta name="author" content="Roshan Trivedi" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Roshan Trivedi Â· PAM Product Owner Â· Identity &amp; Access Security" />
+  <meta property="og:description" content="Cybersecurity professional specialising in IAM, PAM, and Zero Trust Architecture. CIAM Certified. Bengaluru, India." />
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/308703552?v=4" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Roshan Trivedi Â· PAM Product Owner Â· Identity &amp; Access Security" />
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/308703552?v=4" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Roshan Trivedi","jobTitle":"PAM Product Owner, Enterprise Cybersecurity","email":"trivedi.roshan1@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressCountry":"IN"},"sameAs":["https://www.linkedin.com/in/roshan-trivedi","https://github.com/trivediroshan1-ui"]}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Space+Mono&display=swap" rel="stylesheet" />
   <style>
-    /* ============================
-       DESIGN TOKENS
-    ============================ */
-    :root {
-      --bg-base:       #04091a;
-      --bg-surface:    #08112a;
-      --bg-card:       rgba(8, 17, 42, 0.9);
-      --bg-card-hover: rgba(0, 212, 255, 0.03);
-      --cyan:          #00d4ff;
-      --cyan-dim:      rgba(0, 212, 255, 0.12);
-      --cyan-border:   rgba(0, 212, 255, 0.25);
-      --orange:        #ff6b35;
-      --orange-dim:    rgba(255, 107, 53, 0.1);
-      --green:         #00ff87;
-      --red:           #ff4d6d;
-      --text-1:        #e8edf5;
-      --text-2:        #8fa3bf;
-      --text-3:        #405070;
-      --border:        rgba(0, 212, 255, 0.1);
-      --border-strong: rgba(0, 212, 255, 0.3);
-      --glow-cyan:     0 0 24px rgba(0, 212, 255, 0.25);
-      --glow-orange:   0 0 24px rgba(255, 107, 53, 0.25);
-      --f-display:     'Rajdhani', sans-serif;
-      --f-body:        'Inter', sans-serif;
-      --f-mono:        'Space Mono', monospace;
-    }
-
-    /* ============================
-       RESET
-    ============================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--f-body);
-      background-color: var(--bg-base);
-      color: var(--text-1);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ============================
-       GLOBAL CYBER GRID BACKGROUND (poster texture)
-    ============================ */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,212,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,255,0.035) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Dot at grid intersections */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(0,212,255,0.12) 1px, transparent 1px);
-      background-size: 48px 48px;
-      background-position: 24px 24px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ============================
-       SCROLLBAR
-    ============================ */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: var(--cyan-border); border-radius: 2px; }
-
-    /* ============================
-       NAVIGATION
-    ============================ */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
-      height: 60px;
-      background: rgba(4, 9, 26, 0.95);
-      backdrop-filter: blur(28px);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 3.5rem;
-    }
-
-    .nav-logo {
-      display: flex; align-items: center; gap: 12px;
-      text-decoration: none;
-    }
-    .logo-mark {
-      width: 34px; height: 34px;
-      border: 1.5px solid var(--cyan);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--f-display);
-      font-weight: 700; font-size: 13px; letter-spacing: 1px;
-      color: var(--cyan);
-      box-shadow: var(--glow-cyan);
-    }
-    .logo-text {
-      font-family: var(--f-display);
-      font-weight: 600; font-size: 12px;
-      letter-spacing: 3px; text-transform: uppercase;
-      color: var(--text-2);
-    }
-
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-family: var(--f-display);
-      font-size: 12px; font-weight: 600;
-      letter-spacing: 2px; text-transform: uppercase;
-      text-decoration: none; color: var(--text-2);
-      transition: color 0.2s;
-      position: relative; padding-bottom: 2px;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1px; background: var(--cyan);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.25s;
-    }
-    .nav-links a:hover { color: var(--cyan); }
-    .nav-links a:hover::after { transform: scaleX(1); }
-
-    .nav-badge {
-      display: flex; align-items: center; gap: 7px;
-      font-family: var(--f-mono); font-size: 10px;
-      color: var(--green); letter-spacing: 1.5px;
-    }
-    .pulse-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: blink 2.2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
-
-    /* ============================
-       HERO â FULL SCREEN POSTER
-    ============================ */
-    .hero {
-      min-height: 100vh;
-      padding: 100px 3.5rem 60px;
-      display: flex; align-items: center;
-      position: relative; overflow: hidden;
-      z-index: 1;
-    }
-
-    /* Poster glow orbs */
-    .hero-glow-1 {
-      position: absolute; top: -180px; right: -120px;
-      width: 640px; height: 640px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,212,255,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-glow-2 {
-      position: absolute; bottom: -100px; left: -80px;
-      width: 480px; height: 480px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,107,53,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    /* Scanline poster effect */
-    .hero-scanlines {
-      position: absolute; inset: 0; pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(0,0,0,0.04) 3px,
-        rgba(0,0,0,0.04) 4px
-      );
-    }
-    /* Corner marks â poster style */
-    .hero::before {
-      content: '';
-      position: absolute; top: 80px; left: 3.5rem;
-      width: 24px; height: 24px;
-      border-top: 1.5px solid var(--cyan-border);
-      border-left: 1.5px solid var(--cyan-border);
-      pointer-events: none;
-    }
-    .hero-corner-br {
-      position: absolute; bottom: 40px; right: 3.5rem;
-      width: 24px; height: 24px;
-      border-bottom: 1.5px solid var(--cyan-border);
-      border-right: 1.5px solid var(--cyan-border);
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      width: 100%; max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 420px;
-      gap: 4rem; align-items: center;
-      position: relative; z-index: 1;
-    }
-
-    .hero-label {
-      font-family: var(--f-mono); font-size: 10px;
-      color: var(--text-3); letter-spacing: 2px;
-      margin-bottom: 1.75rem;
-    }
-    .hero-label em { color: var(--orange); font-style: normal; }
-
-    .hero-headline {
-      font-family: var(--f-display);
-      font-weight: 700;
-      font-size: clamp(54px, 7.5vw, 92px);
-      line-height: 0.92; letter-spacing: -1px;
-      margin-bottom: 1.25rem;
-    }
-    .hl-name { color: var(--text-1); display: block; }
-    .hl-action {
-      display: block;
-      color: var(--cyan);
-      text-shadow: 0 0 40px rgba(0,212,255,0.45), 0 0 80px rgba(0,212,255,0.2);
-    }
-
-    .hero-tagline {
-      font-family: var(--f-mono); font-size: 12px;
-      color: var(--text-2); letter-spacing: 1.5px;
-      margin: 1.5rem 0 1.25rem;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
-    }
-    .hero-tagline .sep { color: var(--orange); opacity: 0.5; }
-
-    .hero-desc {
-      font-size: 15px; color: var(--text-2);
-      line-height: 1.75; max-width: 520px; margin-bottom: 2rem;
-    }
-
-    .hero-ctas { display: flex; gap: 1rem; margin-bottom: 2.5rem; }
-
-    /* Primary CTA */
-    .btn-primary {
-      font-family: var(--f-display); font-weight: 700;
-      font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
-      background: var(--cyan); color: var(--bg-base);
-      padding: 14px 28px; border: none; cursor: pointer;
-      text-decoration: none; display: inline-flex; align-items: center;
-      gap: 8px;
-      transition: all 0.22s;
-      box-shadow: var(--glow-cyan);
-    }
-    .btn-primary:hover {
-      background: #33ddff;
-      transform: translateY(-2px);
-      box-shadow: 0 0 40px rgba(0,212,255,0.5);
-    }
-    /* Secondary CTA */
-    .btn-secondary {
-      font-family: var(--f-display); font-weight: 600;
-      font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase;
-      background: transparent; color: var(--text-1);
-      padding: 13px 28px; border: 1px solid var(--border-strong);
-      cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
-      gap: 8px;
-      transition: all 0.22s;
-    }
-    .btn-secondary:hover {
-      border-color: var(--cyan); color: var(--cyan);
-    }
-
-    .hero-stats {
-      display: flex; gap: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-    .stat-val {
-      font-family: var(--f-display);
-      font-size: 22px; font-weight: 700;
-      color: var(--cyan);
-      text-shadow: 0 0 16px rgba(0,212,255,0.4);
-    }
-    .stat-lbl {
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--text-3); letter-spacing: 2px;
-      text-transform: uppercase; margin-top: 3px;
-    }
-
-    /* ============================
-       ZERO TRUST DIAGRAM (hero right)
-    ============================ */
-    .zt-panel {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 1.75rem 1.5rem 1.5rem;
-      backdrop-filter: blur(12px);
-      position: relative;
-    }
-    .zt-panel::before {
-      content: 'FIG. 01 â ZERO TRUST ACCESS MODEL';
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--text-3); letter-spacing: 1.5px;
-      position: absolute; top: 12px; left: 14px;
-    }
-    .zt-panel svg { width: 100%; margin-top: 12px; }
-
-    /* ============================
-       MARQUEE â CYBER TOPICS
-    ============================ */
-    .marquee-wrap {
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden; padding: 10px 0;
-      position: relative; z-index: 1;
-    }
-    .marquee-track {
-      display: flex; gap: 2.5rem;
-      width: max-content;
-      animation: marquee 28s linear infinite;
-    }
-    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
-    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    .marquee-item {
-      font-family: var(--f-mono); font-size: 10px;
-      letter-spacing: 2px; text-transform: uppercase;
-      white-space: nowrap; color: var(--text-3);
-    }
-    .marquee-item.highlight { color: var(--cyan); }
-
-    /* ============================
-       SHARED SECTION STYLES
-    ============================ */
-    .section {
-      padding: 80px 3.5rem;
-      max-width: 1280px; margin: 0 auto;
-      position: relative; z-index: 1;
-    }
-    hr.divider {
-      border: none; border-top: 1px solid var(--border);
-      margin: 0 3.5rem; position: relative; z-index: 1;
-    }
-
-    .sec-head {
-      display: flex; align-items: center; gap: 1rem;
-      margin-bottom: 3rem;
-    }
-    .sec-tag {
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--orange); border: 1px solid rgba(255,107,53,0.4);
-      padding: 3px 8px; letter-spacing: 1px;
-    }
-    .sec-title {
-      font-family: var(--f-display);
-      font-size: clamp(26px, 3.5vw, 40px);
-      font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    }
-    .sec-line { flex: 1; height: 1px; background: var(--border); }
-
-    .sec-foot {
-      font-family: var(--f-mono); font-size: 10px;
-      color: var(--text-3); letter-spacing: 1px;
-      margin-top: 2.5rem; padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .sec-foot em { color: var(--orange); font-style: normal; }
-
-    /* ============================
-       ABOUT
-    ============================ */
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 340px; gap: 3rem;
-      align-items: start;
-    }
-    .about-text p {
-      font-size: 15px; color: var(--text-2);
-      line-height: 1.8; margin-bottom: 1.2rem;
-    }
-    .about-text strong { color: var(--text-1); }
-
-    .spec-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      overflow: hidden;
-    }
-    .spec-card-head {
-      background: rgba(0,212,255,0.05);
-      border-bottom: 1px solid var(--border);
-      padding: 9px 16px;
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--text-3); letter-spacing: 2px; text-transform: uppercase;
-    }
-    .spec-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 16px; border-bottom: 1px solid rgba(0,212,255,0.05);
-    }
-    .spec-row:last-child { border-bottom: none; }
-    .spec-k { font-family: var(--f-mono); font-size: 10px; color: var(--text-3); }
-    .spec-v { font-family: var(--f-mono); font-size: 11px; color: var(--text-1); text-align: right; }
-    .spec-v.open { color: var(--green); text-shadow: 0 0 8px var(--green); }
-
-    /* ============================
-       EXPERTISE
-    ============================ */
-    .expertise-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-    }
-    .exp-card {
-      background: var(--bg-surface);
-      padding: 2rem; transition: background 0.25s;
-      position: relative; overflow: hidden;
-    }
-    .exp-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 2px; background: var(--cyan);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s;
-    }
-    .exp-card:hover { background: var(--bg-card-hover); }
-    .exp-card:hover::before { transform: scaleX(1); }
-
-    .card-lbl {
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--text-3); letter-spacing: 2px;
-      margin-bottom: 0.85rem;
-    }
-    .card-lbl span { color: var(--orange); }
-    .card-name {
-      font-family: var(--f-display);
-      font-size: 17px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--text-1); margin-bottom: 0.65rem;
-    }
-    .card-desc {
-      font-size: 13px; color: var(--text-2);
-      line-height: 1.65; margin-bottom: 1rem;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 5px; }
-    .tag {
-      font-family: var(--f-mono); font-size: 9px;
-      letter-spacing: 1px; color: var(--cyan);
-      border: 1px solid rgba(0,212,255,0.2);
-      padding: 2px 7px; transition: border-color 0.2s;
-    }
-    .tag:hover { border-color: var(--cyan); }
-
-    /* ============================
-       EXPERIENCE TIMELINE
-    ============================ */
-    .timeline { padding-left: 0; }
-    .tl-item {
-      display: grid; grid-template-columns: 110px 1fr;
-      gap: 2rem; padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .tl-item:last-child { border-bottom: none; }
-    .tl-date {
-      font-family: var(--f-mono); font-size: 10px;
-      color: var(--text-3); letter-spacing: 1px; padding-top: 3px;
-    }
-    .tl-role {
-      font-family: var(--f-display);
-      font-size: 20px; font-weight: 700;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--text-1); margin-bottom: 4px;
-    }
-    .tl-type {
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--orange); letter-spacing: 2px;
-      margin-bottom: 0.75rem;
-    }
-    .tl-desc {
-      font-size: 14px; color: var(--text-2); line-height: 1.72;
-    }
-
-    /* ============================
-       CASE STUDY
-    ============================ */
-    .cs-card {
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      padding: 2.5rem; position: relative; overflow: hidden;
-    }
-    .cs-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--orange), var(--cyan));
-      background-size: 200% 100%;
-      animation: gradshift 4s linear infinite;
-    }
-    @keyframes gradshift { 0%{background-position:0%} 100%{background-position:200%} }
-    .cs-label {
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--orange); letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: 1rem;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .cs-label::before { content: 'â '; font-size: 7px; }
-    .cs-title {
-      font-family: var(--f-display);
-      font-size: clamp(20px, 2.8vw, 32px);
-      font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      color: var(--text-1); margin-bottom: 1rem;
-    }
-    .cs-desc {
-      font-size: 15px; color: var(--text-2);
-      line-height: 1.75; max-width: 680px; margin-bottom: 2rem;
-    }
-    .cs-stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--border); margin-bottom: 2rem;
-    }
-    .cs-stat {
-      background: var(--bg-surface);
-      padding: 1.25rem; text-align: center;
-    }
-    .cs-stat-val {
-      font-family: var(--f-display);
-      font-size: 28px; font-weight: 700; color: var(--cyan);
-    }
-    .cs-stat-lbl {
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--text-3); letter-spacing: 2px;
-      text-transform: uppercase; margin-top: 4px;
-    }
-    .cs-ctas { display: flex; gap: 1rem; }
-
-    /* ============================
-       REFERENCE / POSTER SECTION
-    ============================ */
-    .ref-grid {
-      display: grid; grid-template-columns: 260px 1fr;
-      gap: 3rem; align-items: center;
-    }
-    .poster-frame {
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      padding: 1.25rem;
-      box-shadow: var(--glow-cyan);
-    }
-    .poster-frame svg { width: 100%; display: block; }
-    .poster-meta {
-      font-family: var(--f-mono); font-size: 9px;
-      color: var(--text-3); letter-spacing: 1.5px;
-      text-align: center; margin-top: 8px;
-    }
-    .ref-desc h3 {
-      font-family: var(--f-display);
-      font-size: 22px; font-weight: 700; letter-spacing: 1px;
-      color: var(--text-1); margin-bottom: 1rem;
-    }
-    .ref-desc p {
-      font-size: 14px; color: var(--text-2);
-      line-height: 1.75; margin-bottom: 1.25rem;
-    }
-
-    /* ============================
-       WRITING & RESEARCH
-    ============================ */
-    .articles { display: flex; flex-direction: column; gap: 1px; background: var(--border); }
-
-    .article {
-      background: var(--bg-surface);
-      padding: 2rem; transition: background 0.2s;
-    }
-    .article:hover { background: var(--bg-card-hover); }
-
-    .article-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 0.5rem; flex-wrap: wrap; gap: 0.5rem;
-    }
-    .art-date {
-      font-family: var(--f-mono); font-size: 10px;
-      color: var(--text-3); letter-spacing: 1px;
-    }
-    .art-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-
-    .art-title {
-      font-family: var(--f-display);
-      font-size: 20px; font-weight: 700;
-      letter-spacing: 0.5px; text-transform: uppercase;
-      color: var(--text-1); margin-bottom: 0.5rem;
-      cursor: pointer; transition: color 0.2s;
-    }
-    .art-title:hover { color: var(--cyan); }
-
-    .art-excerpt {
-      font-size: 14px; color: var(--text-2);
-      line-height: 1.7; margin-bottom: 1.25rem;
-    }
-
-    .art-footer {
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .art-read {
-      font-family: var(--f-mono); font-size: 11px;
-      color: var(--cyan); text-decoration: none;
-      letter-spacing: 1.5px; transition: opacity 0.2s;
-    }
-    .art-read:hover { opacity: 0.7; }
-
-    /* Engagement bar */
-    .engage-bar { display: flex; gap: 6px; align-items: center; }
-    .eng-btn {
-      display: flex; align-items: center; gap: 5px;
-      background: transparent;
-      border: 1px solid var(--border); color: var(--text-2);
-      font-family: var(--f-mono); font-size: 10px;
-      letter-spacing: 0.5px; padding: 6px 12px;
-      cursor: pointer; transition: all 0.2s;
-    }
-    .eng-btn:hover { border-color: var(--border-strong); color: var(--text-1); }
-    .eng-btn.liked { border-color: var(--red); color: var(--red); }
-    .eng-btn.shared { border-color: var(--cyan); color: var(--cyan); }
-    .eng-icon { font-size: 12px; line-height: 1; }
-
-    /* Comments */
-    .comments-box {
-      margin-top: 1.5rem; padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-      display: none;
-    }
-    .comment-item { padding: 0.85rem 0; border-bottom: 1px solid rgba(0,212,255,0.06); }
-    .comment-item:last-of-type { border-bottom: none; }
-    .c-author { font-family: var(--f-mono); font-size: 10px; color: var(--cyan); margin-bottom: 3px; }
-    .c-text { font-size: 13px; color: var(--text-2); line-height: 1.6; }
-    .c-empty { font-family: var(--f-mono); font-size: 10px; color: var(--text-3); letter-spacing: 1px; padding: 0.5rem 0; }
-
-    .comment-form { display: flex; flex-direction: column; gap: 8px; margin-top: 1rem; }
-    .comment-form input,
-    .comment-form textarea {
-      background: var(--bg-base); border: 1px solid var(--border);
-      color: var(--text-1); font-family: var(--f-body); font-size: 13px;
-      padding: 10px 14px; outline: none; transition: border-color 0.2s; resize: vertical;
-    }
-    .comment-form input:focus,
-    .comment-form textarea:focus { border-color: var(--cyan); }
-    .comment-form input::placeholder,
-    .comment-form textarea::placeholder { color: var(--text-3); }
-    .comment-form textarea { min-height: 80px; }
-    .c-submit {
-      align-self: flex-start;
-      background: transparent; border: 1px solid var(--cyan); color: var(--cyan);
-      font-family: var(--f-display); font-weight: 700; font-size: 11px;
-      letter-spacing: 2px; text-transform: uppercase;
-      padding: 9px 20px; cursor: pointer; transition: all 0.2s;
-    }
-    .c-submit:hover { background: var(--cyan); color: var(--bg-base); }
-
-    .writing-coming {
-      background: var(--bg-surface);
-      text-align: center; padding: 1.25rem;
-      font-family: var(--f-mono); font-size: 11px;
-      color: var(--text-3); letter-spacing: 1px;
-    }
-    .writing-coming a { color: var(--cyan); text-decoration: none; }
-
-    /* Share popover */
-    .share-popover {
-      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      background: var(--bg-card); border: 1px solid var(--cyan);
-      padding: 12px 20px;
-      font-family: var(--f-mono); font-size: 11px;
-      color: var(--cyan); letter-spacing: 1px;
-      box-shadow: var(--glow-cyan); backdrop-filter: blur(12px);
-      z-index: 900; display: none;
-      animation: popIn 0.2s ease;
-    }
-    @keyframes popIn {
-      from { opacity:0; transform: translateX(-50%) translateY(10px); }
-      to   { opacity:1; transform: translateX(-50%) translateY(0); }
-    }
-
-    /* ============================
-       CONTACT
-    ============================ */
-    .contact-card {
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      padding: 3rem; text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .contact-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.05) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .contact-text {
-      font-size: 16px; color: var(--text-2);
-      line-height: 1.7; margin-bottom: 2rem;
-      position: relative;
-    }
-    .socials {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      justify-content: center; margin-bottom: 2.5rem;
-      position: relative;
-    }
-    .social-btn {
-      display: flex; align-items: center; gap: 7px;
-      background: transparent; border: 1px solid var(--border);
-      color: var(--text-2); font-family: var(--f-mono); font-size: 11px;
-      letter-spacing: 1px; padding: 9px 18px;
-      text-decoration: none; transition: all 0.22s;
-    }
-    .social-btn:hover { border-color: var(--cyan); color: var(--cyan); }
-    .social-btn::before { content: 'â¸'; font-size: 9px; color: var(--orange); }
-
-    .contact-meta {
-      display: flex; justify-content: center; gap: 2.5rem;
-      font-family: var(--f-mono); font-size: 10px;
-      color: var(--text-3); letter-spacing: 1.5px;
-      position: relative;
-    }
-    .contact-meta .open { color: var(--green); }
-
-    /* ============================
-       FOOTER
-    ============================ */
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg-surface);
-      padding: 1.25rem 3.5rem;
-      display: grid; grid-template-columns: repeat(5, 1fr);
-      gap: 1rem; position: relative; z-index: 1;
-    }
-    .f-cell { border-right: 1px solid var(--border); padding-right: 1rem; }
-    .f-cell:last-child { border-right: none; }
-    .f-lbl { font-family: var(--f-mono); font-size: 8px; color: var(--text-3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
-    .f-val { font-family: var(--f-mono); font-size: 11px; color: var(--text-2); }
-
-    /* ============================
-       RESPONSIVE
-    ============================ */
-    @media (max-width: 960px) {
-      nav { padding: 0 1.5rem; }
-      .nav-links { display: none; }
-      .hero { padding: 90px 1.5rem 50px; }
-      .hero::before { left: 1.5rem; }
-      .hero-corner-br { right: 1.5rem; }
-      .hero-inner { grid-template-columns: 1fr; }
-      .zt-panel { display: none; }
-      .about-grid, .ref-grid { grid-template-columns: 1fr; }
-      .expertise-grid { grid-template-columns: repeat(2, 1fr); }
-      .cs-stats { grid-template-columns: repeat(2, 1fr); }
-      .section { padding: 60px 1.5rem; }
-      hr.divider { margin: 0 1.5rem; }
-      footer { grid-template-columns: repeat(2, 1fr); padding: 1.5rem; }
-    }
-
-    /* Selection color */
-    ::selection { background: rgba(0,212,255,0.25); }
+:root{--bg:#030712;--bg-2:#070f1f;--surface:#0d1829;--surface-2:#111f35;--cyan:#22d3ee;--cyan-muted:rgba(34,211,238,0.10);--cyan-muted-2:rgba(34,211,238,0.06);--orange:#f97316;--orange-muted:rgba(249,115,22,0.12);--green:#10b981;--green-muted:rgba(16,185,129,0.15);--red:#ef4444;--text-1:#f0f4f8;--text-2:#94a3b8;--text-3:#475569;--border:rgba(34,211,238,0.12);--border-strong:rgba(34,211,238,0.30);--border-footer:rgba(34,211,238,0.15);--radius:8px;--radius-lg:12px;--f-display:'Space Grotesk',sans-serif;--f-body:'Inter',sans-serif;--f-mono:'Space Mono',monospace;--nav-h:68px;--section-gap:96px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background-color:var(--bg);background-image:radial-gradient(rgba(34,211,238,0.04) 1px,transparent 1px);background-size:28px 28px;color:var(--text-1);font-family:var(--f-body);font-size:1rem;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font:inherit}
+.skip-link{position:absolute;top:-999px;left:0;padding:8px 16px;background:var(--cyan);color:var(--bg);font-weight:600;z-index:9999;border-radius:0 0 var(--radius) 0}
+.skip-link:focus{top:0}
+header{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+#nav{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px;height:var(--nav-h);transition:height .3s}
+header.compact{background:rgba(3,7,18,0.92);backdrop-filter:blur(12px);border-bottom-color:var(--border)}
+header.compact #nav{height:54px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo-mark{width:36px;height:36px;background:var(--cyan-muted);border:1px solid var(--border-strong);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:.75rem;font-weight:700;color:var(--cyan);letter-spacing:.5px}
+.nav-logo-name{font-family:var(--f-display);font-weight:600;font-size:.95rem;color:var(--text-1)}
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--text-2);padding:6px 12px;border-radius:var(--radius);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--text-1);background:var(--cyan-muted-2)}
+.nav-links a.active{color:var(--cyan)}
+.nav-links a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.nav-resume{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border:1px solid var(--border-strong);border-radius:var(--radius);font-size:.82rem;font-weight:600;color:var(--cyan);font-family:var(--f-mono);letter-spacing:.3px;transition:background .2s,border-color .2s;margin-left:12px;flex-shrink:0}
+.nav-resume:hover{background:var(--cyan-muted);border-color:var(--cyan)}
+.nav-resume:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:6px;border-radius:var(--radius);transition:background .2s}
+.hamburger:hover{background:var(--cyan-muted)}
+.hamburger:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-1);border-radius:2px;transition:transform .25s,opacity .25s}
+.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mobile-menu{position:fixed;inset:0;top:var(--nav-h);background:rgba(3,7,18,0.97);backdrop-filter:blur(16px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;z-index:99;opacity:0;pointer-events:none;transform:translateY(-12px);transition:opacity .25s,transform .25s}
+#mobile-menu.open{opacity:1;pointer-events:all;transform:translateY(0)}
+#mobile-menu a{font-family:var(--f-display);font-size:1.5rem;font-weight:600;color:var(--text-2);padding:10px 24px;border-radius:var(--radius);transition:color .2s}
+#mobile-menu a:hover{color:var(--cyan)}
+.mobile-menu-resume{margin-top:16px;padding:10px 24px !important;border:1px solid var(--border-strong) !important;color:var(--cyan) !important;font-family:var(--f-mono) !important;font-size:.9rem !important}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:var(--section-gap) 0}
+.section-heading{display:flex;align-items:center;gap:14px;margin-bottom:56px}
+.section-tag{font-family:var(--f-mono);font-size:.72rem;color:var(--cyan);letter-spacing:1px;flex-shrink:0}
+.section-title{font-family:var(--f-display);font-size:clamp(1.6rem,3vw,2.1rem);font-weight:700;color:var(--text-1);flex-shrink:0}
+.section-line{flex:1;height:1px;background:linear-gradient(to right,var(--border-strong),transparent);min-width:0}
+.animate{opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .5s ease}
+.animate.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.animate{transition:none;opacity:1;transform:none}*{animation-duration:.01ms !important;animation-iteration-count:1 !important}}
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:var(--nav-h);padding-bottom:48px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(34,211,238,.06) 0%,transparent 65%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:55fr 45fr;gap:48px;align-items:center;width:100%}
+.hero-label{display:flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.72rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.hero-label-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,211,238,.4)}50%{opacity:.7;box-shadow:0 0 0 5px rgba(34,211,238,0)}}
+.hero-h1{font-family:var(--f-display);font-size:clamp(3rem,6vw,5.5rem);font-weight:700;line-height:1.05;color:var(--text-1);letter-spacing:-1px}
+.hero-tagline{font-family:var(--f-display);font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:700;line-height:1.05;color:var(--cyan);letter-spacing:-1px;margin-bottom:20px}
+.hero-role{font-family:var(--f-mono);font-size:.82rem;color:var(--text-2);letter-spacing:.5px;margin-bottom:24px}
+.hero-bio{font-size:1rem;color:var(--text-2);line-height:1.75;max-width:480px;margin-bottom:36px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
+.btn-filled{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--orange);color:#fff;font-weight:600;font-size:.9rem;border-radius:var(--radius);transition:opacity .2s,transform .2s}
+.btn-filled:hover{opacity:.88;transform:translateY(-1px)}
+.btn-filled:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--border-strong);color:var(--cyan);font-weight:600;font-size:.9rem;border-radius:var(--radius);transition:background .2s,border-color .2s,transform .2s}
+.btn-outline:hover{background:var(--cyan-muted);border-color:var(--cyan);transform:translateY(-1px)}
+.btn-outline:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.hero-socials{display:flex;align-items:center;gap:20px}
+.hero-social-link{display:flex;align-items:center;gap:7px;font-size:.82rem;font-weight:500;color:var(--text-3);transition:color .2s}
+.hero-social-link:hover{color:var(--text-2)}
+.hero-social-link:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:4px}
+.hero-diagram{display:flex;align-items:center;justify-content:center}
+.hero-diagram svg{width:100%;max-width:420px;height:auto}
+@keyframes zt-subject-pulse{0%,11%,86%,100%{filter:drop-shadow(0 0 6px rgba(34,211,238,.8)) drop-shadow(0 0 14px rgba(34,211,238,.4))}12%,85%{filter:none}}
+@keyframes zt-auth-pulse{0%,11%,24%,100%{filter:none}12%,23%{filter:drop-shadow(0 0 6px rgba(34,211,238,.8)) drop-shadow(0 0 14px rgba(34,211,238,.4))}}
+@keyframes zt-pdp-pulse{0%,23%,39%,100%{filter:none}24%,38%{filter:drop-shadow(0 0 6px rgba(34,211,238,.8)) drop-shadow(0 0 14px rgba(34,211,238,.4))}}
+@keyframes zt-pep-pulse{0%,38%,54%,100%{filter:none}39%,53%{filter:drop-shadow(0 0 6px rgba(34,211,238,.8)) drop-shadow(0 0 14px rgba(34,211,238,.4))}}
+@keyframes zt-grant-pulse{0%,53%,69%,100%{filter:none;opacity:.3}54%,68%{filter:drop-shadow(0 0 5px rgba(16,185,129,.8));opacity:1}}
+@keyframes zt-resources-pulse{0%,53%,69%,100%{filter:none}54%,68%{filter:drop-shadow(0 0 6px rgba(16,185,129,.7)) drop-shadow(0 0 14px rgba(16,185,129,.3))}}
+@keyframes zt-monitor-pulse{0%,68%,84%,100%{opacity:.4}69%,83%{opacity:1}}
+.zt-subject{animation:zt-subject-pulse 8s infinite}
+.zt-auth{animation:zt-auth-pulse 8s infinite}
+.zt-pdp{animation:zt-pdp-pulse 8s infinite}
+.zt-pep{animation:zt-pep-pulse 8s infinite}
+.zt-grant{animation:zt-grant-pulse 8s infinite}
+.zt-resources{animation:zt-resources-pulse 8s infinite}
+.zt-monitor{animation:zt-monitor-pulse 8s infinite}
+#credibility{padding:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2)}
+.cred-inner{display:grid;grid-template-columns:repeat(4,1fr);max-width:1200px;margin:0 auto;padding:0 24px}
+.cred-item{display:flex;align-items:center;gap:14px;padding:28px 20px;border-right:1px solid var(--border)}
+.cred-item:last-child{border-right:none}
+.cred-icon{width:40px;height:40px;background:var(--cyan-muted);border:1px solid var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--cyan)}
+.cred-text strong{display:block;font-family:var(--f-display);font-size:.9rem;font-weight:600;color:var(--text-1);line-height:1.3}
+.cred-text span{font-size:.78rem;color:var(--text-3);font-family:var(--f-mono)}
+#about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:280px 1fr;gap:64px;align-items:start}
+.about-left{display:flex;flex-direction:column;align-items:center;gap:28px}
+.avatar-wrap{position:relative;width:180px;height:180px}
+.avatar-wrap img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:2px solid var(--border)}
+.avatar-ring{position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--cyan);opacity:.4;animation:ring-spin 8s linear infinite}
+.avatar-ring-2{position:absolute;inset:-12px;border-radius:50%;border:1px dashed rgba(34,211,238,.2);animation:ring-spin 16s linear infinite reverse}
+@keyframes ring-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.spec-sheet{width:100%;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.spec-sheet-header{padding:8px 12px;background:var(--surface-2);border-bottom:1px solid var(--border);font-family:var(--f-mono);font-size:.65rem;color:var(--text-3);letter-spacing:1px}
+.spec-row{display:grid;grid-template-columns:auto 1fr}
+.spec-row:not(:last-child){border-bottom:1px solid var(--border)}
+.spec-key{padding:7px 10px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-3);letter-spacing:.5px;border-right:1px solid var(--border);white-space:nowrap}
+.spec-val{padding:7px 10px;font-size:.78rem;color:var(--text-2)}
+.spec-val.cyan{color:var(--cyan);font-family:var(--f-mono);font-size:.72rem}
+.spec-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:6px;vertical-align:middle}
+.about-right p{font-size:1.02rem;color:var(--text-2);line-height:1.8;margin-bottom:20px}
+.about-right p:last-child{margin-bottom:0}
+.about-right strong{color:var(--text-1);font-weight:600}
+#expertise{background:var(--bg-2)}
+.expertise-primary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+.expertise-secondary{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;transition:border-color .25s,background .25s,transform .25s;cursor:default}
+.exp-card:hover{border-color:var(--border-strong);background:var(--surface-2);transform:translateY(-2px)}
+.exp-card.primary{padding:28px}
+.exp-card-label{font-family:var(--f-mono);font-size:.62rem;color:var(--text-3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.exp-card-icon{width:40px;height:40px;background:var(--cyan-muted);border:1px solid var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--cyan);margin-bottom:14px}
+.exp-card.primary .exp-card-icon{width:44px;height:44px}
+.exp-card-name{font-family:var(--f-display);font-size:1.1rem;font-weight:700;color:var(--text-1);margin-bottom:10px}
+.exp-card.primary .exp-card-name{font-size:1.2rem}
+.exp-card-desc{font-size:.85rem;color:var(--text-2);line-height:1.65;margin-bottom:16px}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--f-mono);font-size:.65rem;padding:3px 8px;border:1px solid var(--border);border-radius:4px;color:var(--text-3);background:var(--bg);letter-spacing:.3px}
+.tag.cyan-tag{color:var(--cyan);border-color:rgba(34,211,238,.25);background:var(--cyan-muted-2)}
+#experience{background:var(--bg)}
+.timeline{position:relative;padding-left:32px}
+.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--cyan),transparent)}
+.timeline-item{position:relative;margin-bottom:48px}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-dot{position:absolute;left:-28px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan)}
+.timeline-dot.active{background:var(--cyan);box-shadow:0 0 10px rgba(34,211,238,.5)}
+.timeline-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.timeline-date{font-family:var(--f-mono);font-size:.7rem;color:var(--cyan);letter-spacing:1px}
+.timeline-badge{font-family:var(--f-mono);font-size:.62rem;padding:2px 8px;border-radius:4px;letter-spacing:.5px}
+.badge-role{background:var(--cyan-muted);color:var(--cyan);border:1px solid rgba(34,211,238,.2)}
+.badge-research{background:var(--orange-muted);color:var(--orange);border:1px solid rgba(249,115,22,.2)}
+.timeline-role{font-family:var(--f-display);font-size:1.15rem;font-weight:700;color:var(--text-1);margin-bottom:10px}
+.timeline-desc{font-size:.92rem;color:var(--text-2);line-height:1.7;max-width:640px}
+.timeline-note{margin-top:36px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);font-size:.85rem;color:var(--text-3);display:flex;align-items:center;gap:8px}
+.timeline-note a{color:var(--cyan);text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .2s}
+.timeline-note a:hover{text-decoration-color:var(--cyan)}
+#work{background:var(--bg-2)}
+.work-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;display:grid;grid-template-columns:1fr 320px;transition:border-color .25s}
+.work-card:hover{border-color:var(--border-strong)}
+.work-card-body{padding:40px}
+.work-label{font-family:var(--f-mono);font-size:.62rem;color:var(--orange);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.work-label::before{content:'';width:20px;height:1px;background:var(--orange);opacity:.6}
+.work-title{font-family:var(--f-display);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:var(--text-1);line-height:1.2;margin-bottom:16px}
+.work-desc{font-size:.92rem;color:var(--text-2);line-height:1.75;margin-bottom:28px;max-width:520px}
+.work-stats{display:grid;grid-template-columns:repeat(4,auto);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:8px;width:fit-content}
+.work-stat{padding:14px 18px;border-right:1px solid var(--border)}
+.work-stat:last-child{border-right:none}
+.work-stat-num{font-family:var(--f-display);font-size:1.2rem;font-weight:700;color:var(--cyan);line-height:1.2}
+.work-stat-label{font-size:.72rem;color:var(--text-3);font-family:var(--f-mono);letter-spacing:.3px}
+.work-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.work-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.work-note{font-family:var(--f-mono);font-size:.65rem;color:var(--text-3);letter-spacing:.3px}
+.work-stat-footnote{font-family:var(--f-mono);font-size:.62rem;color:var(--text-3);display:block;margin-top:4px;margin-bottom:20px}
+.work-diagram{background:var(--bg);border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:28px 20px}
+.work-diagram svg{width:100%;max-width:280px}
+#writing{background:var(--bg)}
+.writing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:28px}
+.article-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;display:flex;flex-direction:column;transition:border-color .25s,transform .25s}
+.article-card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.article-meta{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.article-date{font-family:var(--f-mono);font-size:.68rem;color:var(--text-3);letter-spacing:.5px}
+.article-tag{font-family:var(--f-mono);font-size:.62rem;padding:2px 7px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border);color:var(--text-3)}
+.article-title{font-family:var(--f-display);font-size:1.15rem;font-weight:700;color:var(--text-1);line-height:1.3;margin-bottom:12px}
+.article-excerpt{font-size:.88rem;color:var(--text-2);line-height:1.7;flex:1;margin-bottom:20px}
+.article-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.article-read{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;color:var(--cyan);font-family:var(--f-mono);transition:gap .2s}
+.article-read:hover{gap:10px}
+.article-read:focus-visible{outline:2px solid var(--cyan);outline-offset:2px;border-radius:4px}
+.article-read-pdf{font-size:.78rem;color:var(--text-3);font-family:var(--f-mono);text-decoration:underline;text-decoration-color:transparent;transition:color .2s,text-decoration-color .2s}
+.article-read-pdf:hover{color:var(--cyan);text-decoration-color:var(--cyan)}
+.coming-soon-badge{font-family:var(--f-mono);font-size:.62rem;padding:4px 10px;background:var(--orange-muted);border:1px solid rgba(249,115,22,.3);color:var(--orange);border-radius:4px;letter-spacing:1px;text-transform:uppercase}
+.writing-footer-note{text-align:center;font-size:.85rem;color:var(--text-3)}
+.writing-footer-note a{color:var(--cyan);text-decoration:underline;text-decoration-color:transparent;transition:text-decoration-color .2s}
+.writing-footer-note a:hover{text-decoration-color:var(--cyan)}
+#contact{background:var(--bg-2)}
+.contact-inner{max-width:640px;margin:0 auto;text-align:center}
+.contact-invite{font-size:1.05rem;color:var(--text-2);line-height:1.75;margin-bottom:40px}
+.contact-invite strong{color:var(--text-1);font-weight:600}
+.contact-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:32px}
+.contact-btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border:1px solid var(--border);border-radius:var(--radius);font-size:.88rem;font-weight:600;color:var(--text-2);background:var(--surface);transition:border-color .2s,color .2s,background .2s,transform .2s}
+.contact-btn:hover{border-color:var(--border-strong);color:var(--text-1);background:var(--surface-2);transform:translateY(-2px)}
+.contact-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.contact-btn svg{flex-shrink:0;color:var(--cyan)}
+.contact-btn.email-btn svg{color:var(--orange)}
+.contact-status{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.status-pill{display:flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.68rem;color:var(--text-3);letter-spacing:1px;text-transform:uppercase}
+.status-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.status-divider{width:1px;height:14px;background:var(--border)}
+footer{border-top:1px solid var(--border-footer);background:var(--bg);padding:24px 0}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-family:var(--f-mono);font-size:.68rem;color:var(--text-3);letter-spacing:.3px}
+.footer-links{display:flex;align-items:center;gap:4px}
+.footer-links a{font-family:var(--f-mono);font-size:.68rem;color:var(--text-3);padding:4px 8px;border-radius:4px;transition:color .2s}
+.footer-links a:hover{color:var(--cyan)}
+.footer-links span{color:var(--text-3);opacity:.4}
+@media(max-width:900px){
+  .nav-links,.nav-resume{display:none}
+  .hamburger{display:flex}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-diagram{justify-content:center;margin-top:40px}
+  .cred-inner{grid-template-columns:repeat(2,1fr)}
+  .cred-item:nth-child(2){border-right:none}
+  .cred-item:nth-child(3){border-right:1px solid var(--border);border-top:1px solid var(--border)}
+  .cred-item:nth-child(4){border-right:none;border-top:1px solid var(--border)}
+  .about-grid{grid-template-columns:1fr}
+  .about-left{flex-direction:row;align-items:flex-start;gap:24px;flex-wrap:wrap}
+  .expertise-primary,.expertise-secondary{grid-template-columns:repeat(2,1fr)}
+  .work-card{grid-template-columns:1fr}
+  .work-diagram{border-left:none;border-top:1px solid var(--border)}
+  .work-stats{grid-template-columns:repeat(2,auto)}
+  .work-stat:nth-child(2){border-right:none}
+  .work-stat:nth-child(3){border-top:1px solid var(--border)}
+  .work-stat:nth-child(4){border-top:1px solid var(--border);border-right:none}
+}
+@media(max-width:600px){
+  :root{--section-gap:64px}
+  .cred-inner{grid-template-columns:1fr}
+  .cred-item{border-right:none;border-bottom:1px solid var(--border)}
+  .cred-item:last-child{border-bottom:none}
+  .cred-item:nth-child(3),.cred-item:nth-child(4){border-top:none}
+  .about-left{flex-direction:column;align-items:center}
+  .expertise-primary,.expertise-secondary{grid-template-columns:1fr}
+  .writing-grid{grid-template-columns:1fr}
+  .contact-buttons{flex-direction:column;align-items:stretch}
+  .contact-btn{justify-content:center}
+  .footer-inner{flex-direction:column;align-items:flex-start}
+  .section-line{display:none}
+}
+@media(max-width:480px){
+  .hero-ctas{flex-direction:column}
+  .btn-filled,.btn-outline{justify-content:center}
+}
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-<!-- ===================== NAV ===================== -->
-<nav>
-  <a href="#" class="nav-logo">
-    <div class="logo-mark">RT</div>
-    <div class="logo-text">Identity &amp; Access Security</div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#expertise">Expertise</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#case-study">Case Study</a></li>
-    <li><a href="#writing">Writing</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="nav-badge">
-    <div class="pulse-dot"></div>
-    OPEN TO COLLAB
+  <header id="site-header">
+    <nav id="nav">
+      <a href="#hero" class="nav-logo" aria-label="Roshan Trivedi â Home">
+        <div class="nav-logo-mark">RT</div>
+        <span class="nav-logo-name">Roshan Trivedi</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://roshantrivedi.co.in/Roshan_Trivedi_Resume.pdf" class="nav-resume" target="_blank" rel="noopener noreferrer">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.2"/></svg>
+        View R&eacute;sum&eacute;
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div id="mobile-menu" role="dialog" aria-label="Navigation menu">
+    <a href="#about">About</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#experience">Experience</a>
+    <a href="'work">Work</a>
+    <a href="#writing">Writing</a>
+    <a href="#contact">Contact</a>
+    <a href="https://roshantrivedi.co.in/Roshan_Trivedi_Resume.pdf" class="mobile-menu-resume" target="_blank" rel="noopener noreferrer">View R&eacute;sum&eacute; &rarr;</a>
   </div>
-</nav>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero">
-  <div class="hero-glow-1"></div>
-  <div class="hero-glow-2"></div>
-  <div class="hero-scanlines"></div>
-  <div class="hero-corner-br"></div>
-  <div class="hero-inner">
-    <div>
-      <div class="hero-label">DWG NO. <em>RT-2026-001</em> &nbsp;Â·&nbsp; SCALE NTS &nbsp;Â·&nbsp; REV C</div>
-      <h1 class="hero-headline">
-        <span class="hl-name">ROSHAN<br>TRIVEDI</span>
-        <span class="hl-action">SECURES IDENTITY.</span>
-      </h1>
-      <div class="hero-tagline">
-        Cybersecurity Professional
-        <span class="sep">Â·</span>
-        Identity &amp; Access Management
-        <span class="sep">Â·</span>
-        PAM
-        <span class="sep">Â·</span>
-        Zero Trust
-      </div>
-      <p class="hero-desc">I design and operate the controls that decide who can touch what â and prove it. My focus is Privileged Access Management, Zero Trust architecture, and turning hard security problems into systems that hold up under real-world adversaries.</p>
-      <div class="hero-ctas">
-        <a href="https://roshantrivedi.co.in/secure-india-exams/" target="_blank" rel="noopener" class="btn-primary">View Case Study</a>
-        <a href="https://roshantrivedi.co.in/Roshan_Trivedi_Resume.pdf" target="_blank" rel="noopener" class="btn-secondary">Download Resume</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-val">CIAM</div>
-          <div class="stat-lbl">Certified IAM</div>
-        </div>
-        <div>
-          <div class="stat-val">PAM</div>
-          <div class="stat-lbl">Product Owner</div>
-        </div>
-        <div>
-          <div class="stat-val">30pp</div>
-          <div class="stat-lbl">Published Proposal</div>
-        </div>
-      </div>
-    </div>
+  <main id="main">
 
-    <!-- Zero Trust diagram -->
-    <div class="zt-panel">
-      <svg viewBox="0 0 360 318" xmlns="http://www.w3.org/2000/svg">
+    <!-- HERO -->
+    <section id="hero" aria-label="Introduction">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <div class="hero-label">
+              <span class="hero-label-dot" aria-hidden="true"></span>
+              Identity &amp; Access Security
+            </div>
+            <h1 class="hero-h1">Roshan Trivedi</h1>
+            <p class="hero-tagline">Secures Identity.</p>
+            <p class="hero-role">PAM Product Owner &middot; IAM &middot; Zero Trust Architecture</p>
+            <p class="hero-bio">Cybersecurity professional building platforms that govern privileged access, enforce least-privilege, and make every sensitive action accountable. Security should be architectural &mdash; controls built into the system hold.</p>
+            <div class="hero-ctas">
+              <a href="#work" class="btn-filled">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M5 7h6M5 10h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                Explore Featured Work
+              </a>
+              <a href="https://roshantrivedi.co.in/Roshan_Trivedi_Resume.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.2"/></svg>
+                View R&eacute;sum&eacute;
+              </a>
+            </div>
+            <div class="hero-socials">
+              <a href="https://www.linkedin.com/in/roshan-trivedi" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+              <a href="https://github.com/trivediroshan1-ui" class="hero-social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.167 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
 
-        <!-- SUBJECT -->
-        <rect x="110" y="10" width="140" height="40" rx="2"
-              fill="rgba(0,212,255,0.06)" stroke="#00d4ff" stroke-width="1.5"/>
-        <text x="180" y="28" text-anchor="middle"
-              fill="#00d4ff" font-family="'Space Mono',monospace" font-size="9" letter-spacing="1" font-weight="700">USER / SUBJECT</text>
-        <text x="180" y="43" text-anchor="middle"
-              fill="#405070" font-family="'Space Mono',monospace" font-size="6.5">Identity Á· Device Â· Context</text>
-
-        <!-- Arrow: Subject â Policy Engine -->
-        <line x1="180" y1="50" x2="180" y2="76" stroke="#405070" stroke-width="1" stroke-dasharray="4,3"/>
-        <polygon points="180,82 176,74 184,74" fill="#405070"/>
-
-        <!-- POLICY ENGINE outer box -->
-        <rect x="20" y="84" width="320" height="106" rx="2"
-              fill="rgba(255,107,53,0.04)" stroke="#ff6b35" stroke-width="1.5"/>
-        <text x="180" y="100" text-anchor="middle"
-              fill="#ff6b35" font-family="'Space Mono',monospace" font-size="8.5" letter-spacing="2">ZERO TRUST POLICY ENGINE</text>
-
-        <!-- PDP inner box -->
-        <rect x="34" y="108" width="130" height="64" rx="2"
-              fill="rgba(255,107,53,0.08)" stroke="rgba(255,107,53,0.35)" stroke-width="1"/>
-        <text x="99" y="126" text-anchor="middle"
-              fill="#e8edf5" font-family="'Space Mono',monospace" font-size="8" font-weight="700">POLICY DECISION</text>
-        <text x="99" y="139" text-anchor="middle"
-              fill="#ff6b35" font-family="'Space Mono',monospace" font-size="8">POINT  (PDP)</text>
-        <text x="99" y="162" text-anchor="middle"
-              fill="#8fa3bf" font-family="'Space Mono',monospace" font-size="6.5">Trust Score Â· Risk Analysis</text>
-
-        <!-- PDP/PEP separator arrow -->
-        <line x1="164" y1="140" x2="196" y2="140" stroke="#ff6b35" stroke-width="1" stroke-dasharray="3,2"/>
-        <polygon points="196,140 190,136 190,144" fill="#ff6b35"/>
-
-        <!-- PEP inner box -->
-        <rect x="196" y="108" width="130" height="64" rx="2"
-              fill="rgba(255,107,53,0.08)" stroke="rgba(255,107,53,0.35)" stroke-width="1"/>
-        <text x="261" y="126" text-anchor="middle"
-              fill="#e8edf5" font-family="'Space Mono',monospace" font-size="8" font-weight="700">POLICY ENFORCEMENT</text>
-        <text x="261" y="139" text-anchor="middle"
-              fill="#ff6b35" font-family="'Space Mono',monospace" font-size="8">POINT  (PEP)</text>
-        <text x="261" y="162" text-anchor="middle"
-              fill="#8fa3bf" font-family="'Space Mono',monospace" font-size="6.5">JIT Â· Least Privilege Â· ZSP</text>
-
-        <!-- Arrow: Policy Engine â Resources -->
-        <line x1="180" y1="190" x2="180" y2="214" stroke="#405070" stroke-width="1" stroke-dasharray="4,3"/>
-        <polygon points="180,220 176,212 184,212" fill="#405070"/>
-
-        <!-- GRANT/DENY badge -->
-        <rect x="188" y="198" width="60" height="14" rx="2" fill="rgba(0,255,135,0.07)"/>
-        <text x="218" y="208" text-anchor="middle"
-              fill="#00ff87" font-family="'Space Mono',monospace" font-size="6.5">GRANT Â· DENY</text>
-
-        <!-- Resources label bar -->
-        <rect x="20" y="222" width="320" height="18" rx="1"
-              fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.18)" stroke-width="0.5"/>
-        <text x="180" y="234" text-anchor="middle"
-              fill="#8fa3bf" font-family="'Space Mono',monospace" font-size="7" letter-spacing="2">ENTERPRISE RESOURCES</text>
-
-        <!-- APP -->
-        <rect x="20" y="248" width="96" height="46" rx="2"
-              fill="rgba(0,212,255,0.05)" stroke="#00d4ff" stroke-width="1"/>
-        <text x="68" y="267" text-anchor="middle"
-              fill="#00d4ff" font-family="'Space Mono',monospace" font-size="9" letter-spacing="1">APP</text>
-        <text x="68" y="284" text-anchor="middle"
-              fill="#405070" font-family="'Space Mono',monospace" font-size="6.5">Workloads Â· SaaS</text>
-
-        <!-- DATA -->
-        <rect x="132" y="248" width="96" height="46" rx="2"
-              fill="rgba(0,212,255,0.05)" stroke="#00d4ff" stroke-width="1"/>
-        <text x="180" y="267" text-anchor="middle"
-              fill="#00d4ff" font-family="'Space Mono',monospace" font-size="9" letter-spacing="1">DATA</text>
-        <text x="180" y="284" text-anchor="middle"
-              fill="#405070" font-family="'Space Mono',monospace" font-size="6.5">Secrets Â· Databases</text>
-
-        <!-- INFRA -->
-        <rect x="244" y="248" width="96" height="46" rx="2"
-              fill="rgba(0,212,255,0.05)" stroke="#00d4ff" stroke-width="1"/>
-        <text x="292" y="267" text-anchor="middle"
-              fill="#00d4ff" font-family="'Space Mono',monospace" font-size="9" letter-spacing="1">INFRA</text>
-        <text x="292" y="284" text-anchor="middle"
-              fill="#405070" font-family="'Space Mono',monospace" font-size="6.5">Network Â· Cloud</text>
-
-        <!-- Connectors from resource bar to boxes -->
-        <line x1="68"  y1="240" x2="68"  y2="248" stroke="#405070" stroke-width="0.8" stroke-dasharray="2,2"/>
-        <line x1="180" y1="240" x2="180" y2="248" stroke="#405070" stroke-width="0.8" stroke-dasharray="2,2"/>
-        <line x1="292" y1="240" x2="292" y2="248" stroke="#405070" stroke-width="0.8" stroke-dasharray="2,2"/>
-
-        <!-- Footer -->
-        <text x="180" y="312" text-anchor="middle"
-              fill="#405070" font-family="'Space Mono',monospace" font-size="7.5" letter-spacing="2">NEVER TRUST Â· ALWAYS VERIFY</text>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== MARQUEE ===================== -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <!-- first set -->
-    <span class="marquee-item highlight">Zero Trust</span>
-    <span class="marquee-item">Identity Governance</span>
-    <span class="marquee-item highlight">PAM</span>
-    <span class="marquee-item">Threat Modelling</span>
-    <span class="marquee-item highlight">IAM</span>
-    <span class="marquee-item">Least Privilege</span>
-    <span class="marquee-item highlight">PKI &amp; Cryptography</span>
-    <span class="marquee-item">SIEM / SOAR</span>
-    <span class="marquee-item highlight">XDR</span>
-    <span class="marquee-item">Incident Response</span>
-    <span class="marquee-item highlight">ZTNA</span>
-    <span class="marquee-item">Supply Chain Security</span>
-    <span class="marquee-item highlight">AI Security</span>
-    <span class="marquee-item">Post-Quantum Crypto</span>
-    <span class="marquee-item highlight">MITRE ATT&amp;CK</span>
-    <span class="marquee-item">DevSecOps</span>
-    <span class="marquee-item highlight">HSM</span>
-    <span class="marquee-item">Red Teaming</span>
-    <span class="marquee-item highlight">MFA</span>
-    <span class="marquee-item">DPDP &amp; Compliance</span>
-    <!-- duplicate for seamless loop -->
-    <span class="marquee-item highlight">Zero Trust</span>
-    <span class="marquee-item">Identity Governance</span>
-    <span class="marquee-item highlight">PAM</span>
-    <span class="marquee-item">Threat Modelling</span>
-    <span class="marquee-item highlight">IAM</span>
-    <span class="marquee-item">Least Privilege</span>
-    <span class="marquee-item highlight">PKI &amp; Cryptography</span>
-    <span class="marquee-item">SIEM / SOAR</span>
-    <span class="marquee-item highlight">XDR</span>
-    <span class="marquee-item">Incident Response</span>
-    <span class="marquee-item highlight">ZTNA</span>
-    <span class="marquee-item">Supply Chain Security</span>
-    <span class="marquee-item highlight">AI Security</span>
-    <span class="marquee-item">Post-Quantum Crypto</span>
-    <span class="marquee-item highlight">MITRE ATT&amp;CK</span>
-    <span class="marquee-item">DevSecOps</span>
-    <span class="marquee-item highlight">HSM</span>
-    <span class="marquee-item">Red Teaming</span>
-    <span class="marquee-item highlight">MFA</span>
-    <span class="marquee-item">DPDP &amp; Compliance</span>
-  </div>
-</div>
-
-<!-- ===================== ABOUT ===================== -->
-<hr class="divider">
-<div class="section" id="about">
-  <div class="sec-head">
-    <div class="sec-tag">SHT.01</div>
-    <h2 class="sec-title">About</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a cybersecurity professional specialising in <strong>Identity &amp; Access Management (IAM)</strong> and <strong>Privileged Access Management (PAM)</strong>. Day to day, I work as a PAM Product Owner â building and running the platforms that govern privileged access, enforce least privilege, and make every sensitive action accountable.</p>
-      <p>My conviction is simple: <strong>security should be architectural, not procedural.</strong> Controls that depend on people remembering to do the right thing fail under pressure. Controls built into the system â zero standing privileges, just-in-time access, cryptographic enforcement, continuous monitoring â hold.</p>
-      <p>Beyond my day job, I'm passionate about applying security engineering to problems that matter at national scale. I research and publish <strong>independent, open, public-interest proposals</strong> â the kind of work I believe should exist whether or not anyone asks for it.</p>
-    </div>
-    <div class="spec-card">
-      <div style="padding:1.25rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;">
-        <img src="https://avatars.githubusercontent.com/u/308703552?v=4"
-             alt="Roshan Trivedi"
-             style="width:48px;height:48px;border-radius:50%;border:1.5px solid var(--cyan-border);box-shadow:0 0 12px rgba(0,212,255,0.2);">
-        <div>
-          <div style="font-family:var(--f-display);font-weight:700;font-size:15px;color:var(--text-1);">Roshan Trivedi</div>
-          <div style="font-family:var(--f-mono);font-size:9px;color:var(--text-3);letter-spacing:1.5px;margin-top:2px;">PAM PRODUCT OWNER</div>
+          <!-- Zero Trust Diagram -->
+          <div class="hero-diagram">
+            <svg viewBox="0 0 380 490" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+              <defs>
+                <marker id="arr" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#22d3ee" opacity=".6"/></marker>
+                <marker id="arr-g" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#10b981" opacity=".8"/></marker>
+                <marker id="arr-r" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#ef4444" opacity=".8"/></marker>
+                <marker id="arr-b" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#22d3ee" opacity=".3"/></marker>
+              </defs>,sans-serif" font-size="8" fill="#94a3b8">Trust Score</text>
+                <text x="112" y="284" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#94a3b8">Risk Analysis</text>
+                <text x="112" y="296" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#94a3b8">Context Eval</text>
+                <text x="112" y="310" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#475569">NIST 800-207</text>
+              </g>
+              <!-- PEP -->
+              <g class="zt-pep">
+                <rect x="202" y="225" width="132" height="106" rx="6" fill="#0d1829" stroke="#22d3ee" stroke-width="1.2" stroke-opacity=".5"/>
+                <text x="268" y="242" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#94a3b8" letter-spacing=".8">PEP</text>
+                <text x="268" y="258" text-anchor="middle" font-family="Inter,sans-serif" font-size="9.5" fill="#f0f4f8" font-weight="600">Policy Enforce</text>
+                <text x="268" y="272" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#94a3b8">JIT Access</text>
+                <text x="268" y="284" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#94a3b8">Least Privilege</text>
+                <text x="268" y="296" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" fill="#94a3b8">ZSP &middot; Session Ctrl</text>
+                <text x="268" y="310" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="#475569">Credential Vault</text>
+              </g>
+              <!-- Bidirectional PDP-PEP -->
+              <line x1="179" y1="278" x2="200" y2="278" stroke="#22d3ee" stroke-width="1" stroke-opacity=".4" marker-end="url(#arr)"/>
+              <line x1="201" y1="274" x2="180" y2="274" stroke="#22d3ee" stroke-width="1" stroke-opacity=".4" marker-end="url(#arr-b)"/>
+              <!-- GRANT arrow -->
+              <g class="zt-grant">
+                <line x1="158" y1="347" x2="126" y2="374" stroke="#10b981" stroke-width="1.3" stroke-opacity=".8" marker-end="url(#arr-g)"/>
+                <text x="98" y="368" font-family="Space Mono,monospace" font-size="7.5" fill="#10b981">GRANT</text>
+              </g>
+              <!-- DENY arrow (static) -->
+              <line x1="222" y1="347" x2="254" y2="374" stroke="#ef4444" stroke-width="1.3" stroke-opacity=".4" marker-end="url(#arr-r)"/>
+              <text x="257" y="368" font-family="Space Mono,monospace" font-size="7.5" fill="#ef4444" opacity=".5">DENY</text>
+              <!-- RESOURCES -->
+              <g class="zt-resources">
+                <rect x="68" y="378" width="174" height="64" rx="6" fill="#0d1829" stroke="#10b981" stroke-width="1.2" stroke-opacity=".5"/>
+                <text x="155" y="395" text-anchor="middle" font-family="Space Mono,monospace" font-size="7.5" fill="#94a3b8" letter-spacing=".8">RESOURCES</text>
+                <text x="102" y="413" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f0f4f8" font-weight="600">APP</text>
+                <text x="155" y="413" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f0f4f8" font-weight="600">DATA</text>
+                <text x="208" y="413" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#f0f4f8" font-weight="600">INFRA</text>
+                <line x1="128" y1="399" x2="128" y2="430" stroke="#475569" stroke-width=".5"/>
+                <line x1="182" y1="399" x2="182" y2="430" stroke="#475569" stroke-width=".5"/>
+              </g>
+              <!-- MONITOR feedback loop -->
+              <g class="zt-monitor">
+                <path d="M352 278 L372 278 L372 442 L244 442" fill="none" stroke="#22d3ee" stroke-width="1" stroke-opacity=".3" stroke-dasharray="3 3"/>
+                <polygon points="245 438,239 442,245 446" fill="#22d3ee" opacity=".3"/>
+                <text x="367" y="362" font-family="Space Mono,monospace" font-size="7" fill="#475569" text-anchor="middle" transform="rotate(-90 367 362)">CONTINUOUS MONITORING</text>
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
-      <div class="spec-card-head">Spec Sheet</div>
-      <div class="spec-row"><span class="spec-k">Name</span><span class="spec-v">Roshan Trivedi</span></div>
-      <div class="spec-row"><span class="spec-k">Role</span><span class="spec-v">PAM Product Owner</span></div>
-      <div class="spec-row"><span class="spec-k">Domain</span><span class="spec-v">IAM Â· PAM Â· Zero Trust</span></div>
-      <div class="spec-row"><span class="spec-k">Certification</span><span class="spec-v">CIAM</span></div>
-      <div class="spec-row"><span class="spec-k">Location</span><span class="spec-v">Bengaluru, IN</span></div>
-      <div class="spec-row"><span class="spec-k">Status</span><span class="spec-v open">OPEN TO COLLAB</span></div>
-    </div>
-  </div>
-  <div class="sec-foot">DWG: <em>ABOUT-01</em> &nbsp; SCALE: NTS &nbsp; REV: C &nbsp; DRAWN: <em>R.TRIVEDI</em></div>
-</div>
+    </section>
 
-<!-- ===================== EXPERTISE ===================== -->
-<hr class="divider">
-<div class="section" id="expertise">
-  <div class="sec-head">
-    <div class="sec-tag">SHT.02</div>
-    <h2 class="sec-title">Expertise</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="expertise-grid">
-    <div class="exp-card">
-      <div class="card-lbl">COMPONENT Â· <span>IAM-01</span></div>
-      <div class="card-name">Identity &amp; Access</div>
-      <p class="card-desc">Lifecycle governance, authentication, authorization, and identity federation across enterprise systems.</p>
-      <div class="tags"><span class="tag">IGA</span><span class="tag">SSO/MFA</span><span class="tag">SAML/OIDC</span></div>
-    </div>
-    <div class="exp-card">
-      <div class="card-lbl">COMPONENT Â· <span>PAM-01</span></div>
-      <div class="card-name">Privileged Access</div>
-      <p class="card-desc">PAM platform ownership â credential vaulting, session recording, just-in-time and zero standing privileges.</p>
-      <div class="tags"><span class="tag">JIT</span><span class="tag">ZSP</span><span class="tag">Secrets Mgmt</span></div>
-    </div>
-    <div class="exp-card">
-      <div class="card-lbl">COMPONENT Â· <span>ZT-01</span></div>
-      <div class="card-name">Zero Trust</div>
-      <p class="card-desc">Architecting "never trust, always verify" â continuous verification, least privilege, micro-segmentation.</p>
-      <div class="tags"><span class="tag">NIST 800-207</span><span class="tag">ZTNA</span></div>
-    </div>
-    <div class="exp-card">
-      <div class="card-lbl">COMPONENT Â· <span>PKI-01</span></div>
-      <div class="card-name">Cryptography &amp; PKI</div>
-      <p class="card-desc">Key management, HSMs, certificate infrastructure, and encryption for data at rest and in transit.</p>
-      <div class="tags"><span class="tag">HSM</span><span class="tag">AES/RSA</span><span class="tag">Post-Quantum</span></div>
-    </div>
-    <div class="exp-card">
-      <div class="card-lbl">COMPONENT Â· <span>SEC-01</span></div>
-      <div class="card-name">Threat &amp; SecOps</div>
-      <p class="card-desc">Threat modelling, detection engineering, and security operations â UEBA, SIEM/SOAR, incident response.</p>
-      <div class="tags"><span class="tag">STRIDE</span><span class="tag">MITRE ATT&CK</span></div>
-    </div>
-    <div class="exp-card">
-      <div class="card-lbl">COMPONENT Â· <span>GRC-01</span></div>
-      <div class="card-name">Governance</div>
-      <p class="card-desc">Aligning controls to recognised frameworks and regulation, making systems auditable by design.</p>
-      <div class="tags"><span class="tag">ISO 27001</span><span class="tag">DPDP</span><span class="tag">CERT-In</span></div>
-    </div>
-  </div>
-  <div class="sec-foot">DWG: <em>EXPERTISE-02</em> &nbsp; SCALE: NTS &nbsp; REV: C</div>
-</div>
-
-<!-- ===================== EXPERIENCE ===================== -->
-<hr class="divider">
-<div class="section" id="experience">
-  <div class="sec-head">
-    <div class="sec-tag">SHT.03</div>
-    <h2 class="sec-title">Experience</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-date">PRESENT</div>
-      <div>
-        <div class="tl-role">PAM Product Owner</div>
-        <div class="tl-type">ENTERPRISE CYBERSECURITY</div>
-        <p class="tl-desc">Own the Privileged Access Management product: strategy, roadmap, and operations. Drive adoption of just-in-time access and zero standing privileges, credential vaulting and rotation, and full session accountability across the enterprise.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-date">ONGOING</div>
-      <div>
-        <div class="tl-role">IAM Engineering</div>
-        <div class="tl-type">SECURITY ENGINEERING</div>
-        <p class="tl-desc">Design and deliver identity governance, authentication, and access-control capabilities â integrating IAM controls with the broader Zero Trust and security-operations stack.</p>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-date">ONGOING</div>
-      <div>
-        <div class="tl-role">Independent Research</div>
-        <div class="tl-type">PUBLIC-INTEREST PUBLICATION</div>
-        <p class="tl-desc">Author and publish open, non-commercial security architecture proposals for problems of national importance â most recently a full zero-trust reference architecture to secure India's national examinations.</p>
-      </div>
-    </div>
-  </div>
-  <div class="sec-foot">// Full role history on <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none">LinkedIn</a> or in the <a href="https://roshantrivedi.co.in/Roshan_Trivedi_Resume.pdf" target="_blank" rel="noopener" style="color:var(--cyan);text-decoration:none">full rÃ©sumÃ© (PDF)</a> &nbsp;&nbsp; DWG: <em>EXPERIENCE-03</em> &nbsp; SCALE: NTS &nbsp; REV: C</div>
-</div>
-
-<!-- ===================== CASE STUDY ===================== -->
-<hr class="divider">
-<div class="section" id="case-study">
-  <div class="sec-head">
-    <div class="sec-tag">SHT.04</div>
-    <h2 class="sec-title">Case Study</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="cs-card">
-    <div class="cs-label">Public-Interest Security Research</div>
-    <h3 class="cs-title">Securing India's National Examinations</h3>
-    <p class="cs-desc">A complete, open zero-trust reference architecture to prevent examination paper leaks, protect merit, and rebuild public trust â covering every stage from AI-assisted paper creation to post-exam destruction. A 30-page government-grade proposal with a threat model, AI-security controls, a standards &amp; legal compliance matrix, breach-response playbooks, budget, and KPIs.</p>
-    <div class="cs-stats">
-      <div class="cs-stat"><div class="cs-stat-val">4</div><div class="cs-stat-lbl">Pillars</div></div>
-      <div class="cs-stat"><div class="cs-stat-val">â¹1,419Cr</div><div class="cs-stat-lbl">3-YR Programme</div></div>
-      <div class="cs-stat"><div class="cs-stat-val">5,000+</div><div class="cs-stat-lbl">Centres</div></div>
-      <div class="cs-stat"><div class="cs-stat-val">30pp</div><div class="cs-stat-lbl">Whitepaper</div></div>
-    </div>
-    <div class="tags" style="margin-bottom:1.5rem">
-      <span class="tag">Zero Trust</span>
-      <span class="tag">HSM/PKI</span>
-      <span class="tag">Threat Model</span>
-      <span class="tag">AI Security</span>
-      <span class="tag">DPDP Â· ISO 27001</span>
-    </div>
-    <div class="cs-ctas">
-      <a href="https://roshantrivedi.co.in/secure-india-exams/" target="_blank" rel="noopener" class="btn-primary">Read Proposal</a>
-      <a href="https://roshantrivedi.co.in/Securing_India_Exams_Master.pdf" target="_blank" rel="noopener" class="btn-secondary">Download PDF</a>
-    </div>
-  </div>
-  <div class="sec-foot">DWG: <em>CASE-04</em> &nbsp; SCALE: NTS &nbsp; REV: C</div>
-</div>
-
-<!-- ===================== REFERENCE SHEET ===================== -->
-<hr class="divider">
-<div class="section" id="reference">
-  <div class="sec-head">
-    <div class="sec-tag">SHT.05</div>
-    <h2 class="sec-title">Reference Sheet</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="ref-grid">
-    <div class="poster-frame">
-      <img src="https://roshantrivedi.co.in/poster-zero-trust.png"
-           alt="Zero Trust Reference Poster by Roshan Trivedi"
-           style="width:100%;display:block;border:none;">
-      <div class="poster-meta">REF-05 Â· A3 Â· 1:1</div>
-    </div>
-    <div class="ref-desc">
-      <h3>Zero Trust, in one frame.</h3>
-      <p>A reference poster distilling the five principles I design around every day â verify explicitly, least-privilege access, assume breach, continuous monitoring, and micro-segmentation.</p>
-      <p>Free to use for security awareness training, conference walls, or your own team's onboarding deck.</p>
-      <a href="https://roshantrivedi.co.in/poster-zero-trust.png" download target="_blank" rel="noopener" class="btn-secondary">Download Poster (PNG)</a>
-    </div>
-  </div>
-  <div class="sec-foot">DWG: <em>REF-05</em> &nbsp; SCALE: 1:1 &nbsp; REV: C</div>
-</div>
-
-<!-- ===================== WRITING & RESEARCH ===================== -->
-<hr class="divider">
-<div class="section" id="writing">
-  <div class="sec-head">
-    <div class="sec-tag">SHT.06</div>
-    <h2 class="sec-title">Writing &amp; Research</h2>
-    <div class="sec-line"></div>
-  </div>
-
-  <div class="articles">
-
-    <!-- Article 1 -->
-    <div class="article">
-      <div class="article-top">
-        <div class="art-date">2026-07</div>
-        <div class="art-tags">
-          <span class="tag">Incident Analysis</span>
-          <span class="tag">AI Security</span>
-          <span class="tag">Zero Trust</span>
+    <!-- CREDIBILITY STRIP -->
+    <div id="credibility" role="list" aria-label="Key credentials">
+      <div class="cred-inner">
+        <div class="cred-item animate" role="listitem">
+          <div class="cred-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cred-text"><strong>PAM Product Owner</strong><span>Enterprise Cybersecurity</span></div>
+        </div>
+        <div class="cred-item animate" role="listitem">
+          <div class="cred-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="10" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2" stroke-linecap="round"/><path d="M5 20h14" stroke-linecap="round"/></svg>
+          </div>
+          <div class="cred-text"><strong>CIAM Certified</strong><span>Identity &amp; Access Mgmt</span></div>
+        </div>
+        <div class="cred-item animate" role="listitem">
+          <div class="cred-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="cred-text"><strong>Published Research</strong><span>Zero Trust Architecture</span></div>
+        </div>
+        <div class="cred-item animate" role="listitem">
+          <div class="cred-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="cred-text"><strong>Bengaluru, India</strong><span>Open to Collaboration</span></div>
         </div>
       </div>
-      <div class="art-title">When the Attacker Was the AI Itself</div>
-      <p class="art-excerpt">A cybersecurity breakdown of the OpenAIâHugging Face breach â problem statement, impact, risk analysis, mitigations, and AI governance lessons.</p>
-      <div class="art-footer">
-        <a href="#" class="art-read">Read â</a>
-        <div class="engage-bar">
-          <button class="eng-btn like-btn" data-id="a1" onclick="doLike(this)">
-            <span class="eng-icon">â¥</span><span class="lc">0</span>
-          </button>
-          <button class="eng-btn cmt-btn" data-id="a1" onclick="toggleComments('a1')">
-            <span class="eng-icon">ð¬</span><span class="cc">0</span>
-          </button>
-          <button class="eng-btn shr-btn" data-id="a1" onclick="doShare('When the Attacker Was the AI Itself')">
-            <span class="eng-icon">â</span> Share
-          </button>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-tag" aria-hidden="true">[01]</span>
+          <h2 class="section-title" id="about-heading">About</h2>
+          <div class="section-line" aria-hidden="true"></div>
+        </div>
+        <div class="about-grid animate">
+          <div class="about-left">
+            <div class="avatar-wrap">
+              <img src="https://avatars.githubusercontent.com/u/308703552?v=4" alt="Roshan Trivedi â profile photo" width="180" height="180" loading="lazy"/>
+              <div class="avatar-ring" aria-hidden="true"></div>
+              <div class="avatar-ring-2" aria-hidden="true"></div>
+            </div>
+            <div class="spec-sheet" role="table" aria-label="Profile details">
+              <div class="spec-sheet-header">PROFILE.JSON</div>
+              <div class="spec-row" role="row"><div class="spec-key" role="rowheader">NAME</div><div class="spec-val" role="cell">Roshan Trivedi</div></div>
+              <div class="spec-row" role="row"><div class="spec-key" role="rowheader">ROLE</div><div class="spec-val" role="cell">PAM Product Owner</div></div>
+              <div class="spec-row" role="row"><div class="spec-key" role="rowheader">DOMAIN</div><div class="spec-val" role="cell">IAM &middot; PAM &middot; Zero Trust</div></div>
+              <div class="spec-row" role="row"><div class="spec-key" role="rowheader">CERT</div><div class="spec-val cyan" role="cell">CIAM</div></div>
+              <div class="spec-row" role="row"><div class="spec-key" role="rowheader">LOCATION</div><div class="spec-val" role="cell">Bengaluru, IN</div></div>
+              <div class="spec-row" role="row"><div class="spec-key" role="rowheader">STATUS</div><div class="spec-val" role="cell"><span class="spec-dot" aria-hidden="true"></span>Open to Collab</div></div>
+            </div>
+          </div>
+          <div class="about-right">
+            <p>I'm a cybersecurity professional specialising in <strong>Identity &amp; Access Management (IAM)</strong> and <strong>Privileged Access Management (PAM)</strong>. Day to day, I work as a PAM Product Owner &mdash; building and running the platforms that govern privileged access, enforce least privilege, and make every sensitive action accountable.</p>
+            <p>My conviction: <strong>security should be architectural, not procedural.</strong> Controls built into the system &mdash; zero standing privileges, just-in-time access, cryptographic enforcement, continuous monitoring &mdash; hold. Policies written in a document, enforced by humans under pressure, do not.</p>
+            <p>Beyond my day job, I research and publish independent, open, public-interest proposals for problems that matter at national scale. Most recently: a zero-trust reference architecture to secure India's national examination system &mdash; from AI-assisted paper creation to post-exam destruction.</p>
+          </div>
         </div>
       </div>
-      <div class="comments-box" id="cb-a1">
-        <div class="comments-list" id="cl-a1"></div>
-        <form class="comment-form" onsubmit="postComment(event,'a1')">
-          <input type="text" placeholder="Your name" required>
-          <textarea placeholder="Your thoughts on this article..." required></textarea>
-          <button type="submit" class="c-submit">Post Comment</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Article 2 -->
-    <div class="article">
-      <div class="article-top">
-        <div class="art-date">2026-07</div>
-        <div class="art-tags">
-          <span class="tag">Whitepaper</span>
-          <span class="tag">Zero Trust</span>
-          <span class="tag">Public Policy</span>
+    </section>
+ticle>
+          <article class="exp-card animate">
+            <div class="exp-card-label">COMPONENT &middot; SECOPS-01</div>
+            <div class="exp-card-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <h3 class="exp-card-name">Threat &amp; SecOps</h3>
+            <p class="exp-card-desc">Threat modelling, detection engineering, UEBA, SIEM/SOAR integration, and incident response playbook development.</p>
+            <div class="exp-tags"><span class="tag">STRIDE</span><span class="tag">MITRE ATT&amp;CK</span><span class="tag">SIEM/SOAR</span><span class="tag">UEBA</span></div>
+          </article>
+          <article class="exp-card animate">
+            <div class="exp-card-label">COMPONENT &middot; GRC-01</div>
+            <div class="exp-card-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <h3 class="exp-card-name">Governance &amp; Compliance</h3>
+            <p class="exp-card-desc">Aligning security controls to frameworks, making systems auditable, and embedding compliance into engineering practice.</p>
+            <div class="exp-tags"><span class="tag">ISO 27001</span><span class="tag">DPDP</span><span class="tag">CERT-In</span><span class="tag">Audit</span></div>
+          </article>
         </div>
       </div>
-      <div class="art-title">Securing India's National Examinations</div>
-      <p class="art-excerpt">Why exam paper leaks are an architecture problem, not a corruption problem â and a full, buildable proposal to fix it.</p>
-      <div class="art-footer">
-        <a href="#" class="art-read">Read â</a>
-        <div class="engage-bar">
-          <button class="eng-btn like-btn" data-id="a2" onclick="doLike(this)">
-            <span class="eng-icon">â¥</span><span class="lc">0</span>
-          </button>
-          <button class="eng-btn cmt-btn" data-id="a2" onclick="toggleComments('a2')">
-            <span class="eng-icon">ð¬</span><span class="cc">0</span>
-          </button>
-          <button class="eng-btn shr-btn" data-id="a2" onclick="doShare('Securing India\'s National Examinations')">
-            <span class="eng-icon">â</span> Share
-          </button>
+    </section>
+ISO 27001</span>
+            </div>
+            <div class="work-ctas">
+              <a href="https://roshantrivedi.co.in/secure-india-exams/" class="btn-filled" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 3h10v10M13 3L3 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                View Case Study
+              </a>
+              <a href="https://roshantrivedi.co.in/Securing_India_Exams_Master.pdf" class="btn-outline" target="_blank" rel="noopener noreferrer">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2h7l3 3v9H3V2z" stroke="currentColor" stroke-width="1.2"/><path d="M10 2v3h3" stroke="currentColor" stroke-width="1.2"/></svg>
+                Download PDF
+              </a>
+            </div>
+            <p class="work-note">Non-commercial, independent research proposal</p>
+          </div>
         </div>
       </div>
-      <div class="comments-box" id="cb-a2">
-        <div class="comments-list" id="cl-a2"></div>
-        <form class="comment-form" onsubmit="postComment(event,'a2')">
-          <input type="text" placeholder="Your name" required>
-          <textarea placeholder="Your thoughts on this article..." required></textarea>
-          <button type="submit" class="c-submit">Post Comment</button>
-        </form>
+    </section>
+   </div>
+            <h3 class="article-title">Securing India's National Examinations</h3>
+            <p class="article-excerpt">Why exam paper leaks are an architecture problem, not a process problem. This piece presents the case for a complete Zero Trust reference model &mdash; covering the full lifecycle from paper creation to destruction &mdash; as a permanent solution for a recurring national failure.</p>
+            <div class="article-footer">
+              <a href="https://roshantrivedi.co.in/secure-india-exams/" class="article-read" target="_blank" rel="noopener noreferrer" aria-label="Read Securing India's National Examinations">
+                Read case study
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="https://roshantrivedi.co.in/Securing_India_Exams_Master.pdf" class="article-read-pdf" target="_blank" rel="noopener noreferrer">Download PDF &rarr;</a>
+            </div>
+          </article>
+        </div>
+        <p class="writing-footer-note">More independent research publishing soon &mdash; <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener noreferrer">follow on LinkedIn</a> for updates.</p>
       </div>
-    </div>
+    </section>
+t sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => {
+            l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px' });
 
-  </div>
-  <div class="writing-coming">
-    // More independent research coming soon â subscribe via <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener">LinkedIn</a> or <a href="https://twitter.com/trivedi_roshan1" target="_blank" rel="noopener">X</a>
-  </div>
-  <div class="sec-foot">DWG: <em>WRITING-06</em> &nbsp; SCALE: NTS &nbsp; REV: C</div>
-</div>
+    sections.forEach(s => sectionObserver.observe(s));
 
-<!-- ===================== CONTACT ===================== -->
-<hr class="divider">
-<div class="section" id="contact">
-  <div class="sec-head">
-    <div class="sec-tag">SHT.07</div>
-    <h2 class="sec-title">Contact</h2>
-    <div class="sec-line"></div>
-  </div>
-  <div class="contact-card">
-    <p class="contact-text">Open to collaboration on identity security, zero-trust architecture,<br>and public-interest research. Reach me on any of these â I read everything.</p>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/roshan-trivedi" target="_blank" rel="noopener" class="social-btn">LinkedIn</a>
-      <a href="https://github.com/trivediroshan1-ui" target="_blank" rel="noopener" class="social-btn">GitHub</a>
-      <a href="https://twitter.com/trivedi_roshan1" target="_blank" rel="noopener" class="social-btn">X / Twitter</a>
-      <a href="https://instagram.com/trivedi.roshan1" target="_blank" rel="noopener" class="social-btn">Instagram</a>
-      <a href="https://facebook.com/trivedi.roshan1" target="_blank" rel="noopener" class="social-btn">Facebook</a>
-      <a href="mailto:trivedi.roshan1@gmail.com" class="social-btn">Email</a>
-      <a href="tel:+919740870946" class="social-btn">+91 97408 70946</a>
-    </div>
-    <div class="contact-meta">
-      <span>STATUS: <span class="open">OPEN</span></span>
-      <span>RESPONSE: &lt;48H</span>
-      <span>LOCATION: BENGALURU, IN</span>
-    </div>
-  </div>
-  <div class="sec-foot">DWG: <em>CONTACT-07</em> &nbsp; SCALE: NTS &nbsp; REV: C</div>
-</div>
-
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="f-cell"><div class="f-lbl">Project</div><div class="f-val">Identity &amp; Security</div></div>
-  <div class="f-cell"><div class="f-lbl">Drawn by</div><div class="f-val">R. Trivedi</div></div>
-  <div class="f-cell"><div class="f-lbl">Rev</div><div class="f-val">C Â· 2026</div></div>
-  <div class="f-cell"><div class="f-lbl">Sheet</div><div class="f-val">07 of 07</div></div>
-  <div class="f-cell"><div class="f-lbl">Site</div><div class="f-val">roshantrivedi.co.in</div></div>
-</footer>
-
-<!-- ===================== SHARE TOAST ===================== -->
-<div class="share-popover" id="shareToast">â &nbsp; LINK COPIED TO CLIPBOARD</div>
-
-<!-- ===================== JAVASCRIPT ===================== -->
-<script>
-  /* ââ State (localStorage) ââ */
-  const S = {
-    likes:    JSON.parse(localStorage.getItem('rt_likes')    || '{}'),
-    counts:   JSON.parse(localStorage.getItem('rt_counts')   || '{}'),
-    comments: JSON.parse(localStorage.getItem('rt_comments') || '{}'),
-    save() {
-      localStorage.setItem('rt_likes',    JSON.stringify(this.likes));
-      localStorage.setItem('rt_counts',   JSON.stringify(this.counts));
-      localStorage.setItem('rt_comments', JSON.stringify(this.comments));
-    }
-  };
-
-  /* ââ Init ââ */
-  document.querySelectorAll('.like-btn').forEach(btn => {
-    const id = btn.dataset.id;
-    if (S.likes[id]) btn.classList.add('liked');
-    btn.querySelector('.lc').textContent = S.counts[id] || 0;
-  });
-  document.querySelectorAll('.cmt-btn').forEach(btn => {
-    const id = btn.dataset.id;
-    btn.querySelector('.cc').textContent = (S.comments[id] || []).length;
-  });
-
-  /* ââ Like ââ */
-  function doLike(btn) {
-    const id = btn.dataset.id;
-    S.likes[id] = !S.likes[id];
-    S.counts[id] = Math.max(0, (S.counts[id] || 0) + (S.likes[id] ? 1 : -1));
-    btn.classList.toggle('liked', !!S.likes[id]);
-    btn.querySelector('.lc').textContent = S.counts[id];
-    S.save();
-  }
-
-  /* ââ Comments ââ */
-  function toggleComments(id) {
-    const box = document.getElementById('cb-' + id);
-    const open = box.style.display !== 'none' && box.style.display !== '';
-    box.style.display = open ? 'none' : 'block';
-    if (!open) renderComments(id);
-  }
-
-  function renderComments(id) {
-    const list = document.getElementById('cl-' + id);
-    const items = S.comments[id] || [];
-    if (!items.length) {
-      list.innerHTML = '<p class="c-empty">// No comments yet â be the first.</p>';
-      return;
-    }
-    list.innerHTML = items.map(c =>
-      `<div class="comment-item">
-        <div class="c-author">${escHtml(c.name)}</div>
-        <div class="c-text">${escHtml(c.text)}</div>
-      </div>`
-    ).join('');
-  }
-
-  function postComment(e, id) {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.querySelector('input').value.trim();
-    const text = form.querySelector('textarea').value.trim();
-    if (!name || !text) return;
-    if (!S.comments[id]) S.comments[id] = [];
-    S.comments[id].push({ name, text });
-    S.save();
-    // update count badge
-    document.querySelector(`.cmt-btn[data-id="${id}"] .cc`).textContent = S.comments[id].length;
-    renderComments(id);
-    form.reset();
-  }
-
-  function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  /* ââ Share ââ */
-  function doShare(title) {
-    const url = window.location.href.includes('localhost') ? 'https://roshantrivedi.co.in/' : window.location.href;
-    navigator.clipboard.writeText(url).catch(() => {});
-    const t = document.getElementById('shareToast');
-    t.style.display = 'block';
-    setTimeout(() => { t.style.display = 'none'; }, 2800);
-  }
-
-  /* ââ Smooth scroll ââ */
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    // Stagger card animations
+    document.querySelectorAll('.expertise-primary .exp-card, .expertise-secondary .exp-card').forEach((el, i) => {
+      el.style.transitionDelay = (i % 3) * 80 + 'ms';
     });
-  });
-</script>
-
+    document.querySelectorAll('.cred-item').forEach((el, i) => {
+      el.style.transitionDelay = i * 60 + 'ms';
+    });
+  </script>
 </body>
 </html>
