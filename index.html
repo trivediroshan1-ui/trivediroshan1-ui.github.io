@@ -3,39 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta
       name="description"
       content="Roshan Trivedi is a Credential Management Platform Owner and PAM Product Leader focused on privileged access, Zero Standing Privilege, non-human identity and IAM governance."
     />
+
     <meta
       name="keywords"
       content="Roshan Trivedi, Credential Management, PAM Product Owner, Privileged Access Management, NHI, Zero Standing Privilege, IAM, Identity Security"
     />
+
     <meta name="theme-color" content="#030712" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
+
     <link rel="canonical" href="https://roshantrivedi.co.in/" />
+
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Roshan Trivedi · Identity Security Product Leader" />
+    <meta
+      property="og:title"
+      content="Roshan Trivedi · Identity Security Product Leader"
+    />
     <meta
       property="og:description"
       content="Credential Management Platform Owner and PAM Product Leader building secure, scalable identity capabilities."
     />
     <meta property="og:url" content="https://roshantrivedi.co.in/" />
-    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta
+      property="og:image"
+      content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
       content="Roshan Trivedi, Credential Management and PAM Product Leader"
     />
+
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Roshan Trivedi · Identity Security Product Leader" />
+    <meta
+      name="twitter:title"
+      content="Roshan Trivedi · Identity Security Product Leader"
+    />
     <meta
       name="twitter:description"
       content="Credential Management Platform Owner and PAM Product Leader building secure, scalable identity capabilities."
     />
-    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
-    <title>Roshan Trivedi · Credential Management & PAM Product Leader</title>
+    <meta
+      name="twitter:image"
+      content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png"
+    />
+
+    <title>
+      Roshan Trivedi · Credential Management & PAM Product Leader
+    </title>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -60,10 +82,302 @@
         ]
       }
     </script>
-    <script type="module" crossorigin src="/assets/main-DkBXTN6c.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/main-Dilp92U4.css">
+
+    <script
+      type="module"
+      crossorigin
+      src="/assets/main-DkBXTN6c.js"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      crossorigin
+      href="/assets/main-Dilp92U4.css"
+    />
+
+    <style>
+      /*
+       * MCP Human Approval Gateway homepage launcher
+       */
+
+      .mcp-lab-launcher {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 9999;
+
+        display: grid;
+        gap: 9px;
+
+        width: min(340px, calc(100vw - 32px));
+        padding: 20px 22px;
+
+        color: #f8fafc;
+        text-decoration: none;
+
+        background:
+          radial-gradient(
+            circle at 90% 0%,
+            rgba(77, 226, 255, 0.12),
+            transparent 42%
+          ),
+          linear-gradient(
+            135deg,
+            rgba(8, 20, 35, 0.97),
+            rgba(3, 10, 20, 0.98)
+          );
+
+        border: 1px solid rgba(77, 226, 255, 0.35);
+        border-radius: 18px;
+
+        box-shadow:
+          0 24px 70px rgba(0, 0, 0, 0.48),
+          0 0 35px rgba(77, 226, 255, 0.1);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+
+        overflow: hidden;
+
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .mcp-lab-launcher::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 3px;
+
+        background: linear-gradient(
+          180deg,
+          #4de2ff,
+          #7df2d0,
+          #f7c873
+        );
+      }
+
+      .mcp-lab-launcher::after {
+        content: "";
+        position: absolute;
+        top: -70px;
+        right: -70px;
+
+        width: 150px;
+        height: 150px;
+
+        background: rgba(77, 226, 255, 0.08);
+        border-radius: 50%;
+        filter: blur(12px);
+
+        pointer-events: none;
+      }
+
+      .mcp-lab-launcher:hover,
+      .mcp-lab-launcher:focus-visible {
+        transform: translateY(-5px);
+        border-color: rgba(77, 226, 255, 0.75);
+
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.55),
+          0 0 45px rgba(77, 226, 255, 0.18);
+      }
+
+      .mcp-lab-launcher:focus-visible {
+        outline: 3px solid rgba(77, 226, 255, 0.45);
+        outline-offset: 4px;
+      }
+
+      .mcp-lab-status {
+        position: relative;
+        z-index: 1;
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        color: #7df2d0;
+
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .mcp-lab-dot {
+        width: 8px;
+        height: 8px;
+        flex: 0 0 8px;
+
+        border-radius: 50%;
+        background: #7df2d0;
+
+        box-shadow:
+          0 0 0 5px rgba(125, 242, 208, 0.1),
+          0 0 14px rgba(125, 242, 208, 0.6);
+
+        animation: mcp-lab-pulse 2s ease-in-out infinite;
+      }
+
+      .mcp-lab-launcher strong {
+        position: relative;
+        z-index: 1;
+
+        color: #f8fafc;
+
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 1.2;
+        letter-spacing: -0.025em;
+      }
+
+      .mcp-lab-launcher small {
+        position: relative;
+        z-index: 1;
+
+        color: #9fb0c4;
+
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      .mcp-lab-action {
+        position: relative;
+        z-index: 1;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+
+        margin-top: 3px;
+        padding-top: 11px;
+
+        color: #4de2ff;
+        border-top: 1px solid rgba(148, 163, 184, 0.15);
+
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .mcp-lab-arrow {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 28px;
+        height: 28px;
+
+        color: #03111d;
+        background: #4de2ff;
+        border-radius: 50%;
+
+        transition: transform 180ms ease;
+      }
+
+      .mcp-lab-launcher:hover .mcp-lab-arrow {
+        transform: translateX(3px);
+      }
+
+      @keyframes mcp-lab-pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.55;
+          transform: scale(0.82);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .mcp-lab-launcher {
+          right: 16px;
+          bottom: 16px;
+
+          width: calc(100vw - 32px);
+          padding: 17px 19px;
+          border-radius: 16px;
+        }
+
+        .mcp-lab-launcher strong {
+          font-size: 18px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .mcp-lab-launcher,
+        .mcp-lab-dot,
+        .mcp-lab-arrow {
+          animation: none;
+          transition: none;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <div id="root"></div>
+
+    <a
+      class="mcp-lab-launcher"
+      href="/mcp-human-approval-gateway/"
+      aria-label="Open the MCP Human Approval Gateway interactive lab"
+    >
+      <span class="mcp-lab-status">
+        <span class="mcp-lab-dot" aria-hidden="true"></span>
+        New interactive cyber + AI lab
+      </span>
+
+      <strong>MCP Human Approval Gateway</strong>
+
+      <small>
+        Explore deterministic policy, human approval, time-bound authorization
+        and guarded AI-agent execution.
+      </small>
+
+      <span class="mcp-lab-action">
+        <span>Explore the live lab</span>
+
+        <span class="mcp-lab-arrow" aria-hidden="true">
+          →
+        </span>
+      </span>
+    </a>
   </body>
 </html>
