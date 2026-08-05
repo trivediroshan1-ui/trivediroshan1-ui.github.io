@@ -190,7 +190,42 @@
         outline-offset: 4px;
       }
 
-      .mcp-lab-status {
+      .mcp-lab-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+  padding: 0;
+
+  color: #9fb0c4;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 50%;
+
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+
+  transition:
+    color 150ms ease,
+    background 150ms ease;
+}
+
+.mcp-lab-close:hover,
+.mcp-lab-close:focus-visible {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.14);
+  outline: none;
+}
+
+.mcp-lab-status {
         position: relative;
         z-index: 1;
 
@@ -359,6 +394,8 @@
       href="/mcp-human-approval-gateway/"
       aria-label="Open the MCP Human Approval Gateway interactive lab"
     >
+      <button type="button" class="mcp-lab-close" aria-label="Dismiss this promo">&#215;</button>
+
       <span class="mcp-lab-status">
         <span class="mcp-lab-dot" aria-hidden="true"></span>
         New interactive cyber + AI lab
@@ -379,5 +416,25 @@
         </span>
       </span>
     </a>
-  </body>
+  <script>
+(function () {
+  var KEY = "mcp-lab-dismissed";
+  var el = document.querySelector(".mcp-lab-launcher");
+  if (!el) return;
+  if (localStorage.getItem(KEY) === "1") {
+    el.style.display = "none";
+    return;
+  }
+  var closeBtn = el.querySelector(".mcp-lab-close");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      el.style.display = "none";
+      localStorage.setItem(KEY, "1");
+    });
+  }
+})();
+</script>
+</body>
 </html>
