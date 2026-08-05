@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030712" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="description" content="A privacy-safe case study on discovering, scoring and governing non-human identity at scale, with an interactive risk-scoring sandbox." />
+<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Non-Human Identity at Scale · Roshan Trivedi" />
+<meta property="og:description" content="Machines outnumber people 50 to 1 in most enterprises. A privacy-safe case study on discovering, scoring and governing that sprawl, with a live interactive sandbox." />
+<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/" />
+<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+<title>Non-Human Identity at Scale · Roshan Trivedi</title>
+<style>
+  :root{
+    --bg:#030712;
+    --bg-panel:#0b1220;
+    --bg-panel-2:#0d1626;
+    --border:rgba(148,163,184,0.16);
+    --border-strong:rgba(77,226,255,0.35);
+    --text:#f8fafc;
+    --muted:#9fb0c4;
+    --teal:#4de2ff;
+    --green:#7df2d0;
+    --amber:#f7c873;
+    --red:#ff6b6b;
+    --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    background-image:
+      radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
+      radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
+  }
+  a{color:var(--teal);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+  header.site{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 24px;border-bottom:1px solid var(--border);
+    position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
+  }
+  header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
+  header.site .back:hover{color:var(--teal);text-decoration:none}
+  header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
+  header.site .brand span{color:var(--teal)}
+
+  .hero{padding:72px 0 40px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--teal);margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
+  h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
+  h1 .accent{color:var(--teal)}
+  .lede{font-size:18px;color:var(--muted);max-width:680px}
+
+  .meta-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
+  }
+  .meta-card{
+    background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
+    padding:20px 22px;
+  }
+  .meta-card .label{
+    font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:10px;
+  }
+  .meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
+  .meta-card.role .value{font-weight:700;color:var(--green)}
+
+  section.approach{padding:64px 0}
+  .section-head{margin-bottom:36px}
+  .section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
+  .section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
+  .section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
+
+  .steps{display:grid;gap:14px}
+  .step{
+    display:grid;grid-template-columns:56px 1fr;gap:18px;
+    background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
+  }
+  .step .num{
+    font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
+  }
+  .step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:14.5px}
+
+  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+  .tag{
+    font-size:12px;font-weight:600;color:var(--muted);
+    border:1px solid var(--border);border-radius:999px;padding:7px 14px;
+  }
+
+  /* interactive sandbox */
+  section.sandbox{padding:64px 0 96px}
+  .sandbox-shell{
+    background:linear-gradient(160deg, rgba(77,226,255,0.05), rgba(3,10,20,0.4));
+    border:1px solid var(--border-strong);border-radius:20px;padding:32px;
+  }
+  .sandbox-note{
+    display:flex;gap:12px;align-items:flex-start;
+    background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
+    border-radius:12px;padding:14px 16px;margin-bottom:28px;font-size:13px;color:var(--amber);
+  }
+  .sandbox-note b{color:var(--amber)}
+
+  .controls{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+  .toggle{
+    display:flex;align-items:center;gap:10px;
+    background:var(--bg-panel-2);border:1px solid var(--border);border-radius:10px;
+    padding:10px 14px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--text);
+    transition:border-color 150ms ease, background 150ms ease;
+  }
+  .toggle:hover{border-color:var(--border-strong)}
+  .toggle input{accent-color:#4de2ff;width:16px;height:16px;cursor:pointer}
+  .toggle.active{border-color:var(--border-strong);background:rgba(77,226,255,0.08)}
+  .btn-regen{
+    margin-left:auto;background:transparent;border:1px solid var(--border);color:var(--muted);
+    border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;
+    transition:border-color 150ms ease,color 150ms ease;
+  }
+  .btn-regen:hover{border-color:var(--border-strong);color:var(--teal)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+  .stat{
+    background:var(--bg-panel-2);border:1px solid var(--border);border-radius:12px;
+    padding:16px 18px;
+  }
+  .stat .n{font-size:26px;font-weight:800;line-height:1;margin-bottom:6px}
+  .stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:700}
+  .stat.risk .n{color:var(--red)}
+  .stat.orphan .n{color:var(--amber)}
+  .stat.total .n{color:var(--teal)}
+  .stat.avg .n{color:var(--green)}
+
+  .identity-list{border:1px solid var(--border);border-radius:14px;overflow:hidden}
+  .id-row{
+    display:grid;grid-template-columns:1.6fr 0.9fr 0.9fr 0.9fr 1.1fr 90px;
+    align-items:center;gap:10px;padding:12px 16px;font-size:13px;
+    border-bottom:1px solid var(--border);transition:background 200ms ease;
+  }
+  .id-row:last-child{border-bottom:none}
+  .id-row.head{
+    background:rgba(255,255,255,0.02);font-size:11px;font-weight:700;
+    letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);
+  }
+  .id-row .name{display:flex;align-items:center;gap:10px;font-weight:600}
+  .id-row .badge{
+    font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;
+    text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap;
+  }
+  .badge.service-account{background:rgba(77,226,255,0.14);color:var(--teal)}
+  .badge.api-key{background:rgba(125,242,208,0.14);color:var(--green)}
+  .badge.workload{background:rgba(247,200,115,0.14);color:var(--amber)}
+  .badge.cicd{background:rgba(148,163,184,0.14);color:var(--muted)}
+  .badge.ai-agent{background:rgba(255,107,107,0.14);color:var(--red)}
+  .owned{color:var(--green);font-weight:600}
+  .orphaned{color:var(--amber);font-weight:600}
+  .risk-cell{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+  .risk-bar{width:44px;height:6px;border-radius:3px;background:rgba(255,255,255,0.08);overflow:hidden}
+  .risk-bar span{display:block;height:100%;border-radius:3px}
+  .risk-num{font-weight:800;font-size:13px;width:26px;text-align:right}
+  .more-row{padding:14px 16px;text-align:center;color:var(--muted);font-size:12.5px}
+
+  footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
+  footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  footer.site p{color:var(--muted);font-size:13px}
+
+  @media (max-width:720px){
+    h1{font-size:32px}
+    .meta-grid{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .id-row{grid-template-columns:1.4fr 0.8fr 0.8fr;font-size:12px}
+    .id-row .col-rotated,.id-row .col-priv{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a>
+  <div class="brand">RT <span>· Identity Security</span></div>
+</header>
+
+<main class="wrap hero">
+  <div class="eyebrow">Emerging Practice · Non-Human Identity</div>
+  <h1>Machines outnumber people <span class="accent">50 to 1</span> — and almost none of them have an owner.</h1>
+  <p class="lede">A privacy-safe case study on turning an invisible sprawl of service accounts, API keys, workload identities and AI agents into a governable, risk-ranked program — plus a live sandbox that runs the same scoring logic.</p>
+
+  <div class="meta-grid">
+    <div class="meta-card role">
+      <div class="label">My Role</div>
+      <div class="value">Credential Management Platform Owner &amp; PAM Product Owner</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Challenge</div>
+      <div class="value">Service accounts, API keys, workload identities and now AI agents accumulate faster than any team can govern them. Ownership gets lost at handoff, credentials outlive the systems that issued them, and audits default to belief instead of evidence.</div>
+    </div>
+    <div class="meta-card">
+      <div class="label">Public-Safe Outcome</div>
+      <div class="value">Built a non-human identity inventory and risk-scoring model that turned thousands of untracked machine identities into a ranked, ownable backlog — surfacing the small fraction driving most of the exposure.</div>
+    </div>
+  </div>
+</main>
+
+<section class="approach wrap">
+  <div class="section-head">
+    <span class="section-num">APPROACH</span>
+    <h2>Three moves, in order</h2>
+    <p>The same sequence the sandbox below simulates: see everything, rank what matters, then turn the top of the list into a standing control instead of a one-time cleanup.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="num">01</div>
+      <div>
+        <h3>Discover</h3>
+        <p>Correlate identities across vault, IAM, cloud IAM and CI/CD into one inventory — every service account, API key and workload identity, regardless of where it was created.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">02</div>
+      <div>
+        <h3>Score</h3>
+        <p>Rank each identity by blast radius, staleness and ownership gap, so a flat list of thousands becomes a short list of what actually matters this week.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="num">03</div>
+      <div>
+        <h3>Remediate &amp; Govern</h3>
+        <p>Route the highest-risk identities into rotation, ownership assignment or retirement — then keep the score current as a standing control, not a one-time audit finding.</p>
+      </div>
+    </div>
+  </div>
+  <div class="tags">
+    <span class="tag">Non-human identity</span>
+    <span class="tag">Secrets governance</span>
+    <span class="tag">Risk scoring</span>
+    <span class="tag">Zero Standing Privilege</span>
+  </div>
+</section>
+
+<section class="sandbox wrap">
+  <div class="section-head">
+    <span class="section-num">TRY IT</span>
+    <h2>Non-Human Identity Risk Visualizer</h2>
+    <p>A synthetic fleet of machine identities, scored live in your browser. Apply governance controls below and watch the risk surface shrink.</p>
+  </div>
+
+  <div class="sandbox-shell">
+    <div class="sandbox-note">
+      <span>⚠️</span>
+      <span><b>Synthetic sandbox — no real infrastructure, credentials or company data.</b> Every identity below is randomly generated in your browser to demonstrate the scoring model described above.</span>
+    </div>
+
+    <div class="controls">
+      <label class="toggle" id="toggleRotation">
+        <input type="checkbox" id="cbRotation" />
+        Enforce 90-day rotation policy
+      </label>
+      <label class="toggle" id="toggleOwnership">
+        <input type="checkbox" id="cbOwnership" />
+        Require ownership within 30 days of creation
+      </label>
+      <button class="btn-regen" id="btnRegen">⟲ Regenerate fleet</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat total"><div class="n" id="statTotal">0</div><div class="l">Total Identities</div></div>
+      <div class="stat risk"><div class="n" id="statHighRisk">0</div><div class="l">High Risk</div></div>
+      <div class="stat orphan"><div class="n" id="statOrphaned">0</div><div class="l">Orphaned</div></div>
+      <div class="stat avg"><div class="n" id="statAvg">0</div><div class="l">Avg Risk Score</div></div>
+    </div>
+
+    <div class="identity-list">
+      <div class="id-row head">
+        <div>Identity</div>
+        <div>Age</div>
+        <div class="col-rotated">Last Rotated</div>
+        <div class="col-priv">Privilege</div>
+        <div>Owner</div>
+        <div style="text-align:right">Risk</div>
+      </div>
+      <div id="idRows"></div>
+      <div class="more-row" id="moreRow"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <p>Roshan Trivedi · Credential Management &amp; PAM Product Leader</p>
+    <a href="/#contact">Get in touch →</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var TYPES = [
+    { key: 'service-account', label: 'Service Account' },
+    { key: 'api-key', label: 'API Key' },
+    { key: 'workload', label: 'Workload Identity' },
+    { key: 'cicd', label: 'CI/CD Token' },
+    { key: 'ai-agent', label: 'AI Agent' }
+  ];
+  var PRIV = ['Standard', 'Elevated', 'Admin'];
+  var PRIV_WEIGHT = { Standard: 1, Elevated: 2, Admin: 3.2 };
+  var NAME_PARTS = ['payments', 'billing', 'checkout', 'inventory', 'auth', 'notifications', 'reporting', 'etl', 'crm-sync', 'analytics', 'search', 'gateway', 'scheduler', 'ledger', 'onboarding'];
+
+  var FLEET_SIZE = 42;
+  var SHOW_COUNT = 12;
+  var fleet = [];
+
+  function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+  function pick(arr) { return arr[rand(0, arr.length - 1)]; }
+
+  function genFleet() {
+    fleet = [];
+    for (var i = 0; i < FLEET_SIZE; i++) {
+      var type = pick(TYPES);
+      var ageDays = rand(4, 900);
+      var rotatedDays = Math.min(ageDays, rand(0, 420));
+      var owned = Math.random() > 0.42;
+      var priv = pick(PRIV);
+      fleet.push({
+        id: pick(NAME_PARTS) + '-' + type.key + '-' + rand(100, 999),
+        type: type,
+        ageDays: ageDays,
+        rotatedDays: rotatedDays,
+        owned: owned,
+        priv: priv
+      });
+    }
+  }
+
+  function computeRisk(identity, enforceRotation, requireOwnership) {
+    var rotatedDays = enforceRotation ? Math.min(identity.rotatedDays, 90) : identity.rotatedDays;
+    var owned = requireOwnership ? true : identity.owned;
+
+    var staleness = Math.min(rotatedDays / 30, 10);
+    var privWeight = PRIV_WEIGHT[identity.priv];
+    var ownerGap = owned ? 0 : 3.5;
+
+    var raw = (staleness * 0.55) + (privWeight * 1.6) + ownerGap;
+    var score = Math.max(1, Math.min(10, Math.round(raw)));
+    return { score: score, rotatedDays: rotatedDays, owned: owned };
+  }
+
+  function riskColor(score) {
+    if (score >= 7) return 'var(--red)';
+    if (score >= 4) return 'var(--amber)';
+    return 'var(--green)';
+  }
+
+  function fmtDays(d) {
+    if (d === 0) return 'today';
+    if (d < 30) return d + 'd ago';
+    if (d < 365) return Math.round(d / 30) + 'mo ago';
+    return (d / 365).toFixed(1) + 'yr ago';
+  }
+
+  function render() {
+    var enforceRotation = document.getElementById('cbRotation').checked;
+    var requireOwnership = document.getElementById('cbOwnership').checked;
+
+    document.getElementById('toggleRotation').classList.toggle('active', enforceRotation);
+    document.getElementById('toggleOwnership').classList.toggle('active', requireOwnership);
+
+    var scored = fleet.map(function (identity) {
+      var r = computeRisk(identity, enforceRotation, requireOwnership);
+      return Object.assign({}, identity, r);
+    });
+
+    scored.sort(function (a, b) { return b.score - a.score; });
+
+    var total = scored.length;
+    var highRisk = scored.filter(function (s) { return s.score >= 7; }).length;
+    var orphaned = scored.filter(function (s) { return !s.owned; }).length;
+    var avg = (scored.reduce(function (sum, s) { return sum + s.score; }, 0) / total).toFixed(1);
+
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statHighRisk').textContent = highRisk;
+    document.getElementById('statOrphaned').textContent = orphaned;
+    document.getElementById('statAvg').textContent = avg;
+
+    var rowsHtml = scored.slice(0, SHOW_COUNT).map(function (s) {
+      var pct = (s.score / 10) * 100;
+      return (
+        '<div class="id-row">' +
+          '<div class="name"><span class="badge ' + s.type.key + '">' + s.type.label + '</span> ' + s.id + '</div>' +
+          '<div>' + Math.round(s.ageDays / 30) + 'mo</div>' +
+          '<div class="col-rotated">' + fmtDays(s.rotatedDays) + '</div>' +
+          '<div class="col-priv">' + s.priv + '</div>' +
+          '<div class="' + (s.owned ? 'owned' : 'orphaned') + '">' + (s.owned ? 'Owned' : 'Orphaned') + '</div>' +
+          '<div class="risk-cell"><span class="risk-num" style="color:' + riskColor(s.score) + '">' + s.score + '</span>' +
+            '<span class="risk-bar"><span style="width:' + pct + '%;background:' + riskColor(s.score) + '"></span></span>' +
+          '</div>' +
+        '</div>'
+      );
+    }).join('');
+
+    document.getElementById('idRows').innerHTML = rowsHtml;
+
+    var remaining = total - SHOW_COUNT;
+    document.getElementById('moreRow').textContent = remaining > 0
+      ? ('showing top ' + SHOW_COUNT + ' by risk score — ' + remaining + ' more identities in this fleet')
+      : '';
+  }
+
+  document.getElementById('cbRotation').addEventListener('change', render);
+  document.getElementById('cbOwnership').addEventListener('change', render);
+  document.getElementById('btnRegen').addEventListener('click', function () {
+    genFleet();
+    render();
+  });
+
+  genFleet();
+  render();
+})();
+</script>
+
+</body>
+</html>
