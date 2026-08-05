@@ -468,22 +468,29 @@ font-size: 13px;
 var KEY = "nhi-announce-dismissed";
 var el = document.getElementById("nhi-announce");
 if (!el) return;
-var header = document.querySelector(".site-header");
+if (localStorage.getItem(KEY) === "1") {
+el.style.display = "none";
+return;
+}
 function shiftLayout() {
+var header = document.querySelector(".site-header");
 var h = el.offsetHeight;
 if (header) header.style.top = h + "px";
 document.body.style.marginTop = h + "px";
 }
 function resetLayout() {
+var header = document.querySelector(".site-header");
 if (header) header.style.top = "";
 document.body.style.marginTop = "";
 }
-if (localStorage.getItem(KEY) === "1") {
-el.style.display = "none";
-return;
-}
 shiftLayout();
 window.addEventListener("resize", shiftLayout);
+var tries = 0;
+var poll = setInterval(function () {
+tries++;
+shiftLayout();
+if (document.querySelector(".site-header") || tries > 40) clearInterval(poll);
+}, 100);
 var closeBtn = el.querySelector(".nhi-announce-close");
 if (closeBtn) {
 closeBtn.addEventListener("click", function (e) {
