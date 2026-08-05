@@ -384,19 +384,23 @@
         }
       }
     .nhi-announce {
-position: relative;
-z-index: 20;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 200;
 display: flex;
 align-items: center;
 justify-content: center;
 gap: 14px;
 flex-wrap: wrap;
-padding: 12px 44px 12px 20px;
+padding: 10px 44px 10px 16px;
 color: #f8fafc;
-background: linear-gradient(135deg, rgba(77, 226, 255, 0.14), rgba(125, 242, 208, 0.08));
-border-bottom: 1px solid rgba(77, 226, 255, 0.3);
+background: linear-gradient(135deg, rgba(77, 226, 255, 0.16), rgba(3, 10, 20, 0.98));
+border-bottom: 1px solid rgba(125, 242, 208, 0.35);
 font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-font-size: 14px;
+font-size: 13px;
+line-height: 1.4;
 text-align: center;
 }
 
@@ -464,16 +468,29 @@ font-size: 13px;
 var KEY = "nhi-announce-dismissed";
 var el = document.getElementById("nhi-announce");
 if (!el) return;
+var header = document.querySelector(".site-header");
+function shiftLayout() {
+var h = el.offsetHeight;
+if (header) header.style.top = h + "px";
+document.body.style.marginTop = h + "px";
+}
+function resetLayout() {
+if (header) header.style.top = "";
+document.body.style.marginTop = "";
+}
 if (localStorage.getItem(KEY) === "1") {
 el.style.display = "none";
 return;
 }
+shiftLayout();
+window.addEventListener("resize", shiftLayout);
 var closeBtn = el.querySelector(".nhi-announce-close");
 if (closeBtn) {
 closeBtn.addEventListener("click", function (e) {
 e.preventDefault();
 e.stopPropagation();
 el.style.display = "none";
+resetLayout();
 localStorage.setItem(KEY, "1");
 });
 }
