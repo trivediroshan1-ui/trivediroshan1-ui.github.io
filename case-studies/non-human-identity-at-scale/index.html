@@ -100,6 +100,12 @@
   .step p{color:var(--muted);font-size:14.5px}
 
   .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+section.fieldnote{padding:0 0 64px}
+.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
+.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
+.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.quote-card .who span{color:var(--teal)}
+.quote-card.mine{border-left-color:var(--green)}
   .tag{
     font-size:12px;font-weight:600;color:var(--muted);
     border:1px solid var(--border);border-radius:999px;padding:7px 14px;
@@ -251,6 +257,18 @@
     <span class="tag">Secrets governance</span>
     <span class="tag">Risk scoring</span>
     <span class="tag">Zero Standing Privilege</span>
+  </div>
+</section>
+
+<section class="fieldnote wrap">
+  <div class="section-head">
+    <span class="section-num">FIELD NOTE · FROM THE COMMENTS</span>
+    <h2>Ownership is the bottleneck, not the scoring</h2>
+    <p>When this case study went out on LinkedIn, Gelson Monteiro raised the point that matters most: Zero Standing Privilege only holds up once ownership is actually enforced — otherwise you're just time-boxing access nobody remembers approving. His read: most orgs discover non-human identities faster than they can find a human willing to be accountable for one, so the fleet keeps outgrowing ownership.</p>
+  </div>
+  <div class="quote-card mine">
+    <p>Ownership is probably the hardest part here. Finding NHIs is getting easier — finding the right person willing to own and be accountable for one is a different challenge, and there's real risk in taking that on. Without ownership, ZSP alone won't fix it. For me, ownership, rotation and offboarding have to work together, or we're just shrinking the access window without fixing the lifecycle problem underneath it.</p>
+    <div class="who">— Roshan, <span>replying in the thread</span></div>
   </div>
 </section>
 
