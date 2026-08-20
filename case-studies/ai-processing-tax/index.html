@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030712" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="description" content="AI collapsed the cost of producing work but not the cost of deciding on it. A case study grounded in four independent studies, with a proposed decision-package gate for HumanGate." />
+<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ai-processing-tax/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The Processing Tax Â· Roshan Trivedi" />
+<meta property="og:description" content="AI made producing work nearly free. It didn't make deciding on it free â and that unpaid cost is landing on whoever has the least capacity to absorb it." />
+<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/ai-processing-tax/" />
+<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-ai-processing-tax.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-ai-processing-tax.png" />
+<title>The Processing Tax Â· Roshan Trivedi</title>
+<style>
+:root{
+--bg:#030712;
+--bg-panel:#0b1220;
+--bg-panel-2:#0d1626;
+--border:rgba(148,163,184,0.16);
+--border-strong:rgba(77,226,255,0.35);
+--text:#f8fafc;
+--muted:#9fb0c4;
+--teal:#4de2ff;
+--green:#7df2d0;
+--amber:#f7c873;
+--red:#ff6b6b;
+--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+font-family:var(--font);
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+background-image:
+radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
+radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
+}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+header.site{
+display:flex;align-items:center;justify-content:space-between;
+padding:20px 24px;border-bottom:1px solid var(--border);
+position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
+}
+header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
+header.site .back:hover{color:var(--teal);text-decoration:none}
+header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
+header.site .brand span{color:var(--teal)}
+
+.hero{padding:72px 0 40px}
+.eyebrow{
+display:inline-flex;align-items:center;gap:8px;
+font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+color:var(--teal);margin-bottom:22px;
+}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
+h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
+h1 .accent{color:var(--teal)}
+.lede{font-size:18px;color:var(--muted);max-width:680px}
+
+.meta-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
+}
+.meta-card{
+background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
+padding:20px 22px;
+}
+.meta-card .label{
+font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+color:var(--muted);margin-bottom:10px;
+}
+.meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
+.meta-card.role .value{font-weight:700;color:var(--green)}
+
+section.approach{padding:64px 0}
+.section-head{margin-bottom:36px}
+.section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
+.section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
+.section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
+
+.steps{display:grid;gap:14px}
+.step{
+display:grid;grid-template-columns:56px 1fr;gap:18px;
+background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
+}
+.step .num{
+font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
+}
+.step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.step p{color:var(--muted);font-size:14.5px}
+
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.tag{
+font-size:12px;font-weight:600;color:var(--muted);
+border:1px solid var(--border);border-radius:999px;padding:7px 14px;
+}
+
+section.pipeline{padding:0 0 64px}
+.pipeline svg text{font-family:var(--font)}
+
+section.fieldnote{padding:0 0 64px}
+.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
+.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
+.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.quote-card .who span{color:var(--teal)}
+.quote-card.mine{border-left-color:var(--green)}
+
+section.solution{padding:0 0 64px}
+.status-note{
+display:flex;gap:12px;align-items:flex-start;
+background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
+border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--amber);
+}
+.status-note b{color:var(--amber)}
+
+footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
+footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer.site p{color:var(--muted);font-size:13px}
+
+@media (max-width:720px){
+h1{font-size:32px}
+.meta-grid{grid-template-columns:1fr}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"The Processing Tax","description":"AI collapsed the cost of producing work but not the cost of deciding on it. A case study grounded in four independent studies, with a proposed decision-package gate for HumanGate.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-08-20","dateModified":"2026-08-20","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/ai-processing-tax/","image":"https://roshantrivedi.co.in/assets/og-ai-processing-tax.png","keywords":"AI governance, Human-AI collaboration, Decision architecture, HumanGate, Productivity"}
+</script>
+</head>
+<body>
+
+<header class="site">
+<a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a>
+<div class="brand">RT <span>&middot; Identity Security</span></div>
+</header>
+
+<main class="wrap hero">
+<div class="eyebrow">AI Governance &middot; Decision Architecture</div>
+<h1>AI made producing work free. It didn't make <span class="accent">deciding on it</span> free.</h1>
+<p class="lede">A real reaction to a real conversation, checked against four independent studies, and answered with a structural control instead of a slogan.</p>
+
+<div class="meta-grid">
+<div class="meta-card role">
+<div class="label">Role</div>
+<div class="value">Independent Research &amp; Control Design</div>
+</div>
+<div class="meta-card">
+<div class="label">Challenge</div>
+<div class="value">AI collapsed the cost of producing a document, a report or an access request to near zero. It didn't collapse the cost of verifying, judging or deciding on that output &mdash; and that unpaid cost doesn't disappear. It moves to whoever opens the file next.</div>
+</div>
+<div class="meta-card">
+<div class="label">Outcome</div>
+<div class="value">Named the mechanism, backed it with four independent studies, and specified a decision-package gate for HumanGate that rejects any AI-to-human handoff that hasn't done its own thinking first.</div>
+</div>
+</div>
+</main>
+
+<section class="approach wrap">
+<div class="section-head">
+<span class="section-num">APPROACH</span>
+<h2>Three moves, in order</h2>
+<p>Start from a real reaction, not an abstract trend. Confirm it against evidence. Then design something that enforces the fix rather than just naming it.</p>
+</div>
+<div class="steps">
+<div class="step">
+<div class="num">01</div>
+<div>
+<h3>Ground it in evidence</h3>
+<p>Cross-checked a personal reaction against BetterUp/Stanford's workslop research, MIT Media Lab's AI-ROI study, an NBER executive survey, and Goldman Sachs' economy-wide analysis &mdash; four independent measurements of the same effect.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">02</div>
+<div>
+<h3>Isolate the mechanism</h3>
+<p>AI compresses the cost of producing output. It doesn't compress the cost of verifying or deciding on it at the same rate &mdash; so that cost transfers to whoever receives the output next, concentrating upward toward the people with the least slack to absorb it.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">03</div>
+<div>
+<h3>Specify the fix</h3>
+<p>Designed a decision-package gate for HumanGate: a structural requirement, not a cultural norm, enforced at the exact point an AI agent hands a request to a human.</p>
+</div>
+</div>
+</div>
+<div class="tags">
+<span class="tag">AI Governance</span>
+<span class="tag">Human-AI Collaboration</span>
+<span class="tag">Decision Architecture</span>
+<span class="tag">HumanGate</span>
+<span class="tag">Productivity</span>
+</div>
+</section>
+
+<section class="pipeline wrap">
+<div class="section-head">
+<span class="section-num">THE MECHANISM</span>
+<h2>The same handoff, gated two different ways</h2>
+<p>Today, an AI agent's request reaches a human ungated and the human pays the processing tax. The proposed fix validates the request before a human ever sees it.</p>
+</div>
+<svg viewBox="0 0 680 500" width="100%" height="auto" role="img" aria-label="Workflow diagram comparing an ungated AI-to-human handoff against a HumanGate decision-package gate that validates requests before a human sees them">
+<defs>
+<marker id="ptArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<rect x="40" y="40" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
+<text x="60" y="66" fill="var(--muted)" font-size="14" font-weight="600">TODAY &mdash; NO GATE ON THE AI'S ASK</text>
+
+<g fill="var(--bg-panel)" stroke="var(--muted)" stroke-width="1">
+<rect x="60" y="90" width="110" height="56" rx="8"/>
+<rect x="190" y="90" width="200" height="56" rx="8"/>
+<rect x="410" y="90" width="210" height="56" rx="8"/>
+</g>
+<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
+<text x="115" y="122" font-size="14">AI Agent</text>
+<text x="290" y="114" font-size="14" font-weight="600">Raw request</text>
+<text x="290" y="132" font-size="12" fill="var(--muted)">no analysis attached</text>
+<text x="515" y="114" font-size="14" font-weight="600">Human approver</text>
+<text x="515" y="132" font-size="12" fill="var(--muted)">pays the processing tax</text>
+</g>
+
+<g stroke="var(--muted)" stroke-width="1" fill="none">
+<path d="M170 118 H190" marker-end="url(#ptArrow)"/>
+<path d="M390 118 H410" marker-end="url(#ptArrow)"/>
+</g>
+<g font-family="var(--font)" font-size="12" fill="var(--muted)" text-anchor="middle">
+<text x="180" y="164">generates in seconds</text>
+<text x="400" y="164">arrives ungated</text>
+</g>
+
+<rect x="40" y="260" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
+<text x="60" y="286" fill="var(--teal)" font-size="14" font-weight="600">PROPOSED &mdash; HUMANGATE DECISION-PACKAGE GATE</text>
+
+<g fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1">
+<rect x="60" y="310" width="110" height="56" rx="8"/>
+<rect x="195" y="310" width="210" height="56" rx="8"/>
+<rect x="430" y="310" width="190" height="56" rx="8"/>
+</g>
+<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
+<text x="115" y="342" font-size="14">AI Agent</text>
+<text x="300" y="334" font-size="14" font-weight="600">Decision package</text>
+<text x="300" y="352" font-size="12" fill="var(--muted)">options + confidence</text>
+<text x="525" y="334" font-size="14" font-weight="600">Human approver</text>
+<text x="525" y="352" font-size="12" fill="var(--muted)">fast judgment call</text>
+</g>
+
+<g stroke="var(--teal)" stroke-width="1" fill="none">
+<path d="M170 338 H195" marker-end="url(#ptArrow)"/>
+<path d="M405 338 H430" marker-end="url(#ptArrow)"/>
+<path d="M300 366 V412 H115 V366" marker-end="url(#ptArrow)"/>
+</g>
+<g font-family="var(--font)" font-size="12" fill="var(--teal)" text-anchor="middle">
+<text x="418" y="386">must state its case</text>
+<text x="207" y="430">incomplete &rarr; rejected</text>
+</g>
+</svg>
+</section>
+
+<section class="fieldnote wrap">
+<div class="section-head">
+<span class="section-num">THE CASE &middot; A REAL REACTION</span>
+<h2>This didn't start as a thesis</h2>
+<p>It started as a reaction to a real conversation about AI and workplace productivity &mdash; written before reaching for any framework.</p>
+</div>
+<div class="quote-card mine">
+<p>AI is creating situations challenging rather than making it easier when it comes to take a decision&hellip; it's not landing properly.</p>
+<div class="who">&mdash; Roshan, <span>reacting in the thread</span></div>
+</div>
+</section>
+
+<section class="solution wrap">
+<div class="section-head">
+<span class="section-num">THE FIX</span>
+<h2>A decision-package gate, not a cultural norm</h2>
+<p>A norm only works if it's enforced. This is the control, specified at the exact point an AI agent hands a request to a human.</p>
+</div>
+<div class="steps">
+<div class="step">
+<div class="num">01</div>
+<div>
+<h3>Requirement</h3>
+<p>Before HumanGate surfaces a request to a human, the originating agent must supply the options it considered, its recommendation, a confidence level, and the one question that actually needs human judgment.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">02</div>
+<div>
+<h3>Validation</h3>
+<p>The gate checks the package for completeness, not correctness &mdash; whether the agent did its own thinking, not whether its recommendation is right.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">03</div>
+<div>
+<h3>Rejection path</h3>
+<p>A request missing any required field bounces back to the originating agent automatically, with the specific gap identified, before a human ever sees it.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">04</div>
+<div>
+<h3>Integration</h3>
+<p>Sits alongside HumanGate's existing controls &mdash; time-boxed approvals, the live countdown to expiry, and risk scoring &mdash; as a fourth gate: has this request earned a human's attention.</p>
+</div>
+</div>
+</div>
+<div class="status-note">
+<span>&#9888;</span>
+<span><b>Status: specified, not yet built.</b> The decision-package gate is designed for HumanGate but not yet implemented &mdash; shipping it is the next stage of this work.</span>
+</div>
+</section>
+
+<footer class="site">
+<div class="wrap">
+<p>Roshan Trivedi &middot; Credential Management &amp; PAM Product Leader</p>
+<a href="/#contact">Get in touch &rarr;</a>
+</div>
+</footer>
+
+</body>
+</html>
