@@ -122,6 +122,8 @@ background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
 border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--amber);
 }
 .status-note b{color:var(--amber)}
+.status-note.shipped{background:rgba(125,242,208,0.08);border-color:rgba(125,242,208,0.3);color:var(--green)}
+.status-note.shipped b{color:var(--green)}
 
 footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
 footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
@@ -133,7 +135,7 @@ h1{font-size:32px}
 }
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"The Processing Tax","description":"AI collapsed the cost of producing work but not the cost of deciding on it. A case study grounded in four independent studies, with a proposed decision-package gate for HumanGate.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-08-20","dateModified":"2026-08-20","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/ai-processing-tax/","image":"https://roshantrivedi.co.in/assets/og-ai-processing-tax.png","keywords":"AI governance, Human-AI collaboration, Decision architecture, HumanGate, Productivity"}
+{"@context":"https://schema.org","@type":"Article","headline":"The Processing Tax","description":"AI collapsed the cost of producing work but not the cost of deciding on it. A case study grounded in four independent studies, with a proposed decision-package gate for HumanGate.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-08-20","dateModified":"2026-08-28","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/ai-processing-tax/","image":"https://roshantrivedi.co.in/assets/og-ai-processing-tax.png","keywords":"AI governance, Human-AI collaboration, Decision architecture, HumanGate, Productivity"}
 </script>
 </head>
 <body>
@@ -159,7 +161,7 @@ h1{font-size:32px}
 </div>
 <div class="meta-card">
 <div class="label">Outcome</div>
-<div class="value">Named the mechanism, backed it with four independent studies, and specified a decision-package gate for HumanGate that rejects any AI-to-human handoff that hasn't done its own thinking first.</div>
+<div class="value">Named the mechanism, backed it with four independent studies, and shipped a decision-package gate in HumanGate that rejects any AI-to-human handoff that hasn't done its own thinking first.</div>
 </div>
 </div>
 </main>
@@ -316,9 +318,9 @@ h1{font-size:32px}
 </div>
 </div>
 </div>
-<div class="status-note">
-<span>&#9888;</span>
-<span><b>Status: specified, not yet built.</b> The decision-package gate is designed for HumanGate but not yet implemented &mdash; shipping it is the next stage of this work.</span>
+<div class="status-note shipped">
+<span>&#9989;</span>
+<span><b>Status: shipped.</b> The decision-package gate is live in HumanGate. Run the "AI hands off without doing its own analysis" scenario in the <a href="https://roshantrivedi.co.in/mcp-human-approval-gateway/">live demo</a> to watch it reject an incomplete handoff before a human ever sees it.</span>
 </div>
 </section>
 
