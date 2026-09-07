@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030712" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="description" content="Three real 2025-2026 breaches, one shared root cause: a single long-lived credential wired into everything an AI agent touches. A deep dive into NHI credential sharing, the market of tools built to fix it, and the guardrails that actually work." />
+<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="One Key, Every Agent &middot; Roshan Trivedi" />
+<meta property="og:description" content="Three real breaches. One shared-credential pattern. A market racing to fix it, and the guardrails that would have contained each one." />
+<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/" />
+<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-agent-credential-sharing.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-agent-credential-sharing.png" />
+<title>One Key, Every Agent &middot; Roshan Trivedi</title>
+<style>
+:root{
+--bg:#030712;
+--bg-panel:#0b1220;
+--bg-panel-2:#0d1626;
+--border:rgba(148,163,184,0.16);
+--border-strong:rgba(77,226,255,0.35);
+--text:#f8fafc;
+--muted:#9fb0c4;
+--teal:#4de2ff;
+--green:#7df2d0;
+--amber:#f7c873;
+--red:#ff6b6b;
+--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+font-family:var(--font);
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+background-image:
+radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
+radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
+}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+header.site{
+display:flex;align-items:center;justify-content:space-between;
+padding:20px 24px;border-bottom:1px solid var(--border);
+position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
+}
+header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
+header.site .back:hover{color:var(--teal);text-decoration:none}
+header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
+header.site .brand span{color:var(--teal)}
+
+.hero{padding:72px 0 40px}
+.eyebrow{
+display:inline-flex;align-items:center;gap:8px;
+font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+color:var(--teal);margin-bottom:22px;
+}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
+h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
+h1 .accent{color:var(--teal)}
+.lede{font-size:18px;color:var(--muted);max-width:680px}
+
+.meta-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
+}
+.meta-card{
+background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
+padding:20px 22px;
+}
+.meta-card .label{
+font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+color:var(--muted);margin-bottom:10px;
+}
+.meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
+.meta-card.role .value{font-weight:700;color:var(--green)}
+
+section.approach{padding:64px 0}
+.section-head{margin-bottom:36px}
+.section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
+.section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
+.section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
+
+.steps{display:grid;gap:14px}
+.step{
+display:grid;grid-template-columns:56px 1fr;gap:18px;
+background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
+}
+.step .num{
+font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
+}
+.step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.step p{color:var(--muted);font-size:14.5px}
+.step.risk .num{color:var(--red);opacity:0.7}
+.step.guardrail .num{color:var(--green);opacity:0.7}
+
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.tag{
+font-size:12px;font-weight:600;color:var(--muted);
+border:1px solid var(--border);border-radius:999px;padding:7px 14px;
+}
+
+section.pipeline{padding:0 0 64px}
+.pipeline svg text{font-family:var(--font)}
+
+section.fieldnote{padding:0 0 64px}
+.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
+.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
+.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.quote-card .who span{color:var(--teal)}
+.quote-card.mine{border-left-color:var(--green)}
+
+section.market{padding:0 0 64px}
+.vendor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.vendor-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
+.vendor-card .name{font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:6px}
+.vendor-card .focus{font-size:13px;color:var(--muted);line-height:1.5}
+.market-note{color:var(--muted);font-size:15px;margin-top:20px;line-height:1.7}
+
+section.solution{padding:0 0 64px}
+.status-note{
+display:flex;gap:12px;align-items:flex-start;
+background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
+border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--amber);
+}
+.status-note b{color:var(--amber)}
+.status-note.shipped{background:rgba(125,242,208,0.08);border-color:rgba(125,242,208,0.3);color:var(--green)}
+.status-note.shipped b{color:var(--green)}
+
+footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
+footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer.site p{color:var(--muted);font-size:13px}
+.related{color:var(--muted);font-size:13px}
+.related a{margin-left:10px}
+
+@media (max-width:720px){
+h1{font-size:32px}
+.meta-grid{grid-template-columns:1fr}
+.vendor-grid{grid-template-columns:1fr}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"One Key, Every Agent","description":"Three real 2025-2026 breaches, one shared root cause: a single long-lived credential wired into everything an AI agent touches. A deep dive into NHI credential sharing, the market of tools built to fix it, and the guardrails that actually work.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-09-07","dateModified":"2026-09-07","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/","image":"https://roshantrivedi.co.in/assets/og-agent-credential-sharing.png","keywords":"Non-human identity, AI agent security, Credential sharing, Zero standing privilege, NHI market, Machine identity"}
+</script>
+</head>
+<body>
+
+<header class="site">
+<a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a>
+<div class="brand">RT <span>&middot; Identity Security</span></div>
+</header>
+
+<main class="wrap hero">
+<div class="eyebrow">AI Governance &middot; Non-Human Identity</div>
+<h1>Every agent gets a name. Almost none get their <span class="accent">own key</span>.</h1>
+<p class="lede">Three real breaches in the last thirteen months, three different industries, the same root cause: one long-lived credential wired into everything an agent touches. A deep dive into how AI agents actually get authenticated, the market now selling against this exact failure, and the guardrails that would have changed each outcome.</p>
+
+<div class="meta-grid">
+<div class="meta-card role">
+<div class="label">Role</div>
+<div class="value">Independent Research &amp; Control Design</div>
+</div>
+<div class="meta-card">
+<div class="label">Challenge</div>
+<div class="value">Machine identities in the average enterprise grew roughly 5x between 2021 and 2025. The fastest way to wire a new AI agent into five systems is still one shared, long-lived credential &mdash; it works in a demo, and it means a single leaked key doesn't cost you one system, it costs you every system that credential can reach.</div>
+</div>
+<div class="meta-card">
+<div class="label">Outcome</div>
+<div class="value">Traced three documented 2025-2026 breaches to the same credential-sharing pattern, checked it against current NHI research and the vendor market now built to fix it, and set out the credential-issuance guardrails that would have contained each one to a single system instead of hundreds.</div>
+</div>
+</div>
+</main>
+
+<section class="approach wrap">
+<div class="section-head">
+<span class="section-num">APPROACH</span>
+<h2>Three moves, in order</h2>
+<p>Start from documented incidents, not hypothetical risk. Check the pattern against current research. Then map both the market response and the guardrails that actually close the gap.</p>
+</div>
+<div class="steps">
+<div class="step">
+<div class="num">01</div>
+<div>
+<h3>Ground it in incidents</h3>
+<p>The Salesloft Drift OAuth token compromise (700+ downstream organizations), a four-year-old Salesforce credential that cascaded through roughly 200 companies via Klue, and a single unprotected maintenance credential that exposed 62 million PowerSchool students and 10 million teachers &mdash; three breaches, one pattern.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">02</div>
+<div>
+<h3>Check it against the data</h3>
+<p>Cross-referenced against 2026 identity research: 69% of enterprises share AI agent credentials across workflows, non-human identities now outnumber humans by a composite ratio near 79:1 (144:1 in cloud-native environments), and GitGuardian logged 28.65 million hardcoded secrets added to public GitHub in 2025 alone.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">03</div>
+<div>
+<h3>Map the response</h3>
+<p>Reviewed how the market is answering: a wave of purpose-built NHI vendors, a 2026 consolidation wave that shows how fast this category is being absorbed into core identity platforms, and the guardrail patterns &mdash; scoped issuance, short-lived credentials, lifecycle automation, behavioral monitoring &mdash; converging as the actual fix.</p>
+</div>
+</div>
+</div>
+<div class="tags">
+<span class="tag">AI Governance</span>
+<span class="tag">Non-Human Identity</span>
+<span class="tag">Credential Sharing</span>
+<span class="tag">Zero Standing Privilege</span>
+<span class="tag">Machine Identity</span>
+<span class="tag">NHI Market</span>
+</div>
+</section>
+
+<section class="pipeline wrap">
+<div class="section-head">
+<span class="section-num">THE WORKFLOW</span>
+<h2>One key wired everywhere, versus one key per connection</h2>
+<p>Both patterns get an agent talking to five systems. Only one of them keeps a single leaked credential from becoming five compromised systems.</p>
+</div>
+<svg viewBox="0 0 680 500" width="100%" height="auto" role="img" aria-label="Workflow diagram comparing one shared long-lived credential wired into five systems against a credential broker issuing a scoped, short-lived credential per connection">
+<defs>
+<marker id="acsArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<rect x="40" y="40" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
+<text x="60" y="66" fill="var(--muted)" font-size="14" font-weight="600">TODAY &mdash; ONE SHARED, LONG-LIVED KEY</text>
+
+<g fill="var(--bg-panel)" stroke="var(--muted)" stroke-width="1">
+<rect x="60" y="90" width="110" height="56" rx="8"/>
+<rect x="190" y="90" width="200" height="56" rx="8"/>
+<rect x="410" y="90" width="210" height="56" rx="8"/>
+</g>
+<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
+<text x="115" y="122" font-size="14">AI Agent</text>
+<text x="290" y="114" font-size="14" font-weight="600">One static key</text>
+<text x="290" y="132" font-size="12" fill="var(--muted)">same secret, every system</text>
+<text x="515" y="114" font-size="14" font-weight="600">5 connected systems</text>
+<text x="515" y="132" font-size="12" fill="var(--muted)">one leak exposes all five</text>
+</g>
+
+<g stroke="var(--muted)" stroke-width="1" fill="none">
+<path d="M170 118 H190" marker-end="url(#acsArrow)"/>
+<path d="M390 118 H410" marker-end="url(#acsArrow)"/>
+</g>
+<g font-family="var(--font)" font-size="12" fill="var(--muted)" text-anchor="middle">
+<text x="180" y="164">issued once</text>
+<text x="400" y="164">reused everywhere</text>
+</g>
+
+<rect x="40" y="260" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
+<text x="60" y="286" fill="var(--teal)" font-size="14" font-weight="600">GUARDRAIL &mdash; SCOPED KEY PER CONNECTION</text>
+
+<g fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1">
+<rect x="60" y="310" width="110" height="56" rx="8"/>
+<rect x="195" y="310" width="210" height="56" rx="8"/>
+<rect x="430" y="310" width="190" height="56" rx="8"/>
+</g>
+<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
+<text x="115" y="342" font-size="14">AI Agent</text>
+<text x="300" y="334" font-size="14" font-weight="600">Credential broker</text>
+<text x="300" y="352" font-size="12" fill="var(--muted)">short-lived, scoped per task</text>
+<text x="525" y="334" font-size="14" font-weight="600">5 connected systems</text>
+<text x="525" y="352" font-size="12" fill="var(--muted)">one leak exposes one</text>
+</g>
+
+<g stroke="var(--teal)" stroke-width="1" fill="none">
+<path d="M170 338 H195" marker-end="url(#acsArrow)"/>
+<path d="M405 338 H430" marker-end="url(#acsArrow)"/>
+<path d="M300 366 V412 H115 V366" marker-end="url(#acsArrow)"/>
+</g>
+<g font-family="var(--font)" font-size="12" fill="var(--teal)" text-anchor="middle">
+<text x="418" y="386">scoped to one system</text>
+<text x="207" y="430">expires &rarr; reissued per task</text>
+</g>
+</svg>
+</section>
+
+<section class="fieldnote wrap">
+<div class="section-head">
+<span class="section-num">THE EVIDENCE &middot; THREE INCIDENTS, ONE PATTERN</span>
+<h2>This didn't start as a theory</h2>
+<p>Three documented breaches from the last thirteen months, at three different scales, all tracing back to the same design choice.</p>
+</div>
+<div class="quote-card">
+<p><b>Aug 2025 &middot; Salesloft Drift OAuth breach.</b> A set of long-lived, broadly-trusted OAuth tokens, once compromised by the group tracked as UNC6395, gave attackers a path into 700+ downstream organizations' Salesforce environments &mdash; including Cloudflare, Google, PagerDuty, Palo Alto Networks, Proofpoint and Zscaler. The tokens were revoked only after the fact, on August 20.</p>
+<div class="who">&mdash; per Google Threat Intelligence and multiple vendor disclosures</div>
+</div>
+<div class="quote-card">
+<p><b>2026 &middot; Klue / Salesforce credential cascade.</b> A four-year-old Salesforce credential, never rotated, was used to breach Klue and cascade into roughly 200 companies, including LastPass, Jamf and HackerOne.</p>
+<div class="who">&mdash; as reported via Tech Insider</div>
+</div>
+<div class="quote-card">
+<p><b>PowerSchool breach.</b> Attackers used a single unprotected maintenance credential &mdash; with no MFA in front of it &mdash; to access the data of 62 million students and nearly 10 million teachers.</p>
+<div class="who">&mdash; per public breach disclosures</div>
+</div>
+<div class="quote-card mine">
+<p>Three incidents, three industries, one identical root cause: a credential built to be shared, not scoped &mdash; issued once, trusted everywhere, and never re-evaluated per connection.</p>
+<div class="who">&mdash; the pattern across all three</div>
+</div>
+</section>
+
+<section class="pipeline wrap">
+<div class="section-head">
+<span class="section-num">THE RISK PROFILE</span>
+<h2>Why non-human identity breaks the old assumptions</h2>
+<p>Machine identities don't behave like the human accounts identity programs were designed around.</p>
+</div>
+<div class="steps">
+<div class="step risk">
+<div class="num">01</div>
+<div>
+<h3>Unmanaged lifecycle</h3>
+<p>Credentials outlive the project, the vendor relationship, or the employee who created them. Non-human identities are seldom retired &mdash; the Klue credential was four years old when it was used.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">02</div>
+<div>
+<h3>Overprivileged by default</h3>
+<p>The fastest scope to request is usually the broadest one available on the target system, and almost nobody revisits it once the integration is working.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">03</div>
+<div>
+<h3>No MFA, no logout</h3>
+<p>Machine identities can't complete a second factor and don't have a session that expires on its own, so a stolen credential behaves like a permanent key rather than a temporary one.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">04</div>
+<div>
+<h3>Invisible growth</h3>
+<p>Machine identities in the average enterprise grew roughly 5x between 2021 and 2025 &mdash; from about 50,000 to about 250,000 &mdash; far outpacing the humans who are supposed to own and review them.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="market wrap">
+<div class="section-head">
+<span class="section-num">THE MARKET RESPONSE</span>
+<h2>A category getting absorbed as fast as it formed</h2>
+<p>A wave of purpose-built vendors emerged to discover, govern and secure non-human identities &mdash; and in 2026, the biggest identity and security platforms started buying their way in rather than building it themselves.</p>
+</div>
+<div class="vendor-grid">
+<div class="vendor-card">
+<div class="name">Astrix Security</div>
+<div class="focus">Discovers NHIs across SaaS, cloud and code; flags over-privileged or untrusted connections.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Oasis Security</div>
+<div class="focus">Full lifecycle coverage &mdash; discovery, posture, rotation and decommissioning in one place.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Entro Security</div>
+<div class="focus">Secrets-centric view: traces where a secret lives, how it's used, and which NHI owns it.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Aembit</div>
+<div class="focus">Runtime access and policy-based enforcement for workload-to-workload authentication.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Akeyless</div>
+<div class="focus">SaaS-native secrets management using distributed key-fragment encryption instead of a single master key.</div>
+</div>
+<div class="vendor-card">
+<div class="name">GitGuardian</div>
+<div class="focus">Secrets-sprawl detection across source code and CI/CD pipelines, at public-repo scale.</div>
+</div>
+</div>
+<p class="market-note">This category is consolidating fast. In 2026 alone: Cisco announced its intent to acquire Astrix (May), SailPoint closed its acquisition of Entro (June), and Cyera signed a letter of intent for Oasis (July, at roughly $1B). Non-human identity management is being absorbed into core identity platforms rather than staying a standalone product line &mdash; a strong signal that credential sharing has moved from "edge case" to "board-level line item" in about eighteen months.</p>
+</section>
+
+<section class="solution wrap">
+<div class="section-head">
+<span class="section-num">THE GUARDRAILS</span>
+<h2>What would have contained each incident</h2>
+<p>Not "rotate keys more often." A credential-issuance discipline applied at the point a new agent integration is created.</p>
+</div>
+<div class="steps">
+<div class="step guardrail">
+<div class="num">01</div>
+<div>
+<h3>Least privilege at issuance</h3>
+<p>Scope every credential to exactly the actions one integration needs, decided at creation time &mdash; not trimmed later, if ever.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">02</div>
+<div>
+<h3>JIT, ephemeral by default</h3>
+<p>Issue short-lived credentials per task or session instead of standing keys valid indefinitely. A credential with a shelf life measured in hours can't still be active four years later.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">03</div>
+<div>
+<h3>Lifecycle automation</h3>
+<p>Trigger rotation and revocation automatically from identity lifecycle events &mdash; integration retired, vendor offboarded, agent decommissioned &mdash; instead of a manual ticket nobody files.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">04</div>
+<div>
+<h3>Behavioral monitoring with a containment SLA</h3>
+<p>Flag a service account or agent touching a system it has never touched before, with a target of containing a compromised identity in under 24 hours rather than discovering it at the next audit.</p>
+</div>
+</div>
+</div>
+<div class="status-note">
+<span>&#9888;</span>
+<span><b>Status: framework, not a product build.</b> This is a credential-issuance and guardrail checklist grounded in real 2025-2026 incidents and current NHI market research &mdash; it pairs directly with the per-task credential model in <a href="https://roshantrivedi.co.in/case-studies/agentic-ai-identity-governance/">Agentic AI Identity Governance</a> and the risk-scoring inventory in <a href="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a>.</span>
+</div>
+</section>
+
+<footer class="site">
+<div class="wrap">
+<p>Roshan Trivedi &middot; Credential Management &amp; PAM Product Leader</p>
+<a href="/#contact">Get in touch &rarr;</a>
+</div>
+</footer>
+
+</body>
+</html>
