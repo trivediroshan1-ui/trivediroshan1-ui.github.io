@@ -140,6 +140,13 @@ footer.site p{color:var(--muted);font-size:13px}
 .related{color:var(--muted);font-size:13px}
 .related a{margin-left:10px}
 
+
+section.definition,section.spread,section.lifecycle,section.discovery,section.governance,section.impact{padding:0 0 64px}
+@keyframes lcFlow{to{stroke-dashoffset:-24}}
+@keyframes lcGlow{0%,100%{opacity:.15}50%{opacity:.55}}
+.flow-line{stroke-dasharray:5 4;animation:lcFlow 1s linear infinite}
+.flow-return{stroke-dasharray:6 5;animation:lcFlow 1.4s linear infinite}
+.pulse-glow{animation:lcGlow 2.2s ease-in-out infinite}
 @media (max-width:720px){
 h1{font-size:32px}
 .meta-grid{grid-template-columns:1fr}
@@ -217,6 +224,107 @@ h1{font-size:32px}
 </div>
 </section>
 
+<section class="definition wrap">
+<div class="section-head">
+<span class="section-num">THE DEFINITION</span>
+<h2>What "shadow AI" actually means</h2>
+<p>Not a hack. Not malware. AI running somewhere security didn't put it — and in most cases, didn't know to look for it.</p>
+</div>
+<p class="market-note">Shadow AI is the use of AI tools, models, and agents outside an organization's security, procurement, and observability perimeter — a browser extension an employee installed personally, a copilot a SaaS vendor switched on by default, an MCP server an engineer connected without telling anyone. It's a direct descendant of shadow IT, the decades-old pattern of employees adopting unapproved software to move faster than procurement allows. What changed is the stakes: shadow IT was mostly data sitting somewhere ungoverned. Shadow AI is data in motion — pasted into prompts, routed to third-party model providers, and, in the case of agents, acted on autonomously, without a human approving each step.</p>
+<p class="market-note">The category didn't appear overnight — it rode the same curve that took &quot;Shadow SaaS&quot; from a niche IT-governance topic to a boardroom risk between 2023 and 2026, just faster. Within twenty days of ChatGPT going mainstream inside Samsung in 2023, the company had three separate confidential data leaks. By 2026, industry surveys put unsanctioned AI use anywhere from half to over 80% of the workforce — AI simply gave an existing shadow-IT surface a much sharper edge.</p>
+</section>
+<section class="spread wrap">
+<div class="section-head">
+<span class="section-num">WHERE IT SPREADS</span>
+<h2>Knowingly, unknowingly — same blind spot</h2>
+<p>Shadow AI isn't one behavior. It's at least four different surfaces, and only one of them is a person deliberately going around IT.</p>
+</div>
+<div class="steps">
+<div class="step">
+<div class="num">01</div>
+<div>
+<h3>Personal accounts and browser extensions — knowing</h3>
+<p>An employee signs up for ChatGPT, Claude, or a consumer AI browser extension with a personal or work email, entirely outside procurement. 78% of AI users at work admit to bringing their own unauthorized tools, and 88% have pasted work information into a public AI tool at least once.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">02</div>
+<div>
+<h3>AI features embedded in approved SaaS — unknowing</h3>
+<p>The productivity suite, CRM, or support platform an employee already uses ships a new AI copilot and switches it on by default. Nobody re-reviews it, because on paper it's the same vendor that was already approved — the AI feature inside never went through its own review.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">03</div>
+<div>
+<h3>Agentic browsers and MCP-connected agents — unknowing, then autonomous</h3>
+<p>Agentic browser assistants can click, fill forms, and submit data on a user's behalf, while agents that connect to tools through the Model Context Protocol talk agent-to-server rather than user-to-application — bypassing the SSO and CASB discovery built for human logins entirely. Roughly 80% of organizations now report unauthorized AI agent actions.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">04</div>
+<div>
+<h3>Network, cloud, and infra — the trail it leaves behind</h3>
+<p>Every surface above eventually touches the network: DNS lookups and proxy traffic to AI API endpoints, OAuth grants minted for AI apps, service accounts quietly calling model APIs, and unsanctioned AI deployments spun up directly inside cloud consoles. Invisible to a SaaS inventory — rarely invisible to the network, if anyone's looking.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="lifecycle wrap">
+<div class="section-head">
+<span class="section-num">THE LIFECYCLE</span>
+<h2>The loop that has to close before a breach closes it for you</h2>
+<p>Six stages, one continuous cycle. Shadow AI isn't a single event — it's a loop that either gets governed or gets discovered the hard way.</p>
+</div>
+<svg viewBox="0 0 680 400" width="100%" height="auto" role="img" aria-label="Animated diagram of the shadow AI lifecycle: adopt, use, blind spot, exposure, discovery, and govern, looping back through a continuous governance path">
+<defs>
+<marker id="lcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</marker>
+</defs>
+<rect x="472" y="252" width="176" height="80" rx="10" fill="none" stroke="var(--red)" stroke-width="2" class="pulse-glow"></rect>
+<path d="M100,258 C15,205 15,165 100,116" fill="none" stroke="var(--green)" stroke-width="1.5" class="flow-return" marker-end="url(#lcArrow)"></path>
+<circle r="4" fill="var(--green)">
+<animateMotion dur="3.2s" repeatCount="indefinite" path="M100,258 C15,205 15,165 100,116"></animateMotion>
+</circle>
+<line x1="180" y1="82" x2="248" y2="82" stroke="var(--teal)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
+<line x1="410" y1="82" x2="478" y2="82" stroke="var(--amber)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
+<line x1="560" y1="116" x2="560" y2="258" stroke="var(--red)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
+<line x1="478" y1="292" x2="412" y2="292" stroke="var(--amber)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
+<line x1="248" y1="292" x2="182" y2="292" stroke="var(--green)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
+<g>
+<rect x="20" y="50" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1"></rect>
+<text x="36" y="76" fill="var(--teal)" font-size="13" font-weight="700">01 ADOPT</text>
+<text x="36" y="94" fill="var(--muted)" font-size="10.5">employee finds a tool</text>
+</g>
+<g>
+<rect x="250" y="50" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1"></rect>
+<text x="266" y="76" fill="var(--teal)" font-size="13" font-weight="700">02 USE</text>
+<text x="266" y="94" fill="var(--muted)" font-size="10.5">prompts &amp; data flow out</text>
+</g>
+<g>
+<rect x="480" y="50" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--amber)" stroke-width="1"></rect>
+<text x="496" y="76" fill="var(--amber)" font-size="13" font-weight="700">03 BLIND SPOT</text>
+<text x="496" y="94" fill="var(--muted)" font-size="10.5">CASB/SSO can't see it</text>
+</g>
+<g>
+<rect x="480" y="260" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--red)" stroke-width="1.5"></rect>
+<text x="496" y="286" fill="var(--red)" font-size="13" font-weight="700">04 EXPOSURE</text>
+<text x="496" y="304" fill="var(--muted)" font-size="10.5">data leaves, agent acts</text>
+</g>
+<g>
+<rect x="250" y="260" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--amber)" stroke-width="1"></rect>
+<text x="266" y="286" fill="var(--amber)" font-size="13" font-weight="700">05 DISCOVERY</text>
+<text x="266" y="304" fill="var(--muted)" font-size="10.5">breach — or AI-SPM first</text>
+</g>
+<g>
+<rect x="20" y="260" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--green)" stroke-width="1"></rect>
+<text x="36" y="286" fill="var(--green)" font-size="13" font-weight="700">06 GOVERN</text>
+<text x="36" y="304" fill="var(--muted)" font-size="10.5">inventory, policy, guardrails</text>
+</g>
+</svg>
+<p class="market-note">Amber marks the moment visibility breaks. Red is where the damage happens. Green is the loop most organizations still haven't closed — only 34% have a formal shadow AI detection program in place.</p>
+</section>
 <section class="pipeline wrap">
 <div class="section-head">
 <span class="section-num">THE WORKFLOW</span>
@@ -345,6 +453,81 @@ h1{font-size:32px}
 </div>
 </section>
 
+<section class="discovery wrap">
+<div class="section-head">
+<span class="section-num">THE DISCOVERY PLAYBOOK</span>
+<h2>What to analyze first, and how</h2>
+<p>Not a tool to buy. A sequence: four discovery mechanisms, run together, before a single policy gets drafted.</p>
+</div>
+<div class="steps">
+<div class="step">
+<div class="num">01</div>
+<div>
+<h3>Network traffic analysis</h3>
+<p>DNS resolver logs, web proxy data, and TLS SNI inspection all capture the same signal: where traffic is actually going. A query matching destinations like api.openai.com, api.anthropic.com, and generativelanguage.googleapis.com against DNS logs catches the majority of shadow AI on its own.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">02</div>
+<div>
+<h3>API and inference monitoring</h3>
+<p>Network logs show where traffic goes; API monitoring shows what it's doing there — unauthorized model inference requests, unexpected token volumes, and calls that don't match any sanctioned integration.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">03</div>
+<div>
+<h3>Identity-based discovery</h3>
+<p>OAuth grants to unapproved AI apps, sign-ins to AI tools on personal rather than corporate accounts, and service accounts suddenly showing AI API activity — identity and SSO logs catch what network monitoring alone misses.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">04</div>
+<div>
+<h3>Cloud and SaaS enumeration</h3>
+<p>A direct scan of SaaS and IaaS environments for unsanctioned AI deployments, embedded copilots switched on by default, and MCP server connections that never appeared in an application inventory because they were never installed as an &quot;application&quot; at all.</p>
+</div>
+</div>
+</div>
+<p class="market-note">None of these four alone is enough — each leaves its own blind spot. Correlated across DNS/proxy logs, CASB sign-up events, DLP paste and upload events, endpoint application inventory, and even expense reports, they produce an actionable map of an organization's real AI footprint in two to three weeks, not months.</p>
+</section>
+<section class="governance wrap">
+<div class="section-head">
+<span class="section-num">AGENT GOVERNANCE</span>
+<h2>Do agents need their own policy? Yes — but inventory comes first</h2>
+<p>An AI agent isn't a user, and isn't quite an application either. Governing it means extending identity and policy programs to cover something that acts, not just something that logs in.</p>
+</div>
+<div class="steps">
+<div class="step guardrail">
+<div class="num">01</div>
+<div>
+<h3>Inventory before policy</h3>
+<p>Agents connect to MCP servers agent-to-server, not user-to-application — bypassing discovery methods built around human identity entirely. The organizations governing agents effectively in 2026 are the ones that built an inventory of OAuth grants, API keys, and MCP connections first, not the ones that wrote the most comprehensive policy first.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">02</div>
+<div>
+<h3>Standards are arriving — unevenly</h3>
+<p>NIST's AI Agent Standards Initiative, the Berkeley CLTC Agentic AI Risk-Management Profile extending the NIST AI RMF, and Singapore's IMDA Model AI Governance Framework for Agentic AI all launched within weeks of each other in early 2026 — while the EU AI Act, ISO/IEC 42001, and the original 2023 NIST AI RMF still contain no reference to &quot;agent&quot; or &quot;agentic&quot; at all.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">03</div>
+<div>
+<h3>Identity protocols exist; adoption doesn't, yet</h3>
+<p>MCP OAuth 2.1, Microsoft Entra Agent ID, and the CSA Agentic Trust Framework already give agents a real identity layer to plug into. Only 23.7% of organizations actually use their existing IAM or identity provider as the authorization server for their agentic infrastructure — most agents still run with no policy enforcement point at all.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">04</div>
+<div>
+<h3>Four controls, once visibility exists</h3>
+<p>Least privilege by default, scheduled access reviews, runtime monitoring of what each agent actually does with its permissions, and a real offboarding procedure for when an agent or its integration is retired — the same four controls identity teams already run for human accounts, extended to non-human ones.</p>
+</div>
+</div>
+</div>
+</section>
 <section class="market wrap">
 <div class="section-head">
 <span class="section-num">THE MARKET RESPONSE</span>
@@ -380,6 +563,43 @@ h1{font-size:32px}
 <p class="market-note">This category is consolidating almost as fast as it formed. Varonis acquired AllTrue.ai in February 2026 to build shadow AI discovery directly into its new Atlas platform; Veeam paid $1.725B for Securiti in December 2025; and Gartner published its first Magic Quadrant dedicated to AI Governance Platforms in June 2026, evaluating 13 vendors. Visibility into AI use is being folded into core data-security platforms nearly as quickly as the shadow AI problem itself is growing.</p>
 </section>
 
+<section class="impact wrap">
+<div class="section-head">
+<span class="section-num">WHAT'S AT STAKE</span>
+<h2>Data, compliance, revenue — in that order, fast</h2>
+<p>Shadow AI doesn't fail loudly. It fails quietly, for months, and then all three at once.</p>
+</div>
+<div class="steps">
+<div class="step risk">
+<div class="num">01</div>
+<div>
+<h3>Data — gone, not just exposed</h3>
+<p>Once a prompt leaves the perimeter it can't be recalled, and some providers use submitted data for model training by default. Employees admit to sharing research data (33%), employee records (27%), and financial data (23%) with tools nobody approved — not through a breach, just through normal use.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">02</div>
+<div>
+<h3>Compliance — a filing, not just a fine</h3>
+<p>CB Financial Services' Form 8-K set the precedent: regulators now treat unauthorized AI use like a breach regardless of dollar loss. 68% of breached organizations had no AI governance policy in place at all when it happened.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">03</div>
+<div>
+<h3>Revenue — a measurable premium, then a projection</h3>
+<p>Shadow AI adds $670,000 to the average breach cost today, pushing shadow-AI breaches to $5.39M against a $4.99M baseline. Projected forward, unmanaged shadow AI is on track to cost enterprises more than $40 billion in remediation, compliance penalties, and lost productivity by 2027.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">04</div>
+<div>
+<h3>Trust — the second-order cost nobody prices in</h3>
+<p>After the Vercel breach, customer environment variables ended up fueling an extortion campaign on BreachForums — the cost wasn't just Vercel's, it was every downstream customer now explaining why their secrets were exposed. Shadow AI breaches don't stay contained to the company that caused them.</p>
+</div>
+</div>
+</div>
+</section>
 <section class="solution wrap">
 <div class="section-head">
 <span class="section-num">THE GUARDRAILS</span>
