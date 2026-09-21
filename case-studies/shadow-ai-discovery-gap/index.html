@@ -261,8 +261,15 @@ h1{font-size:32px}
 <p>Agentic browser assistants can click, fill forms, and submit data on a user's behalf, while agents that connect to tools through the Model Context Protocol talk agent-to-server rather than user-to-application — bypassing the SSO and CASB discovery built for human logins entirely. Roughly 80% of organizations now report unauthorized AI agent actions.</p>
 </div>
 </div>
-<div class="step">
+<div class="step risk">
 <div class="num">04</div>
+<div>
+<h3>Browser extensions — the fastest-growing blind spot</h3>
+<p>A consumer AI browser extension installed under a corporate identity looks identical to any other tab — no separate binary, no admin approval, no CASB record. It's exactly the pattern behind the Vercel breach above: a single self-adopted extension, invisible to every inventory, became the entry point into a production environment and a downstream extortion campaign.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">05</div>
 <div>
 <h3>Network, cloud, and infra — the trail it leaves behind</h3>
 <p>Every surface above eventually touches the network: DNS lookups and proxy traffic to AI API endpoints, OAuth grants minted for AI apps, service accounts quietly calling model APIs, and unsanctioned AI deployments spun up directly inside cloud consoles. Invisible to a SaaS inventory — rarely invisible to the network, if anyone's looking.</p>
@@ -447,7 +454,7 @@ h1{font-size:32px}
 <div class="num">04</div>
 <div>
 <h3>Growing faster than the controls</h3>
-<p>Shadow-AI-linked breaches rose from 20% to 43% of AI-related incidents in a single year, while the overwhelming majority of breached organizations had no AI governance policy and no adequate AI access controls in place at all.</p>
+<p>Shadow-AI-linked breaches rose from 20% to 43% of AI-related incidents in a single year, and regular AI use on corporate devices tripled to 45% of employees in the 2026 Verizon Data Breach Investigations Report — up from just 15% the year before. The overwhelming majority of breached organizations had no AI governance policy and no adequate AI access controls in place at all.</p>
 </div>
 </div>
 </div>
@@ -516,7 +523,7 @@ h1{font-size:32px}
 <div class="num">03</div>
 <div>
 <h3>Identity protocols exist; adoption doesn't, yet</h3>
-<p>MCP OAuth 2.1, Microsoft Entra Agent ID, and the CSA Agentic Trust Framework already give agents a real identity layer to plug into. Only 23.7% of organizations actually use their existing IAM or identity provider as the authorization server for their agentic infrastructure — most agents still run with no policy enforcement point at all.</p>
+<p>MCP OAuth 2.1 under Linux Foundation governance, the Digital Identity Foundation's MCP-I and KYA-OS work, Microsoft Entra Agent ID, and the CSA Agentic Trust Framework already give agents a real identity layer to plug into, and NIST's NCCoE Concept Paper on Agent Identity and Authorization adds the missing piece: authentication, authorization, auditing, non-repudiation, and prompt-injection mitigation, specific to agents. Only 23.7% of organizations actually use their existing IAM or identity provider as the authorization server for their agentic infrastructure — most agents still run with no policy enforcement point at all.</p>
 </div>
 </div>
 <div class="step guardrail">
@@ -524,6 +531,13 @@ h1{font-size:32px}
 <div>
 <h3>Four controls, once visibility exists</h3>
 <p>Least privilege by default, scheduled access reviews, runtime monitoring of what each agent actually does with its permissions, and a real offboarding procedure for when an agent or its integration is retired — the same four controls identity teams already run for human accounts, extended to non-human ones.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">05</div>
+<div>
+<h3>What's coming next</h3>
+<p>NIST has an AI Agent Interoperability Profile scheduled for release in Q4 2026 — the first attempt at a shared standard for how agents from different vendors identify themselves to each other, not just to a human-run identity provider. Until it ships, every agent-to-agent handshake runs on vendor-specific glue.</p>
 </div>
 </div>
 </div>
@@ -581,7 +595,7 @@ h1{font-size:32px}
 <div class="num">02</div>
 <div>
 <h3>Compliance — a filing, not just a fine</h3>
-<p>CB Financial Services' Form 8-K set the precedent: regulators now treat unauthorized AI use like a breach regardless of dollar loss. 68% of breached organizations had no AI governance policy in place at all when it happened.</p>
+<p>CB Financial Services' Form 8-K set the precedent: regulators now treat unauthorized AI use like a breach regardless of dollar loss. 68% of breached organizations had no AI governance policy in place at all when it happened — and the gap is widening, not closing: five of the six governance controls IBM tracks actually lost adoption year over year, and only 19% of breached organizations report security and governance teams working together at all.</p>
 </div>
 </div>
 <div class="step risk">
