@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#030712" />
+<meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="description" content="A 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension — three real incidents that trace back to the same gap: AI tools employees adopted that security never approved. Current shadow AI research, the fast-consolidating governance vendor market, and the discovery-first guardrails that would have caught each one." />
+<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="The AI Stack Nobody Approved &middot; Roshan Trivedi" />
+<meta property="og:description" content="Three real incidents. One invisible root cause. The AI tools nobody approved — and the discovery-first guardrails that would have caught each one." />
+<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
+<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-shadow-ai.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-shadow-ai.png" />
+<title>The AI Stack Nobody Approved &middot; Roshan Trivedi</title>
+<style>
+:root{
+--bg:#030712;
+--bg-panel:#0b1220;
+--bg-panel-2:#0d1626;
+--border:rgba(148,163,184,0.16);
+--border-strong:rgba(77,226,255,0.35);
+--text:#f8fafc;
+--muted:#9fb0c4;
+--teal:#4de2ff;
+--green:#7df2d0;
+--amber:#f7c873;
+--red:#ff6b6b;
+--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+font-family:var(--font);
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+background-image:
+radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
+radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
+}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+header.site{
+display:flex;align-items:center;justify-content:space-between;
+padding:20px 24px;border-bottom:1px solid var(--border);
+position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
+}
+header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
+header.site .back:hover{color:var(--teal);text-decoration:none}
+header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
+header.site .brand span{color:var(--teal)}
+
+.hero{padding:72px 0 40px}
+.eyebrow{
+display:inline-flex;align-items:center;gap:8px;
+font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
+color:var(--teal);margin-bottom:22px;
+}
+.eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
+h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
+h1 .accent{color:var(--teal)}
+.lede{font-size:18px;color:var(--muted);max-width:680px}
+
+.meta-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
+}
+.meta-card{
+background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
+padding:20px 22px;
+}
+.meta-card .label{
+font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+color:var(--muted);margin-bottom:10px;
+}
+.meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
+.meta-card.role .value{font-weight:700;color:var(--green)}
+
+section.approach{padding:64px 0}
+.section-head{margin-bottom:36px}
+.section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
+.section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
+.section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
+
+.steps{display:grid;gap:14px}
+.step{
+display:grid;grid-template-columns:56px 1fr;gap:18px;
+background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
+}
+.step .num{
+font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
+}
+.step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
+.step p{color:var(--muted);font-size:14.5px}
+.step.risk .num{color:var(--red);opacity:0.7}
+.step.guardrail .num{color:var(--green);opacity:0.7}
+
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.tag{
+font-size:12px;font-weight:600;color:var(--muted);
+border:1px solid var(--border);border-radius:999px;padding:7px 14px;
+}
+
+section.pipeline{padding:0 0 64px}
+.pipeline svg text{font-family:var(--font)}
+
+section.fieldnote{padding:0 0 64px}
+.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
+.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
+.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
+.quote-card .who span{color:var(--teal)}
+.quote-card.mine{border-left-color:var(--green)}
+
+section.market{padding:0 0 64px}
+.vendor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+.vendor-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
+.vendor-card .name{font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:6px}
+.vendor-card .focus{font-size:13px;color:var(--muted);line-height:1.5}
+.market-note{color:var(--muted);font-size:15px;margin-top:20px;line-height:1.7}
+
+section.solution{padding:0 0 64px}
+.status-note{
+display:flex;gap:12px;align-items:flex-start;
+background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
+border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--amber);
+}
+.status-note b{color:var(--amber)}
+.status-note.shipped{background:rgba(125,242,208,0.08);border-color:rgba(125,242,208,0.3);color:var(--green)}
+.status-note.shipped b{color:var(--green)}
+
+footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
+footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+footer.site p{color:var(--muted);font-size:13px}
+.related{color:var(--muted);font-size:13px}
+.related a{margin-left:10px}
+
+@media (max-width:720px){
+h1{font-size:32px}
+.meta-grid{grid-template-columns:1fr}
+.vendor-grid{grid-template-columns:1fr}
+}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"The AI Stack Nobody Approved","description":"A 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension — three real incidents that trace back to the same gap: AI tools employees adopted that security never approved. Current shadow AI research, the fast-consolidating governance vendor market, and the discovery-first guardrails that would have caught each one.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-09-21","dateModified":"2026-09-21","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/","image":"https://roshantrivedi.co.in/assets/og-shadow-ai.png","keywords":"Shadow AI, AI Governance, Data Security Posture Management, AI Discovery, Insider Risk, Non-Human Identity"}
+</script>
+</head>
+<body>
+
+<header class="site">
+<a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a>
+<div class="brand">RT <span>&middot; Identity Security</span></div>
+</header>
+
+<main class="wrap hero">
+<div class="eyebrow">AI Governance &middot; Shadow AI</div>
+<h1>You can't govern the AI tools you don't know <span class="accent">exist</span>.</h1>
+<p class="lede">A 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension all trace back to the same gap: AI tools employees adopted that security never approved — and in most cases never even knew existed. A look at how widespread that gap actually is, the market racing to close it, and the guardrails that would have caught each incident before data left the building.</p>
+
+<div class="meta-grid">
+<div class="meta-card role">
+<div class="label">Role</div>
+<div class="value">Independent Research &amp; Control Design</div>
+</div>
+<div class="meta-card">
+<div class="label">Challenge</div>
+<div class="value">AI adoption is outrunning AI governance by years. Anywhere from half to four in five employees use AI tools their IT department never approved — a browser extension, a personal account, a copilot switched on inside a SaaS tool. Security can't secure what it can't see, and by the time it finds out, the data has usually already left.</div>
+</div>
+<div class="meta-card">
+<div class="label">Outcome</div>
+<div class="value">Traced three real incidents — a 2023 leak, a 2026 SEC filing, and a 2026 supply-chain breach — back to the same root cause: unmanaged, unapproved AI tools. Sized the gap against 2026 breach and survey data, mapped the fast-consolidating governance vendor market, and set out a discovery-first guardrail sequence.</div>
+</div>
+</div>
+</main>
+
+<section class="approach wrap">
+<div class="section-head">
+<span class="section-num">APPROACH</span>
+<h2>Three moves, in order</h2>
+<p>Start from documented incidents, not hypothetical risk. Check the pattern against current research. Then map both the market response and the guardrails that actually close the gap.</p>
+</div>
+<div class="steps">
+<div class="step">
+<div class="num">01</div>
+<div>
+<h3>Ground it in incidents</h3>
+<p>Samsung's 2023 ChatGPT leaks (three incidents in twenty days), the April 2026 Vercel breach that started with an employee's self-adopted Context.ai browser extension, and CB Financial Services' first-ever SEC Form 8-K filed over unauthorized employee AI use &mdash; three different failure patterns, the same root cause: a tool nobody in security approved.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">02</div>
+<div>
+<h3>Check it against the data</h3>
+<p>Cross-referenced against 2026 breach and survey research: shadow-AI-linked incidents nearly doubled year over year &mdash; from 20% to 43% of AI-related breaches &mdash; pushing average breach cost to $5.39M, while separate surveys put unsanctioned AI use anywhere from 49% to over 80% of employees.</p>
+</div>
+</div>
+<div class="step">
+<div class="num">03</div>
+<div>
+<h3>Map the response</h3>
+<p>Reviewed the AI governance and discovery vendor market and its 2026 consolidation wave &mdash; Varonis absorbing AllTrue.ai, Veeam paying $1.725B for Securiti, Gartner's first dedicated Magic Quadrant &mdash; then set out the discovery-first guardrail sequence that would have caught each incident before data left the building.</p>
+</div>
+</div>
+</div>
+<div class="tags">
+<span class="tag">AI Governance</span>
+<span class="tag">Shadow AI</span>
+<span class="tag">Data Security Posture Management</span>
+<span class="tag">AI Discovery</span>
+<span class="tag">Insider Risk</span>
+<span class="tag">Zero Trust</span>
+</div>
+</section>
+
+<section class="pipeline wrap">
+<div class="section-head">
+<span class="section-num">THE WORKFLOW</span>
+<h2>What security sees, versus what's actually running</h2>
+<p>Both are true at the same company, at the same time. Only one of them shows up in an asset inventory.</p>
+</div>
+<svg viewBox="0 0 680 500" width="100%" height="auto" role="img" aria-label="Workflow diagram comparing the sanctioned AI tools security knows about against the larger, unmanaged shadow AI surface actually in use">
+<defs>
+<marker id="saiArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<rect x="40" y="40" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
+<text x="60" y="66" fill="var(--muted)" font-size="14" font-weight="600">WHAT SECURITY APPROVED</text>
+
+<g fill="var(--bg-panel)" stroke="var(--muted)" stroke-width="1">
+<rect x="60" y="90" width="110" height="56" rx="8"/>
+<rect x="190" y="90" width="200" height="56" rx="8"/>
+<rect x="410" y="90" width="210" height="56" rx="8"/>
+</g>
+<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
+<text x="115" y="122" font-size="14">Employee</text>
+<text x="290" y="114" font-size="14" font-weight="600">3&ndash;5 sanctioned tools</text>
+<text x="290" y="132" font-size="12" fill="var(--muted)">SSO-gated, logged</text>
+<text x="515" y="114" font-size="14" font-weight="600">IT asset inventory</text>
+<text x="515" y="132" font-size="12" fill="var(--muted)">known &amp; governed</text>
+</g>
+
+<g stroke="var(--muted)" stroke-width="1" fill="none">
+<path d="M170 118 H190" marker-end="url(#saiArrow)"/>
+<path d="M390 118 H410" marker-end="url(#saiArrow)"/>
+</g>
+<g font-family="var(--font)" font-size="12" fill="var(--muted)" text-anchor="middle">
+<text x="180" y="164">via procurement</text>
+<text x="400" y="164">reviewed &amp; monitored</text>
+</g>
+
+<rect x="40" y="260" width="600" height="200" rx="8" fill="none" stroke="var(--red)" stroke-width="1"/>
+<text x="60" y="286" fill="var(--red)" font-size="14" font-weight="600">WHAT'S ACTUALLY RUNNING</text>
+
+<g fill="var(--bg-panel)" stroke="var(--red)" stroke-width="1">
+<rect x="60" y="310" width="110" height="56" rx="8"/>
+<rect x="195" y="310" width="210" height="56" rx="8"/>
+<rect x="430" y="310" width="190" height="56" rx="8"/>
+</g>
+<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
+<text x="115" y="342" font-size="14">Employee</text>
+<text x="300" y="334" font-size="14" font-weight="600">Extensions, personal apps</text>
+<text x="300" y="352" font-size="12" fill="var(--muted)">self-served, no review</text>
+<text x="525" y="334" font-size="14" font-weight="600">12+ ungoverned surfaces</text>
+<text x="525" y="352" font-size="12" fill="var(--muted)">invisible to security</text>
+</g>
+
+<g stroke="var(--red)" stroke-width="1" fill="none">
+<path d="M170 338 H195" marker-end="url(#saiArrow)"/>
+<path d="M405 338 H430" marker-end="url(#saiArrow)"/>
+<path d="M300 366 V412 H115 V366" marker-end="url(#saiArrow)"/>
+</g>
+<g font-family="var(--font)" font-size="12" fill="var(--red)" text-anchor="middle">
+<text x="418" y="386">data leaves the perimeter</text>
+<text x="207" y="430">discovered ~247 days later, median</text>
+</g>
+</svg>
+</section>
+
+<section class="fieldnote wrap">
+<div class="section-head">
+<span class="section-num">THE EVIDENCE &middot; THREE INCIDENTS, ONE PATTERN</span>
+<h2>This didn't start as a theory</h2>
+<p>Three documented incidents across three years and three failure patterns, all tracing back to a tool nobody approved.</p>
+</div>
+<div class="quote-card">
+<p><b>2023 &middot; Samsung ChatGPT leaks.</b> Within twenty days of allowing staff to use ChatGPT, Samsung's semiconductor division suffered three separate confidential data leaks &mdash; source code pasted in while debugging, an internal meeting transcript turned into notes, and code used to optimize chip-yield testing. Samsung banned generative AI company-wide days later.</p>
+<div class="who">&mdash; per Bloomberg and multiple contemporaneous reports</div>
+</div>
+<div class="quote-card">
+<p><b>April 2026 &middot; Vercel breach via a browser extension.</b> An employee had self-adopted a consumer-grade AI browser extension &mdash; Context.ai &mdash; under a corporate identity, entirely outside any sanctioned deployment. When the vendor was breached, attackers moved downstream into Vercel, pulled customer environment variables nobody had flagged as sensitive, and used the data to fuel an extortion campaign on BreachForums.</p>
+<div class="who">&mdash; per Security Affairs and public breach disclosures</div>
+</div>
+<div class="quote-card">
+<p><b>May 2026 &middot; CB Financial Services SEC filing.</b> An employee ran non-public customer data &mdash; names, Social Security numbers, dates of birth &mdash; through an AI application the bank had never approved. CB Financial filed the first-ever SEC Form 8-K triggered by unauthorized employee AI use rather than a cyberattack, even while disclaiming any financial loss.</p>
+<div class="who">&mdash; per SEC filings and legal analysis</div>
+</div>
+<div class="quote-card mine">
+<p>Three incidents, three failure patterns &mdash; direct leakage, supply-chain compromise, regulatory exposure &mdash; and one identical root cause: a tool adopted outside every review process security relies on to know it exists.</p>
+<div class="who">&mdash; the pattern across all three</div>
+</div>
+</section>
+
+<section class="pipeline wrap">
+<div class="section-head">
+<span class="section-num">THE RISK PROFILE</span>
+<h2>Why shadow AI breaks the old assumptions</h2>
+<p>Shadow AI doesn't look like a breach until well after it already is one.</p>
+</div>
+<div class="steps">
+<div class="step risk">
+<div class="num">01</div>
+<div>
+<h3>Invisible by design</h3>
+<p>Shadow AI doesn't show up in asset inventories, CASB logs, or SSO reviews, because it's adopted outside procurement entirely &mdash; a browser extension, a personal account, a copilot switched on inside a SaaS tool nobody re-reviewed.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">02</div>
+<div>
+<h3>Most incidents aren't hacks</h3>
+<p>The typical shadow AI incident isn't an intrusion, it's normal use: pasting a customer record into a prompt box is enough. Surveyed employees admit to sharing research data (33%), employee records (27%) and financial data (23%) with tools nobody approved.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">03</div>
+<div>
+<h3>Leadership condones it</h3>
+<p>69% of C-suite respondents and 66% of directors and senior VPs say using unsanctioned AI tools is fine if it makes work faster &mdash; the governance gap starts at the top, not with a rogue employee.</p>
+</div>
+</div>
+<div class="step risk">
+<div class="num">04</div>
+<div>
+<h3>Growing faster than the controls</h3>
+<p>Shadow-AI-linked breaches rose from 20% to 43% of AI-related incidents in a single year, while the overwhelming majority of breached organizations had no AI governance policy and no adequate AI access controls in place at all.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="market wrap">
+<div class="section-head">
+<span class="section-num">THE MARKET RESPONSE</span>
+<h2>A category getting absorbed as fast as it formed</h2>
+<p>A wave of purpose-built vendors emerged to discover and govern shadow AI &mdash; and in 2026, the biggest data-security platforms started buying their way in rather than building it themselves.</p>
+</div>
+<div class="vendor-grid">
+<div class="vendor-card">
+<div class="name">Credo AI</div>
+<div class="focus">Centralized inventory of AI systems, models, agents and vendors, with auto-discovery of shadow AI.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Netskope</div>
+<div class="focus">DSPM-augmented DLP that classifies and governs data reaching sanctioned and shadow AI alike.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Varonis (Atlas)</div>
+<div class="focus">AI inventory, shadow AI discovery, AI security posture management and runtime guardrails in one console.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Securiti</div>
+<div class="focus">Data command center bringing AI governance, privacy and security posture under one policy layer.</div>
+</div>
+<div class="vendor-card">
+<div class="name">Reco</div>
+<div class="focus">SaaS-native discovery that surfaces unsanctioned AI tools connected via OAuth grants and browser extensions.</div>
+</div>
+<div class="vendor-card">
+<div class="name">AvePoint</div>
+<div class="focus">Governance and lifecycle management extended to AI agents and copilots across the Microsoft 365 estate.</div>
+</div>
+</div>
+<p class="market-note">This category is consolidating almost as fast as it formed. Varonis acquired AllTrue.ai in February 2026 to build shadow AI discovery directly into its new Atlas platform; Veeam paid $1.725B for Securiti in December 2025; and Gartner published its first Magic Quadrant dedicated to AI Governance Platforms in June 2026, evaluating 13 vendors. Visibility into AI use is being folded into core data-security platforms nearly as quickly as the shadow AI problem itself is growing.</p>
+</section>
+
+<section class="solution wrap">
+<div class="section-head">
+<span class="section-num">THE GUARDRAILS</span>
+<h2>What would have caught each incident</h2>
+<p>Not "write an AI policy." A discovery-first sequence applied before policy is even drafted.</p>
+</div>
+<div class="steps">
+<div class="step guardrail">
+<div class="num">01</div>
+<div>
+<h3>Discovery before policy</h3>
+<p>You can't govern what you can't see. Continuous discovery of AI apps, agents, browser extensions and OAuth grants across the SaaS estate has to come before any policy is written, not after.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">02</div>
+<div>
+<h3>Sanctioned alternatives, not just bans</h3>
+<p>Samsung's response was an outright ban. Most organizations need a faster path: an approved tool that's as quick as the one people already reached for &mdash; or usage simply moves further into the shadows.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">03</div>
+<div>
+<h3>Data controls at the AI boundary</h3>
+<p>Classify and gate what data can reach any AI surface, sanctioned or not, since most incidents are prompt-level exposure rather than intrusions. DSPM-style controls matter more here than perimeter defenses.</p>
+</div>
+</div>
+<div class="step guardrail">
+<div class="num">04</div>
+<div>
+<h3>Materiality-aware incident response</h3>
+<p>CB Financial shows regulators will treat AI misuse like a breach regardless of dollar loss. Incident response playbooks need an AI-use branch alongside the hacking branch, with its own disclosure criteria.</p>
+</div>
+</div>
+</div>
+<div class="status-note">
+<span>&#9888;</span>
+<span><b>Status: framework, not a product build.</b> This is a discovery-first governance sequence grounded in real 2023-2026 incidents and current shadow AI research &mdash; it pairs directly with the credential-issuance guardrails in <a href="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/">One Key, Every Agent</a> and the risk-scoring inventory in <a href="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a>.</span>
+</div>
+</section>
+
+<footer class="site">
+<div class="wrap">
+<p>Roshan Trivedi &middot; Credential Management &amp; PAM Product Leader</p>
+<a href="/#contact">Get in touch &rarr;</a>
+</div>
+</footer>
+
+</body>
+</html>
