@@ -144,6 +144,27 @@
   text-decoration: underline;
 }
 
+.sc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.sc-action {
+  padding: 6px 11px;
+  color: #03111d;
+  background: #7df2d0;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.sc-action:hover,
+.sc-action:focus-visible {
+  background: #4de2ff;
+  outline: none;
+}
+
 .sc-suggestions {
   display: flex;
   flex-wrap: wrap;
