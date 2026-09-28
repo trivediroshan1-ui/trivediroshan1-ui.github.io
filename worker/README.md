@@ -97,9 +97,22 @@ and add a Transform Rule:
 ### 1. Add the zone to Cloudflare, if it isn't already
 
 In the Cloudflare dashboard, **Add a site** → `roshantrivedi.co.in` → free
-plan → follow the nameserver-change instructions it gives you (this changes
-who your domain registrar points to; it can take a few hours to propagate).
-Skip this step if the zone is already there.
+plan. Cloudflare scans the domain's existing DNS records (it should find the
+GitHub Pages `A`/`CNAME` records already in place) and then gives you two
+nameservers to use instead, something like `xxx.ns.cloudflare.com` and
+`yyy.ns.cloudflare.com` — copy those.
+
+If the domain is registered through **GoDaddy**: sign in at godaddy.com →
+**My Products** → find `roshantrivedi.co.in` → **DNS** (or the **⋮** menu
+next to it) → **Nameservers** → **Change** → **Enter my own nameservers
+(Advanced)** → replace whatever's there with the two Cloudflare gave you →
+**Save**. GoDaddy will warn that this hands DNS management to someone else —
+that's expected, it's the whole point. Propagation is usually under a few
+hours, sometimes up to 24. Cloudflare emails you once it detects the switch
+and the zone goes active; until then the site keeps working exactly as it
+does now, so there's no downtime risk in making the change.
+
+Skip this step entirely if the zone is already in Cloudflare.
 
 ### 2. Proxy the DNS records (turn the cloud orange)
 
