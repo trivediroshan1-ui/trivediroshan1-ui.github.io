@@ -55,12 +55,70 @@
   var FALLBACK =
     "I couldn't find anything about that on this site. Try asking about the case studies, the Secure India Exams project, the MCP Human Approval Gateway lab, Roshan's background, or how to contact him — or reach out directly at trivedi.roshan1@gmail.com.";
 
-  var SUGGESTIONS = [
+  var DEFAULT_SUGGESTIONS = [
     "Who is Roshan?",
     "What case studies are here?",
     "Tell me about Secure India Exams",
     "How do I contact him?",
   ];
+
+  // Page-aware suggestions: shown instead of the defaults when the visitor
+  // opens the widget from a page this section matches (checked in order).
+  var PAGE_SUGGESTIONS = [
+    {
+      test: /^\/secure-india-exams\/?/,
+      suggestions: [
+        "What's the four-pillar architecture?",
+        "How much would this cost?",
+        "What happens if there's a breach?",
+        "How is AI used and secured in this?",
+      ],
+    },
+    {
+      test: /^\/case-studies\/non-human-identity-at-scale\/?/,
+      suggestions: [
+        "What's the interactive sandbox?",
+        "What other case studies are here?",
+        "Who is Roshan?",
+      ],
+    },
+    {
+      test: /^\/case-studies\//,
+      suggestions: [
+        "What case studies are here?",
+        "What was the outcome of this one?",
+        "Who is Roshan?",
+        "How do I contact him?",
+      ],
+    },
+    {
+      test: /^\/writing\//,
+      suggestions: [
+        "What is this blog post about?",
+        "What case studies are here?",
+        "Who is Roshan?",
+      ],
+    },
+    {
+      test: /^\/mcp-human-approval-gateway\/?/,
+      suggestions: [
+        "What is the MCP Human Approval Gateway?",
+        "How does this relate to Agentic AI Identity Governance?",
+        "What case studies are here?",
+      ],
+    },
+  ];
+
+  function getSuggestions() {
+    var path = window.location.pathname || "/";
+    for (var i = 0; i < PAGE_SUGGESTIONS.length; i++) {
+      if (PAGE_SUGGESTIONS[i].test.test(path)) return PAGE_SUGGESTIONS[i].suggestions;
+    }
+    return DEFAULT_SUGGESTIONS;
+  }
+
+  // Entries where it's worth offering one-tap contact actions alongside the answer.
+  var CONTACT_ENTRY_IDS = { contact: true, resume: true };
 
   function el(tag, cls, html) {
     var e = document.createElement(tag);
@@ -81,6 +139,16 @@
       safe += ' <a class="sc-link" href="' + url + '">Open this page →</a>';
     }
     return safe;
+  }
+
+  function contactActionsHtml() {
+    return (
+      '<div class="sc-actions">' +
+      '<a class="sc-action" href="mailto:trivedi.roshan1@gmail.com">Email</a>' +
+      '<a class="sc-action" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/" target="_blank" rel="noopener">LinkedIn</a>' +
+      '<a class="sc-action" href="/Roshan_Trivedi_Resume.pdf" target="_blank" rel="noopener">Resume</a>' +
+      "</div>"
+    );
   }
 
   function init() {
@@ -136,7 +204,7 @@
 
     function renderSuggestions() {
       suggestionsEl.innerHTML = "";
-      SUGGESTIONS.forEach(function (s) {
+      getSuggestions().forEach(function (s) {
         var chip = el("button", "sc-chip", escapeHtml(s));
         chip.type = "button";
         chip.addEventListener("click", function () {
@@ -167,7 +235,9 @@
         addMessage(FALLBACK, "bot");
       } else {
         results.forEach(function (r) {
-          addMessage(linkify(r.entry.answer, r.entry.url), "bot");
+          var html = linkify(r.entry.answer, r.entry.url);
+          if (CONTACT_ENTRY_IDS[r.entry.id]) html += contactActionsHtml();
+          addMessage(html, "bot");
         });
       }
     }
