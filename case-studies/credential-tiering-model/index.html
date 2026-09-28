@@ -112,6 +112,9 @@
       .stage .desc { font-size: 11.5px; color: var(--muted); line-height: 1.4; display: block; }
       @media (max-width: 720px) { .stage-strip { grid-template-columns: repeat(2, 1fr); } }
 
+      .step-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 18px; }
+      .step-strip .stage { display: flex; flex-direction: column; }
+
       .gap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-top: 18px; }
       .gap-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
       .gap-card .tier-tag { font-family: var(--mono); font-size: 10.5px; color: var(--warn); letter-spacing: 0.08em; text-transform: uppercase; }
@@ -390,8 +393,180 @@
         </div>
 
         <div class="callout" style="margin-top:16px;">
-          <strong>The gate itself is a single point of failure &mdash; plan for that, don't ignore it.</strong> If the PAM vault or JIT approval system goes down during an actual incident, the response can't be "wait for the vault." That's what break-glass access is for: a separate, tightly logged emergency path that's distinct from standing access rather than a quiet way around it, with mandatory post-use justification and automatic credential rotation afterward. The <a href="/case-studies/break-glass-access/" style="color:var(--accent);">break-glass access case study</a> covers this in detail &mdash; it's the piece most tiering write-ups skip, and it's usually the first thing an auditor asks about once they understand the model.
+          <strong>The gate itself is a single point of failure &mdash; plan for that, don't ignore it.</strong> If the PAM vault or JIT approval system goes down during an actual incident, the response can't be "wait for the vault." That's what break-glass access is for, walked through in detail further down this page.
         </div>
+      </section>
+
+      <section>
+        <h2>The same model, three different starting points</h2>
+        <p class="section-sub">Everything above describes the mechanism. What it takes to actually build depends heavily on the estate it's protecting &mdash; an on-prem shop, a hybrid one, and a company mid-migration to cloud each hit a different wall first.</p>
+        <div class="table-wrap">
+          <table class="market">
+            <thead>
+              <tr>
+                <th>Topology</th>
+                <th>Where the gap actually is</th>
+                <th>What changes in the PAM architecture</th>
+                <th>Where the friction shows up</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="org">On-premises<br><span style="color:var(--muted); font-weight:400;">AD-centric</span></td>
+                <td>Standing local-admin rights and shared service accounts inside the domain; Tier 0 is usually just the domain controllers and the internal CA.</td>
+                <td>The vault sits in front of AD and delegates through it rather than replacing its RBAC; JIT grants map to time-boxed group membership or a LAPS-style rotated local-admin password.</td>
+                <td>Legacy applications that hard-depend on a static service-account password are the slow part of the rollout, not the vault itself.</td>
+              </tr>
+              <tr>
+                <td class="org">Fully hybrid<br><span style="color:var(--muted); font-weight:400;">AD + Entra ID/Okta + multi-cloud</span></td>
+                <td>Tier 0 now has two control planes &mdash; the on-prem domain and the cloud IdP's global admin role &mdash; and they're rarely governed by the same process or the same reviewer.</td>
+                <td>The vault needs synchronized policy across both planes; a JIT grant issued in one directory has to be revocable from the other during an incident, not just from the one it was issued in.</td>
+                <td>The sync lag between the two identity stores is where privilege actually drifts, and it's usually the first thing an assessor finds.</td>
+              </tr>
+              <tr>
+                <td class="org">Cloud-transitioning<br><span style="color:var(--muted); font-weight:400;">actively migrating</span></td>
+                <td>Temporary dual-running accounts created to bridge the migration outlive the migration itself, and often get provisioned with broad standing access to make the cutover easier.</td>
+                <td>Every migration-created credential should carry an expiry date at creation, not get added to a cleanup backlog afterward.</td>
+                <td>The most common real-world gap: migration credentials are forgotten precisely because they were never meant to be permanent.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Finding what a vault alone won't show you</h2>
+        <p class="section-sub">A vault protects the credentials it knows about. The actual exposure, most of the time, is what was never inventoried in the first place &mdash; shadow admin accounts, forgotten service accounts, and increasingly, AI agents and MCP servers holding their own standing credentials.</p>
+        <p class="body-text">Two categories of tooling do different jobs here. <strong style="color:var(--text)">Wiz</strong> builds a cloud security graph that correlates IAM roles, network exposure, and workload data to answer "what can actually reach what" &mdash; including combination paths across accounts and subscriptions that a single-policy review misses entirely, like a Tier 1 service role that becomes an effective Tier 0 path only when paired with a public-facing workload. <strong style="color:var(--text)">Clutch Security</strong> is purpose-built for the non-human-identity inventory itself: every API key, service account, and workload identity across cloud and SaaS, aged and risk-scored, with orphaned ones flagged automatically &mdash; the owner left, the app was decommissioned, the key was never rotated.</p>
+        <p class="body-text" style="margin-top:14px;">MCP servers are a new instance of the same old service-account problem. An MCP server typically holds a standing credential to whatever it connects to &mdash; a database, a ticketing system, a cloud account &mdash; and unlike a human user, it can be invoked by any agent that can reach it, at any hour, without the friction of a login. The tooling above should treat every MCP server exactly like a service account: inventoried, owned, scoped, and time-boxed, not implicitly trusted because it's "internal." The <a href="/case-studies/agentic-ai-identity-governance/" style="color:var(--accent);">agentic AI identity governance</a> and <a href="/case-studies/ai-agent-credential-sharing/" style="color:var(--accent);">AI agent credential sharing</a> case studies, and the <a href="/mcp-human-approval-gateway/" style="color:var(--accent);">MCP human approval gateway</a> project, go through what this looks like in practice.</p>
+      </section>
+
+      <section>
+        <h2>The pipeline gate: how a hardcoded credential actually gets stopped</h2>
+        <p class="section-sub">A secret scanner only helps if it sits somewhere it can block a build, not just flag one after the fact.</p>
+        <div class="step-strip">
+          <div class="stage"><span class="num">01</span><span class="label">Commit</span><span class="desc">A credential gets typed into code or config and committed locally.</span></div>
+          <div class="stage"><span class="num">02</span><span class="label">Pre-merge scan</span><span class="desc">A pre-commit hook or a required pipeline stage &mdash; GitHub Actions, GitLab CI, Jenkins, Vela, whatever actually runs the build &mdash; scans the diff against known secret patterns and entropy checks before merge.</span></div>
+          <div class="stage"><span class="num">03</span><span class="label">Build blocked</span><span class="desc">A match fails the pipeline stage outright. The merge or build doesn't proceed &mdash; it isn't a Slack alert to look at later.</span></div>
+          <div class="stage"><span class="num">04</span><span class="label">Fix &amp; rotate</span><span class="desc">The credential is pulled out, rotated (it's already been committed, so treat it as already exposed), and replaced with a vault reference before the pipeline re-runs.</span></div>
+        </div>
+        <p class="body-text" style="margin-top:16px;">Which scanner does the matching &mdash; GitGuardian, TruffleHog, Gitleaks &mdash; matters less than where it sits. A scanner that only runs nightly against the whole repo tells you a secret leaked days ago; one wired into the pipeline as a required check stops the merge itself. That difference is the entire gap described in the Tier 1 gap-card above.</p>
+      </section>
+
+      <section>
+        <h2>Where AI actually helps with governance &mdash; and where it needs the same guardrails</h2>
+        <p class="body-text">AI's real value here is pattern-matching at a volume no reviewer can sustain: flagging access that doesn't match a role's normal behavior, pre-filling certification decisions with usage evidence instead of asking a manager to guess, drafting the justification for a JIT request from the ticket it's attached to. None of that replaces the approval decision. It removes the manual work in front of it, so the human decision is actually informed instead of rubber-stamped.</p>
+        <p class="body-text" style="margin-top:14px;">Where it stops helping &mdash; and starts becoming its own Tier 0/Tier 1 risk &mdash; is when the AI doing this analysis is itself handed standing, broadly-scoped access to the identity and vault systems it's supposed to be reviewing. That's the same containment principle as the rest of this piece, applied to the tool instead of the person: the agent's own credential needs to be tiered, scoped, and time-boxed too, and its actions need to trace back to a specific run, not a generic service account everyone shares. The <a href="/case-studies/agentic-ai-identity-governance/" style="color:var(--accent);">agentic AI identity governance case study</a> covers this in more depth.</p>
+      </section>
+
+      <section>
+        <h2>Is a TTL enough, or do you need full zero trust?</h2>
+        <p class="body-text">This isn't really a choice between two options &mdash; a TTL is one control inside a zero-trust model, not an alternative to it. A time-boxed credential stops access from living forever, but it doesn't stop that access from being misused for the full length of its window if the session itself gets hijacked mid-grant. Zero trust adds continuous verification on top of the timer: device posture, network context, and behavioral signals checked throughout the session, not just at the moment it was issued.</p>
+        <p class="body-text" style="margin-top:14px;">Where they genuinely trade off is engineering cost. A TTL is a field on a grant. Continuous verification means plumbing EDR and device-posture signals into every access decision in real time, which is a materially heavier lift. In practice that argues for layering rather than picking one: TTL/JIT as the default baseline everywhere, with continuous verification added specifically at Tier 0 and on the break-glass path, where the cost of a hijacked session is highest. Standing elevation at Tier 2 or Tier 3 rarely justifies that investment on its own &mdash; TTL alone is the pragmatic starting point there, and continuous verification is the maturity step that comes after tiering is already in place, not before it.</p>
+      </section>
+
+      <section>
+        <h2>The break-glass path, in detail</h2>
+        <p class="section-sub">The PAM gate is itself a single point of failure. Break-glass isn't a workaround for that &mdash; it's a separate, deliberately narrower path built to be used rarely and audited every time it is.</p>
+        <div class="step-strip">
+          <div class="stage"><span class="num">01</span><span class="label">Trigger defined in advance</span><span class="desc">Conditions for invoking break-glass are written down before an incident, not decided in the moment.</span></div>
+          <div class="stage"><span class="num">02</span><span class="label">Invocation logged first</span><span class="desc">A named requester and a reason are recorded before access is granted, never after.</span></div>
+          <div class="stage"><span class="num">03</span><span class="label">Narrower, not wider</span><span class="desc">Access is broader in scope but shorter in duration than a normal JIT grant &mdash; often an hour or less.</span></div>
+          <div class="stage"><span class="num">04</span><span class="label">Full session recording</span><span class="desc">Every action taken during a break-glass session is recorded, the same as any other Tier 0 access.</span></div>
+          <div class="stage"><span class="num">05</span><span class="label">Second approver notified</span><span class="desc">Security and a second approver are notified the moment it's invoked &mdash; a notification, not a blocking permission step, so it doesn't defeat the point of an emergency path.</span></div>
+          <div class="stage"><span class="num">06</span><span class="label">Forced rotation on exit</span><span class="desc">The credential used is rotated automatically the instant the session ends, whether or not it was actually used for anything.</span></div>
+        </div>
+        <p class="body-text" style="margin-top:16px;">The stage that gets skipped most often in practice is the post-use justification, written and reviewed within a fixed window after every single invocation. If break-glass is used often enough that this review becomes routine, that's not evidence the process is working &mdash; it's a sign the standing JIT process is missing a legitimate use case that people are routing around instead. The <a href="/case-studies/break-glass-access/" style="color:var(--accent);">break-glass access case study</a> covers the full design in more depth.</p>
+      </section>
+
+      <section>
+        <h2>The full picture: which tool answers which risk, and why</h2>
+        <p class="section-sub">Every category discussed above mapped to the layer it actually closes.</p>
+        <figure class="diagram-card">
+          <svg viewBox="0 0 920 630" role="img" aria-label="A seven-row table-style diagram mapping each risk layer discussed in this piece to a tool category and a one-line reason it closes that gap: Tier 0 identity control plane to PAM vault and phishing-resistant MFA; Tier 1 app and cloud estate to CIEM; Tier 2 workstation to endpoint privilege management; NHI, shadow accounts and MCP servers to NHI governance and CIEM; hardcoded secrets to pipeline-gated scanning and a secrets manager; access certification to identity governance and administration; and break-glass emergency access to an isolated, logged, forced-rotation path.">
+            <text x="42" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">RISK LAYER</text>
+            <text x="300" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">TOOL CATEGORY</text>
+            <text x="598" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">WHY IT MATTERS</text>
+
+            <g>
+              <rect x="20" y="50" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
+              <rect x="20" y="50" width="5" height="76" rx="2" fill="var(--accent)"></rect>
+              <text x="42" y="76" font-size="12.5" font-weight="700" fill="var(--text)">Tier 0 &mdash; identity control plane</text>
+              <text x="42" y="94" font-size="10.5" fill="var(--muted)">domain, PKI, PAM vault, cloud IdP admin</text>
+              <text x="300" y="76" font-size="12" font-weight="700" fill="var(--text)">PAM vault + FIDO2 / M-of-N</text>
+              <text x="300" y="94" font-size="10.5" fill="var(--muted)">CyberArk, BeyondTrust, Delinea</text>
+              <text x="598" y="80" font-size="11" fill="var(--muted)">Stops standing Tier 0 credential reuse &mdash;</text>
+              <text x="598" y="98" font-size="11" fill="var(--muted)">the highest-impact path in the diagram above</text>
+            </g>
+
+            <g>
+              <rect x="20" y="132" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
+              <rect x="20" y="132" width="5" height="76" rx="2" fill="var(--accent)"></rect>
+              <text x="42" y="158" font-size="12.5" font-weight="700" fill="var(--text)">Tier 1 &mdash; app / cloud / CI-CD</text>
+              <text x="42" y="176" font-size="10.5" fill="var(--muted)">service accounts, cloud IAM roles</text>
+              <text x="300" y="158" font-size="12" font-weight="700" fill="var(--text)">CIEM</text>
+              <text x="300" y="176" font-size="10.5" fill="var(--muted)">Wiz, Clutch Security, Sonrai</text>
+              <text x="598" y="162" font-size="11" fill="var(--muted)">Surfaces the permission combinations a</text>
+              <text x="598" y="180" font-size="11" fill="var(--muted)">single-role review never catches</text>
+            </g>
+
+            <g>
+              <rect x="20" y="214" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
+              <rect x="20" y="214" width="5" height="76" rx="2" fill="var(--accent)"></rect>
+              <text x="42" y="240" font-size="12.5" font-weight="700" fill="var(--text)">Tier 2 &mdash; workstation / helpdesk</text>
+              <text x="42" y="258" font-size="10.5" fill="var(--muted)">local admin, the usual entry point</text>
+              <text x="300" y="240" font-size="12" font-weight="700" fill="var(--text)">Endpoint privilege management</text>
+              <text x="300" y="258" font-size="10.5" fill="var(--muted)">BeyondTrust EPM, Delinea, PAM360</text>
+              <text x="598" y="244" font-size="11" fill="var(--muted)">Removes the shared local-admin password</text>
+              <text x="598" y="262" font-size="11" fill="var(--muted)">behind most fleet-wide incidents</text>
+            </g>
+
+            <g>
+              <rect x="20" y="296" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
+              <rect x="20" y="296" width="5" height="76" rx="2" fill="var(--warn)"></rect>
+              <text x="42" y="322" font-size="12.5" font-weight="700" fill="var(--text)">NHI, shadow accounts, MCP servers</text>
+              <text x="42" y="340" font-size="10.5" fill="var(--muted)">cross-cutting, rarely inventoried</text>
+              <text x="300" y="322" font-size="12" font-weight="700" fill="var(--text)">NHI governance + CIEM</text>
+              <text x="300" y="340" font-size="10.5" fill="var(--muted)">Clutch Security, Wiz</text>
+              <text x="598" y="326" font-size="11" fill="var(--muted)">Finds the exposure tiering doesn't reach</text>
+              <text x="598" y="344" font-size="11" fill="var(--muted)">until it's inventoried and owned</text>
+            </g>
+
+            <g>
+              <rect x="20" y="378" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
+              <rect x="20" y="378" width="5" height="76" rx="2" fill="var(--warn)"></rect>
+              <text x="42" y="404" font-size="12.5" font-weight="700" fill="var(--text)">Secrets hardcoded in code</text>
+              <text x="42" y="422" font-size="10.5" fill="var(--muted)">cross-cutting, enters faster than review</text>
+              <text x="300" y="404" font-size="12" font-weight="700" fill="var(--text)">Pipeline-gated scanning + secrets manager</text>
+              <text x="300" y="422" font-size="10.5" fill="var(--muted)">GitGuardian, Gitleaks, Vault, Infisical</text>
+              <text x="598" y="408" font-size="11" fill="var(--muted)">Blocks the credential at the merge gate &mdash;</text>
+              <text x="598" y="426" font-size="11" fill="var(--muted)">before it's ever exposed, not after</text>
+            </g>
+
+            <g>
+              <rect x="20" y="460" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
+              <rect x="20" y="460" width="5" height="76" rx="2" fill="var(--safe)"></rect>
+              <text x="42" y="486" font-size="12.5" font-weight="700" fill="var(--text)">Access certification / audit evidence</text>
+              <text x="42" y="504" font-size="10.5" fill="var(--muted)">cross-cutting, the classic rubber stamp</text>
+              <text x="300" y="486" font-size="12" font-weight="700" fill="var(--text)">Identity Governance &amp; Administration</text>
+              <text x="300" y="504" font-size="10.5" fill="var(--muted)">SailPoint, Saviynt</text>
+              <text x="598" y="490" font-size="11" fill="var(--muted)">Replaces a memory-based review with</text>
+              <text x="598" y="508" font-size="11" fill="var(--muted)">usage-backed certification evidence</text>
+            </g>
+
+            <g>
+              <rect x="20" y="542" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
+              <rect x="20" y="542" width="5" height="76" rx="2" fill="var(--safe)"></rect>
+              <text x="42" y="568" font-size="12.5" font-weight="700" fill="var(--text)">Break-glass / emergency access</text>
+              <text x="42" y="586" font-size="10.5" fill="var(--muted)">the path around the gate itself</text>
+              <text x="300" y="568" font-size="12" font-weight="700" fill="var(--text)">Isolated emergency path</text>
+              <text x="300" y="586" font-size="10.5" fill="var(--muted)">logged, time-boxed, forced rotation</text>
+              <text x="598" y="572" font-size="11" fill="var(--muted)">Keeps the one bypass from becoming a</text>
+              <text x="598" y="590" font-size="11" fill="var(--muted)">silent, ungoverned standing account</text>
+            </g>
+          </svg>
+          <figcaption>Same seven risk layers this piece walks through, read left to right: the risk, the tool category that closes it, and why. <span style="color:var(--accent)">&#9679;</span> identity-plane tiers &nbsp; <span style="color:var(--warn)">&#9679;</span> cross-cutting hygiene &nbsp; <span style="color:var(--safe)">&#9679;</span> governance &amp; containment.</figcaption>
+        </figure>
       </section>
 
       <section>
