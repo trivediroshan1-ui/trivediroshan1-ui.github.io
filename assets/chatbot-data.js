@@ -11,7 +11,39 @@ window.SITE_QA = [
     url: "/case-studies/credential-tiering-model/",
     keywords: ["tier 0", "tier 1", "tier 2", "tier 3", "credential tiering", "tiering model", "privileged access tiering", "pam market", "which pam tool", "best pam tool", "cyberark", "delinea", "beyondtrust", "strongdm vs", "gartner magic quadrant pam"],
     answer:
-      "\"Credential Tiering & the PAM Market: Closing the Tier 0 Gap\" is an independent research piece with an animated diagram showing why Tier 0 (domain/PKI/PAM vault), Tier 1 (app/cloud/CI-CD), Tier 2 (workstation/helpdesk) and Tier 3 (end users) are a containment mechanism, not an org chart — comparing a standing shared credential (which lets an attacker walk from a phished Tier 2 laptop to a Tier 0 domain compromise) against a Just-in-Time vaulted credential (contained at the first PAM gate). It maps common gaps at each tier to the tool category that closes them (PAM vaults, CIEM, endpoint privilege management, NHI governance, secrets scanning, IGA), and includes a profile-based market table (large regulated enterprise, mid-market, cloud-native/DevOps-first, SMB) matching organization type to the audit/compliance-vs-cost trade-off of tools like CyberArk, Delinea, BeyondTrust, StrongDM, Teleport, Wiz and others — sourced from Gartner and current vendor comparisons, not vendor endorsement.",
+      "\"Credential Tiering & the PAM Market: Closing the Tier 0 Gap\" is an independent research piece with an animated diagram showing why Tier 0 (domain/PKI/PAM vault/cloud IdP global admin), Tier 1 (app/cloud/CI-CD), Tier 2 (workstation/helpdesk) and Tier 3 (end users) are a containment mechanism, not an org chart — comparing a standing shared credential (which lets an attacker walk from a phished Tier 2 laptop to a Tier 0 domain compromise) against a Just-in-Time vaulted credential (contained at the first PAM gate). It maps common gaps at each tier to the tool category that closes them, covers deployment topology (on-prem, hybrid, cloud-transitioning), non-human-identity and MCP-server visibility, secrets-in-code pipeline gating, where AI helps with governance, TTL vs. zero trust, a full break-glass framework, a framework diagram mapping every tool category to the risk it closes, an audit/compliance mapping table (NIST, PCI-DSS, SOX, HIPAA, ISO 27001), and a profile-based market table (large regulated enterprise, mid-market, cloud-native/DevOps-first, SMB) matching organization type to the audit/compliance-vs-cost trade-off of tools like CyberArk, Delinea, BeyondTrust, StrongDM, Teleport, Wiz and others — sourced from Gartner and current vendor comparisons, not vendor endorsement.",
+  },
+  {
+    id: "credential-tiering-topology",
+    title: "Credential tiering: on-prem vs. hybrid vs. cloud-transitioning",
+    url: "/case-studies/credential-tiering-model/",
+    keywords: ["on-prem pam", "hybrid identity", "active directory pam", "entra id tier 0", "okta global admin", "cloud migration credentials", "migration accounts", "multi-cloud pam"],
+    answer:
+      "The Credential Tiering & the PAM Market piece has a section on how the tiering model changes by deployment topology. On-prem/AD-centric shops usually have Tier 0 limited to domain controllers and the internal CA, with the vault delegating through AD's own RBAC rather than replacing it — the slow part of rollout is legacy apps hard-coded to a static service-account password. Fully hybrid orgs (AD + Entra ID/Okta + multi-cloud) end up with two Tier 0 control planes that are rarely governed by the same process, and the real drift shows up in the sync lag between them. Cloud-transitioning orgs create temporary dual-running migration accounts that outlive the migration and often carry broad standing access to ease the cutover — the fix is giving every migration credential an expiry date at creation, not adding it to a cleanup backlog later.",
+  },
+  {
+    id: "credential-tiering-nhi-detection",
+    title: "Finding NHIs, shadow accounts and MCP server risk (Wiz, Clutch Security)",
+    url: "/case-studies/credential-tiering-model/",
+    keywords: ["wiz security", "clutch security", "nhi discovery", "shadow accounts", "mcp server security", "mcp misuse", "ai agent credentials", "non-human identity", "ciem"],
+    answer:
+      "The case study covers what a PAM vault alone can't see: shadow admin accounts, forgotten service accounts, and AI agents/MCP servers holding their own standing credentials. Wiz builds a cloud security graph correlating IAM roles, network exposure and workload data to find effective-permission combinations a single-policy review misses — like a Tier 1 service role that becomes an effective Tier 0 path only when paired with a public-facing workload. Clutch Security is purpose-built for non-human-identity inventory: every API key, service account and workload identity across cloud and SaaS, aged and risk-scored, with orphaned ones flagged automatically. The piece treats MCP servers as a new instance of the same service-account problem — a standing credential any agent can invoke at any hour — and argues they should be inventoried, owned, scoped and time-boxed exactly like a service account, cross-linking to the site's agentic AI identity governance, AI agent credential sharing, and MCP human approval gateway work.",
+  },
+  {
+    id: "credential-tiering-pipeline-and-ai",
+    title: "Secrets pipeline gating, AI for governance, and TTL vs. zero trust",
+    url: "/case-studies/credential-tiering-model/",
+    keywords: ["secret scanning pipeline", "gitguardian", "gitleaks", "trufflehog", "pre-merge scan", "ai governance", "ai identity risk", "ttl authentication", "zero trust vs ttl", "just in time vs zero trust"],
+    answer:
+      "Two more sections in the Credential Tiering piece: a four-step walkthrough of how a hardcoded secret actually gets stopped (commit, pre-merge scan in a required pipeline stage like GitHub Actions/GitLab CI/Jenkins/Vela, build blocked outright rather than just flagged, fix and rotate) — the point being where the scanner sits (GitGuardian, TruffleHog, Gitleaks) matters more than which one you pick. And a section on AI and governance: AI is genuinely useful for pattern-matching access anomalies, pre-filling certification decisions with usage evidence, and drafting JIT justifications — but the AI agent doing that analysis needs its own credential tiered, scoped and time-boxed too, or it becomes its own Tier 0/1 risk. On TTL vs. zero trust, the piece argues it's not a real choice — TTL is one control inside zero trust, not an alternative — and recommends TTL/JIT everywhere as the baseline, with continuous device/behavioral verification layered on top specifically at Tier 0 and the break-glass path.",
+  },
+  {
+    id: "credential-tiering-breakglass",
+    title: "The break-glass access framework (animated diagram)",
+    url: "/case-studies/credential-tiering-model/",
+    keywords: ["break glass access", "emergency access process", "break glass framework", "break glass steps", "pam gate failure", "emergency credential"],
+    answer:
+      "The Credential Tiering piece has a full break-glass section with its own animated six-stage framework diagram: trigger conditions defined in advance, invocation logged (requester + reason) before access is granted, access that's narrower in scope but shorter in duration than a normal JIT grant, full session recording, a second approver notified the moment it's invoked (a notification, not a blocking step), and forced credential rotation the instant the session ends whether or not it was used. The piece argues the PAM gate itself is a single point of failure and break-glass is the deliberately narrow path for that — and that if break-glass gets used often enough to feel routine, that's a sign the standing JIT process is missing a legitimate use case, not evidence the process is working. The dedicated break-glass access case study goes further into the design.",
   },
   {
     id: "about",
