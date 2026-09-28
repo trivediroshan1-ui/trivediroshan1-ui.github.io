@@ -1,44 +1,84 @@
 ---
 ---
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title }} — Roshan Trivedi</title>
-<meta name="description" content="{{ page.description }}">
-<style>
-  body {
-    background: #0a0a0a;
-    color: #e5e5e5;
-    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-    line-height: 1.7;
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 2rem 1.25rem 4rem;
-  }
-  a { color: #7dd3fc; text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .back { display: inline-block; margin-bottom: 2rem; color: #888; font-family: monospace; }
-  .meta { color: #888; font-size: 0.9rem; margin-bottom: 2rem; font-family: monospace; }
-  h1 { font-size: 2rem; line-height: 1.25; margin-bottom: 0.5rem; }
-  h2 { font-size: 1.4rem; margin-top: 2.5rem; border-bottom: 1px solid #333; padding-bottom: 0.4rem; }
-  hr { border: none; border-top: 1px solid #333; margin: 2rem 0; }
-  table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
-  th, td { border: 1px solid #333; padding: 0.6rem; text-align: left; vertical-align: top; }
-  th { background: #161616; }
-  code { background: #161616; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.9em; }
-  blockquote { border-left: 3px solid #444; margin-left: 0; padding-left: 1rem; color: #aaa; }
-  .tags { font-family: monospace; color: #7dd3fc; font-size: 0.85rem; margin-bottom: 1rem; }
-</style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#030712">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <title>{{ page.title }} — Roshan Trivedi</title>
+    <meta name="description" content="{{ page.description | escape }}">
+    <link rel="canonical" href="https://roshantrivedi.co.in{{ page.url }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title | escape }}">
+    <meta property="og:description" content="{{ page.description | escape }}">
+    <meta property="og:url" content="https://roshantrivedi.co.in{{ page.url }}">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:published_time" content="{{ page.date | date: '%Y-%m-%d' }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "author": { "@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/" },
+      "publisher": { "@type": "Person", "name": "Roshan Trivedi" },
+      "mainEntityOfPage": "https://roshantrivedi.co.in{{ page.url }}",
+      "image": "https://roshantrivedi.co.in/assets/og-roshan-trivedi.png",
+      "keywords": {{ page.tags | join: ", " | jsonify }}
+    }
+    </script>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <style>
+      :root {
+        --bg: #030712; --surface: #0b1220; --surface-2: #101a2c; --border: #1f2a40; --text: #f1f5f9; --muted: #93a1bd; --accent: #4de2ff;
+        --mono: "JetBrains Mono", ui-monospace, monospace; --display: "DM Sans", system-ui, sans-serif; --body: "Manrope", system-ui, sans-serif;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      html, body { background: var(--bg); }
+      body { color: var(--text); font-family: var(--body); line-height: 1.75; max-width: 740px; margin: 0 auto; padding: 28px 16px 64px; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .nav { font-size: 13px; font-weight: 600; margin-bottom: 28px; color: var(--muted); }
+      .nav a { color: var(--muted); }
+      .nav a:hover, .nav a:focus-visible { color: var(--accent); }
+      .meta { color: var(--muted); font-size: 12.5px; margin-bottom: 8px; font-family: var(--mono); }
+      .tags { font-family: var(--mono); color: var(--accent); font-size: 12px; margin-bottom: 24px; }
+      h1 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 5vw, 38px); line-height: 1.18; letter-spacing: -0.02em; margin: 0 0 12px; }
+      h2 { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em; margin-top: 2.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); }
+      h3 { font-family: var(--display); font-weight: 700; font-size: 18px; margin-top: 2rem; }
+      p, li { color: #d7deea; }
+      hr { border: none; border-top: 1px solid var(--border); margin: 2.2rem 0; }
+      table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 14px; display: block; overflow-x: auto; }
+      th, td { border: 1px solid var(--border); padding: 0.6rem; text-align: left; vertical-align: top; }
+      th { background: var(--surface); color: var(--text); }
+      code { font-family: var(--mono); background: var(--surface); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.88em; }
+      pre { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; overflow-x: auto; }
+      pre code { padding: 0; background: none; }
+      blockquote { border-left: 3px solid var(--accent); margin-left: 0; padding: 4px 0 4px 1rem; color: var(--muted); background: var(--surface-2); border-radius: 0 8px 8px 0; }
+      footer { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    </style>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+  </head>
 <body>
-  <a class="back" href="/">← back to roshantrivedi.co.in</a>
+  <nav class="nav"><a href="/">&larr; roshantrivedi.co.in</a> &middot; <a href="/writing/">all writing</a> &middot; <a href="/case-studies/">case studies</a></nav>
   <div class="meta">{{ page.date | date: "%d %b %Y" }} · {{ page.author }}</div>
   <div class="tags">{% for tag in page.tags %}#{{ tag }} {% endfor %}</div>
   {{ content }}
-  <hr>
-  <p style="color:#666; font-size:0.85rem;">© 2026 Roshan Trivedi — <a href="/">roshantrivedi.co.in</a></p>
+  <footer>
+    <span>&copy; {{ page.date | date: "%Y" }} Roshan Trivedi</span>
+    <span><a href="/writing/">More writing</a> &middot; <a href="/case-studies/">Case studies</a></span>
+  </footer>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

@@ -1,0 +1,41 @@
+/*
+  Self-hosted fonts for the standalone pages (case studies, listing, writing, 404).
+  Served from this site so the Content-Security-Policy (default-src 'self')
+  allows them — Google Fonts would be blocked. The homepage bundle loads its
+  own copies of DM Sans and Manrope from the same files.
+  DM Sans, Manrope and JetBrains Mono are all SIL Open Font License 1.1.
+*/
+
+/* DM Sans — display / headings */
+@font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 400;
+  src: url(/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2) format('woff2'), url(/assets/dm-sans-latin-400-normal-BwCSEQnW.woff) format('woff'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 500;
+  src: url(/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2) format('woff2'), url(/assets/dm-sans-latin-500-normal-Dr3UlScf.woff) format('woff'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 600;
+  src: url(/assets/dm-sans-latin-600-normal-Aqo67rzb.woff2) format('woff2'), url(/assets/dm-sans-latin-600-normal-BmdmIIQ2.woff) format('woff'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 700;
+  src: url(/assets/dm-sans-latin-700-normal-DvUfVpUG.woff2) format('woff2'), url(/assets/dm-sans-latin-700-normal-CUSSCpQX.woff) format('woff'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 800;
+  src: url(/assets/dm-sans-latin-800-normal.woff) format('woff'); }
+
+/* Manrope — body text */
+@font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 400;
+  src: url(/assets/manrope-latin-400-normal.woff) format('woff'); }
+@font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 500;
+  src: url(/assets/manrope-latin-500-normal-BYYD-dBL.woff2) format('woff2'), url(/assets/manrope-latin-500-normal-DMZssgOp.woff) format('woff'); }
+@font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 600;
+  src: url(/assets/manrope-latin-600-normal-4f0koTD-.woff2) format('woff2'), url(/assets/manrope-latin-600-normal-BqgrALkZ.woff) format('woff'); }
+@font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 700;
+  src: url(/assets/manrope-latin-700-normal-BZp_XxE4.woff2) format('woff2'), url(/assets/manrope-latin-700-normal-DGRFkw-m.woff) format('woff'); }
+@font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 800;
+  src: url(/assets/manrope-latin-800-normal-BfWYOv1c.woff2) format('woff2'), url(/assets/manrope-latin-800-normal-uHUdIJgA.woff) format('woff'); }
+
+/* JetBrains Mono — labels, tags, code */
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 400;
+  src: url(/assets/jetbrains-mono-latin-regular.woff) format('woff'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 500;
+  src: url(/assets/jetbrains-mono-latin-medium.woff) format('woff'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 600;
+  src: url(/assets/jetbrains-mono-latin-semibold.woff) format('woff'); }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 700;
+  src: url(/assets/jetbrains-mono-latin-bold.woff) format('woff'); }
