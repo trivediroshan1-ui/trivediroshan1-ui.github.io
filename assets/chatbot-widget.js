@@ -72,7 +72,7 @@
   }
 
   var FALLBACK =
-    "I couldn't find anything about that on this site. Try asking about the case studies, the Secure India Exams project, the MCP Human Approval Gateway lab, Roshan's background, or how to contact him — or reach out directly at trivedi.roshan1@gmail.com.";
+    "I couldn't find anything about that on this site. Try asking about the case studies, the Secure India Exams project, Roshan's background, or how to contact him — or reach out directly at trivedi.roshan1@gmail.com.";
 
   var DEFAULT_SUGGESTIONS = [
     "Who is Roshan?",
@@ -116,14 +116,6 @@
         "What is this blog post about?",
         "What case studies are here?",
         "Who is Roshan?",
-      ],
-    },
-    {
-      test: /^\/mcp-human-approval-gateway\/?/,
-      suggestions: [
-        "What is the MCP Human Approval Gateway?",
-        "How does this relate to Agentic AI Identity Governance?",
-        "What case studies are here?",
       ],
     },
   ];
