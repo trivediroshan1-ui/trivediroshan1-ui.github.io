@@ -60,6 +60,33 @@
       .back:hover, .back:focus-visible { color: var(--accent); }
 
       header.hero { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
+
+      .jump-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: -20px;
+        padding: 12px 14px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+      .jump-nav a {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        white-space: nowrap;
+      }
+      .jump-nav a:hover, .jump-nav a:focus-visible {
+        color: var(--accent);
+        border-color: var(--accent);
+        outline: none;
+      }
+      section { scroll-margin-top: 20px; }
       .eyebrow {
         font-family: var(--mono);
         font-size: 11px;
@@ -183,7 +210,22 @@
         </div>
       </header>
 
-      <section>
+      <nav class="jump-nav" aria-label="Jump to a section">
+        <a href="#mechanism">The mechanism</a>
+        <a href="#lifecycle">Lifecycle</a>
+        <a href="#gaps">Where the gaps are</a>
+        <a href="#topology">On-prem / hybrid / cloud</a>
+        <a href="#nhi-detection">NHI &amp; MCP visibility</a>
+        <a href="#pipeline-gate">Pipeline gate</a>
+        <a href="#ai-governance">AI &amp; governance</a>
+        <a href="#ttl-vs-zero-trust">TTL vs. zero trust</a>
+        <a href="#break-glass">Break-glass</a>
+        <a href="#framework">Framework diagram</a>
+        <a href="#audit-mapping">Audit mapping</a>
+        <a href="#market">Market fit</a>
+      </nav>
+
+      <section id="mechanism">
         <h2>The mechanism: why a phished laptop shouldn't reach a domain controller</h2>
         <p class="section-sub">Tier 0 holds the identity control plane: domain controllers, PKI, PAM vaults, and just as importantly today, the admin plane of whatever runs your SSO &mdash; Entra ID, Okta, Ping. A cloud identity provider's global admin role is Tier 0 even though there's no server rack behind it; several of the highest-profile breaches of the last few years (Okta's support-system compromise, the SolarWinds-linked Microsoft cloud-tenant abuse) targeted exactly this layer instead of a physical domain controller. Tier 1 is the app/cloud/CI-CD estate. Tier 2 is workstation and helpdesk admin, the most common entry point. Tier 3 is everyone else, the largest attack surface. The tiers only protect anything if a credential valid at one tier is never valid at another.</p>
 
@@ -291,7 +333,7 @@
         </figure>
       </section>
 
-      <section>
+      <section id="lifecycle">
         <h2>The lifecycle every tiered credential has to move through</h2>
         <p class="section-sub">Tiering only holds if every credential moves through the same governed lifecycle &mdash; a credential that skips a stage (issued without an owner, never rotated, never retired) is exactly the standing access the left-hand lane above exploits.</p>
         <figure class="diagram-card" style="text-align:center;">
@@ -331,7 +373,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="gaps">
         <h2>Where most organizations actually have the gap</h2>
         <p class="section-sub">The diagram assumes a PAM gate exists at every boundary. In practice, most organizations have a vault at Tier&nbsp;0 and stop there. Below is what's typically missing at each layer and the category of tool that closes it. Which specific vendor fits is a separate question &mdash; it depends heavily on the organization's profile, covered in the market table further down.</p>
 
@@ -397,7 +439,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="topology">
         <h2>The same model, three different starting points</h2>
         <p class="section-sub">Everything above describes the mechanism. What it takes to actually build depends heavily on the estate it's protecting &mdash; an on-prem shop, a hybrid one, and a company mid-migration to cloud each hit a different wall first.</p>
         <div class="table-wrap">
@@ -434,14 +476,14 @@
         </div>
       </section>
 
-      <section>
+      <section id="nhi-detection">
         <h2>Finding what a vault alone won't show you</h2>
         <p class="section-sub">A vault protects the credentials it knows about. The actual exposure, most of the time, is what was never inventoried in the first place &mdash; shadow admin accounts, forgotten service accounts, and increasingly, AI agents and MCP servers holding their own standing credentials.</p>
         <p class="body-text">Two categories of tooling do different jobs here. <strong style="color:var(--text)">Wiz</strong> builds a cloud security graph that correlates IAM roles, network exposure, and workload data to answer "what can actually reach what" &mdash; including combination paths across accounts and subscriptions that a single-policy review misses entirely, like a Tier 1 service role that becomes an effective Tier 0 path only when paired with a public-facing workload. <strong style="color:var(--text)">Clutch Security</strong> is purpose-built for the non-human-identity inventory itself: every API key, service account, and workload identity across cloud and SaaS, aged and risk-scored, with orphaned ones flagged automatically &mdash; the owner left, the app was decommissioned, the key was never rotated.</p>
         <p class="body-text" style="margin-top:14px;">MCP servers are a new instance of the same old service-account problem. An MCP server typically holds a standing credential to whatever it connects to &mdash; a database, a ticketing system, a cloud account &mdash; and unlike a human user, it can be invoked by any agent that can reach it, at any hour, without the friction of a login. The tooling above should treat every MCP server exactly like a service account: inventoried, owned, scoped, and time-boxed, not implicitly trusted because it's "internal." The <a href="/case-studies/agentic-ai-identity-governance/" style="color:var(--accent);">agentic AI identity governance</a> and <a href="/case-studies/ai-agent-credential-sharing/" style="color:var(--accent);">AI agent credential sharing</a> case studies, and the <a href="/mcp-human-approval-gateway/" style="color:var(--accent);">MCP human approval gateway</a> project, go through what this looks like in practice.</p>
       </section>
 
-      <section>
+      <section id="pipeline-gate">
         <h2>The pipeline gate: how a hardcoded credential actually gets stopped</h2>
         <p class="section-sub">A secret scanner only helps if it sits somewhere it can block a build, not just flag one after the fact.</p>
         <div class="step-strip">
@@ -453,19 +495,19 @@
         <p class="body-text" style="margin-top:16px;">Which scanner does the matching &mdash; GitGuardian, TruffleHog, Gitleaks &mdash; matters less than where it sits. A scanner that only runs nightly against the whole repo tells you a secret leaked days ago; one wired into the pipeline as a required check stops the merge itself. That difference is the entire gap described in the Tier 1 gap-card above.</p>
       </section>
 
-      <section>
+      <section id="ai-governance">
         <h2>Where AI actually helps with governance &mdash; and where it needs the same guardrails</h2>
         <p class="body-text">AI's real value here is pattern-matching at a volume no reviewer can sustain: flagging access that doesn't match a role's normal behavior, pre-filling certification decisions with usage evidence instead of asking a manager to guess, drafting the justification for a JIT request from the ticket it's attached to. None of that replaces the approval decision. It removes the manual work in front of it, so the human decision is actually informed instead of rubber-stamped.</p>
         <p class="body-text" style="margin-top:14px;">Where it stops helping &mdash; and starts becoming its own Tier 0/Tier 1 risk &mdash; is when the AI doing this analysis is itself handed standing, broadly-scoped access to the identity and vault systems it's supposed to be reviewing. That's the same containment principle as the rest of this piece, applied to the tool instead of the person: the agent's own credential needs to be tiered, scoped, and time-boxed too, and its actions need to trace back to a specific run, not a generic service account everyone shares. The <a href="/case-studies/agentic-ai-identity-governance/" style="color:var(--accent);">agentic AI identity governance case study</a> covers this in more depth.</p>
       </section>
 
-      <section>
+      <section id="ttl-vs-zero-trust">
         <h2>Is a TTL enough, or do you need full zero trust?</h2>
         <p class="body-text">This isn't really a choice between two options &mdash; a TTL is one control inside a zero-trust model, not an alternative to it. A time-boxed credential stops access from living forever, but it doesn't stop that access from being misused for the full length of its window if the session itself gets hijacked mid-grant. Zero trust adds continuous verification on top of the timer: device posture, network context, and behavioral signals checked throughout the session, not just at the moment it was issued.</p>
         <p class="body-text" style="margin-top:14px;">Where they genuinely trade off is engineering cost. A TTL is a field on a grant. Continuous verification means plumbing EDR and device-posture signals into every access decision in real time, which is a materially heavier lift. In practice that argues for layering rather than picking one: TTL/JIT as the default baseline everywhere, with continuous verification added specifically at Tier 0 and on the break-glass path, where the cost of a hijacked session is highest. Standing elevation at Tier 2 or Tier 3 rarely justifies that investment on its own &mdash; TTL alone is the pragmatic starting point there, and continuous verification is the maturity step that comes after tiering is already in place, not before it.</p>
       </section>
 
-      <section>
+      <section id="break-glass">
         <h2>The break-glass path, in detail</h2>
         <p class="section-sub">The PAM gate is itself a single point of failure. Break-glass isn't a workaround for that &mdash; it's a separate, deliberately narrower path built to be used rarely and audited every time it is.</p>
 
@@ -538,7 +580,7 @@
         <p class="body-text" style="margin-top:16px;">The stage that gets skipped most often in practice is the post-use justification, written and reviewed within a fixed window after every single invocation. If break-glass is used often enough that this review becomes routine, that's not evidence the process is working &mdash; it's a sign the standing JIT process is missing a legitimate use case that people are routing around instead. The <a href="/case-studies/break-glass-access/" style="color:var(--accent);">break-glass access case study</a> covers the full design in more depth.</p>
       </section>
 
-      <section>
+      <section id="framework">
         <h2>The full picture: which tool answers which risk, and why</h2>
         <p class="section-sub">Every category discussed above mapped to the layer it actually closes.</p>
         <figure class="diagram-card">
@@ -630,7 +672,7 @@
         </figure>
       </section>
 
-      <section>
+      <section id="audit-mapping">
         <h2>Where this maps to what an auditor actually checks</h2>
         <p class="section-sub">Everything above is engineering. This section is what turns it into audit evidence &mdash; the tiering model is a fairly direct answer to specific control requirements most compliance frameworks already ask for.</p>
         <div class="table-wrap">
@@ -673,7 +715,7 @@
         </div>
       </section>
 
-      <section>
+      <section id="market">
         <h2>Matching the market to the organization, not the other way round</h2>
         <p class="section-sub">There's no single best credential-management tool. It depends on org size, regulatory load, and whether the estate is on-prem, cloud-native, or mixed. What shows up consistently across vendor comparisons is a trade-off between <strong style="color:var(--text)">audit/compliance depth and total cost of ownership</strong>. The table below is a profile-based framework, not a ranking.</p>
 
