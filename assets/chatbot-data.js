@@ -6,6 +6,14 @@
  */
 window.SITE_QA = [
   {
+    id: "credential-tiering-model",
+    title: "Research: Credential Tiering & the PAM Market",
+    url: "/case-studies/credential-tiering-model/",
+    keywords: ["tier 0", "tier 1", "tier 2", "tier 3", "credential tiering", "tiering model", "privileged access tiering", "pam market", "which pam tool", "best pam tool", "cyberark", "delinea", "beyondtrust", "strongdm vs", "gartner magic quadrant pam"],
+    answer:
+      "\"Credential Tiering & the PAM Market: Closing the Tier 0 Gap\" is an independent research piece with an animated diagram showing why Tier 0 (domain/PKI/PAM vault), Tier 1 (app/cloud/CI-CD), Tier 2 (workstation/helpdesk) and Tier 3 (end users) are a containment mechanism, not an org chart — comparing a standing shared credential (which lets an attacker walk from a phished Tier 2 laptop to a Tier 0 domain compromise) against a Just-in-Time vaulted credential (contained at the first PAM gate). It maps common gaps at each tier to the tool category that closes them (PAM vaults, CIEM, endpoint privilege management, NHI governance, secrets scanning, IGA), and includes a profile-based market table (large regulated enterprise, mid-market, cloud-native/DevOps-first, SMB) matching organization type to the audit/compliance-vs-cost trade-off of tools like CyberArk, Delinea, BeyondTrust, StrongDM, Teleport, Wiz and others — sourced from Gartner and current vendor comparisons, not vendor endorsement.",
+  },
+  {
     id: "about",
     title: "About Roshan Trivedi",
     url: "/",
@@ -27,7 +35,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["case studies", "case study", "portfolio", "projects", "work examples", "list of case studies", "what's on this site", "whats on this site", "what is on the website", "sections"],
     answer:
-      "The site has a portfolio of privacy-safe case studies (employer names, client details and internal metrics are deliberately excluded from all of them): Credential Management Platform Strategy, PAM Modernization & Zero Standing Privilege, Privileged Access Migration Planning, PAM/NHI & Cloud Platform Evaluation, IAM Audit & Control-Mapping Framework, AI as a Security Product Co-worker, Non-Human Identity at Scale, Just-in-Time & Just-Enough-Access Elevation, Break-Glass Access, Secrets Sprawl & Consolidation, Third-Party & Vendor Privileged Access Governance, Access Recertification & IGA Automation, Passwordless Authentication Rollout, Cloud Entitlement Management (CIEM) at Scale, Agentic AI Identity Governance, the AI Processing Tax research piece, AI Agent Credential Sharing (three real breaches, one root cause), and the Shadow AI Discovery Gap research piece. There's also the independent Secure India Exams project and a security blog.",
+      "The site has a portfolio of privacy-safe case studies (employer names, client details and internal metrics are deliberately excluded from all of them): Credential Management Platform Strategy, PAM Modernization & Zero Standing Privilege, Privileged Access Migration Planning, PAM/NHI & Cloud Platform Evaluation, IAM Audit & Control-Mapping Framework, AI as a Security Product Co-worker, Non-Human Identity at Scale, Just-in-Time & Just-Enough-Access Elevation, Break-Glass Access, Secrets Sprawl & Consolidation, Third-Party & Vendor Privileged Access Governance, Access Recertification & IGA Automation, Passwordless Authentication Rollout, Cloud Entitlement Management (CIEM) at Scale, Agentic AI Identity Governance, the AI Processing Tax research piece, AI Agent Credential Sharing (three real breaches, one root cause), and the Shadow AI Discovery Gap research piece, and Credential Tiering & the PAM Market (the Tier 0-3 containment model plus a PAM vendor-fit market table). There's also the independent Secure India Exams project and a security blog.",
   },
   {
     id: "credential-platform",
