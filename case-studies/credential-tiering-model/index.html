@@ -468,6 +468,65 @@
       <section>
         <h2>The break-glass path, in detail</h2>
         <p class="section-sub">The PAM gate is itself a single point of failure. Break-glass isn't a workaround for that &mdash; it's a separate, deliberately narrower path built to be used rarely and audited every time it is.</p>
+
+        <figure class="diagram-card">
+          <svg viewBox="0 0 920 230" role="img" aria-label="An animated six-stage break-glass framework, each stage lighting up in sequence: trigger conditions defined in advance, invocation logged before access is granted, access that is narrower and shorter than a normal just-in-time grant, full session recording, a second approver notified without blocking the request, and forced credential rotation the instant the session ends.">
+            <g>
+              <path d="M110,100 L190,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
+              <path d="M250,100 L330,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
+              <path d="M390,100 L470,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
+              <path d="M530,100 L610,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
+              <path d="M670,100 L750,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
+            </g>
+
+            <g class="gate-pulse" style="animation-delay:0s">
+              <circle cx="80" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
+              <text x="80" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">01</text>
+            </g>
+            <text x="80" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Trigger defined</text>
+            <text x="80" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">set in advance</text>
+
+            <g class="gate-pulse" style="animation-delay:0.35s">
+              <circle cx="220" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
+              <text x="220" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">02</text>
+            </g>
+            <text x="220" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Invocation logged</text>
+            <text x="220" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">reason recorded first</text>
+
+            <g class="gate-pulse" style="animation-delay:0.7s">
+              <circle cx="360" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
+              <text x="360" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">03</text>
+            </g>
+            <text x="360" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Narrower access</text>
+            <text x="360" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">shorter than normal JIT</text>
+
+            <g class="gate-pulse" style="animation-delay:1.05s">
+              <circle cx="500" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
+              <text x="500" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">04</text>
+            </g>
+            <text x="500" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Session recorded</text>
+            <text x="500" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">every action logged</text>
+
+            <g class="gate-pulse" style="animation-delay:1.4s">
+              <circle cx="640" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
+              <text x="640" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">05</text>
+            </g>
+            <text x="640" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Approver notified</text>
+            <text x="640" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">alerted, not blocking</text>
+
+            <g class="gate-pulse" style="animation-delay:1.75s">
+              <circle cx="780" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
+              <text x="780" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">06</text>
+            </g>
+            <text x="780" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Forced rotation</text>
+            <text x="780" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">rotated the instant it ends</text>
+
+            <text x="80" y="205" font-size="10" fill="var(--muted)" text-anchor="middle">t = 0</text>
+            <text x="780" y="205" font-size="10" fill="var(--muted)" text-anchor="middle">session closed</text>
+          </svg>
+          <figcaption>Six stages, always in this order: defined ahead of time, logged before granted, narrower than standing JIT, fully recorded, notified without blocking, rotated the instant the session ends.</figcaption>
+        </figure>
+
         <div class="step-strip">
           <div class="stage"><span class="num">01</span><span class="label">Trigger defined in advance</span><span class="desc">Conditions for invoking break-glass are written down before an incident, not decided in the moment.</span></div>
           <div class="stage"><span class="num">02</span><span class="label">Invocation logged first</span><span class="desc">A named requester and a reason are recorded before access is granted, never after.</span></div>
@@ -483,14 +542,16 @@
         <h2>The full picture: which tool answers which risk, and why</h2>
         <p class="section-sub">Every category discussed above mapped to the layer it actually closes.</p>
         <figure class="diagram-card">
-          <svg viewBox="0 0 920 630" role="img" aria-label="A seven-row table-style diagram mapping each risk layer discussed in this piece to a tool category and a one-line reason it closes that gap: Tier 0 identity control plane to PAM vault and phishing-resistant MFA; Tier 1 app and cloud estate to CIEM; Tier 2 workstation to endpoint privilege management; NHI, shadow accounts and MCP servers to NHI governance and CIEM; hardcoded secrets to pipeline-gated scanning and a secrets manager; access certification to identity governance and administration; and break-glass emergency access to an isolated, logged, forced-rotation path.">
+          <svg viewBox="0 0 920 630" role="img" aria-label="An animated seven-row diagram mapping each risk layer discussed in this piece to a tool category and a one-line reason it closes that gap, with a scanning indicator sweeping down the stack: Tier 0 identity control plane to PAM vault and phishing-resistant MFA; Tier 1 app and cloud estate to CIEM; Tier 2 workstation to endpoint privilege management; NHI, shadow accounts and MCP servers to NHI governance and CIEM; hardcoded secrets to pipeline-gated scanning and a secrets manager; access certification to identity governance and administration; and break-glass emergency access to an isolated, logged, forced-rotation path.">
+            <line x1="9" y1="48" x2="9" y2="620" stroke="var(--accent)" stroke-width="2" class="flow-breach" opacity="0.7"></line>
+
             <text x="42" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">RISK LAYER</text>
             <text x="300" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">TOOL CATEGORY</text>
             <text x="598" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">WHY IT MATTERS</text>
 
             <g>
               <rect x="20" y="50" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="50" width="5" height="76" rx="2" fill="var(--accent)"></rect>
+              <rect x="20" y="50" width="5" height="76" rx="2" fill="var(--accent)" class="gate-pulse" style="animation-delay:0s"></rect>
               <text x="42" y="76" font-size="12.5" font-weight="700" fill="var(--text)">Tier 0 &mdash; identity control plane</text>
               <text x="42" y="94" font-size="10.5" fill="var(--muted)">domain, PKI, PAM vault, cloud IdP admin</text>
               <text x="300" y="76" font-size="12" font-weight="700" fill="var(--text)">PAM vault + FIDO2 / M-of-N</text>
@@ -501,7 +562,7 @@
 
             <g>
               <rect x="20" y="132" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
-              <rect x="20" y="132" width="5" height="76" rx="2" fill="var(--accent)"></rect>
+              <rect x="20" y="132" width="5" height="76" rx="2" fill="var(--accent)" class="gate-pulse" style="animation-delay:0.3s"></rect>
               <text x="42" y="158" font-size="12.5" font-weight="700" fill="var(--text)">Tier 1 &mdash; app / cloud / CI-CD</text>
               <text x="42" y="176" font-size="10.5" fill="var(--muted)">service accounts, cloud IAM roles</text>
               <text x="300" y="158" font-size="12" font-weight="700" fill="var(--text)">CIEM</text>
@@ -512,7 +573,7 @@
 
             <g>
               <rect x="20" y="214" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="214" width="5" height="76" rx="2" fill="var(--accent)"></rect>
+              <rect x="20" y="214" width="5" height="76" rx="2" fill="var(--accent)" class="gate-pulse" style="animation-delay:0.6s"></rect>
               <text x="42" y="240" font-size="12.5" font-weight="700" fill="var(--text)">Tier 2 &mdash; workstation / helpdesk</text>
               <text x="42" y="258" font-size="10.5" fill="var(--muted)">local admin, the usual entry point</text>
               <text x="300" y="240" font-size="12" font-weight="700" fill="var(--text)">Endpoint privilege management</text>
@@ -523,7 +584,7 @@
 
             <g>
               <rect x="20" y="296" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
-              <rect x="20" y="296" width="5" height="76" rx="2" fill="var(--warn)"></rect>
+              <rect x="20" y="296" width="5" height="76" rx="2" fill="var(--warn)" class="gate-pulse" style="animation-delay:0.9s"></rect>
               <text x="42" y="322" font-size="12.5" font-weight="700" fill="var(--text)">NHI, shadow accounts, MCP servers</text>
               <text x="42" y="340" font-size="10.5" fill="var(--muted)">cross-cutting, rarely inventoried</text>
               <text x="300" y="322" font-size="12" font-weight="700" fill="var(--text)">NHI governance + CIEM</text>
@@ -534,7 +595,7 @@
 
             <g>
               <rect x="20" y="378" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="378" width="5" height="76" rx="2" fill="var(--warn)"></rect>
+              <rect x="20" y="378" width="5" height="76" rx="2" fill="var(--warn)" class="gate-pulse" style="animation-delay:1.2s"></rect>
               <text x="42" y="404" font-size="12.5" font-weight="700" fill="var(--text)">Secrets hardcoded in code</text>
               <text x="42" y="422" font-size="10.5" fill="var(--muted)">cross-cutting, enters faster than review</text>
               <text x="300" y="404" font-size="12" font-weight="700" fill="var(--text)">Pipeline-gated scanning + secrets manager</text>
@@ -545,7 +606,7 @@
 
             <g>
               <rect x="20" y="460" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
-              <rect x="20" y="460" width="5" height="76" rx="2" fill="var(--safe)"></rect>
+              <rect x="20" y="460" width="5" height="76" rx="2" fill="var(--safe)" class="gate-pulse" style="animation-delay:1.5s"></rect>
               <text x="42" y="486" font-size="12.5" font-weight="700" fill="var(--text)">Access certification / audit evidence</text>
               <text x="42" y="504" font-size="10.5" fill="var(--muted)">cross-cutting, the classic rubber stamp</text>
               <text x="300" y="486" font-size="12" font-weight="700" fill="var(--text)">Identity Governance &amp; Administration</text>
@@ -556,7 +617,7 @@
 
             <g>
               <rect x="20" y="542" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="542" width="5" height="76" rx="2" fill="var(--safe)"></rect>
+              <rect x="20" y="542" width="5" height="76" rx="2" fill="var(--safe)" class="gate-pulse" style="animation-delay:1.8s"></rect>
               <text x="42" y="568" font-size="12.5" font-weight="700" fill="var(--text)">Break-glass / emergency access</text>
               <text x="42" y="586" font-size="10.5" fill="var(--muted)">the path around the gate itself</text>
               <text x="300" y="568" font-size="12" font-weight="700" fill="var(--text)">Isolated emergency path</text>
