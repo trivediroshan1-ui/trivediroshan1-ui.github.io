@@ -1,3 +1,17 @@
+# NOTE: GitHub Pages does not read this file at all -- it has no support for
+# custom response headers, full stop. These headers only take effect once the
+# domain is proxied through Cloudflare with a Transform Rule (or moved to a
+# host that honors a _headers file, such as Cloudflare Pages). See
+# worker/README.md for the exact Transform Rule to add. Keep this file
+# accurate anyway: it's the source of truth for what the rule should say.
+#
+# script-src intentionally lists a 'sha256-...' hash per inline <script> block
+# instead of 'unsafe-inline', so each hash below must be regenerated (and this
+# file + the Cloudflare rule both updated) whenever an inline <script> body
+# changes byte-for-byte, in index.html or case-studies/non-human-identity-at-scale/.
+# Prefer moving new interactive scripts to an external /assets/*.js file over
+# adding another hash -- one line to update beats keeping hashes in sync.
+
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
@@ -5,4 +19,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'none'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'sha256-Ke5ZeTbuPTyNL0WKYQrU+gs17T56sCS+hQy+X1ddJRo=' 'sha256-gJB82AQzwBquiax2qe9VeArjNmgYB6SWV9+7qKW272M=' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests

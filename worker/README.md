@@ -85,6 +85,76 @@ console.log(window.SITE_QA.map(e => '### ' + e.title + ' (' + e.url + ')\n' + e.
 and paste the output into the `KNOWLEDGE:` section of `worker.js`, then
 `wrangler deploy` again.
 
+## Enforcing the site's security headers
+
+`_headers` at the repo root lists HSTS, CSP and a few other security headers
+— but GitHub Pages (which serves `roshantrivedi.co.in` directly; the site
+isn't currently proxied through Cloudflare) has no concept of a `_headers`
+file and silently ignores it. None of those headers reach a visitor's
+browser today. To make them real, put Cloudflare in front of GitHub Pages
+and add a Transform Rule:
+
+### 1. Add the zone to Cloudflare, if it isn't already
+
+In the Cloudflare dashboard, **Add a site** → `roshantrivedi.co.in` → free
+plan. Cloudflare scans the domain's existing DNS records (it should find the
+GitHub Pages `A`/`CNAME` records already in place) and then gives you two
+nameservers to use instead, something like `xxx.ns.cloudflare.com` and
+`yyy.ns.cloudflare.com` — copy those.
+
+If the domain is registered through **GoDaddy**: sign in at godaddy.com →
+**My Products** → find `roshantrivedi.co.in` → **DNS** (or the **⋮** menu
+next to it) → **Nameservers** → **Change** → **Enter my own nameservers
+(Advanced)** → replace whatever's there with the two Cloudflare gave you →
+**Save**. GoDaddy will warn that this hands DNS management to someone else —
+that's expected, it's the whole point. Propagation is usually under a few
+hours, sometimes up to 24. Cloudflare emails you once it detects the switch
+and the zone goes active; until then the site keeps working exactly as it
+does now, so there's no downtime risk in making the change.
+
+Skip this step entirely if the zone is already in Cloudflare.
+
+### 2. Proxy the DNS records (turn the cloud orange)
+
+**DNS** → find the records for `roshantrivedi.co.in` (apex) and `www` → click
+each record's cloud icon so it's **Proxied** (orange), not **DNS only**
+(grey). Traffic now flows through Cloudflare before it reaches GitHub Pages,
+which is what makes a Transform Rule possible — this step alone changes
+nothing else about how the site behaves.
+
+### 3. Add a Modify Response Header Transform Rule
+
+**Rules** → **Transform Rules** → **Modify Response Header** → **Create
+rule**. Name it something like "Security headers". Under **When incoming
+requests match…** choose **All incoming requests** (or scope it to
+`roshantrivedi.co.in/*` if you'd rather be explicit). Add one **Set static**
+header entry per line below, copying the value exactly from `_headers` at
+the repo root so the two never drift:
+
+| Header name | Value |
+|---|---|
+| `Strict-Transport-Security` | `max-age=63072000; includeSubDomains; preload` |
+| `X-Content-Type-Options` | `nosniff` |
+| `X-Frame-Options` | `DENY` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | `geolocation=(), microphone=(), camera=(), interest-cohort=()` |
+| `Cross-Origin-Opener-Policy` | `same-origin` |
+| `Content-Security-Policy` | *(the full `Content-Security-Policy` line from `_headers` — long, so copy/paste it rather than retyping)* |
+
+Save and deploy the rule. It's live immediately — check with your browser's
+Network tab (or `curl -I https://roshantrivedi.co.in/`) that the response now
+carries these headers.
+
+### Keeping it in sync
+
+`_headers`'s CSP `script-src` allows the site's own scripts by exact SHA-256
+hash, one per inline `<script>` block (see the comment at the top of
+`_headers`). If you ever edit the text of an inline script in `index.html` or
+`case-studies/non-human-identity-at-scale/index.html`, its hash changes —
+regenerate it and update both `_headers` and the Transform Rule's CSP value,
+or the browser will silently block that script. Ask Claude to do this
+whenever an inline script changes; it's a five-second check.
+
 ## Security notes
 
 - The Worker only accepts requests from your site's own domains (checked via
