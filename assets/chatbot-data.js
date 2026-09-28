@@ -219,15 +219,14 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["secure india exams", "neet", "jee", "cuet", "national examinations", "exam paper leak", "zero trust proposal", "whitepaper", "poster"],
     answer:
-      "\"Securing India's National Examinations\" is Roshan's independent, non-commercial public-interest project — a Zero Trust reference architecture proposing how India can prevent national exam paper leaks (for exams like NEET, JEE and CUET). It's a lifecycle security model covering paper creation, protected storage, controlled delivery and verified destruction, built on threat-led architecture (not just process controls), cryptographic protection, least privilege and continuous evidence, with privacy, resilience and accountable human decision-making. There's a full 30-page whitepaper PDF (Securing_India_Exams_Master.pdf) and an original Zero Trust poster graphic on the site, plus the project page at /secure-india-exams/.",
+      "\"Securing India's National Examinations\" is Roshan's independent, non-commercial public-interest project — a Zero Trust reference architecture proposing how India can prevent national exam paper leaks (for exams like NEET, JEE and CUET). It's a lifecycle security model covering paper creation, protected storage, controlled delivery and verified destruction, built on threat-led architecture (not just process controls), cryptographic protection, least privilege and continuous evidence, with privacy, resilience and accountable human decision-making. There's a full 30-page whitepaper PDF (Securing_India_Exams_Master.pdf), plus the project page at /secure-india-exams/.",
   },
   {
     id: "mcp-lab",
-    title: "MCP Human Approval Gateway (interactive lab)",
-    url: "/mcp-human-approval-gateway/",
+    title: "MCP Human Approval Gateway (concept)",
     keywords: ["mcp human approval gateway", "mcp lab", "interactive lab", "human approval gateway", "agentic ai lab"],
     answer:
-      "The \"MCP Human Approval Gateway\" is a new interactive cyber + AI lab on the site (linked from the homepage). It lets you explore deterministic policy, human approval, time-bound authorization and guarded AI-agent execution — the same human-in-the-loop approval pattern referenced in the Agentic AI Identity Governance case study. It's at /mcp-human-approval-gateway/.",
+      "The \"MCP Human Approval Gateway\" is a concept Roshan references in his case studies — deterministic policy, human approval, time-bound authorization and guarded AI-agent execution, the same human-in-the-loop approval pattern used in the Agentic AI Identity Governance case study. An interactive lab demonstrating it isn't published on the site yet.",
   },
   {
     id: "blog",
@@ -259,7 +258,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["what is this site", "what is this website", "purpose of site", "site about"],
     answer:
-      "This is the personal site of Roshan Trivedi — Identity & Security. It covers his bio, expertise, career experience, a portfolio of privacy-safe PAM/IAM/NHI case studies and independent AI-security research, an interactive MCP Human Approval Gateway lab, his independent Secure India Exams zero-trust proposal, a security-writing blog, and his resume/contact details. Every page is plain HTML/CSS with no framework, hosted on GitHub Pages at roshantrivedi.co.in.",
+      "This is the personal site of Roshan Trivedi — Identity & Security. It covers his bio, expertise, career experience, a portfolio of privacy-safe PAM/IAM/NHI case studies and independent AI-security research, his independent Secure India Exams zero-trust proposal, a security-writing blog, and his resume/contact details. Every page is plain HTML/CSS with no framework, hosted on GitHub Pages at roshantrivedi.co.in.",
   },
   {
     id: "platforms-disclaimer",
