@@ -11,11 +11,11 @@
     <meta property="og:title" content="Secrets Sprawl & Consolidation · Roshan Trivedi" />
     <meta property="og:description" content="A public-safe case study on secrets discovery and consolidation, including an AI-advisory exposure and blast-radius ranking step." />
     <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/secrets-consolidation/" />
-    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-secrets-consolidation.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-secrets-consolidation.png" />
     <title>Secrets Sprawl & Consolidation · Roshan Trivedi</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,14 +64,20 @@
       .tags span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; }
       footer.page-footer { border-top: 1px solid var(--border); padding-top: 20px; font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
       footer.page-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .cat-badge {
+        align-self: flex-start;
+        font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
+        border: 1px solid; border-radius: 999px; padding: 4px 10px; margin: 0;
+      }
     </style>
   </head>
   <body>
     <main>
-      <a class="back" href="/">&larr; back to roshantrivedi.co.in</a>
+      <a class="back" href="/">&larr; back to roshantrivedi.co.in</a> &middot; <a class="back" href="/case-studies/">all case studies</a>
 
       <header class="hero">
         <p class="eyebrow">Secrets governance &middot; Case study</p>
+        <p class="cat-badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Secrets governance</p>
         <h1>Secrets Sprawl &amp; Consolidation</h1>
         <p class="dek">Turning credentials scattered across code, CI/CD and config files into a single governed vault.</p>
         <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
