@@ -1,12 +1,21 @@
 /*
  * Site chatbot for roshantrivedi.co.in
- * A free, client-side "ask the site" widget. It answers ONLY from the
- * content in chatbot-data.js (window.SITE_QA), which is written from the
- * site's own published text — so it can't invent facts about the site.
- * No API key, no backend, no cost.
+ * Answers visitor questions from the site's own content (chatbot-data.js).
+ *
+ * If AI_ENDPOINT below is set to a deployed Cloudflare Worker URL (see
+ * worker/README.md), the bot calls it for natural, conversational Claude
+ * answers grounded in the site content. If AI_ENDPOINT is empty, or the
+ * Worker is ever unreachable, it automatically falls back to the built-in
+ * free keyword-search engine — so the chatbot never breaks either way.
  */
 (function () {
   "use strict";
+
+  // Set this to your deployed Worker URL to enable AI-powered answers, e.g.
+  // "https://roshantrivedi-chatbot.yoursubdomain.workers.dev". Leave "" to
+  // use only the free local keyword-search bot.
+  var AI_ENDPOINT = "";
+  var AI_TIMEOUT_MS = 12000;
 
   var STOPWORDS = new Set([
     "the","a","an","is","are","was","were","be","been","being","to","of","in","on","for",
@@ -194,12 +203,26 @@
     var closeBtn = panel.querySelector(".sc-close");
     var greeted = false;
 
+    var history = []; // {role: "user"|"assistant", content: string} — used for AI follow-ups
+
     function addMessage(text, who) {
       var row = el("div", "sc-row sc-row-" + who);
       var bubble = el("div", "sc-bubble sc-bubble-" + who, text);
       row.appendChild(bubble);
       messagesEl.appendChild(row);
       messagesEl.scrollTop = messagesEl.scrollHeight;
+      return row;
+    }
+
+    function addTyping() {
+      var row = el(
+        "div",
+        "sc-row sc-row-bot",
+        '<div class="sc-bubble sc-bubble-bot sc-typing"><span></span><span></span><span></span></div>'
+      );
+      messagesEl.appendChild(row);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+      return row;
     }
 
     function renderSuggestions() {
@@ -224,21 +247,69 @@
       renderSuggestions();
     }
 
+    function answerLocally() {
+      var lastUser = history.length ? history[history.length - 1].content : "";
+      var results = search(lastUser);
+      if (!results.length) {
+        addMessage(FALLBACK, "bot");
+        return;
+      }
+      results.forEach(function (r) {
+        var html = linkify(r.entry.answer, r.entry.url);
+        if (CONTACT_ENTRY_IDS[r.entry.id]) html += contactActionsHtml();
+        addMessage(html, "bot");
+      });
+    }
+
+    function askAI(text) {
+      var typingRow = addTyping();
+      var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+      var timer = setTimeout(function () {
+        if (controller) controller.abort();
+      }, AI_TIMEOUT_MS);
+
+      fetch(AI_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: controller ? controller.signal : undefined,
+        body: JSON.stringify({
+          message: text,
+          history: history.slice(0, -1), // everything before this turn
+        }),
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error("bad status " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          clearTimeout(timer);
+          typingRow.remove();
+          if (!data || !data.reply) throw new Error("empty reply");
+          addMessage(escapeHtml(data.reply), "bot");
+          history.push({ role: "assistant", content: data.reply });
+          if (/contact|email|linkedin|resume|reach|hire/i.test(text)) {
+            addMessage(contactActionsHtml(), "bot");
+          }
+        })
+        .catch(function () {
+          clearTimeout(timer);
+          typingRow.remove();
+          // Silent fallback to the free local bot — visitor never sees an error.
+          answerLocally();
+        });
+    }
+
     function handleQuery(text) {
       text = text.trim();
       if (!text) return;
       addMessage(escapeHtml(text), "user");
       suggestionsEl.innerHTML = "";
+      history.push({ role: "user", content: text });
 
-      var results = search(text);
-      if (!results.length) {
-        addMessage(FALLBACK, "bot");
+      if (AI_ENDPOINT) {
+        askAI(text);
       } else {
-        results.forEach(function (r) {
-          var html = linkify(r.entry.answer, r.entry.url);
-          if (CONTACT_ENTRY_IDS[r.entry.id]) html += contactActionsHtml();
-          addMessage(html, "bot");
-        });
+        answerLocally();
       }
     }
 
