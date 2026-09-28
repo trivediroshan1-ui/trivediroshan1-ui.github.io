@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="Public-safe case studies on privileged access, credential management, non-human identity and agentic AI governance, by Roshan Trivedi." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Case Studies · Roshan Trivedi" />
+    <meta property="og:description" content="Public-safe case studies on privileged access, credential management, non-human identity and agentic AI governance." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <title>Case Studies · Roshan Trivedi</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+    <style>
+      :root {
+        --bg: #030712;
+        --surface: #0b1220;
+        --surface-2: #101a2c;
+        --border: #1f2a40;
+        --text: #f1f5f9;
+        --muted: #93a1bd;
+        --accent: #4de2ff;
+        --mono: "JetBrains Mono", ui-monospace, monospace;
+        --display: "DM Sans", system-ui, sans-serif;
+        --body: "Manrope", system-ui, sans-serif;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      html, body { background: var(--bg); }
+      body {
+        color: var(--text);
+        font-family: var(--body);
+        margin: 0;
+        padding-inline: 16px;
+        padding-block: 28px 60px;
+        line-height: 1.6;
+      }
+      main { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+      .back { display: inline-block; color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 600; }
+      .back:hover, .back:focus-visible { color: var(--accent); }
+      header.hero { display: flex; flex-direction: column; gap: 12px; margin-top: 6px; }
+      .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0; }
+      h1 { font-family: var(--display); font-size: clamp(28px, 5vw, 42px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.14; margin: 0; text-wrap: balance; }
+      .dek { color: var(--muted); font-size: 16px; max-width: 68ch; margin: 0; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+      .card {
+        display: flex; flex-direction: column; gap: 10px;
+        background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+        padding: 18px 20px; text-decoration: none; color: var(--text);
+        transition: border-color 0.15s ease, transform 0.15s ease;
+      }
+      .card:hover, .card:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+      .badge {
+        align-self: flex-start;
+        font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
+        border: 1px solid; border-radius: 999px; padding: 4px 10px;
+      }
+      .card h2 { font-family: var(--display); font-size: 17px; font-weight: 700; letter-spacing: -0.01em; margin: 0; line-height: 1.35; }
+      .card p { color: var(--muted); font-size: 13.5px; line-height: 1.55; margin: 0; }
+      footer.page-footer { border-top: 1px solid var(--border); padding-top: 20px; font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+      footer.page-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a class="back" href="/">&larr; back to roshantrivedi.co.in</a>
+
+      <header class="hero">
+        <p class="eyebrow">Case studies</p>
+        <h1>Privileged access, credential management &amp; agentic AI governance</h1>
+        <p class="dek">Public-safe write-ups from real product and architecture work &mdash; privileged access, non-human identity, secrets, compliance mapping, and where agentic AI is changing the threat model.</p>
+      </header>
+
+      <div class="grid">
+        <a class="card" href="/case-studies/credential-platform/">
+          <span class="badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Platform ownership</span>
+          <h2>Credential Management Platform Strategy</h2>
+          <p>Turning fragmented credential use cases into a coherent, governable enterprise service.</p>
+        </a>
+        <a class="card" href="/case-studies/pam-modernization/">
+          <span class="badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</span>
+          <h2>PAM Modernization & Zero Standing Privilege</h2>
+          <p>Evolving privileged access from persistent entitlement toward verified, time-bound access.</p>
+        </a>
+        <a class="card" href="/case-studies/migration-planning/">
+          <span class="badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Migration leadership</span>
+          <h2>Privileged Access Migration Planning</h2>
+          <p>Leading the analysis required to move privileged capabilities safely between platforms.</p>
+        </a>
+        <a class="card" href="/case-studies/platform-evaluation/">
+          <span class="badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Product evaluation</span>
+          <h2>PAM Platform Evaluation</h2>
+          <p>A public-safe evaluation case study connecting use-case fit, trust boundaries, integration, operations and governance.</p>
+        </a>
+        <a class="card" href="/case-studies/audit-mapping/">
+          <span class="badge" style="color:#f7c873;background:rgba(247,200,115,0.12);border-color:#f7c87333">Governance</span>
+          <h2>IAM Control-to-Audit Mapping</h2>
+          <p>A public-safe governance case study making the path from IAM control intent to evidence and review explicit.</p>
+        </a>
+        <a class="card" href="/case-studies/ai-coworker/">
+          <span class="badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">Emerging practice</span>
+          <h2>AI as a Coworker in Identity Operations</h2>
+          <p>A public-safe emerging-practice case study for human-governed analysis with OpenAI, ChatGPT, Claude, MCP and agents.</p>
+        </a>
+        <a class="card" href="/case-studies/non-human-identity-at-scale/">
+          <span class="badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">Emerging practice</span>
+          <h2>Non-Human Identity at Scale</h2>
+          <p>Machines outnumber people 50 to 1 in most enterprises. A privacy-safe case study on discovering, scoring and governing that sprawl, with a live interactive sandbox.</p>
+        </a>
+        <a class="card" href="/case-studies/credential-tiering-model/">
+          <span class="badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Independent research</span>
+          <h2>Credential Tiering & the PAM Market</h2>
+          <p>Why Tier 0-3 is a containment mechanism, the guardrails that make it hold, and how the PAM market maps to audit, compliance and cost needs.</p>
+        </a>
+        <a class="card" href="/case-studies/jit-jea-elevation/">
+          <span class="badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</span>
+          <h2>Just-in-Time & Just-Enough-Access Elevation</h2>
+          <p>A public-safe product leadership case study on Just-in-Time and Just-Enough-Access privilege elevation, including an AI-advisory step for scope and duration.</p>
+        </a>
+        <a class="card" href="/case-studies/break-glass-access/">
+          <span class="badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</span>
+          <h2>Break-Glass Emergency Access Design</h2>
+          <p>A public-safe case study on break-glass emergency access design, including an AI-advisory check for anomalous invocation patterns.</p>
+        </a>
+        <a class="card" href="/case-studies/secrets-consolidation/">
+          <span class="badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Secrets governance</span>
+          <h2>Secrets Discovery & Consolidation</h2>
+          <p>A public-safe case study on secrets discovery and consolidation, including an AI-advisory exposure and blast-radius ranking step.</p>
+        </a>
+        <a class="card" href="/case-studies/vendor-privileged-access/">
+          <span class="badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</span>
+          <h2>Third-Party Privileged Access Governance</h2>
+          <p>A public-safe case study on third-party privileged access governance, including an AI-advisory plain-language scope summary for approvers.</p>
+        </a>
+        <a class="card" href="/case-studies/access-recertification/">
+          <span class="badge" style="color:#f7c873;background:rgba(247,200,115,0.12);border-color:#f7c87333">Governance</span>
+          <h2>Access Recertification Automation</h2>
+          <p>A public-safe case study on access recertification automation, including an AI-advisory keep/revoke recommendation step.</p>
+        </a>
+        <a class="card" href="/case-studies/passwordless-authentication/">
+          <span class="badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Authentication</span>
+          <h2>Risk-Sequenced Passwordless Rollout</h2>
+          <p>A public-safe case study on a risk-sequenced passwordless authentication rollout, including an AI-advisory per-user risk score.</p>
+        </a>
+        <a class="card" href="/case-studies/ciem-at-scale/">
+          <span class="badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Cloud identity</span>
+          <h2>Cloud Entitlement Management at Scale</h2>
+          <p>A public-safe case study on cloud entitlement management, including an AI-advisory pass over the entitlement graph for toxic combinations.</p>
+        </a>
+        <a class="card" href="/case-studies/agentic-ai-identity-governance/">
+          <span class="badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">Agent identity governance</span>
+          <h2>Agentic AI Identity Governance</h2>
+          <p>AI agents acquire permissions, spawn sub-agents and chain actions across systems at runtime. A target-state model for issuing, re-authorizing and reconciling agent identity instead of relying on static roles.</p>
+        </a>
+        <a class="card" href="/case-studies/ai-processing-tax/">
+          <span class="badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">AI Governance</span>
+          <h2>The AI Decision Tax</h2>
+          <p>AI made producing work nearly free. It didn't make deciding on it free — and that unpaid cost is landing on whoever has the least capacity to absorb it.</p>
+        </a>
+        <a class="card" href="/case-studies/ai-agent-credential-sharing/">
+          <span class="badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">Non-Human Identity</span>
+          <h2>AI Agent Credential Sharing</h2>
+          <p>Three real breaches. One shared-credential pattern. A market racing to fix it, and the guardrails that would have contained each one.</p>
+        </a>
+        <a class="card" href="/case-studies/shadow-ai-discovery-gap/">
+          <span class="badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">Shadow AI</span>
+          <h2>The Shadow AI Discovery Gap</h2>
+          <p>Three real incidents. One invisible root cause. The AI tools nobody approved — and the discovery-first guardrails that would have caught each one.</p>
+        </a>
+      </div>
+
+      <footer class="page-footer">
+        <span>&copy; Roshan Trivedi</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+  </body>
+</html>

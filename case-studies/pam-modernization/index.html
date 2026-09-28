@@ -11,11 +11,11 @@
     <meta property="og:title" content="PAM Modernization & Zero Standing Privilege · Roshan Trivedi" />
     <meta property="og:description" content="A public-safe product and architecture case study connecting PAM controls, user journeys and Zero Standing Privilege." />
     <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/pam-modernization/" />
-    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-pam-modernization.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-pam-modernization.png" />
     <title>PAM Modernization & Zero Standing Privilege · Roshan Trivedi</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,14 +64,23 @@
       .tags span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; }
       footer.page-footer { border-top: 1px solid var(--border); padding-top: 20px; font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
       footer.page-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .cat-badge {
+        align-self: flex-start;
+        font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
+        border: 1px solid; border-radius: 999px; padding: 4px 10px; margin: 0;
+      }
+      .diagram-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 0; }
+      .diagram-card svg { width: 100%; height: auto; display: block; }
+      .diagram-card figcaption { margin-top: 12px; font-size: 12.5px; color: var(--muted); line-height: 1.55; }
     </style>
   </head>
   <body>
     <main>
-      <a class="back" href="/">&larr; back to roshantrivedi.co.in</a>
+      <a class="back" href="/">&larr; back to roshantrivedi.co.in</a> &middot; <a class="back" href="/case-studies/">all case studies</a>
 
       <header class="hero">
         <p class="eyebrow">Privileged access &middot; Case study</p>
+        <p class="cat-badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</p>
         <h1>PAM Modernization &amp; Zero Standing Privilege</h1>
         <p class="dek">Evolving privileged access from persistent entitlement toward verified, time-bound access.</p>
         <p class="meta">Product and architecture lead</p>
@@ -80,6 +89,50 @@
       <section id="challenge">
         <h2>The challenge</h2>
         <p class="body-text">Traditional privileged-access patterns can leave standing access, inconsistent session controls and operational friction between security and users.</p>
+      </section>
+
+      <section id="mechanism">
+        <h2>The mechanism</h2>
+        <figure class="diagram-card">
+          <svg viewBox="0 0 760 250" role="img" aria-label="Four privileged-access capabilities — vaulting, rotation, session governance, and just-in-time authorization — connected in sequence and wrapped by a continuous evaluation loop balanced against adoption, supportability and recovery.">
+            <defs>
+              <marker id="pmArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
+              </marker>
+              <marker id="pmArrowAccent" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"></path>
+              </marker>
+            </defs>
+
+            <text x="380" y="22" font-size="11" fill="var(--muted)" text-anchor="middle">a capability view, not just a vault deployment</text>
+
+            <g font-family="var(--display)" font-weight="700" font-size="12.5" fill="var(--text)" text-anchor="middle">
+              <rect x="20" y="50" width="150" height="60" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"></rect>
+              <text x="95" y="76">Vaulting</text>
+              <text x="95" y="94" font-size="9.5" font-weight="500" font-family="var(--mono)" fill="var(--muted)">secrets stored</text>
+
+              <rect x="203" y="50" width="150" height="60" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"></rect>
+              <text x="278" y="76">Rotation</text>
+              <text x="278" y="94" font-size="9.5" font-weight="500" font-family="var(--mono)" fill="var(--muted)">credentials cycled</text>
+
+              <rect x="386" y="50" width="170" height="60" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"></rect>
+              <text x="471" y="76">Session governance</text>
+              <text x="471" y="94" font-size="9.5" font-weight="500" font-family="var(--mono)" fill="var(--muted)">usage observed</text>
+
+              <rect x="586" y="50" width="154" height="60" rx="10" fill="var(--surface-2)" stroke="var(--accent)" stroke-width="2"></rect>
+              <text x="663" y="76">JIT authorization</text>
+              <text x="663" y="94" font-size="9.5" font-weight="500" font-family="var(--mono)" fill="var(--muted)">access time-boxed</text>
+            </g>
+
+            <path d="M170,80 L203,80" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#pmArrow)"></path>
+            <path d="M353,80 L386,80" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#pmArrow)"></path>
+            <path d="M556,80 L586,80" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#pmArrow)"></path>
+
+            <path d="M663,110 C663,175 95,175 95,110" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#pmArrowAccent)"></path>
+            <text x="380" y="198" font-size="10.5" fill="var(--accent)" text-anchor="middle">balanced against adoption, supportability and recovery &mdash; a continuous loop, not a one-time rollout</text>
+          </svg>
+          <figcaption>Traditional PAM programs stop at the vault. The capability view here treats vaulting, rotation, session governance and JIT authorization as one connected system, continuously re-evaluated against how it actually gets adopted, supported and recovered from &mdash; not a single deployment milestone.</figcaption>
+        </figure>
       </section>
 
       <section id="approach">

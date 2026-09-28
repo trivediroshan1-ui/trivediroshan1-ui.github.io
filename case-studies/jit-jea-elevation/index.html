@@ -11,11 +11,11 @@
     <meta property="og:title" content="Just-in-Time & Just-Enough-Access Elevation · Roshan Trivedi" />
     <meta property="og:description" content="A public-safe product leadership case study on Just-in-Time and Just-Enough-Access privilege elevation, including an AI-advisory step for scope and duration." />
     <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/jit-jea-elevation/" />
-    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-jit-jea-elevation.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-jit-jea-elevation.png" />
     <title>Just-in-Time & Just-Enough-Access Elevation · Roshan Trivedi</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,14 +64,23 @@
       .tags span { font-family: var(--mono); font-size: 11.5px; color: var(--muted); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; }
       footer.page-footer { border-top: 1px solid var(--border); padding-top: 20px; font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
       footer.page-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+      .cat-badge {
+        align-self: flex-start;
+        font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
+        border: 1px solid; border-radius: 999px; padding: 4px 10px; margin: 0;
+      }
+      .diagram-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 0; }
+      .diagram-card svg { width: 100%; height: auto; display: block; }
+      .diagram-card figcaption { margin-top: 12px; font-size: 12.5px; color: var(--muted); line-height: 1.55; }
     </style>
   </head>
   <body>
     <main>
-      <a class="back" href="/">&larr; back to roshantrivedi.co.in</a>
+      <a class="back" href="/">&larr; back to roshantrivedi.co.in</a> &middot; <a class="back" href="/case-studies/">all case studies</a>
 
       <header class="hero">
         <p class="eyebrow">Privileged access &middot; Case study</p>
+        <p class="cat-badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</p>
         <h1>Just-in-Time &amp; Just-Enough-Access Elevation</h1>
         <p class="dek">Replacing standing administrative access with time-boxed, scope-limited elevation that closes automatically.</p>
         <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
@@ -80,6 +89,51 @@
       <section id="challenge">
         <h2>The challenge</h2>
         <p class="body-text">Administrative rights were granted as standing role membership, so access outlived the task that justified it and every audit relied on people remembering to revoke what they no longer needed.</p>
+      </section>
+
+      <section id="mechanism">
+        <h2>The mechanism</h2>
+        <figure class="diagram-card">
+          <svg viewBox="0 0 760 250" role="img" aria-label="Standing role membership keeps a credential privileged for its entire account lifetime. JIT/JEA elevation instead grants privilege only inside short, requested, auto-revoked windows, sized by an advisory step, with zero standing access in between.">
+            <defs>
+              <marker id="jjArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
+              </marker>
+            </defs>
+
+            <text x="40" y="24" font-size="12" font-weight="700" fill="var(--danger)">BEFORE &mdash; standing role membership</text>
+            <rect x="40" y="36" width="680" height="30" rx="6" fill="var(--danger)" opacity="0.85"></rect>
+            <text x="380" y="56" font-size="11" font-weight="700" fill="#2a0008" text-anchor="middle">privileged for the account's entire lifetime</text>
+
+            <text x="40" y="108" font-size="12" font-weight="700" fill="var(--safe)">AFTER &mdash; JIT / JEA elevation</text>
+
+            <line x1="40" y1="190" x2="712" y2="190" stroke="var(--border)" stroke-width="1.5"></line>
+            <text x="718" y="194" font-size="10" fill="var(--muted)">time &rarr;</text>
+
+            <circle cx="100" cy="190" r="4" fill="var(--muted)"></circle>
+            <text x="100" y="212" font-size="9.5" fill="var(--muted)" text-anchor="middle">request</text>
+            <path d="M104,186 C130,150 150,150 176,132" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#jjArrow)"></path>
+            <text x="180" y="122" font-size="9.5" fill="var(--muted)">advisory proposes scope + duration</text>
+
+            <rect x="150" y="126" width="112" height="28" rx="6" fill="var(--safe)"></rect>
+            <text x="206" y="145" font-size="10" font-weight="700" fill="#04140f" text-anchor="middle">elevated (bounded)</text>
+
+            <path d="M262,154 C276,168 276,168 262,186" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#jjArrow)"></path>
+            <text x="300" y="172" font-size="9.5" fill="var(--muted)">task complete &rarr; auto-revoke</text>
+            <circle cx="262" cy="190" r="4" fill="var(--muted)"></circle>
+
+            <rect x="360" y="126" width="90" height="28" rx="6" fill="var(--safe)" opacity="0.8"></rect>
+            <circle cx="360" cy="190" r="4" fill="var(--muted)"></circle>
+            <circle cx="450" cy="190" r="4" fill="var(--muted)"></circle>
+
+            <rect x="548" y="126" width="90" height="28" rx="6" fill="var(--safe)" opacity="0.8"></rect>
+            <circle cx="548" cy="190" r="4" fill="var(--muted)"></circle>
+            <circle cx="638" cy="190" r="4" fill="var(--muted)"></circle>
+
+            <text x="380" y="224" font-size="10" fill="var(--muted)" text-anchor="middle">repeats each time a task needs access &mdash; zero standing access between windows</text>
+          </svg>
+          <figcaption>Standing role membership (top) keeps a credential privileged for as long as the account exists. JIT/JEA elevation (bottom) grants privilege only inside short, requested, auto-revoked windows sized by an advisory step &mdash; access reverts to zero by default.</figcaption>
+        </figure>
       </section>
 
       <section id="approach">
