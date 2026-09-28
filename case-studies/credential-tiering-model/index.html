@@ -173,7 +173,7 @@
       <header class="hero">
         <p class="eyebrow">Independent research &middot; Credential management &middot; PAM</p>
         <h1>Credential Tiering & the PAM Market: Closing the Tier 0 Gap</h1>
-        <p class="dek">Privileged-access tiers (Tier&nbsp;0&ndash;3) aren't a reporting structure &mdash; they're a claim about which credentials can mint access to which other credentials. This piece shows the actual containment mechanism, the guardrails that make it hold in practice, and how the credential-management market maps to different organizations' audit, compliance and cost realities.</p>
+        <p class="dek">Privileged-access tiers (Tier&nbsp;0&ndash;3) are a claim about which credentials can mint access to which other credentials, not a reporting structure. This piece walks through the actual containment mechanism, the guardrails that keep it holding day to day, where it maps to the standards an auditor actually checks, and how the credential-management market splits by organization type.</p>
         <div class="meta">
           <span>September 2026</span>
           <span>#pam</span><span>#credential-management</span><span>#zero-trust</span><span>#nhi</span>
@@ -182,7 +182,7 @@
 
       <section>
         <h2>The mechanism: why a phished laptop shouldn't reach a domain controller</h2>
-        <p class="section-sub">Tier 0 holds the identity control plane &mdash; domain controllers, PKI, PAM vaults. Tier 1 is the app/cloud/CI-CD estate. Tier 2 is workstation and helpdesk admin, the most common entry point. Tier 3 is everyone else, the largest attack surface. The tiers only protect anything if a credential valid at one tier is <em>never</em> valid at another.</p>
+        <p class="section-sub">Tier 0 holds the identity control plane: domain controllers, PKI, PAM vaults, and just as importantly today, the admin plane of whatever runs your SSO &mdash; Entra ID, Okta, Ping. A cloud identity provider's global admin role is Tier 0 even though there's no server rack behind it; several of the highest-profile breaches of the last few years (Okta's support-system compromise, the SolarWinds-linked Microsoft cloud-tenant abuse) targeted exactly this layer instead of a physical domain controller. Tier 1 is the app/cloud/CI-CD estate. Tier 2 is workstation and helpdesk admin, the most common entry point. Tier 3 is everyone else, the largest attack surface. The tiers only protect anything if a credential valid at one tier is never valid at another.</p>
 
         <figure class="diagram-card">
           <svg viewBox="0 0 920 590" role="img" aria-label="Two lanes show a compromised Tier 2 workstation credential. In the left lane, standing cross-tier access lets the credential travel unchecked up through Tier 1 into Tier 0, reaching the domain vault. In the right lane, a Just-in-Time gate sits at each tier boundary; the same credential attempt is stopped and revoked at the Tier 2 to Tier 1 gate.">
@@ -208,9 +208,10 @@
             </g>
 
             <g class="tier-labels" fill="var(--text)">
-              <text x="34" y="84" font-size="13" font-weight="700">TIER 0</text>
-              <text x="34" y="100" font-size="10.5" fill="var(--muted)">Domain / PKI / PAM vault</text>
-              <text x="34" y="113" font-size="10.5" fill="var(--muted)">issues all other access</text>
+              <text x="34" y="82" font-size="13" font-weight="700">TIER 0</text>
+              <text x="34" y="96" font-size="10.5" fill="var(--muted)">Domain / PKI / PAM vault /</text>
+              <text x="34" y="108" font-size="10.5" fill="var(--muted)">cloud IdP global admin</text>
+              <text x="34" y="120" font-size="10.5" fill="var(--muted)">issues all other access</text>
 
               <text x="34" y="182" font-size="13" font-weight="700">TIER 1</text>
               <text x="34" y="198" font-size="10.5" fill="var(--muted)">App servers, DBs, cloud</text>
@@ -329,16 +330,16 @@
 
       <section>
         <h2>Where most organizations actually have the gap</h2>
-        <p class="section-sub">The diagram assumes a PAM gate exists at every boundary. In practice, most orgs have a vault at Tier&nbsp;0 and stop there. Here's what's typically missing at each layer, and the category of tool that closes it &mdash; not a single "buy this" answer, since the right tool depends on the organization's profile (see the market table below).</p>
+        <p class="section-sub">The diagram assumes a PAM gate exists at every boundary. In practice, most organizations have a vault at Tier&nbsp;0 and stop there. Below is what's typically missing at each layer and the category of tool that closes it. Which specific vendor fits is a separate question &mdash; it depends heavily on the organization's profile, covered in the market table further down.</p>
 
         <div class="gap-grid">
           <div class="gap-card">
             <span class="tier-tag">Tier 0 &mdash; identity control plane</span>
-            <h3>Missing: M-of-N control, session recording on admins themselves</h3>
+            <h3>Missing: M-of-N control, phishing-resistant auth</h3>
             <ul>
-              <li><strong>Common gap:</strong> a single domain admin or vault master key can act alone.</li>
-              <li><strong>Guardrail:</strong> dual/M-of-N authorisation for any Tier 0 action, full session recording, re-auth every 15 minutes.</li>
-              <li><strong>Tool category:</strong> PAM vault with session recording (CyberArk, Delinea, BeyondTrust).</li>
+              <li><strong>Common gap:</strong> a single domain admin or vault master key can act alone, often protected by nothing stronger than SMS or push-based MFA &mdash; both of which are routinely bypassed by MFA fatigue and SIM-swap attacks.</li>
+              <li><strong>Guardrail:</strong> dual/M-of-N authorisation for any Tier 0 action, hardware-key (FIDO2) auth for every Tier 0 admin, full session recording, re-auth every 15 minutes.</li>
+              <li><strong>Tool category:</strong> PAM vault with session recording (CyberArk, Delinea, BeyondTrust), phishing-resistant MFA (FIDO2 security keys, Windows Hello for Business).</li>
             </ul>
           </div>
           <div class="gap-card">
@@ -354,8 +355,8 @@
             <span class="tier-tag">Tier 2 &mdash; workstation / helpdesk</span>
             <h3>Missing: local-admin credential elimination</h3>
             <ul>
-              <li><strong>Common gap:</strong> shared or reused local-admin passwords across a fleet &mdash; the exact reuse path the diagram shows.</li>
-              <li><strong>Guardrail:</strong> unique, vaulted local-admin credentials per machine, just-in-time elevation instead of standing admin rights.</li>
+              <li><strong>Common gap:</strong> the same local-admin password is reused across a whole fleet of laptops. That's the exact reuse path the diagram shows, and it's still the single most common way a phishing hit turns into a fleet-wide incident.</li>
+              <li><strong>Guardrail:</strong> a unique, vaulted local-admin credential per machine, with just-in-time elevation replacing standing admin rights (this is the same just-enough-access model covered in the <a href="/case-studies/jit-jea-elevation/" style="color:var(--accent);">JIT/JEA elevation case study</a>).</li>
               <li><strong>Tool category:</strong> endpoint privilege management (BeyondTrust EPM, Delinea, ManageEngine PAM360 for smaller estates).</li>
             </ul>
           </div>
@@ -372,8 +373,8 @@
             <span class="tier-tag">Cross-cutting &mdash; secrets in code</span>
             <h3>Missing: pre-merge secret detection</h3>
             <ul>
-              <li><strong>Common gap:</strong> hard-coded credentials enter repos faster than manual review catches them &mdash; 28.65 million leaked secrets were logged on public GitHub in 2025 alone.</li>
-              <li><strong>Guardrail:</strong> secrets scanning blocking new hard-coded credentials at the pipeline stage, not after merge.</li>
+              <li><strong>Common gap:</strong> hard-coded credentials enter repos faster than manual review can catch them. GitGuardian logged 28.65 million leaked secrets added to public GitHub in 2025 alone.</li>
+              <li><strong>Guardrail:</strong> scanning that blocks a commit with a hard-coded credential at the pipeline stage, before it ever merges (see the <a href="/case-studies/secrets-consolidation/" style="color:var(--accent);">secrets sprawl and consolidation case study</a> for what this looks like once a codebase already has the problem).</li>
               <li><strong>Tool category:</strong> DevOps-native secrets management (HashiCorp Vault, Infisical) + scanning (GitGuardian).</li>
             </ul>
           </div>
@@ -381,17 +382,64 @@
             <span class="tier-tag">Cross-cutting &mdash; audit evidence</span>
             <h3>Missing: usage-backed access certification</h3>
             <ul>
-              <li><strong>Common gap:</strong> quarterly access reviews approved from memory against an entitlement list, not against actual usage &mdash; the classic rubber-stamp problem.</li>
-              <li><strong>Guardrail:</strong> certification decisions driven by usage evidence, with likely-dormant entitlements pre-flagged for revocation.</li>
+              <li><strong>Common gap:</strong> quarterly access reviews get approved from memory against an entitlement list, not against actual usage. That's the classic rubber-stamp problem, and it's how dormant access survives every audit cycle.</li>
+              <li><strong>Guardrail:</strong> certification decisions driven by usage evidence, with likely-dormant entitlements pre-flagged for revocation (worked through in detail in the <a href="/case-studies/access-recertification/" style="color:var(--accent);">access recertification case study</a>).</li>
               <li><strong>Tool category:</strong> Identity Governance & Administration (SailPoint, Saviynt), integrated with the PAM layer.</li>
             </ul>
           </div>
+        </div>
+
+        <div class="callout" style="margin-top:16px;">
+          <strong>The gate itself is a single point of failure &mdash; plan for that, don't ignore it.</strong> If the PAM vault or JIT approval system goes down during an actual incident, the response can't be "wait for the vault." That's what break-glass access is for: a separate, tightly logged emergency path that's distinct from standing access rather than a quiet way around it, with mandatory post-use justification and automatic credential rotation afterward. The <a href="/case-studies/break-glass-access/" style="color:var(--accent);">break-glass access case study</a> covers this in detail &mdash; it's the piece most tiering write-ups skip, and it's usually the first thing an auditor asks about once they understand the model.
+        </div>
+      </section>
+
+      <section>
+        <h2>Where this maps to what an auditor actually checks</h2>
+        <p class="section-sub">Everything above is engineering. This section is what turns it into audit evidence &mdash; the tiering model is a fairly direct answer to specific control requirements most compliance frameworks already ask for.</p>
+        <div class="table-wrap">
+          <table class="market">
+            <thead>
+              <tr>
+                <th>Framework / regulation</th>
+                <th>What it requires</th>
+                <th>How tiering + JIT answers it</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="org">NIST SP 800-53 (AC-6, IA-2, AC-2)</td>
+                <td>Least privilege, multi-factor auth for privileged accounts, timely account review</td>
+                <td>JIT grants are least privilege by construction; Tier 0 hardware-key MFA satisfies IA-2; auto-expiry replaces manual account review for standing access</td>
+              </tr>
+              <tr>
+                <td class="org">PCI-DSS 4.0 (Req. 7 &amp; 8)</td>
+                <td>Restrict access by business need-to-know; unique IDs and strong authentication for every user with access to cardholder data</td>
+                <td>Per-machine vaulted credentials and scoped JIT grants satisfy the need-to-know test directly; session recording gives the evidence trail an assessor asks for</td>
+              </tr>
+              <tr>
+                <td class="org">SOX (ITGC access controls)</td>
+                <td>Segregation of duties; access changes tied to an approval record</td>
+                <td>Dual/M-of-N authorisation at Tier 0 is segregation of duties in its literal form; every JIT grant is its own approval record instead of a point-in-time review sample</td>
+              </tr>
+              <tr>
+                <td class="org">HIPAA Security Rule (&sect;164.312)</td>
+                <td>Unique user identification, automatic logoff, audit controls on systems holding ePHI</td>
+                <td>Time-boxed grants are automatic logoff by design; vault and session-recording logs are the audit control</td>
+              </tr>
+              <tr>
+                <td class="org">ISO/IEC 27001:2022 (Annex A.8, A.5)</td>
+                <td>Privileged access rights restricted and reviewed; formal access provisioning and de-provisioning process</td>
+                <td>The five-stage lifecycle above (Onboard &rarr; Vault &rarr; JIT Grant &rarr; Rotate &rarr; Retire) is a direct, evidenced answer to this control &mdash; the same approach this site's <a href="/secure-india-exams/" style="color:var(--accent);">Secure India Exams proposal</a> maps against NIST CSF and ISO 27001 in full.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
       <section>
         <h2>Matching the market to the organization, not the other way round</h2>
-        <p class="section-sub">There's no single "best" credential-management tool &mdash; the honest answer depends on org size, regulatory load, and whether the estate is on-prem, cloud-native, or mixed. The trade-off that shows up consistently across vendor comparisons is <strong style="color:var(--text)">audit/compliance depth versus total cost of ownership and operational overhead</strong>. Below is a profile-based framework, not a ranking.</p>
+        <p class="section-sub">There's no single best credential-management tool. It depends on org size, regulatory load, and whether the estate is on-prem, cloud-native, or mixed. What shows up consistently across vendor comparisons is a trade-off between <strong style="color:var(--text)">audit/compliance depth and total cost of ownership</strong>. The table below is a profile-based framework, not a ranking.</p>
 
         <div class="table-wrap">
           <table class="market">
