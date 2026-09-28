@@ -229,4 +229,95 @@ window.SITE_QA = [
     answer:
       "Platform and vendor names mentioned across the case studies (e.g. Delinea, StrongDM, Clutch Security, Wiz, CyberArk) indicate personal knowledge and evaluation experience only — they do not imply vendor endorsement or client association.",
   },
+
+  /* ---- Secure India Exams whitepaper deep-dive (from Securing_India_Exams_Master.pdf) ---- */
+
+  {
+    id: "wp-scale-problem",
+    title: "The problem: India's exam scale & leak costs",
+    url: "/secure-india-exams/",
+    keywords: ["neet-ug", "24 lakh", "exam leak cost", "how big is the problem", "exam scale", "crore", "paper leak cost", "why are exams vulnerable"],
+    answer:
+      "From the whitepaper: India's national exams serve over 60 lakh candidates a year across 5,000+ centres — NEET-UG alone had 24.06 lakh candidates across ~4,750 centres in 2024. Procedural safeguards keep failing because they depend on humans reliably following rules under pressure. A single NEET-scale cancellation is estimated to cost ₹700–1,250 crore (re-exam logistics, candidate travel, academic delay, legal process) — versus ₹1,419 crore for the entire 3-year security programme proposed, i.e. the programme roughly breaks even on preventing one incident.",
+  },
+  {
+    id: "wp-four-pillars",
+    title: "The four-pillar Zero Trust architecture",
+    url: "/secure-india-exams/",
+    keywords: ["four pillar", "4 pillar", "zero trust architecture", "pillars", "nist 800-207", "identity and access pillar", "secure content lifecycle", "national exam soc", "managed exam infrastructure", "mei"],
+    answer:
+      "The proposal's four mutually reinforcing pillars (aligned to NIST SP 800-207 Zero Trust Architecture): (1) Identity & Access — biometric verification, zero standing privileges, just-in-time access, PAM-vaulted credentials re-authenticated every 15 minutes; (2) Secure Content Lifecycle — papers encrypted from AI-assisted authoring through HSM vaulting to geo-fenced, time-locked decryption requiring GPS + time window + two administrators together, plus invisible digital watermarking per copy; (3) Threat Detection & Security Operations — AI-driven UEBA, a 24×7 National Exam-SOC with SIEM/SOAR and 20 pre-built playbooks executing in under 2 minutes; (4) Managed Exam Infrastructure (MEI) — certificate-enrolled cameras, metal detectors, signal management and computer-vision proctoring hardening all 5,000 centres.",
+  },
+  {
+    id: "wp-lifecycle",
+    title: "The exam lifecycle: creation to destruction",
+    url: "/secure-india-exams/",
+    keywords: ["exam lifecycle", "d-60", "paper creation", "timeline", "decryption window", "when does the paper decrypt", "how are papers destroyed", "chain of custody"],
+    answer:
+      "The proposal specifies a fully logged lifecycle: paper setters go into air-gapped isolation at D-60; AI-assisted paper creation with mandatory SME review and digital signatures at D-45; encrypted distribution to regional vaults at D-14; building lockdown at D-3; and on exam day, a 30-minute decryption window where GPS geo-fence, authorised time window and two administrators must all align before the paper decrypts and its watermark is confirmed. Post-exam, papers move through a 7-year WORM digital archive, and physical copies go through dual-authorised, GPS-tracked shredding within 24 hours.",
+  },
+  {
+    id: "wp-identity-access",
+    title: "Identity & access controls (students, SMEs, invigilators)",
+    url: "/secure-india-exams/",
+    keywords: ["aadhaar", "biometric enrollment", "digital admit card", "invigilator selection", "sme isolation", "examination identity number", "ein", "student identity"],
+    answer:
+      "Every actor gets a verified digital identity. Students: Aadhaar-verified registration, DigiLocker document pull, biometric enrolment (fingerprint + iris) tied to an Examination Identity Number (EIN), and a time-limited digitally-signed QR admit card. Subject Matter Experts (paper setters): minimum 10 years' experience, no conflicts of interest, randomly drawn from an encrypted National Examiner Registry, identity known only to the DG NTA and one Oversight Board member, isolated with devices surrendered and a ₹1 crore confidentiality penalty clause. Invigilators: notified of exam date at D-21 but told their actual centre only the night before (D-1, 8 PM) — the 'principle of surprise' so no one can pre-negotiate access — and any invigilator can be replaced without notice by a flying squad.",
+  },
+  {
+    id: "wp-threat-model",
+    title: "Threat model, adversaries & risk register",
+    url: "/secure-india-exams/",
+    keywords: ["threat model", "stride", "adversary", "risk register", "malicious insider", "organised leak syndicate", "mitre att&ck", "residual risk"],
+    answer:
+      "The whitepaper names six adversary personas (malicious insider, organised leak syndicate, external cyber attacker, nation-state actor, opportunist candidate, compromised vendor) and runs a full STRIDE threat analysis. Its top scored risk is an insider leaking a pre-exam paper — inherent risk 20/25 (Critical), reduced to residual risk 6 (Medium) via Zero Standing Privileges, PAM, watermarking and UEBA behavioral analytics. Every other major risk (interception in transit, candidate impersonation, cyber intrusion, AI-tool manipulation, biometric breach, outage, supply-chain compromise, physical breach, collusion) is scored the same way, and SOC detection playbooks are mapped to MITRE ATT&CK tactics for measurable coverage.",
+  },
+  {
+    id: "wp-ai-governance",
+    title: "AI-specific security & model governance",
+    url: "/secure-india-exams/",
+    keywords: ["ai security in exams", "prompt injection", "model theft", "deepfake", "ai model governance", "human in the loop", "kill switch", "sovereign hosting"],
+    answer:
+      "Because AI assists both paper creation and proctoring, the whitepaper treats it as its own attack surface with a full threat taxonomy — prompt injection, training-data poisoning, model theft, adversarial examples, deepfake impersonation, hallucinated questions, and data leakage via the model — each mapped to a specific control (air-gapped models, signed/versioned corpora, no public API, liveness detection, mandatory dual-SME sign-off, etc.). The core rule: human-in-the-loop is mandatory — no AI output (a question, a proctoring flag, a risk score) is ever actioned autonomously where it affects a candidate. All models run on sovereign Indian government infrastructure (MeghRaj/NIC, no foreign cloud or external LLM API) and there's an instant kill switch reverting to a fully manual workflow.",
+  },
+  {
+    id: "wp-governance-authority",
+    title: "Governance & oversight structure",
+    url: "/secure-india-exams/",
+    keywords: ["governance structure", "nesc", "oversight board", "who is accountable", "national examination security council", "raci"],
+    answer:
+      "A three-tier governance structure with no single point of unilateral authority (not even the DG of NTA): a National Examination Security Council (MoE Secretary, DG NTA, DG NIC, DG CERT-In, a retired Supreme Court judge, independent experts) sets final policy quarterly; a Programme Steering Committee handles monthly operational decisions; a Technical Working Group handles weekly technical design; and an Independent Oversight Board (academics, a retired IPS officer, a civil-society rep, a student rep) audits annually and publishes a public transparency report.",
+  },
+  {
+    id: "wp-standards-compliance",
+    title: "Standards & Indian legal compliance",
+    url: "/secure-india-exams/",
+    keywords: ["nist csf", "iso 27001", "dpdp act", "cert-in directions", "it act 2000", "public examinations act 2024", "compliance matrix", "aadhaar act"],
+    answer:
+      "The architecture is mapped control-by-control against recognised frameworks and Indian law: NIST Cybersecurity Framework 2.0 (Govern/Identify/Protect/Detect/Respond/Recover), ISO/IEC 27001:2022 Annex A, and Indian statutes — the DPDP Act 2023 (consent, purpose limitation, 6-hour breach notice, 3-year biometric erasure), CERT-In Directions 2022 (6-hour incident reporting), the IT Act 2000 (digital signature validity via NE-PKI), the Public Examinations (Prevention of Unfair Means) Act 2024 (watermark forensics as court-admissible evidence), and the Aadhaar Act (authentication-only, no Aadhaar number storage). The goal: compliance designed-in, not bolted on.",
+  },
+  {
+    id: "wp-resilience-privacy",
+    title: "Resilience, supply chain, privacy & accessibility",
+    url: "/secure-india-exams/",
+    keywords: ["disaster recovery", "rto rpo", "supply chain security", "sbom", "dpia", "accessibility", "divyang", "persons with disabilities", "privacy by design"],
+    answer:
+      "Business continuity targets near-zero downtime: centre-level paper decryption tolerates zero downtime via a local offline HSM cache; the national HSM vault recovers in under 15 minutes via active-active DR. Supply-chain controls include vendor risk tiering, mandatory SBOMs, sovereign (Indian-standard) sourcing of HSMs/PKI, and no vendor lock-in via open standards. Privacy is engineered in via a mandatory annual DPIA, data minimisation, and biometric template deletion after 3 years. Accessibility is built in without weakening security — e.g. pre-registered, biometrically-enrolled scribes for candidates with disabilities, VSAT/offline HSM support for low-connectivity areas, and multi-language, separately-watermarked papers.",
+  },
+  {
+    id: "wp-breach-response",
+    title: "Breach response, severity levels & rollback",
+    url: "/secure-india-exams/",
+    keywords: ["breach response", "incident severity", "p1 critical", "rollback", "5-phase response", "continuation vs cancellation", "flying squad response"],
+    answer:
+      "Incidents are classified P1 (Critical, e.g. confirmed leak or HSM compromise — under 5 minutes to auto-contain) through P4 (Low). The universal response is 5 phases: Detect → Contain → Eradicate → Recover → Review. For a confirmed insider paper leak, the playbook auto-suspends sessions and revokes PAM credentials at T+0, identifies the source centre via watermark extraction by T+5 minutes, notifies CERT-In and police by T+15, and requires a decision (rotate the question pool or halt the exam) by T+20 minutes. Within 30 days of any P1/P2 incident, the Independent Oversight Board must publish a public incident summary — concealing a breach is treated as its own governance failure.",
+  },
+  {
+    id: "wp-budget-kpis",
+    title: "Implementation timeline, budget & KPIs",
+    url: "/secure-india-exams/",
+    keywords: ["budget", "3 year plan", "implementation timeline", "kpi", "cost per candidate", "roi", "phase 1 phase 2 phase 3", "36 month"],
+    answer:
+      "A phased 36-month, 3-phase rollout across all 5,000 centres, totalling ₹1,419 crore (Phase 1: ₹385cr foundation — SOC, PAM, HSM/PKI, 200-centre pilot; Phase 2: ₹539cr core deployment — encrypted distribution, universal watermarking, 2,000 centres on MEI; Phase 3: ₹495cr full scale — all 5,000 centres, post-quantum crypto, ISO 27001). That works out to about ₹79 per candidate per year — under 5% of the current exam fee. Target KPIs by Year 3: paper leak incidents down from 3–5/year to 0, mean time to detect an anomaly under 5 minutes, 100% of staff on zero standing privileges, and 99.9% exam-day system uptime.",
+  },
 ];
