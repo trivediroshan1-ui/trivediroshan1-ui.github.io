@@ -165,11 +165,59 @@ padding: 12px 40px 12px 14px;
 font-size: 13px;
 }
 }
+
+/* Static fallback inside #root: what crawlers and no-JS visitors see.
+   The React app replaces it on mount (createRoot().render), so real
+   visitors only glimpse it for a moment while the bundle loads. */
+.static-fallback { max-width: 880px; margin: 0 auto; padding: 96px 20px 64px; color: #f1f5f9; font-family: Manrope, "DM Sans", system-ui, sans-serif; line-height: 1.6; }
+.static-fallback .sf-eyebrow { margin: 0 0 10px; color: #4de2ff; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+.static-fallback h1 { margin: 0 0 12px; font-family: "DM Sans", system-ui, sans-serif; font-size: clamp(34px, 6vw, 56px); line-height: 1.08; letter-spacing: -0.02em; }
+.static-fallback .sf-role { margin: 0 0 8px; font-weight: 700; font-size: 18px; }
+.static-fallback p { margin: 0 0 16px; color: #a9b6c7; max-width: 64ch; }
+.static-fallback h2 { margin: 36px 0 12px; font-family: "DM Sans", system-ui, sans-serif; font-size: 20px; color: #f1f5f9; }
+.static-fallback ul { margin: 0; padding-left: 20px; color: #a9b6c7; }
+.static-fallback li { margin: 4px 0; }
+.static-fallback a { color: #4de2ff; }
 </style>
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="static-fallback">
+        <p class="sf-eyebrow">Identity security &middot; Product leadership</p>
+        <h1>Roshan Trivedi &mdash; security starts with identity.</h1>
+        <p class="sf-role">Credential Management Platform Owner &amp; PAM Product Leader</p>
+        <p>Building secure, scalable identity platforms across privileged access, credential management, Zero Standing Privilege, non-human identity and IAM governance. 14+ years across identity and security, in India, the UK and Australia. CIAM-certified identity practitioner, based in Bengaluru, India.</p>
+
+        <h2>What I work on</h2>
+        <ul>
+          <li>Credential platforms</li>
+          <li>PAM &amp; Zero Standing Privilege</li>
+          <li>Non-human identity &amp; machine identity</li>
+          <li>IAM audit &amp; controls</li>
+          <li>Product evaluation</li>
+          <li>AI-augmented delivery, agentic AI identity and MCP security</li>
+        </ul>
+
+        <h2>Featured work</h2>
+        <ul>
+          <li><a href="/case-studies/credential-tiering-model/">Credential Tiering &amp; the PAM Market: Closing the Tier 0 Gap</a></li>
+          <li><a href="/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a></li>
+          <li><a href="/case-studies/ai-agent-credential-sharing/">AI Agent Credential Sharing</a></li>
+          <li><a href="/case-studies/shadow-ai-discovery-gap/">The Shadow AI Discovery Gap</a></li>
+          <li><a href="/case-studies/ai-processing-tax/">The AI Decision Tax</a></li>
+          <li><a href="/secure-india-exams/">Securing India's National Exams (public-interest security study)</a></li>
+        </ul>
+        <p><a href="/case-studies/">All 19 case studies</a> &middot; <a href="/writing/">Writing</a></p>
+
+        <h2>Contact</h2>
+        <p><a href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">LinkedIn</a> &middot; <a href="https://github.com/trivediroshan1-ui">GitHub</a> &middot; <a href="/Roshan_Trivedi_Resume.pdf">R&eacute;sum&eacute;</a> &middot; <a href="mailto:trivedi.roshan1@gmail.com">trivedi.roshan1@gmail.com</a></p>
+      </div>
+    </div>
 
 <div class="nhi-announce" id="nhi-announce">
 <a href="/case-studies/credential-tiering-model/">New: Credential Tiering &amp; the PAM Market — why Tier 0 is a containment mechanism, not an org chart. See the model →</a>
