@@ -17,6 +17,16 @@
   var AI_ENDPOINT = "";
   var AI_TIMEOUT_MS = 12000;
 
+  // Inline SVG avatar — a shield + key motif matching the site's identity/security
+  // theme, so the bot has a face without depending on an external image file.
+  var AVATAR_SVG =
+    '<svg viewBox="0 0 40 40" width="100%" height="100%" aria-hidden="true">' +
+    '<circle cx="20" cy="20" r="20" fill="#0f1e2e"></circle>' +
+    '<path d="M20 8 L30 12 V19 C30 26 26 30.5 20 33 C14 30.5 10 26 10 19 V12 Z" fill="none" stroke="#4de2ff" stroke-width="2" stroke-linejoin="round"></path>' +
+    '<circle cx="20" cy="18.5" r="3.4" fill="none" stroke="#4de2ff" stroke-width="2"></circle>' +
+    '<path d="M20 21.8 V26.5 M20 24 H23" fill="none" stroke="#4de2ff" stroke-width="2" stroke-linecap="round"></path>' +
+    "</svg>";
+
   var STOPWORDS = new Set([
     "the","a","an","is","are","was","were","be","been","being","to","of","in","on","for",
     "and","or","with","this","that","it","its","what","who","how","do","does","did","can",
@@ -182,6 +192,7 @@
 
     panel.innerHTML =
       '<div class="sc-header">' +
+      '<div class="sc-avatar" aria-hidden="true">' + AVATAR_SVG + "</div>" +
       '<div class="sc-header-text"><strong>Ask about this site</strong><small>Answers pulled straight from this site’s content</small></div>' +
       '<button type="button" class="sc-close" aria-label="Close">&#215;</button>' +
       "</div>" +
@@ -207,6 +218,9 @@
 
     function addMessage(text, who) {
       var row = el("div", "sc-row sc-row-" + who);
+      if (who === "bot") {
+        row.appendChild(el("div", "sc-avatar-sm", AVATAR_SVG));
+      }
       var bubble = el("div", "sc-bubble sc-bubble-" + who, text);
       row.appendChild(bubble);
       messagesEl.appendChild(row);
@@ -215,10 +229,14 @@
     }
 
     function addTyping() {
-      var row = el(
-        "div",
-        "sc-row sc-row-bot",
-        '<div class="sc-bubble sc-bubble-bot sc-typing"><span></span><span></span><span></span></div>'
+      var row = el("div", "sc-row sc-row-bot");
+      row.appendChild(el("div", "sc-avatar-sm", AVATAR_SVG));
+      row.appendChild(
+        el(
+          "div",
+          "sc-bubble sc-bubble-bot sc-typing",
+          "<span></span><span></span><span></span>"
+        )
       );
       messagesEl.appendChild(row);
       messagesEl.scrollTop = messagesEl.scrollHeight;
