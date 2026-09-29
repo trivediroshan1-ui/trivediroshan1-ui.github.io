@@ -6,7 +6,7 @@ Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity profe
 
 | Path | What it is |
 |---|---|
-| `index.html`, `assets/home.css` | The homepage: plain, hand-editable HTML and CSS (no build step, no JavaScript needed to read it). Sections are in order: hero, stats, perspective, expertise, case studies, platforms, research, career, contact. The dismissible announcement banner, the Cloudflare beacon and the chatbot widget sit at the bottom of `index.html`. |
+| `index.html`, `assets/home.css`, `assets/home.js` | The homepage: plain, hand-editable HTML and CSS (no build step, no JavaScript needed to read it). Sections are in order: hero, stats, perspective, expertise, case studies, platforms, research, career, contact. The dismissible announcement banner, the Cloudflare beacon and the chatbot widget sit at the bottom of `index.html`. |
 | `case-studies/*/`, `secure-india-exams/` | All 19 case studies are standalone, hand-editable HTML/CSS. 5 have extra hand-built diagrams/sections (`credential-tiering-model`, `shadow-ai-discovery-gap`, `non-human-identity-at-scale`, `ai-agent-credential-sharing`, `ai-processing-tax`); the other 14 use a shared, simpler template (hero, challenge, approach, outcome, tags). |
 | `_posts/`, `_layouts/post.html`, `writing/index.html` | Jekyll blog posts, built by GitHub Pages automatically (no `.nojekyll` file) and served under `/writing/:title/`. `/writing/` lists every post automatically. Plain HTML/CSS, genuinely hand-editable. |
 | `assets/fonts.css` | Self-hosted DM Sans, Manrope and JetBrains Mono (all SIL OFL) for every standalone page. Don't link Google Fonts: the site's CSP only allows fonts from this domain, so they'd be blocked. |
@@ -29,7 +29,7 @@ Things that changed in the rebuild, so nothing surprises you:
 - Case-study titles and categories on the homepage match the pages themselves. The one-line summaries are the homepage's original wording.
 - Fonts come from `assets/fonts.css` like every other page.
 
-**Editing the homepage:** open `index.html` and change the text directly. The markup is in section order, and every style is in `assets/home.css` (colours are variables at the top). To add a case study to the list, copy an existing `<article class="cs-row">` block and update the number, category, title, link and summary.
+**Editing the homepage:** open `index.html` and change the text directly. The markup is in section order, and every style is in `assets/home.css` (colours are variables at the top). `assets/home.js` is optional: it only closes the phone menu after you tap a link, and the page works without it. To add a case study to the list, copy an existing `<article class="cs-row">` block and update the number, category, title, link and summary.
 
 ## How to update this site yourself
 
