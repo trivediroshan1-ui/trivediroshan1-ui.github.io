@@ -82,18 +82,8 @@
         ]
       }
     </script>
-
-    <script
-      type="module"
-      crossorigin
-      src="/assets/main-DkBXTN6c.js"
-    ></script>
-
-    <link
-      rel="stylesheet"
-      crossorigin
-      href="/assets/main-Dilp92U4.css"
-    />
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/home.css">
 
     <style>
     .nhi-announce {
@@ -166,18 +156,6 @@ font-size: 13px;
 }
 }
 
-/* Static fallback inside #root: what crawlers and no-JS visitors see.
-   The React app replaces it on mount (createRoot().render), so real
-   visitors only glimpse it for a moment while the bundle loads. */
-.static-fallback { max-width: 880px; margin: 0 auto; padding: 96px 20px 64px; color: #f1f5f9; font-family: Manrope, "DM Sans", system-ui, sans-serif; line-height: 1.6; }
-.static-fallback .sf-eyebrow { margin: 0 0 10px; color: #4de2ff; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
-.static-fallback h1 { margin: 0 0 12px; font-family: "DM Sans", system-ui, sans-serif; font-size: clamp(34px, 6vw, 56px); line-height: 1.08; letter-spacing: -0.02em; }
-.static-fallback .sf-role { margin: 0 0 8px; font-weight: 700; font-size: 18px; }
-.static-fallback p { margin: 0 0 16px; color: #a9b6c7; max-width: 64ch; }
-.static-fallback h2 { margin: 36px 0 12px; font-family: "DM Sans", system-ui, sans-serif; font-size: 20px; color: #f1f5f9; }
-.static-fallback ul { margin: 0; padding-left: 20px; color: #a9b6c7; }
-.static-fallback li { margin: 4px 0; }
-.static-fallback a { color: #4de2ff; }
 </style>
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -186,38 +164,449 @@ font-size: 13px;
   </head>
 
   <body>
-    <div id="root">
-      <div class="static-fallback">
-        <p class="sf-eyebrow">Identity security &middot; Product leadership</p>
-        <h1>Roshan Trivedi &mdash; security starts with identity.</h1>
-        <p class="sf-role">Credential Management Platform Owner &amp; PAM Product Leader</p>
-        <p>Building secure, scalable identity platforms across privileged access, credential management, Zero Standing Privilege, non-human identity and IAM governance. 14+ years across identity and security, in India, the UK and Australia. CIAM-certified identity practitioner, based in Bengaluru, India.</p>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
-        <h2>What I work on</h2>
-        <ul>
-          <li>Credential platforms</li>
-          <li>PAM &amp; Zero Standing Privilege</li>
-          <li>Non-human identity &amp; machine identity</li>
-          <li>IAM audit &amp; controls</li>
-          <li>Product evaluation</li>
-          <li>AI-augmented delivery, agentic AI identity and MCP security</li>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Roshan Trivedi, home">
+        <span class="brand-mark" aria-hidden="true">RT</span>
+        <span class="brand-text"><span class="brand-name">Roshan Trivedi</span><span class="brand-sub">Identity security</span></span>
+      </a>
+      <nav class="nav-desktop" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="/writing/">Writing</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn-outline" href="/Roshan_Trivedi_Resume.pdf">R&eacute;sum&eacute;</a>
+      <details class="menu">
+        <summary aria-label="Open menu"><span></span></summary>
+        <nav class="nav-mobile" aria-label="Mobile">
+          <a href="#about">About</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#case-studies">Case Studies</a>
+          <a href="/writing/">Writing</a>
+          <a href="#platforms">Platforms</a>
+          <a href="#research">Research</a>
+          <a href="#contact">Contact</a>
+          <a href="/Roshan_Trivedi_Resume.pdf">View r&eacute;sum&eacute;</a>
+        </nav>
+      </details>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow-line">Identity security &middot; Product leadership</p>
+            <h1 id="hero-title">Security starts <span>with identity.</span></h1>
+            <p class="hero-role">Credential Management Platform Owner &amp; PAM Product Leader</p>
+            <p class="hero-lead">Building secure, scalable identity platforms across privileged access, credential management, Zero Standing Privilege, non-human identity and IAM governance.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#case-studies">Explore case studies</a>
+              <a class="btn btn-ghost" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">Connect on LinkedIn</a>
+            </div>
+            <p class="hero-meta"><span>Bengaluru, India</span><span>Available for security leadership conversations</span></p>
+          </div>
+          <div class="hero-visual">
+            <div class="portrait">
+              <img src="/assets/roshan-trivedi.webp" alt="Portrait of Roshan Trivedi" width="873" height="871" fetchpriority="high">
+            </div>
+            <div class="path-card" aria-label="Identity decision path">
+              <div class="path-head"><span>Identity decision path</span><b>Human governed</b></div>
+              <ol class="path-steps">
+                <li><small>01</small><strong>Request</strong><span>Who or what needs access?</span></li>
+                <li><small>02</small><strong>Verify</strong><span>Identity, context and intent</span></li>
+                <li><small>03</small><strong>Authorize</strong><span>Least privilege, policy checked</span></li>
+                <li><small>04</small><strong>Time-bound access</strong><span>Just enough, just in time</span></li>
+                <li><small>05</small><strong>Observe</strong><span>Evidence, accountability, review</span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="wrap">
+        <ul class="stats">
+          <li><b>14+</b><span>Years across identity and security</span></li>
+          <li><b>3</b><span>Regions: India, UK and Australia</span></li>
+          <li><b>CIAM</b><span>Certified identity practitioner</span></li>
+          <li><b>1</b><span>Published public-interest security study</span></li>
         </ul>
-
-        <h2>Featured work</h2>
-        <ul>
-          <li><a href="/case-studies/credential-tiering-model/">Credential Tiering &amp; the PAM Market: Closing the Tier 0 Gap</a></li>
-          <li><a href="/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a></li>
-          <li><a href="/case-studies/ai-agent-credential-sharing/">AI Agent Credential Sharing</a></li>
-          <li><a href="/case-studies/shadow-ai-discovery-gap/">The Shadow AI Discovery Gap</a></li>
-          <li><a href="/case-studies/ai-processing-tax/">The AI Decision Tax</a></li>
-          <li><a href="/secure-india-exams/">Securing India's National Exams (public-interest security study)</a></li>
-        </ul>
-        <p><a href="/case-studies/">All 19 case studies</a> &middot; <a href="/writing/">Writing</a></p>
-
-        <h2>Contact</h2>
-        <p><a href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">LinkedIn</a> &middot; <a href="https://github.com/trivediroshan1-ui">GitHub</a> &middot; <a href="/Roshan_Trivedi_Resume.pdf">R&eacute;sum&eacute;</a> &middot; <a href="mailto:trivedi.roshan1@gmail.com">trivedi.roshan1@gmail.com</a></p>
       </div>
-    </div>
+
+      <section class="block" id="about" aria-labelledby="about-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-label"><b>01</b>Perspective</p>
+            <div>
+              <h2 class="section-title" id="about-title">Identity is the control plane.</h2>
+              <p class="section-lead">I work where platform strategy, security architecture, product ownership and audit evidence meet.</p>
+            </div>
+          </div>
+          <div class="perspective">
+            <p class="statement">I translate difficult identity-security problems into products people can adopt, teams can operate and leaders can govern.</p>
+            <div class="copy">
+              <p>My current focus spans credential-management platform ownership, PAM product leadership and IAM control evaluation. The work includes product roadmaps, architecture decisions, use-case analysis, proof-of-concept leadership, migrations and audit mapping.</p>
+              <p>I also analyze non-human identity, MCP and agentic-AI security, using AI as a co-worker while keeping privacy, source validation and human accountability explicit.</p>
+              <div class="callout"><b>Public by design.</b><span>Every portfolio case study is intentionally anonymized and excludes employer, client and internal operational data. My r&eacute;sum&eacute; (linked above) is the deliberate exception &mdash; it includes full employment history for verification.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="expertise" aria-labelledby="expertise-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-label"><b>02</b>Expertise</p>
+            <div>
+              <h2 class="section-title" id="expertise-title">From product decision to defensible control.</h2>
+              <p class="section-lead">A connected practice spanning strategy, architecture, delivery, governance and emerging identity risk.</p>
+            </div>
+          </div>
+          <div class="grid-3">
+        <article>
+          <span class="cell-num">01</span>
+          <h3>Credential platforms</h3>
+          <p>Product ownership for enterprise credential management—from service definition and onboarding through controls, lifecycle governance and operational adoption.</p>
+          <div class="chips"><span>Platform strategy</span><span>Secrets lifecycle</span><span>Service catalog</span></div>
+        </article>
+        <article>
+          <span class="cell-num">02</span>
+          <h3>PAM &amp; Zero Standing Privilege</h3>
+          <p>Roadmaps for vaulting, credential rotation, privileged sessions, just-in-time access and the shift from permanent privilege to time-bound authorization.</p>
+          <div class="chips"><span>PAM</span><span>JIT access</span><span>ZSP</span></div>
+        </article>
+        <article>
+          <span class="cell-num">03</span>
+          <h3>NHI &amp; machine identity</h3>
+          <p>Analysis of non-human identities, workload credentials and service accounts across cloud, DevOps and emerging agentic-AI ecosystems.</p>
+          <div class="chips"><span>NHI</span><span>Workload identity</span><span>Machine access</span></div>
+        </article>
+        <article>
+          <span class="cell-num">04</span>
+          <h3>IAM audit &amp; controls</h3>
+          <p>Mapping IAM capabilities to control intent, evidence expectations and ownership so security design remains defensible and audit-ready.</p>
+          <div class="chips"><span>Control mapping</span><span>Evidence</span><span>Governance</span></div>
+        </article>
+        <article>
+          <span class="cell-num">05</span>
+          <h3>Product evaluation</h3>
+          <p>Structured platform analysis covering use-case fit, architecture, operational readiness, governance, integration and migration considerations.</p>
+          <div class="chips"><span>PoC leadership</span><span>Decision frameworks</span><span>Migration</span></div>
+        </article>
+        <article>
+          <span class="cell-num">06</span>
+          <h3>AI-augmented delivery</h3>
+          <p>Using LLMs and agents as disciplined co-workers for research, product analysis and communication—with human review and privacy guardrails.</p>
+          <div class="chips"><span>MCP</span><span>Agentic AI</span><span>Human oversight</span></div>
+        </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="case-studies" aria-labelledby="cs-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-label"><b>03</b>Selected work</p>
+            <div>
+              <h2 class="section-title" id="cs-title">Case studies without confidential data.</h2>
+              <p class="section-lead">The thinking, leadership and security principles are real. Employer names, client associations, internal metrics and proprietary decisions are deliberately omitted.</p>
+            </div>
+          </div>
+          <div class="cs-list">
+        <article class="cs-row featured">
+          <span class="cs-num">01</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#7df2d0"></i>Independent research</span>
+            <h3><a href="/case-studies/credential-tiering-model/">Credential Tiering &amp; the PAM Market</a></h3>
+            <p>Why Tier 0-3 is a containment mechanism, the guardrails that make it hold, and how the PAM market maps to audit, compliance and cost needs.</p>
+            <a class="more" href="/case-studies/credential-tiering-model/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">02</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#7df2d0"></i>Platform ownership</span>
+            <h3><a href="/case-studies/credential-platform/">Credential Management Platform Strategy</a></h3>
+            <p>Turning fragmented credential use cases into a coherent, governable enterprise service.</p>
+            <a class="more" href="/case-studies/credential-platform/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">03</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#7df2d0"></i>Privileged access</span>
+            <h3><a href="/case-studies/pam-modernization/">PAM Modernization &amp; Zero Standing Privilege</a></h3>
+            <p>Evolving privileged access from persistent entitlement toward verified, time-bound access.</p>
+            <a class="more" href="/case-studies/pam-modernization/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">04</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#c4b5fd"></i>Migration leadership</span>
+            <h3><a href="/case-studies/migration-planning/">Privileged Access Migration Planning</a></h3>
+            <p>Leading the analysis required to move privileged capabilities safely between platforms.</p>
+            <a class="more" href="/case-studies/migration-planning/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">05</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#c4b5fd"></i>Product evaluation</span>
+            <h3><a href="/case-studies/platform-evaluation/">PAM Platform Evaluation</a></h3>
+            <p>Comparing emerging and established platforms through use-case fit, controls and operating-model readiness.</p>
+            <a class="more" href="/case-studies/platform-evaluation/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">06</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#f7c873"></i>Governance</span>
+            <h3><a href="/case-studies/audit-mapping/">IAM Control-to-Audit Mapping</a></h3>
+            <p>Translating control intent into platform responsibility, implementation evidence and sustainable ownership.</p>
+            <a class="more" href="/case-studies/audit-mapping/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">07</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#4de2ff"></i>Emerging practice</span>
+            <h3><a href="/case-studies/ai-coworker/">AI as a Coworker in Identity Operations</a></h3>
+            <p>Using LLMs and agent workflows to accelerate analysis while protecting judgment, provenance and sensitive data.</p>
+            <a class="more" href="/case-studies/ai-coworker/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">08</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#4de2ff"></i>Emerging practice</span>
+            <h3><a href="/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a></h3>
+            <p>Machines outnumber people 50 to 1 in most enterprises. A privacy-safe model for discovering, scoring and governing that sprawl — with a live interactive sandbox.</p>
+            <a class="more" href="/case-studies/non-human-identity-at-scale/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">09</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#7df2d0"></i>Privileged access</span>
+            <h3><a href="/case-studies/jit-jea-elevation/">Just-in-Time &amp; Just-Enough-Access Elevation</a></h3>
+            <p>Replacing standing administrative access with time-boxed, scope-limited elevation that closes automatically.</p>
+            <a class="more" href="/case-studies/jit-jea-elevation/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">10</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#7df2d0"></i>Privileged access</span>
+            <h3><a href="/case-studies/break-glass-access/">Break-Glass Emergency Access Design</a></h3>
+            <p>Designing emergency access that stays usable under pressure without becoming a permanent bypass.</p>
+            <a class="more" href="/case-studies/break-glass-access/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">11</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#c4b5fd"></i>Secrets governance</span>
+            <h3><a href="/case-studies/secrets-consolidation/">Secrets Discovery &amp; Consolidation</a></h3>
+            <p>Turning credentials scattered across code, CI/CD and config files into a single governed vault.</p>
+            <a class="more" href="/case-studies/secrets-consolidation/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">12</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#7df2d0"></i>Privileged access</span>
+            <h3><a href="/case-studies/vendor-privileged-access/">Third-Party Privileged Access Governance</a></h3>
+            <p>Governing external vendor access with the same scrutiny as internal privileged accounts, not less.</p>
+            <a class="more" href="/case-studies/vendor-privileged-access/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">13</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#f7c873"></i>Governance</span>
+            <h3><a href="/case-studies/access-recertification/">Access Recertification Automation</a></h3>
+            <p>Turning a manual quarterly access review into a governed process backed by usage evidence.</p>
+            <a class="more" href="/case-studies/access-recertification/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">14</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#c4b5fd"></i>Authentication</span>
+            <h3><a href="/case-studies/passwordless-authentication/">Risk-Sequenced Passwordless Rollout</a></h3>
+            <p>Sequencing a passwordless migration by risk instead of rolling it out to everyone at once.</p>
+            <a class="more" href="/case-studies/passwordless-authentication/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">15</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#c4b5fd"></i>Cloud identity</span>
+            <h3><a href="/case-studies/ciem-at-scale/">Cloud Entitlement Management at Scale</a></h3>
+            <p>Finding the toxic entitlement combinations that individual cloud IAM rules miss.</p>
+            <a class="more" href="/case-studies/ciem-at-scale/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">16</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#4de2ff"></i>Agent identity governance</span>
+            <h3><a href="/case-studies/agentic-ai-identity-governance/">Agentic AI Identity Governance</a></h3>
+            <p>AI agents request permissions, spawn sub-agents and chain actions across systems at runtime — a governance model built for static roles and long-lived credentials, applied to an identity that changes shape while it runs.</p>
+            <a class="more" href="/case-studies/agentic-ai-identity-governance/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">17</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#4de2ff"></i>AI Governance</span>
+            <h3><a href="/case-studies/ai-processing-tax/">The AI Decision Tax</a></h3>
+            <p>AI collapsed the cost of producing work but not the cost of deciding on it — a measured productivity loss now landing on whoever has the least capacity to absorb it, answered with a decision-package gate instead of a slogan.</p>
+            <a class="more" href="/case-studies/ai-processing-tax/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">18</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#4de2ff"></i>Non-Human Identity</span>
+            <h3><a href="/case-studies/ai-agent-credential-sharing/">AI Agent Credential Sharing</a></h3>
+            <p>Three real 2025-2026 breaches, one shared root cause: a single long-lived credential wired into everything an AI agent touches — checked against current NHI research and the vendor market now built to fix it.</p>
+            <a class="more" href="/case-studies/ai-agent-credential-sharing/">Read full case study</a>
+          </div>
+        </article>
+        <article class="cs-row">
+          <span class="cs-num">19</span>
+          <div>
+            <span class="cs-cat"><i style="--dot:#4de2ff"></i>Shadow AI</span>
+            <h3><a href="/case-studies/shadow-ai-discovery-gap/">The Shadow AI Discovery Gap</a></h3>
+            <p>A 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension — three incidents, one invisible root cause: AI tools employees adopted that security never approved, or even knew existed.</p>
+            <a class="more" href="/case-studies/shadow-ai-discovery-gap/">Read full case study</a>
+          </div>
+        </article>
+          </div>
+          <div class="cs-all">
+            <a class="btn btn-primary" href="/case-studies/">Browse all 19 by theme</a>
+            <a class="btn btn-ghost" href="/writing/">Read the writing</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="platforms" aria-labelledby="platforms-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-label"><b>04</b>Platform ecosystem</p>
+            <div>
+              <h2 class="section-title" id="platforms-title">Broad enough to compare. Deep enough to challenge.</h2>
+              <p class="section-lead">Technology knowledge and evaluation experience across established and emerging identity-security platforms.</p>
+              <p class="section-lead">I evaluate platforms through identity lifecycle, control coverage, architecture, integration, user journey and operating ownership&mdash;not feature lists alone.</p>
+              <p class="platform-note">Platform names indicate personal knowledge and evaluation experience only. They do not imply vendor endorsement or client association.</p>
+            </div>
+          </div>
+          <div class="platform-groups">
+        <div class="platform-group">
+          <h3>Privileged access</h3>
+          <ul><li>CyberArk</li><li>BeyondTrust</li><li>Delinea Secret Server</li><li>Delinea PRA</li><li>StrongDM</li></ul>
+        </div>
+        <div class="platform-group">
+          <h3>Credentials &amp; secrets</h3>
+          <ul><li>HashiCorp Vault</li><li>Saviynt CPAM</li><li>ERPM</li><li>PKI / HSM</li></ul>
+        </div>
+        <div class="platform-group">
+          <h3>Identity &amp; governance</h3>
+          <ul><li>SailPoint</li><li>Microsoft Entra ID</li><li>IAM controls</li><li>CIAM</li></ul>
+        </div>
+        <div class="platform-group">
+          <h3>Cloud &amp; NHI</h3>
+          <ul><li>Clutch Security</li><li>Wiz</li><li>Workload identity</li><li>Service accounts</li></ul>
+        </div>
+        <div class="platform-group">
+          <h3>AI workflow</h3>
+          <ul><li>OpenAI</li><li>ChatGPT</li><li>Claude</li><li>MCP</li><li>LLM agents</li></ul>
+        </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="research" aria-labelledby="research-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-label"><b>05</b>Published research</p>
+            <div>
+              <h2 class="section-title" id="research-title">Applying Zero Trust to a problem that matters.</h2>
+              <p class="section-lead">Independent, non-commercial work translating security architecture into public-interest outcomes.</p>
+            </div>
+          </div>
+          <div class="research-card">
+            <div class="research-main">
+              <p class="tag-row"><span>Public-interest security</span><span>Zero Trust reference model</span></p>
+              <h3>Securing India&rsquo;s National Examinations</h3>
+              <p>A public case study proposing a lifecycle security model for high-stakes examinations&mdash;from paper creation and protected storage to controlled delivery and verified destruction.</p>
+              <ul>
+                <li>Threat-led architecture rather than process-only controls</li>
+                <li>Cryptographic protection, least privilege and continuous evidence</li>
+                <li>Privacy, resilience and accountable human decision-making</li>
+              </ul>
+              <a class="btn btn-primary" href="/secure-india-exams/">Read the published case study</a>
+            </div>
+            <ol class="research-steps" aria-label="Examination lifecycle">
+              <li>01 &middot; Create</li><li>02 &middot; Protect</li><li>03 &middot; Deliver</li><li>04 &middot; Verify</li><li>05 &middot; Retire</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="career" aria-labelledby="career-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="section-label"><b>06</b>Career lens</p>
+            <div>
+              <h2 class="section-title" id="career-title">Global experience. One consistent focus.</h2>
+              <p class="section-lead">More than fourteen years across consulting and global enterprise environments in India, the United Kingdom and Australia.</p>
+            </div>
+          </div>
+          <p class="quote">&ldquo;Make secure access usable, governable and explainable.&rdquo;</p>
+          <div class="career-grid">
+            <article><small>Now</small><h3>Platform owner &amp; PAM product leader</h3><p>Credential-management strategy, privileged-access products, control mapping and audit evaluation.</p></article>
+            <article><small>Global delivery</small><h3>IAM &amp; PAM programmes</h3><p>Consulting and enterprise security work, including an on-site CyberArk engagement in Birmingham, UK.</p></article>
+            <article><small>Continuous</small><h3>Research &amp; emerging technology</h3><p>NHI, MCP, agentic AI, Zero Trust and public-interest security architecture.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="contact" aria-labelledby="contact-title">
+        <div class="wrap">
+          <div class="contact-box">
+            <p class="section-label"><b>07</b>Start a conversation</p>
+            <h2 id="contact-title">Building the next identity-security capability?</h2>
+            <p>I&rsquo;m open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">Connect on LinkedIn</a>
+              <a class="btn btn-ghost" href="mailto:trivedi.roshan1@gmail.com">Email Roshan</a>
+              <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui">View GitHub</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div><strong>Roshan Trivedi</strong><small>Credential Management &middot; PAM &middot; Identity Security</small></div>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">LinkedIn</a>
+          <a href="https://github.com/trivediroshan1-ui">GitHub</a>
+          <a href="/Roshan_Trivedi_Resume.pdf">R&eacute;sum&eacute;</a>
+          <a href="/case-studies/">Case studies</a>
+          <a href="/writing/">Writing</a>
+          <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        </div>
+      </div>
+    </footer>
 
 <div class="nhi-announce" id="nhi-announce">
 <a href="/case-studies/credential-tiering-model/">New: Credential Tiering &amp; the PAM Market — why Tier 0 is a containment mechanism, not an org chart. See the model →</a>
