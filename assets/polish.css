@@ -42,3 +42,9 @@ main .pager { padding: 8px 0 0; }
   body { background: #fff !important; color: #111 !important; }
   a { color: #0b5cad !important; }
 }
+
+/* Keyboard access */
+:focus-visible { outline: 2px solid var(--c, #4de2ff); outline-offset: 3px; border-radius: 4px; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 200; background: #4de2ff; color: #03121a; font-weight: 700; padding: 10px 16px; border-radius: 10px; text-decoration: none; }
+.skip:focus { top: 12px; }
+@media print { .skip, .filters, .filter-count { display: none !important; } }
