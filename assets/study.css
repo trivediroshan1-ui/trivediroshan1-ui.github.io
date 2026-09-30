@@ -103,3 +103,5 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .ring .ttl { font-size: 15px; } .ring .sub { font-size: 12px; }
 @media (prefers-reduced-motion: reduce) { .node6 rect { animation: none !important; } }
 @media print { .node6 rect { animation: none !important; } }
+
+.diagram-card .ic { fill: none; stroke: var(--c); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
