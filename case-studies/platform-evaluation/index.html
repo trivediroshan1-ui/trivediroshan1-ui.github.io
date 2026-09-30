@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -42,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/platform-evaluation/",
   "image": "https://roshantrivedi.co.in/assets/og-case-platform-evaluation.png",
   "articleSection": "Product evaluation",
@@ -54,41 +55,207 @@
 }
     </script>
   </head>
-  <body>
+  <body style="--c:#c4b5fd">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Product evaluation &middot; Case study</p>
-        <p class="cat-badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Product evaluation</p>
         <h1>PAM, NHI &amp; Cloud Platform Evaluation</h1>
-        <p class="dek">Comparing emerging and established platforms through use-case fit, controls and operating-model readiness.</p>
-        <p class="meta">Evaluation and PoC lead</p>
+        <p class="dek">How I compare privileged access, non-human identity and cloud security platforms: written scenarios, the same test for every tool, and a decision someone can audit later.</p>
+        <p class="meta">Evaluation and PoC lead &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Fast-moving Non-Human Identity (NHI), cloud security and privileged-access markets make feature lists insufficient for durable product decisions.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Feature lists do not settle a platform decision. A scenario that one tool handles and another only half handles does.</li>
+          <li>I write the scenarios, weights and pass marks first, run every candidate through the same scripts, and score before anyone argues.</li>
+          <li>The result is a decision record that links what the tool can do to integration, operations, audit and who will own it.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">The markets for privileged access, non-human identity (NHI) and cloud security move fast. Tools overlap, names change and every demo looks good. A feature checklist rewards the vendor with the longest list, not the one that fits the organisation.</p>
+        <p class="body-text">The harder part is that the people in the room want different things. Security wants control, engineers want speed, audit wants evidence and finance wants a number. A decision made from demos alone tends to favour whoever presented last. I want a method that survives those disagreements and can be explained a year later.</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Built scenario-led assessments around identity types, trust boundaries and lifecycle responsibilities.</li>
-          <li>Completed Delinea Secret Server and PRA proof-of-concept work focused on practical use cases.</li>
-          <li>Led StrongDM product analysis and operating-model planning alongside structured assessments of Clutch Security and Wiz.</li>
+      <section id="flow">
+        <h2>The order I follow</h2>
+        <p class="body-text">It starts with people, not products. I talk to stakeholders in different business units to understand their risks, how security affects their users, what compliance and audit need from them, what infrastructure they run, which regions they work in and how the organisation is structured. That becomes a written pain list. Then I recommend proofs of concept with different tools, look at the results and decide which to buy. Once licences and tools are procured, professional services take over the build.</p>
+        <figure class="diagram-card" style="--c:#c4b5fd;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 290" role="img" aria-labelledby="f1t f1d"><title id="f1t">How a platform evaluation runs</title><desc id="f1d">Five stages in order: listen to stakeholders and write the pain list, define scenarios, weights and scripts, prove every candidate tool with the same scripts, score the results blind and check the vendor, then record the decision and hand over to professional services. The criteria, weights, scripts and time box are fixed before the first demo.</desc><path class="flow" d="M 146 110 L 212 110"/><text class="sub" x="179" y="100" text-anchor="middle">pain list</text><path class="flow" d="M 348 110 L 414 110"/><text class="sub" x="381" y="100" text-anchor="middle">scripts</text><path class="flow" d="M 550 110 L 616 110"/><text class="sub" x="583" y="100" text-anchor="middle">results</text><path class="flow" d="M 752 110 L 818 110"/><text class="sub" x="785" y="100" text-anchor="middle">decision</text><g class="node" style="--i:0"><rect x="10" y="60" width="136" height="100" rx="12"/><text class="ttl" x="78" y="98" text-anchor="middle">Listen</text><text class="sub" x="78" y="118" text-anchor="middle">Pain, risks,</text><text class="sub" x="78" y="134" text-anchor="middle">regions, audit</text></g><g class="badge"><circle cx="10" cy="60" r="12"/><text x="10" y="64">1</text></g><g class="node" style="--i:1"><rect x="212" y="60" width="136" height="100" rx="12"/><text class="ttl" x="280" y="98" text-anchor="middle">Define</text><text class="sub" x="280" y="118" text-anchor="middle">Scenarios, weights,</text><text class="sub" x="280" y="134" text-anchor="middle">scripts, pass marks</text></g><g class="badge"><circle cx="212" cy="60" r="12"/><text x="212" y="64">2</text></g><g class="node" style="--i:2"><rect x="414" y="60" width="136" height="100" rx="12"/><text class="ttl" x="482" y="98" text-anchor="middle">Prove</text><text class="sub" x="482" y="118" text-anchor="middle">Same scripts,</text><text class="sub" x="482" y="134" text-anchor="middle">every tool</text></g><g class="badge"><circle cx="414" cy="60" r="12"/><text x="414" y="64">3</text></g><g class="node" style="--i:3"><rect x="616" y="60" width="136" height="100" rx="12"/><text class="ttl" x="684" y="98" text-anchor="middle">Score</text><text class="sub" x="684" y="118" text-anchor="middle">Blind scoring,</text><text class="sub" x="684" y="134" text-anchor="middle">vendor checks</text></g><g class="badge"><circle cx="616" cy="60" r="12"/><text x="616" y="64">4</text></g><g class="node" style="--i:4"><rect x="818" y="60" width="136" height="100" rx="12"/><text class="ttl" x="886" y="98" text-anchor="middle">Decide</text><text class="sub" x="886" y="118" text-anchor="middle">Record, then</text><text class="sub" x="886" y="134" text-anchor="middle">hand over</text></g><g class="badge"><circle cx="818" cy="60" r="12"/><text x="818" y="64">5</text></g><path class="log" d="M 280 160 L 280 206"/><path class="log" d="M 482 160 L 482 206"/><path class="log" d="M 684 160 L 684 206"/><rect class="logbar" x="212" y="206" width="540" height="60" rx="10"/><text class="ttl" x="482" y="231" text-anchor="middle">Fixed before the first demo</text><text class="sub" x="482" y="251" text-anchor="middle">Written criteria, weights, scripts and time box, identical for every tool</text><circle class="dot" r="6" cx="0" cy="0"><animateMotion dur="12s" repeatCount="indefinite" path="M 10 110 L 954 110"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 640" role="img" aria-labelledby="f1tt f1td"><title id="f1tt">How a platform evaluation runs</title><desc id="f1td">Five stages in order: listen, define, prove, score, decide and hand over. The criteria, weights, scripts and time box are fixed before the first demo.</desc><path class="flow" d="M 180 82 L 180 132"/><text class="sub" x="196" y="112">pain list</text><path class="flow" d="M 180 194 L 180 244"/><text class="sub" x="196" y="224">scripts</text><path class="flow" d="M 180 306 L 180 356"/><text class="sub" x="196" y="336">results</text><path class="flow" d="M 180 418 L 180 468"/><text class="sub" x="196" y="448">decision</text><g class="node" style="--i:0"><rect x="30" y="20" width="300" height="62" rx="12"/><text class="ttl" x="180" y="46" text-anchor="middle">Listen</text><text class="sub" x="180" y="65" text-anchor="middle">Pain, risks, regions, audit needs</text></g><g class="badge"><circle cx="30" cy="20" r="12"/><text x="30" y="24">1</text></g><g class="node" style="--i:1"><rect x="30" y="132" width="300" height="62" rx="12"/><text class="ttl" x="180" y="158" text-anchor="middle">Define</text><text class="sub" x="180" y="177" text-anchor="middle">Scenarios, weights, scripts, pass marks</text></g><g class="badge"><circle cx="30" cy="132" r="12"/><text x="30" y="136">2</text></g><g class="node" style="--i:2"><rect x="30" y="244" width="300" height="62" rx="12"/><text class="ttl" x="180" y="270" text-anchor="middle">Prove</text><text class="sub" x="180" y="289" text-anchor="middle">Same scripts on every tool</text></g><g class="badge"><circle cx="30" cy="244" r="12"/><text x="30" y="248">3</text></g><g class="node" style="--i:3"><rect x="30" y="356" width="300" height="62" rx="12"/><text class="ttl" x="180" y="382" text-anchor="middle">Score</text><text class="sub" x="180" y="401" text-anchor="middle">Blind scoring and vendor checks</text></g><g class="badge"><circle cx="30" cy="356" r="12"/><text x="30" y="360">4</text></g><g class="node" style="--i:4"><rect x="30" y="468" width="300" height="62" rx="12"/><text class="ttl" x="180" y="494" text-anchor="middle">Decide</text><text class="sub" x="180" y="513" text-anchor="middle">Record the choice, then hand over</text></g><g class="badge"><circle cx="30" cy="468" r="12"/><text x="30" y="472">5</text></g><rect class="logbar" x="30" y="560" width="300" height="64" rx="10"/><text class="ttl" x="180" y="587" text-anchor="middle">Fixed before the first demo</text><text class="sub" x="180" y="607" text-anchor="middle">Criteria, weights, scripts, time box</text><circle class="dot" r="6" cx="0" cy="0"><animateMotion dur="10s" repeatCount="indefinite" path="M 180 20 L 180 530"/></circle></svg>
+          <figcaption>The dot follows one evaluation from the first conversation to the handover. The bar under the middle stages is the point of the method: the rules are written before the first demo and they do not change per vendor.</figcaption>
+        </figure>
+      </section>
+
+      <section id="covered">
+        <h2>What this covered</h2>
+        <ul class="plain-list">
+          <li>Scenario-led assessments built around identity types, trust boundaries and lifecycle responsibilities.</li>
+          <li>Proof-of-concept work on Delinea Secret Server and Privileged Remote Access, focused on practical use cases.</li>
+          <li>Product analysis and operating-model planning for StrongDM, alongside structured assessments of Clutch Security and Wiz.</li>
+        </ul>
+        <p class="body-text">This page is about the method. It does not compare or rank those products, and nothing here is a statement about what any of them can or cannot do. For that, read the vendor&rsquo;s own documentation and run your own scenarios.</p>
+      </section>
+
+      <section id="scenarios">
+        <h2>The scenario catalogue</h2>
+        <p class="body-text">I build the catalogue around identity types, because each one has a different trust boundary and a different lifecycle owner. Each row becomes a test script. The scenarios are examples of the shape, not a complete list.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Identity type</th><th>Example scenario</th><th>What the script checks</th></tr></thead><tbody><tr><td data-label="Identity type">Human privileged</td><td data-label="Example scenario">An on-call engineer needs admin access to a production server at night</td><td data-label="What the script checks">Request and approval, session start, recording, and what happens when the approval expires mid-session</td></tr><tr><td data-label="Identity type">Service account</td><td data-label="Example scenario">A database service account password is rotated while the application is running</td><td data-label="What the script checks">Rotation without an outage, the owner recorded, and a clear alert if rotation fails</td></tr><tr><td data-label="Identity type">API key or token</td><td data-label="Example scenario">A third-party integration token nears expiry</td><td data-label="What the script checks">Discovery of the token, an owner attached, rotation or revocation, and a read log</td></tr><tr><td data-label="Identity type">SSH key</td><td data-label="Example scenario">A shared deployment key sits on many servers</td><td data-label="What the script checks">Finding where it is, replacing it with per-user or short-lived access, removing the old key</td></tr><tr><td data-label="Identity type">Cloud workload</td><td data-label="Example scenario">A container needs a database login at start-up</td><td data-label="What the script checks">Fetching a short-lived credential at runtime with no secret baked into the image</td></tr><tr><td data-label="Identity type">CI/CD pipeline</td><td data-label="Example scenario">A deployment job needs a cloud credential</td><td data-label="What the script checks">Scoped access for one job, no long-lived secret in pipeline variables, a trace of which run used it</td></tr><tr><td data-label="Identity type">AI agent</td><td data-label="Example scenario">An agent calls an internal API on a user&rsquo;s behalf</td><td data-label="What the script checks">Whose identity it acts under, how narrow the access is, how it is stopped, and whether its actions are logged</td></tr></tbody></table></div>
+      </section>
+
+      <section id="criteria">
+        <h2>Weighted criteria</h2>
+        <p class="body-text">Scenario results are one input. I group the rest into nine criteria and agree the weights with the sponsor before the first demo. A few items are gates that a tool must pass regardless of its score, such as a data-residency requirement. Gates are pass or fail and sit outside the weighting.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Criterion</th><th>What I ask</th><th>Example evidence</th></tr></thead><tbody><tr><td data-label="Criterion">Security controls</td><td data-label="What I ask">Does it enforce least privilege, approval, session control and secret protection in our scenarios?</td><td data-label="Example evidence">POC script results</td></tr><tr><td data-label="Criterion">Coverage</td><td data-label="What I ask">How many of our scenarios does it handle directly, and how many need a workaround?</td><td data-label="Example evidence">Scenario catalogue, marked per tool</td></tr><tr><td data-label="Criterion">Integration</td><td data-label="What I ask">Does it work with our service desk, directory and SIEM without custom glue?</td><td data-label="Example evidence">Integration test with ServiceNow, Entra and the SIEM</td></tr><tr><td data-label="Criterion">High availability and DR</td><td data-label="What I ask">What happens to access when it is down, and how fast can it be restored?</td><td data-label="Example evidence">Outage test and recovery notes</td></tr><tr><td data-label="Criterion">Deployment model</td><td data-label="What I ask">Does SaaS, self-hosted or hybrid fit our regions and data rules?</td><td data-label="Example evidence">Architecture review</td></tr><tr><td data-label="Criterion">Operating model and skills</td><td data-label="What I ask">Who runs it, what skills do they need, and how much daily effort does it take?</td><td data-label="Example evidence">Run-book draft and effort estimate</td></tr><tr><td data-label="Criterion">Audit evidence</td><td data-label="What I ask">Can I answer who, what, when and approved by whom, from the tool itself?</td><td data-label="Example evidence">Sample reports and log export</td></tr><tr><td data-label="Criterion">Licensing and total cost</td><td data-label="What I ask">How is it priced, and what does it cost once services, training and support are in?</td><td data-label="Example evidence">Quote with assumptions written down</td></tr><tr><td data-label="Criterion">Vendor viability, roadmap and support</td><td data-label="What I ask">Will the vendor and the product be here in five years, and how do they handle problems?</td><td data-label="Example evidence">Due-diligence pack, references, support terms</td></tr></tbody></table></div>
+      </section>
+
+      <section id="workflow">
+        <h2>The evaluation, step by step</h2>
+        <ol class="steps">
+          <li><h3>Listen and write the pain list</h3><p>Interviews across the business units, then a one-page list of the risks, user frictions, audit needs and regional or infrastructure limits. The sponsor signs it off.</p><div class="why"><span><b>Guardrail</b>Pain list agreed before tools are named</span><span><b>Evidence</b>Interview notes, signed list</span></div></li>
+          <li><h3>Write scenarios, weights and gates</h3><p>Pick the scenarios from the catalogue that match the pain list, set the weights and the gates, and write pass marks for each script step.</p><div class="why"><span><b>Guardrail</b>Criteria dated before the first demo</span><span><b>Evidence</b>Criteria document</span></div></li>
+          <li><h3>Design the proof of concept</h3><p>Success criteria in writing before starting. A fixed time box, a test environment with no real secrets, a named person who runs each test, and the same scripts for every tool. The scripts include failure cases: the vault is down, a rotation fails, an access grant is revoked mid-session.</p><div class="why"><span><b>Guardrail</b>Same scripts, same time box, test data only</span><span><b>Evidence</b>POC plan, environment review</span></div></li>
+          <li><h3>Run it and log everything</h3><p>Each tool is set up and tested by the same people where possible. Every bit of vendor help is logged, because help during a trial may not exist in production.</p><div class="why"><span><b>Guardrail</b>Vendor assistance recorded</span><span><b>Evidence</b>Run log, support log</span></div></li>
+          <li><h3>Score on your own first</h3><p>Each scorer fills in a sheet alone, then we compare. Where scores differ by two points or more, we go back to the evidence and not to opinion.</p><div class="why"><span><b>Guardrail</b>Independent scoring before discussion</span><span><b>Evidence</b>Individual score sheets</span></div></li>
+          <li><h3>Check the vendor</h3><p>Due diligence runs alongside the trial, covered in the next section. A strong trial does not cancel a weak answer here.</p><div class="why"><span><b>Guardrail</b>Security review before production access</span><span><b>Evidence</b>Due-diligence pack</span></div></li>
+          <li><h3>Write the decision record</h3><p>What was chosen and why, the scores, the trade-offs, the risks accepted and who accepted them, and any dissent.</p><div class="why"><span><b>Guardrail</b>Risk acceptance named</span><span><b>Evidence</b>Signed decision record</span></div></li>
+          <li><h3>Hand over</h3><p>Once licences are bought, the statement of work, the engagement letter, the training programme and support terms go to professional services. The scenarios and scripts become acceptance tests for the build, and the POC findings feed the architecture.</p><div class="why"><span><b>Guardrail</b>POC scripts reused as acceptance tests</span><span><b>Evidence</b>SOW, training plan, architecture inputs</span></div></li>
+        </ol>
+      </section>
+
+      <section id="poc">
+        <h2>Designing the proof of concept</h2>
+        <ul class="plain-list">
+          <li><strong>Success criteria first.</strong> For each script, write what a pass, a partial and a fail look like before anyone touches a tool.</li>
+          <li><strong>One script, every tool.</strong> If a script has to change for one tool, it changes for all of them and the earlier runs are repeated.</li>
+          <li><strong>A fixed time box.</strong> Two weeks per tool is an example. The number matters less than giving every candidate the same.</li>
+          <li><strong>A test environment that looks like ours.</strong> Same network zones, same directory integration and similar target systems, with test credentials only.</li>
+          <li><strong>A named runner.</strong> Someone from our side runs the tests. Vendor staff can advise, and that is logged.</li>
+          <li><strong>Failure cases on purpose.</strong> Take the vault offline, break a rotation, revoke access while a session is open, lose the connection to the directory. The way a tool fails says more than the way it works.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Created decision-ready analysis that connects technical capability to governance, integration and product ownership.</p>
+      <section id="example">
+        <h2>A worked example of scoring</h2>
+        <p class="body-text">Everything in this section is illustrative. The candidates are labelled A, B and C, are not real products, and the results are invented to show the method.</p>
+        <h3 style="font:800 17px var(--display);margin:18px 0 0">One scenario: rotate a service account password</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Script step</th><th>Candidate A</th><th>Candidate B</th><th>Candidate C</th></tr></thead><tbody><tr><td data-label="Script step">Rotate the password on a schedule</td><td data-label="Candidate A">Pass</td><td data-label="Candidate B">Pass</td><td data-label="Candidate C">Pass</td></tr><tr><td data-label="Script step">Application picks up the new value</td><td data-label="Candidate A">Pass</td><td data-label="Candidate B">Partial, needed a restart</td><td data-label="Candidate C">Pass</td></tr><tr><td data-label="Script step">Force a failure halfway through rotation</td><td data-label="Candidate A">Alert raised, old value kept</td><td data-label="Candidate B">No alert, left inconsistent</td><td data-label="Candidate C">Alert raised, needed a manual fix</td></tr><tr><td data-label="Script step">Read log shows who fetched it</td><td data-label="Candidate A">Pass</td><td data-label="Candidate B">Pass</td><td data-label="Candidate C">Pass</td></tr><tr><td data-label="Script step">Score for this scenario (0 to 3)</td><td data-label="Candidate A">3</td><td data-label="Candidate B">1</td><td data-label="Candidate C">2</td></tr></tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Candidate B&rsquo;s happy path was fine. The failure step is where the scores separated, which is why failure cases are in every script. A scenario score of 3 means the pass mark was met with no workaround, 2 needed a manual step, 1 needed significant effort, 0 could not be done.</p>
+        <h3 style="font:800 17px var(--display);margin:22px 0 0">Adding it up, and testing the weights</h3>
+        <p class="body-text" style="margin-top:6px">Weighted points are the weight times the 0 to 3 score, summed. Four criteria are shown for brevity.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Criterion (excerpt)</th><th>Weight</th><th>A</th><th>B</th><th>C</th></tr></thead><tbody><tr><td data-label="Criterion (excerpt)">Security controls</td><td data-label="Weight">20</td><td data-label="A">3</td><td data-label="B">2</td><td data-label="C">2</td></tr><tr><td data-label="Criterion (excerpt)">Integration</td><td data-label="Weight">12</td><td data-label="A">2</td><td data-label="B">3</td><td data-label="C">1</td></tr><tr><td data-label="Criterion (excerpt)">High availability and DR</td><td data-label="Weight">10</td><td data-label="A">1</td><td data-label="B">2</td><td data-label="C">3</td></tr><tr><td data-label="Criterion (excerpt)">Audit evidence</td><td data-label="Weight">10</td><td data-label="A">2</td><td data-label="B">2</td><td data-label="C">2</td></tr><tr><td data-label="Criterion (excerpt)">Weighted points (max 156)</td><td data-label="Weight"></td><td data-label="A">114</td><td data-label="B">116</td><td data-label="C">102</td></tr><tr><td data-label="Criterion (excerpt)">Same, after moving 5 weight points from integration to HA and DR</td><td data-label="Weight"></td><td data-label="A">109</td><td data-label="B">111</td><td data-label="C">112</td></tr></tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Two things to notice. The totals are close, so the total alone cannot decide anything. And a small change to the weights reorders the candidates. Whenever the order moves that easily, I do not treat the number as the answer. I go back to the scenarios and the gates, and I ask the sponsor which weights they really believe.</p>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#delinea</span><span>#clutch-security</span><span>#wiz</span><span>#strongdm</span></div>
+      <section id="bias">
+        <h2>Keeping bias out</h2>
+        <ul class="plain-list">
+          <li><strong>Write first.</strong> Criteria and weights come before the demos, so they cannot be shaped around a favourite.</li>
+          <li><strong>Score alone, then talk.</strong> Early opinions anchor the room.</li>
+          <li><strong>Rotate the order.</strong> Do not always run the same tool first or last, and note who presented when.</li>
+          <li><strong>Treat vendor effort as data.</strong> If a vendor engineer configured something for us, the operating-model score reflects that we could not have done it ourselves on day one.</li>
+          <li><strong>Test the weights.</strong> Move them around as above, and see whether the decision survives.</li>
+          <li><strong>Bring in someone who did not attend.</strong> A reader from audit or security architecture who reads only the record, and asks what is missing.</li>
+        </ul>
       </section>
+
+      <section id="diligence">
+        <h2>Security due diligence on the vendor</h2>
+        <p class="body-text">The product may be good and still be a poor thing to trust with your most privileged credentials. I ask for, and read, the following before any production access is granted:</p>
+        <ul class="plain-list">
+          <li><strong>Certifications and audit reports.</strong> Which reports, what scope, what dates, and whether the product I am buying sits inside that scope.</li>
+          <li><strong>Penetration-test summaries.</strong> Recent, independent, with findings and how they were closed.</li>
+          <li><strong>Data residency.</strong> Where data and backups live, where support staff can access it from, and which sub-processors are involved.</li>
+          <li><strong>Vulnerability handling.</strong> How issues are reported, how fast patches arrive and how customers are told.</li>
+          <li><strong>Exit and data export.</strong> How I get my secrets, policies and audit logs out in a usable form, and what happens to my data when the contract ends.</li>
+          <li><strong>Viability and support.</strong> Support hours and escalation, references I can call, and what the roadmap commits to in writing.</li>
+        </ul>
+        <p class="body-text">Open questions are written into the decision record. An unanswered question is a risk that someone has to accept by name.</p>
+      </section>
+
+      <section id="roadmap">
+        <h2>How it plays out over time</h2>
+        <ol class="phases">
+          <li><b>1. Understand the pain</b>Stakeholder interviews and the written pain list.<small><em>Done when</em>The sponsor signs the pain list.</small></li>
+          <li><b>2. Define the test</b>Scenarios, weights, gates, scripts and the POC plan.<small><em>Done when</em>The criteria are dated and approved before any demo.</small></li>
+          <li><b>3. Run the proofs of concept</b>Each tool goes through the same scripts in the same time box.<small><em>Done when</em>Every script has a result and evidence for each candidate.</small></li>
+          <li><b>4. Score and check the vendors</b>Independent scoring, weight testing and due diligence.<small><em>Done when</em>Scores, gate results and due-diligence findings sit in one pack.</small></li>
+          <li><b>5. Decide</b>The sponsor decides, and the record names the trade-offs and accepted risks.<small><em>Done when</em>The record is signed.</small></li>
+          <li><b>6. Procure and hand over</b>Licences, then the SOW, engagement letter, training and support. Scripts become acceptance tests.<small><em>Done when</em>Professional services have the scenarios and the architecture inputs.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead><tbody><tr><td data-label="Guardrail">Scenarios, criteria and weights are written and agreed before any demo</td><td data-label="What it stops">Choosing the criteria to fit the tool someone already likes</td><td data-label="How you check it">Dated document with sign-off, older than the first demo</td></tr><tr><td data-label="Guardrail">Every tool runs the same scripts</td><td data-label="What it stops">A tool winning because its script was easier</td><td data-label="How you check it">Scripts stored once and used unchanged for each candidate</td></tr><tr><td data-label="Guardrail">Fixed time box and a named tester</td><td data-label="What it stops">A favoured tool getting extra weeks and help</td><td data-label="How you check it">Calendar and run log for each candidate</td></tr><tr><td data-label="Guardrail">Failure cases are in the script</td><td data-label="What it stops">Tools that only look good on the happy path</td><td data-label="How you check it">Results for vault outage, rotation failure and revoked access</td></tr><tr><td data-label="Guardrail">Scorers score on their own, then compare</td><td data-label="What it stops">Anchoring on the first person who speaks</td><td data-label="How you check it">Individual sheets collected before the discussion</td></tr><tr><td data-label="Guardrail">Vendor help during a POC is logged</td><td data-label="What it stops">Hidden vendor effort that will not exist in production</td><td data-label="How you check it">Support log, and effort noted in the operating-model score</td></tr><tr><td data-label="Guardrail">Only test data in the test environment</td><td data-label="What it stops">Real secrets or customer data leaking into a trial</td><td data-label="How you check it">Environment review before the POC starts</td></tr><tr><td data-label="Guardrail">Decision record names the trade-offs and the dissent</td><td data-label="What it stops">A tidy story that hides disagreement</td><td data-label="How you check it">Record reviewed by the sponsor and security architecture</td></tr></tbody></table></div>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead><tbody><tr><td data-label="Question">Why was this product chosen?</td><td data-label="Where the answer comes from">Decision record with scenario results, weighted scores and trade-offs</td></tr><tr><td data-label="Question">Were the criteria fixed before the trial?</td><td data-label="Where the answer comes from">Dated criteria document and the POC plan</td></tr><tr><td data-label="Question">Did every candidate face the same test?</td><td data-label="Where the answer comes from">Stored scripts, run logs and individual scoring sheets</td></tr><tr><td data-label="Question">Was the vendor checked before we gave it access?</td><td data-label="Where the answer comes from">Due-diligence pack: reports received, dates, scope and open questions</td></tr><tr><td data-label="Question">What was the plan for leaving?</td><td data-label="Where the answer comes from">Exit and data-export findings in the decision record</td></tr><tr><td data-label="Question">Who accepted the risks that remain?</td><td data-label="Where the answer comes from">Named approvals in the record</td></tr></tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead><tbody><tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">SA-4</code></td><td data-label="What it asks for">Acquisition contracts include the required security requirements and criteria. The enhancement SA-4(1) has the developer describe the functional properties of the controls.</td></tr><tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">SA-9</code></td><td data-label="What it asks for">Providers of external system services meet your requirements, oversight and user roles are documented, and compliance is monitored on an ongoing basis.</td></tr><tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-2</code>, <code class="ref">AC-5</code>, <code class="ref">AC-6</code></td><td data-label="What it asks for">Account management, separation of duties and least privilege, which the security-control scenarios test.</td></tr><tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">IA-5</code>, <code class="ref">SC-12</code>, <code class="ref">SC-28</code></td><td data-label="What it asks for">Authenticator management, cryptographic key management and protection of stored information.</td></tr><tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for">Deciding which events are logged and generating audit records, which the audit-evidence criterion checks.</td></tr><tr><td data-label="Standard">NIST CSF 2.0</td><td data-label="Reference"><code class="ref">PR.AA</code></td><td data-label="What it asks for">Identity management, authentication and access control.</td></tr><tr><td data-label="Standard">ISO/IEC 27001:2022</td><td data-label="Reference"><code class="ref">A.5.16</code>, <code class="ref">A.5.17</code>, <code class="ref">A.5.18</code>, <code class="ref">A.8.2</code></td><td data-label="What it asks for">Identity management, authentication information, access rights and privileged access rights.</td></tr><tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">A.5.19</code>, <code class="ref">A.5.20</code></td><td data-label="What it asks for">Information security in supplier relationships, and in supplier agreements.</td></tr><tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">A.5.21</code>, <code class="ref">A.5.22</code>, <code class="ref">A.5.23</code></td><td data-label="What it asks for">Managing the ICT supply chain, monitoring and reviewing supplier services, and use of cloud services, including handling data when the service ends.</td></tr><tr><td data-label="Standard">CIS Controls v8</td><td data-label="Reference"><code class="ref">5.2</code>, <code class="ref">5.4</code></td><td data-label="What it asks for">Unique passwords, and restricting administrator privileges to dedicated administrator accounts.</td></tr><tr><td data-label="Standard">PCI DSS v4.0</td><td data-label="Reference"><code class="ref">8.6.2</code>, <code class="ref">8.6.3</code></td><td data-label="What it asks for">No hard-coded passwords, and risk-based rotation of service-account credentials.</td></tr></tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Role</th><th>Owns</th></tr></thead><tbody><tr><td data-label="Role">Business sponsor</td><td data-label="Owns">The problem statement, the budget and the final decision</td></tr><tr><td data-label="Role">Product owner (me, in this role)</td><td data-label="Owns">The evaluation plan, the scenario catalogue, the scoring method and the decision record</td></tr><tr><td data-label="Role">Security architecture</td><td data-label="Owns">Security criteria, the vendor due-diligence review and the risk acceptance</td></tr><tr><td data-label="Role">Platform and infrastructure teams</td><td data-label="Owns">Test environments, integration tests and the operating-model estimate</td></tr><tr><td data-label="Role">Procurement and legal</td><td data-label="Owns">Commercial terms, contract language and exit clauses</td></tr><tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent view of whether the process was followed</td></tr></tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>The decision belongs to the business.</strong> I prepare the analysis and the recommendation. The sponsor decides.</li>
+          <li><strong>Someone owns the product afterwards.</strong> The evaluation names the product owner and the platform team before contracts are signed, so ownership does not become a question after go-live.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>The decision is already made.</strong> If a tool was chosen informally, the POC becomes theatre. It is better to say so and adjust the scope.</li>
+          <li><strong>Demos replace tests.</strong> A polished demo shows a scripted path. Only your own scripts show yours.</li>
+          <li><strong>The POC is too easy.</strong> A clean test network hides directory quirks, proxy rules and legacy systems that decide the real effort.</li>
+          <li><strong>The happy path wins.</strong> Without failure cases, a tool that fails badly can still score well.</li>
+          <li><strong>Total cost is missed.</strong> Licences are one line. Services, training, infrastructure, support and the people to run it add up.</li>
+          <li><strong>Scope drifts to a bigger product.</strong> Cloud security, NHI and PAM overlap. Decide which problem you are solving, or the comparison stops being fair.</li>
+          <li><strong>Handover is forgotten.</strong> The POC learning sits in one person&rsquo;s head and professional services start from nothing.</li>
+        </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep, not a record of any one project.</p>
+        <ul class="plain-list">
+          <li><strong>I write the pass marks before I see the tool.</strong> It is much harder to be fair afterwards.</li>
+          <li><strong>I test how things fail.</strong> I put the outage and the failed rotation in every script.</li>
+          <li><strong>I keep vendor help in a log.</strong> It shows the real effort of running the tool later.</li>
+          <li><strong>I treat the score as a prompt for questions.</strong> When totals are close I go back to the scenarios and the evidence.</li>
+          <li><strong>I write the exit plan during the evaluation.</strong> It is easier to ask about data export before a contract than after.</li>
+          <li><strong>I involve the operators early.</strong> The people who will run the platform estimate the effort, not the people who will only buy it.</li>
+          <li><strong>I hand over the scripts.</strong> Reused as acceptance tests, they tie the purchase to what we were promised.</li>
+        </ul>
+        <p class="body-text">For the full sequence, from first conversation to last training session, see <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/sa/sa-4/">SA-4: Acquisition Process (NIST SP 800-53 Rev. 5, via CSF Tools)</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/sa/sa-9/">SA-9: External System Services (NIST SP 800-53 Rev. 5, via CSF Tools)</a></li>
+          <li><a href="https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa/">NIST CSF 2.0, PR.AA: Identity Management, Authentication, and Access Control</a></li>
+          <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022, Annex A</a></li>
+          <li><a href="https://www.urmconsulting.com/blog/iso-27001-2022-a-5-organisational-controls-supplier-management">URM Consulting: ISO 27001:2022 A.5 supplier management controls (summary of A.5.19 to A.5.23)</a></li>
+          <li><a href="https://www.cisecurity.org/controls">CIS Critical Security Controls v8</a></li>
+          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0, PCI Security Standards Council</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. The scoring examples are invented, and control numbers are as published in the standards listed above.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#delinea</span><span>#clutch-security</span><span>#wiz</span><span>#strongdm</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#c4b5fd" href="/case-studies/migration-planning/"><small><i></i>&larr; Previous</small><strong>Privileged Access Migration Planning</strong></a><a class="next" style="--c:#f7c873" href="/case-studies/audit-mapping/"><small><i></i>Next &rarr;</small><strong>IAM Control-to-Audit Mapping</strong></a></div></nav>
       <footer class="page-footer">
@@ -96,7 +263,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
