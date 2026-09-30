@@ -48,3 +48,26 @@ main .pager { padding: 8px 0 0; }
 .skip { position: absolute; left: 12px; top: -60px; z-index: 200; background: #4de2ff; color: #03121a; font-weight: 700; padding: 10px 16px; border-radius: 10px; text-decoration: none; }
 .skip:focus { top: 12px; }
 @media print { .skip, .filters, .filter-count { display: none !important; } }
+
+/* Animated pull quote */
+.pull { position: relative; margin: 22px 0 10px; padding: 10px 0 10px 26px; font-family: var(--display, "DM Sans", system-ui, sans-serif); font-size: clamp(20px, 3.6vw, 27px); font-weight: 700; line-height: 1.38; letter-spacing: -.01em; }
+.pull p { margin: 0; text-wrap: balance; }
+.pull::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 2px; background: linear-gradient(180deg, #4de2ff, #7df2d0); transform-origin: top; }
+.pull::after { content: "\201C"; position: absolute; left: 22px; top: -34px; font-size: 110px; line-height: 1; color: #4de2ff; opacity: .14; pointer-events: none; }
+.pull span { display: inline-block; }
+.pull .hl { background: linear-gradient(100deg, #4de2ff 20%, #7df2d0 45%, #c4b5fd 60%, #4de2ff 85%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: pull-shimmer 7s linear infinite; }
+.pull cite { display: block; margin-top: 12px; font: 12px var(--mono, monospace); letter-spacing: .08em; color: var(--muted, #93a1bd); font-style: normal; }
+@keyframes pull-shimmer { to { background-position: -250% 0; } }
+@keyframes pull-word { from { opacity: 0; transform: translateY(14px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes pull-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes pull-fade { from { opacity: 0; } to { opacity: 1; } }
+@supports (animation-timeline: view()) {
+  .pull::before { animation: pull-bar linear both; animation-timeline: view(); animation-range: entry 5% entry 70%; }
+  .pull span { animation: pull-word linear both; animation-timeline: view(); animation-range: entry calc(6% + var(--i) * 2.2%) entry calc(34% + var(--i) * 2.2%); }
+  .pull cite { animation: pull-fade linear both; animation-timeline: view(); animation-range: entry 70% entry 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pull::before, .pull span, .pull cite { animation: none !important; }
+  .pull .hl { animation: none !important; background-position: 0 0; }
+}
+@media print { .pull .hl { color: inherit; background: none; -webkit-background-clip: initial; } .pull::after { display: none; } }
