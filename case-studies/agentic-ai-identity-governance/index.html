@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#030712" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
-<meta name="description" content="A privacy-safe case study on governing AI agent identity: scoped, short-lived credentials issued per task, continuous re-authorization, and human approval gates for high-risk agent actions." />
+<meta name="description" content="AI agents gain permissions, spawn sub-agents and chain actions at runtime. A target-state model for governing an identity that changes shape as it runs." />
 <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/agentic-ai-identity-governance/" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Agentic AI Identity Governance · Roshan Trivedi" />
-<meta property="og:description" content="AI agents acquire permissions, spawn sub-agents and chain actions across systems at runtime. A target-state model for issuing, re-authorizing and reconciling agent identity instead of relying on static roles." />
+<meta property="og:description" content="AI agents gain permissions, spawn sub-agents and chain actions at runtime. A target-state model for governing an identity that changes shape as it runs." />
 <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/agentic-ai-identity-governance/" />
 <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-agentic-ai-identity-governance.png" />
 <meta property="og:image:width" content="1200" />
@@ -29,7 +29,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Agentic AI Identity Governance",
-  "description": "A privacy-safe case study on governing AI agent identity: scoped, short-lived credentials issued per task, continuous re-authorization, and human approval gates for high-risk agent actions.",
+  "description": "AI agents gain permissions, spawn sub-agents and chain actions at runtime. A target-state model for governing an identity that changes shape as it runs.",
   "author": {
     "@type": "Person",
     "name": "Roshan Trivedi",
@@ -68,7 +68,7 @@
 
       <section id="challenge">
         <h2>The challenge</h2>
-        <p class="body-text">Agent frameworks let an AI acquire scopes, call APIs and launch sub-agents dynamically, so the identity a workflow ends up using is decided at runtime, not at provisioning. Most IAM stacks assign a role once and assume it holds; most access reviews assume a point-in-time snapshot still describes what an agent can do. Neither assumption survives an agent that can request a new capability mid-task.</p>
+        <p class="body-text">Agent frameworks let an AI acquire scopes, call APIs and launch sub-agents dynamically, so the identity a workflow ends up using is decided at runtime, not at provisioning. Most Identity and Access Management (IAM) stacks assign a role once and assume it holds; most access reviews assume a point-in-time snapshot still describes what an agent can do. Neither assumption survives an agent that can request a new capability mid-task.</p>
       </section>
 
       <section id="approach">
@@ -76,7 +76,7 @@
         <ul class="approach-list">
           <li>Issued every agent a scoped, short-lived credential tied to a single task rather than a standing role, so a compromised or misbehaving agent carries only the blast radius of the task it was running.</li>
           <li>Replaced point-in-time access review with continuous re-authorization: each new permission request or sub-agent spawn is evaluated against policy at the moment it happens, not caught at the next audit cycle.</li>
-          <li>Routed agent actions above a defined risk threshold through a human-in-the-loop approval gate — the same pattern proven in the MCP Human Approval Gateway lab — so autonomy stops at the boundary where a wrong action is expensive to reverse.</li>
+          <li>Routed agent actions above a defined risk threshold through a human-in-the-loop approval gate — the same pattern proven in the Model Context Protocol (MCP) Human Approval Gateway lab — so autonomy stops at the boundary where a wrong action is expensive to reverse.</li>
           <li>Tracked granted permissions against observed runtime behavior for every agent identity, so drift between what an agent was authorized to do and what it is actually doing becomes a monitored signal instead of a discovery made after an incident.</li>
         </ul>
       </section>
