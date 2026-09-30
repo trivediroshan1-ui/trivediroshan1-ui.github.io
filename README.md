@@ -9,6 +9,7 @@ Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity profe
 | `index.html`, `assets/home.css`, `assets/home.js` | The homepage: plain, hand-editable HTML and CSS (no build step, no JavaScript needed to read it). Sections are in order: hero, stats, perspective, expertise, case studies, platforms, research, career, contact. The dismissible announcement banner, the Cloudflare beacon and the chatbot widget sit at the bottom of `index.html`. |
 | `case-studies/*/`, `secure-india-exams/` | All 19 case studies are standalone, hand-editable HTML/CSS. 5 have extra hand-built diagrams/sections (`credential-tiering-model`, `shadow-ai-discovery-gap`, `non-human-identity-at-scale`, `ai-agent-credential-sharing`, `ai-processing-tax`); the other 14 use a shared, simpler template (hero, challenge, approach, outcome, tags). |
 | `_posts/`, `_layouts/post.html`, `writing/index.html` | Jekyll blog posts, built by GitHub Pages automatically (no `.nojekyll` file) and served under `/writing/:title/`. `/writing/` lists every post automatically. Plain HTML/CSS, genuinely hand-editable. |
+| `assets/site.css`, `assets/polish.css` | `site.css` holds the shared styles for the 14 standard case-study pages (colours are variables at the top; each page sets its theme colour with `<body style="--c:#hex">`). The five hand-built case studies and the exam study keep their own `<style>` blocks. `polish.css` is small and additive and loads on every case-study, index and writing page: reading-progress line, previous/next cards, print view. |
 | `assets/fonts.css` | Self-hosted DM Sans, Manrope and JetBrains Mono (all SIL OFL) for every standalone page. Don't link Google Fonts: the site's CSP only allows fonts from this domain, so they'd be blocked. |
 | `404.html` | Custom not-found page; GitHub Pages serves it for any missing URL. |
 | `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | Site icons (RT monogram), linked from every page. |
@@ -54,7 +55,7 @@ Add a new file under `_posts/` named `YYYY-MM-DD-a-short-slug.md`, following the
 
 **Change the homepage's layout or nav:** edit `index.html` and `assets/home.css` like any other page.
 
-**Add a new case study:** copy `case-studies/access-recertification/index.html` as a starting template (head meta + the shared hero/challenge/approach/outcome/tags layout), fill in the content, and add the new URL to `sitemap.xml`.
+**Add a new case study:** copy `case-studies/access-recertification/index.html` as a starting template (it uses `/assets/site.css`, so you only write content), fill in the content, set `--c` on `<body>` to the theme colour, and add the new URL to `sitemap.xml`. Then add it to the homepage list and to the previous/next order: each case study has a `<nav class="pager">` near the bottom, and the neighbours of the new page need their links updated by hand.
 
 **Check it went live:**
 Watch the green checkmark under **Deployments → github-pages** on the repo's main page, then refresh [roshantrivedi.co.in](https://roshantrivedi.co.in) (hard-refresh / add `?v=2` to the URL if your browser cached the old version).
