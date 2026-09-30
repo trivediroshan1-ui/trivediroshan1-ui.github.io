@@ -19,7 +19,9 @@
     <title>Break-Glass Emergency Access · Roshan Trivedi</title>
 
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -41,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/break-glass-access/",
   "image": "https://roshantrivedi.co.in/assets/og-case-break-glass-access.png",
   "articleSection": "Privileged access",
@@ -52,90 +54,287 @@
   "keywords": "break glass access, emergency access, privileged session audit"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
   </head>
-  <body>
+  <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Privileged access &middot; Case study</p>
-        <p class="cat-badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</p>
         <h1>Break-Glass Emergency Access</h1>
         <p class="dek">Designing emergency access that stays usable under pressure without becoming a permanent bypass.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>A break-glass account is for the day normal access has failed. It has to work when the PAM platform, the identity provider and the MFA service may all be down, so it cannot lean on any of them.</li>
+          <li>Five habits keep it from turning into a side door: credentials kept apart from standing accounts, every use a logged event, an alert on any sign-in or checkout, a written justification, and rotation the same day.</li>
+          <li>Test it on a calendar. An emergency account nobody has tried since it was set up is a guess, and a guess is a poor control.</li>
+        </ul>
+      </div>
+
       <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Emergency access existed to keep incident response moving, but without controls on when it could be invoked, break-glass credentials were also the easiest path around normal approval — and nobody could tell the difference after the fact.</p>
+        <h2>The problem</h2>
+        <p class="body-text">Emergency access exists to keep incident response moving. Without controls on when it could be invoked, break-glass credentials were also the easiest path around normal approval, and nobody could tell the difference after the fact.</p>
+        <p class="body-text">The design has to hold up against two opposite failures. If emergency access is hard to reach, people lose hours during an outage, or they quietly keep a shared admin login that nobody governs. If it is easy to reach and quiet to use, it becomes the route people take whenever approval feels slow. Three properties cover both: it works when everything else is down, it is loud when it is used, and every use is closed out afterwards.</p>
+      </section>
+
+      <section id="types">
+        <h2>The kinds of break-glass</h2>
+        <p class="body-text">&ldquo;Break-glass&rdquo; is not one account. Each layer that can lock people out needs its own way back in, and each has a different owner and a different fallback.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Type</th><th>What it gets you back into</th><th>Why it stands apart</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Type">Identity provider or cloud tenant emergency accounts</td><td data-label="What it gets you back into">Administration of the tenant when normal admins cannot sign in</td><td data-label="Why it stands apart">Cloud-only, not federated and not synchronized, so an outage of federation or of the on-premises directory does not touch it</td></tr>
+            <tr><td data-label="Type">PAM platform recovery</td><td data-label="What it gets you back into">The vault and its admin console when the platform is degraded or its own sign-in is broken</td><td data-label="Why it stands apart">A vault cannot hold the only key to itself. The recovery credential lives outside it, in sealed storage</td></tr>
+            <tr><td data-label="Type">Infrastructure local admin</td><td data-label="What it gets you back into">Servers, hypervisors and databases when directory sign-in fails</td><td data-label="Why it stands apart">A local account on the machine works even if the directory does not. It is normally vaulted and rotated, with a sealed copy for the day the vault is unreachable</td></tr>
+            <tr><td data-label="Type">Directory and domain</td><td data-label="What it gets you back into">The directory every other system trusts, so it can be repaired or restored</td><td data-label="Why it stands apart">Everything else signs in through it, so its recovery path cannot sign in through it</td></tr>
+            <tr><td data-label="Type">Network devices</td><td data-label="What it gets you back into">Firewalls, switches and routers when central authentication is unreachable</td><td data-label="Why it stands apart">Local or console accounts, used over a management path that does not cross the network being repaired</td></tr>
+          </tbody></table></div>
+        <p class="body-text">Keep the list short. Every extra emergency account is another spare key, and every one needs an owner, a reason and a drill.</p>
+      </section>
+
+      <section id="dependencies">
+        <h2>Do not depend on what might be down</h2>
+        <p class="body-text">The question I ask about every emergency route is: what has to be working for this to work? If the answer includes the thing that just failed, the route is not an emergency route.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>If this is down</th><th>What goes wrong</th><th>What the design does</th></tr></thead>
+          <tbody>
+            <tr><td data-label="If this is down">The PAM platform</td><td data-label="What goes wrong">The recovery credential is inside the thing being recovered</td><td data-label="What the design does">Recovery credentials for the platform are held in sealed, offline storage with two custodians</td></tr>
+            <tr><td data-label="If this is down">The identity provider</td><td data-label="What goes wrong">Federated or synchronized admin accounts cannot sign in</td><td data-label="What the design does">Emergency accounts live in the cloud tenant itself. Microsoft&rsquo;s guidance lists a federation or identity provider outage as a reason for them</td></tr>
+            <tr><td data-label="If this is down">The MFA provider</td><td data-label="What goes wrong">Admins cannot complete the second factor, or their registered devices are unavailable</td><td data-label="What the design does">A different, phishing-resistant method from the one daily admins use, and no tie to one person&rsquo;s phone</td></tr>
+            <tr><td data-label="If this is down">Conditional access</td><td data-label="What goes wrong">A policy that requires a compliant device or a named location can block the very account meant for the emergency</td><td data-label="What the design does">The accounts sit in a group that is excluded from policies that block or restrict sign-in, and a test after every policy change proves it</td></tr>
+            <tr><td data-label="If this is down">One person or one path</td><td data-label="What goes wrong">The only keyholder is on leave, or the only network path is the one that failed</td><td data-label="What the design does">More than one custodian, and a check that the route works over at least two network paths that do not share a failure</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="sealed">
+        <h2>Sealed fallback storage</h2>
+        <p class="body-text">When the vault itself cannot be reached, the credentials that restart the chain come from sealed, offline storage. The aim is that opening it takes two people and leaves a trace.</p>
+        <ul class="plain-list">
+          <li><strong>Split custody or dual control.</strong> Either two halves of the secret are held by two people, or two keys are needed to open the container. No single person can use it alone.</li>
+          <li><strong>Tamper-evident and in separate places.</strong> Microsoft&rsquo;s guidance calls for fireproof safes in secure, separate locations, with combinations changed regularly and whenever someone with access leaves.</li>
+          <li><strong>Opening it is an event.</strong> It goes in a custody log with names, time and incident reference, and it triggers the same close-out as any other use: justification, rotation, a fresh sealed copy.</li>
+          <li><strong>Only what restarts the chain.</strong> The sealed set holds what is needed to get the platform and the identity layer back, and nothing more.</li>
+          <li><strong>Kept in step with the vault.</strong> A sealed copy that no longer matches the live secret fails at the worst moment. Refreshing it is part of rotation, and the drill checks it.</li>
+        </ul>
+      </section>
+
+      <section id="naming">
+        <h2>Naming and protection</h2>
+        <ul class="plain-list">
+          <li><strong>A naming convention, approved and written down.</strong> It makes clear that the account is an emergency account, so alert rules, reports and reviewers recognise it straight away. It is tied to a role and a purpose. It is not tied to a person.</li>
+          <li><strong>No link to an individual.</strong> Microsoft&rsquo;s guidance says not to associate these accounts with any individual user, not to connect them to employee-supplied devices such as phones, and to make sure nobody has registered MFA or self-service password reset to a personal device.</li>
+          <li><strong>Two or more accounts, cloud-only.</strong> For the tenant, the guidance says to create two or more emergency access accounts, use the onmicrosoft.com domain, and keep them unfederated and unsynchronized.</li>
+          <li><strong>Phishing-resistant sign-in that differs from daily admins.</strong> The guidance recommends a passkey (FIDO2) and offers certificate-based authentication where a PKI already exists. It adds that the method should differ from the one the normal administrator accounts use.</li>
+          <li><strong>Permanent and active, with no expiry.</strong> In Privileged Identity Management the guidance asks for the Global Administrator assignment to be permanent active, not eligible. It also says the credential must not expire or fall under automated clean-up for lack of use, which matters for an account that is dormant by design.</li>
+          <li><strong>A designated secure workstation.</strong> The guidance asks that people using these accounts do so from a designated secure workstation or a privileged access workstation.</li>
+        </ul>
       </section>
 
       <section id="mechanism">
         <h2>The mechanism</h2>
-        <figure class="diagram-card">
-          <svg viewBox="0 0 760 260" role="img" aria-label="A five-step break-glass cycle: dormant vaulted credential, distinct logged invocation, an advisory anomaly check on the usage pattern, required post-use justification, and same-day auto-rotation back to dormant.">
-            <defs>
-              <marker id="bgArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
-              </marker>
-              <marker id="bgArrowWarn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                <path d="M0,0 L10,5 L0,10 z" fill="var(--warn)"></path>
-              </marker>
-            </defs>
-
-            <g font-family="var(--display)" font-weight="700" font-size="11.5" fill="var(--text)" text-anchor="middle">
-              <rect x="20" y="40" width="120" height="56" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"></rect>
-              <text x="80" y="64">Dormant</text>
-              <text x="80" y="80" font-size="9" font-weight="500" font-family="var(--mono)" fill="var(--muted)">vaulted, separate</text>
-
-              <rect x="172" y="40" width="120" height="56" rx="10" fill="var(--surface-2)" stroke="var(--danger)" stroke-width="2"></rect>
-              <text x="232" y="64">Invoked</text>
-              <text x="232" y="80" font-size="9" font-weight="500" font-family="var(--mono)" fill="var(--muted)">distinct, logged</text>
-
-              <rect x="324" y="40" width="130" height="56" rx="10" fill="var(--surface-2)" stroke="var(--warn)" stroke-width="2"></rect>
-              <text x="389" y="60">Advisory check</text>
-              <text x="389" y="76" font-size="9" font-weight="500" font-family="var(--mono)" fill="var(--muted)">flags off-pattern use</text>
-
-              <rect x="486" y="40" width="130" height="56" rx="10" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1.5"></rect>
-              <text x="551" y="60">Justification</text>
-              <text x="551" y="76" font-size="9" font-weight="500" font-family="var(--mono)" fill="var(--muted)">required post-use</text>
-
-              <rect x="648" y="40" width="92" height="56" rx="10" fill="var(--surface-2)" stroke="var(--safe)" stroke-width="2"></rect>
-              <text x="694" y="60">Rotated</text>
-              <text x="694" y="76" font-size="9" font-weight="500" font-family="var(--mono)" fill="var(--muted)">same day</text>
-            </g>
-
-            <path d="M140,68 L172,68" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#bgArrow)"></path>
-            <path d="M292,68 L324,68" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#bgArrow)"></path>
-            <path d="M454,68 L486,68" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#bgArrow)"></path>
-            <path d="M616,68 L648,68" fill="none" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#bgArrow)"></path>
-
-            <path d="M694,96 C694,190 80,190 80,96" fill="none" stroke="var(--warn)" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#bgArrowWarn)"></path>
-            <text x="380" y="216" font-size="10.5" fill="var(--warn)" text-anchor="middle">rotated credential returns to the vault, dormant until the next incident</text>
-          </svg>
-          <figcaption>Break-glass credentials live apart from standing accounts. Every invocation is a distinct, logged event, screened by an advisory check for usage that looks routine rather than urgent, and closed out the same day with a required justification and a forced credential rotation &mdash; not left open until the next audit cycle.</figcaption>
+        <p class="body-text">This is the cycle every break-glass credential goes through. The credential sleeps in the vault. An incident wakes it, it is used under watch, and it is put back to sleep with a new secret.</p>
+        <figure class="diagram-card" style="--c:#7df2d0;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 460" role="img" aria-labelledby="w1t w1d"><title id="w1t">Break-glass cycle</title><desc id="w1d">A dormant vaulted credential is invoked after an incident is declared. Access goes through an approval path, or through a no-approval path using a sealed copy held by two people when tools are down. The credential is used, with the session recorded and every step logged, and an alert fires on any sign-in or checkout. After use the person closes out with a written justification, the credential is rotated the same day and returns to the vault dormant. A drill every quarter tests the whole route.</desc><defs><marker id="bgm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><g class="node" style="--i:0"><rect x="30" y="40" width="170" height="110" rx="12"/><text class="ttl" x="115.0" y="89.0" text-anchor="middle">Dormant</text><text class="sub" x="115.0" y="107.0" text-anchor="middle">sealed in the vault,</text><text class="sub" x="115.0" y="123.0" text-anchor="middle">apart from daily accounts</text></g><g class="badge"><circle cx="32" cy="42" r="11"/><text x="32" y="46">1</text></g><g class="node" style="--i:0.7"><rect x="270" y="40" width="170" height="110" rx="12"/><text class="ttl" x="355.0" y="89.0" text-anchor="middle">Invoke</text><text class="sub" x="355.0" y="107.0" text-anchor="middle">named person, reason,</text><text class="sub" x="355.0" y="123.0" text-anchor="middle">each use logged</text></g><g class="badge"><circle cx="272" cy="42" r="11"/><text x="272" y="46">2</text></g><g class="node" style="--i:1.4"><rect x="510" y="40" width="170" height="50" rx="12"/><text class="ttl" x="595.0" y="67.0" text-anchor="middle">Approval path</text><text class="sub" x="595.0" y="85.0" text-anchor="middle">named approver says yes</text></g><g class="node" style="--i:1.4"><rect x="510" y="100" width="170" height="50" rx="12"/><text class="ttl" x="595.0" y="127.0" text-anchor="middle">No-approval path</text><text class="sub" x="595.0" y="145.0" text-anchor="middle">sealed copy, two people</text></g><g class="badge"><circle cx="512" cy="42" r="11"/><text x="512" y="46">3</text></g><g class="node" style="--i:2.1"><rect x="750" y="40" width="170" height="110" rx="12"/><text class="ttl" x="835.0" y="89.0" text-anchor="middle">Use</text><text class="sub" x="835.0" y="107.0" text-anchor="middle">short, recorded,</text><text class="sub" x="835.0" y="123.0" text-anchor="middle">on a secure workstation</text></g><g class="badge"><circle cx="752" cy="42" r="11"/><text x="752" y="46">4</text></g><path class="flow" d="M 200 95 L 268 95" marker-end="url(#bgm)"/><text class="sub" x="235" y="70" text-anchor="middle">incident</text><text class="sub" x="235" y="84" text-anchor="middle">declared</text><path class="flow" d="M 440 95 C 475 95 475 65 508 65" marker-end="url(#bgm)"/><path class="flow" d="M 440 95 C 475 95 475 125 508 125" marker-end="url(#bgm)"/><path class="flow" d="M 680 65 C 715 65 715 95 748 95" marker-end="url(#bgm)"/><path class="flow" d="M 680 125 C 715 125 715 95 748 95" marker-end="url(#bgm)"/><text class="sub" x="478" y="44" text-anchor="middle">request</text><text class="sub" x="478" y="146" text-anchor="middle">tools down</text><text class="sub" x="715" y="44" text-anchor="middle">approved</text><text class="sub" x="715" y="146" text-anchor="middle">two people</text><rect class="logbar" x="270" y="176" width="610" height="50" rx="10"/><text class="ttl" x="575" y="197" text-anchor="middle">Logging and session recording, all the way through</text><text class="sub" x="575" y="215" text-anchor="middle">kept outside the platform, so its admins cannot edit them</text><path class="log" d="M 355 150 L 355 176"/><path class="log" d="M 835 150 L 835 176"/><g class="node" style="--i:1.2"><rect x="30" y="176" width="170" height="64" rx="12"/><text class="ttl" x="115.0" y="202.0" text-anchor="middle">Alert</text><text class="sub" x="115.0" y="220.0" text-anchor="middle">on-call and security</text><text class="sub" x="115.0" y="236.0" text-anchor="middle">test alert proves the route</text></g><path class="flow" d="M 270 201 L 202 201" marker-end="url(#bgm)"/><text class="sub" x="236" y="192" text-anchor="middle">any sign-in</text><text class="sub" x="236" y="222" text-anchor="middle">or checkout</text><g class="node" style="--i:3.0"><rect x="750" y="290" width="170" height="64" rx="12"/><text class="ttl" x="835.0" y="316.0" text-anchor="middle">Close out</text><text class="sub" x="835.0" y="334.0" text-anchor="middle">written justification,</text><text class="sub" x="835.0" y="350.0" text-anchor="middle">reviewed in a set time</text></g><g class="badge"><circle cx="752" cy="292" r="11"/><text x="752" y="296">5</text></g><g class="node" style="--i:3.6"><rect x="510" y="290" width="170" height="64" rx="12"/><text class="ttl" x="595.0" y="316.0" text-anchor="middle">Rotate</text><text class="sub" x="595.0" y="334.0" text-anchor="middle">new secret,</text><text class="sub" x="595.0" y="350.0" text-anchor="middle">set the same day</text></g><g class="badge"><circle cx="512" cy="292" r="11"/><text x="512" y="296">6</text></g><g class="node" style="--i:4.2"><rect x="270" y="290" width="170" height="64" rx="12"/><text class="ttl" x="355.0" y="316.0" text-anchor="middle">Back to dormant</text><text class="sub" x="355.0" y="334.0" text-anchor="middle">in the vault, sealed</text><text class="sub" x="355.0" y="350.0" text-anchor="middle">copy refreshed</text></g><g class="badge"><circle cx="272" cy="292" r="11"/><text x="272" y="296">7</text></g><path class="flow" d="M 900 150 L 900 288" marker-end="url(#bgm)"/><text class="sub" x="890" y="246" text-anchor="end">done or</text><text class="sub" x="890" y="260" text-anchor="end">timed out</text><path class="flow" d="M 750 322 L 682 322" marker-end="url(#bgm)"/><text class="sub" x="716" y="312" text-anchor="middle">justified</text><path class="flow" d="M 510 322 L 442 322" marker-end="url(#bgm)"/><text class="sub" x="476" y="312" text-anchor="middle">new secret</text><path class="flow" d="M 270 322 L 14 322 L 14 95 L 28 95" marker-end="url(#bgm)"/><text class="sub" x="142" y="312" text-anchor="middle">ready for next time</text><rect class="logbar" x="30" y="392" width="890" height="50" rx="10"/><text class="ttl" x="475" y="413" text-anchor="middle">Drill every quarter and after key changes</text><text class="sub" x="475" y="431" text-anchor="middle">sign in, see the alert arrive, open the sealed copy with two people, then rotate</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="14s" begin="0s" repeatCount="indefinite" path="M 200 95 L 270 95 L 440 95 C 475 95 475 65 510 65 L 680 65 C 715 65 715 95 750 95 L 900 95 L 900 322 L 680 322 L 440 322 L 270 322 L 14 322 L 14 95 L 30 95"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="7s"/><animateMotion dur="14s" begin="7s" repeatCount="indefinite" path="M 200 95 L 270 95 L 440 95 C 475 95 475 125 510 125 L 680 125 C 715 125 715 95 750 95 L 900 95 L 900 322 L 680 322 L 440 322 L 270 322 L 14 322 L 14 95 L 30 95"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 940" role="img" aria-labelledby="t1t t1d"><title id="t1t">Break-glass cycle</title><desc id="t1d">Dormant credential, invoke after an incident is declared, an approval path or a no-approval path with a sealed copy held by two people, use with the session recorded, close out with a written justification, rotate the same day, and return to the vault dormant. Logging and alerting run throughout, and a drill every quarter tests the route.</desc><defs><marker id="bgt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><g class="node" style="--i:0"><rect x="30" y="10" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="40.0" text-anchor="middle">Dormant</text><text class="sub" x="180.0" y="58.0" text-anchor="middle">sealed, apart from daily accounts</text></g><g class="badge"><circle cx="32" cy="12" r="11"/><text x="32" y="16">1</text></g><g class="node" style="--i:0.7"><rect x="30" y="100" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="130.0" text-anchor="middle">Invoke</text><text class="sub" x="180.0" y="148.0" text-anchor="middle">named person, reason, each use logged</text></g><g class="badge"><circle cx="32" cy="102" r="11"/><text x="32" y="106">2</text></g><g class="node" style="--i:1.4"><rect x="30" y="190" width="300" height="110" rx="12"/><text class="ttl" x="180" y="216" text-anchor="middle">Approval path</text><text class="sub" x="180" y="234" text-anchor="middle">named approver says yes</text><text class="ttl" x="180" y="266" text-anchor="middle">No-approval path</text><text class="sub" x="180" y="284" text-anchor="middle">tools down: sealed copy, two people</text></g><g class="badge"><circle cx="32" cy="192" r="11"/><text x="32" y="196">3</text></g><g class="node" style="--i:2.1"><rect x="30" y="334" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="364.0" text-anchor="middle">Use</text><text class="sub" x="180.0" y="382.0" text-anchor="middle">short, recorded, secure workstation</text></g><g class="badge"><circle cx="32" cy="336" r="11"/><text x="32" y="340">4</text></g><g class="node" style="--i:3.0"><rect x="30" y="424" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="454.0" text-anchor="middle">Close out</text><text class="sub" x="180.0" y="472.0" text-anchor="middle">justification, reviewed in a set time</text></g><g class="badge"><circle cx="32" cy="426" r="11"/><text x="32" y="430">5</text></g><g class="node" style="--i:3.6"><rect x="30" y="514" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="544.0" text-anchor="middle">Rotate</text><text class="sub" x="180.0" y="562.0" text-anchor="middle">new secret the same day</text></g><g class="badge"><circle cx="32" cy="516" r="11"/><text x="32" y="520">6</text></g><g class="node" style="--i:4.2"><rect x="30" y="604" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="634.0" text-anchor="middle">Back to dormant</text><text class="sub" x="180.0" y="652.0" text-anchor="middle">vaulted, sealed copy refreshed</text></g><g class="badge"><circle cx="32" cy="606" r="11"/><text x="32" y="610">7</text></g><path class="flow" d="M 180 66 L 180 98" marker-end="url(#bgt)"/><text class="sub" x="192" y="86" text-anchor="start">incident declared</text><path class="flow" d="M 180 156 L 180 188" marker-end="url(#bgt)"/><text class="sub" x="192" y="176" text-anchor="start">request</text><path class="flow" d="M 180 300 L 180 332" marker-end="url(#bgt)"/><text class="sub" x="192" y="320" text-anchor="start">credential released</text><path class="flow" d="M 180 390 L 180 422" marker-end="url(#bgt)"/><text class="sub" x="192" y="410" text-anchor="start">done or timed out</text><path class="flow" d="M 180 480 L 180 512" marker-end="url(#bgt)"/><text class="sub" x="192" y="500" text-anchor="start">justified</text><path class="flow" d="M 180 570 L 180 602" marker-end="url(#bgt)"/><text class="sub" x="192" y="590" text-anchor="start">new secret set</text><path class="flow" d="M 30 632 L 14 632 L 14 38 L 28 38" marker-end="url(#bgt)"/><path class="log" d="M 330 128 L 350 128 L 350 760 L 330 760"/><path class="log" d="M 330 362 L 350 362"/><rect class="logbar" x="30" y="700" width="300" height="120" rx="12"/><text class="ttl" x="180" y="726" text-anchor="middle">Logging and alerting, throughout</text><text class="sub" x="180" y="748" text-anchor="middle">every step logged, session recorded</text><text class="sub" x="180" y="766" text-anchor="middle">alert on any sign-in or checkout</text><text class="sub" x="180" y="784" text-anchor="middle">test alert proves the route works</text><text class="sub" x="180" y="802" text-anchor="middle">logs kept outside the platform</text><rect class="logbar" x="30" y="854" width="300" height="70" rx="12"/><text class="ttl" x="180" y="880" text-anchor="middle">Drill every quarter</text><text class="sub" x="180" y="898" text-anchor="middle">sign in, see the alert, open the</text><text class="sub" x="180" y="914" text-anchor="middle">sealed copy with two people</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="10s" begin="0s" repeatCount="indefinite" path="M 180 10 L 180 660"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="5s"/><animateMotion dur="10s" begin="5s" repeatCount="indefinite" path="M 180 10 L 180 660"/></circle></svg>
+          <figcaption>The dots follow one use of the credential: invoked, approved or taken by the sealed fast path, used, closed out, rotated and returned. The bars show what runs alongside it. Break-glass credentials live apart from standing accounts, every invocation is a distinct, logged event, and the credential is rotated the same day and returned to the vault dormant.</figcaption>
         </figure>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Separated break-glass credentials from standing accounts entirely, so invoking them is a distinct, logged event rather than a quiet reuse of existing access.</li>
-          <li>Added an advisory check that flags break-glass usage matching normal-hours, repeat-user patterns for reviewer attention, instead of treating every invocation as equally urgent.</li>
-          <li>Required a post-use justification and automatic credential rotation after every invocation, closing the loop the same day rather than at the next audit cycle.</li>
+      <section id="workflow">
+        <h2>One use, start to finish</h2>
+        <ol class="steps">
+          <li><h3>Declare the emergency</h3><p>A person in a named role says that normal access has failed and gives the reason, with an incident reference. Nobody is handed break-glass access because they asked politely.</p><div class="why"><span><b>Guardrail</b>Only named roles may declare</span><span><b>Evidence</b>Incident reference and stated reason</span></div></li>
+          <li><h3>Approve, or take the fast path</h3><p>Normally a named approver says yes, and the credential is released. If the approval tooling is itself down, the fast path applies: two custodians open the sealed copy together, and the approval is recorded as soon as tooling is back.</p><div class="why"><span><b>Guardrail</b>Fast path needs two people</span><span><b>Evidence</b>Approval record or custody log entry</span></div></li>
+          <li><h3>Invoke</h3><p>The checkout or the unsealing is a distinct, logged event. It is never a quiet reuse of a standing account. Any sign-in or checkout raises an alert to the on-call person and to security.</p><div class="why"><span><b>Guardrail</b>Alert on any use</span><span><b>Evidence</b>Alert record and log entry</span></div></li>
+          <li><h3>Use it, under watch</h3><p>The person works from a secure workstation, stays inside the incident, and the session is recorded where the platform can record it. Where it cannot, the person keeps a timed note of each action so the review has something to check against the system logs.</p><div class="why"><span><b>Guardrail</b>Use limited to the incident and a time box</span><span><b>Evidence</b>Session recording or timed action notes</span></div></li>
+          <li><h3>Close out with a justification</h3><p>The person writes down why normal access was not enough, what was done and what the outcome was. A missing justification becomes an open finding that somebody chases.</p><div class="why"><span><b>Guardrail</b>No justification, open finding</span><span><b>Evidence</b>Justification linked to the incident</span></div></li>
+          <li><h3>Rotate and return</h3><p>The credential is rotated the same day. The new secret is checked with a test sign-in, the sealed copy is refreshed, and the credential goes back to the vault dormant until the next incident.</p><div class="why"><span><b>Guardrail</b>Same-day rotation, then a test sign-in</span><span><b>Evidence</b>Rotation record with time</span></div></li>
+          <li><h3>Review within a fixed time</h3><p>Someone who did not use the credential reads the logs against the justification within the agreed window. An advisory check flags usage that matches normal-hours, repeat-user patterns, so the reviewer looks hardest where use looks routine and not urgent. The check advises and a person decides.</p><div class="why"><span><b>Guardrail</b>Reviewer is independent of the user</span><span><b>Evidence</b>Signed review with findings</span></div></li>
+        </ol>
+      </section>
+
+      <section id="alerting">
+        <h2>Alerting, and checking the alerts work</h2>
+        <p class="body-text">Microsoft&rsquo;s guidance is to configure alerts for every use of an emergency access account and to capture sign-in and audit logs for review. Its worked example uses Azure Monitor with a threshold of greater than zero and critical severity, and it says Microsoft Sentinel or other tools can do the same job and send email and SMS to administrators. The same rule applies to the other types: any checkout, unsealing or sign-in raises an alert.</p>
+        <p class="body-text">An alert that has quietly stopped is worse than none, because people believe they are covered. So I add a second layer that watches the first:</p>
+        <ul class="plain-list">
+          <li><strong>A scheduled test event.</strong> The drill sign-in, or a synthetic one, must produce an alert. If the alert does not arrive, that is a finding, raised the same day.</li>
+          <li><strong>A missing-heartbeat rule.</strong> If the expected test event is not seen in the log store, something upstream has broken, and that raises its own alert.</li>
+          <li><strong>More than one route.</strong> Alerts go out over channels that do not share a failure mode, such as email and SMS, and they do not rely only on the systems that might be down.</li>
+          <li><strong>Logs outside the platform.</strong> Records go to a store that the platform&rsquo;s own admins cannot edit.</li>
+          <li><strong>Security monitoring knows about drills.</strong> Microsoft&rsquo;s validation steps include making sure monitoring staff are aware when account-check activity is under way, so a drill does not start a real incident.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Every break-glass invocation now produces a reviewed justification and a rotated credential within the same day, turning emergency access from an audit blind spot into an evidenced, bounded exception.</p>
+      <section id="drills">
+        <h2>Drills: how often, and what they prove</h2>
+        <p class="body-text">For the tenant accounts, Microsoft&rsquo;s guidance says to validate at regular intervals and for key changes, at least every 90 days, for example every quarter. It also names triggers such as a change in IT staff or a change in the organization&rsquo;s subscriptions. I use the same rhythm for the other types, as my own choice and not as something that document prescribes.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>A drill checks</th><th>If it fails, you learn</th></tr></thead>
+          <tbody>
+            <tr><td data-label="A drill checks">The credential signs in and can do administrative work under today&rsquo;s policies</td><td data-label="If it fails, you learn">A policy change, expiry or clean-up job has broken it. You found out on a quiet day</td></tr>
+            <tr><td data-label="A drill checks">Authorized people can find and open the sealed copy, with two of them present</td><td data-label="If it fails, you learn">The custody list is out of date, or a keyholder cannot be reached</td></tr>
+            <tr><td data-label="A drill checks">The alert arrives, at the right people, in the time you expect</td><td data-label="If it fails, you learn">The pipeline has a gap, or the wrong people are on the list</td></tr>
+            <tr><td data-label="A drill checks">The use is logged and reviewable</td><td data-label="If it fails, you learn">Events are missing, or the log store is not receiving them</td></tr>
+            <tr><td data-label="A drill checks">Rotation and the sealed-copy refresh work end to end</td><td data-label="If it fails, you learn">The sealed copy would have been stale in a real emergency</td></tr>
+            <tr><td data-label="A drill checks">The documented process is current and the people are trained</td><td data-label="If it fails, you learn">The runbook describes a system that has since changed</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">A drill shows that the route works. It says nothing about whether incident response itself is any good, and I keep those two exercises separate.</p>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#break-glass-access</span><span>#emergency-access</span><span>#privileged-session-audit</span></div>
+      <section id="onboarding">
+        <h2>Onboarding the process</h2>
+        <p class="body-text">I treat break-glass as a process to be onboarded under the organisation&rsquo;s policy, the same as any other privileged access. That means:</p>
+        <ul class="plain-list">
+          <li>The password policy is reviewed and refined for these accounts, which are used rarely and by people under pressure.</li>
+          <li>Naming conventions are approved and documented.</li>
+          <li>Vaulting security is documented, with business approval.</li>
+          <li>High availability and disaster recovery are considered from the start. When everything runs in the cloud, the emergency route must not sit on the same dependency as the thing it recovers.</li>
+          <li>The process, the custody list and the drill record are written down where the next person will find them.</li>
+        </ul>
       </section>
+
+      <section id="example">
+        <h2>Example: the sign-in service fails in the night</h2>
+        <p class="body-text">This is an illustration of the process, not a specific event.</p>
+        <div class="compare">
+          <div class="bad"><h3>During</h3><ul><li>The identity provider is down. Admins cannot sign in to the PAM platform, which uses that provider.</li><li>The on-call engineer declares the incident and gives the reason.</li><li>The approval tool sits behind the same provider, so the fast path applies. Two custodians open the sealed recovery credential together and log it.</li><li>An alert reaches the on-call person and security as soon as the credential is used.</li><li>The engineer restores sign-in from a secure workstation, and the session is recorded.</li></ul></div>
+          <div class="good"><h3>Afterwards</h3><ul><li>The engineer writes the justification: what failed, what was done, what was changed.</li><li>The recovery credential is rotated the same day, tested with a sign-in and returned to sealed storage with a fresh copy.</li><li>A reviewer who was not involved checks the log against the justification within the agreed window.</li><li>The custody log, alert, recording, rotation record and review are kept together as the evidence for that use.</li></ul></div>
+        </div>
+      </section>
+
+      <section id="roadmap">
+        <h2>How to build it</h2>
+        <ol class="phases">
+          <li><b>1. Decide what needs an emergency route</b>List the layers that can lock people out, and name an owner for each.<small><em>Done when</em>Each type has an owner and an approved scope.</small></li>
+          <li><b>2. Write the rules and get them approved</b>Password policy, naming, vaulting security and the use process, each signed off by the business.<small><em>Done when</em>The documents exist and the approvers are on record.</small></li>
+          <li><b>3. Build routes that stand alone</b>Cloud-only tenant accounts, sealed copies with two custodians, local admin accounts, and high availability and recovery design for the platform.<small><em>Done when</em>No route needs the system it recovers.</small></li>
+          <li><b>4. Wire the logs and alerts</b>Alert on any sign-in or checkout, send logs outside the platform, and add the test event and the missing-heartbeat rule.<small><em>Done when</em>A test use produces an alert that a person receives.</small></li>
+          <li><b>5. Run the first drill</b>Go through the whole cycle with monitoring staff aware, and fix what breaks.<small><em>Done when</em>A full drill passes and the record is filed.</small></li>
+          <li><b>6. Run it, review every use, retire what is finished</b>Drills on the calendar, every use reviewed in the agreed window, and accounts, sealed copies and custody entries retired when a system or a keyholder goes.<small><em>Done when</em>Retirement is a step with an owner, and the logs are archived for the retention period.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Credentials separate from standing accounts</td><td data-label="What it stops">Quiet reuse of daily access</td><td data-label="How you check it">Compare the break-glass list with the standing-admin list</td></tr>
+            <tr><td data-label="Guardrail">No dependency on the PAM platform, the identity provider or the MFA service</td><td data-label="What it stops">An emergency account that fails with the systems it is meant to cover</td><td data-label="How you check it">Drill with each dependency blocked in a test setting</td></tr>
+            <tr><td data-label="Guardrail">Excluded from policies that block or restrict sign-in</td><td data-label="What it stops">Lock-out by your own conditional access rules</td><td data-label="How you check it">Test sign-in after every policy change</td></tr>
+            <tr><td data-label="Guardrail">Phishing-resistant method that differs from daily admins</td><td data-label="What it stops">One failed method locking out everyone</td><td data-label="How you check it">Review of registered methods at each drill</td></tr>
+            <tr><td data-label="Guardrail">Excluded from stale-account clean-up</td><td data-label="What it stops">A dormant account disabled or removed for lack of use</td><td data-label="How you check it">Clean-up job exclusions checked against the account list</td></tr>
+            <tr><td data-label="Guardrail">Alert on any sign-in or checkout</td><td data-label="What it stops">Silent use</td><td data-label="How you check it">Trigger a test and time the alert</td></tr>
+            <tr><td data-label="Guardrail">The alert pipeline has its own heartbeat</td><td data-label="What it stops">An alert route that broke without anyone noticing</td><td data-label="How you check it">A missing test event raises an alert of its own</td></tr>
+            <tr><td data-label="Guardrail">Two custodians for the sealed copy</td><td data-label="What it stops">One person holding a master key</td><td data-label="How you check it">Custody log shows two names on every opening</td></tr>
+            <tr><td data-label="Guardrail">Justification and independent review</td><td data-label="What it stops">Use with no account of it</td><td data-label="How you check it">Report of uses with no justification or no review</td></tr>
+            <tr><td data-label="Guardrail">Same-day rotation and return to dormant</td><td data-label="What it stops">A used secret staying live</td><td data-label="How you check it">Rotation time compared with the use time</td></tr>
+            <tr><td data-label="Guardrail">Logs kept outside the platform</td><td data-label="What it stops">Evidence edited by the people it covers</td><td data-label="How you check it">Confirm platform admins cannot change the log store</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Who is allowed to use break-glass, and who approved that list?</td><td data-label="Where the answer comes from">Custody and authorized-user list, reviewed at each drill</td></tr>
+            <tr><td data-label="Question">How many times was it used, and why?</td><td data-label="Where the answer comes from">Alert and log records joined to the justifications</td></tr>
+            <tr><td data-label="Question">Was every use justified and reviewed in time?</td><td data-label="Where the answer comes from">Justification and review timestamps against each use</td></tr>
+            <tr><td data-label="Question">Was the credential rotated after each use?</td><td data-label="Where the answer comes from">Rotation history against use events</td></tr>
+            <tr><td data-label="Question">How do you know it works?</td><td data-label="Where the answer comes from">Drill records: date, who took part, what passed, what was fixed</td></tr>
+            <tr><td data-label="Question">Would you know if someone used it quietly?</td><td data-label="Where the answer comes from">Alert test results and heartbeat history</td></tr>
+            <tr><td data-label="Question">Who can change the logs?</td><td data-label="Where the answer comes from">Permissions on the log store</td></tr>
+          </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-2</code></td><td data-label="What it asks for">Defining the account types that are allowed, monitoring how accounts are used, reviewing them, and changing the authenticators of shared or group accounts when people leave the group.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-2(2)</code></td><td data-label="What it asks for">Automatically removing or disabling temporary and emergency accounts after an organization-defined period. It fits designs that enable an account only for the incident.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-2(4)</code>, <code class="ref">AC-2(12)</code></td><td data-label="What it asks for">Automatically auditing account creation, modification, enabling, disabling and removal, and reporting atypical use of accounts to defined people or roles. The advisory check supports the second.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for">Deciding which events are logged and generating the audit records for them.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">IA-5</code></td><td data-label="What it asks for">Managing authenticators: protecting them from disclosure, changing or refreshing them on a schedule or when defined events occur, and changing them for group or role accounts when membership changes.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">CP-2</code></td><td data-label="What it asks for">A contingency plan with recovery objectives, named roles and contacts, reviewed and updated with lessons from testing.</td></tr>
+            <tr><td data-label="Standard">ISO/IEC 27001:2022</td><td data-label="Reference"><code class="ref">A.8.2</code></td><td data-label="What it asks for">The allocation and use of privileged access rights is restricted and managed.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">A.5.18</code></td><td data-label="What it asks for">Access rights are provisioned, reviewed, modified and removed in line with the access control policy and rules.</td></tr>
+            <tr><td data-label="Standard">PCI DSS v4.0</td><td data-label="Reference"><code class="ref">8.2.2</code></td><td data-label="What it asks for">Group, shared or generic accounts are used only when necessary, on an exception basis: use is limited to the time needed, the business justification is documented, management approves it, individual identity is confirmed before access, and every action is attributable to an individual.</td></tr>
+            <tr><td data-label="Standard">Microsoft Entra ID guidance</td><td data-label="Reference">Emergency access accounts</td><td data-label="What it asks for">Two or more cloud-only accounts, excluded from blocking conditional access policies, phishing-resistant sign-in, alerts on every use, and validation at least every 90 days.</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">The ISO control wording above is paraphrased. The standard itself is sold by ISO, so I checked it against published summaries of the control text. NIST and Microsoft wording was read from the published pages.</p>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Platform product owner</td><td data-label="Owns">The break-glass process, which types exist, and the drill calendar</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Password and secret rules, naming, sign-in methods and exception criteria</td></tr>
+            <tr><td data-label="Role">Custodians</td><td data-label="Owns">Their part of each sealed credential and the custody log. They are named, trained and present at drills</td></tr>
+            <tr><td data-label="Role">Platform and infrastructure engineering</td><td data-label="Owns">Keeping each route working, including high availability and recovery for the vault, and retesting after changes</td></tr>
+            <tr><td data-label="Role">Security monitoring</td><td data-label="Owns">Triage of alerts and the health of the alert pipeline</td></tr>
+            <tr><td data-label="Role">Independent reviewer</td><td data-label="Owns">The review of every use, separate from the person who used the credential</td></tr>
+            <tr><td data-label="Role">Business approver</td><td data-label="Owns">Sign-off on the policy, the vaulting security and the list of who may use it</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>It works on day one and is never tried again.</strong> A policy change, a departed keyholder or a clean-up job breaks it, and nobody finds out until the emergency.</li>
+          <li><strong>The recovery credential is inside the thing it recovers.</strong> The vault holds the only copy of the vault&rsquo;s own recovery secret.</li>
+          <li><strong>Clean-up jobs disable the dormant account.</strong> An account with no sign-ins looks stale to a tidy-up script unless it is excluded on purpose.</li>
+          <li><strong>The alert goes nowhere.</strong> It lands in a mailbox nobody watches, or the route broke and no test noticed.</li>
+          <li><strong>The fast path becomes the normal path.</strong> If approval is slow, people reach for the glass. The advisory check is there to catch that pattern, and slow approval is the thing to fix.</li>
+          <li><strong>Sealed copies drift.</strong> The vault secret is rotated and the sealed copy is left behind.</li>
+          <li><strong>Custody goes stale.</strong> People leave or change roles and the list, the combinations and the training are not updated.</li>
+          <li><strong>Too many accounts with too much power.</strong> Each extra account is one more thing to watch.</li>
+          <li><strong>Everything on one cloud dependency.</strong> The platform and the route to recover it can fail together if they share a region or a provider service.</li>
+          <li><strong>A drill that only reads the procedure.</strong> Nobody signs in, nobody opens the seal, and the drill proves nothing.</li>
+        </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep, not a record of any one project.</p>
+        <ul class="plain-list">
+          <li><strong>I draw the dependencies first.</strong> Before I design an emergency route I write down what it needs in order to work, then ask whether any of that could be down at the same time.</li>
+          <li><strong>I write the process down and get it approved before I build.</strong> Policy, naming and vaulting security are documented and signed off by the business, so the design survives a change of people.</li>
+          <li><strong>I review the password policy for these accounts.</strong> A rule written for daily users does not suit a secret that is used rarely, by someone in a hurry, and kept sealed in between.</li>
+          <li><strong>I design for the platform being down.</strong> High availability and recovery are part of the first design, and I check that the emergency route does not share a dependency with what it recovers.</li>
+          <li><strong>I put the drill on a calendar and tell monitoring beforehand.</strong> A drill that is not scheduled does not happen.</li>
+          <li><strong>I fix a slow approval path instead of tolerating the workaround.</strong> When people reach for break-glass to skip a queue, the queue is the defect.</li>
+          <li><strong>I keep the advisory check advisory.</strong> It points a reviewer at use that looks routine. A person makes the call.</li>
+          <li><strong>I keep the list short.</strong> Every break-glass account has an owner, a reason and a drill, or it is retired.</li>
+        </ul>
+        <p class="body-text">How this fits into a whole program is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access">Microsoft Learn: Manage emergency access admin accounts in Microsoft Entra ID</a> (page last updated 5 June 2026, read 1 October 2026)</li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-2/">AC-2 Account Management, Rev. 5 text (CSF Tools)</a></li>
+          <li><a href="https://grcacademy.io/nist-800-53/controls/ac-2-2/">AC-2(2) Automated Temporary and Emergency Account Management (GRC Academy)</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/ia/ia-5/">IA-5 Authenticator Management, Rev. 5 text (CSF Tools)</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/cp/cp-2/">CP-2 Contingency Plan, Rev. 5 text (CSF Tools)</a></li>
+          <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022, Annex A</a></li>
+          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0, PCI Security Standards Council</a></li>
+          <li><a href="https://github.com/MicrosoftDocs/entra-docs/blob/main/docs/standards/pci-requirement-8.md">Microsoft Entra documentation: PCI DSS requirement 8 (quotes 8.2.2)</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. Control numbers are as published in the standards listed above, and the Microsoft guidance is for Microsoft Entra ID as an example of the identity provider type.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#break-glass-access</span><span>#emergency-access</span><span>#privileged-session-audit</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#7df2d0" href="/case-studies/jit-jea-elevation/"><small><i></i>&larr; Previous</small><strong>Just-in-Time &amp; Just-Enough-Access Elevation</strong></a><a class="next" style="--c:#c4b5fd" href="/case-studies/secrets-consolidation/"><small><i></i>Next &rarr;</small><strong>Secrets Discovery &amp; Consolidation</strong></a></div></nav>
       <footer class="page-footer">
@@ -143,7 +342,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
