@@ -243,21 +243,6 @@ section.block:last-of-type { border-bottom: 0; }
   .grid-3 > article:nth-last-child(-n+3) { border-bottom: 0; }
 }
 
-/* Case-study list */
-.cs-list { border-top: 1px solid var(--line); }
-.cs-row { display: grid; grid-template-columns: 34px 1fr; gap: 6px 16px; padding: 26px 0; border-bottom: 1px solid var(--line); align-items: start; }
-.cs-num { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--cyan); padding-top: 22px; }
-.cs-cat { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }
-.cs-cat i { width: 7px; height: 7px; border-radius: 50%; background: var(--dot, var(--cyan)); }
-.cs-row h3 { margin: 6px 0 6px; font-size: clamp(1.25rem, 2.4vw, 1.75rem); font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; }
-.cs-row h3 a { text-decoration: none; }
-.cs-row h3 a:hover { color: var(--cyan); }
-.cs-row p { color: var(--ink); opacity: 0.86; max-width: 60em; font-size: 0.98rem; line-height: 1.6; }
-.cs-row .more { display: inline-block; margin-top: 10px; font-weight: 700; font-size: 13.5px; text-decoration: none; border-bottom: 1px solid var(--line-strong); padding-bottom: 2px; color: var(--muted); }
-.cs-row .more:hover { color: var(--cyan); border-color: var(--cyan); }
-.cs-row.featured h3 a { color: var(--cyan); }
-.cs-all { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
-
 /* Platforms */
 .platform-note { color: var(--subtle); font-size: 13px; max-width: 46em; margin-top: 4px; line-height: 1.7; }
 .platform-groups { display: grid; gap: 0; border-top: 1px solid var(--line); }
@@ -326,3 +311,95 @@ section.block:last-of-type { border-bottom: 0; }
   @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---------- Design refinement ---------- */
+/* Section dividers: fading hairline instead of a hard rule */
+section.block { border-bottom: 0; position: relative; }
+section.block::before { content: ""; position: absolute; top: 0; left: 50%; width: min(1240px, 100% - 2 * var(--page-pad)); transform: translateX(-50%); height: 1px; background: linear-gradient(90deg, transparent, var(--line-strong), transparent); }
+
+/* Reading-progress bar in the header (CSS only; ignored where unsupported) */
+.site-header::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--cyan), var(--green), var(--amber)); transform-origin: 0 50%; transform: scaleX(0); }
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .site-header::after { animation: progress linear both; animation-timeline: scroll(root); }
+    @keyframes progress { to { transform: scaleX(1); } }
+  }
+}
+
+/* Scroll reveal: content is visible by default, only animated where the browser supports it */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    @keyframes reveal { from { opacity: 0.45; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  }
+}
+
+/* Hero: soft glow behind the portrait, and the decision path lights up in sequence */
+.hero-visual::before { content: ""; position: absolute; inset: -8% -16% 6% -16%; background: radial-gradient(closest-side, rgba(88,230,246,0.22), rgba(255,159,67,0.07) 60%, transparent 75%); filter: blur(14px); z-index: -1; }
+.hero-visual { isolation: isolate; }
+.path-steps li { position: relative; }
+.path-steps li small { transition: color .2s; }
+@media (prefers-reduced-motion: no-preference) {
+  .path-steps li small { animation: stepglow 7.5s ease-in-out infinite; }
+  .path-steps li:nth-child(2) small { animation-delay: 1.5s; }
+  .path-steps li:nth-child(3) small { animation-delay: 3s; }
+  .path-steps li:nth-child(4) small { animation-delay: 4.5s; }
+  .path-steps li:nth-child(5) small { animation-delay: 6s; }
+  @keyframes stepglow { 0%, 16%, 100% { color: var(--cyan); text-shadow: none; } 4%, 12% { color: #fff; text-shadow: 0 0 10px var(--cyan); } }
+}
+
+/* Stats: quiet hover */
+.stats li { transition: background .2s; }
+.stats li:hover { background: rgba(88,230,246,0.05); }
+
+/* Expertise cells: icon, hover glow */
+.cell-top { display: flex; align-items: center; justify-content: space-between; }
+.ex-icon { width: 28px; height: 28px; color: var(--cyan); opacity: .85; }
+.grid-3 > article { transition: background .25s; }
+.grid-3 > article:hover { background: radial-gradient(circle at 0 0, rgba(88,230,246,0.08), transparent 70%); }
+.grid-3 > article:hover .ex-icon { opacity: 1; filter: drop-shadow(0 0 8px rgba(88,230,246,.5)); }
+.chips span { transition: border-color .2s, color .2s; }
+.grid-3 > article:hover .chips span { border-color: rgba(88,230,246,.4); }
+
+/* Case-study cards */
+.cs-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+.cs-card { --c: var(--cyan); position: relative; display: flex; flex-direction: column; overflow: hidden; background: linear-gradient(180deg, rgba(13,27,45,0.7), rgba(7,16,29,0.9)); border: 1px solid var(--line); border-radius: var(--radius); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.cs-card:hover, .cs-card:focus-within { transform: translateY(-4px); border-color: color-mix(in srgb, var(--c) 55%, transparent); box-shadow: 0 22px 50px rgba(0,0,0,.45), 0 0 0 1px color-mix(in srgb, var(--c) 25%, transparent); }
+.cs-art { height: 132px; padding: 6px 0; color: var(--c); background: radial-gradient(circle at 70% 20%, color-mix(in srgb, var(--c) 18%, transparent), transparent 60%), linear-gradient(180deg, rgba(255,255,255,.03), transparent); border-bottom: 1px solid var(--line); overflow: hidden; }
+.cs-art svg { width: 100%; height: 100%; display: block; }
+.cs-body { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px 22px; flex: 1; }
+.cs-cat { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); }
+.cs-cat i, .cs-more i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); flex: none; }
+.cs-card h3 { font-size: 1.28rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.22; }
+.cs-card h3 a { text-decoration: none; }
+.cs-card h3 a::after { content: ""; position: absolute; inset: 0; }
+.cs-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.cs-card .more { margin-top: auto; padding-top: 6px; font-weight: 700; font-size: 13px; color: var(--c); }
+.cs-card:hover .more { text-decoration: underline; text-underline-offset: 4px; }
+@media (min-width: 700px) { .cs-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .cs-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.cs-more-title { margin: 56px 0 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--subtle); font-weight: 600; }
+.cs-more { display: grid; gap: 0; border-top: 1px solid var(--line); }
+.cs-more li { --c: var(--cyan); border-bottom: 1px solid var(--line); }
+.cs-more a { display: grid; grid-template-columns: 14px 1fr; column-gap: 12px; align-items: center; padding: 14px 6px; text-decoration: none; transition: background .2s, padding .2s; }
+.cs-more a:hover { background: rgba(255,255,255,.03); padding-left: 12px; }
+.cs-more span { font-weight: 600; font-size: .98rem; }
+.cs-more a:hover span { color: var(--c); }
+.cs-more small { grid-column: 2; color: var(--subtle); font-size: 12px; }
+@media (min-width: 900px) { .cs-more { grid-template-columns: repeat(2, 1fr); column-gap: 40px; } }
+.cs-all { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Platforms + buttons: small touches */
+.platform-group li { transition: border-color .2s, transform .2s; }
+.platform-group li:hover { border-color: rgba(88,230,246,.5); transform: translateY(-2px); }
+.btn { transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s; }
+.btn:hover { transform: translateY(-2px); }
+.research-card { transition: border-color .3s, box-shadow .3s; }
+.research-card:hover { border-color: rgba(88,230,246,.4); box-shadow: 0 30px 80px rgba(0,0,0,.4); }
+
+/* Keep the hero glow from widening the page on phones */
+.hero { overflow-x: clip; }
+
+/* Printing and tools that render the whole page at once should never see dimmed content */
+@media print { .reveal { animation: none !important; opacity: 1 !important; transform: none !important; } .site-header::after { display: none; } }
