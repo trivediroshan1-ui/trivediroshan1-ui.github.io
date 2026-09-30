@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="How to turn scattered passwords, keys and tokens into one service with clear owners, a short catalog and a lifecycle you can measure." />
+    <title>Credential Management Platform Strategy &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
+  </head>
+  <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <main id="main">
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+
+      <header class="hero">
+        <p class="eyebrow">Platform ownership &middot; Case study</p>
+        <h1>Credential Management Platform Strategy</h1>
+        <p class="dek">How to turn scattered passwords, keys and tokens into one service with clear owners, a short catalog, and a lifecycle you can measure.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+      </header>
+
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Credentials end up everywhere: vaults, config files, chat, wikis, pipeline variables. The problem is rarely a missing tool. It is that nobody owns the whole picture.</li>
+          <li>A platform fixes that with three things: a short service catalog, one named owner for every credential, and a lifecycle that runs the same way for all of them.</li>
+          <li>The best credential is one that does not exist. Where a short-lived identity will do, use it before you vault a long-lived secret.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">&ldquo;Credential&rdquo; covers a lot: passwords, API keys, SSH keys, tokens, database logins, cloud access keys and the secrets behind service accounts. In most companies each team grew its own way of handling them. One team uses a vault, another uses encrypted files, a third keeps them in pipeline variables, and some still sit in a shared document.</p>
+        <p class="body-text">Nothing is obviously broken until someone asks simple questions. Where does this credential live? Who owns it? When did it last change? Who has read it? If the answers take days to find, there is no control, only hope. The fix is to treat credential management as a service with users, a menu and rules, and not as a collection of tools.</p>
+      </section>
+
+      <section id="catalog">
+        <h2>The service catalog</h2>
+        <p class="body-text">Start by writing down what the platform offers, who it is for, and what it does not cover. A short catalog is easier to adopt than a long one, and it gives each request a clear place to go.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Service</th><th>For</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Service">Privileged access for people</td><td data-label="For">Admins, database owners, engineers on call</td><td data-label="What it does">Approved, recorded sessions to servers, databases and cloud accounts, with no standing admin rights</td></tr>
+            <tr><td data-label="Service">Secrets for applications</td><td data-label="For">Developers and platform teams</td><td data-label="What it does">Applications fetch secrets at runtime from one store. Nothing is copied into code or config.</td></tr>
+            <tr><td data-label="Service">Short-lived and dynamic credentials</td><td data-label="For">Applications and pipelines</td><td data-label="What it does">Credentials generated on demand that expire by themselves, so a leak has a short life</td></tr>
+            <tr><td data-label="Service">Service account management</td><td data-label="For">System owners</td><td data-label="What it does">Every machine account has an owner, a rotation policy and a record of where it is used</td></tr>
+            <tr><td data-label="Service">Inventory and reporting</td><td data-label="For">Security, risk and audit</td><td data-label="What it does">One view of what exists, who owns it, its age and its access history</td></tr>
+          </tbody></table></div>
+        <p class="body-text">Decide the boundaries early. Certificates, for example, often have their own lifecycle and owners. If they are out of scope for the first release, say so in the catalog.</p>
+      </section>
+
+      <section id="lifecycle">
+        <h2>One lifecycle for every credential</h2>
+        <p class="body-text">Whatever the credential type, it should move through the same six stages. The ring shows the loop, and the owner and policy set at the start stay attached the whole way.</p>
+        <figure class="diagram-card" style="--c:#7df2d0;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="ring" viewBox="0 0 420 420" role="img" aria-labelledby="d3t d3d">
+            <title id="d3t">Credential lifecycle</title>
+            <desc id="d3d">A credential moves through six stages in a loop: onboard, issue, use, rotate, monitor and retire. An owner and a policy stay attached at every stage.</desc>
+            <circle class="flow" cx="210" cy="210" r="145"/>
+            <circle class="dot" r="6" cx="0" cy="0"><animateMotion dur="12s" repeatCount="indefinite" path="M 210 65 A 145 145 0 0 1 210 355 A 145 145 0 0 1 210 65"/></circle>
+            <g class="node6" style="--i:0"><rect x="154.0" y="39.0" width="112" height="52" rx="12"/><text class="ttl" x="210.0" y="63.0" text-anchor="middle">Onboard</text><text class="sub" x="210.0" y="81.0" text-anchor="middle">Owner and policy set</text></g><g class="badge"><circle cx="154.0" cy="39.0" r="11"/><text x="154.0" y="43.0">1</text></g><g class="node6" style="--i:1"><rect x="279.6" y="111.5" width="112" height="52" rx="12"/><text class="ttl" x="335.6" y="135.5" text-anchor="middle">Issue</text><text class="sub" x="335.6" y="153.5" text-anchor="middle">Created, then stored</text></g><g class="badge"><circle cx="279.6" cy="111.5" r="11"/><text x="279.6" y="115.5">2</text></g><g class="node6" style="--i:2"><rect x="279.6" y="256.5" width="112" height="52" rx="12"/><text class="ttl" x="335.6" y="280.5" text-anchor="middle">Use</text><text class="sub" x="335.6" y="298.5" text-anchor="middle">Fetched at runtime</text></g><g class="badge"><circle cx="279.6" cy="256.5" r="11"/><text x="279.6" y="260.5">3</text></g><g class="node6" style="--i:3"><rect x="154.0" y="329.0" width="112" height="52" rx="12"/><text class="ttl" x="210.0" y="353.0" text-anchor="middle">Rotate</text><text class="sub" x="210.0" y="371.0" text-anchor="middle">On a schedule</text></g><g class="badge"><circle cx="154.0" cy="329.0" r="11"/><text x="154.0" y="333.0">4</text></g><g class="node6" style="--i:4"><rect x="28.4" y="256.5" width="112" height="52" rx="12"/><text class="ttl" x="84.4" y="280.5" text-anchor="middle">Monitor</text><text class="sub" x="84.4" y="298.5" text-anchor="middle">Access and age</text></g><g class="badge"><circle cx="28.4" cy="256.5" r="11"/><text x="28.4" y="260.5">5</text></g><g class="node6" style="--i:5"><rect x="28.4" y="111.5" width="112" height="52" rx="12"/><text class="ttl" x="84.4" y="135.5" text-anchor="middle">Retire</text><text class="sub" x="84.4" y="153.5" text-anchor="middle">Revoked, then removed</text></g><g class="badge"><circle cx="28.4" cy="111.5" r="11"/><text x="28.4" y="115.5">6</text></g>
+            <text class="ttl" x="210" y="200" text-anchor="middle">Owner + policy</text>
+            <text class="sub" x="210" y="220" text-anchor="middle">stay attached</text>
+            <text class="sub" x="210" y="236" text-anchor="middle">at every stage</text>
+          </svg>
+          <figcaption>The same loop applies to a database password, an API key or a service account. Retire is part of the loop: a credential nobody uses should not outlive the system it served.</figcaption>
+        </figure>
+      </section>
+
+      <section id="workflow">
+        <h2>Onboarding an application secret, start to finish</h2>
+        <ol class="steps">
+          <li><h3>Ask, and name an owner</h3><p>The application team submits a request with the system, the environment, who owns the credential, and what it is used for. A credential without an owner is not issued.</p><div class="why"><span><b>Guardrail</b>No owner, no credential</span><span><b>Evidence</b>Intake record</span></div></li>
+          <li><h3>Check whether the secret is needed at all</h3><p>If the workload runs on a cloud platform, it can often use a role that hands out temporary credentials. AWS, for instance, advises that workloads use temporary credentials from IAM roles, with no need to distribute long-lived keys. Only what cannot avoid a secret goes into the vault.</p><div class="why"><span><b>Guardrail</b>Short-lived identity first, stored secret second</span><span><b>Evidence</b>Design note</span></div></li>
+          <li><h3>Store it and set the policy</h3><p>The secret is created in the platform with a classification, a rotation policy, and a list of who and what may read it. Access is granted to the application, not to a shared human account.</p><div class="why"><span><b>Guardrail</b>Least privilege on read access</span><span><b>Evidence</b>Policy as configured</span></div></li>
+          <li><h3>Fetch at runtime</h3><p>The application asks the platform for the secret when it needs it. It is never pasted into code, config files or a pipeline variable that everyone can read.</p><div class="why"><span><b>Guardrail</b>Secret scanning blocks a commit that contains a credential</span><span><b>Evidence</b>Read log per request</span></div></li>
+          <li><h3>Rotate without drama</h3><p>The platform changes the secret on schedule and the application picks up the new value. Rotation that needs a person and a change window rarely happens, so the design target is rotation nobody notices.</p><div class="why"><span><b>Guardrail</b>Automated rotation, with a failure alert</span><span><b>Evidence</b>Rotation history</span></div></li>
+          <li><h3>Retire it</h3><p>When the application is decommissioned or the owner changes, the credential is revoked and removed. The owner confirms, and a missing confirmation escalates.</p><div class="why"><span><b>Guardrail</b>Regular owner attestation</span><span><b>Evidence</b>Revocation record</span></div></li>
+        </ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: a payments database password</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event.</p>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>The password sits in a config file in a code repository.</li><li>About fifteen people have seen it over the years.</li><li>It has not changed since launch, because nobody is sure what would break.</li><li>Nobody can say who actually owns it.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>The application fetches a short-lived database login when it starts.</li><li>No person ever sees or types it.</li><li>It expires and is reissued automatically.</li><li>The catalog names the owning team, and every read is logged.</li></ul></div>
+        </div>
+      </section>
+
+      <section id="roadmap">
+        <h2>How to build it without stalling</h2>
+        <ol class="phases">
+          <li><b>1. Define the services and owners</b>Write the catalog, name the platform owner, and agree who decides what.<small><em>Done when</em>Every service has a description, an audience and an owner.</small></li>
+          <li><b>2. Find what exists</b>Scan for secrets in code, pipelines and storage, and list the stores teams already use.<small><em>Done when</em>There is one inventory, even if it is uncomfortable to read.</small></li>
+          <li><b>3. Set the standards and the front door</b>Write the onboarding path, the rotation rules and the classification levels.<small><em>Done when</em>A team can onboard a credential without asking anyone how.</small></li>
+          <li><b>4. Automate the lifecycle</b>Rotation, expiry reminders and revocation should run without people remembering.<small><em>Done when</em>Rotation and retirement run on their own for the highest-risk credentials.</small></li>
+          <li><b>5. Measure, then close the old paths</b>Track coverage, then retire the old stores and habits.<small><em>Done when</em>New credentials can no longer be created outside the platform.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Every credential has a named owner</td><td data-label="What it stops">Orphaned secrets that nobody can rotate or retire</td><td data-label="How you check it">Report of credentials with no owner or a departed owner</td></tr>
+            <tr><td data-label="Guardrail">Secret scanning on every commit</td><td data-label="What it stops">Credentials leaking into code and history</td><td data-label="How you check it">Plant a test secret and confirm the pipeline blocks it</td></tr>
+            <tr><td data-label="Guardrail">Short-lived credentials by default</td><td data-label="What it stops">A leaked secret staying useful for months</td><td data-label="How you check it">Share of credentials with an expiry</td></tr>
+            <tr><td data-label="Guardrail">Automated rotation with alerts</td><td data-label="What it stops">Rotation that quietly stops working</td><td data-label="How you check it">Age of the oldest unrotated secret</td></tr>
+            <tr><td data-label="Guardrail">Read access scoped per application</td><td data-label="What it stops">One compromised app reading everyone&rsquo;s secrets</td><td data-label="How you check it">Review policies for broad or wildcard access</td></tr>
+            <tr><td data-label="Guardrail">Audit logs kept outside the platform</td><td data-label="What it stops">Evidence being changed by the people it covers</td><td data-label="How you check it">Confirm platform admins cannot edit the log store</td></tr>
+            <tr><td data-label="Guardrail">Tested emergency revocation</td><td data-label="What it stops">Not knowing how to kill a leaked credential fast</td><td data-label="How you check it">Run a drill and time it</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">A note on rotation: it is not a goal in itself. For people, NIST&rsquo;s digital identity guidelines (SP 800-63B) tell organizations not to force periodic password changes without evidence of compromise. For machine credentials, rotation, or better still expiry, is how you limit how long a leaked secret works. PCI DSS 4.0 asks for service-account credentials to be rotated on a schedule based on risk, and immediately on suspected compromise.</p>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Where is this credential stored, and who owns it?</td><td data-label="Where the answer comes from">Inventory record with owner and classification</td></tr>
+            <tr><td data-label="Question">When was it last changed?</td><td data-label="Where the answer comes from">Rotation history</td></tr>
+            <tr><td data-label="Question">Who or what has read it?</td><td data-label="Where the answer comes from">Access log, kept outside the platform</td></tr>
+            <tr><td data-label="Question">Are there secrets outside the platform?</td><td data-label="Where the answer comes from">Scan results and the exception register</td></tr>
+            <tr><td data-label="Question">How much of the estate is covered?</td><td data-label="Where the answer comes from">Coverage report, compared with the inventory</td></tr>
+          </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">IA-5</code>, <code class="ref">SC-12</code>, <code class="ref">SC-28</code></td><td data-label="What it asks for">Managing authenticators across their lifecycle, managing cryptographic keys, and protecting stored information.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for">Deciding which events are logged, and generating the audit records.</td></tr>
+            <tr><td data-label="Standard">NIST CSF 2.0</td><td data-label="Reference"><code class="ref">PR.AA-01</code></td><td data-label="What it asks for">Identities and credentials for users, services and hardware are managed by the organization.</td></tr>
+            <tr><td data-label="Standard">ISO/IEC 27001:2022</td><td data-label="Reference"><code class="ref">A.5.17</code></td><td data-label="What it asks for">Allocation and management of authentication information is controlled.</td></tr>
+            <tr><td data-label="Standard">CIS Controls v8</td><td data-label="Reference"><code class="ref">5.2</code></td><td data-label="What it asks for">Use unique passwords for accounts.</td></tr>
+            <tr><td data-label="Standard">PCI DSS v4.0</td><td data-label="Reference"><code class="ref">8.6.2</code>, <code class="ref">8.6.3</code></td><td data-label="What it asks for">No hard-coded passwords in scripts, configuration or code, and risk-based rotation of service-account credentials.</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Platform product owner</td><td data-label="Owns">The catalog, the roadmap, the standards and what is in scope</td></tr>
+            <tr><td data-label="Role">Platform engineering</td><td data-label="Owns">Running the service: availability, upgrades, integrations</td></tr>
+            <tr><td data-label="Role">Credential owners</td><td data-label="Owns">Each credential: its purpose, its access list and its retirement</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Classification levels, rotation rules and exception criteria</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>Standardize the interface, not necessarily the product.</strong> Teams will already have tools. A common way to request, rotate and report can work across more than one product.</li>
+          <li><strong>Measure coverage and age.</strong> Useful measures: share of known credentials onboarded, credentials with no owner, age of the oldest unrotated secret, share that are short-lived, and time to onboard.</li>
+          <li><strong>Exceptions have owners and end dates.</strong> Anything left outside the platform is on a register, reviewed on a rhythm, and removed when its reason ends.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>Discovery is uncomfortable.</strong> The first inventory usually shows more secrets and fewer owners than anyone expected. Agree beforehand that this is a starting point, not a verdict on the teams.</li>
+          <li><strong>One platform for everything is a big target.</strong> It holds the keys to many systems, so it needs high availability, tight access of its own, and a tested plan for when it is down.</li>
+          <li><strong>Teams bypass it if it is slow.</strong> If onboarding takes weeks, credentials will reappear in pipelines and chat. Keep the front door quick.</li>
+          <li><strong>Legacy systems resist.</strong> Some cannot fetch a secret at runtime or accept a rotated value. Track them as named exceptions with a plan.</li>
+          <li><strong>Migration costs real effort.</strong> Moving an application to runtime fetching is engineering work. Plan capacity with the teams, and do the highest-risk credentials first.</li>
+        </ul>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a></li>
+          <li><a href="https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa/">NIST CSF 2.0, PR.AA: Identity Management, Authentication, and Access Control</a></li>
+          <li><a href="https://pages.nist.gov/800-63-3/sp800-63b.html">NIST SP 800-63B, Digital Identity Guidelines: Authentication and Lifecycle Management</a></li>
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html">OWASP Secrets Management Cheat Sheet</a></li>
+          <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html">AWS: Security best practices in IAM</a></li>
+          <li><a href="https://developer.hashicorp.com/vault/docs/concepts/lease">HashiCorp Vault: Lease, Renew, and Revoke</a></li>
+          <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022, Annex A</a></li>
+          <li><a href="https://www.cisecurity.org/controls">CIS Critical Security Controls v8</a></li>
+          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0, PCI Security Standards Council</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. Control numbers are as published in the standards listed above.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#product-strategy</span><span>#credential-lifecycle</span><span>#governance</span><span>#secrets</span></div></section>
+
+      <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#7df2d0" href="/case-studies/credential-tiering-model/"><small><i></i>&larr; Previous</small><strong>Credential Tiering &amp; the PAM Market</strong></a><a class="next" style="--c:#7df2d0" href="/case-studies/pam-modernization/"><small><i></i>Next &rarr;</small><strong>PAM Modernization &amp; Zero Standing Privilege</strong></a></div></nav>
+      <footer class="page-footer">
+        <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+    <script src="/assets/diagram.js" defer></script>
+  </body>
+</html>

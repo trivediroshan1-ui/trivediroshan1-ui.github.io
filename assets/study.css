@@ -93,3 +93,13 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
   .stack td::before { content: attr(data-label); display: block; font: 600 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); margin-bottom: 2px; }
   .stack td:first-child { font-weight: 700; }
 }
+
+/* Lifecycle ring (six stages) */
+.ring { display: block; max-width: 460px; margin: 0 auto; }
+.diagram-card svg.ring { max-width: 460px; }
+.node6 { animation: none; }
+.node6 rect { fill: var(--surface-2); stroke: var(--border); stroke-width: 1.5; animation: node-rect6 12s linear infinite; animation-delay: calc(var(--i) * 2s); }
+@keyframes node-rect6 { 0%, 16.6% { stroke: var(--c); fill: color-mix(in srgb, var(--c) 14%, #101a2c); } 17.6%, 100% { stroke: #1f2a40; fill: #101a2c; } }
+.ring .ttl { font-size: 15px; } .ring .sub { font-size: 12px; }
+@media (prefers-reduced-motion: reduce) { .node6 rect { animation: none !important; } }
+@media print { .node6 rect { animation: none !important; } }
