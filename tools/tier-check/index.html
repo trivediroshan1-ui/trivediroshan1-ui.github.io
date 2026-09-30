@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="A three-minute self-check against the Tier 0–3 guardrails: where would one stolen credential stop, and where would it keep going?" />
+    <link rel="canonical" href="https://roshantrivedi.co.in/tools/tier-check/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Credential Tiering Self-Check" />
+    <meta property="og:description" content="A three-minute self-check against the Tier 0–3 guardrails: where would one stolen credential stop, and where would it keep going?" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/tools/tier-check/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" />
+    <title>Credential Tiering Self-Check &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <style>
+      .q{border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin:0 0 12px;background:rgba(255,255,255,.02)}
+      .q legend{padding:0 6px;font:600 11.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+      .q p{margin:4px 0 12px;font-weight:600}
+      .opts{display:flex;flex-wrap:wrap;gap:8px}
+      .opts label{cursor:pointer}
+      .opts input{position:absolute;opacity:0;pointer-events:none}
+      .opts span{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:7px 15px;font-size:14px;font-weight:600;color:var(--muted)}
+      .opts input:checked+span{background:var(--accent);border-color:var(--accent);color:#03121a}
+      .opts input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
+      .go{margin-top:8px;background:var(--accent);color:#03121a;border:0;border-radius:999px;padding:11px 22px;font:700 15px var(--body);cursor:pointer}
+      .go:disabled{opacity:.45;cursor:not-allowed}
+      .prog{font:12px var(--mono);color:var(--muted);margin:8px 0 0}
+      .res{margin-top:28px}
+      .tier{border:1px solid var(--border);border-left:4px solid var(--c,var(--accent));border-radius:14px;padding:16px 18px;margin:0 0 12px}
+      .tier h3{margin:0 0 4px;font-family:var(--display);font-size:17px}
+      .tier .sc{font:700 12px var(--mono);color:var(--c,var(--accent))}
+      .tier ul{margin:10px 0 0;padding-left:20px;display:grid;gap:6px;color:var(--muted);font-size:14.5px}
+      .note{color:var(--muted);font-size:14px}
+    </style>
+    <link rel="stylesheet" href="/assets/polish.css">
+  </head>
+  <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <main id="main">
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/credential-tiering-model/">the tiering case study</a></nav>
+      <header class="hero">
+        <p class="eyebrow">Self-check &middot; 3 minutes</p>
+        <h1>If one credential were stolen, where would it stop?</h1>
+        <p class="dek">Eleven questions based on the guardrails in the <a href="/case-studies/credential-tiering-model/">credential tiering study</a>. Answer honestly for your environment and you&rsquo;ll get a per-tier read on where the gaps are.</p>
+        <p class="note">Everything runs in your browser. Nothing you select is sent or stored anywhere. This is a conversation starter, not an audit.</p>
+      </header>
+      <form id="tc-form" novalidate><div id="tc-qs"></div>
+        <button type="submit" class="go" id="tc-go" disabled>Show my results</button>
+        <p class="prog" id="tc-prog" aria-live="polite"></p>
+      </form>
+      <section class="res" id="tc-res" hidden aria-live="polite" tabindex="-1"></section>
+      <footer class="page-footer">
+        <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+    <script src="/assets/tier-check.js" defer></script>
+    <link rel="stylesheet" href="/assets/chatbot-widget.css" />
+    <script src="/assets/chatbot-data.js"></script>
+    <script defer src="/assets/chatbot-widget.js"></script>
+  </body>
+</html>
