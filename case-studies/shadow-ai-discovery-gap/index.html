@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="theme-color" content="#030712" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
-<meta name="description" content="A 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension — three real incidents that trace back to the same gap: AI tools employees adopted that security never approved. Current shadow AI research, the fast-consolidating governance vendor market, and the discovery-first guardrails that would have caught each one." />
+<meta name="description" content="Three real incidents, one root cause: AI tools employees adopted that security never approved. The discovery-first guardrails that would have caught each." />
 <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="The AI Stack Nobody Approved &middot; Roshan Trivedi" />
-<meta property="og:description" content="Three real incidents. One invisible root cause. The AI tools nobody approved — and the discovery-first guardrails that would have caught each one." />
+<meta property="og:description" content="Three real incidents, one root cause: AI tools employees adopted that security never approved. The discovery-first guardrails that would have caught each." />
 <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
 <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png" />
 <meta property="og:image:width" content="1200" />
@@ -154,7 +154,7 @@ h1{font-size:32px}
 }
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"The AI Stack Nobody Approved","description":"A 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension — three real incidents that trace back to the same gap: AI tools employees adopted that security never approved. Current shadow AI research, the fast-consolidating governance vendor market, and the discovery-first guardrails that would have caught each one.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-09-21","dateModified":"2026-09-21","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/","image":"https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png","keywords":"Shadow AI, AI Governance, Data Security Posture Management, AI Discovery, Insider Risk, Non-Human Identity"}
+{"@context":"https://schema.org","@type":"Article","headline":"The AI Stack Nobody Approved","description":"Three real incidents, one root cause: AI tools employees adopted that security never approved. The discovery-first guardrails that would have caught each.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-09-21","dateModified":"2026-09-21","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/","image":"https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png","keywords":"Shadow AI, AI Governance, Data Security Posture Management, AI Discovery, Insider Risk, Non-Human Identity"}
 </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -235,7 +235,7 @@ h1{font-size:32px}
 <h2>What "shadow AI" actually means</h2>
 <p>Not a hack. Not malware. AI running somewhere security didn't put it — and in most cases, didn't know to look for it.</p>
 </div>
-<p class="market-note">Shadow AI is the use of AI tools, models, and agents outside an organization's security, procurement, and observability perimeter — a browser extension an employee installed personally, a copilot a SaaS vendor switched on by default, an MCP server an engineer connected without telling anyone. It's a direct descendant of shadow IT, the decades-old pattern of employees adopting unapproved software to move faster than procurement allows. What changed is the stakes: shadow IT was mostly data sitting somewhere ungoverned. Shadow AI is data in motion — pasted into prompts, routed to third-party model providers, and, in the case of agents, acted on autonomously, without a human approving each step.</p>
+<p class="market-note">Shadow AI is the use of AI tools, models, and agents outside an organization's security, procurement, and observability perimeter — a browser extension an employee installed personally, a copilot a SaaS vendor switched on by default, a Model Context Protocol (MCP) server an engineer connected without telling anyone. It's a direct descendant of shadow IT, the decades-old pattern of employees adopting unapproved software to move faster than procurement allows. What changed is the stakes: shadow IT was mostly data sitting somewhere ungoverned. Shadow AI is data in motion — pasted into prompts, routed to third-party model providers, and, in the case of agents, acted on autonomously, without a human approving each step.</p>
 <p class="market-note">The category didn't appear overnight — it rode the same curve that took &quot;Shadow SaaS&quot; from a niche IT-governance topic to a boardroom risk between 2023 and 2026, just faster. Within twenty days of ChatGPT going mainstream inside Samsung in 2023, the company had three separate confidential data leaks. By 2026, industry surveys put unsanctioned AI use anywhere from half to over 80% of the workforce — AI simply gave an existing shadow-IT surface a much sharper edge.</p>
 </section>
 <section class="spread wrap">
@@ -528,7 +528,7 @@ h1{font-size:32px}
 <div class="num">03</div>
 <div>
 <h3>Identity protocols exist; adoption doesn't, yet</h3>
-<p>MCP OAuth 2.1 under Linux Foundation governance, the Digital Identity Foundation's MCP-I and KYA-OS work, Microsoft Entra Agent ID, and the CSA Agentic Trust Framework already give agents a real identity layer to plug into, and NIST's NCCoE Concept Paper on Agent Identity and Authorization adds the missing piece: authentication, authorization, auditing, non-repudiation, and prompt-injection mitigation, specific to agents. Only 23.7% of organizations actually use their existing IAM or identity provider as the authorization server for their agentic infrastructure — most agents still run with no policy enforcement point at all.</p>
+<p>MCP OAuth 2.1 under Linux Foundation governance, the Digital Identity Foundation's MCP-I and KYA-OS work, Microsoft Entra Agent ID, and the CSA Agentic Trust Framework already give agents a real identity layer to plug into, and NIST's NCCoE Concept Paper on Agent Identity and Authorization adds the missing piece: authentication, authorization, auditing, non-repudiation, and prompt-injection mitigation, specific to agents. Only 23.7% of organizations actually use their existing Identity and Access Management (IAM) or identity provider as the authorization server for their agentic infrastructure — most agents still run with no policy enforcement point at all.</p>
 </div>
 </div>
 <div class="step guardrail">
