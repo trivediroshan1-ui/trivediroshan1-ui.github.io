@@ -66,3 +66,11 @@ Watch the green checkmark under **Deployments → github-pages** on the repo's m
 
 - LinkedIn: [linkedin.com/in/roshan-trivedi](https://www.linkedin.com/in/roshan-trivedi)
 - Email: trivedi.roshan1@gmail.com
+
+## Newer pages and assets
+
+- `/about/`, `/resume/`, `/now/`, `/ai/` are hand-written pages using `assets/site.css`. `/resume/` mirrors the public PDF minus the phone number; update it when the PDF changes.
+- `/tools/tier-check/` is a client-side self-check driven by `assets/tier-check.js` (nothing is sent anywhere).
+- `/case-studies/` filter chips use `assets/filter.js` and each card's `data-group`.
+- `feed.xml` is the RSS feed (Jekyll builds it from `_posts`).
+- Share images `assets/og-case-*.png` were generated from the case-study titles and group colours (1200x630).
