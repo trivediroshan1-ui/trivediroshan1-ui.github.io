@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#030712" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta name="description" content="Why privileged-access tiering (Tier 0-3) is a containment mechanism, not an org chart, the guardrails that make it hold, and how the PAM/credential-management market maps to different organizations' audit, compliance and cost needs." />
+    <meta name="description" content="Why Tier 0–3 works as a containment mechanism, the guardrails that make it hold, and how the PAM market maps to audit, compliance and cost needs." />
     <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/credential-tiering-model/" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Credential Tiering & the PAM Market · Roshan Trivedi" />
-    <meta property="og:description" content="Why Tier 0-3 is a containment mechanism, the guardrails that make it hold, and how the PAM market maps to audit, compliance and cost needs." />
+    <meta property="og:description" content="Why Tier 0–3 works as a containment mechanism, the guardrails that make it hold, and how the PAM market maps to audit, compliance and cost needs." />
     <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/credential-tiering-model/" />
     <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-credential-tiering-model.png" />
     <meta property="og:image:width" content="1200" />
@@ -209,7 +209,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Credential Tiering & the PAM Market",
-  "description": "Why privileged-access tiering (Tier 0-3) is a containment mechanism, not an org chart, the guardrails that make it hold, and how the PAM/credential-management market maps to different organizations' audit, compliance and cost needs.",
+  "description": "Why Tier 0–3 works as a containment mechanism, the guardrails that make it hold, and how the PAM market maps to audit, compliance and cost needs.",
   "author": {
     "@type": "Person",
     "name": "Roshan Trivedi",
@@ -265,7 +265,7 @@
 
       <section id="mechanism">
         <h2>The mechanism: why a phished laptop shouldn't reach a domain controller</h2>
-        <p class="section-sub">Tier 0 holds the identity control plane: domain controllers, PKI, PAM vaults, and just as importantly today, the admin plane of whatever runs your SSO &mdash; Entra ID, Okta, Ping. A cloud identity provider's global admin role is Tier 0 even though there's no server rack behind it; several of the highest-profile breaches of the last few years (Okta's support-system compromise, the SolarWinds-linked Microsoft cloud-tenant abuse) targeted exactly this layer instead of a physical domain controller. Tier 1 is the app/cloud/CI-CD estate. Tier 2 is workstation and helpdesk admin, the most common entry point. Tier 3 is everyone else, the largest attack surface. The tiers only protect anything if a credential valid at one tier is never valid at another.</p>
+        <p class="section-sub">Tier 0 holds the identity control plane: domain controllers, PKI, Privileged Access Management (PAM) vaults, and just as importantly today, the admin plane of whatever runs your SSO &mdash; Entra ID, Okta, Ping. A cloud identity provider's global admin role is Tier 0 even though there's no server rack behind it; several of the highest-profile breaches of the last few years (Okta's support-system compromise, the SolarWinds-linked Microsoft cloud-tenant abuse) targeted exactly this layer instead of a physical domain controller. Tier 1 is the app/cloud/CI-CD estate. Tier 2 is workstation and helpdesk admin, the most common entry point. Tier 3 is everyone else, the largest attack surface. The tiers only protect anything if a credential valid at one tier is never valid at another.</p>
 
         <figure class="diagram-card">
           <svg viewBox="0 0 920 590" role="img" aria-label="Two lanes show a compromised Tier 2 workstation credential. In the left lane, standing cross-tier access lets the credential travel unchecked up through Tier 1 into Tier 0, reaching the domain vault. In the right lane, a Just-in-Time gate sits at each tier boundary; the same credential attempt is stopped and revoked at the Tier 2 to Tier 1 gate.">
@@ -405,7 +405,7 @@
         <div class="stage-strip">
           <div class="stage"><span class="num">01</span><span class="label">Onboard</span><span class="desc">Every credential gets a named human or workload owner before it's created.</span></div>
           <div class="stage"><span class="num">02</span><span class="label">Vault</span><span class="desc">Secrets live in a PAM/HSM vault, never in code, config or a shared sheet.</span></div>
-          <div class="stage"><span class="num">03</span><span class="label">JIT Grant</span><span class="desc">Access is requested, scoped to one task, dual-authorised where risk warrants it, time-boxed.</span></div>
+          <div class="stage"><span class="num">03</span><span class="label">JIT Grant</span><span class="desc">Access is requested, scoped to one task, dual-authorized where risk warrants it, time-boxed.</span></div>
           <div class="stage"><span class="num">04</span><span class="label">Rotate & Monitor</span><span class="desc">Credentials rotate on schedule; UEBA flags use that doesn't match granted scope.</span></div>
           <div class="stage"><span class="num">05</span><span class="label">Retire</span><span class="desc">Access reverts to zero automatically when the task ends.</span></div>
         </div>
@@ -420,8 +420,8 @@
             <span class="tier-tag">Tier 0 &mdash; identity control plane</span>
             <h3>Missing: M-of-N control, phishing-resistant auth</h3>
             <ul>
-              <li><strong>Common gap:</strong> a single domain admin or vault master key can act alone, often protected by nothing stronger than SMS or push-based MFA &mdash; both of which are routinely bypassed by MFA fatigue and SIM-swap attacks.</li>
-              <li><strong>Guardrail:</strong> dual/M-of-N authorisation for any Tier 0 action, hardware-key (FIDO2) auth for every Tier 0 admin, full session recording, re-auth every 15 minutes.</li>
+              <li><strong>Common gap:</strong> a single domain admin or vault master key can act alone, often protected by nothing stronger than SMS or push-based multi-factor authentication (MFA) &mdash; both of which are routinely bypassed by MFA fatigue and SIM-swap attacks.</li>
+              <li><strong>Guardrail:</strong> dual/M-of-N authorization for any Tier 0 action, hardware-key (FIDO2) auth for every Tier 0 admin, full session recording, re-auth every 15 minutes.</li>
               <li><strong>Tool category:</strong> PAM vault with session recording (CyberArk, Delinea, BeyondTrust), phishing-resistant MFA (FIDO2 security keys, Windows Hello for Business).</li>
             </ul>
           </div>
@@ -429,9 +429,9 @@
             <span class="tier-tag">Tier 1 &mdash; app / cloud / CI-CD</span>
             <h3>Missing: cross-cloud effective-permission visibility</h3>
             <ul>
-              <li><strong>Common gap:</strong> service accounts and cloud IAM roles reviewed one policy at a time; combinations create unintended escalation paths.</li>
+              <li><strong>Common gap:</strong> service accounts and cloud Identity and Access Management (IAM) roles reviewed one policy at a time; combinations create unintended escalation paths.</li>
               <li><strong>Guardrail:</strong> a unified view of effective permissions across providers, reasoning over combinations, not single roles.</li>
-              <li><strong>Tool category:</strong> CIEM / cloud entitlement management (Wiz, Clutch Security, Sonrai).</li>
+              <li><strong>Tool category:</strong> Cloud Infrastructure Entitlement Management (CIEM) / cloud entitlement management (Wiz, Clutch Security, Sonrai).</li>
             </ul>
           </div>
           <div class="gap-card">
@@ -516,7 +516,7 @@
 
       <section id="nhi-detection">
         <h2>Finding what a vault alone won't show you</h2>
-        <p class="section-sub">A vault protects the credentials it knows about. The actual exposure, most of the time, is what was never inventoried in the first place &mdash; shadow admin accounts, forgotten service accounts, and increasingly, AI agents and MCP servers holding their own standing credentials.</p>
+        <p class="section-sub">A vault protects the credentials it knows about. The actual exposure, most of the time, is what was never inventoried in the first place &mdash; shadow admin accounts, forgotten service accounts, and increasingly, AI agents and Model Context Protocol (MCP) servers holding their own standing credentials.</p>
         <p class="body-text">Two categories of tooling do different jobs here. <strong style="color:var(--text)">Wiz</strong> builds a cloud security graph that correlates IAM roles, network exposure, and workload data to answer "what can actually reach what" &mdash; including combination paths across accounts and subscriptions that a single-policy review misses entirely, like a Tier 1 service role that becomes an effective Tier 0 path only when paired with a public-facing workload. <strong style="color:var(--text)">Clutch Security</strong> is purpose-built for the non-human-identity inventory itself: every API key, service account, and workload identity across cloud and SaaS, aged and risk-scored, with orphaned ones flagged automatically &mdash; the owner left, the app was decommissioned, the key was never rotated.</p>
         <p class="body-text" style="margin-top:14px;">MCP servers are a new instance of the same old service-account problem. An MCP server typically holds a standing credential to whatever it connects to &mdash; a database, a ticketing system, a cloud account &mdash; and unlike a human user, it can be invoked by any agent that can reach it, at any hour, without the friction of a login. The tooling above should treat every MCP server exactly like a service account: inventoried, owned, scoped, and time-boxed, not implicitly trusted because it's "internal." The <a href="/case-studies/agentic-ai-identity-governance/" style="color:var(--accent);">agentic AI identity governance</a> and <a href="/case-studies/ai-agent-credential-sharing/" style="color:var(--accent);">AI agent credential sharing</a> case studies case studies go through what this looks like in practice.</p>
       </section>
@@ -736,7 +736,7 @@
               <tr>
                 <td class="org">SOX (ITGC access controls)</td>
                 <td>Segregation of duties; access changes tied to an approval record</td>
-                <td>Dual/M-of-N authorisation at Tier 0 is segregation of duties in its literal form; every JIT grant is its own approval record instead of a point-in-time review sample</td>
+                <td>Dual/M-of-N authorization at Tier 0 is segregation of duties in its literal form; every JIT grant is its own approval record instead of a point-in-time review sample</td>
               </tr>
               <tr>
                 <td class="org">HIPAA Security Rule (&sect;164.312)</td>
@@ -797,7 +797,7 @@
         </div>
 
         <div class="callout" style="margin-top:16px;">
-          <strong>The cost-reduction case isn't just licensing.</strong> A properly tiered, JIT-based model reduces operational cost the same way it reduces risk: fewer standing accounts means a smaller population to certify every quarter, fewer emergency credential rotations after an incident, and audit evidence that's generated automatically (session recordings, usage logs) instead of assembled by hand before every review. The tool licence is the visible cost; the audit and incident-response hours it removes are the larger, less visible saving.
+          <strong>The cost-reduction case isn't just licensing.</strong> A properly tiered, JIT-based model reduces operational cost the same way it reduces risk: fewer standing accounts means a smaller population to certify every quarter, fewer emergency credential rotations after an incident, and audit evidence that's generated automatically (session recordings, usage logs) instead of assembled by hand before every review. The tool license is the visible cost; the audit and incident-response hours it removes are the larger, less visible saving.
         </div>
       </section>
 
