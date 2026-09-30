@@ -1,0 +1,22 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Roshan Trivedi &#8212; Writing</title>
+    <link>https://roshantrivedi.co.in/writing/</link>
+    <description>Analysis on AI security, agentic AI governance, identity and privileged access.</description>
+    <language>en</language>
+    <atom:link href="https://roshantrivedi.co.in/feed.xml" rel="self" type="application/rss+xml" />
+    {% for post in site.posts limit: 20 %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>https://roshantrivedi.co.in{{ post.url }}</link>
+      <guid isPermaLink="true">https://roshantrivedi.co.in{{ post.url }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <description>{{ post.description | xml_escape }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
