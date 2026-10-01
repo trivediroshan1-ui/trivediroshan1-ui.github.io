@@ -251,7 +251,7 @@
       if (greeted) return;
       greeted = true;
       addMessage(
-        "Hi — ask me anything about this site: the case studies, the Secure India Exams project, the MCP lab, Roshan’s background, or how to get in touch.",
+        "Hi — ask me anything about this site: the case studies, the Secure India Exams project, the writing, Roshan’s background, or how to get in touch.",
         "bot"
       );
       renderSuggestions();
