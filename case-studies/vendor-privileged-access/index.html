@@ -19,7 +19,9 @@
     <title>Third-Party Privileged Access Governance · Roshan Trivedi</title>
 
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -41,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/vendor-privileged-access/",
   "image": "https://roshantrivedi.co.in/assets/og-case-vendor-privileged-access.png",
   "articleSection": "Privileged access",
@@ -52,43 +54,207 @@
   "keywords": "third party access, vendor governance, privileged onboarding"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-  <body>
+    </head>
+  <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Privileged access &middot; Case study</p>
-        <p class="cat-badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Privileged access</p>
         <h1>Third-Party &amp; Vendor Privileged Access Governance</h1>
-        <p class="dek">Governing external vendor access with the same scrutiny as internal privileged accounts, not less.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
+        <p class="dek">Giving vendors, consultants and managed service providers privileged access with the same scrutiny as internal privileged accounts, not less.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Vendor and contractor access was provisioned through the fastest available path — shared accounts, standing VPN credentials or ad hoc exceptions — because the standard onboarding process assumed an internal employee.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Vendor access goes wrong when it takes the fastest path: a shared login, a standing VPN account, an exception nobody comes back to. The fix is to treat a vendor engineer like any other privileged user, plus a few extra rules about who sponsors them and when it ends.</li>
+          <li>Each vendor person gets their own named account, a named internal sponsor, MFA and an end date. They reach the target through a broker that records the session. They never get a network path of their own.</li>
+          <li>Expiry does the offboarding. If nothing renews the access, it ends, and the sponsor has to say yes again to keep it.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Most companies have rules for how an employee gets privileged access. The rules assume an employee: someone in the HR system, with a manager, a start date and a leaving date. A support engineer from a software supplier, a consultant on a six-week project or a managed service provider&rsquo;s night team fits none of that. So when one of them needs to get in, the quickest route wins. That is usually a shared account the vendor already uses, a VPN login that was set up for the last project and never closed, or an exception somebody signed off on a Friday afternoon.</p>
+        <p class="body-text">Each of those shortcuts removes something an internal account would have had. A shared account removes the name, so you cannot say who did what. A standing VPN login removes the end date, and with it any natural moment to ask whether the access is still needed. An ad hoc exception removes the review, because nobody owns it. Put together, the people with the least accountability to you end up with some of the widest and longest-lived access in the company.</p>
+        <p class="body-text">There is a second gap that is easy to miss. Your HR system tells you when an employee leaves. Nothing tells you when a vendor&rsquo;s engineer leaves their employer. The contract can end, the person can move on, and the account stays exactly as it was. This page describes how I set up third-party privileged access so that it is held to the same standard as internal privileged accounts. The rest of the program it sits in is described in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Built a distinct onboarding path for third-party access, scoped to a specific vendor, engagement and system rather than a general-purpose account.</li>
-          <li>Added an advisory summary that translates a vendor's requested scope into plain language for the resource owner, since approval quality depends on the owner actually understanding what they're granting.</li>
-          <li>Tied every vendor credential to the engagement's end date by default, so offboarding an external party doesn't depend on someone remembering to file a ticket.</li>
+      <section id="before">
+        <h2>Before anyone gets in: contract and onboarding</h2>
+        <p class="body-text">The technical controls only work if the paperwork backs them. I ask the contract owner for a short list of clauses before the first request is raised, and I would rather have them in a new vendor&rsquo;s contract than chase them later.</p>
+        <ul class="plain-list">
+          <li><strong>Individual accounts only.</strong> The vendor agrees that every person uses their own named account and never shares or passes on a credential.</li>
+          <li><strong>Notice when someone leaves.</strong> The vendor tells the vendor manager when a person with access leaves the engagement or the company, within a stated time.</li>
+          <li><strong>Sessions may be recorded.</strong> The vendor accepts that privileged sessions are recorded and the recordings are kept, and that its staff have been told.</li>
+          <li><strong>Named subcontractors.</strong> Any subcontractor who might use the access is disclosed first. They go through the same onboarding as everyone else.</li>
+          <li><strong>Security requirements flow down.</strong> The vendor meets the company&rsquo;s security requirements for its own laptops and accounts, and reports an incident that could affect us.</li>
+          <li><strong>Access ends with the contract.</strong> Everything tied to the contract is switched off when it ends or is terminated, and the vendor does not keep copies of anything it was given.</li>
+        </ul>
+        <p class="body-text">On the identity side, I keep vendor people in a distinct account type. That lets the directory enforce rules that would be wrong for staff: a maximum lifetime, no self-service extensions, a mandatory sponsor field and a stricter MFA policy. It also turns the question &ldquo;how many external people can get into production today?&rdquo; into a query instead of an investigation.</p>
+      </section>
+
+      <section id="architecture">
+        <h2>How a vendor session travels</h2>
+        <p class="body-text">The diagram follows one vendor engineer from onboarding to the target system. The two controls that carry the most weight are the sponsor, who owns the decision, and the broker, which owns the path. Everything else supports one of those two.</p>
+        <figure class="diagram-card" style="--c:#7df2d0;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 470" role="img" aria-labelledby="v1t v1d"><title id="v1t">A vendor engineer&rsquo;s access path</title><desc id="v1d">A vendor engineer has a named account and is onboarded with a contract and a sponsor. They request access to one system with a reason and an end date, and a named internal sponsor approves. They sign in with MFA through the company directory and conditional access. A broker records the session, limits its time and reaches one scoped target system. The vendor never has a network path to the target. Access expires at the end date, and the sponsor reviews it on a set rhythm, renewing or removing it. Every request, approval, sign-in and recording is sent to the SIEM.</desc><defs><marker id="vgm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><g class="node" style="--i:0"><rect x="30" y="40" width="170" height="100" rx="12"/><text class="ttl" x="115.0" y="76.0" text-anchor="middle">Vendor engineer</text><text class="sub" x="115.0" y="94.0" text-anchor="middle">own named account,</text><text class="sub" x="115.0" y="110.0" text-anchor="middle">contract and sponsor</text><text class="sub" x="115.0" y="126.0" text-anchor="middle">on file</text></g><g class="badge"><circle cx="32" cy="42" r="11"/><text x="32" y="46">1</text></g><g class="node" style="--i:0.8"><rect x="270" y="40" width="170" height="100" rx="12"/><text class="ttl" x="355.0" y="76.0" text-anchor="middle">Request and approval</text><text class="sub" x="355.0" y="94.0" text-anchor="middle">scope, reason, end date;</text><text class="sub" x="355.0" y="110.0" text-anchor="middle">a named internal</text><text class="sub" x="355.0" y="126.0" text-anchor="middle">sponsor approves</text></g><g class="badge"><circle cx="272" cy="42" r="11"/><text x="272" y="46">2</text></g><g class="badge"><circle cx="298" cy="42" r="11"/><text x="298" y="46">3</text></g><g class="node" style="--i:1.6"><rect x="510" y="40" width="170" height="100" rx="12"/><text class="ttl" x="595.0" y="76.0" text-anchor="middle">MFA sign-in</text><text class="sub" x="595.0" y="94.0" text-anchor="middle">vendor's own identity,</text><text class="sub" x="595.0" y="110.0" text-anchor="middle">company directory,</text><text class="sub" x="595.0" y="126.0" text-anchor="middle">conditional access</text></g><g class="badge"><circle cx="512" cy="42" r="11"/><text x="512" y="46">4</text></g><g class="node" style="--i:2.4"><rect x="750" y="40" width="170" height="100" rx="12"/><text class="ttl" x="835.0" y="76.0" text-anchor="middle">Broker</text><text class="sub" x="835.0" y="94.0" text-anchor="middle">records the session,</text><text class="sub" x="835.0" y="110.0" text-anchor="middle">time-boxed, one</text><text class="sub" x="835.0" y="126.0" text-anchor="middle">scoped target</text></g><g class="badge"><circle cx="752" cy="42" r="11"/><text x="752" y="46">4</text></g><path class="flow" d="M 200 90 L 268 90" marker-end="url(#vgm)"/><text class="sub" x="235" y="70" text-anchor="middle">asks</text><text class="sub" x="235" y="84" text-anchor="middle">in a ticket</text><path class="flow" d="M 440 90 L 508 90" marker-end="url(#vgm)"/><text class="sub" x="475" y="70" text-anchor="middle">approved</text><path class="flow" d="M 680 90 L 748 90" marker-end="url(#vgm)"/><text class="sub" x="715" y="70" text-anchor="middle">MFA</text><text class="sub" x="715" y="84" text-anchor="middle">passed</text><rect class="logbar" x="270" y="176" width="610" height="50" rx="10"/><text class="ttl" x="575" y="197" text-anchor="middle">Logs to the SIEM, all the way through</text><text class="sub" x="575" y="215" text-anchor="middle">requests, approvals, sign-ins and session recordings, held outside the broker</text><g class="badge"><circle cx="272" cy="178" r="11"/><text x="272" y="182">5</text></g><path class="log" d="M 355 140 L 355 176"/><path class="log" d="M 595 140 L 595 176"/><path class="log" d="M 835 140 L 835 176"/><g class="node" style="--i:3.2"><rect x="750" y="290" width="170" height="64" rx="12"/><text class="ttl" x="835.0" y="316.0" text-anchor="middle">Target system</text><text class="sub" x="835.0" y="334.0" text-anchor="middle">reached only from</text><text class="sub" x="835.0" y="350.0" text-anchor="middle">the broker</text></g><g class="node" style="--i:4.0"><rect x="510" y="290" width="170" height="64" rx="12"/><text class="ttl" x="595.0" y="316.0" text-anchor="middle">Access expires</text><text class="sub" x="595.0" y="334.0" text-anchor="middle">at the end date,</text><text class="sub" x="595.0" y="350.0" text-anchor="middle">no ticket needed</text></g><g class="badge"><circle cx="512" cy="292" r="11"/><text x="512" y="296">6</text></g><g class="node" style="--i:4.8"><rect x="270" y="290" width="170" height="64" rx="12"/><text class="ttl" x="355.0" y="316.0" text-anchor="middle">Review</text><text class="sub" x="355.0" y="334.0" text-anchor="middle">sponsor renews or</text><text class="sub" x="355.0" y="350.0" text-anchor="middle">removes, on a set rhythm</text></g><g class="badge"><circle cx="272" cy="292" r="11"/><text x="272" y="296">7</text></g><path class="flow" d="M 900 140 L 900 288" marker-end="url(#vgm)"/><text class="sub" x="890" y="246" text-anchor="end">brokered</text><text class="sub" x="890" y="260" text-anchor="end">session</text><path class="flow" d="M 750 322 L 682 322" marker-end="url(#vgm)"/><text class="sub" x="716" y="312" text-anchor="middle">end date</text><path class="flow" d="M 510 322 L 442 322" marker-end="url(#vgm)"/><text class="sub" x="476" y="312" text-anchor="middle">then</text><path class="flow" d="M 270 322 L 14 322 L 14 90 L 28 90" marker-end="url(#vgm)"/><text class="sub" x="142" y="312" text-anchor="middle">renewed or removed</text><rect class="logbar" x="30" y="392" width="890" height="50" rx="10"/><text class="ttl" x="475" y="413" text-anchor="middle">No direct network path</text><text class="sub" x="475" y="431" text-anchor="middle">the vendor never connects to the target; only the broker does, and only for the approved window</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="14s" begin="0s" repeatCount="indefinite" path="M 200 90 L 900 90 L 900 322 L 270 322 L 14 322 L 14 90 L 30 90"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="7s"/><animateMotion dur="14s" begin="7s" repeatCount="indefinite" path="M 200 90 L 900 90 L 900 322 L 270 322 L 14 322 L 14 90 L 30 90"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 890" role="img" aria-labelledby="v2t v2d"><title id="v2t">A vendor engineer&rsquo;s access path</title><desc id="v2d">Vendor engineer with a named account, a request approved by a named internal sponsor, MFA sign-in, a broker that records and time-boxes the session, the target system reached only from the broker, expiry at the end date, and a sponsor review that renews or removes access. Everything is logged to the SIEM, and the vendor never has a direct network path to the target.</desc><defs><marker id="vgt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><g class="node" style="--i:0"><rect x="30" y="10" width="300" height="56" rx="12"/><text class="ttl" x="180" y="35" text-anchor="middle">Vendor engineer</text><text class="sub" x="180" y="53" text-anchor="middle">own named account, contract, sponsor</text></g><g class="badge"><circle cx="32" cy="12" r="11"/><text x="32" y="16">1</text></g><g class="node" style="--i:0.8"><rect x="30" y="100" width="300" height="56" rx="12"/><text class="ttl" x="180" y="125" text-anchor="middle">Request and approval</text><text class="sub" x="180" y="143" text-anchor="middle">scope, reason, end date; sponsor approves</text></g><g class="badge"><circle cx="32" cy="102" r="11"/><text x="32" y="106">2</text></g><g class="badge"><circle cx="58" cy="102" r="11"/><text x="58" y="106">3</text></g><g class="node" style="--i:1.6"><rect x="30" y="190" width="300" height="56" rx="12"/><text class="ttl" x="180" y="215" text-anchor="middle">MFA sign-in</text><text class="sub" x="180" y="233" text-anchor="middle">vendor's own identity, conditional access</text></g><g class="badge"><circle cx="32" cy="192" r="11"/><text x="32" y="196">4</text></g><g class="node" style="--i:2.4"><rect x="30" y="280" width="300" height="56" rx="12"/><text class="ttl" x="180" y="305" text-anchor="middle">Broker</text><text class="sub" x="180" y="323" text-anchor="middle">records the session, time-boxed, scoped</text></g><g class="badge"><circle cx="32" cy="282" r="11"/><text x="32" y="286">4</text></g><g class="node" style="--i:3.2"><rect x="30" y="370" width="300" height="56" rx="12"/><text class="ttl" x="180" y="395" text-anchor="middle">Target system</text><text class="sub" x="180" y="413" text-anchor="middle">reached only from the broker</text></g><g class="node" style="--i:4.0"><rect x="30" y="460" width="300" height="56" rx="12"/><text class="ttl" x="180" y="485" text-anchor="middle">Access expires</text><text class="sub" x="180" y="503" text-anchor="middle">at the end date, no ticket needed</text></g><g class="badge"><circle cx="32" cy="462" r="11"/><text x="32" y="466">6</text></g><g class="node" style="--i:4.8"><rect x="30" y="550" width="300" height="56" rx="12"/><text class="ttl" x="180" y="575" text-anchor="middle">Review</text><text class="sub" x="180" y="593" text-anchor="middle">sponsor renews or removes, on a rhythm</text></g><g class="badge"><circle cx="32" cy="552" r="11"/><text x="32" y="556">7</text></g><path class="flow" d="M 180 66 L 180 98" marker-end="url(#vgt)"/><text class="sub" x="192" y="86" text-anchor="start">asks in a ticket</text><path class="flow" d="M 180 156 L 180 188" marker-end="url(#vgt)"/><text class="sub" x="192" y="176" text-anchor="start">approved</text><path class="flow" d="M 180 246 L 180 278" marker-end="url(#vgt)"/><text class="sub" x="192" y="266" text-anchor="start">MFA passed</text><path class="flow" d="M 180 336 L 180 368" marker-end="url(#vgt)"/><text class="sub" x="192" y="356" text-anchor="start">brokered session</text><path class="flow" d="M 180 426 L 180 458" marker-end="url(#vgt)"/><text class="sub" x="192" y="446" text-anchor="start">end date reached</text><path class="flow" d="M 180 516 L 180 548" marker-end="url(#vgt)"/><text class="sub" x="192" y="536" text-anchor="start">then reviewed</text><path class="flow" d="M 30 578 L 14 578 L 14 38 L 28 38" marker-end="url(#vgt)"/><path class="log" d="M 330 128 L 350 128 L 350 695 L 330 695"/><path class="log" d="M 330 218 L 350 218"/><path class="log" d="M 330 308 L 350 308"/><rect class="logbar" x="30" y="640" width="300" height="110" rx="12"/><g class="badge"><circle cx="32" cy="642" r="11"/><text x="32" y="646">5</text></g><text class="ttl" x="180" y="666" text-anchor="middle">Logs to the SIEM, throughout</text><text class="sub" x="180" y="688" text-anchor="middle">requests and approvals</text><text class="sub" x="180" y="706" text-anchor="middle">sign-ins and session recordings</text><text class="sub" x="180" y="724" text-anchor="middle">held outside the broker</text><rect class="logbar" x="30" y="780" width="300" height="84" rx="12"/><text class="ttl" x="180" y="806" text-anchor="middle">No direct network path</text><text class="sub" x="180" y="828" text-anchor="middle">the vendor never connects to the</text><text class="sub" x="180" y="846" text-anchor="middle">target; only the broker does</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="10s" begin="0s" repeatCount="indefinite" path="M 180 10 L 180 606"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="5s"/><animateMotion dur="10s" begin="5s" repeatCount="indefinite" path="M 180 10 L 180 606"/></circle></svg>
+          <figcaption>The dots show one engineer&rsquo;s session travelling from onboarding through approval, MFA and the broker to the target, then through expiry and review. Step 4 covers both the sign-in and the broker. The directory, ticketing system, broker and SIEM are roles, so any equivalent product fits the same slot.</figcaption>
+        </figure>
+        <p class="body-text">The broker is what removes the standing network path. A VPN gives a vendor a place on your network and trusts them to behave once inside. A broker gives them one session to one target, which the company opens and closes. Because the broker also records, the same component answers the audit question about what actually happened.</p>
+      </section>
+
+      <section id="workflow">
+        <h2>The workflow, one step at a time</h2>
+        <p class="body-text">Seven steps, each with the guardrail that holds it in place and the evidence it leaves behind.</p>
+        <ol class="steps">
+          <li><h3>Onboard the vendor, then the person</h3><p>Before any request, the vendor company is registered against a contract and a named vendor manager on our side. Each engineer is then created as an individual, with their own account in the company directory, marked as an external person, with the vendor&rsquo;s name and the contract reference on it. The vendor&rsquo;s account lead confirms in writing that this person works for them and has accepted the usage rules. Nobody gets a shared login, including the team that &ldquo;only ever needs one&rdquo;.</p><div class="why"><span><b>Guardrail</b>One person, one account. Shared vendor logins are not created.</span><span><b>Evidence</b>Onboarding record, signed usage rules, contract reference</span></div></li><li><h3>Request, with a reason and an end date</h3><p>An engineer cannot ask for &ldquo;access to the environment&rdquo;. The request names one system or a short list, the role they need on it, why, and when it stops. The form will not accept a blank end date, and it will not accept one past the end of the contract. The internal sponsor is named on the request and has to be an employee.</p><div class="why"><span><b>Guardrail</b>Request is tied to a contract and capped at its end date</span><span><b>Evidence</b>Request ticket</span></div></li><li><h3>The sponsor approves, with the scope in plain words</h3><p>The sponsor is the person who asked the vendor to do the work. Next to the technical scope string, an advisory summary says in plain language what the grant means, for example &ldquo;can run any command as the database administrator on these two production servers for five days&rdquo;. It is advice and nothing more. The sponsor sees the real scope too and decides for themselves, and the text they were shown is stored with the approval. A sponsor cannot approve their own access, and security can be added as a second approver for the most sensitive systems.</p><div class="why"><span><b>Guardrail</b>Named employee approves; the summary never approves anything</span><span><b>Evidence</b>Approval record with the summary text shown</span></div></li><li><h3>Connect through the broker, after MFA</h3><p>The engineer signs in to the company directory with MFA, and conditional access can ask for a managed device or a known location. They then open a session in the broker, which is the only thing that can reach the target. The vendor has no VPN account and no inbound route to the network. Where the tooling allows it, the broker supplies the target credential itself so the engineer never sees it.</p><div class="why"><span><b>Guardrail</b>MFA on every sign-in; no direct network path</span><span><b>Evidence</b>Sign-in log, broker connection log</span></div></li><li><h3>Monitor the session</h3><p>The broker records what happens, so the session can be replayed. Commands that match a short high-risk list raise an alert in the SIEM. The sponsor or the security team can watch a live session and end it. The recording and the logs are held somewhere the broker&rsquo;s own administrators cannot edit.</p><div class="why"><span><b>Guardrail</b>Recording is on by default and the vendor cannot switch it off</span><span><b>Evidence</b>Session recording, SIEM events</span></div></li><li><h3>Expire without anyone remembering</h3><p>At the end date the access stops. The account is disabled, any open session is closed, and nothing needs a ticket to make that happen. If the work runs long, the sponsor extends it for a stated period, which is a new approval with a new record.</p><div class="why"><span><b>Guardrail</b>Access ends on its own; extension is a fresh decision</span><span><b>Evidence</b>Expiry event in the log</span></div></li><li><h3>Review on a set rhythm</h3><p>On a regular schedule the sponsor sees every vendor person with access and confirms or removes each one. The vendor manager checks the same list against the vendor&rsquo;s current staff. A leaver notice from the vendor removes the person the same day, ahead of any review. Accounts that have not signed in for a set number of days are disabled and put in front of the sponsor.</p><div class="why"><span><b>Guardrail</b>Sponsor confirms each person; idle accounts are disabled</span><span><b>Evidence</b>Completed review, with removals recorded</span></div></li>
+        </ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: a database vendor and a slow production query</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event.</p>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>The vendor&rsquo;s support team shares one login that was created for an earlier project.</li><li>It reaches the database server over a standing VPN account.</li><li>Nobody can say which engineer ran what, or whether the person who had the password last year still works there.</li><li>The access has no end date and no owner.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>The engineer has a named account and a sponsor from the application team.</li><li>The request is for one database server, a read-only diagnostic role, for three days.</li><li>The sponsor approves after reading the plain-language summary, then the engineer signs in with MFA and works through the broker.</li><li>The session is recorded. On day three the access closes, and a further day needs a new approval.</li></ul></div>
+        </div>
+      </section>
+
+      <section id="emergency">
+        <h2>When a vendor is needed at 2 a.m.</h2>
+        <p class="body-text">Outages do not wait for an approval queue, and a vendor is sometimes the only one who can fix the product. If there is no fast lane, people build one: a password sent over chat, or an account left switched on for next time. I would rather design the fast lane on purpose.</p>
+        <p class="body-text">The fast lane uses the same path. The on-call internal engineer acts as sponsor, the window is measured in hours, and someone on our side watches the session live. The review happens the next working day: the sponsor writes down why, and security looks at the recording. There are no standing emergency vendor accounts. Whatever is created for the incident is removed automatically when the window closes. The longer treatment of urgent access is in <a href="/case-studies/break-glass-access/">Break-Glass Access</a>.</p>
+      </section>
+
+      <section id="offboarding">
+        <h2>When a vendor person leaves</h2>
+        <p class="body-text">There are four ways this should be caught, and I do not rely on any one of them. The vendor tells us, as the contract requires. The end date arrives. The sponsor drops the person at review. Or the account has been idle long enough that it is disabled and queried. The first is the fastest and the least reliable, because it depends on someone at another company remembering to send an email. That is why the end date and the idle check exist.</p>
+        <p class="body-text">The contract end is the larger cut. Every account is tied to a contract reference, so closing the contract closes everything attached to it in one step, and the report afterwards should show no active external account against that reference.</p>
+      </section>
+
+      <section id="roadmap">
+        <h2>How to build it without stalling</h2>
+        <ol class="phases">
+          <li><b>1. Find out who has access today</b>List every vendor with any access: shared accounts, VPN logins, remote support tools, cloud guest users. Ask the vendor managers, not just IT.<small><em>Done when</em>There is one list of vendors and the people and accounts that can reach production.</small></li>
+          <li><b>2. Write the contract and onboarding standard</b>Agree the clause list, the external account type, the sponsor rule and the one-page sponsor guide.<small><em>Done when</em>A new vendor person can be onboarded without anyone improvising.</small></li>
+          <li><b>3. Put the broker in front of the riskiest targets</b>Start with production databases, domain controllers and cloud consoles, with MFA and recording on.<small><em>Done when</em>Vendor access to those targets is only possible through the broker.</small></li>
+          <li><b>4. Automate expiry and review</b>End dates enforced by the directory, idle accounts disabled, review tasks sent to sponsors.<small><em>Done when</em>Access ends and reviews arrive without a person remembering.</small></li>
+          <li><b>5. Close the old paths</b>Disable the shared accounts and standing VPN logins one vendor at a time, with the sponsor.<small><em>Done when</em>New vendor access cannot be created outside this path, and the old list is empty.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">No shared vendor accounts</td><td data-label="What it stops">A session nobody can attribute to a person</td><td data-label="How you check it">Report of external accounts with more than one known user, or with no personal email</td></tr>
+            <tr><td data-label="Guardrail">Every account has a named internal sponsor</td><td data-label="What it stops">Access that nobody owns</td><td data-label="How you check it">Report of external accounts with no sponsor, or a sponsor who has left</td></tr>
+            <tr><td data-label="Guardrail">A mandatory end date, capped by the contract</td><td data-label="What it stops">Standing access that outlives the work</td><td data-label="How you check it">List of external accounts with no end date or one past the contract</td></tr>
+            <tr><td data-label="Guardrail">MFA on every sign-in</td><td data-label="What it stops">A stolen or guessed password being enough</td><td data-label="How you check it">Sign-in logs for external accounts without an MFA step</td></tr>
+            <tr><td data-label="Guardrail">Access only through the broker</td><td data-label="What it stops">A vendor sitting on the internal network</td><td data-label="How you check it">Firewall rules and VPN accounts reviewed for any vendor route</td></tr>
+            <tr><td data-label="Guardrail">Sessions recorded, logs held elsewhere</td><td data-label="What it stops">Disputes about what happened, or evidence being edited</td><td data-label="How you check it">Test session replayed; confirm broker admins cannot edit the log store</td></tr>
+            <tr><td data-label="Guardrail">Scoped to named targets and a role</td><td data-label="What it stops">A support login that can reach everything</td><td data-label="How you check it">Review of roles for wildcards and broad groups</td></tr>
+            <tr><td data-label="Guardrail">Leaver and idle checks</td><td data-label="What it stops">Accounts that stay open after the person has gone</td><td data-label="How you check it">Count of idle external accounts, and time to remove after a leaver notice</td></tr>
+            </tbody></table></div>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Which vendors can get into our systems, and who is the person?</td><td data-label="Where the answer comes from">External account list with vendor, contract reference and sponsor</td></tr>
+            <tr><td data-label="Question">Who approved this access, and what did they see?</td><td data-label="Where the answer comes from">Approval record, including the plain-language summary shown</td></tr>
+            <tr><td data-label="Question">When did it start and end?</td><td data-label="Where the answer comes from">Request dates and the expiry event in the log</td></tr>
+            <tr><td data-label="Question">What did this person do in the session?</td><td data-label="Where the answer comes from">Session recording and broker log, kept outside the broker</td></tr>
+            <tr><td data-label="Question">How do you know the vendor person still works there?</td><td data-label="Where the answer comes from">Vendor manager&rsquo;s staff confirmation at each review</td></tr>
+            <tr><td data-label="Question">What happens when a vendor person leaves?</td><td data-label="Where the answer comes from">Leaver notices received, removal times, and the idle-account report</td></tr>
+            <tr><td data-label="Question">Is there any other way in?</td><td data-label="Where the answer comes from">Firewall and VPN review, plus the exception register</td></tr>
+            </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <p class="body-text" style="margin-top:6px">Only controls I checked against a published source are listed. Where my reading came from a secondary summary, the row says so, and the sources section has the links.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-2</code>, <code class="ref">AC-2(2)</code></td><td data-label="What it asks for">Define and document the types of accounts allowed, assign account managers, and automatically remove or disable temporary and emergency accounts after a set time. AC-2(2) was read in the initial public draft and a secondary summary.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-6</code>, <code class="ref">AC-17</code></td><td data-label="What it asks for">Least privilege, meaning only the access needed for assigned tasks. Remote access is documented and authorized before any connection is allowed.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">IA-2</code></td><td data-label="What it asks for">Uniquely identify and authenticate organizational users. IA-2(1) asks for MFA on privileged accounts. Vendors are not employees, so I apply it by policy.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-14</code></td><td data-label="What it asks for">Provide the capability to record, view, hear or log the content of a user session, developed in consultation with legal counsel and applicable rules.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">SA-9</code>, <code class="ref">SR-3</code></td><td data-label="What it asks for">Require external service providers to meet your security requirements, and keep a process for finding and addressing supply chain weaknesses.</td></tr>
+            <tr><td data-label="Standard">NIST SP 800-161 Rev. 1 Update 1</td><td data-label="Reference">Whole publication</td><td data-label="What it asks for">Supply chain risk management practices for systems and organizations. Rev. 1 was withdrawn on 1 November 2024 and superseded by this update.</td></tr>
+            <tr><td data-label="Standard">ISO/IEC 27001:2022</td><td data-label="Reference"><code class="ref">A.5.19</code> to <code class="ref">A.5.22</code></td><td data-label="What it asks for">Supplier relationships, supplier agreements, the ICT supply chain, and monitoring, review and change management of supplier services. Control titles checked against a secondary summary.</td></tr>
+            <tr><td data-label="Standard">PCI DSS v4.0</td><td data-label="Reference"><code class="ref">8.2.7</code></td><td data-label="What it asks for">Accounts used by third parties for remote access, support or maintenance are enabled only for the time needed, disabled when not in use, and monitored for unexpected activity. Read in a Microsoft summary.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">12.8.1</code> to <code class="ref">12.8.5</code></td><td data-label="What it asks for">A list of third-party service providers, written agreements, due diligence before engaging them, monitoring their compliance status at least every 12 months, and a record of who owns which requirement.</td></tr>
+            <tr><td data-label="Standard">NCSC supply chain security guidance</td><td data-label="Reference">12 principles</td><td data-label="What it asks for">Four stages: understand the risks, establish control, check your arrangements, and continuous improvement. I did not find NCSC text specific to third-party access, so I use it as a frame only.</td></tr>
+            </tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Internal sponsor</td><td data-label="Owns">Whether the work needs this access. Approves each request and each renewal, and confirms every person at review. Must be an employee.</td></tr>
+            <tr><td data-label="Role">Vendor manager</td><td data-label="Owns">The relationship day to day. Keeps the vendor&rsquo;s staff list current, receives leaver notices, and confirms at review that each person still works for the vendor.</td></tr>
+            <tr><td data-label="Role">Security</td><td data-label="Owns">The access standard, the external account rules, the high-risk command list and exception criteria. Watches recordings and alerts, and acts as second approver on the most sensitive targets.</td></tr>
+            <tr><td data-label="Role">Contract owner</td><td data-label="Owns">The clauses: individual accounts, leaver notice, recording, subcontractors, flow-down and end of contract. Keeps the contract reference and end date accurate, because the access end date follows it.</td></tr>
+            <tr><td data-label="Role">Platform team</td><td data-label="Owns">Runs the directory integration and the broker, and keeps the log store separate from its own administrators.</td></tr>
+            </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>The sponsor is the hard role to fill.</strong> A sponsor who clicks approve without reading is the main way this fails, so I write their job on one page and keep it short.</li>
+          <li><strong>Exceptions have owners and end dates.</strong> Anything outside the path sits on a register, reviewed on a rhythm, and removed when its reason ends.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Replaced shared, standing vendor credentials with engagement-scoped access that expires with the contract, and gave resource owners a plain-language basis for every approval instead of a technical scope string.</p>
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>Sponsors approve without reading.</strong> The plain-language summary helps, but it is advisory and it can be wrong, which is why the real scope sits next to it and the approval keeps both.</li>
+          <li><strong>Vendor turnover is invisible.</strong> Vendor staff change often and nobody tells you. The end date, the idle check and the vendor manager&rsquo;s confirmation each catch some of it, and none catches all of it.</li>
+          <li><strong>The vendor wants its own tool.</strong> Many vendors have a favourite remote support product. Letting it in recreates the direct path. Say no early and offer the broker instead.</li>
+          <li><strong>Named accounts do not fit every system.</strong> Some older systems only support a shared admin login. Treat each as a named exception with a sponsor, a plan and an end date, and put the broker in front of it so the session is still attributable.</li>
+          <li><strong>Short expiry creates pressure.</strong> If extending is painful, people ask for long end dates up front. Make renewal quick but explicit, and the short default will hold.</li>
+          <li><strong>The fast lane becomes the main lane.</strong> If emergency access is easier than the normal path, it will be used for everything. Track how often it is used and look at each use.</li>
+          <li><strong>Recordings pile up unwatched.</strong> A recording nobody reads does little. Sample a few with the sponsor, and alert on a short list of commands that matter.</li>
+          <li><strong>Old contracts have no clauses.</strong> Vendors signed before the standard existed will not have them. Add them at renewal and compensate with controls in the meantime.</li>
+        </ul>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#third-party-access</span><span>#vendor-governance</span><span>#privileged-onboarding</span></div>
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep when I run this kind of work. They are not a record of one project.</p>
+        <ul class="plain-list">
+          <li><strong>I start with the list of who has access today.</strong> Before designing anything I ask the vendor managers and the application owners who the vendors are and how they get in. The list is nearly always longer than the one IT holds, and it makes the case better than any slide.</li>
+          <li><strong>I put the sponsor in the room early.</strong> Sponsors are application and business owners, not security people. I walk through the request screen with two or three of them and change the wording until they can say what they are approving.</li>
+          <li><strong>I make renewing easy and ending hard to forget.</strong> If extending takes five minutes, nobody needs a six-month end date. The default stays short because the exception is cheap.</li>
+          <li><strong>I test with one friendly vendor first.</strong> A vendor who will tell me where the broker gets in their way is worth more than a pilot with an internal team that does not use it the way a vendor does.</li>
+          <li><strong>I read a few recordings myself.</strong> Reviewing real sessions with the sponsor shows what the vendor does that nobody thought to ask about, and whether the alert list is any good.</li>
+          <li><strong>I plan for the broker being down.</strong> Once vendors depend on it, an outage blocks real work. There is a tested, approved fallback that goes through the same sponsor and logging, not a quiet exception.</li>
+          <li><strong>I close the old path with the vendor, not on them.</strong> Switching off a standing account without warning damages the relationship and teaches people to hide the next one. We agree a date, and I confirm the new path works first.</li>
+        </ul>
+        <p class="body-text">The same habits appear in <a href="/case-studies/pam-modernization/">PAM Modernization &amp; Zero Standing Privilege</a>, where the aim is also to remove access that nobody is using.</p>
       </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls for Information Systems and Organizations</a> (publication page, checked)</li>
+          <li>Control text for AC-2, AC-6, AC-17, IA-2, AU-14, SA-9 and SR-3 read on <a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/">CSF Tools</a>, a secondary site that republishes the NIST catalog. Per-control pages follow the same address pattern, for example <a href="https://csf.tools/reference/nist-sp-800-53/r5/au/au-14/">AU-14</a>.</li>
+          <li><a href="https://csrc.nist.gov/CSRC/media/Publications/sp/800-53/rev-5/draft/documents/sp800-53r5-draft-controls-markup.pdf">NIST SP 800-53 Rev. 5 initial public draft, controls</a> (a draft; used for AC-2(2) and AC-17(1) wording, which I would confirm against the final text)</li>
+          <li><a href="https://doi.org/10.6028/NIST.SP.800-161r1-upd1">NIST SP 800-161 Rev. 1 Update 1</a> and the <a href="https://csrc.nist.gov/pubs/sp/800/161/r1/ipd">Rev. 1 publication page</a>; the withdrawal notice for the original Rev. 1 is dated 1 November 2024</li>
+          <li><a href="https://www.pcisecuritystandards.org/wp-content/uploads/2023/09/10.Beyond-the-Contract-Managing-Customer-Service-Provider-Relationships.pdf">PCI Security Standards Council, Beyond the Contract: Managing Customer/Service Provider Relationships</a> (cites 12.8.1 to 12.8.5)</li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-8">Microsoft Learn, Entra ID and PCI DSS Requirement 8</a> (secondary summary; the only place I read 8.2.7)</li>
+          <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022</a> (the standard itself is paid, so I did not read it) and <a href="https://advisera.com/iso27001/annex-a-controls/">Advisera Annex A list</a> (secondary, for control titles)</li>
+          <li><a href="https://www.ncsc.gov.uk/collection/supply-chain-security">NCSC, Supply chain security guidance</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. The example is illustrative. Control numbers and wording are as published in the sources above, with the secondary sources flagged where I used them.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#third-party-access</span><span>#vendor-governance</span><span>#privileged-onboarding</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#c4b5fd" href="/case-studies/secrets-consolidation/"><small><i></i>&larr; Previous</small><strong>Secrets Discovery &amp; Consolidation</strong></a><a class="next" style="--c:#f7c873" href="/case-studies/access-recertification/"><small><i></i>Next &rarr;</small><strong>Access Recertification Automation</strong></a></div></nav>
       <footer class="page-footer">
@@ -96,7 +262,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

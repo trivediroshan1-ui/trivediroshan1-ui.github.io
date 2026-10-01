@@ -1,351 +1,350 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#030712" />
-<meta name="robots" content="index,follow,max-image-preview:large" />
-<meta name="description" content="AI made producing work nearly free, but not deciding on it. Who pays that cost, and a decision-package gate that keeps it off the people with least capacity." />
-<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ai-processing-tax/" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="The Processing Tax Â· Roshan Trivedi" />
-<meta property="og:description" content="AI made producing work nearly free, but not deciding on it. Who pays that cost, and a decision-package gate that keeps it off the people with least capacity." />
-<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/ai-processing-tax/" />
-<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-ai-processing-tax.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ai-processing-tax.png" />
-<title>The Processing Tax Â· Roshan Trivedi</title>
-<link rel="stylesheet" href="/assets/fonts.css">
-<style>
-:root{
---bg:#030712;
---bg-panel:#0b1220;
---bg-panel-2:#0d1626;
---border:rgba(148,163,184,0.16);
---border-strong:rgba(77,226,255,0.35);
---text:#f8fafc;
---muted:#9fb0c4;
---teal:#4de2ff;
---green:#7df2d0;
---amber:#f7c873;
---red:#ff6b6b;
---display:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
---mono:"JetBrains Mono",ui-monospace,monospace;
---font:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-font-family:var(--font);
-background:var(--bg);
-color:var(--text);
-line-height:1.6;
-background-image:
-radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
-radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
-}
-a{color:var(--teal);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="AI made producing work nearly free, but not deciding on it. Who pays that cost, and a decision-package gate that keeps it off the people with least capacity." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ai-processing-tax/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The Processing Tax · Roshan Trivedi" />
+    <meta property="og:description" content="AI made producing work nearly free, but not deciding on it. Who pays that cost, and a decision-package gate that keeps it off the people with least capacity." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/ai-processing-tax/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-ai-processing-tax.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ai-processing-tax.png" />
+    <title>The Processing Tax · Roshan Trivedi</title>
 
-header.site{
-display:flex;align-items:center;justify-content:space-between;
-padding:20px 24px;border-bottom:1px solid var(--border);
-position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
-}
-header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
-header.site .back:hover{color:var(--teal);text-decoration:none}
-header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
-header.site .brand span{color:var(--teal)}
-
-.hero{padding:72px 0 40px}
-.eyebrow{
-display:inline-flex;align-items:center;gap:8px;
-font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-color:var(--teal);margin-bottom:22px;
-}
-.eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
-h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
-h1 .accent{color:var(--teal)}
-.lede{font-size:18px;color:var(--muted);max-width:680px}
-
-.meta-grid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
-}
-.meta-card{
-background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
-padding:20px 22px;
-}
-.meta-card .label{
-font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-color:var(--muted);margin-bottom:10px;
-}
-.meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
-.meta-card.role .value{font-weight:700;color:var(--green)}
-
-section.approach{padding:64px 0}
-.section-head{margin-bottom:36px}
-.section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
-.section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
-.section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
-
-.steps{display:grid;gap:14px}
-.step{
-display:grid;grid-template-columns:56px 1fr;gap:18px;
-background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
-}
-.step .num{
-font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
-}
-.step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
-.step p{color:var(--muted);font-size:14.5px}
-
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
-.tag{
-font-size:12px;font-weight:600;color:var(--muted);
-border:1px solid var(--border);border-radius:999px;padding:7px 14px;
-}
-
-section.pipeline{padding:0 0 64px}
-.pipeline svg text{font-family:var(--font)}
-
-section.fieldnote{padding:0 0 64px}
-.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
-.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
-.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
-.quote-card .who span{color:var(--teal)}
-.quote-card.mine{border-left-color:var(--green)}
-
-section.solution{padding:0 0 64px}
-.status-note{
-display:flex;gap:12px;align-items:flex-start;
-background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
-border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--amber);
-}
-.status-note b{color:var(--amber)}
-.status-note.shipped{background:rgba(125,242,208,0.08);border-color:rgba(125,242,208,0.3);color:var(--green)}
-.status-note.shipped b{color:var(--green)}
-
-footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
-footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-footer.site p{color:var(--muted);font-size:13px}
-
-@media (max-width:720px){
-h1{font-size:32px}
-.meta-grid{grid-template-columns:1fr}
-}
-h1,h2,h3,header.site .brand{font-family:var(--display)}
-.eyebrow,.meta,.tag{font-family:var(--mono)}
-</style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"The Processing Tax","description":"AI made producing work nearly free, but not deciding on it. Who pays that cost, and a decision-package gate that keeps it off the people with least capacity.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-08-20","dateModified":"2026-08-28","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/ai-processing-tax/","image":"https://roshantrivedi.co.in/assets/og-case-ai-processing-tax.png","keywords":"AI governance, Human-AI collaboration, Decision architecture, HumanGate, Productivity"}
-</script>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-<body>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Processing Tax",
+  "description": "AI made producing work nearly free, but not deciding on it. Who pays that cost, and a decision-package gate that keeps it off the people with least capacity.",
+  "author": {
+    "@type": "Person",
+    "name": "Roshan Trivedi",
+    "url": "https://roshantrivedi.co.in/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Roshan Trivedi"
+  },
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-10-01",
+  "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/ai-processing-tax/",
+  "image": "https://roshantrivedi.co.in/assets/og-case-ai-processing-tax.png",
+  "articleSection": "AI governance",
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "url": "https://roshantrivedi.co.in/case-studies/"
+  },
+  "keywords": "AI governance, Human-AI collaboration, Decision architecture, HumanGate, Productivity"
+}
+    </script>
+    </head>
+  <body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
+    <main id="main">
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
-<header class="site">
-<nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
-<div class="brand">RT <span>&middot; Identity Security</span></div>
-</header>
+      <header class="hero">
+        <p class="eyebrow">AI Governance &middot; Decision Architecture</p>
+        <h1>AI made producing work free. It didn&rsquo;t make deciding on it free.</h1>
+        <p class="dek">A real reaction to a real conversation, checked against four independent studies, and answered with a structural control instead of a slogan.</p>
+        <p class="meta">Independent Research &amp; Control Design &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+      </header>
 
-<main id="main" class="wrap hero">
-<div class="eyebrow">AI Governance &middot; Decision Architecture</div>
-<h1>AI made producing work free. It didn't make <span class="accent">deciding on it</span> free.</h1>
-<p class="lede">A real reaction to a real conversation, checked against four independent studies, and answered with a structural control instead of a slogan.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>AI collapsed the cost of producing a document, a report or an access request to near zero. It did not collapse the cost of verifying, judging or deciding on that output, and that cost does not disappear. It moves to whoever opens the file next.</li>
+          <li>That cost tends to land on the people with the least slack to absorb it. I call it the processing tax.</li>
+          <li>The fix I specified is structural. A decision-package gate sits where an AI agent hands a request to a human and sends back any handoff that has not done its own thinking first. It checks completeness, never correctness, so the human keeps the judgment.</li>
+        </ul>
+      </div>
 
-<div class="meta-grid">
-<div class="meta-card role">
-<div class="label">Role</div>
-<div class="value">Independent Research &amp; Control Design</div>
-</div>
-<div class="meta-card">
-<div class="label">Challenge</div>
-<div class="value">AI collapsed the cost of producing a document, a report or an access request to near zero. It didn't collapse the cost of verifying, judging or deciding on that output &mdash; and that unpaid cost doesn't disappear. It moves to whoever opens the file next.</div>
-</div>
-<div class="meta-card">
-<div class="label">Outcome</div>
-<div class="value">Named the mechanism, backed it with four independent studies, and shipped a decision-package gate in HumanGate that rejects any AI-to-human handoff that hasn't done its own thinking first.</div>
-</div>
-</div>
-</main>
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">This did not start as a thesis. It started as a reaction to a real conversation about AI and workplace productivity, and I wrote it down before I reached for any framework:</p>
+        <blockquote class="note-box" style="margin-top:12px">&ldquo;AI is creating situations challenging rather than making it easier when it comes to take a decision&hellip; it&rsquo;s not landing properly.&rdquo;<br><small>Roshan, reacting in the thread</small></blockquote>
+        <p class="body-text">What I was reacting to is a mismatch in costs. Asking an AI tool for a document, a summary, a status report or an access request takes seconds. Reading that output, checking it, working out what it is really asking for and deciding what to do about it takes about as long as it always did. Sometimes it takes longer, because the output looks finished and the reader has to work out what is missing.</p>
+        <p class="body-text">Work has two halves: producing the thing and deciding on the thing. Only the first half got cheap. The second half is still done by a person, and a person has a fixed number of hours. When one side of a process speeds up and the other does not, the queue forms in front of the slow side.</p>
+        <p class="body-text">The cost also moves in a particular direction. The person who produced the output saved time. The person who receives it pays for that saving. Receivers tend to be the people who decide: approvers, managers, reviewers, owners. These are the people with the least room in their day, because deciding is their job on top of everything else. So the cost concentrates upward, toward the people least able to absorb it.</p>
+        <p class="body-text">In identity and access work this is easy to picture. An AI agent can raise a hundred access requests before lunch. Each one is cheap to send. Each one asks a human for a yes or a no. If the request arrives as a bare ask with no analysis attached, the approver has to rebuild the thinking from scratch every time, and approval becomes a chore the approver learns to get through quickly.</p>
+      </section>
 
-<section class="approach wrap">
-<div class="section-head">
-<span class="section-num">APPROACH</span>
-<h2>Three moves, in order</h2>
-<p>Start from a real reaction, not an abstract trend. Confirm it against evidence. Then design something that enforces the fix rather than just naming it.</p>
-</div>
-<div class="steps">
-<div class="step">
-<div class="num">01</div>
-<div>
-<h3>Ground it in evidence</h3>
-<p>Cross-checked a personal reaction against BetterUp/Stanford's workslop research, MIT Media Lab's AI-ROI study, an NBER executive survey, and Goldman Sachs' economy-wide analysis &mdash; four independent measurements of the same effect.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">02</div>
-<div>
-<h3>Isolate the mechanism</h3>
-<p>AI compresses the cost of producing output. It doesn't compress the cost of verifying or deciding on it at the same rate &mdash; so that cost transfers to whoever receives the output next, concentrating upward toward the people with the least slack to absorb it.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">03</div>
-<div>
-<h3>Specify the fix</h3>
-<p>Designed a decision-package gate for HumanGate: a structural requirement, not a cultural norm, enforced at the exact point an AI agent hands a request to a human.</p>
-</div>
-</div>
-</div>
-<div class="tags">
-<span class="tag">#wip</span><span class="tag">AI Governance</span>
-<span class="tag">Human-AI Collaboration</span>
-<span class="tag">Decision Architecture</span>
-<span class="tag">HumanGate</span>
-<span class="tag">Productivity</span>
-</div>
-</section>
+      <section id="evidence">
+        <h2>What the research says, and what it does not</h2>
+        <p class="body-text">I did not want to build a control on one conversation, so I checked the reaction against four independent sources. They measure different things, and none of them measures the processing tax directly. What they have in common is that the gains people expect from AI are harder to find than the speed of producing output would suggest.</p>
+        <ul class="plain-list">
+          <li><strong>BetterUp Labs and the Stanford Social Media Lab</strong> coined the word &ldquo;workslop&rdquo; in a Harvard Business Review article in September 2025. BetterUp&rsquo;s own write-up defines it as AI-generated content that looks polished and complete but is unhelpful, low-quality or off the mark. The article&rsquo;s point that matters here is where the effort goes: onto the colleagues who have to revise or replace it.</li>
+          <li><strong>MIT Media Lab&rsquo;s Project NANDA</strong> published &ldquo;The GenAI Divide: State of AI in Business 2025&rdquo; in July 2025. It looks at why enterprise AI projects stall, and a core reason it gives is that most systems do not retain feedback, adapt to context or improve over time. I read this through a trade-press summary, not the report itself.</li>
+          <li><strong>NBER executive surveys.</strong> Two NBER working papers survey senior executives about AI and productivity, one of nearly 6,000 executives across four countries and one of about 750 corporate executives. The second reports a disconnect between the productivity gains executives perceive and the gains that are measured.</li>
+          <li><strong>Goldman Sachs Research</strong>, in March 2026, said it still found no meaningful relationship between productivity and AI adoption at the economy-wide level, while finding gains in specific use cases such as customer support and software development. I read this through a news report on the note, not the note itself.</li>
+        </ul>
+        <p class="body-text">I would not stretch these into proof. Some are surveys of opinion, some are trade-press summaries of a report, and none looks at approval queues. My claim is narrower. Four unrelated measurements point the same way: producing output got cheap, and turning that output into a result did not.</p>
 
-<section class="pipeline wrap">
-<div class="section-head">
-<span class="section-num">THE MECHANISM</span>
-<h2>The same handoff, gated two different ways</h2>
-<p>Today, an AI agent's request reaches a human ungated and the human pays the processing tax. The proposed fix validates the request before a human ever sees it.</p>
-</div>
-<svg viewBox="0 0 680 500" width="100%" height="auto" role="img" aria-label="Workflow diagram comparing an ungated AI-to-human handoff against a HumanGate decision-package gate that validates requests before a human sees them">
-<defs>
-<marker id="ptArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</marker>
-</defs>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Why a human reviewer is not enough on their own</h3>
+        <p class="body-text" style="margin-top:6px">Putting a person at the end of the line does not fix the problem, because people who check automated recommendations can drift into agreeing with them. Researchers call this automation bias. In a well-known 1999 study of a simulated flight task, Skitka and colleagues found that people using a slightly unreliable automated aid made two kinds of error: they missed events the system did not flag, and they followed its recommendations even when other valid indicators contradicted them. A 2012 systematic review by Goddard, Roudsari and Wyatt looked at how often this happens, what influences it and what reduces it.</p>
+        <p class="body-text">Regulators have noticed too. Article 14 of the EU AI Act, on human oversight of high-risk AI systems, says the people assigned to oversight should remain aware of the possible tendency of automatically relying or over-relying on the output of the system. I read this as support for a design point. If a human is the safeguard, the way the work reaches them decides how well they can do it. A bare yes-or-no ask invites a quick yes. A package that sets out options, a recommendation and a confidence level gives the person something to disagree with.</p>
+      </section>
 
-<rect x="40" y="40" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
-<text x="60" y="66" fill="var(--muted)" font-size="14" font-weight="600">TODAY &mdash; NO GATE ON THE AI'S ASK</text>
+      <section id="architecture">
+        <h2>How it fits together</h2>
+        <p class="body-text">The diagram shows the same handoff two ways. In the top lane, an AI agent sends a raw request straight to a human approver, who has to verify it, rebuild the context and decide. All the effort lands on one person. In the bottom lane, the agent first builds a decision package. A gate checks that the package is complete. A complete package reaches the human as a quick judgment call, and an incomplete one goes back to the agent with the gap named.</p>
+        <figure class="diagram-card" style="--c:#4de2ff;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 440" role="img" aria-labelledby="p1t p1d"><title id="p1t">The same AI-to-human handoff, with and without a gate</title><desc id="p1d">Top lane: an AI agent sends a raw request with no analysis to a human approver, who has to verify, rebuild context and decide, so the processing tax lands on one person. Bottom lane: the AI agent builds a decision package with options, a recommendation, a confidence level and the one question needing human judgment. A completeness gate checks the package. A complete package reaches the human approver as a fast judgment call. An incomplete package is bounced back to the agent with the gap named. The decision, reason and evidence are logged.</desc>
+            <defs><marker id="pta" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#4de2ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+            <rect x="10" y="10" width="940" height="200" rx="12" fill="none" stroke="#1f2a40" stroke-width="1.5"/>
+            <text class="lane" x="28" y="36">TODAY: THE ASK ARRIVES RAW</text>
+            <g class="node" style="--i:0"><rect x="28" y="54" width="220" height="64" rx="12"/><text class="ttl" x="46" y="82">AI agent</text><text class="sub" x="46" y="102">drafts in seconds</text></g>
+            <path class="flow" d="M 248 86 L 368 86" marker-end="url(#pta)"/>
+            <text class="sub" x="308" y="74" text-anchor="middle">sends the ask</text>
+            <g class="node" style="--i:1"><rect x="370" y="54" width="220" height="64" rx="12"/><text class="ttl" x="388" y="82">Raw request</text><text class="sub" x="388" y="102">no options, no pick</text></g>
+            <path class="flow" d="M 590 86 L 710 86" marker-end="url(#pta)"/>
+            <text class="sub" x="650" y="74" text-anchor="middle">arrives ungated</text>
+            <g class="node" style="--i:2"><rect x="712" y="54" width="220" height="64" rx="12"/><text class="ttl" x="730" y="82">Human approver</text><text class="sub" x="730" y="102">rebuilds the thinking</text></g>
+            <rect class="logbar" x="370" y="142" width="562" height="50" rx="10"/>
+            <text class="sub" x="651" y="163" text-anchor="middle">Verify, rebuild context, decide.</text>
+            <text class="sub" x="651" y="181" text-anchor="middle">The processing tax lands on one person.</text>
 
-<g fill="var(--bg-panel)" stroke="var(--muted)" stroke-width="1">
-<rect x="60" y="90" width="110" height="56" rx="8"/>
-<rect x="190" y="90" width="200" height="56" rx="8"/>
-<rect x="410" y="90" width="210" height="56" rx="8"/>
-</g>
-<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
-<text x="115" y="122" font-size="14">AI Agent</text>
-<text x="290" y="114" font-size="14" font-weight="600">Raw request</text>
-<text x="290" y="132" font-size="12" fill="var(--muted)">no analysis attached</text>
-<text x="515" y="114" font-size="14" font-weight="600">Human approver</text>
-<text x="515" y="132" font-size="12" fill="var(--muted)">pays the processing tax</text>
-</g>
+            <rect x="10" y="226" width="940" height="204" rx="12" fill="none" stroke="#1f2a40" stroke-width="1.5"/>
+            <text class="lane" x="28" y="252">WITH THE GATE: THE AGENT THINKS FIRST</text>
+            <g class="node" style="--i:0"><rect x="28" y="270" width="190" height="76" rx="12"/><text class="ttl" x="46" y="298">AI agent</text><text class="sub" x="46" y="318">does its own analysis</text></g>
+            <g class="badge"><circle cx="28" cy="270" r="11"/><text x="28" y="274">1</text></g>
+            <path class="flow" d="M 218 308 L 268 308" marker-end="url(#pta)"/>
+            <g class="node" style="--i:1"><rect x="270" y="270" width="190" height="76" rx="12"/><text class="ttl" x="286" y="298">Decision package</text><text class="sub" x="286" y="318">options + recommendation</text><text class="sub" x="286" y="334">confidence + one question</text></g>
+            <g class="badge"><circle cx="270" cy="270" r="11"/><text x="270" y="274">2</text></g>
+            <path class="flow" d="M 460 308 L 510 308" marker-end="url(#pta)"/>
+            <g class="node" style="--i:2"><rect x="512" y="270" width="190" height="76" rx="12"/><text class="ttl" x="528" y="298">Completeness gate</text><text class="sub" x="528" y="318">checks fields,</text><text class="sub" x="528" y="334">not the answer</text></g>
+            <g class="badge"><circle cx="512" cy="270" r="11"/><text x="512" y="274">3</text></g>
+            <path class="flow" d="M 702 308 L 752 308" marker-end="url(#pta)"/>
+            <g class="node" style="--i:3"><rect x="754" y="270" width="190" height="76" rx="12"/><text class="ttl" x="770" y="298">Human approver</text><text class="sub" x="770" y="318">fast judgment call</text></g>
+            <g class="badge"><circle cx="754" cy="270" r="11"/><text x="754" y="274">4</text></g>
+            <text class="sub" x="243" y="364" text-anchor="middle">hands over</text>
+            <text class="sub" x="486" y="364" text-anchor="middle">submits</text>
+            <text class="sub" x="727" y="364" text-anchor="middle">complete only</text>
+            <path class="flow" d="M 607 346 L 607 392 L 123 392 L 123 348" marker-end="url(#pta)" style="stroke:#f7c873"/>
+            <text class="sub" x="365" y="415" text-anchor="middle">incomplete: bounced back with the gap named</text>
+            <rect class="logbar" x="650" y="380" width="294" height="38" rx="10"/>
+            <text class="sub" x="797" y="404" text-anchor="middle">Decision, reason and evidence logged</text>
+            <path class="flow" d="M 849 346 L 849 378" marker-end="url(#pta)"/>
 
-<g stroke="var(--muted)" stroke-width="1" fill="none">
-<path d="M170 118 H190" marker-end="url(#ptArrow)"/>
-<path d="M390 118 H410" marker-end="url(#ptArrow)"/>
-</g>
-<g font-family="var(--font)" font-size="12" fill="var(--muted)" text-anchor="middle">
-<text x="180" y="164">generates in seconds</text>
-<text x="400" y="164">arrives ungated</text>
-</g>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="5s" begin="0s" repeatCount="indefinite" path="M 248 86 L 712 86"/></circle>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="1.5s"/><animateMotion dur="6s" begin="1.5s" repeatCount="indefinite" path="M 218 308 L 754 308"/></circle>
+            <circle class="dot" r="5" opacity="0" style="fill:#f7c873"><set attributeName="opacity" to="1" begin="3s"/><animateMotion dur="6s" begin="3s" repeatCount="indefinite" path="M 607 346 L 607 392 L 123 392 L 123 348"/></circle>
+          </svg>
+          <svg class="d-tall" viewBox="0 0 360 1000" role="img" aria-labelledby="p1tt p1td"><title id="p1tt">The same AI-to-human handoff, with and without a gate</title><desc id="p1td">Top: an AI agent sends a raw request to a human approver, who has to verify, rebuild context and decide, so the processing tax lands on one person. Bottom: the agent builds a decision package, a completeness gate checks it, and a complete package reaches the human as a fast judgment call. An incomplete package is bounced back to the agent with the gap named. The decision, reason and evidence are logged.</desc>
+            <defs><marker id="ptb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#4de2ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+            <rect x="10" y="10" width="340" height="420" rx="12" fill="none" stroke="#1f2a40" stroke-width="1.5"/>
+            <text class="lane" x="28" y="36">TODAY: THE ASK ARRIVES RAW</text>
+            <g class="node" style="--i:0"><rect x="30" y="52" width="282" height="64" rx="12"/><text class="ttl" x="48" y="80">AI agent</text><text class="sub" x="48" y="100">drafts in seconds</text></g>
+            <path class="flow" d="M 171 116 L 171 164" marker-end="url(#ptb)"/>
+            <text class="sub" x="186" y="145">sends the ask</text>
+            <g class="node" style="--i:1"><rect x="30" y="166" width="282" height="64" rx="12"/><text class="ttl" x="48" y="194">Raw request</text><text class="sub" x="48" y="214">no options, no pick</text></g>
+            <path class="flow" d="M 171 230 L 171 278" marker-end="url(#ptb)"/>
+            <text class="sub" x="186" y="259">arrives ungated</text>
+            <g class="node" style="--i:2"><rect x="30" y="280" width="282" height="64" rx="12"/><text class="ttl" x="48" y="308">Human approver</text><text class="sub" x="48" y="328">rebuilds the thinking</text></g>
+            <rect class="logbar" x="30" y="362" width="300" height="54" rx="10"/>
+            <text class="sub" x="180" y="384" text-anchor="middle">Verify, rebuild context, decide.</text>
+            <text class="sub" x="180" y="403" text-anchor="middle">The tax lands on one person.</text>
 
-<rect x="40" y="260" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
-<text x="60" y="286" fill="var(--teal)" font-size="14" font-weight="600">PROPOSED &mdash; HUMANGATE DECISION-PACKAGE GATE</text>
+            <rect x="10" y="446" width="340" height="548" rx="12" fill="none" stroke="#1f2a40" stroke-width="1.5"/>
+            <text class="lane" x="28" y="472">WITH THE GATE: THE AGENT</text>
+            <text class="lane" x="28" y="490">THINKS FIRST</text>
+            <g class="node" style="--i:0"><rect x="30" y="510" width="282" height="76" rx="12"/><text class="ttl" x="62" y="538">AI agent</text><text class="sub" x="62" y="558">does its own analysis</text></g>
+            <g class="badge"><circle cx="30" cy="510" r="11"/><text x="30" y="514">1</text></g>
+            <path class="flow" d="M 171 586 L 171 630" marker-end="url(#ptb)"/>
+            <text class="sub" x="186" y="613">hands over</text>
+            <g class="node" style="--i:1"><rect x="30" y="632" width="282" height="76" rx="12"/><text class="ttl" x="62" y="660">Decision package</text><text class="sub" x="62" y="680">options + recommendation</text><text class="sub" x="62" y="696">confidence + one question</text></g>
+            <g class="badge"><circle cx="30" cy="632" r="11"/><text x="30" y="636">2</text></g>
+            <path class="flow" d="M 171 708 L 171 752" marker-end="url(#ptb)"/>
+            <text class="sub" x="186" y="735">submits</text>
+            <g class="node" style="--i:2"><rect x="30" y="754" width="282" height="76" rx="12"/><text class="ttl" x="62" y="782">Completeness gate</text><text class="sub" x="62" y="802">checks fields, not the answer</text></g>
+            <g class="badge"><circle cx="30" cy="754" r="11"/><text x="30" y="758">3</text></g>
+            <path class="flow" d="M 171 830 L 171 874" marker-end="url(#ptb)"/>
+            <text class="sub" x="186" y="857">complete only</text>
+            <g class="node" style="--i:3"><rect x="30" y="876" width="282" height="76" rx="12"/><text class="ttl" x="62" y="904">Human approver</text><text class="sub" x="62" y="924">fast judgment call</text></g>
+            <g class="badge"><circle cx="30" cy="876" r="11"/><text x="30" y="880">4</text></g>
+            <path class="flow" d="M 312 792 L 340 792 L 340 548 L 314 548" marker-end="url(#ptb)" style="stroke:#f7c873"/>
+            <text class="sub" x="326" y="670" text-anchor="middle" transform="rotate(-90 326 670)">bounced back, gap named</text>
+            <rect class="logbar" x="30" y="956" width="300" height="30" rx="10"/>
+            <text class="sub" x="180" y="976" text-anchor="middle">Decision, reason and evidence logged</text>
 
-<g fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1">
-<rect x="60" y="310" width="110" height="56" rx="8"/>
-<rect x="195" y="310" width="210" height="56" rx="8"/>
-<rect x="430" y="310" width="190" height="56" rx="8"/>
-</g>
-<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
-<text x="115" y="342" font-size="14">AI Agent</text>
-<text x="300" y="334" font-size="14" font-weight="600">Decision package</text>
-<text x="300" y="352" font-size="12" fill="var(--muted)">options + confidence</text>
-<text x="525" y="334" font-size="14" font-weight="600">Human approver</text>
-<text x="525" y="352" font-size="12" fill="var(--muted)">fast judgment call</text>
-</g>
+            <circle class="dot" r="5"><animateMotion dur="5s" repeatCount="indefinite" path="M 171 84 L 171 312"/></circle>
+            <circle class="dot" r="5"><animateMotion dur="8s" repeatCount="indefinite" path="M 171 548 L 171 914"/></circle>
+            <circle class="dot" r="5" style="fill:#f7c873"><animateMotion dur="6s" begin="2s" repeatCount="indefinite" path="M 312 792 L 340 792 L 340 548 L 314 548"/></circle>
+          </svg>
+          <figcaption>The cyan dots are requests moving along each path. The amber dot is an incomplete package going back to the agent. HumanGate is the name of my own project where the gate lives. The same shape works for any agent-to-human handoff.</figcaption>
+        </figure>
+        <p class="body-text">The gate checks completeness, not correctness. It cannot tell whether the agent&rsquo;s recommendation is right. It can tell whether the agent did its own thinking, and that is the part a rule can check reliably. The right-or-wrong call stays with the human.</p>
+        <p class="body-text">Status: this gate is live in HumanGate. The scenario where an AI hands off without doing its own analysis now gets rejected before a human ever sees it.</p>
+      </section>
 
-<g stroke="var(--teal)" stroke-width="1" fill="none">
-<path d="M170 338 H195" marker-end="url(#ptArrow)"/>
-<path d="M405 338 H430" marker-end="url(#ptArrow)"/>
-<path d="M300 366 V412 H115 V366" marker-end="url(#ptArrow)"/>
-</g>
-<g font-family="var(--font)" font-size="12" fill="var(--teal)" text-anchor="middle">
-<text x="418" y="386">must state its case</text>
-<text x="207" y="430">incomplete &rarr; rejected</text>
-</g>
-</svg>
-</section>
+      <section id="workflow">
+        <h2>One handoff, start to finish</h2>
+        <p class="body-text">Steps 3 and 4 are the control itself. Before a request reaches a human, the originating agent must supply the options it considered, its recommendation, a confidence level and the one question that needs human judgment. The other steps are how I would wire that control into a working process. Each step has a guardrail and the evidence it leaves behind.</p>
+        <ol class="steps">
+          <li><h3>Decide that a human is needed</h3><p>The agent only hands off the decisions that policy says need a person. Everything else it handles inside its own limits. A handoff is a cost, so the list of things that qualify should be short and written down.</p><div class="why"><span><b>Guardrail</b>A catalog of decisions that need a human</span><span><b>Evidence</b>Reason code on every handoff</span></div></li>
+          <li><h3>Do the analysis first</h3><p>The agent works out what it is asking before it asks. It lists the options it considered, including the option of doing nothing, and picks one. This is the work the approver would otherwise do.</p><div class="why"><span><b>Guardrail</b>No handoff without a recommendation</span><span><b>Evidence</b>Options considered, as recorded</span></div></li>
+          <li><h3>Build the decision package</h3><p>Four required fields: the options considered, the recommendation, a confidence level, and the one question that actually needs human judgment. The last field forces the agent to narrow a broad ask down to the part only a person can answer.</p><div class="why"><span><b>Guardrail</b>Fixed package format with required fields</span><span><b>Evidence</b>The package as submitted</span></div></li>
+          <li><h3>Check it for completeness</h3><p>The gate looks for the required fields. It does not judge whether the recommendation is good. A package missing a field goes back to the originating agent automatically, with the specific gap named, before a human sees it.</p><div class="why"><span><b>Guardrail</b>Incomplete package is rejected, not queued</span><span><b>Evidence</b>Rejection record with the missing field</span></div></li>
+          <li><h3>Put it in front of a person with a clock</h3><p>The approver sees the package, the risk score and a live countdown to expiry. The approval is time-boxed, so a stale request lapses instead of waiting to be approved by habit. The gate sits next to these existing controls as a fourth check: has this request earned a human&rsquo;s attention.</p><div class="why"><span><b>Guardrail</b>Time-boxed approval with risk scoring</span><span><b>Evidence</b>Approval timestamps and the risk score shown</span></div></li>
+          <li><h3>Let the human disagree, and say why</h3><p>The person can accept, change or refuse the recommendation. A refusal costs them nothing and needs only a short reason. If saying no is harder than saying yes, the package turns into a rubber stamp.</p><div class="why"><span><b>Guardrail</b>Reject and modify are first-class options</span><span><b>Evidence</b>Decision and reason, recorded</span></div></li>
+          <li><h3>Check the recommendations afterwards</h3><p>Because the gate only checks completeness, correctness has to be checked somewhere else. A periodic look at a sample of past packages, comparing what the agent recommended with what the human decided and what happened next, shows whether the recommendations deserve the trust they get.</p><div class="why"><span><b>Guardrail</b>Regular sampled review of past handoffs</span><span><b>Evidence</b>Review notes and agreement rate with human decisions</span></div></li>
+        </ol>
+      </section>
 
-<section class="fieldnote wrap">
-<div class="section-head">
-<span class="section-num">THE CASE &middot; A REAL REACTION</span>
-<h2>This didn't start as a thesis</h2>
-<p>It started as a reaction to a real conversation about AI and workplace productivity &mdash; written before reaching for any framework.</p>
-</div>
-<div class="quote-card mine">
-<p>AI is creating situations challenging rather than making it easier when it comes to take a decision&hellip; it's not landing properly.</p>
-<div class="who">&mdash; Roshan, <span>reacting in the thread</span></div>
-</div>
-</section>
+      <section id="example">
+        <h2>A worked example</h2>
+        <p class="body-text">This is an illustration of the idea, not a description of a real event or a real system.</p>
+        <p class="body-text">Say an AI agent that supports a delivery pipeline needs write access to a data store so a release can finish. It has to ask a person.</p>
+        <div class="compare">
+          <div class="bad"><h3>Without the gate</h3><ul><li>The approver receives one line: please approve write access for the pipeline account.</li><li>They have to find out which store, why, for how long and what the alternatives are.</li><li>They either spend a chunk of their day investigating or they approve to clear the queue.</li><li>Nobody can later see what was weighed.</li></ul></div>
+          <div class="good"><h3>With the gate</h3><ul><li>Options: read-only access, time-boxed write access, or decline and finish the release by hand.</li><li>Recommendation: time-boxed write access, ending when the release does.</li><li>Confidence: medium, because the agent could not confirm which tables the release touches.</li><li>The one question: is the release window a good enough reason to allow write access outside the usual process?</li></ul></div>
+        </div>
+        <p class="body-text">In the second case the approver reads a short package and answers a single question. They can still say no, and they can still notice that the confidence is only medium and ask for the table list first. If the agent had left out the confidence level, the gate would have sent the request back before the approver saw it.</p>
+      </section>
 
-<section class="solution wrap">
-<div class="section-head">
-<span class="section-num">THE FIX</span>
-<h2>A decision-package gate, not a cultural norm</h2>
-<p>A norm only works if it's enforced. This is the control, specified at the exact point an AI agent hands a request to a human.</p>
-</div>
-<div class="steps">
-<div class="step">
-<div class="num">01</div>
-<div>
-<h3>Requirement</h3>
-<p>Before HumanGate surfaces a request to a human, the originating agent must supply the options it considered, its recommendation, a confidence level, and the one question that actually needs human judgment.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">02</div>
-<div>
-<h3>Validation</h3>
-<p>The gate checks the package for completeness, not correctness &mdash; whether the agent did its own thinking, not whether its recommendation is right.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">03</div>
-<div>
-<h3>Rejection path</h3>
-<p>A request missing any required field bounces back to the originating agent automatically, with the specific gap identified, before a human ever sees it.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">04</div>
-<div>
-<h3>Integration</h3>
-<p>Sits alongside HumanGate's existing controls &mdash; time-boxed approvals, the live countdown to expiry, and risk scoring &mdash; as a fourth gate: has this request earned a human's attention.</p>
-</div>
-</div>
-</div>
-<div class="status-note shipped">
-<span>&#9989;</span>
-<span><b>Status: shipped.</b> The decision-package gate is live in HumanGate: the "AI hands off without doing its own analysis" scenario rejects an incomplete handoff before a human ever sees it.</span>
-</div>
-</section>
+      <section id="roadmap">
+        <h2>How to build it without stalling</h2>
+        <ol class="phases">
+          <li><b>1. Map the handoffs</b>List where AI agents and tools pass work to people today: access requests, approvals, reviews, exceptions. Note who receives each one.<small><em>Done when</em>Every handoff has a named receiver and a rough sense of how often it happens.</small></li>
+          <li><b>2. Define the package</b>Agree the required fields with the people who receive the requests. Ask them what they wish every request already contained.<small><em>Done when</em>A receiver can read a sample package and say it answers their usual questions.</small></li>
+          <li><b>3. Run the gate in watch mode</b>Check packages and report what would have been rejected, without blocking anything yet.<small><em>Done when</em>The reasons for rejection are understood and the agents can fix them.</small></li>
+          <li><b>4. Turn on enforcement</b>Start with the handoffs that reach the busiest approvers and the highest-risk decisions.<small><em>Done when</em>An incomplete handoff cannot reach a human in the covered flows.</small></li>
+          <li><b>5. Review and tune</b>Sample past packages, collect feedback from approvers, and adjust the fields and the list of decisions that need a human.<small><em>Done when</em>The review runs on a fixed rhythm and someone owns the changes that come out of it.</small></li>
+        </ol>
+      </section>
 
-<nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/agentic-ai-identity-governance/"><small><i></i>&larr; Previous</small><strong>Agentic AI Identity Governance</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/ai-agent-credential-sharing/"><small><i></i>Next &rarr;</small><strong>AI Agent Credential Sharing</strong></a></div></nav>
-      <footer class="site">
-<div class="wrap">
-<p>Roshan Trivedi &middot; Credential Management &amp; PAM Product Leader</p>
-<a href="/#contact">Get in touch &rarr;</a>
-</div>
-</footer>
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Required decision-package fields</td><td data-label="What it stops">Bare requests that push all the thinking onto the approver</td><td data-label="How you check it">Submit a package with one field missing and confirm it is rejected</td></tr>
+            <tr><td data-label="Guardrail">Automatic return with the gap named</td><td data-label="What it stops">Incomplete requests sitting in a human queue</td><td data-label="How you check it">Rejection record shows the specific missing field and the time</td></tr>
+            <tr><td data-label="Guardrail">A short list of decisions that need a human</td><td data-label="What it stops">Agents asking people about everything</td><td data-label="How you check it">Compare handoff reason codes with the written list</td></tr>
+            <tr><td data-label="Guardrail">Time-boxed approvals with a live countdown</td><td data-label="What it stops">Stale requests approved out of habit</td><td data-label="How you check it">Confirm an expired request cannot be approved</td></tr>
+            <tr><td data-label="Guardrail">Risk score shown beside the package</td><td data-label="What it stops">A low-risk and a high-risk ask looking identical</td><td data-label="How you check it">Review a sample of scores against the decisions they covered</td></tr>
+            <tr><td data-label="Guardrail">Refusal is as easy as approval</td><td data-label="What it stops">Rubber-stamping</td><td data-label="How you check it">Check the interface; look at how often people refuse or change a recommendation</td></tr>
+            <tr><td data-label="Guardrail">Sampled review of past packages</td><td data-label="What it stops">Trusting a recommendation source nobody checks</td><td data-label="How you check it">Review notes on a fixed rhythm, with an owner</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">A caution on the gate itself. A package can be complete and still wrong, and a confident, well-formatted wrong answer is more persuasive than a messy one. The gate keeps the work off the approver. It does not replace the approver&rsquo;s judgment.</p>
+      </section>
 
-<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "444a1ec20a754e468bd77d1fb0a93adc"}'></script>
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Why was a human asked about this?</td><td data-label="Where the answer comes from">The reason code on the handoff and the catalog of decisions that need a person</td></tr>
+            <tr><td data-label="Question">What did the agent recommend, and what else did it consider?</td><td data-label="Where the answer comes from">The decision package as submitted</td></tr>
+            <tr><td data-label="Question">Was every handoff complete before a person saw it?</td><td data-label="Where the answer comes from">Gate records, including rejections and the gaps they named</td></tr>
+            <tr><td data-label="Question">Who decided, when, and why?</td><td data-label="Where the answer comes from">Decision record with the person, timestamp and reason</td></tr>
+            <tr><td data-label="Question">Did the person agree or disagree with the agent?</td><td data-label="Where the answer comes from">Decision compared with the recommendation in the package</td></tr>
+            <tr><td data-label="Question">Are the agent&rsquo;s recommendations reviewed afterwards?</td><td data-label="Where the answer comes from">Sampled review notes and who owns them</td></tr>
+          </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST AI RMF 1.0 (NIST AI 100-1)</td><td data-label="Reference"><code class="ref">GOVERN 3.2</code></td><td data-label="What it asks for">Policies and procedures that define roles and responsibilities for human-AI configurations and oversight of AI systems.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">MAP 3.5</code></td><td data-label="What it asks for">Processes for human oversight are defined, assessed and documented in accordance with organizational policies.</td></tr>
+            <tr><td data-label="Standard">EU AI Act, Regulation (EU) 2024/1689</td><td data-label="Reference"><code class="ref">Art. 14(1)</code></td><td data-label="What it asks for">High-risk AI systems are designed so that people can effectively oversee them while in use, with appropriate human-machine interface tools.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">Art. 14(4)(b)</code></td><td data-label="What it asks for">The people given oversight remain aware of the possible tendency to automatically rely, or over-rely, on the output of the system (automation bias).</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Article 14 applies to high-risk AI systems as the Act defines them. Whether a given internal agent is in that category is a legal question, and I do not answer it here. The reference is useful either way because it names the risk the gate is designed around.</p>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Control owner</td><td data-label="Owns">The gate, the required fields and the list of decisions that need a human</td></tr>
+            <tr><td data-label="Role">Agent owners</td><td data-label="Owns">The quality of what their agents hand over, and fixing rejections</td></tr>
+            <tr><td data-label="Role">Approvers</td><td data-label="Owns">The decision itself, including the right to refuse and to ask for more</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Risk scoring rules and which decisions are high risk</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the control</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>A rule that is enforced beats a culture that is hoped for.</strong> A norm such as &ldquo;think before you send&rdquo; only works while everyone remembers it. The gate holds the line in the exact place the handoff happens.</li>
+          <li><strong>Ask the receivers.</strong> The people who approve are the ones who know what a good package looks like. They should help set the required fields and review them on a rhythm.</li>
+          <li><strong>Watch the receiver&rsquo;s load.</strong> Useful signals: how many handoffs reach each approver, how many are rejected at the gate, how often approvers refuse or change a recommendation, and how often a request expires unanswered. Pick the measures, then look at the trend, not a single day.</li>
+          <li><strong>AI advises, people decide.</strong> The gate exists to protect that sentence in practice. The agent recommends and a person confirms, with the evidence in front of them.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>Agents learn to fill the fields.</strong> A complete package can be padded to pass the check. Options that are not real options, confidence that is always high. Sampled review is the answer to that, and it needs a human to read the packages.</li>
+          <li><strong>The package becomes more reading.</strong> If the required fields are long, the gate has moved the tax and not reduced it. Keep the package short enough that a busy approver reads all of it.</li>
+          <li><strong>Over-reliance continues.</strong> A well-made package makes agreement easy. The research on automation bias suggests this is a risk, so the refusal path, the time-box and the sampled review all matter.</li>
+          <li><strong>The list of human decisions grows.</strong> Every team has a reason to add one more. Without an owner trimming the list, the number of handoffs creeps back up.</li>
+          <li><strong>Rejections frustrate the agent owners.</strong> Early on, many packages will bounce. Watch mode before enforcement gives owners time to fix the common gaps.</li>
+          <li><strong>Review fatigue is real in practice and hard to measure.</strong> I have not found a source on it that I could verify, so I do not cite one. I treat it as something to watch in the load measures above.</li>
+        </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep, not a checklist from any one project.</p>
+        <ul class="plain-list">
+          <li><strong>Start from a real reaction.</strong> I begin with something someone said or something I felt when I used a tool, then check it against evidence. If I cannot find evidence, I say so and keep the idea small.</li>
+          <li><strong>Separate what I have read from what I have measured.</strong> A survey of executives and a measured outcome are different things. I say which one I am quoting, and I say when I read a summary and not the original.</li>
+          <li><strong>Ask who pays.</strong> When someone says a tool saves time, I ask who gets the time and who gets the extra work. The answer often shows up two steps later in the process.</li>
+          <li><strong>Prefer a control to a reminder.</strong> If I want a behaviour, I try to build the check into the place where it happens. A reminder fades.</li>
+          <li><strong>Check completeness in the system, and judgment with people.</strong> I let the machine do what a rule can verify and keep the call with a person who can say no.</li>
+          <li><strong>Make saying no cheap.</strong> If refusing needs a long explanation, people stop refusing. I look at that first when a review process starts to feel like a formality.</li>
+          <li><strong>Review the recommender, not just the decision.</strong> A good decision process includes a look back at whether the advice was any good.</li>
+        </ul>
+        <p class="body-text">My broader view of how AI and people should work together is on <a href="/ai/">How I Use AI, and where I stop</a>. The same principle runs through the other case studies: the model recommends and a person confirms.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://store.hbr.org/product/ai-generated-workslop-is-destroying-productivity/H08WF1">Niederhoffer, Rosen Kellerman, Lee, Liebscher, Rapuano and Hancock, &ldquo;AI-Generated &lsquo;Workslop&rsquo; Is Destroying Productivity,&rdquo; Harvard Business Review, 22 September 2025</a> (HBR store listing and summary; I did not read the full article)</li>
+          <li><a href="https://www.betterup.com/blog/hidden-costs-workslop">BetterUp, &ldquo;What is AI workslop?&rdquo;</a> (the research partner&rsquo;s own write-up, with the definition)</li>
+          <li><a href="https://virtualizationreview.com/articles/2025/08/19/mit-report-finds-most-ai-business-investments-fail-reveals-genai-divide.aspx">Virtualization Review, summary of MIT Media Lab Project NANDA, &ldquo;The GenAI Divide: State of AI in Business 2025&rdquo;</a> (secondary source; I did not open the report)</li>
+          <li><a href="https://www.nber.org/system/files/working_papers/w34836/w34836.pdf">Yotzov, Barrero, Bloom and others, &ldquo;Firm Data on AI,&rdquo; NBER Working Paper 34836</a></li>
+          <li><a href="https://www.nber.org/papers/w34984">Baslandze, Edwards, Graham and others, &ldquo;Artificial Intelligence, Productivity, and the Workforce: Evidence from Corporate Executives,&rdquo; NBER Working Paper 34984</a></li>
+          <li><a href="https://finance.yahoo.com/news/goldman-finds-no-meaningful-relationship-143553714.html">Yahoo Finance report on Goldman Sachs Research, March 2026</a> (secondary source; I did not open the Goldman note)</li>
+          <li><a href="https://dl.acm.org/doi/abs/10.1006/ijhc.1999.0252">Skitka, Mosier and Burdick, &ldquo;Does automation bias decision-making?&rdquo; International Journal of Human-Computer Studies, 1999</a> (abstract read through a mirror; the publisher page was not reachable)</li>
+          <li><a href="https://pubmed.ncbi.nlm.nih.gov/21685142/">Goddard, Roudsari and Wyatt, &ldquo;Automation bias: a systematic review of frequency, effect mediators, and mitigators,&rdquo; JAMIA, 2012</a> (citation confirmed by search listing; I did not open the abstract)</li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf">NIST AI Risk Management Framework (AI RMF 1.0), NIST AI 100-1, January 2023</a></li>
+          <li><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/PDF/?uri=OJ%3AL_202401689">Regulation (EU) 2024/1689 (Artificial Intelligence Act), Official Journal of the EU</a></li>
+          <li><a href="https://artificial-intelligence-act.com/Artificial_Intelligence_Act_Article_14.html">Article 14, Human oversight (text as reproduced on artificial-intelligence-act.com)</a> (secondary reproduction of the official text)</li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. The worked example is illustrative. Quotations and control numbers are as published in the sources listed above.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#ai-governance</span><span>#human-ai-collaboration</span><span>#decision-architecture</span><span>#humangate</span><span>#productivity</span></div></section>
+
+      <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/agentic-ai-identity-governance/"><small><i></i>&larr; Previous</small><strong>Agentic AI Identity Governance</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/ai-agent-credential-sharing/"><small><i></i>Next &rarr;</small><strong>AI Agent Credential Sharing</strong></a></div></nav>
+      <footer class="page-footer">
+        <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
-</body>
+  </body>
 </html>

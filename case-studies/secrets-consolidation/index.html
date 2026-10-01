@@ -19,7 +19,9 @@
     <title>Secrets Sprawl & Consolidation · Roshan Trivedi</title>
 
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -41,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/secrets-consolidation/",
   "image": "https://roshantrivedi.co.in/assets/og-case-secrets-consolidation.png",
   "articleSection": "Secrets governance",
@@ -52,43 +54,198 @@
   "keywords": "secrets management, credential exposure, ci/cd security"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-  <body>
+    </head>
+  <body style="--c:#c4b5fd">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Secrets governance &middot; Case study</p>
-        <p class="cat-badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Secrets governance</p>
         <h1>Secrets Sprawl &amp; Consolidation</h1>
-        <p class="dek">Turning credentials scattered across code, CI/CD and config files into a single governed vault.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
+        <p class="dek">How to find the credentials scattered across code, pipelines and config files, deal with them safely, and move them into one governed service that applications read at runtime.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Secrets accumulated in source repositories, pipeline variables and configuration files faster than any team could track, so the real exposure was unknown until an incident forced a manual search.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Secrets pile up in repositories, pipeline variables, config files, several vaults and chat. Until someone searches, nobody knows how many there are or who can read them.</li>
+          <li>Anything a scan finds is treated as compromised. Rotate it first, clean the history second, and only then move it into a governed store.</li>
+          <li>Migrate one application at a time, fetch at runtime, and swap static secrets for short-lived or federated credentials wherever the platform allows it. Then block new secrets at the commit and the pipeline, and retire the old stores.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Secrets accumulate faster than any team can track. A developer puts a database password in a config file to get a demo working. A pipeline needs a cloud key, so someone adds it as a variable. A team stands up its own vault because the shared one was slow to get into. A token gets pasted into chat to unblock a colleague, and it stays there.</p>
+        <p class="body-text">Each of those choices made sense on the day. Added together, they leave the organization with no honest answer to four simple questions. Where is this secret stored? Who owns it? When did it last change? Who has read it? In most places the true exposure only becomes visible after an incident forces a manual search, and by then the search is rushed and the findings are already someone else&rsquo;s emergency.</p>
+        <p class="body-text">This page covers the consolidation work: finding the secrets, handling what you find, choosing a target, moving applications over, and making sure the old habits cannot come back. The broader service around it, with its catalog and credential lifecycle, is in <a href="/case-studies/credential-platform/">Credential Management Platform Strategy</a>, so I do not repeat it here.</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Scanned repositories, pipelines and configuration stores to build a single inventory of where credentials actually lived, not where policy assumed they lived.</li>
-          <li>Added an advisory classifier that ranks each discovered secret by exposure and blast radius, so remediation starts with what matters instead of working through the list in discovery order.</li>
-          <li>Migrated ranked secrets into a managed vault with rotation and access logging, and blocked new hard-coded credentials at the pipeline stage instead of catching them after merge.</li>
+      <section id="architecture">
+        <h2>How the pieces fit</h2>
+        <p class="body-text">On the left are the places secrets end up today. A discovery step reads them, ranks what it finds and triggers rotation. The secrets then move into one governed service, which holds them encrypted, applies access policy, issues short-lived credentials where it can, and writes an audit log to a store the service&rsquo;s own administrators cannot edit. Applications, pipelines and cloud workloads fetch at runtime. When an old store has no readers left, it is retired.</p>
+        <figure class="diagram-card" style="--c:#c4b5fd;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 450" role="img" aria-labelledby="w1t w1d"><title id="w1t">Secrets consolidation flow</title><desc id="w1d">Secrets scattered across code repositories, CI/CD variables, config files, several vaults and chat are found by a scan, triaged and rotated, then moved into one governed secrets service. Applications, pipelines and cloud workloads fetch from it at runtime. The service writes an audit log to a separate store, and old stores are retired once they are empty.</desc><text class="sub" x="105" y="30" text-anchor="middle" style="letter-spacing:.12em">SCATTERED STORES</text><text class="sub" x="295" y="30" text-anchor="middle" style="letter-spacing:.12em">DISCOVER</text><text class="sub" x="570" y="30" text-anchor="middle" style="letter-spacing:.12em">ONE GOVERNED SECRETS SERVICE</text><text class="sub" x="860" y="30" text-anchor="middle" style="letter-spacing:.12em">RUNTIME</text><g class="node" style="--i:0"><rect x="20" y="48" width="170" height="50" rx="12"/><text class="ttl" x="34" y="70">Code repos</text><text class="sub" x="34" y="87">files and git history</text></g><path class="flow" d="M 190 73 L 240 73"/><g class="node" style="--i:0"><rect x="20" y="108" width="170" height="50" rx="12"/><text class="ttl" x="34" y="130">CI/CD variables</text><text class="sub" x="34" y="147">variables and logs</text></g><path class="flow" d="M 190 133 L 240 133"/><g class="node" style="--i:0"><rect x="20" y="168" width="170" height="50" rx="12"/><text class="ttl" x="34" y="190">Config files</text><text class="sub" x="34" y="207">env files, YAML</text></g><path class="flow" d="M 190 193 L 240 193"/><g class="node" style="--i:0"><rect x="20" y="228" width="170" height="50" rx="12"/><text class="ttl" x="34" y="250">Several vaults</text><text class="sub" x="34" y="267">one per team</text></g><path class="flow" d="M 190 253 L 240 253"/><g class="node" style="--i:0"><rect x="20" y="288" width="170" height="50" rx="12"/><text class="ttl" x="34" y="310">Chat and tickets</text><text class="sub" x="34" y="327">pasted and shared</text></g><path class="flow" d="M 190 313 L 240 313"/><text class="sub" x="215" y="62" text-anchor="middle">scan</text><g class="node" style="--i:1"><rect x="240" y="48" width="110" height="290" rx="14"/><text class="ttl" x="295" y="76" text-anchor="middle">Discover</text><text class="sub" x="295" y="96" text-anchor="middle">scan code,</text><text class="sub" x="295" y="112" text-anchor="middle">history and</text><text class="sub" x="295" y="128" text-anchor="middle">pipelines</text><text class="ttl" x="295" y="172" text-anchor="middle">Triage</text><text class="sub" x="295" y="192" text-anchor="middle">rank by</text><text class="sub" x="295" y="208" text-anchor="middle">exposure,</text><text class="sub" x="295" y="224" text-anchor="middle">name owner</text><text class="ttl" x="295" y="268" text-anchor="middle">Rotate</text><text class="sub" x="295" y="288" text-anchor="middle">found means</text><text class="sub" x="295" y="304" text-anchor="middle">compromised</text></g><path class="flow" d="M 350 193 L 450 193"/><text class="sub" x="400" y="180" text-anchor="middle">rotate first,</text><text class="sub" x="400" y="216" text-anchor="middle">then move</text><g class="node" style="--i:2"><rect x="450" y="48" width="240" height="290" rx="14"/><text class="ttl" x="470" y="84">Encrypted store</text><text class="sub" x="470" y="101">one source of truth</text><text class="ttl" x="470" y="132">Access policy</text><text class="sub" x="470" y="149">per app, least privilege</text><text class="ttl" x="470" y="180">Short-lived credentials</text><text class="sub" x="470" y="197">dynamic or federated</text><text class="ttl" x="470" y="228">Audit log</text><text class="sub" x="470" y="245">every read and change</text><text class="ttl" x="470" y="276">HA, DR, break-glass</text><text class="sub" x="470" y="293">tested, not assumed</text></g><path class="flow" d="M 690 73 L 780 73"/><g class="node" style="--i:3"><rect x="780" y="48" width="160" height="50" rx="12"/><text class="ttl" x="794" y="70">Applications</text><text class="sub" x="794" y="87">fetch at start</text></g><path class="flow" d="M 690 143 L 780 143"/><g class="node" style="--i:3"><rect x="780" y="118" width="160" height="50" rx="12"/><text class="ttl" x="794" y="140">Pipelines</text><text class="sub" x="794" y="157">fetch at job time</text></g><path class="flow" d="M 690 213 L 780 213"/><g class="node" style="--i:3"><rect x="780" y="188" width="160" height="50" rx="12"/><text class="ttl" x="794" y="210">Cloud workloads</text><text class="sub" x="794" y="227">federated identity</text></g><text class="sub" x="735" y="104" text-anchor="middle">fetch at</text><text class="sub" x="735" y="118" text-anchor="middle">runtime</text><g class="node" style="--i:4"><rect x="20" y="366" width="170" height="54" rx="12"/><text class="ttl" x="34" y="388">Old stores retired</text><text class="sub" x="34" y="405">after the last app moves</text></g><path class="log" d="M 190 393 L 450 393"/><text class="sub" x="320" y="384" text-anchor="middle">no reads left, then retire</text><path class="log" d="M 570 338 L 570 366"/><rect class="logbar" x="450" y="366" width="240" height="54" rx="12"/><text class="ttl" x="470" y="388">Audit log</text><text class="sub" x="470" y="406">kept outside the service</text><path class="log" d="M 690 393 L 780 393"/><text class="sub" x="735" y="384" text-anchor="middle">ship logs</text><g class="node" style="--i:4"><rect x="780" y="366" width="160" height="54" rx="12"/><text class="ttl" x="794" y="388">SIEM or log store</text><text class="sub" x="794" y="405">detection, evidence</text></g><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M 190 73 L 240 73 C 295 73 295 193 350 193 L 450 193 C 520 193 620 73 690 73 L 780 73"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="1.8s"/><animateMotion dur="6s" begin="1.8s" repeatCount="indefinite" path="M 190 133 L 240 133 C 295 133 295 193 350 193 L 450 193 C 520 193 620 143 690 143 L 780 143"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="3.6s"/><animateMotion dur="6s" begin="3.6s" repeatCount="indefinite" path="M 190 313 L 240 313 C 295 313 295 193 350 193 L 450 193 C 520 193 620 213 690 213 L 780 213"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 980" role="img" aria-labelledby="t1t t1d"><title id="t1t">Secrets consolidation flow</title><desc id="t1d">Scattered stores are scanned, triaged and rotated, then moved into one governed secrets service. Applications, pipelines and cloud workloads fetch at runtime. Logs go to a separate store and old stores are retired when empty.</desc><g class="node" style="--i:0"><rect x="30" y="10" width="300" height="262" rx="14"/><text class="sub" x="180" y="32" text-anchor="middle" style="letter-spacing:.12em">SCATTERED STORES</text><text class="ttl" x="50" y="58">Code repos</text><text class="sub" x="50" y="74">files and git history</text><text class="ttl" x="50" y="100">CI/CD variables</text><text class="sub" x="50" y="116">variables and logs</text><text class="ttl" x="50" y="142">Config files</text><text class="sub" x="50" y="158">env files, YAML</text><text class="ttl" x="50" y="184">Several vaults</text><text class="sub" x="50" y="200">one per team</text><text class="ttl" x="50" y="226">Chat and tickets</text><text class="sub" x="50" y="242">pasted and shared</text></g><path class="flow" d="M 180 272 L 180 312"/><text class="sub" x="196" y="296">scan</text><g class="node" style="--i:1"><rect x="30" y="312" width="300" height="110" rx="14"/><text class="sub" x="180" y="334" text-anchor="middle" style="letter-spacing:.12em">DISCOVER, TRIAGE, ROTATE</text><text class="ttl" x="50" y="360">Scan, rank, name an owner</text><text class="sub" x="50" y="378">code, history, pipelines, configs</text><text class="sub" x="50" y="396">anything found is treated as</text><text class="sub" x="50" y="412">compromised and rotated</text></g><path class="flow" d="M 180 422 L 180 462"/><text class="sub" x="196" y="446">rotate first, then move</text><g class="node" style="--i:2"><rect x="30" y="462" width="300" height="250" rx="14"/><text class="sub" x="180" y="484" text-anchor="middle" style="letter-spacing:.12em">ONE GOVERNED SECRETS SERVICE</text><text class="ttl" x="50" y="514">Encrypted store</text><text class="sub" x="50" y="530">one source of truth</text><text class="ttl" x="50" y="552">Access policy</text><text class="sub" x="50" y="568">per app, least privilege</text><text class="ttl" x="50" y="590">Short-lived credentials</text><text class="sub" x="50" y="606">dynamic or federated</text><text class="ttl" x="50" y="628">Audit log</text><text class="sub" x="50" y="644">every read and change</text><text class="ttl" x="50" y="666">HA, DR, break-glass</text><text class="sub" x="50" y="682">tested, not assumed</text></g><path class="flow" d="M 180 712 L 180 752"/><text class="sub" x="196" y="736">fetch at runtime</text><g class="node" style="--i:3"><rect x="30" y="752" width="300" height="140" rx="14"/><text class="sub" x="180" y="774" text-anchor="middle" style="letter-spacing:.12em">RUNTIME</text><text class="ttl" x="50" y="800">Applications</text><text class="sub" x="50" y="815">fetch at start</text><text class="ttl" x="50" y="834">Pipelines</text><text class="sub" x="50" y="849">fetch at job time</text><text class="ttl" x="50" y="868">Cloud workloads</text><text class="sub" x="50" y="883">federated identity</text></g><path class="log" d="M 330 600 L 346 600 L 346 928 L 330 928"/><text class="sub" transform="translate(342 770) rotate(-90)" text-anchor="middle" style="font-size:11px">logs</text><g class="node" style="--i:4"><rect x="30" y="902" width="300" height="68" rx="14"/><text class="ttl" x="50" y="926">Audit log and SIEM</text><text class="sub" x="50" y="943">kept outside the service</text><text class="sub" x="50" y="960">old stores retired once empty</text></g><circle class="dot" r="5"><animateMotion dur="9s" repeatCount="indefinite" path="M 180 40 L 180 860"/></circle></svg>
+          <figcaption>The dots show one secret travelling from a scattered store, through discovery and rotation, into the governed service and out to a workload that fetches it when it needs it. The dashed lines are evidence: logs going out, and proof that an old store is empty before it is retired.</figcaption>
+        </figure>
+        <p class="body-text" style="margin-top:14px">The service can be one product or a small number of products behind one common way to request, rotate and report. OWASP&rsquo;s guidance is to standardize and centralize the secrets management solution &ldquo;with care&rdquo;, and to apply the same life cycle, authentication, authorization and accounting rules across every solution you keep. What matters is that one team owns the rules and every secret has one place of record.</p>
+      </section>
+
+      <section id="workflow">
+        <h2>The workflow, step by step</h2>
+        <p class="body-text">Nine steps, in order. Each has a guardrail that stops the step going wrong, and a piece of evidence you can show an auditor later.</p>
+        <ol class="steps">
+          <li><h3>Scan everything you can reach</h3><p>Start with source repositories, including their history, then pipeline definitions and variables, config files, build logs, wikis and shared documents. History matters because a secret deleted last year is still readable in an old commit. GitHub&rsquo;s secret scanning, for example, scans the entire Git history on all branches, and it also looks at descriptions and comments in issues, pull requests and discussions.</p><div class="why"><span><b>Guardrail</b>Scan results are stored with restricted access, because a finding is itself a live secret</span><span><b>Evidence</b>Scan report with locations, never values</span></div></li>
+          <li><h3>Treat every finding as compromised: rotate, then clean</h3><p>A secret in a repository has been readable by everyone with access to it, and by every clone and fork. I do not try to work out who might have seen it. I rotate it. GitHub&rsquo;s remediation guidance says the most important step is revoking the secret with its provider, and warns that removing it from the code, pushing a new commit, or recreating the repository does not stop it being exploited. History rewriting comes after revocation, and GitHub describes it as potentially destructive and disruptive, so treat it as a decision to make on purpose.</p><div class="why"><span><b>Guardrail</b>Rotation comes before any history rewrite</span><span><b>Evidence</b>Rotation record per finding, with date and who did it</span></div></li>
+          <li><h3>Rank and name an owner</h3><p>The first inventory is long. Ranking it by exposure and blast radius lets the team start with a cloud key that reaches production and leave a test-environment password for later. An advisory classifier can propose that ranking, using signals such as where the secret was found, who can read that place, and what the credential can reach. A person confirms it, and every finding gets an owner before it is scheduled.</p><div class="why"><span><b>Guardrail</b>The ranking is advice, and a named person signs off the order</span><span><b>Evidence</b>Ranked inventory, with owner and sign-off</span></div></li>
+          <li><h3>Choose the target store</h3><p>Write the selection criteria down before comparing products: availability and recovery, audit logging, per-application access policy, support for short-lived credentials, integration with the pipelines and platforms you actually run, and how the service authenticates the workloads that call it. Prove the choice on one or two real applications before committing the estate. I describe how I run that proof in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p><div class="why"><span><b>Guardrail</b>Criteria agreed before the product comparison</span><span><b>Evidence</b>Decision record and proof-of-concept result</span></div></li>
+          <li><h3>Migrate application by application, with runtime fetch</h3><p>Move one application at a time. The application authenticates with its own identity and asks the service for the secret when it needs it. The secret is never copied back into code, config or a pipeline variable. Keep the old copy readable but flagged until the new path is proven in production, then remove it.</p><div class="why"><span><b>Guardrail</b>Read access granted to the application identity only, and a change record for each cutover</span><span><b>Evidence</b>Change record and the first read in the service log</span></div></li>
+          <li><h3>Replace static secrets where the platform allows it</h3><p>A secret that expires on its own is worth more than one you rotate carefully. Where the target supports it, ask the service to generate a database login on demand with a lease. In Vault&rsquo;s model, every dynamic secret has a lease with a time to live, and when the lease expires or is revoked the secret is invalid immediately. For pipelines that deploy to a cloud account, use workload identity: GitHub Actions can authenticate with cloud providers over OpenID Connect, so the job gets an access token that is available only to that run, with no long-lived cloud credential stored as a GitHub secret.</p><div class="why"><span><b>Guardrail</b>Federation trust restricted to named repositories and environments, with a lifetime on every token</span><span><b>Evidence</b>Trust policy as configured, and token issuance logs</span></div></li>
+          <li><h3>Stop re-exposure at the commit and the pipeline</h3><p>Clean-up is wasted if new secrets keep arriving. Add a pre-commit hook so developers see the problem before it leaves their machine, and push protection or a pipeline scan so a secret that gets past the hook is blocked on the server. GitHub&rsquo;s push protection blocks secrets in pushes from the command line, commits in the web interface, file uploads and API requests. By default anyone with write access can bypass it by giving a reason, so decide who may bypass, and make every bypass visible.</p><div class="why"><span><b>Guardrail</b>Block on detection, with a logged and reviewed bypass</span><span><b>Evidence</b>A planted test secret blocked in the pipeline, and the bypass report</span></div></li>
+          <li><h3>Make the service survive its own failure</h3><p>Once everything fetches from one place, that place is a dependency for every deployment. Design high availability and disaster recovery from the start. OWASP says to back up automatically, and to test restore procedures regularly so you know the backups are intact. It also recommends emergency break-glass credentials that are backed up securely in a secondary secrets management system. Test the failure on purpose, with the same people who would be on call.</p><div class="why"><span><b>Guardrail</b>Restore and break-glass tested on a schedule</span><span><b>Evidence</b>Drill record with timings and findings</span></div></li>
+          <li><h3>Retire the old stores</h3><p>The migration is finished only when the old paths are closed. Make the old store read-only, watch for reads, fix whatever still depends on it, then remove it. Close the ability to create new secrets there so the sprawl cannot restart. Keep the retirement record, because it answers the auditor&rsquo;s question about secrets outside the platform.</p><div class="why"><span><b>Guardrail</b>Read-only period, then removal, with creation disabled</span><span><b>Evidence</b>Zero reads on the old store, and the decommission record</span></div></li>
+        </ol>
+
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: a deployment pipeline and a database password</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event.</p>
+        <p class="body-text">A scan finds two things in one application&rsquo;s repository. A cloud access key sits in a CI/CD variable, and a database password sits in a config file that has been in the repository since its first commit.</p>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>The cloud key is a long-lived variable that every pipeline maintainer can read.</li><li>The database password is in the current file and in old commits.</li><li>Nobody can say when either last changed, or who owns them.</li><li>A second team has pasted the same password into a wiki page.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>Both secrets were rotated as soon as they were found, before anyone touched the history.</li><li>The pipeline gets a short-lived token through federation and stores no cloud key.</li><li>The application fetches its database login from the service when it starts.</li><li>An owner is named, reads are logged, and the old copies are gone.</li></ul></div>
+        </div>
+        <p class="body-text" style="margin-top:14px">The order is the point. Rotation happened first because the old values were already exposed. The pipeline moved to a federated identity because that removes the stored key entirely, and the database login moved to runtime fetch because the application could not use federation. The scan and the commit block then stayed on, so the same mistake would be caught the next time someone made it.</p>
+      </section>
+
+      <section id="roadmap">
+        <h2>How to phase it</h2>
+        <ol class="phases">
+          <li><b>1. Agree the rules and find the secrets</b>Write down what counts as a secret, who owns the program, and what happens to a finding. Then scan, read-only, and keep the results locked down.<small><em>Done when</em>There is one inventory, with locations and no values, even if it is uncomfortable to read.</small></li>
+          <li><b>2. Rotate and rank</b>Rotate what the scan found. Rank the remainder by exposure and blast radius, and give each item an owner.<small><em>Done when</em>Every finding is rotated or has a dated plan, and the owners have signed off the order.</small></li>
+          <li><b>3. Stand up the target and prove it</b>Choose the store against written criteria, set up access policy, logging, availability and recovery, then onboard one or two real applications.<small><em>Done when</em>Those applications run on runtime fetch and the service has passed a restore test.</small></li>
+          <li><b>4. Migrate in waves and block re-exposure</b>Move applications by rank, replacing static secrets with short-lived or federated credentials where possible. Turn on pre-commit and push protection or pipeline scanning early, not at the end.<small><em>Done when</em>New hard-coded secrets are blocked, and each wave has an accepted result.</small></li>
+          <li><b>5. Retire and keep watching</b>Take the old stores read-only, then remove them. Keep scanning on a schedule and review the exception register.<small><em>Done when</em>New secrets can no longer be created outside the service, and the exceptions have owners and end dates.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Rotate before cleaning history</td><td data-label="What it stops">A leaked value staying valid while the repository is tidied</td><td data-label="How you check it">Compare rotation date with history rewrite date for each finding</td></tr>
+            <tr><td data-label="Guardrail">Scan findings stored with restricted access</td><td data-label="What it stops">The inventory becoming a new list of live secrets</td><td data-label="How you check it">Review who can open the scan results</td></tr>
+            <tr><td data-label="Guardrail">Pre-commit and push or pipeline scanning</td><td data-label="What it stops">Secrets re-entering code after clean-up</td><td data-label="How you check it">Plant a test secret and confirm it is blocked</td></tr>
+            <tr><td data-label="Guardrail">Reviewed bypass of the scanner</td><td data-label="What it stops">&ldquo;I&rsquo;ll fix it later&rdquo; becoming permanent</td><td data-label="How you check it">Monthly report of bypasses with reasons and follow-up</td></tr>
+            <tr><td data-label="Guardrail">Read access scoped per application</td><td data-label="What it stops">One compromised application reading everyone&rsquo;s secrets</td><td data-label="How you check it">Review policies for broad or wildcard access</td></tr>
+            <tr><td data-label="Guardrail">Short-lived credentials by default</td><td data-label="What it stops">A leaked secret staying useful for months</td><td data-label="How you check it">Share of secrets with an expiry, and the oldest static secret</td></tr>
+            <tr><td data-label="Guardrail">Federation trust limited to named repositories</td><td data-label="What it stops">An untrusted repository requesting cloud tokens</td><td data-label="How you check it">Read the trust conditions on each cloud role</td></tr>
+            <tr><td data-label="Guardrail">Audit logs kept outside the service</td><td data-label="What it stops">Evidence being changed by the people it covers</td><td data-label="How you check it">Confirm the service&rsquo;s admins cannot edit the log store</td></tr>
+            <tr><td data-label="Guardrail">Tested restore and break-glass</td><td data-label="What it stops">Finding out during an outage that the backup is unusable</td><td data-label="How you check it">Run a drill and time it</td></tr>
+            <tr><td data-label="Guardrail">Old stores read-only, then removed</td><td data-label="What it stops">A second source of truth that quietly lives on</td><td data-label="How you check it">Read counts on the old store, then the decommission record</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Were exposed secrets rotated, and when?</td><td data-label="Where the answer comes from">Rotation record per finding, matched to the scan report</td></tr>
+            <tr><td data-label="Question">Are there secrets still outside the service?</td><td data-label="Where the answer comes from">Latest scan results and the exception register</td></tr>
+            <tr><td data-label="Question">Who or what has read this secret?</td><td data-label="Where the answer comes from">Audit log, kept outside the service</td></tr>
+            <tr><td data-label="Question">Could a new secret be committed today?</td><td data-label="Where the answer comes from">Planted-secret test result and the bypass report</td></tr>
+            <tr><td data-label="Question">Does the service survive a failure?</td><td data-label="Where the answer comes from">Restore and break-glass drill records</td></tr>
+            <tr><td data-label="Question">Was the old store really retired?</td><td data-label="Where the answer comes from">Read counts, change record and decommission record</td></tr>
+            <tr><td data-label="Question">Who approved changes to access policy?</td><td data-label="Where the answer comes from">Change records for policy updates</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="standards">
+        <h2>Standards and guidance this maps to</h2>
+        <p class="body-text">This is my reading of where each control applies to this work. The control titles are as published. The mapping to secrets consolidation is my own, so check the wording in the source before quoting it in an audit.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Source</th><th>Reference</th><th>Where it applies here</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Source">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">IA-5</code> Authenticator Management</td><td data-label="Where it applies here">Control over how secrets are generated, distributed and retired, including rotation after exposure.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference"><code class="ref">SC-12</code> Cryptographic Key Establishment and Management</td><td data-label="Where it applies here">Key handling where the service holds or issues keys.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference"><code class="ref">SC-28</code> Protection of Information at Rest</td><td data-label="Where it applies here">Encrypted storage of the secrets themselves.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference"><code class="ref">AU-2</code> Event Logging, <code class="ref">AU-12</code> Audit Record Generation</td><td data-label="Where it applies here">Deciding which secret reads and changes are logged, and producing the records.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference"><code class="ref">CM-3</code> Configuration Change Control</td><td data-label="Where it applies here">Change records for each application cutover and policy change.</td></tr>
+            <tr><td data-label="Source">CIS Controls v8</td><td data-label="Reference"><code class="ref">3.3</code> Configure Data Access Control Lists</td><td data-label="Where it applies here">Restricting who can read stored secrets.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference"><code class="ref">3.11</code> Encrypt Sensitive Data at Rest</td><td data-label="Where it applies here">Encryption of the store.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference"><code class="ref">5.2</code> Use Unique Passwords</td><td data-label="Where it applies here">One secret per account or workload, rather than shared values.</td></tr>
+            <tr><td data-label="Source">OWASP</td><td data-label="Reference">Secrets Management Cheat Sheet</td><td data-label="Where it applies here">Centralization, rotation, dynamic secrets, pre-commit detection, incident handling, backup and break-glass.</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Platform product owner</td><td data-label="Owns">The program, the standards, the migration order and what counts as done</td></tr>
+            <tr><td data-label="Role">Platform engineering</td><td data-label="Owns">Running the service: availability, recovery, upgrades and integrations</td></tr>
+            <tr><td data-label="Role">Application owners</td><td data-label="Owns">Cutting each application over, and each secret&rsquo;s purpose and retirement</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Rotation rules, scanner settings, bypass rules and exception criteria</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>A finding is never a blame list.</strong> Agree before the first scan that the result describes the system and says nothing about the people who built it. Otherwise teams will hide what they have.</li>
+          <li><strong>Exceptions have owners and end dates.</strong> A legacy system that cannot fetch at runtime goes on a register with a plan, a review rhythm and an expiry.</li>
+          <li><strong>Measure coverage and age.</strong> Useful measures are the share of known secrets now in the service, secrets with no owner, the age of the oldest static secret, the share with an expiry, and scanner bypasses per month.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Replaced an unknown volume of scattered credentials with a ranked, vaulted inventory, and cut new hard-coded secrets entering the codebase through a pipeline-stage control.</p>
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>The history gets cleaned and the secret does not get rotated.</strong> It looks like progress and changes nothing for an attacker who already has a copy.</li>
+          <li><strong>The scan result becomes the leak.</strong> A spreadsheet of findings with the values pasted in is a new store of live secrets. Keep locations only.</li>
+          <li><strong>Rotation breaks something nobody knew about.</strong> A secret copied into three places stops working in two of them. Find the consumers first and agree a window, but do not hold back the rotation of an exposed secret.</li>
+          <li><strong>One service becomes one big dependency.</strong> It holds the keys to many systems, so it needs high availability, tight access of its own and a recovery plan that has actually been run.</li>
+          <li><strong>The front door is too slow.</strong> If onboarding takes weeks, secrets reappear in pipelines and chat. The new path has to be quicker than the old habit.</li>
+          <li><strong>The scanner gets switched off.</strong> A tool that blocks developers with false alarms will be bypassed. Tune it, and read the bypass reasons instead of banning bypass.</li>
+          <li><strong>Federation trust is set too wide.</strong> GitHub&rsquo;s documentation says you must define at least one condition on the trust, so untrusted repositories cannot request tokens. A wildcard condition undoes that.</li>
+          <li><strong>Old stores linger.</strong> Without a retirement date, the old vault becomes a second source of truth that nobody audits.</li>
+        </ul>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#secrets-management</span><span>#credential-exposure</span><span>#ci/cd-security</span></div>
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep from running programs like this, and none of them describes one particular project.</p>
+        <ul class="plain-list">
+          <li><strong>I rotate before I discuss.</strong> I used to want a full picture of who had seen a secret before acting. Now I rotate first and work out the history afterwards, because the discussion can take days and the exposure continues the whole time.</li>
+          <li><strong>I keep findings as locations only.</strong> The inventory records where a secret is, what it opens and who owns it. The value stays out of every report, ticket and chat message.</li>
+          <li><strong>I look for the secret that does not need to exist.</strong> Before vaulting a long-lived key, I ask whether the workload can use a role, a federated token or a generated login. Each yes removes a secret to manage.</li>
+          <li><strong>I turn on prevention early.</strong> I put the commit and pipeline checks in at the start of the migration, so the sprawl stops growing while I am still clearing it.</li>
+          <li><strong>I take the first application seriously.</strong> The first migration sets the pattern for the rest. I pick an application with a willing owner, finish it properly and write down what we learned.</li>
+          <li><strong>I test the failure path with the people who will use it.</strong> A recovery plan that only the author has read is a guess. I run the drill with the on-call team.</li>
+          <li><strong>I set a retirement date when I start.</strong> Every old store gets an end date on day one, and I check the read counts before I close it.</li>
+        </ul>
+        <p class="body-text">The wider method, from the first conversation to the last training session, is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>. The emergency side of the same service is in <a href="/case-studies/break-glass-access/">Break-Glass Emergency Access Design</a>.</p>
       </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <p class="body-text">All are primary documentation, read for this review.</p>
+        <ol class="sources">
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html">OWASP Secrets Management Cheat Sheet</a></li>
+          <li><a href="https://docs.github.com/code-security/secret-scanning/about-secret-scanning">GitHub Docs: Secret scanning</a></li>
+          <li><a href="https://docs.github.com/en/code-security/concepts/secret-security/push-protection">GitHub Docs: Push protection</a></li>
+          <li><a href="https://docs.github.com/en/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/remediating-a-leaked-secret">GitHub Docs: Remediating a leaked secret in your repository</a></li>
+          <li><a href="https://docs.github.com/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers">GitHub Docs: Configuring OpenID Connect in cloud providers</a></li>
+          <li><a href="https://developer.hashicorp.com/vault/docs/concepts/lease">HashiCorp Vault: Lease, Renew, and Revoke</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a></li>
+          <li><a href="https://www.cisecurity.org/controls">CIS Critical Security Controls v8</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. Vendor documentation is cited only as a source of how a mechanism works, and the examples are illustrations. Control titles are as published in the standards listed above.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#secrets-management</span><span>#credential-exposure</span><span>#ci/cd-security</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#7df2d0" href="/case-studies/break-glass-access/"><small><i></i>&larr; Previous</small><strong>Break-Glass Emergency Access Design</strong></a><a class="next" style="--c:#7df2d0" href="/case-studies/vendor-privileged-access/"><small><i></i>Next &rarr;</small><strong>Third-Party Privileged Access Governance</strong></a></div></nav>
       <footer class="page-footer">
@@ -96,7 +253,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

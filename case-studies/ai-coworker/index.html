@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#030712" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
-    <meta name="description" content="A privacy-safe case study on using LLMs and agent workflows while preserving source discipline, privacy and human accountability." />
+    <meta name="description" content="A privacy-safe case study on bringing an AI assistant into a working team as a coworker: what it may read, do and decide, how it is connected to company tools, and how people stay accountable." />
     <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ai-coworker/" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="AI as a Security Product Co-worker · Roshan Trivedi" />
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -30,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "AI as a Coworker in Identity Operations",
-  "description": "A privacy-safe case study on using LLMs and agent workflows while preserving source discipline, privacy and human accountability.",
+  "description": "A privacy-safe case study on bringing an AI assistant into a working team as a coworker: what it may read, do and decide, how it is connected to company tools, and how people stay accountable.",
   "author": {
     "@type": "Person",
     "name": "Roshan Trivedi",
@@ -42,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/ai-coworker/",
   "image": "https://roshantrivedi.co.in/assets/og-case-ai-coworker.png",
   "articleSection": "Emerging practice",
@@ -54,41 +55,240 @@
 }
     </script>
   </head>
-  <body>
+  <body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Emerging practice &middot; Case study</p>
-        <p class="cat-badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">Emerging practice</p>
         <h1>AI as a Security Product Co-worker</h1>
-        <p class="dek">Using LLMs and agent workflows to accelerate analysis while protecting judgment, provenance and sensitive data.</p>
-        <p class="meta">Practitioner and workflow designer</p>
+        <p class="dek">How to bring an AI assistant into a working team: what it may read, do and decide, what it can reach, and who answers for it.</p>
+        <p class="meta">Practitioner and workflow designer &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">AI can accelerate product work, but ungoverned use introduces data exposure, hallucination and accountability risks.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>AI is the future of this work, and people cannot be replaced in it. The two work together, with security, governance, monitoring and collaboration around them.</li>
+          <li>Treat the assistant like a new team member. It gets a job, a named owner, its own identity, access limited to that job, and a written agreement about what it does alone and what needs a yes.</li>
+          <li>Every connection to a company tool is an access decision. Put a broker and a policy in front of it, keep a human checkpoint on anything that writes, sends or leaves the company, and log all of it.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">AI can speed up product and security work. I use OpenAI, ChatGPT and Claude to structure research, compare options and tighten executive writing. The speed is real. So are the risks of ungoverned use: data leaves the building, a confident answer turns out to be wrong, and nobody can say afterwards who decided what.</p>
+        <p class="body-text">That is the early picture, when an assistant is a browser tab and a person pastes text into it. It changes quickly once the assistant is connected to things. An assistant that can read the shared drive, query the ticket system and send a message is no longer a tool you consult. It acts, and it acts with some set of permissions. Those permissions belong to somebody. If nobody decided what they should be, they were decided by whoever set up the connection that afternoon.</p>
+        <p class="body-text">The Model Context Protocol, MCP, makes the connection easy to build. That is useful, and it also means a new kind of non-human identity can appear in a team in a day. The questions I would ask of any new joiner apply here too. What is your job? Who do you report to? What can you see? What can you change? Who checks your work? Most teams have clear answers for people and no answers for the assistant sitting next to them.</p>
+        <p class="body-text">This page describes how I would answer those questions. It is a reference approach for a team that wants the speed without giving up accountability.</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Use OpenAI, ChatGPT and Claude to structure research, compare options and improve executive communication.</li>
-          <li>Analyze Model Context Protocol (MCP) and agentic-AI trust boundaries, permissions and non-human identity implications.</li>
-          <li>Keep human validation, source checking and confidential-data boundaries explicit in every workflow.</li>
+      <section id="agreement">
+        <h2>The idea: a coworker with a job description</h2>
+        <p class="body-text">A coworker has a role. They have a manager, a login, a scope of work and a list of things they should ask about first. When they leave, their access is removed the same week. I apply all of that to an AI assistant, on purpose and in those words, because the habits people already have for new colleagues are good habits.</p>
+        <p class="body-text">Three questions sit under everything else.</p>
+        <ul class="plain-list">
+          <li><strong>What may it read?</strong> Which sources, at which classification, for which task.</li>
+          <li><strong>What may it do?</strong> Which actions, in which systems, with what limit on size and reach.</li>
+          <li><strong>What may it decide?</strong> Almost nothing that matters. It can recommend, draft and challenge. A person decides, and the person is named.</li>
+        </ul>
+        <p class="body-text">The answers go into a short working agreement, one page, written before the assistant is connected to anything. The agreement is the thing the rest of this page hangs on.</p>
+
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">A working agreement, in plain terms</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Kind of work</th><th>On its own</th><th>With approval</th><th>Never</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Kind of work">Reading</td><td data-label="On its own">Sources the owner has listed for the task, at public or internal level</td><td data-label="With approval">A new source, or a source with more sensitive content</td><td data-label="Never">Anything above the level the agreement names, even if the connection technically allows it</td></tr>
+            <tr><td data-label="Kind of work">Writing</td><td data-label="On its own">Drafts, summaries and notes saved where only the owner can see them</td><td data-label="With approval">Anything another person will read as coming from the team</td><td data-label="Never">Publishing, or sending outside the company</td></tr>
+            <tr><td data-label="Kind of work">Changing systems</td><td data-label="On its own">Nothing at first</td><td data-label="With approval">Low-risk, reversible changes, one at a time, after the pilot</td><td data-label="Never">Changing access rights, credentials or its own permissions</td></tr>
+            <tr><td data-label="Kind of work">Deciding</td><td data-label="On its own">Which of two drafts to show first</td><td data-label="With approval">Everything that affects a person, a customer or a control</td><td data-label="Never">Approving its own work, or another assistant&rsquo;s</td></tr>
+          </tbody></table></div>
+        <p class="body-text">The columns are deliberately plain. If a working agreement needs a lawyer to read it, nobody will follow it. The owner signs it, the team lead sees it, and it is reviewed whenever the assistant gets a new connection.</p>
+      </section>
+
+      <section id="data">
+        <h2>Data: what it may read and what can leave</h2>
+        <p class="body-text">Data classification is the part teams already have and rarely apply to AI. The company has levels, usually something like public, internal, confidential and restricted. The working agreement states which levels the assistant may read for each task, and which of those may leave the company boundary, for example by going to an external model service.</p>
+        <p class="body-text">I keep two separate questions apart because they get blurred. The first is whether the assistant may read a source. The second is where that content goes once it is read. A source can be fine to read inside the company and still not be fine to send to a service outside it. The agreement answers both.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Level</th><th>Assistant may read</th><th>May leave the company</th><th>Example of how I handle it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Level">Public</td><td data-label="Assistant may read">Yes</td><td data-label="May leave the company">Yes</td><td data-label="Example of how I handle it">Published standards, vendor documentation, my own published pages</td></tr>
+            <tr><td data-label="Level">Internal</td><td data-label="Assistant may read">Yes, for listed tasks</td><td data-label="May leave the company">Only to services the company has approved for that level</td><td data-label="Example of how I handle it">Meeting notes, process documents, draft plans</td></tr>
+            <tr><td data-label="Level">Confidential</td><td data-label="Assistant may read">Only with owner approval per task</td><td data-label="May leave the company">No</td><td data-label="Example of how I handle it">Customer details, contracts, architecture diagrams</td></tr>
+            <tr><td data-label="Level">Restricted</td><td data-label="Assistant may read">No</td><td data-label="May leave the company">No</td><td data-label="Example of how I handle it">Credentials, keys, personal data, audit findings under review</td></tr>
+          </tbody></table></div>
+        <p class="body-text">My own rule for this site is stricter than most companies need. Nothing confidential goes in. No employer, client or internal operational data, which is why every case study here is anonymized. In a company the line moves, but the habit stays: check the level before the paste.</p>
+        <p class="body-text">OWASP lists sensitive information disclosure among the top risks for applications built on language models, and it names credentials, personal data and confidential business data as the kinds of content at risk. It also warns that restrictions given to a model may not always be honored, and could be bypassed by prompt injection. That is why I do not rely on telling the assistant to keep a secret. The control is that the secret is never in reach.</p>
+      </section>
+
+      <section id="architecture">
+        <h2>How it fits together</h2>
+        <p class="body-text">The diagram shows one request. A person asks their coworker for something. The coworker has its own identity and does not borrow the person&rsquo;s login. When it needs a company tool, whether that is reached through MCP or a plain API, the call goes through an access broker. The broker checks policy and hands back narrow, short-lived access for that call. Tools are grouped by what they can do: read, draft or act. Anything high impact stops at a human checkpoint, and the answer goes back to the person it acts for. An audit trail records every step.</p>
+        <figure class="diagram-card" style="--c:#4de2ff;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 440" role="img" aria-labelledby="w1t w1d"><title id="w1t">AI coworker architecture</title><desc id="w1d">A person asks their AI coworker for help. The coworker calls company tools through MCP or APIs, but every call goes through an access broker that applies policy and issues narrow, short-lived access. Anything high impact stops at a human checkpoint and returns to the person for approval. Every step is written to an audit trail.</desc><text class="sub" x="115" y="24" text-anchor="middle">THE PERSON</text><text class="sub" x="385" y="24" text-anchor="middle">THE COWORKER</text><text class="sub" x="645" y="24" text-anchor="middle">ACCESS</text><text class="sub" x="865" y="24" text-anchor="middle">COMPANY TOOLS</text><path class="flow" d="M 210 125 L 290 125"/><text class="sub" x="250" y="115" text-anchor="middle">ask</text><path class="flow" d="M 480 125 L 560 125"/><text class="sub" x="520" y="115" text-anchor="middle">call</text><path class="flow" d="M 730 125 C 760 125 760 56 790 56"/><path class="flow" d="M 730 125 C 760 125 760 122 790 122"/><path class="flow" d="M 730 125 C 760 125 760 188 790 188"/><path class="flow" d="M 385 175 L 385 250"/><text class="sub" x="395" y="218" text-anchor="start">high impact</text><path class="flow" d="M 645 210 L 645 250"/><text class="sub" x="655" y="236" text-anchor="start">step-up</text><path class="flow" d="M 290 280 L 115 280 L 115 165"/><text class="sub" x="125" y="262" text-anchor="start">approve or refuse</text><path class="log" d="M 510 310 L 510 350"/><path class="log" d="M 745 210 L 745 350"/><path class="log" d="M 865 215 L 865 350"/><g class="node" style="--i:0"><rect x="20" y="85" width="190" height="80" rx="12"/><text class="ttl" x="36" y="109">Person</text><text class="sub" x="36" y="127">Named owner,</text><text class="sub" x="36" y="143">the one it acts for</text></g><g class="node" style="--i:1"><rect x="290" y="75" width="190" height="100" rx="12"/><text class="ttl" x="306" y="99">AI coworker</text><text class="sub" x="306" y="117">Own identity,</text><text class="sub" x="306" y="133">scoped to one job</text></g><g class="node" style="--i:2"><rect x="560" y="40" width="170" height="170" rx="12"/><text class="ttl" x="645.0" y="64" text-anchor="middle">Access broker</text><text class="sub" x="645.0" y="82" text-anchor="middle">Policy check,</text><text class="sub" x="645.0" y="98" text-anchor="middle">narrow short-lived</text></g><g class="node" style="--i:3"><rect x="790" y="30" width="150" height="52" rx="12"/><text class="ttl" x="806" y="54">Read tools</text><text class="sub" x="806" y="72">docs, wiki, tickets</text></g><g class="node" style="--i:3"><rect x="790" y="96" width="150" height="52" rx="12"/><text class="ttl" x="806" y="120">Draft tools</text><text class="sub" x="806" y="138">notes, replies</text></g><g class="node" style="--i:3"><rect x="790" y="162" width="150" height="52" rx="12"/><text class="ttl" x="806" y="186">Action tools</text><text class="sub" x="806" y="204">writes, sends</text></g><g class="node" style="--i:4"><rect x="290" y="250" width="440" height="60" rx="12"/><text class="ttl" x="510.0" y="274" text-anchor="middle">Human checkpoints</text><text class="sub" x="510.0" y="292" text-anchor="middle">Sends, writes and anything leaving the company wait for a yes</text></g><rect class="logbar" x="20" y="350" width="920" height="64" rx="10"/><text class="ttl" x="480" y="378" text-anchor="middle">Audit trail</text><text class="sub" x="480" y="398" text-anchor="middle">who asked, which identity acted, what it read, what it wrote, who approved</text><g class="badge"><circle cx="22" cy="87" r="11"/><text x="22" y="91">1</text></g><g class="badge"><circle cx="292" cy="77" r="11"/><text x="292" y="81">2</text></g><g class="badge"><circle cx="562" cy="42" r="11"/><text x="562" y="46">3</text></g><g class="badge"><circle cx="792" cy="30" r="11"/><text x="792" y="34">4</text></g><g class="badge"><circle cx="292" cy="252" r="11"/><text x="292" y="256">5</text></g><g class="badge"><circle cx="22" cy="352" r="11"/><text x="22" y="356">6</text></g><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M 210 125 L 290 125 L 480 125 L 560 125 L 730 125 C 760 125 760 56 790 56"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2.5s"/><animateMotion dur="7s" begin="2.5s" repeatCount="indefinite" path="M 385 175 L 385 250 L 290 280 L 115 280 L 115 165"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 760" role="img" aria-labelledby="t1t t1d"><title id="t1t">AI coworker architecture</title><desc id="t1d">A person asks their AI coworker for help. The coworker calls company tools through MCP or APIs, but every call goes through an access broker that applies policy and issues narrow, short-lived access. Anything high impact stops at a human checkpoint and returns to the person for approval. Every step is written to an audit trail.</desc><path class="flow" d="M 180 74 L 180 120"/><text class="sub" x="190" y="102" text-anchor="start">ask</text><path class="flow" d="M 180 190 L 180 236"/><text class="sub" x="190" y="218" text-anchor="start">high impact</text><path class="flow" d="M 180 296 L 180 342"/><text class="sub" x="190" y="324" text-anchor="start">approved</text><path class="flow" d="M 330 155 L 342 155 L 342 377 L 330 377"/><text class="sub" transform="translate(354 266) rotate(-90)" text-anchor="middle">routine, low impact</text><path class="flow" d="M 180 412 L 180 458"/><text class="sub" x="190" y="440" text-anchor="start">MCP or API call</text><path class="flow" d="M 30 266 L 14 266 L 14 42 L 30 42"/><path class="log" d="M 180 588 L 180 640"/><g class="node" style="--i:0"><rect x="30" y="10" width="300" height="64" rx="12"/><text class="ttl" x="46" y="34">Person</text><text class="sub" x="46" y="52">Named owner, the one it acts for</text></g><g class="node" style="--i:1"><rect x="30" y="120" width="300" height="70" rx="12"/><text class="ttl" x="46" y="144">AI coworker</text><text class="sub" x="46" y="162">Own identity, scoped to one job</text></g><g class="node" style="--i:4"><rect x="30" y="236" width="300" height="60" rx="12"/><text class="ttl" x="180.0" y="260" text-anchor="middle">Human checkpoints</text><text class="sub" x="180.0" y="278" text-anchor="middle">Waits for a yes, answer returns to the person</text></g><g class="node" style="--i:2"><rect x="30" y="342" width="300" height="70" rx="12"/><text class="ttl" x="180.0" y="366" text-anchor="middle">Access broker</text><text class="sub" x="180.0" y="384" text-anchor="middle">Policy check, narrow short-lived access</text></g><g class="node" style="--i:3"><rect x="30" y="458" width="300" height="130" rx="12"/><text class="sub" x="180" y="478" text-anchor="middle">COMPANY TOOLS</text><text class="ttl" x="46" y="504">Read tools</text><text class="sub" x="46" y="520">docs, wiki, tickets</text><text class="ttl" x="46" y="544">Draft tools</text><text class="sub" x="46" y="560">notes, replies</text><text class="ttl" x="200" y="544">Action tools</text><text class="sub" x="200" y="560">writes, sends</text></g><rect class="logbar" x="30" y="640" width="300" height="100" rx="12"/><text class="ttl" x="180" y="672" text-anchor="middle">Audit trail</text><text class="sub" x="180" y="694" text-anchor="middle">who asked, which identity acted,</text><text class="sub" x="180" y="712" text-anchor="middle">what it read and wrote, who approved</text><g class="badge"><circle cx="32" cy="12" r="11"/><text x="32" y="16">1</text></g><g class="badge"><circle cx="32" cy="122" r="11"/><text x="32" y="126">2</text></g><g class="badge"><circle cx="32" cy="238" r="11"/><text x="32" y="242">5</text></g><g class="badge"><circle cx="32" cy="344" r="11"/><text x="32" y="348">3</text></g><g class="badge"><circle cx="32" cy="460" r="11"/><text x="32" y="464">4</text></g><g class="badge"><circle cx="32" cy="642" r="11"/><text x="32" y="646">6</text></g><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="7s" begin="0s" repeatCount="indefinite" path="M 180 42 L 180 120 L 180 155 L 342 155 L 342 377 L 180 377 L 180 458 L 180 523"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="3s"/><animateMotion dur="5s" begin="3s" repeatCount="indefinite" path="M 180 190 L 180 236 L 180 296 L 180 342"/></circle></svg>
+          <figcaption>The dots show a routine read request going to a tool, and a high-impact action pausing at the human checkpoint before it returns to the person. The numbered badges match the steps in the next section. The access broker is a role, and any equivalent gateway, vault or token service can fill it.</figcaption>
+        </figure>
+        <p class="body-text">The MCP specification is useful here because it puts the access question in the protocol. Authorization is optional in MCP. When it is used over HTTP, the specification builds on OAuth 2.1 and treats the MCP server as a resource server. It requires clients to say which server a token is for, and it requires servers to accept only tokens issued for them. It also forbids a server from passing the token it received on to another API. If the server calls an upstream service, it uses a separate token for that. For a local server over standard input and output, the specification says to read credentials from the environment instead. I take two things from this. The assistant should hold narrow tokens that work in one place only, and a tool server in the middle should never become a way to launder access.</p>
+        <p class="body-text">The specification also has the server tell the client which scope an operation needs, so the client asks for no more and steps up only when an operation requires it. That maps well to the checkpoint: the first request carries read scope, and a write needs a fresh decision.</p>
+      </section>
+
+      <section id="workflow">
+        <h2>Bringing the assistant on, step by step</h2>
+        <ol class="steps">
+          <li><h3>Name the job and the owner</h3><p>Write what the assistant is for in one or two sentences. Name one person as its owner, and name the person it acts for if that is someone else. The owner answers for what it does. If nobody will put their name on it, it does not start.</p><div class="why"><span><b>Guardrail</b>No named owner, no assistant</span><span><b>Evidence</b>Signed working agreement</span></div></li>
+          <li><h3>Classify what it will touch</h3><p>List the sources it needs and the level of each. Decide which can be read, which can leave the company, and which are out. Remove from the plan any source the job does not need.</p><div class="why"><span><b>Guardrail</b>Sources listed per task, nothing implied</span><span><b>Evidence</b>Source and classification list</span></div></li>
+          <li><h3>Give it its own identity</h3><p>The assistant gets a distinct account or token, tagged to its owner. It does not use the owner&rsquo;s login. That keeps its actions separate from the person&rsquo;s in every log, and it means its access can be changed or removed without touching the person&rsquo;s.</p><div class="why"><span><b>Guardrail</b>Separate identity, no shared or borrowed credentials</span><span><b>Evidence</b>Identity record with owner field</span></div></li>
+          <li><h3>Connect tools through the broker</h3><p>Each tool is added by request, with the narrowest scope that does the job. Read access is the default. Write access is a separate request with its own reason. Tokens are short-lived and issued for the specific server.</p><div class="why"><span><b>Guardrail</b>Least privilege, scoped and short-lived tokens</span><span><b>Evidence</b>Policy as configured, token lifetime</span></div></li>
+          <li><h3>Mark the checkpoints</h3><p>Decide which actions wait for a person: anything that writes to a system of record, sends a message, changes access, or involves content above the agreed level. The checkpoint shows the person what the assistant intends to do, in plain words, and what it relied on.</p><div class="why"><span><b>Guardrail</b>Human approval for high-impact actions</span><span><b>Evidence</b>Approval record with approver and time</span></div></li>
+          <li><h3>Pilot read-only, then widen</h3><p>Start with reading and drafting. Review the output and the logs on a fixed rhythm. Add one capability at a time, and only after the previous one has been reviewed.</p><div class="why"><span><b>Guardrail</b>One new capability per review</span><span><b>Evidence</b>Review notes, change log of permissions</span></div></li>
+          <li><h3>Log and watch</h3><p>Decide which events are recorded: requests, tool calls, data sources read, outputs, approvals, refusals and errors. Send them to the place where the security team already looks. Set alerts for the odd cases, such as a new tool, a denied call or unusual volume.</p><div class="why"><span><b>Guardrail</b>Logging on before the first real task</span><span><b>Evidence</b>Log sample and alert rules</span></div></li>
+          <li><h3>Review, then offboard when the job ends</h3><p>On a schedule, the owner confirms the assistant is still needed and the access is still right. When the job ends, or the owner moves on, the identity is disabled, tokens are revoked, connections are removed and the working agreement is closed. An unowned assistant is a standing account with nobody watching it.</p><div class="why"><span><b>Guardrail</b>Regular owner attestation, access removed on exit</span><span><b>Evidence</b>Review record, revocation record</span></div></li>
+        </ol>
+
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: preparing a quarterly access review (illustrative)</h3>
+        <p class="body-text">This is an illustration of the model, not a real case. Imagine a team lead who owns a quarterly review of who has access to a set of internal applications. She wants a coworker to do the preparation, and she is both the owner of the assistant and the person it acts for.</p>
+        <ul class="plain-list">
+          <li><strong>Agreement.</strong> The assistant may read an export of the access list, classified internal, and the team&rsquo;s review procedure. It may write a draft summary into the lead&rsquo;s own workspace. It may not send anything, and it may not change access.</li>
+          <li><strong>Request.</strong> The lead asks for a summary of accounts that look unusual against the procedure: no recent use, no manager recorded, or broad access compared with the rest of the group.</li>
+          <li><strong>Work.</strong> The assistant reads the export and the procedure, using read-only access through the broker. It produces a list with, for each item, which rule it checked and which rows it relied on.</li>
+          <li><strong>Checkpoint.</strong> The assistant proposes reminder messages to the application owners. Messages go to other people, so the lead sees the draft and the recipient list and approves, edits or drops each one.</li>
+          <li><strong>Decision.</strong> The lead decides what to do about each flagged account. The assistant has no say, and it is not asked to.</li>
+          <li><strong>Evidence.</strong> The log shows the export it read, the draft it wrote, the messages proposed, which the lead approved and when. An auditor can follow the whole thing without asking anyone.</li>
+        </ul>
+        <p class="body-text">The result is that the lead spends her time on judgment and the assistant spends its time on the reading. If the assistant misreads a row, the evidence column makes that visible in minutes, and nothing has been sent or changed in the meantime.</p>
+      </section>
+
+      <section id="phases">
+        <h2>Rolling it out in phases</h2>
+        <p class="body-text">I would not turn this on for everyone at once. A staged rollout is slower for a month and faster after that, because each stage proves a control before the next one relies on it.</p>
+        <ol class="phases">
+          <li><b>Phase 0. Write it down</b>Working agreement template, classification levels, naming for assistant identities, and the owner role. Nothing is connected yet.<small><em>Exit check</em>Two or three people can explain the agreement back in their own words.</small></li>
+          <li><b>Phase 1. Read and draft</b>One small team, read-only sources at public and internal level, drafts saved privately. Logs are on and someone reads them.<small><em>Exit check</em>The team can answer the audit questions below from the logs alone.</small></li>
+          <li><b>Phase 2. Propose and approve</b>The assistant proposes actions and messages. A person approves each one. Checkpoints are tuned so they are neither skipped nor constant.<small><em>Exit check</em>Approvers say the checkpoint shows enough to decide quickly.</small></li>
+          <li><b>Phase 3. Act within limits</b>Low-risk, reversible actions in named systems, still through the broker. Anything outside the list stays at a checkpoint.<small><em>Exit check</em>Each action type has an owner, a rollback and a log entry.</small></li>
+          <li><b>Phase 4. Run it like a team</b>Regular access review for assistant identities, offboarding tested on a real exit, and the agreement reviewed when tools or models change.<small><em>Exit check</em>A removed assistant leaves no live access behind.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails</h2>
+        <p class="body-text">Each guardrail is tied to a risk it answers. OWASP names the risk of excessive agency as damaging actions taken in response to unexpected, ambiguous or manipulated model output, and it traces it to too much functionality, too many permissions or too much autonomy. Those three are a useful checklist for any connection I review.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it prevents</th><th>How I check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Narrow tool set per job</td><td data-label="What it prevents">Excessive functionality: a tool that can do more than the job needs</td><td data-label="How I check it">Compare each tool&rsquo;s capabilities to the working agreement</td></tr>
+            <tr><td data-label="Guardrail">Read by default, write by request</td><td data-label="What it prevents">Excessive permissions: a read task holding write access</td><td data-label="How I check it">List granted scopes per connection</td></tr>
+            <tr><td data-label="Guardrail">Human approval for high-impact actions</td><td data-label="What it prevents">Excessive autonomy: irreversible actions taken on a bad output</td><td data-label="How I check it">Try a high-impact action in the pilot and confirm it stops</td></tr>
+            <tr><td data-label="Guardrail">Authorization in the downstream system</td><td data-label="What it prevents">Relying on the model to decide what it is allowed to do</td><td data-label="How I check it">Try a forbidden call directly and confirm the tool refuses it</td></tr>
+            <tr><td data-label="Guardrail">Own identity, short-lived tokens</td><td data-label="What it prevents">Borrowed logins, long-lived secrets in a chat or a config</td><td data-label="How I check it">Check token lifetime and the owner field on the identity</td></tr>
+            <tr><td data-label="Guardrail">Untrusted content kept apart</td><td data-label="What it prevents">Prompt injection: instructions hidden in a web page or file the assistant reads</td><td data-label="How I check it">Feed a test document that contains an instruction and see what the assistant does with it</td></tr>
+            <tr><td data-label="Guardrail">Classification limits on reading and sending</td><td data-label="What it prevents">Sensitive information leaving the company</td><td data-label="How I check it">Sample outputs and outbound calls against the level list</td></tr>
+          </tbody></table></div>
+        <p class="body-text">On prompt injection, OWASP separates direct injection, where the user&rsquo;s own input changes the model&rsquo;s behavior, from indirect injection, where the model reads outside content such as a website or a file that carries instructions. The second kind matters most for a coworker, because reading outside content is its job. OWASP&rsquo;s mitigations match what I already do for people: restrict privileges to the minimum, put a human in the loop for privileged operations, and keep untrusted content clearly separated. A hijacked prompt can only do what the assistant could already do, which is the argument for narrow access.</p>
+      </section>
+
+      <section id="audit">
+        <h2>What an auditor will ask</h2>
+        <p class="body-text">I design the logging by starting from the questions that will be asked later. If the answer cannot be found from the record, the logging is incomplete.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Who owns this assistant, and who is it acting for?</td><td data-label="Where the answer comes from">The identity record and the signed working agreement</td></tr>
+            <tr><td data-label="Question">What was it allowed to read and do on that date?</td><td data-label="Where the answer comes from">The change history of its scopes and connections</td></tr>
+            <tr><td data-label="Question">What did it actually read and write?</td><td data-label="Where the answer comes from">Tool-call logs from the broker and the tools themselves</td></tr>
+            <tr><td data-label="Question">Which actions did a person approve, and who?</td><td data-label="Where the answer comes from">Approval records with approver, time and the proposed action</td></tr>
+            <tr><td data-label="Question">Did any sensitive data leave the company?</td><td data-label="Where the answer comes from">Outbound call logs checked against the classification rules</td></tr>
+            <tr><td data-label="Question">What happens when it is wrong?</td><td data-label="Where the answer comes from">Incident procedure, rollback steps, and past review notes</td></tr>
+            <tr><td data-label="Question">How is it removed?</td><td data-label="Where the answer comes from">The offboarding checklist and the revocation record</td></tr>
+          </tbody></table></div>
+        <p class="body-text">NIST SP 800-53 gives the logging a structure I find useful. AU-2 asks the organization to decide which event types are logged, to explain why those events support investigations, and to review the list on a schedule. AU-12 asks that the system can generate the audit records for those events, and that authorized staff can choose which events are logged. For an assistant, I add a few event types to the usual list: a tool call, a data source read, an approval requested, an approval given or refused, and a permission change.</p>
+      </section>
+
+      <section id="standards">
+        <h2>Standards map</h2>
+        <p class="body-text">I use standards as a check on my own thinking, and I list only what I confirmed in the published source. Where I rely on a mirror, I say so in the sources.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it gives this model</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST AI RMF 1.0 (NIST AI 100-1)</td><td data-label="Reference"><code class="ref">GOVERN</code>, <code class="ref">MAP</code>, <code class="ref">MEASURE</code>, <code class="ref">MANAGE</code></td><td data-label="What it gives this model">Govern builds the risk-management culture and the accountability structures. Map sets the context for the system. Measure analyzes, assesses and monitors risk. Manage allocates resources to the risks mapped and measured. NIST calls Govern cross-cutting.</td></tr>
+            <tr><td data-label="Standard">ISO/IEC 42001:2023</td><td data-label="Reference">AI management system standard</td><td data-label="What it gives this model">A management-system standard for organizations developing, providing or using AI, using a plan, do, check, act approach. I cite it as the organizational wrapper for the working agreement and its reviews, and I do not map individual clauses here.</td></tr>
+            <tr><td data-label="Standard">OWASP Top 10 for LLM Applications 2025</td><td data-label="Reference"><code class="ref">LLM01</code>, <code class="ref">LLM02</code>, <code class="ref">LLM06</code></td><td data-label="What it gives this model">Prompt injection, sensitive information disclosure, and excessive agency. These three drive the guardrails table.</td></tr>
+            <tr><td data-label="Standard">MCP specification, authorization</td><td data-label="Reference">Authorization and security considerations</td><td data-label="What it gives this model">Optional OAuth-based authorization for HTTP transports, tokens bound to a specific server, no token passthrough, scope guidance, and a note that local standard-input servers take credentials from the environment.</td></tr>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-6</code></td><td data-label="What it gives this model">Least privilege, applied to users and to processes acting on their behalf, which covers an assistant.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it gives this model">Choosing which events to log, with a reason, and generating the audit records for them.</td></tr>
+          </tbody></table></div>
+        <p class="body-text">Mapping is judgment, and an assessor may map these differently. Most of them describe what a program should achieve and say nothing about assistants in particular.</p>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <p class="body-text">NIST AI RMF is clear that accountability structures should exist so that the right teams and individuals are empowered, responsible and trained, and it calls for documented roles and responsibilities for human and AI configurations and for oversight. I turn that into a short list of roles for the team.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Assistant owner</td><td data-label="Owns">The job, the working agreement, the access requests and the periodic review. Answers for what it does.</td></tr>
+            <tr><td data-label="Role">The person it acts for</td><td data-label="Owns">The approvals at the checkpoints. Owns the decisions the assistant only recommends.</td></tr>
+            <tr><td data-label="Role">Identity and access team</td><td data-label="Owns">Identity creation, the broker and policy, token lifetimes and removal on exit.</td></tr>
+            <tr><td data-label="Role">Security and data owners</td><td data-label="Owns">Classification levels, what may leave the company, monitoring rules and incident response.</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls.</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>Accountability stays with a person.</strong> The assistant can draft and challenge. I read it, change it and own what gets published or recommended. The same sentence works for any team member.</li>
+          <li><strong>Review the agreement when something changes.</strong> A new tool, a new model or a new data source is a reason to reopen it. Quiet changes are where drift starts.</li>
+          <li><strong>Exceptions have owners and end dates.</strong> If a team needs a wider scope for a month, that is written down, approved by the data owner and removed when it ends.</li>
+          <li><strong>Measure what you can defend.</strong> Useful measures: assistants with a named owner, assistants past their review date, and denied calls. I set no targets before I have a baseline.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">A repeatable co-working model that increases analytical speed without outsourcing accountability.</p>
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>The connection arrives before the agreement.</strong> Somebody connects a tool because it takes ten minutes, and the working agreement is written later, if at all. The access then reflects convenience.</li>
+          <li><strong>The assistant borrows a person&rsquo;s login.</strong> Every action looks like the person did it. Logs stop being useful, and the person ends up answering for something they did not do.</li>
+          <li><strong>Checkpoints turn into noise.</strong> If every action asks for approval, people click yes without reading. If nothing asks, nothing is checked. The fix is fewer checkpoints on the actions that matter, with enough detail to decide quickly.</li>
+          <li><strong>Reading is treated as harmless.</strong> A read-only connection can still carry a confidential document into a service outside the company, or pull in a page with hidden instructions. Reading needs classification and content handling too.</li>
+          <li><strong>The assistant is never offboarded.</strong> The pilot ends, the owner changes team, and the identity and its tokens stay. This is the same orphaned-account problem as with service accounts, and it needs the same ownership discipline.</li>
+          <li><strong>Fear makes people hide it.</strong> If the rules are too strict to work with, people use personal accounts and tabs instead, and the company sees none of it. A usable approved path is part of the control.</li>
+        </ul>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#openai</span><span>#chatgpt</span><span>#claude</span><span>#mcp</span><span>#agents</span></div>
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits from how I work and how I run programs. None of them comes from a single incident.</p>
+        <ul class="plain-list">
+          <li><strong>I write the agreement first.</strong> Before I connect anything, I write down what the assistant is for, what it may read and what needs my yes. It takes a short time, and it settles arguments later.</li>
+          <li><strong>I check sources myself.</strong> If a claim matters, I trace it to something I can link to. A confident answer is not a source, and I treat my own use of AI the same way I would ask a team to treat theirs.</li>
+          <li><strong>I decide the data level before I paste.</strong> Nothing confidential goes in. If I am not sure about a document, I treat it as more sensitive until I find out.</li>
+          <li><strong>I start read-only.</strong> A new capability is a new decision. I add one at a time and look at the logs between each.</li>
+          <li><strong>I keep the decision with a person.</strong> AI advises and people decide. I use it to find gaps in my reasoning and to tighten writing, and I make the call.</li>
+          <li><strong>I design the audit answer before the feature.</strong> I ask what a reviewer will want to know in a year, and I check the record contains it.</li>
+          <li><strong>I plan the exit at the start.</strong> Who removes the access, how, and how I know it worked. It is much easier to write on day one than to reconstruct later.</li>
+          <li><strong>I apply it to myself first.</strong> If I cannot run my own workflow with scoped access, clear ownership, evidence and a person who can say no, I have no business recommending it to anyone else.</li>
+        </ul>
+        <p class="body-text">The same thinking runs through my page on <a href="/ai/">how I use AI, and where I stop</a>, and through the way I treat machine accounts in <a href="/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a>. An assistant with credentials is another non-human identity, and it benefits from the same ownership rules.</p>
       </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf">NIST AI 100-1, Artificial Intelligence Risk Management Framework (AI RMF 1.0), January 2023</a></li>
+          <li><a href="https://www.iso.org/standard/42001">ISO/IEC 42001:2023, Information technology, Artificial intelligence, Management system (ISO catalogue page)</a></li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">OWASP Gen AI Security Project: LLM01 Prompt Injection</a></li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/">OWASP Gen AI Security Project: LLM02:2025 Sensitive Information Disclosure</a></li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/">OWASP Gen AI Security Project: LLM06:2025 Excessive Agency</a></li>
+          <li><a href="https://modelcontextprotocol.io/specification/draft/basic/authorization">Model Context Protocol specification: Authorization (draft, read 1 Oct 2026)</a></li>
+          <li><a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations">Model Context Protocol specification 2026-07-28: Authorization Security Considerations</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls (controls AC-6, AU-2, AU-12)</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/au/au-12/">CSF Tools: NIST SP 800-53 Rev. 5 control text for AC-6, AU-2 and AU-12</a>, a secondary mirror I used to read the control statements</li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data, and the worked example is illustrative. It makes no claims about what any particular AI product can or cannot do. The MCP authorization text was a draft at the time of review and may change. ISO/IEC 42001 is cited at the level of its published scope only, and its clauses are not mapped here.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#openai</span><span>#chatgpt</span><span>#claude</span><span>#mcp</span><span>#agents</span><span>#governance</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#f7c873" href="/case-studies/audit-mapping/"><small><i></i>&larr; Previous</small><strong>IAM Control-to-Audit Mapping</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/non-human-identity-at-scale/"><small><i></i>Next &rarr;</small><strong>Non-Human Identity at Scale</strong></a></div></nav>
       <footer class="page-footer">
@@ -97,6 +297,7 @@
       </footer>
     </main>
 
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

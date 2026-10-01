@@ -1,683 +1,254 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#030712" />
-<meta name="robots" content="index,follow,max-image-preview:large" />
-<meta name="description" content="Three real incidents, one root cause: AI tools employees adopted that security never approved. The discovery-first guardrails that would have caught each." />
-<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="The AI Stack Nobody Approved &middot; Roshan Trivedi" />
-<meta property="og:description" content="Three real incidents, one root cause: AI tools employees adopted that security never approved. The discovery-first guardrails that would have caught each." />
-<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
-<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png" />
-<title>The AI Stack Nobody Approved &middot; Roshan Trivedi</title>
-<link rel="stylesheet" href="/assets/fonts.css">
-<style>
-:root{
---bg:#030712;
---bg-panel:#0b1220;
---bg-panel-2:#0d1626;
---border:rgba(148,163,184,0.16);
---border-strong:rgba(77,226,255,0.35);
---text:#f8fafc;
---muted:#9fb0c4;
---teal:#4de2ff;
---green:#7df2d0;
---amber:#f7c873;
---red:#ff6b6b;
---display:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
---mono:"JetBrains Mono",ui-monospace,monospace;
---font:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-font-family:var(--font);
-background:var(--bg);
-color:var(--text);
-line-height:1.6;
-background-image:
-radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
-radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
-}
-a{color:var(--teal);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="How to find the AI tools people use that nobody approved, classify the data exposure, respond without driving use underground, and measure the gap closing." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="The AI Stack Nobody Approved &middot; Roshan Trivedi" />
+    <meta property="og:description" content="How to find the AI tools people use that nobody approved, classify the data exposure, respond without driving use underground, and measure the gap closing." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png" />
+    <title>The AI Stack Nobody Approved &middot; Roshan Trivedi</title>
 
-header.site{
-display:flex;align-items:center;justify-content:space-between;
-padding:20px 24px;border-bottom:1px solid var(--border);
-position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
-}
-header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
-header.site .back:hover{color:var(--teal);text-decoration:none}
-header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
-header.site .brand span{color:var(--teal)}
-
-.hero{padding:72px 0 40px}
-.eyebrow{
-display:inline-flex;align-items:center;gap:8px;
-font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-color:var(--teal);margin-bottom:22px;
-}
-.eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
-h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
-h1 .accent{color:var(--teal)}
-.lede{font-size:18px;color:var(--muted);max-width:680px}
-
-.meta-grid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
-}
-.meta-card{
-background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
-padding:20px 22px;
-}
-.meta-card .label{
-font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-color:var(--muted);margin-bottom:10px;
-}
-.meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
-.meta-card.role .value{font-weight:700;color:var(--green)}
-
-section.approach{padding:64px 0}
-.section-head{margin-bottom:36px}
-.section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
-.section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
-.section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
-
-.steps{display:grid;gap:14px}
-.step{
-display:grid;grid-template-columns:56px 1fr;gap:18px;
-background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
-}
-.step .num{
-font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
-}
-.step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
-.step p{color:var(--muted);font-size:14.5px}
-.step.risk .num{color:var(--red);opacity:0.7}
-.step.guardrail .num{color:var(--green);opacity:0.7}
-
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
-.tag{
-font-size:12px;font-weight:600;color:var(--muted);
-border:1px solid var(--border);border-radius:999px;padding:7px 14px;
-}
-
-section.pipeline{padding:0 0 64px}
-.pipeline svg text{font-family:var(--font)}
-
-section.fieldnote{padding:0 0 64px}
-.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
-.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
-.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
-.quote-card .who span{color:var(--teal)}
-.quote-card.mine{border-left-color:var(--green)}
-
-section.market{padding:0 0 64px}
-.vendor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
-.vendor-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
-.vendor-card .name{font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:6px}
-.vendor-card .focus{font-size:13px;color:var(--muted);line-height:1.5}
-.market-note{color:var(--muted);font-size:15px;margin-top:20px;line-height:1.7}
-
-section.solution{padding:0 0 64px}
-.status-note{
-display:flex;gap:12px;align-items:flex-start;
-background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
-border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--amber);
-}
-.status-note b{color:var(--amber)}
-.status-note.shipped{background:rgba(125,242,208,0.08);border-color:rgba(125,242,208,0.3);color:var(--green)}
-.status-note.shipped b{color:var(--green)}
-
-footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
-footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-footer.site p{color:var(--muted);font-size:13px}
-.related{color:var(--muted);font-size:13px}
-.related a{margin-left:10px}
-
-
-section.definition,section.spread,section.lifecycle,section.discovery,section.governance,section.impact{padding:0 0 64px}
-@keyframes lcFlow{to{stroke-dashoffset:-24}}
-@keyframes lcGlow{0%,100%{opacity:.15}50%{opacity:.55}}
-.flow-line{stroke-dasharray:5 4;animation:lcFlow 1s linear infinite}
-.flow-return{stroke-dasharray:6 5;animation:lcFlow 1.4s linear infinite}
-.pulse-glow{animation:lcGlow 2.2s ease-in-out infinite}
-@media (max-width:720px){
-h1{font-size:32px}
-.meta-grid{grid-template-columns:1fr}
-.vendor-grid{grid-template-columns:1fr}
-}
-h1,h2,h3,header.site .brand{font-family:var(--display)}
-.eyebrow,.meta,.tag{font-family:var(--mono)}
-</style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"The AI Stack Nobody Approved","description":"Three real incidents, one root cause: AI tools employees adopted that security never approved. The discovery-first guardrails that would have caught each.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-09-21","dateModified":"2026-09-21","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/","image":"https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png","keywords":"Shadow AI, AI Governance, Data Security Posture Management, AI Discovery, Insider Risk, Non-Human Identity"}
-</script>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-<body>
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"The AI Stack Nobody Approved","description":"How to find the AI tools people use that nobody approved, classify the data exposure, respond without driving use underground, and measure the gap closing.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-09-21","dateModified":"2026-10-01","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/","image":"https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png","articleSection":"AI Governance","isPartOf":{"@type":"CollectionPage","url":"https://roshantrivedi.co.in/case-studies/"},"keywords":"Shadow AI, AI Governance, Data Security Posture Management, AI Discovery, OAuth app governance"}
+    </script>
+</head>
+<body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
+    <main id="main">
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
-<header class="site">
-<nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
-<div class="brand">RT <span>&middot; Identity Security</span></div>
-</header>
+      <header class="hero">
+        <p class="eyebrow">AI Governance &middot; Case study</p>
+        <h1>You can&rsquo;t govern the AI tools you don&rsquo;t know exist</h1>
+        <p class="dek">The AI a company approves and the AI its people use are two different lists. This is how to find the second one, work out what data it touches, respond without pushing it out of sight, and show the gap closing.</p>
+        <p class="meta">Independent research and control design &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+      </header>
 
-<main id="main" class="wrap hero">
-<div class="eyebrow">AI Governance &middot; Shadow AI</div>
-<h1>You can't govern the AI tools you don't know <span class="accent">exist</span>.</h1>
-<p class="lede">A 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension all trace back to the same gap: AI tools employees adopted that security never approved — and in most cases never even knew existed. A look at how widespread that gap actually is, the market racing to close it, and the guardrails that would have caught each incident before data left the building.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>The list of approved AI tools is shorter than the list of tools in use. Security cannot protect what it has not found, so the first job is discovery, and it comes before the policy.</li>
+          <li>Discovery draws on several signals: network and proxy logs, browser and endpoint data, SaaS and OAuth grants, expense records, and the data stores themselves. Each finding is classified by the data it touches and gets one of four outcomes: allow, allow with controls, replace or block.</li>
+          <li>A block on its own moves the use somewhere you cannot see. The approved route has to be quicker than the one people found for themselves, and the gap is measured by how much use moves onto it.</li>
+        </ul>
+      </div>
 
-<div class="meta-grid">
-<div class="meta-card role">
-<div class="label">Role</div>
-<div class="value">Independent Research &amp; Control Design</div>
-</div>
-<div class="meta-card">
-<div class="label">Challenge</div>
-<div class="value">AI adoption is outrunning AI governance by years. Anywhere from half to four in five employees use AI tools their IT department never approved — a browser extension, a personal account, a copilot switched on inside a SaaS tool. Security can't secure what it can't see, and by the time it finds out, the data has usually already left.</div>
-</div>
-<div class="meta-card">
-<div class="label">Outcome</div>
-<div class="value">Traced three real incidents — a 2023 leak, a 2026 SEC filing, and a 2026 supply-chain breach — back to the same root cause: unmanaged, unapproved AI tools. Sized the gap against 2026 breach and survey data, mapped the fast-consolidating governance vendor market, and set out a discovery-first guardrail sequence.</div>
-</div>
-</div>
-</main>
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Shadow AI is the use of AI tools, models and agents outside an organization&rsquo;s security, procurement and observability perimeter. It might be a browser extension someone installed on their own, a copilot a SaaS vendor switched on by default, or a Model Context Protocol (MCP) server an engineer connected without telling anyone. It descends from shadow IT, where people adopted software faster than procurement could approve it.</p>
+        <p class="body-text">The stakes are higher this time. Shadow IT was mostly data sitting somewhere ungoverned. With AI, data moves: it is pasted into prompts, sent to third-party model providers, and, when an agent is involved, acted on without a person approving each step. Much of this is ordinary use. Pasting a customer record into a prompt box is all it takes.</p>
+        <p class="body-text">Nobody has to do anything wrong for the gap to open. Someone in finance wants a faster way to summarise contracts, a support lead finds a tool that writes up calls, an engineer wires an assistant into the repository. Each has a reasonable goal and no quick, approved way to meet it.</p>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Where unapproved AI hides</h3>
+        <p class="body-text" style="margin-top:6px">Only one of these involves someone deliberately going around IT. The others are things nobody reviewed.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Surface</th><th>How it shows up</th><th>Where the signal is</th><th>What it can miss</th></tr></thead>
+<tbody>
+<tr><td data-label="Surface">Personal accounts and consumer apps</td><td data-label="How it shows up">Someone signs up with a personal or work email, outside procurement</td><td data-label="Where the signal is">Proxy and DNS logs, expense lines</td><td data-label="What it can miss">Personal devices and mobile networks</td></tr>
+<tr><td data-label="Surface">Browser extensions</td><td data-label="How it shows up">Installed under a work profile with no separate binary and no admin approval</td><td data-label="Where the signal is">Browser management inventory, endpoint data</td><td data-label="What it can miss">Unmanaged browsers</td></tr>
+<tr><td data-label="Surface">AI features inside approved SaaS</td><td data-label="How it shows up">A vendor ships a copilot and turns it on. The vendor was reviewed, the feature was not</td><td data-label="Where the signal is">SaaS admin settings, vendor change notices</td><td data-label="What it can miss">Features that arrive without notice</td></tr>
+<tr><td data-label="Surface">OAuth grants and connected apps</td><td data-label="How it shows up">An AI app is given access to mail, files or calendar</td><td data-label="Where the signal is">Identity provider and SaaS grant lists</td><td data-label="What it can miss">Grants made from personal accounts</td></tr>
+<tr><td data-label="Surface">Agents and MCP connections</td><td data-label="How it shows up">An agent reaches tools through MCP or API keys and acts on its own</td><td data-label="Where the signal is">Key scans, outbound calls to model APIs, service-account activity</td><td data-label="What it can miss">Setups that run only on a laptop</td></tr>
+</tbody></table></div>
+      </section>
 
-<section class="approach wrap">
-<div class="section-head">
-<span class="section-num">APPROACH</span>
-<h2>Three moves, in order</h2>
-<p>Start from documented incidents, not hypothetical risk. Check the pattern against current research. Then map both the market response and the guardrails that actually close the gap.</p>
-</div>
-<div class="steps">
-<div class="step">
-<div class="num">01</div>
-<div>
-<h3>Ground it in incidents</h3>
-<p>Samsung's 2023 ChatGPT leaks (three incidents in twenty days), the April 2026 Vercel breach that started with an employee's self-adopted Context.ai browser extension, and CB Financial Services' first-ever SEC Form 8-K filed over unauthorized employee AI use &mdash; three different failure patterns, the same root cause: a tool nobody in security approved.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">02</div>
-<div>
-<h3>Check it against the data</h3>
-<p>Cross-referenced against 2026 breach and survey research: shadow-AI-linked incidents nearly doubled year over year &mdash; from 20% to 43% of AI-related breaches &mdash; pushing average breach cost to $5.39M, while separate surveys put unsanctioned AI use anywhere from 49% to over 80% of employees.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">03</div>
-<div>
-<h3>Map the response</h3>
-<p>Reviewed the AI governance and discovery vendor market and its 2026 consolidation wave &mdash; Varonis absorbing AllTrue.ai, Veeam paying $1.725B for Securiti, Gartner's first dedicated Magic Quadrant &mdash; then set out the discovery-first guardrail sequence that would have caught each incident before data left the building.</p>
-</div>
-</div>
-</div>
-<div class="tags">
-<span class="tag">#wip</span><span class="tag">AI Governance</span>
-<span class="tag">Shadow AI</span>
-<span class="tag">Data Security Posture Management</span>
-<span class="tag">AI Discovery</span>
-<span class="tag">Insider Risk</span>
-<span class="tag">Zero Trust</span>
-</div>
-</section>
+      <section id="record">
+        <h2>What has already happened</h2>
+        <p class="body-text">Three public cases show the range. I have kept to what the primary or closest sources say and noted where I could not reach a primary one.</p>
+        <ul class="plain-list"><li><strong>Samsung, spring 2023.</strong> Bloomberg reported that Samsung restricted generative AI tools on company devices after staff put internal material into ChatGPT, including source code. Tech Monitor reported that the memo called the restriction temporary until safeguards were ready, and that the company was building its own tools. I read these through secondary coverage, not the Bloomberg article itself.</li><li><strong>Vercel, April 2026.</strong> Vercel&rsquo;s own bulletin says the incident began with a compromise of Context.ai, a third-party AI tool used by a Vercel employee. The attacker took over that employee&rsquo;s Google Workspace account, reached the employee&rsquo;s Vercel account and then internal systems, and could read environment variables that had not been marked sensitive. The bulletin does not say whether the tool was approved. Other write-ups describe an OAuth grant, and I treat that detail as secondary.</li><li><strong>CB Financial Services, May 2026.</strong> The company filed an 8-K under Item 1.05 saying its bank subsidiary learned on 5 May 2026 of an internal incident in which non-public customer information was handled using an unauthorized AI-based software application. Customer names, Social Security numbers and dates of birth were involved, and the company said it did not expect a material impact on its financial results. I read the filing through a mirror site, not sec.gov.</li></ul>
+        <p class="body-text">The common thread is a tool the security team had not reviewed holding data or access it should not have had. Three stories say nothing about how common that is.</p>
+        <p class="body-text">For scale, IBM&rsquo;s Cost of a Data Breach Report 2025, based on 600 breached organizations in 17 industries, reports that 20% of the organizations studied had a breach linked to shadow AI, that shadow AI added up to USD 670K to the average breach cost, and that 63% of breached organizations lacked AI governance policies. That tells you what breaches looked like among organizations that had one. It does not tell you how many employees use unapproved AI. I have left out the usage surveys that circulate, because I could not trace their method and dates.</p>
+      </section>
 
-<section class="definition wrap">
-<div class="section-head">
-<span class="section-num">THE DEFINITION</span>
-<h2>What "shadow AI" actually means</h2>
-<p>Not a hack. Not malware. AI running somewhere security didn't put it — and in most cases, didn't know to look for it.</p>
-</div>
-<p class="market-note">Shadow AI is the use of AI tools, models, and agents outside an organization's security, procurement, and observability perimeter — a browser extension an employee installed personally, a copilot a SaaS vendor switched on by default, a Model Context Protocol (MCP) server an engineer connected without telling anyone. It's a direct descendant of shadow IT, the decades-old pattern of employees adopting unapproved software to move faster than procurement allows. What changed is the stakes: shadow IT was mostly data sitting somewhere ungoverned. Shadow AI is data in motion — pasted into prompts, routed to third-party model providers, and, in the case of agents, acted on autonomously, without a human approving each step.</p>
-<p class="market-note">The category didn't appear overnight — it rode the same curve that took &quot;Shadow SaaS&quot; from a niche IT-governance topic to a boardroom risk between 2023 and 2026, just faster. Within twenty days of ChatGPT going mainstream inside Samsung in 2023, the company had three separate confidential data leaks. By 2026, industry surveys put unsanctioned AI use anywhere from half to over 80% of the workforce — AI simply gave an existing shadow-IT surface a much sharper edge.</p>
-</section>
-<section class="spread wrap">
-<div class="section-head">
-<span class="section-num">WHERE IT SPREADS</span>
-<h2>Knowingly, unknowingly — same blind spot</h2>
-<p>Shadow AI isn't one behavior. It's at least four different surfaces, and only one of them is a person deliberately going around IT.</p>
-</div>
-<div class="steps">
-<div class="step">
-<div class="num">01</div>
-<div>
-<h3>Personal accounts and browser extensions — knowing</h3>
-<p>An employee signs up for ChatGPT, Claude, or a consumer AI browser extension with a personal or work email, entirely outside procurement. 78% of AI users at work admit to bringing their own unauthorized tools, and 88% have pasted work information into a public AI tool at least once.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">02</div>
-<div>
-<h3>AI features embedded in approved SaaS — unknowing</h3>
-<p>The productivity suite, CRM, or support platform an employee already uses ships a new AI copilot and switches it on by default. Nobody re-reviews it, because on paper it's the same vendor that was already approved — the AI feature inside never went through its own review.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">03</div>
-<div>
-<h3>Agentic browsers and MCP-connected agents — unknowing, then autonomous</h3>
-<p>Agentic browser assistants can click, fill forms, and submit data on a user's behalf, while agents that connect to tools through the Model Context Protocol talk agent-to-server rather than user-to-application — bypassing the SSO and CASB discovery built for human logins entirely. Roughly 80% of organizations now report unauthorized AI agent actions.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">04</div>
-<div>
-<h3>Browser extensions — the fastest-growing blind spot</h3>
-<p>A consumer AI browser extension installed under a corporate identity looks identical to any other tab — no separate binary, no admin approval, no CASB record. It's exactly the pattern behind the Vercel breach above: a single self-adopted extension, invisible to every inventory, became the entry point into a production environment and a downstream extortion campaign.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">05</div>
-<div>
-<h3>Network, cloud, and infra — the trail it leaves behind</h3>
-<p>Every surface above eventually touches the network: DNS lookups and proxy traffic to AI API endpoints, OAuth grants minted for AI apps, service accounts quietly calling model APIs, and unsanctioned AI deployments spun up directly inside cloud consoles. Invisible to a SaaS inventory — rarely invisible to the network, if anyone's looking.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="lifecycle wrap">
-<div class="section-head">
-<span class="section-num">THE LIFECYCLE</span>
-<h2>The loop that has to close before a breach closes it for you</h2>
-<p>Six stages, one continuous cycle. Shadow AI isn't a single event — it's a loop that either gets governed or gets discovered the hard way.</p>
-</div>
-<svg viewBox="0 0 680 400" width="100%" height="auto" role="img" aria-label="Animated diagram of the shadow AI lifecycle: adopt, use, blind spot, exposure, discovery, and govern, looping back through a continuous governance path">
-<defs>
-<marker id="lcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-</marker>
-</defs>
-<rect x="472" y="252" width="176" height="80" rx="10" fill="none" stroke="var(--red)" stroke-width="2" class="pulse-glow"></rect>
-<path d="M100,258 C15,205 15,165 100,116" fill="none" stroke="var(--green)" stroke-width="1.5" class="flow-return" marker-end="url(#lcArrow)"></path>
-<circle r="4" fill="var(--green)">
-<animateMotion dur="3.2s" repeatCount="indefinite" path="M100,258 C15,205 15,165 100,116"></animateMotion>
-</circle>
-<line x1="180" y1="82" x2="248" y2="82" stroke="var(--teal)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
-<line x1="410" y1="82" x2="478" y2="82" stroke="var(--amber)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
-<line x1="560" y1="116" x2="560" y2="258" stroke="var(--red)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
-<line x1="478" y1="292" x2="412" y2="292" stroke="var(--amber)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
-<line x1="248" y1="292" x2="182" y2="292" stroke="var(--green)" stroke-width="1.5" class="flow-line" marker-end="url(#lcArrow)"></line>
-<g>
-<rect x="20" y="50" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1"></rect>
-<text x="36" y="76" fill="var(--teal)" font-size="13" font-weight="700">01 ADOPT</text>
-<text x="36" y="94" fill="var(--muted)" font-size="10.5">employee finds a tool</text>
-</g>
-<g>
-<rect x="250" y="50" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1"></rect>
-<text x="266" y="76" fill="var(--teal)" font-size="13" font-weight="700">02 USE</text>
-<text x="266" y="94" fill="var(--muted)" font-size="10.5">prompts &amp; data flow out</text>
-</g>
-<g>
-<rect x="480" y="50" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--amber)" stroke-width="1"></rect>
-<text x="496" y="76" fill="var(--amber)" font-size="13" font-weight="700">03 BLIND SPOT</text>
-<text x="496" y="94" fill="var(--muted)" font-size="10.5">CASB/SSO can't see it</text>
-</g>
-<g>
-<rect x="480" y="260" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--red)" stroke-width="1.5"></rect>
-<text x="496" y="286" fill="var(--red)" font-size="13" font-weight="700">04 EXPOSURE</text>
-<text x="496" y="304" fill="var(--muted)" font-size="10.5">data leaves, agent acts</text>
-</g>
-<g>
-<rect x="250" y="260" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--amber)" stroke-width="1"></rect>
-<text x="266" y="286" fill="var(--amber)" font-size="13" font-weight="700">05 DISCOVERY</text>
-<text x="266" y="304" fill="var(--muted)" font-size="10.5">breach — or AI-SPM first</text>
-</g>
-<g>
-<rect x="20" y="260" width="160" height="64" rx="8" fill="var(--bg-panel)" stroke="var(--green)" stroke-width="1"></rect>
-<text x="36" y="286" fill="var(--green)" font-size="13" font-weight="700">06 GOVERN</text>
-<text x="36" y="304" fill="var(--muted)" font-size="10.5">inventory, policy, guardrails</text>
-</g>
-</svg>
-<p class="market-note">Amber marks the moment visibility breaks. Red is where the damage happens. Green is the loop most organizations still haven't closed — only 34% have a formal shadow AI detection program in place.</p>
-</section>
-<section class="pipeline wrap">
-<div class="section-head">
-<span class="section-num">THE WORKFLOW</span>
-<h2>What security sees, versus what's actually running</h2>
-<p>Both are true at the same company, at the same time. Only one of them shows up in an asset inventory.</p>
-</div>
-<svg viewBox="0 0 680 500" width="100%" height="auto" role="img" aria-label="Workflow diagram comparing the sanctioned AI tools security knows about against the larger, unmanaged shadow AI surface actually in use">
-<defs>
-<marker id="saiArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</marker>
-</defs>
+      <section id="architecture">
+        <h2>How discovery fits together</h2>
+        <p class="body-text">Five kinds of signal feed one inventory. Every entry in it gets a risk class based on the data it can reach, and a decision. The follow-up goes back to the person, and the next scan checks that the answer held.</p>
+        <figure class="diagram-card" style="--c:#4de2ff;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 470" role="img" aria-labelledby="s1t s1d"><title id="s1t">Shadow AI discovery architecture</title><desc id="s1d">Five signal sources feed an inventory of AI tools: network and proxy logs, browser and endpoint data, SaaS and OAuth grants, expense and procurement records, and data stores. Each entry gets a risk class based on the data it touches, then one of four policy outcomes: allow, allow with controls, replace or block. Follow-up tells the owner, offers the approved route, re-scans and tracks the gap, and feeds back into the inventory.</desc><text class="sub" x="130" y="34" text-anchor="middle" style="letter-spacing:.12em">SIGNAL SOURCES</text><text class="sub" x="370" y="34" text-anchor="middle" style="letter-spacing:.12em">INVENTORY</text><text class="sub" x="570" y="34" text-anchor="middle" style="letter-spacing:.12em">RISK CLASS</text><text class="sub" x="820" y="34" text-anchor="middle" style="letter-spacing:.12em">POLICY DECISION</text><g class="node" style="--i:0"><rect x="20" y="50" width="220" height="56" rx="12"/><g class="ic" transform="translate(36 66)"><circle cx="5" cy="12" r="3"/><circle cx="19" cy="12" r="3"/><path d="M8 12h8"/></g><text class="ttl" x="72" y="74">Network and proxy logs</text><text class="sub" x="72" y="91">DNS names, proxy, TLS</text></g><path class="flow" d="M 240 78 C 270 78 270 210 300 210"/><g class="node" style="--i:0"><rect x="20" y="116" width="220" height="56" rx="12"/><g class="ic" transform="translate(36 132)"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20"/></g><text class="ttl" x="72" y="140">Browser and endpoint</text><text class="sub" x="72" y="157">extensions, installed apps</text></g><path class="flow" d="M 240 144 C 270 144 270 210 300 210"/><g class="node" style="--i:0"><rect x="20" y="182" width="220" height="56" rx="12"/><g class="ic" transform="translate(36 198)"><path d="M7 18h10a4 4 0 0 0 0-8 6 6 0 0 0-11.500 1.500A3.300 3.300 0 0 0 7 18z"/></g><text class="ttl" x="72" y="206">SaaS and OAuth grants</text><text class="sub" x="72" y="223">app lists, consent, AI features</text></g><path class="flow" d="M 240 210 C 270 210 270 210 300 210"/><g class="node" style="--i:0"><rect x="20" y="248" width="220" height="56" rx="12"/><g class="ic" transform="translate(36 264)"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></g><text class="ttl" x="72" y="272">Expense and procurement</text><text class="sub" x="72" y="289">cards, invoices, trials</text></g><path class="flow" d="M 240 276 C 270 276 270 210 300 210"/><g class="node" style="--i:0"><rect x="20" y="314" width="220" height="56" rx="12"/><g class="ic" transform="translate(36 330)"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.700 3.600 3 8 3s8-1.300 8-3V6M4 12c0 1.700 3.600 3 8 3s8-1.300 8-3"/></g><text class="ttl" x="72" y="338">Data stores</text><text class="sub" x="72" y="355">AI keys, exports, uploads</text></g><path class="flow" d="M 240 342 C 270 342 270 210 300 210"/><g class="node" style="--i:1"><rect x="300" y="50" width="140" height="320" rx="14"/><text class="ttl" x="370" y="80" text-anchor="middle" style="font-size:16px">Inventory</text><text class="sub" x="370" y="112" text-anchor="middle">tool or app</text><text class="sub" x="370" y="150" text-anchor="middle">who uses it</text><text class="sub" x="370" y="188" text-anchor="middle">business owner</text><text class="sub" x="370" y="226" text-anchor="middle">data it touches</text><text class="sub" x="370" y="264" text-anchor="middle">how it connects</text><text class="sub" x="370" y="302" text-anchor="middle">first and last seen</text></g><g class="node" style="--i:2"><rect x="500" y="50" width="140" height="320" rx="14"/><text class="ttl" x="570" y="80" text-anchor="middle" style="font-size:16px">Risk class</text><text class="sub" x="570" y="112" text-anchor="middle">data it can see</text><text class="sub" x="570" y="150" text-anchor="middle">account type</text><text class="sub" x="570" y="188" text-anchor="middle">retention terms</text><text class="sub" x="570" y="226" text-anchor="middle">connected access</text><text class="sub" x="570" y="264" text-anchor="middle">class 0 to 3</text></g><path class="flow" d="M 440 210 L 500 210"/><path class="flow" d="M 640 210 L 700 210"/><text class="sub" x="270" y="232" text-anchor="middle" style="paint-order:stroke;stroke:var(--bg,#030712);stroke-width:4px;stroke-linejoin:round">signals</text><text class="sub" x="470" y="200" text-anchor="middle" style="paint-order:stroke;stroke:var(--bg,#030712);stroke-width:4px;stroke-linejoin:round">new entry</text><text class="sub" x="670" y="200" text-anchor="middle" style="paint-order:stroke;stroke:var(--bg,#030712);stroke-width:4px;stroke-linejoin:round">risk class</text><g class="node" style="--i:3"><rect x="700" y="50" width="240" height="320" rx="14"/><g class="ic" transform="translate(738 70)"><path d="M5 12.500l4.500 4.500L19 7"/></g><text class="ttl" x="774" y="82">Allow</text><text class="sub" x="774" y="100">register it and move on</text><g class="ic" transform="translate(738 138)"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/></g><text class="ttl" x="774" y="150">Allow with controls</text><text class="sub" x="774" y="168">business account, DLP, terms</text><g class="ic" transform="translate(738 206)"><path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/></g><text class="ttl" x="774" y="218">Replace</text><text class="sub" x="774" y="236">move to the approved tool</text><g class="ic" transform="translate(738 274)"><circle cx="12" cy="12" r="8"/><path d="M6.500 6.500l11 11"/></g><text class="ttl" x="774" y="286">Block</text><text class="sub" x="774" y="304">stop it and explain why</text></g><path class="flow" d="M 715 370 L 715 400"/><text class="sub" x="724" y="392">outcome</text><path class="flow" d="M 370 400 L 370 370"/><text class="sub" x="378" y="392">re-scan</text><g class="node" style="--i:4"><rect class="logbar" x="20" y="400" width="920" height="54" rx="10"/><text class="ttl" x="480" y="424" text-anchor="middle">Follow-up</text><text class="sub" x="480" y="443" text-anchor="middle">Tell the owner. Offer the approved route. Re-scan. Keep the record. Track the gap.</text></g><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="6.6s" begin="0s" repeatCount="indefinite" path="M 240 78 C 270 78 270 210 300 210 L 715 210 L 715 427"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2.2s"/><animateMotion dur="6.6s" begin="2.2s" repeatCount="indefinite" path="M 240 210 C 270 210 270 210 300 210 L 715 210 L 715 427"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="4.4s"/><animateMotion dur="6.6s" begin="4.4s" repeatCount="indefinite" path="M 240 342 C 270 342 270 210 300 210 L 715 210 L 715 427"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 990" role="img" aria-labelledby="s2t s2d"><title id="s2t">Shadow AI discovery architecture</title><desc id="s2d">Five signal sources feed an inventory of AI tools. Each entry gets a risk class, then one of four outcomes: allow, allow with controls, replace or block. Follow-up tells the owner, offers the approved route and re-scans, feeding back into the inventory.</desc><g class="node" style="--i:0"><rect x="24" y="10" width="300" height="272" rx="14"/><text class="sub" x="174" y="32" text-anchor="middle" style="letter-spacing:.12em">SIGNAL SOURCES</text><g class="ic" transform="translate(44 48)"><circle cx="5" cy="12" r="3"/><circle cx="19" cy="12" r="3"/><path d="M8 12h8"/></g><text class="ttl" x="82" y="62">Network and proxy logs</text><text class="sub" x="82" y="78">DNS names, proxy, TLS</text><g class="ic" transform="translate(44 92)"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20"/></g><text class="ttl" x="82" y="106">Browser and endpoint</text><text class="sub" x="82" y="122">extensions, installed apps</text><g class="ic" transform="translate(44 136)"><path d="M7 18h10a4 4 0 0 0 0-8 6 6 0 0 0-11.500 1.500A3.300 3.300 0 0 0 7 18z"/></g><text class="ttl" x="82" y="150">SaaS and OAuth grants</text><text class="sub" x="82" y="166">app lists, consent, AI features</text><g class="ic" transform="translate(44 180)"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></g><text class="ttl" x="82" y="194">Expense and procurement</text><text class="sub" x="82" y="210">cards, invoices, trials</text><g class="ic" transform="translate(44 224)"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.700 3.600 3 8 3s8-1.300 8-3V6M4 12c0 1.700 3.600 3 8 3s8-1.300 8-3"/></g><text class="ttl" x="82" y="238">Data stores</text><text class="sub" x="82" y="254">AI keys, exports, uploads</text></g><path class="flow" d="M 174 282 L 174 318"/><text class="sub" x="188" y="304">signals</text><g class="node" style="--i:1"><rect x="24" y="318" width="300" height="108" rx="14"/><text class="sub" x="174" y="340" text-anchor="middle" style="letter-spacing:.12em">INVENTORY</text><text class="sub" x="174" y="368" text-anchor="middle">tool or app, who uses it, owner</text><text class="sub" x="174" y="388" text-anchor="middle">data it touches, how it connects</text><text class="sub" x="174" y="408" text-anchor="middle">first and last seen</text></g><path class="flow" d="M 174 426 L 174 462"/><text class="sub" x="188" y="448">new entry</text><g class="node" style="--i:2"><rect x="24" y="462" width="300" height="108" rx="14"/><text class="sub" x="174" y="484" text-anchor="middle" style="letter-spacing:.12em">RISK CLASS</text><text class="sub" x="174" y="512" text-anchor="middle">data it can see, account type</text><text class="sub" x="174" y="532" text-anchor="middle">retention terms, connected access</text><text class="sub" x="174" y="552" text-anchor="middle">class 0 to 3</text></g><path class="flow" d="M 174 570 L 174 606"/><text class="sub" x="188" y="592">risk class</text><g class="node" style="--i:3"><rect x="24" y="606" width="300" height="232" rx="14"/><text class="sub" x="174" y="628" text-anchor="middle" style="letter-spacing:.12em">POLICY DECISION</text><g class="ic" transform="translate(44 646)"><path d="M5 12.500l4.500 4.500L19 7"/></g><text class="ttl" x="82" y="660">Allow</text><text class="sub" x="82" y="676">register it and move on</text><g class="ic" transform="translate(44 694)"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6z"/></g><text class="ttl" x="82" y="708">Allow with controls</text><text class="sub" x="82" y="724">business account, DLP, terms</text><g class="ic" transform="translate(44 742)"><path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/></g><text class="ttl" x="82" y="756">Replace</text><text class="sub" x="82" y="772">move to the approved tool</text><g class="ic" transform="translate(44 790)"><circle cx="12" cy="12" r="8"/><path d="M6.500 6.500l11 11"/></g><text class="ttl" x="82" y="804">Block</text><text class="sub" x="82" y="820">stop it and explain why</text></g><path class="flow" d="M 174 838 L 174 874"/><text class="sub" x="188" y="860">outcome</text><g class="node" style="--i:4"><rect class="logbar" x="24" y="874" width="300" height="106" rx="12"/><text class="sub" x="174" y="896" text-anchor="middle" style="letter-spacing:.12em">FOLLOW-UP</text><text class="sub" x="174" y="924" text-anchor="middle">Tell the owner. Offer the approved route.</text><text class="sub" x="174" y="944" text-anchor="middle">Re-scan. Keep the record.</text><text class="sub" x="174" y="964" text-anchor="middle">Track the gap.</text></g><path class="flow" d="M 324 927 L 346 927 L 346 372 L 324 372"/><text class="sub" x="340" y="450" text-anchor="end" style="paint-order:stroke;stroke:var(--bg,#030712);stroke-width:4px;stroke-linejoin:round">re-scan</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="9s" begin="0s" repeatCount="indefinite" path="M 174 196 L 174 930"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="4.5s"/><animateMotion dur="9s" begin="4.5s" repeatCount="indefinite" path="M 174 196 L 174 930"/></circle></svg>
+          <figcaption>The dots show one finding, an AI note-taking tool first seen on an expense line, joining the inventory, receiving a risk class, reaching a decision, and returning as a follow-up. Whatever tooling sits behind each box, the stages and the order stay the same.</figcaption>
+        </figure>
+        <p class="body-text">Data security posture management (DSPM), described generally, inventories where data lives, labels what it is and shows what can reach it. In this picture it supplies the data half of the risk class. I make no claims for any particular product.</p>
+        <p class="body-text">No single source is enough. Network logs show where traffic goes and say little about what it carried. Grant lists show what has access and miss tools that need none. Expense records catch paid tools and miss free ones. The value is in the overlap. A tool seen by three sources is almost certainly real, and one seen by a single source deserves a closer look.</p>
+      </section>
 
-<rect x="40" y="40" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
-<text x="60" y="66" fill="var(--muted)" font-size="14" font-weight="600">WHAT SECURITY APPROVED</text>
+      <section id="workflow">
+        <h2>From signal to decision, step by step</h2>
+        <ol class="steps">
+          <li><h3>Agree the rules of the sweep before you start</h3><p>Decide who may look at what, which logs are in scope, and what happens to the people you find. Tell staff that the aim is a complete list of the tools in use, and that the first answer to an unlisted tool is a conversation. Check monitoring rules with legal and HR for each country you operate in.</p><div class="why"><span><b>Guardrail</b>Scope and monitoring basis approved in writing</span><span><b>Evidence</b>Signed scope note and the message sent to staff</span></div></li><li><h3>Collect signals from every source you can reach</h3><p>Pull DNS and proxy records for known AI service names, the browser extension and installed-app lists from endpoint management, the app and grant lists from each SaaS admin console and the identity provider, card and expense lines, and scan repositories and shared storage for AI API keys. Each source misses something the others catch, so no single one counts as discovery.</p><div class="why"><span><b>Guardrail</b>At least four independent source types per sweep</span><span><b>Evidence</b>Run log showing each source, date and record count</span></div></li><li><h3>Turn each signal into one inventory record</h3><p>Many signals describe the same tool. Resolve them to one record with the tool name, the vendor, who uses it, the business owner, how it connects, and when it was first and last seen. A record with no owner stays open until someone is named.</p><div class="why"><span><b>Guardrail</b>No record closes without a named business owner</span><span><b>Evidence</b>Inventory export with owner and first and last seen dates</span></div></li><li><h3>Classify the data exposure</h3><p>Ask what data can reach the tool, on what kind of account, under what retention terms, and with what connected access. Give the record a class from 0 to 3 using the table below. A DSPM view of your data stores helps with the first question, because it shows where sensitive data sits and what can reach it.</p><div class="why"><span><b>Guardrail</b>Class assigned from the data, not from the tool's reputation</span><span><b>Evidence</b>Classification record with the reasoning and the reviewer</span></div></li><li><h3>Choose one of four outcomes</h3><p>Allow, allow with controls, replace, or block. Each class has a default outcome, and the owner can argue for a different one. The decision is written down with its reason and a review date.</p><div class="why"><span><b>Guardrail</b>Every record carries a decision and a review date</span><span><b>Evidence</b>Decision log entry</span></div></li><li><h3>Talk to the person before you enforce</h3><p>Ask what they were trying to get done. Most of the time the need is real and the approved tools do not cover it yet. Offer the approved route, or a short path to get the tool reviewed, and agree a date for the switch.</p><div class="why"><span><b>Guardrail</b>Conversation comes before a block, except where regulated data is at stake</span><span><b>Evidence</b>Case note with the need, the offer and the agreed date</span></div></li><li><h3>Apply the controls at the boundary</h3><p>Turn the decision into settings: consent policy in the identity provider, extension allow lists, proxy categories, DLP rules, and a business account with the right retention terms. Keep the sanctioned route open on the same day you close the other one.</p><div class="why"><span><b>Guardrail</b>No block without a working replacement offered</span><span><b>Evidence</b>Change records and configuration exports</span></div></li><li><h3>Re-scan and measure</h3><p>Run the sweep again on a schedule. A tool that comes back after a replace or block decision tells you the approved route is not good enough, so treat that as a finding about the route.</p><div class="why"><span><b>Guardrail</b>Scheduled re-scan with results compared to the last run</span><span><b>Evidence</b>Trend of the measures listed below</span></div></li>
+        </ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">A simple way to classify exposure</h3>
+        <p class="body-text" style="margin-top:6px">This scheme is my own illustration. Adjust it to your data classes.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Class</th><th>What can reach the tool</th><th>Default outcome</th></tr></thead>
+<tbody>
+<tr><td data-label="Class">0</td><td data-label="What can reach the tool">Public or no company data, such as marketing taglines</td><td data-label="Default outcome">Allow and register it</td></tr>
+<tr><td data-label="Class">1</td><td data-label="What can reach the tool">Internal material with no personal data, such as meeting notes about a project</td><td data-label="Default outcome">Allow with controls: business account, retention terms, owner</td></tr>
+<tr><td data-label="Class">2</td><td data-label="What can reach the tool">Confidential material, such as source code, contracts or unreleased numbers</td><td data-label="Default outcome">Allow only through an approved tool, otherwise replace</td></tr>
+<tr><td data-label="Class">3</td><td data-label="What can reach the tool">Regulated or personal data, such as customer identifiers, health or payment data</td><td data-label="Default outcome">Block until an approved route and a review exist</td></tr>
+</tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Three modifiers move a record up or down a class. A personal account, where the company has no say over retention, moves it up. Terms that allow the provider to train on submitted data move it up. Connected access, such as an OAuth grant that can read all mail or an agent that can write to systems, can raise a class 1 tool to class 3, because the exposure then includes everything the grant can reach.</p>
 
-<g fill="var(--bg-panel)" stroke="var(--muted)" stroke-width="1">
-<rect x="60" y="90" width="110" height="56" rx="8"/>
-<rect x="190" y="90" width="200" height="56" rx="8"/>
-<rect x="410" y="90" width="210" height="56" rx="8"/>
-</g>
-<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
-<text x="115" y="122" font-size="14">Employee</text>
-<text x="290" y="114" font-size="14" font-weight="600">3&ndash;5 sanctioned tools</text>
-<text x="290" y="132" font-size="12" fill="var(--muted)">SSO-gated, logged</text>
-<text x="515" y="114" font-size="14" font-weight="600">IT asset inventory</text>
-<text x="515" y="132" font-size="12" fill="var(--muted)">known &amp; governed</text>
-</g>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: a call-summary tool</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event.</p>
+        <div class="compare">
+          <div class="bad"><h3>What the sweep finds</h3><ul><li>A recurring card charge for a transcription subscription shows up in expense records.</li><li>The identity provider shows a calendar and mail grant to the same vendor from several accounts in one team.</li><li>Proxy logs show steady uploads to the vendor in the hours after customer calls.</li><li>Nobody is listed as owner.</li></ul></div>
+          <div class="good"><h3>What happens next</h3><ul><li>One inventory record joins the three signals and the team lead is named owner.</li><li>The calls contain customer personal data, so the record is class 3.</li><li>The decision is replace. The approved meeting platform has a summary feature that fits the need.</li><li>The grants are revoked on the day the team switches, and the next scan checks for the vendor.</li></ul></div>
+        </div>
+        <p class="body-text" style="margin-top:14px">The conversation with the team lead is the step that matters most. The need was real: customer calls had to be written up and the old way took too long. A block alone would have left the team with the same problem.</p>
+      </section>
 
-<g stroke="var(--muted)" stroke-width="1" fill="none">
-<path d="M170 118 H190" marker-end="url(#saiArrow)"/>
-<path d="M390 118 H410" marker-end="url(#saiArrow)"/>
-</g>
-<g font-family="var(--font)" font-size="12" fill="var(--muted)" text-anchor="middle">
-<text x="180" y="164">via procurement</text>
-<text x="400" y="164">reviewed &amp; monitored</text>
-</g>
+      <section id="response">
+        <h2>Responding without pushing it underground</h2>
+        <p class="body-text">If people learn that being found leads to punishment, they stop leaving traces. They move to personal phones and home networks, and the inventory gets worse exactly where the risk is highest. A few habits help.</p>
+        <ul class="plain-list"><li><strong>Talk first.</strong> The first message about a found tool is a question about the job it does. Reserve formal action for repeated, knowing handling of regulated data in tools that were clearly off limits.</li><li><strong>Block the exposure, not the category.</strong> If the problem is customer data going to a consumer tool, say that. People accept a rule about a risk more easily than a rule against a technology.</li><li><strong>Open the replacement the same day.</strong> A block with no alternative is an instruction to find another tool. Samsung&rsquo;s own response, as reported, included building in-house tools for the same reason.</li><li><strong>Be open about what you can see.</strong> Tell people which signals you collect and why, within what legal and HR have agreed. Hidden monitoring that surfaces later damages trust far more than the findings were worth.</li><li><strong>Treat repeat finds as feedback.</strong> When a tool returns after a replace decision, ask what the approved tool lacks.</li></ul>
+      </section>
 
-<rect x="40" y="260" width="600" height="200" rx="8" fill="none" stroke="var(--red)" stroke-width="1"/>
-<text x="60" y="286" fill="var(--red)" font-size="14" font-weight="600">WHAT'S ACTUALLY RUNNING</text>
+      <section id="roadmap">
+        <h2>How to roll it out without stalling</h2>
+        <ol class="phases">
+          <li><b>1. Agree the aim and the message</b>Name an owner for the program, write the scope note, and tell staff what the sweep is for.<small><em>Done when</em>Legal, HR, security and one business sponsor have signed the scope.</small></li>
+          <li><b>2. See</b>Run the first sweep across the five signal sources and build the inventory, accepting that it will be incomplete.<small><em>Done when</em>Every record has at least one source, and the blind spots are written down.</small></li>
+          <li><b>3. Classify and decide</b>Apply the classes, walk each record with its owner, and log a decision with a review date.<small><em>Done when</em>Every record has an owner, a class and an outcome, or sits on the exception register with an end date.</small></li>
+          <li><b>4. Build the easy route</b>Stand up the approved tools and a front door for requests, starting with the needs the sweep showed most often.<small><em>Done when</em>A person can ask for a tool and get a clear answer in the time you promised.</small></li>
+          <li><b>5. Measure, then tighten</b>Run scheduled sweeps, publish the measures, and close the old paths where the replacement works.<small><em>Done when</em>New unsanctioned tools are found quickly and mostly resolve through the front door.</small></li>
+        </ol>
+      </section>
 
-<g fill="var(--bg-panel)" stroke="var(--red)" stroke-width="1">
-<rect x="60" y="310" width="110" height="56" rx="8"/>
-<rect x="195" y="310" width="210" height="56" rx="8"/>
-<rect x="430" y="310" width="190" height="56" rx="8"/>
-</g>
-<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
-<text x="115" y="342" font-size="14">Employee</text>
-<text x="300" y="334" font-size="14" font-weight="600">Extensions, personal apps</text>
-<text x="300" y="352" font-size="12" fill="var(--muted)">self-served, no review</text>
-<text x="525" y="334" font-size="14" font-weight="600">12+ ungoverned surfaces</text>
-<text x="525" y="352" font-size="12" fill="var(--muted)">invisible to security</text>
-</g>
+      <section id="measure">
+        <h2>Measuring the gap closing</h2>
+        <p class="body-text">Compare against your own baseline from the first sweep. I do not rely on outside benchmarks here, because their methods vary too much to compare with.</p>
+        <ul class="plain-list"><li><strong>Share of records with an owner, a class and a decision.</strong> The core measure. The count of tools found will rise at first as discovery improves, so track the share with a decision, not the raw total.</li><li><strong>Time from first sighting to decision.</strong> Measures how well the process works for the people waiting on it.</li><li><strong>Traffic to approved endpoints against unapproved ones.</strong> Taken from the same proxy categories each month, so the trend means something. When it moves toward the approved route, the route is working.</li><li><strong>Broad OAuth grants with no owner.</strong> Counts grants to AI apps that can read mail, files or calendars and have nobody accountable.</li><li><strong>Repeat finds.</strong> Tools rediscovered after a replace or block decision.</li><li><strong>Front door health.</strong> Requests received, median answer time, and the share approved, approved with controls, or declined.</li><li><strong>Exceptions past their end date.</strong> A rising number means exceptions are being granted and forgotten.</li></ul>
+      </section>
 
-<g stroke="var(--red)" stroke-width="1" fill="none">
-<path d="M170 338 H195" marker-end="url(#saiArrow)"/>
-<path d="M405 338 H430" marker-end="url(#saiArrow)"/>
-<path d="M300 366 V412 H115 V366" marker-end="url(#saiArrow)"/>
-</g>
-<g font-family="var(--font)" font-size="12" fill="var(--red)" text-anchor="middle">
-<text x="418" y="386">data leaves the perimeter</text>
-<text x="207" y="430">discovered ~247 days later, median</text>
-</g>
-</svg>
-</section>
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+<tbody>
+<tr><td data-label="Guardrail">Every AI tool has a named business owner</td><td data-label="What it stops">Tools nobody answers for</td><td data-label="How you check it">Inventory report of records with no owner or a departed owner</td></tr>
+<tr><td data-label="Guardrail">Consent for AI apps is limited or reviewed</td><td data-label="What it stops">Broad grants made on a click</td><td data-label="How you check it">Review the identity provider consent settings and the admin request log</td></tr>
+<tr><td data-label="Guardrail">Class is set from the data, not the brand</td><td data-label="What it stops">Trusting a familiar name with regulated data</td><td data-label="How you check it">Sample records and compare class to the data seen</td></tr>
+<tr><td data-label="Guardrail">A replacement is offered with every block</td><td data-label="What it stops">Use moving out of sight</td><td data-label="How you check it">Check that each block record links to an approved alternative</td></tr>
+<tr><td data-label="Guardrail">Scheduled re-scans from several sources</td><td data-label="What it stops">An inventory that goes stale</td><td data-label="How you check it">Run log with dates and record counts per source</td></tr>
+<tr><td data-label="Guardrail">New AI features in approved SaaS get their own review</td><td data-label="What it stops">Features slipping in under an old approval</td><td data-label="How you check it">List of vendor release notices reviewed in the last quarter</td></tr>
+<tr><td data-label="Guardrail">Exceptions have an owner and an end date</td><td data-label="What it stops">Permanent workarounds</td><td data-label="How you check it">Register of exceptions past their date</td></tr>
+<tr><td data-label="Guardrail">Logs of discovery and decisions are kept outside the team that makes them</td><td data-label="What it stops">Findings quietly changed</td><td data-label="How you check it">Confirm program staff cannot edit the log store</td></tr>
+</tbody></table></div>
+      </section>
 
-<section class="fieldnote wrap">
-<div class="section-head">
-<span class="section-num">THE EVIDENCE &middot; THREE INCIDENTS, ONE PATTERN</span>
-<h2>This didn't start as a theory</h2>
-<p>Three documented incidents across three years and three failure patterns, all tracing back to a tool nobody approved.</p>
-</div>
-<div class="quote-card">
-<p><b>2023 &middot; Samsung ChatGPT leaks.</b> Within twenty days of allowing staff to use ChatGPT, Samsung's semiconductor division suffered three separate confidential data leaks &mdash; source code pasted in while debugging, an internal meeting transcript turned into notes, and code used to optimize chip-yield testing. Samsung banned generative AI company-wide days later.</p>
-<div class="who">&mdash; per Bloomberg and multiple contemporaneous reports</div>
-</div>
-<div class="quote-card">
-<p><b>April 2026 &middot; Vercel breach via a browser extension.</b> An employee had self-adopted a consumer-grade AI browser extension &mdash; Context.ai &mdash; under a corporate identity, entirely outside any sanctioned deployment. When the vendor was breached, attackers moved downstream into Vercel, pulled customer environment variables nobody had flagged as sensitive, and used the data to fuel an extortion campaign on BreachForums.</p>
-<div class="who">&mdash; per Security Affairs and public breach disclosures</div>
-</div>
-<div class="quote-card">
-<p><b>May 2026 &middot; CB Financial Services SEC filing.</b> An employee ran non-public customer data &mdash; names, Social Security numbers, dates of birth &mdash; through an AI application the bank had never approved. CB Financial filed the first-ever SEC Form 8-K triggered by unauthorized employee AI use rather than a cyberattack, even while disclaiming any financial loss.</p>
-<div class="who">&mdash; per SEC filings and legal analysis</div>
-</div>
-<div class="quote-card mine">
-<p>Three incidents, three failure patterns &mdash; direct leakage, supply-chain compromise, regulatory exposure &mdash; and one identical root cause: a tool adopted outside every review process security relies on to know it exists.</p>
-<div class="who">&mdash; the pattern across all three</div>
-</div>
-</section>
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+<tbody>
+<tr><td data-label="Question">Which AI tools are in use, approved or not?</td><td data-label="Where the answer comes from">Inventory with discovery source and last-seen date</td></tr>
+<tr><td data-label="Question">Which of them have an owner, a class and a decision?</td><td data-label="Where the answer comes from">Inventory fields, and the report of blanks</td></tr>
+<tr><td data-label="Question">What data can reach each tool?</td><td data-label="Where the answer comes from">Classification record and data labels from DLP or DSPM tooling</td></tr>
+<tr><td data-label="Question">Who approved the exceptions, and until when?</td><td data-label="Where the answer comes from">Exception register</td></tr>
+<tr><td data-label="Question">How do you know the inventory is current?</td><td data-label="Where the answer comes from">Sweep schedule, run logs, coverage by signal source</td></tr>
+<tr><td data-label="Question">What did you do the last time you found an unapproved tool?</td><td data-label="Where the answer comes from">Case record with dates, decision and follow-up</td></tr>
+<tr><td data-label="Question">Which events are logged, and for how long?</td><td data-label="Where the answer comes from">The audit event list and retention setting</td></tr>
+</tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <p class="body-text" style="margin-top:6px">Descriptions below are paraphrased from the documents I read. NIST SP 800-53 was written for system components, so applying it to AI services is my reading.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+<tbody>
+<tr><td data-label="Standard">NIST AI RMF 1.0 (January 2023)</td><td data-label="Reference"><code class="ref">GOVERN 1.6</code>, <code class="ref">GOVERN 6</code></td><td data-label="What it asks for">Mechanisms to inventory AI systems, resourced by risk priority, and policies for risks from third-party software and data. The four functions are Govern, Map, Measure and Manage. The framework is voluntary.</td></tr>
+<tr><td data-label="Standard">ISO/IEC 42001:2023</td><td data-label="Reference">AI management system</td><td data-label="What it asks for">Requirements for establishing, implementing, maintaining and continually improving an AI management system. I read the overview only, so I have not mapped clauses.</td></tr>
+<tr><td data-label="Standard">OWASP Top 10 for LLM Applications 2025</td><td data-label="Reference"><code class="ref">LLM02</code></td><td data-label="What it asks for">Sensitive information disclosure covers personal, financial and health data, confidential business data and security credentials. Mitigations include least privilege, limiting model connections to outside data sources, and user education.</td></tr>
+<tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">CM-8</code>, <code class="ref">CM-8(3)</code></td><td data-label="What it asks for">An accurate, current inventory of system components, and detection of unauthorized components with defined follow-up actions.</td></tr>
+<tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-20</code></td><td data-label="What it asks for">Terms and conditions for using external systems to process, store or transmit organizational information, or a prohibition on certain kinds.</td></tr>
+<tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for">Deciding which events are logged, and generating the audit records for them.</td></tr>
+</tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">OAuth consent controls in vendor documentation</h3>
+        <p class="body-text" style="margin-top:6px">As described in the vendors&rsquo; own documents when I read them on 1 Oct 2026. Settings change, so check the current pages.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Platform</th><th>What the documentation describes</th></tr></thead>
+<tbody>
+<tr><td data-label="Platform">Microsoft Entra ID</td><td data-label="What the documentation describes">User consent can be disabled, or limited to apps from verified publishers and to permissions you classify as low impact. Microsoft recommends allowing user consent only for verified publishers. An admin consent workflow lets users request review, and reviewers can approve, deny or block requests.</td></tr>
+<tr><td data-label="Platform">Google Workspace</td><td data-label="What the documentation describes">Admins can mark apps as trusted, limited or blocked, and restrict access by API scope. The console lists apps, their verification status, how many users access each, and the scopes in use. Settings for unconfigured apps can block third-party API access or allow sign-in only.</td></tr>
+</tbody></table></div>
+      </section>
 
-<section class="pipeline wrap">
-<div class="section-head">
-<span class="section-num">THE RISK PROFILE</span>
-<h2>Why shadow AI breaks the old assumptions</h2>
-<p>Shadow AI doesn't look like a breach until well after it already is one.</p>
-</div>
-<div class="steps">
-<div class="step risk">
-<div class="num">01</div>
-<div>
-<h3>Invisible by design</h3>
-<p>Shadow AI doesn't show up in asset inventories, CASB logs, or SSO reviews, because it's adopted outside procurement entirely &mdash; a browser extension, a personal account, a copilot switched on inside a SaaS tool nobody re-reviewed.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">02</div>
-<div>
-<h3>Most incidents aren't hacks</h3>
-<p>The typical shadow AI incident isn't an intrusion, it's normal use: pasting a customer record into a prompt box is enough. Surveyed employees admit to sharing research data (33%), employee records (27%) and financial data (23%) with tools nobody approved.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">03</div>
-<div>
-<h3>Leadership condones it</h3>
-<p>69% of C-suite respondents and 66% of directors and senior VPs say using unsanctioned AI tools is fine if it makes work faster &mdash; the governance gap starts at the top, not with a rogue employee.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">04</div>
-<div>
-<h3>Growing faster than the controls</h3>
-<p>Shadow-AI-linked breaches rose from 20% to 43% of AI-related incidents in a single year, and regular AI use on corporate devices tripled to 45% of employees in the 2026 Verizon Data Breach Investigations Report — up from just 15% the year before. The overwhelming majority of breached organizations had no AI governance policy and no adequate AI access controls in place at all.</p>
-</div>
-</div>
-</div>
-</section>
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Role</th><th>Owns</th></tr></thead>
+<tbody>
+<tr><td data-label="Role">AI governance lead</td><td data-label="Owns">The classification scheme, the decision criteria, the exception rules and the measures</td></tr>
+<tr><td data-label="Role">Security operations</td><td data-label="Owns">The discovery signals, the sweep schedule and triage of findings</td></tr>
+<tr><td data-label="Role">Identity team</td><td data-label="Owns">Consent settings, OAuth grants, and the identities of agents and service accounts</td></tr>
+<tr><td data-label="Role">Data and privacy owners</td><td data-label="Owns">Which data classes may leave, and under what terms</td></tr>
+<tr><td data-label="Role">Procurement and finance</td><td data-label="Owns">Vendor terms, and flags on card and expense lines</td></tr>
+<tr><td data-label="Role">Business owners</td><td data-label="Owns">The use case and accountability for each tool in their area</td></tr>
+<tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls</td></tr>
+</tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Make the approved route the easy one</h3>
+        <p class="body-text" style="margin-top:6px">This is where most programs are won or lost. The shadow route takes minutes. The approved one has to compete.</p>
+        <ul class="plain-list"><li><strong>Publish the approved list with what each tool is good for.</strong> People pick unapproved tools partly because they do not know what the approved ones can do.</li><li><strong>Have a one-page request.</strong> Ask for the job to be done, the data involved and the team. Anything more and people skip it.</li><li><strong>Promise an answer time and keep it.</strong> A simple answer in days beats a perfect one in months. A fast lane for class 0 and 1 requests keeps simple asks moving.</li><li><strong>Review once and reuse.</strong> When one team&rsquo;s request is approved, every team gets the result, with the same controls.</li><li><strong>Provision accounts for approved tools.</strong> If the business account takes a ticket and the personal one takes a minute, you will lose.</li><li><strong>Review AI features as well as vendors.</strong> A new copilot inside an approved product gets its own look.</li></ul>
+        <p class="body-text" style="margin-top:14px">Governance of agents follows the same logic and adds identity. An agent that connects to tools needs an owner, scoped access, a record of what it did and a way to switch it off, the same as a service account does. My <a href="/ai/">working rules</a> follow the same idea for my own use of AI: AI advises, people decide.</p>
+      </section>
 
-<section class="discovery wrap">
-<div class="section-head">
-<span class="section-num">THE DISCOVERY PLAYBOOK</span>
-<h2>What to analyze first, and how</h2>
-<p>Not a tool to buy. A sequence: four discovery mechanisms, run together, before a single policy gets drafted.</p>
-</div>
-<div class="steps">
-<div class="step">
-<div class="num">01</div>
-<div>
-<h3>Network traffic analysis</h3>
-<p>DNS resolver logs, web proxy data, and TLS SNI inspection all capture the same signal: where traffic is actually going. A query matching destinations like api.openai.com, api.anthropic.com, and generativelanguage.googleapis.com against DNS logs catches the majority of shadow AI on its own.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">02</div>
-<div>
-<h3>API and inference monitoring</h3>
-<p>Network logs show where traffic goes; API monitoring shows what it's doing there — unauthorized model inference requests, unexpected token volumes, and calls that don't match any sanctioned integration.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">03</div>
-<div>
-<h3>Identity-based discovery</h3>
-<p>OAuth grants to unapproved AI apps, sign-ins to AI tools on personal rather than corporate accounts, and service accounts suddenly showing AI API activity — identity and SSO logs catch what network monitoring alone misses.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">04</div>
-<div>
-<h3>Cloud and SaaS enumeration</h3>
-<p>A direct scan of SaaS and IaaS environments for unsanctioned AI deployments, embedded copilots switched on by default, and MCP server connections that never appeared in an application inventory because they were never installed as an &quot;application&quot; at all.</p>
-</div>
-</div>
-</div>
-<p class="market-note">None of these four alone is enough — each leaves its own blind spot. Correlated across DNS/proxy logs, CASB sign-up events, DLP paste and upload events, endpoint application inventory, and even expense reports, they produce an actionable map of an organization's real AI footprint in two to three weeks, not months.</p>
-</section>
-<section class="governance wrap">
-<div class="section-head">
-<span class="section-num">AGENT GOVERNANCE</span>
-<h2>Do agents need their own policy? Yes — but inventory comes first</h2>
-<p>An AI agent isn't a user, and isn't quite an application either. Governing it means extending identity and policy programs to cover something that acts, not just something that logs in.</p>
-</div>
-<div class="steps">
-<div class="step guardrail">
-<div class="num">01</div>
-<div>
-<h3>Inventory before policy</h3>
-<p>Agents connect to MCP servers agent-to-server, not user-to-application — bypassing discovery methods built around human identity entirely. The organizations governing agents effectively in 2026 are the ones that built an inventory of OAuth grants, API keys, and MCP connections first, not the ones that wrote the most comprehensive policy first.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">02</div>
-<div>
-<h3>Standards are arriving — unevenly</h3>
-<p>NIST's AI Agent Standards Initiative, the Berkeley CLTC Agentic AI Risk-Management Profile extending the NIST AI RMF, and Singapore's IMDA Model AI Governance Framework for Agentic AI all launched within weeks of each other in early 2026 — while the EU AI Act, ISO/IEC 42001, and the original 2023 NIST AI RMF still contain no reference to &quot;agent&quot; or &quot;agentic&quot; at all.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">03</div>
-<div>
-<h3>Identity protocols exist; adoption doesn't, yet</h3>
-<p>MCP OAuth 2.1 under Linux Foundation governance, the Digital Identity Foundation's MCP-I and KYA-OS work, Microsoft Entra Agent ID, and the CSA Agentic Trust Framework already give agents a real identity layer to plug into, and NIST's NCCoE Concept Paper on Agent Identity and Authorization adds the missing piece: authentication, authorization, auditing, non-repudiation, and prompt-injection mitigation, specific to agents. Only 23.7% of organizations actually use their existing Identity and Access Management (IAM) or identity provider as the authorization server for their agentic infrastructure — most agents still run with no policy enforcement point at all.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">04</div>
-<div>
-<h3>Four controls, once visibility exists</h3>
-<p>Least privilege by default, scheduled access reviews, runtime monitoring of what each agent actually does with its permissions, and a real offboarding procedure for when an agent or its integration is retired — the same four controls identity teams already run for human accounts, extended to non-human ones.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">05</div>
-<div>
-<h3>What's coming next</h3>
-<p>NIST has an AI Agent Interoperability Profile scheduled for release in Q4 2026 — the first attempt at a shared standard for how agents from different vendors identify themselves to each other, not just to a human-run identity provider. Until it ships, every agent-to-agent handshake runs on vendor-specific glue.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="market wrap">
-<div class="section-head">
-<span class="section-num">THE MARKET RESPONSE</span>
-<h2>A category getting absorbed as fast as it formed</h2>
-<p>A wave of purpose-built vendors emerged to discover and govern shadow AI &mdash; and in 2026, the biggest data-security platforms started buying their way in rather than building it themselves.</p>
-</div>
-<div class="vendor-grid">
-<div class="vendor-card">
-<div class="name">Credo AI</div>
-<div class="focus">Centralized inventory of AI systems, models, agents and vendors, with auto-discovery of shadow AI.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Netskope</div>
-<div class="focus">DSPM-augmented DLP that classifies and governs data reaching sanctioned and shadow AI alike.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Varonis (Atlas)</div>
-<div class="focus">AI inventory, shadow AI discovery, AI security posture management and runtime guardrails in one console.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Securiti</div>
-<div class="focus">Data command center bringing AI governance, privacy and security posture under one policy layer.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Reco</div>
-<div class="focus">SaaS-native discovery that surfaces unsanctioned AI tools connected via OAuth grants and browser extensions.</div>
-</div>
-<div class="vendor-card">
-<div class="name">AvePoint</div>
-<div class="focus">Governance and lifecycle management extended to AI agents and copilots across the Microsoft 365 estate.</div>
-</div>
-</div>
-<p class="market-note">This category is consolidating almost as fast as it formed. Varonis acquired AllTrue.ai in February 2026 to build shadow AI discovery directly into its new Atlas platform; Veeam paid $1.725B for Securiti in December 2025; and Gartner published its first Magic Quadrant dedicated to AI Governance Platforms in June 2026, evaluating 13 vendors. Visibility into AI use is being folded into core data-security platforms nearly as quickly as the shadow AI problem itself is growing.</p>
-</section>
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list"><li><strong>The first inventory is bigger than anyone expected.</strong> Agree beforehand that it is a starting point and not a verdict on the teams.</li><li><strong>A ban is announced before the replacement exists.</strong> Use goes quiet, then resurfaces on personal devices where you cannot see it.</li><li><strong>One source is treated as the whole picture.</strong> Network logs alone miss features inside approved apps. A grant list alone misses tools that need no grant.</li><li><strong>Classes are set by brand.</strong> A well-known tool on a personal account can be a bigger exposure than a lesser-known one on a business account with fixed retention terms.</li><li><strong>The front door is slow.</strong> If the answer takes weeks, people stop asking.</li><li><strong>Monitoring surprises people.</strong> Staff who find out later that their traffic was being reviewed stop trusting the program.</li><li><strong>Exceptions pile up.</strong> Without end dates, the register becomes the new shadow list.</li></ul>
+      </section>
 
-<section class="impact wrap">
-<div class="section-head">
-<span class="section-num">WHAT'S AT STAKE</span>
-<h2>Data, compliance, revenue — in that order, fast</h2>
-<p>Shadow AI doesn't fail loudly. It fails quietly, for months, and then all three at once.</p>
-</div>
-<div class="steps">
-<div class="step risk">
-<div class="num">01</div>
-<div>
-<h3>Data — gone, not just exposed</h3>
-<p>Once a prompt leaves the perimeter it can't be recalled, and some providers use submitted data for model training by default. Employees admit to sharing research data (33%), employee records (27%), and financial data (23%) with tools nobody approved — not through a breach, just through normal use.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">02</div>
-<div>
-<h3>Compliance — a filing, not just a fine</h3>
-<p>CB Financial Services' Form 8-K set the precedent: regulators now treat unauthorized AI use like a breach regardless of dollar loss. 68% of breached organizations had no AI governance policy in place at all when it happened — and the gap is widening, not closing: five of the six governance controls IBM tracks actually lost adoption year over year, and only 19% of breached organizations report security and governance teams working together at all.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">03</div>
-<div>
-<h3>Revenue — a measurable premium, then a projection</h3>
-<p>Shadow AI adds $670,000 to the average breach cost today, pushing shadow-AI breaches to $5.39M against a $4.99M baseline. Projected forward, unmanaged shadow AI is on track to cost enterprises more than $40 billion in remediation, compliance penalties, and lost productivity by 2027.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">04</div>
-<div>
-<h3>Trust — the second-order cost nobody prices in</h3>
-<p>After the Vercel breach, customer environment variables ended up fueling an extortion campaign on BreachForums — the cost wasn't just Vercel's, it was every downstream customer now explaining why their secrets were exposed. Shadow AI breaches don't stay contained to the company that caused them.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="solution wrap">
-<div class="section-head">
-<span class="section-num">THE GUARDRAILS</span>
-<h2>What would have caught each incident</h2>
-<p>Not "write an AI policy." A discovery-first sequence applied before policy is even drafted.</p>
-</div>
-<div class="steps">
-<div class="step guardrail">
-<div class="num">01</div>
-<div>
-<h3>Discovery before policy</h3>
-<p>You can't govern what you can't see. Continuous discovery of AI apps, agents, browser extensions and OAuth grants across the SaaS estate has to come before any policy is written, not after.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">02</div>
-<div>
-<h3>Sanctioned alternatives, not just bans</h3>
-<p>Samsung's response was an outright ban. Most organizations need a faster path: an approved tool that's as quick as the one people already reached for &mdash; or usage simply moves further into the shadows.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">03</div>
-<div>
-<h3>Data controls at the AI boundary</h3>
-<p>Classify and gate what data can reach any AI surface, sanctioned or not, since most incidents are prompt-level exposure rather than intrusions. DSPM-style controls matter more here than perimeter defenses.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">04</div>
-<div>
-<h3>Materiality-aware incident response</h3>
-<p>CB Financial shows regulators will treat AI misuse like a breach regardless of dollar loss. Incident response playbooks need an AI-use branch alongside the hacking branch, with its own disclosure criteria.</p>
-</div>
-</div>
-</div>
-<div class="status-note">
-<span>&#9888;</span>
-<span><b>Status: framework, not a product build.</b> This is a discovery-first governance sequence grounded in real 2023-2026 incidents and current shadow AI research &mdash; it pairs directly with the credential-issuance guardrails in <a href="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/">One Key, Every Agent</a> and the risk-scoring inventory in <a href="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a>.</span>
-</div>
-</section>
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits from how I approach this work. They do not describe any one project.</p>
+        <ul class="plain-list"><li><strong>I ask about the job before the tool.</strong> The first question to someone using an unlisted tool is what they were trying to get done. The answer usually tells me what to build.</li><li><strong>I start with the pain, as I do in a privileged access program.</strong> I talk to the business units first, then design. The same order applies here: what slows people down, what audit keeps asking about, which teams are under pressure.</li><li><strong>I walk the inventory through with each owner.</strong> A list nobody has agreed to is a list nobody acts on. I want each owner to recognise their records and sign off the decision.</li><li><strong>I write the rules down and get them approved.</strong> Classes, outcomes, exception criteria and review dates are documented, so they survive when people change roles.</li><li><strong>I let tools sort and people decide.</strong> Software can group signals and suggest a class. A person confirms it, because the context lives with the owner. AI and people work together here, with security, governance, monitoring and collaboration around them.</li><li><strong>I treat a repeat find as a design bug.</strong> If a tool keeps returning, I look at what the approved route is missing before looking at the person.</li></ul>
+      </section>
 
-<nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/ai-agent-credential-sharing/"><small><i></i>&larr; Previous</small><strong>AI Agent Credential Sharing</strong></a><a class="next all" href="/case-studies/"><small>Explore</small><strong>All case studies &rarr;</strong></a></div></nav>
-      <footer class="site">
-<div class="wrap">
-<p>Roshan Trivedi &middot; Credential Management &amp; PAM Product Leader</p>
-<a href="/#contact">Get in touch &rarr;</a>
-</div>
-</footer>
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf">NIST AI 100-1, Artificial Intelligence Risk Management Framework (AI RMF 1.0)</a></li>
+          <li><a href="https://www.iso.org/standard/42001">ISO/IEC 42001:2023, AI management systems (overview page)</a></li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/">OWASP GenAI Security Project: LLM02:2025 Sensitive Information Disclosure</a></li>
+          <li><a href="https://csrc.nist.gov/CSRC/media/Projects/risk-management/800-53%20Downloads/800-53r5/SP_800-53_v5_1-derived-OSCAL.pdf">NIST SP 800-53 Rev. 5 (CM-8, AC-20, AU-2, AU-12)</a>. The AC-20 and CM-8 summaries also draw on secondary explainers (csf.tools, UpGuard).</li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-user-consent">Microsoft Learn: Configure how users consent to applications</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-admin-consent-workflow">Microsoft Learn: Configure the admin consent workflow</a></li>
+          <li><a href="https://knowledge.workspace.google.com/admin/apps/control-which-third-party-and-internal-apps-access-google-workspace-data">Google Workspace Admin: Control which third-party and internal apps access Google Workspace data</a></li>
+          <li><a href="https://vercel.com/kb/bulletin/vercel-april-2026-security-incident">Vercel: April 2026 security incident bulletin</a> (primary). The OAuth detail comes from <a href="https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-saas-supply-chain-vercel-contextai-2026/">a Cloud Security Alliance research note</a> (secondary).</li>
+          <li><a href="https://www.stocktitan.net/sec-filings/CBFV/8-k-cb-financial-services-inc-reports-material-event-9d71c207862a.html">CB Financial Services Form 8-K, as mirrored by Stock Titan</a> (secondary copy of an SEC filing)</li>
+          <li><a href="https://www.bloomberg.com/news/articles/2023-05-02/samsung-bans-chatgpt-and-other-generative-ai-use-by-staff-after-leak">Bloomberg, 2 May 2023, on Samsung&rsquo;s restriction</a>, read through <a href="https://www.forbes.com/sites/siladityaray/2023/05/02/samsung-bans-chatgpt-and-other-chatbots-for-employees-after-sensitive-code-leak/">Forbes</a> and <a href="https://www.techmonitor.ai/cybersecurity/samsung-bans-chatgpt/">Tech Monitor</a> (secondary)</li>
+          <li><a href="https://www.ibm.com/think/insights/data-matters/cost-of-a-data-breach">IBM: Cost of a Data Breach Report 2025 (summary page)</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. Examples marked illustrative are not specific events, and the standards are described as published in the sources above.</p>
+      </section>
 
-<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "444a1ec20a754e468bd77d1fb0a93adc"}'></script>
+      <section id="tags"><div class="tags"><span>#ai-governance</span><span>#shadow-ai</span><span>#dspm</span><span>#discovery</span></div></section>
+
+      <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/ai-agent-credential-sharing/"><small><i></i>&larr; Previous</small><strong>AI Agent Credential Sharing</strong></a><a class="next all" href="/case-studies/"><small>Explore</small><strong>All case studies &rarr;</strong></a></div></nav>
+      <footer class="page-footer">
+        <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
-</body>
+  </body>
 </html>

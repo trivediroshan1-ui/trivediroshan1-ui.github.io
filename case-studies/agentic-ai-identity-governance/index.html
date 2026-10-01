@@ -19,7 +19,9 @@
 <title>Agentic AI Identity Governance · Roshan Trivedi</title>
 
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -41,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-08-14",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/agentic-ai-identity-governance/",
   "image": "https://roshantrivedi.co.in/assets/og-case-agentic-ai-identity-governance.png",
   "articleSection": "Agent identity governance",
@@ -52,44 +54,313 @@
   "keywords": "agentic ai, non human identity, zero standing privilege, mcp, continuous authorization"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
   </head>
-  <body>
+  <body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Agent identity governance &middot; Case study</p>
-        <p class="cat-badge" style="color:#4de2ff;background:rgba(77,226,255,0.12);border-color:#4de2ff33">Agent identity governance</p>
         <h1>Agentic AI Identity Governance</h1>
-        <p class="dek">AI agents request permissions, spawn sub-agents and chain actions across systems at runtime — a governance model built for static roles and long-lived credentials, applied to an identity that changes shape while it runs.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
+        <p class="dek">AI agents request permissions, spawn sub-agents and chain actions across systems while they run. This is a governance model for an identity that changes shape in the middle of a task: one owner per agent, a short-lived credential per task, a decision on every action, and a person for the risky ones.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Agent frameworks let an AI acquire scopes, call APIs and launch sub-agents dynamically, so the identity a workflow ends up using is decided at runtime, not at provisioning. Most Identity and Access Management (IAM) stacks assign a role once and assume it holds; most access reviews assume a point-in-time snapshot still describes what an agent can do. Neither assumption survives an agent that can request a new capability mid-task.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>An agent is a non-human identity that makes choices at runtime. Give it its own identity, a named human owner, and no standing access.</li>
+          <li>Issue one short-lived credential per task, scoped to one tool, and decide again on every action. Actions that are expensive to undo wait for a person.</li>
+          <li>Record who the agent acted for, not only that it acted. Keep a switch that turns the agent off, and practise using it.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Agent frameworks let an AI pick up scopes, call APIs and launch sub-agents as it goes. The identity a workflow ends up using is decided while it runs, long after anyone provisioned it. Most Identity and Access Management (IAM) stacks assume the opposite: a role is assigned once and holds, and an access review treats a snapshot as a fair description of the account. Neither assumption survives an agent that can ask for a new capability halfway through a job.</p>
+        <p class="body-text">In practice the first agents in a company tend to arrive through the side door. Someone creates an API key, pastes it into a framework, and the agent starts working under that person&rsquo;s authority or a shared service account. Nobody registered it, nobody owns it, and the logs show a human name next to actions that person never saw. I wrote about the sharing side in <a href="/case-studies/ai-agent-credential-sharing/">One Key, Every Agent</a>.</p>
+        <p class="body-text">I am not arguing for fewer agents. AI is the future of a lot of this work, and humans cannot be replaced in it. The two work best together, with security, governance, monitoring and collaboration around them. An agent should be easy to adopt and easy to stop, and a person should be able to see what it did and say no when the action is hard to reverse.</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Issued every agent a scoped, short-lived credential tied to a single task rather than a standing role, so a compromised or misbehaving agent carries only the blast radius of the task it was running.</li>
-          <li>Replaced point-in-time access review with continuous re-authorization: each new permission request or sub-agent spawn is evaluated against policy at the moment it happens, not caught at the next audit cycle.</li>
-          <li>Routed agent actions above a defined risk threshold through a human-in-the-loop approval gate — the same pattern proven in the Model Context Protocol (MCP) Human Approval Gateway lab — so autonomy stops at the boundary where a wrong action is expensive to reverse.</li>
-          <li>Tracked granted permissions against observed runtime behavior for every agent identity, so drift between what an agent was authorized to do and what it is actually doing becomes a monitored signal instead of a discovery made after an incident.</li>
+      <section id="identity">
+        <h2>What is being governed</h2>
+        <p class="body-text">Two questions come up in every conversation about agents. Who is the agent, and for whom is it acting? The first is identity and the second is delegation. Keeping them apart makes the design easier.</p>
+        <ul class="plain-list">
+          <li><strong>The agent has its own identity.</strong> It is a non-human identity, like a service account or a workload, with an entry in a registry. It does not borrow a person&rsquo;s login or share a key with other agents.</li>
+          <li><strong>The agent has a named owner.</strong> One accountable person, with a backup, who can explain what it is for and decides whether it keeps running. A team mailbox does not count.</li>
+          <li><strong>The agent acts on behalf of someone or something.</strong> A user who asked for the task, or a business process that triggered it. That principal is recorded next to every action.</li>
+          <li><strong>Sub-agents get less, never more.</strong> If an agent starts another one, the child gets its own identity or a child credential with a narrower scope and a shorter life than the parent&rsquo;s.</li>
+        </ul>
+        <p class="body-text">OAuth already has the vocabulary for delegation. RFC 8693 (OAuth 2.0 Token Exchange) separates impersonation, where one party becomes indistinguishable from another, from delegation, where the actor keeps its own identity and acts for someone else. Its <code class="ref">act</code> claim names the acting party inside a token, and nested claims can show a chain of actors. For agents I want delegation. A trail that says &ldquo;this agent, for this user&rdquo; is far more useful than one that says &ldquo;the user&rdquo;. The MCP authorization section I read does not list RFC 8693, so using it in a broker is my suggestion and MCP does not require it.</p>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">What the registry record holds</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Field</th><th>Why it is there</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Field">Agent ID</td><td data-label="Why it is there">A stable identity that appears in every token and every log line.</td></tr>
+            <tr><td data-label="Field">Owner, backup and purpose</td><td data-label="Why it is there">Someone to ask, and one sentence a reviewer can compare with what the agent really does.</td></tr>
+            <tr><td data-label="Field">Allowed tools and servers</td><td data-label="Why it is there">An allowlist. A tool that is not listed is not reachable.</td></tr>
+            <tr><td data-label="Field">Risk tier</td><td data-label="Why it is there">Sets how much needs approval and how long tokens may live.</td></tr>
+            <tr><td data-label="Field">Review and expiry dates</td><td data-label="Why it is there">A registration that expires unless someone confirms it.</td></tr>
+            <tr><td data-label="Field">Status</td><td data-label="Why it is there">Active, suspended or retired. The broker reads this before it issues anything.</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="architecture">
+        <h2>How it fits together</h2>
+        <p class="body-text">The agent asks to act. A policy decision point checks the request against the registry and the rules. A human approves anything above the risk threshold. A credential broker issues a short-lived token for exactly that action. The tool, usually an MCP server, validates the token and acts on the target system. A log records each step, outside the agent&rsquo;s reach.</p>
+        <figure class="diagram-card" style="--c:#4de2ff;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 488" role="img" aria-labelledby="g1t g1d"><title id="g1t">Agent identity governance architecture</title><desc id="g1d">An AI agent with its own identity and a named owner asks to act. A policy decision point checks the agent, task, tool and risk. High-risk actions go to a human for approval and come back approved or denied. If allowed, the credential broker issues a short-lived token to the agent. The agent calls the MCP server with the token. The MCP server checks audience and scope and acts on target systems with its own credential. Every step writes to an audit log kept outside the agent's reach.</desc><defs><marker id="agm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs>
+            <g class="node" style="--i:0"><rect x="20" y="150" width="160" height="80" rx="12"/><text class="ttl" x="100" y="183" text-anchor="middle">AI agent</text><text class="sub" x="100" y="201" text-anchor="middle">own identity,</text><text class="sub" x="100" y="217" text-anchor="middle">named owner</text></g>
+            <g class="node" style="--i:0.4"><rect x="270" y="150" width="210" height="80" rx="12"/><text class="ttl" x="375" y="183" text-anchor="middle">Policy decision</text><text class="sub" x="375" y="203" text-anchor="middle">agent, task, tool, risk</text></g>
+            <g class="node" style="--i:0.9"><rect x="270" y="20" width="210" height="70" rx="12"/><text class="ttl" x="375" y="50" text-anchor="middle">Human approval</text><text class="sub" x="375" y="68" text-anchor="middle">owner or approver</text></g>
+            <g class="node" style="--i:1.7"><rect x="270" y="290" width="210" height="80" rx="12"/><text class="ttl" x="375" y="323" text-anchor="middle">Credential broker</text><text class="sub" x="375" y="341" text-anchor="middle">short-lived tokens,</text><text class="sub" x="375" y="357" text-anchor="middle">can revoke them</text></g>
+            <g class="node" style="--i:3"><rect x="560" y="290" width="160" height="80" rx="12"/><text class="ttl" x="640" y="323" text-anchor="middle">MCP server</text><text class="sub" x="640" y="341" text-anchor="middle">checks audience</text><text class="sub" x="640" y="357" text-anchor="middle">and scope</text></g>
+            <g class="node" style="--i:3.8"><rect x="800" y="120" width="140" height="250" rx="12"/><text class="sub" x="870" y="146" text-anchor="middle" style="letter-spacing:.1em">TARGET SYSTEMS</text><text class="ttl" x="814" y="188">Ticketing</text><text class="sub" x="814" y="205">own checks</text><text class="ttl" x="814" y="248">Databases</text><text class="sub" x="814" y="265">own grants</text><text class="ttl" x="814" y="308">Cloud APIs</text><text class="sub" x="814" y="325">own policies</text></g>
+            <path class="flow" d="M 180 190 L 266 190" marker-end="url(#agm)"/>
+            <path class="flow" d="M 330 150 L 330 94" marker-end="url(#agm)"/>
+            <path class="flow" d="M 420 92 L 420 146" marker-end="url(#agm)"/>
+            <path class="flow" d="M 375 230 L 375 286" marker-end="url(#agm)"/>
+            <path class="flow" d="M 270 330 C 200 330 140 300 140 234" marker-end="url(#agm)"/>
+            <path class="flow" d="M 70 230 L 70 405 L 600 405 L 600 374" marker-end="url(#agm)"/>
+            <path class="flow" d="M 720 330 L 796 330" marker-end="url(#agm)"/>
+            <rect class="logbar" x="20" y="430" width="920" height="50" rx="10"/><text class="ttl" x="480" y="451" text-anchor="middle">Audit log, kept outside the agent&rsquo;s reach</text><text class="sub" x="480" y="469" text-anchor="middle">agent, owner, on whose behalf, tool, decision, approver, result</text>
+            <path class="log" d="M 375 370 L 375 430"/><path class="log" d="M 690 370 L 690 430"/><path class="log" d="M 870 370 L 870 430"/>
+            <text class="sub" x="225" y="172" text-anchor="middle">request</text>
+            <text class="sub" x="322" y="124" text-anchor="end">risky? ask</text>
+            <text class="sub" x="430" y="124">approve or deny</text>
+            <text class="sub" x="392" y="262">allowed</text>
+            <text class="sub" x="162" y="346" text-anchor="end">short-lived token</text>
+            <text class="sub" x="84" y="396">call with the token</text>
+            <text class="sub" x="758" y="312" text-anchor="middle">its own</text><text class="sub" x="758" y="358" text-anchor="middle">credential</text>
+            <g class="badge"><circle cx="225" cy="190" r="11"/><text x="225" y="194">1</text></g>
+            <g class="badge"><circle cx="375" cy="258" r="11"/><text x="375" y="262">2</text></g>
+            <g class="badge"><circle cx="375" cy="120" r="11"/><text x="375" y="124">3</text></g>
+            <g class="badge"><circle cx="179" cy="307" r="11"/><text x="179" y="311">4</text></g>
+            <g class="badge"><circle cx="270" cy="405" r="11"/><text x="270" y="409">5</text></g>
+            <g class="badge"><circle cx="758" cy="330" r="11"/><text x="758" y="334">6</text></g>
+            <g class="badge"><circle cx="38" cy="455" r="11"/><text x="38" y="459">7</text></g>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="12s" begin="0s" repeatCount="indefinite" path="M 180 190 L 330 190 L 330 90 L 420 90 L 420 190 L 375 190 L 375 330 L 270 330 C 200 330 140 300 140 234 L 140 215 L 70 215 L 70 405 L 600 405 L 600 330 L 720 330 L 800 330"/></circle>
+          </svg>
+          <svg class="d-tall" viewBox="0 0 360 850" role="img" aria-labelledby="g2t g2d"><title id="g2t">Agent identity governance architecture</title><desc id="g2d">An AI agent asks to act. A policy decision checks the agent, task, tool and risk. High-risk actions go to a human for approval. The credential broker issues a short-lived token to the agent. The agent calls the MCP server, which checks audience and scope and acts on target systems with its own credential. Every step writes to an audit log kept outside the agent's reach.</desc><defs><marker id="agt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs>
+            <g class="node" style="--i:0"><rect x="30" y="10" width="300" height="64" rx="12"/><text class="ttl" x="180" y="38" text-anchor="middle">AI agent</text><text class="sub" x="180" y="56" text-anchor="middle">own identity and a named owner</text></g>
+            <g class="node" style="--i:0.4"><rect x="30" y="128" width="300" height="64" rx="12"/><text class="ttl" x="180" y="156" text-anchor="middle">Policy decision</text><text class="sub" x="180" y="174" text-anchor="middle">agent, task, tool, risk</text></g>
+            <g class="node" style="--i:0.9"><rect x="30" y="246" width="300" height="64" rx="12"/><text class="ttl" x="180" y="274" text-anchor="middle">Human approval</text><text class="sub" x="180" y="292" text-anchor="middle">sees the exact action</text></g>
+            <g class="node" style="--i:1.7"><rect x="30" y="364" width="300" height="64" rx="12"/><text class="ttl" x="180" y="392" text-anchor="middle">Credential broker</text><text class="sub" x="180" y="410" text-anchor="middle">short-lived, revocable tokens</text></g>
+            <g class="node" style="--i:3"><rect x="30" y="508" width="300" height="64" rx="12"/><text class="ttl" x="180" y="536" text-anchor="middle">MCP server</text><text class="sub" x="180" y="554" text-anchor="middle">checks audience and scope</text></g>
+            <g class="node" style="--i:3.8"><rect x="30" y="626" width="300" height="94" rx="12"/><text class="sub" x="180" y="648" text-anchor="middle" style="letter-spacing:.1em">TARGET SYSTEMS</text><text class="ttl" x="180" y="676" text-anchor="middle">Ticketing, databases, cloud</text><text class="sub" x="180" y="698" text-anchor="middle">each enforces its own rules</text></g>
+            <path class="flow" d="M 180 74 L 180 124" marker-end="url(#agt)"/>
+            <path class="flow" d="M 180 192 L 180 242" marker-end="url(#agt)"/>
+            <path class="flow" d="M 180 310 L 180 360" marker-end="url(#agt)"/>
+            <path class="flow" d="M 180 428 L 180 504" marker-end="url(#agt)"/>
+            <path class="flow" d="M 180 572 L 180 622" marker-end="url(#agt)"/>
+            <rect class="logbar" x="30" y="770" width="300" height="62" rx="10"/><text class="ttl" x="180" y="796" text-anchor="middle">Audit log</text><text class="sub" x="180" y="815" text-anchor="middle">agent, owner, on whose behalf, result</text>
+            <path class="log" d="M 180 720 L 180 770"/>
+            <text class="sub" x="198" y="104">asks to act, with task</text>
+            <text class="sub" x="198" y="222">high risk only: ask a person</text>
+            <text class="sub" x="198" y="340">approved or denied</text>
+            <text class="sub" x="198" y="456">token goes to the agent</text>
+            <text class="sub" x="198" y="488">agent calls with the token</text>
+            <text class="sub" x="198" y="602">its own credential</text>
+            <text class="sub" x="198" y="750">every step is logged</text>
+            <g class="badge"><circle cx="180" cy="99" r="11"/><text x="180" y="103">1</text></g>
+            <g class="badge"><circle cx="180" cy="217" r="11"/><text x="180" y="221">2</text></g>
+            <g class="badge"><circle cx="180" cy="335" r="11"/><text x="180" y="339">3</text></g>
+            <g class="badge"><circle cx="180" cy="451" r="11"/><text x="180" y="455">4</text></g>
+            <g class="badge"><circle cx="180" cy="483" r="11"/><text x="180" y="487">5</text></g>
+            <g class="badge"><circle cx="180" cy="597" r="11"/><text x="180" y="601">6</text></g>
+            <g class="badge"><circle cx="180" cy="745" r="11"/><text x="180" y="749">7</text></g>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="12s" begin="0s" repeatCount="indefinite" path="M 180 20 L 180 740"/></circle>
+          </svg>
+          <figcaption>The dot follows one action. The agent asks, policy decides, a person approves if the action is risky, the broker issues a short-lived token, the agent calls the MCP server, and the server acts on the target system with its own credential. The numbers match the steps below. Nothing here depends on a specific product; any identity provider, policy engine and gateway that can fill each slot will do.</figcaption>
+        </figure>
+      </section>
+
+      <section id="workflow">
+        <h2>One action, start to finish</h2>
+        <p class="body-text">The steps follow a single action through the diagram. Each has a guardrail, which the design requires, and evidence, which you can show an auditor afterwards. A guardrail with no evidence is a hope.</p>
+        <ol class="steps">
+          <li><h3>The agent asks to act</h3><p>The agent authenticates as itself and states the task, the tool it wants and the principal it is acting for. With no registry record, or a suspended one, the request ends here. This is the zero standing privilege starting point: the agent holds no access between tasks.</p><div class="why"><span><b>Guardrail</b>No registry record or no owner, no access</span><span><b>Evidence</b>Registry entry and authentication log</span></div></li>
+          <li><h3>Policy decides, every time</h3><p>The decision point looks at who the agent is, the task, the tool and arguments, the risk tier and what already happened in this task, then decides again on the next action. This is continuous authorization: a new permission request or sub-agent is judged when it appears, and the next review cycle is too late. NIST SP 800-207 has the same idea for zero trust: access per session, with authorization strictly enforced before access is allowed.</p><div class="why"><span><b>Guardrail</b>Deny by default, evaluated per action</span><span><b>Evidence</b>Decision record with the policy version used</span></div></li>
+          <li><h3>A person approves the risky ones</h3><p>Above the risk threshold the action pauses and goes to an approver, who sees the exact action and its parameters. The approval is bound to that action and expires quickly. This is the pattern from my MCP Human Approval Gateway lab: autonomy stops where a wrong action is expensive to reverse.</p><div class="why"><span><b>Guardrail</b>Approval tied to exact parameters, short expiry</span><span><b>Evidence</b>Approver, time, parameters shown, outcome</span></div></li>
+          <li><h3>The broker issues a short-lived token</h3><p>If the action is allowed, the broker issues a credential for this tool only, with the narrowest scope that does the job and a lifetime measured in minutes. Where delegation matters, the broker mints a token that names both the user and the agent.</p><div class="why"><span><b>Guardrail</b>One tool, narrowest scope, short lifetime, audience set to the target server</span><span><b>Evidence</b>Issuance log: subject, actor, audience, scope, expiry</span></div></li>
+          <li><h3>The agent calls the MCP server</h3><p>The server checks that the token was issued for it and that the scope covers this operation. If the scope falls short, it answers with an insufficient scope error, which sends the agent back to step 2. It never widens anything on its own.</p><div class="why"><span><b>Guardrail</b>Server rejects tokens issued for any other audience</span><span><b>Evidence</b>Server access log with token audience and scope</span></div></li>
+          <li><h3>The server acts with its own credential</h3><p>The server calls the target using its own credential and passes along who the agent is acting for, in whatever form the target accepts. It does not forward the agent&rsquo;s token. The target still runs its own authorization, so a confused or manipulated agent meets a second check.</p><div class="why"><span><b>Guardrail</b>No token passthrough, downstream authorization stays on</span><span><b>Evidence</b>Target-side log that links back to the agent&rsquo;s call</span></div></li>
+          <li><h3>Log, correlate, expire</h3><p>Every step writes to a log that the agent and its owner cannot edit, and a correlation ID ties request, decision, approval, token and call together. When the task ends the token expires. Granted permissions are compared with what the agent really did, so drift shows up as a signal and not as a surprise after an incident.</p><div class="why"><span><b>Guardrail</b>Logs held outside the agent&rsquo;s reach, token expiry as the default stop</span><span><b>Evidence</b>One correlated trail per task, plus a permissions-versus-behaviour report</span></div></li>
+        </ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: an operations agent and a stuck export job</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event.</p>
+        <p class="body-text">An operations team registers an agent for failed batch jobs. Its owner is the team lead, and it is registered for three tools: read job status, restart a job, and clear temporary files. A user asks it to fix a stalled overnight export.</p>
+        <ul class="plain-list">
+          <li>Reading job status is low risk. Policy allows it and the broker issues a read-only token that lives a few minutes.</li>
+          <li>Restarting the named job is medium risk. Policy allows it for that one job, and the token is scoped to that restart.</li>
+          <li>Clearing temporary files is high risk, because deletion cannot be undone. The request pauses, and the approver sees the exact path pattern and how many files it matches. They approve once, for that pattern, and the approval expires.</li>
+          <li>Halfway through, the agent asks for a database administration scope. Policy refuses, because that tool is not on its list. Getting it means the owner changes the registration, and that goes through review.</li>
+        </ul>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>The agent runs on a personal API key that was pasted into a config file.</li><li>It can touch everything its creator can touch, all the time.</li><li>The logs show the creator&rsquo;s name next to every action.</li><li>Nobody can say who owns it or when it was last reviewed.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>The agent has its own identity and a named owner.</li><li>Each action gets a short-lived token for one tool.</li><li>The deletion waited for a person who saw the exact files.</li><li>The log shows the agent, the user it acted for, the approver and the result.</li></ul></div>
+        </div>
+      </section>
+
+      <section id="mcp">
+        <h2>MCP connections and what the specification gives you</h2>
+        <p class="body-text">Many agents reach their tools through the Model Context Protocol (MCP), so I start with its authorization section. I read the current draft on modelcontextprotocol.io, its security best practices page and the tools page of the 2026-07-28 revision. The specification changes, so check the revision you deploy. These are the points that matter for governance.</p>
+        <ul class="plain-list">
+          <li><strong>Authorization is optional, and defined for HTTP transports.</strong> Implementations that use stdio should take credentials from the environment instead. A local stdio server therefore sits outside any broker unless you choose to wrap it. My reading is that local servers are a governance gap to plan for.</li>
+          <li><strong>An MCP server is an OAuth resource server.</strong> The client is an OAuth client. The server must publish OAuth 2.0 Protected Resource Metadata (RFC 9728), which tells the client which authorization server to use.</li>
+          <li><strong>Tokens are bound to one server.</strong> Clients must send the <code class="ref">resource</code> parameter from RFC 8707 (Resource Indicators for OAuth 2.0) in both the authorization request and the token request, naming the MCP server the token is for. Servers must validate that a token was issued for them and must not accept or pass on other tokens.</li>
+          <li><strong>Scopes can grow when needed.</strong> A server can answer with a 403 and an <code class="ref">insufficient_scope</code> challenge that names what the operation needs, and the client can start a step-up authorization. The security guidance adds that servers should log elevation events with correlation IDs and avoid wildcard scopes. Step-up is the protocol&rsquo;s version of deciding again at the moment of need, which is where my policy decision plugs in.</li>
+          <li><strong>Token passthrough is forbidden.</strong> The security page explains why: it bypasses controls that depend on the token audience, and downstream logs then show a different identity from the one that made the call. That is an audit argument as much as a security one.</li>
+          <li><strong>A person should be able to say no.</strong> The tools page says there should always be a human in the loop with the ability to deny tool invocations, that clients should prompt for confirmation on sensitive operations and show tool inputs first, that servers must implement access controls and rate limit, and that tool annotations are untrusted unless they come from a trusted server.</li>
+        </ul>
+        <p class="body-text">The authorization section leaves the authorization server implementation out of scope. It says nothing about who owns an agent, which actions need approval, how to record delegation or how to retire an agent. Those pieces sit around the protocol, and they are what this page is about.</p>
+      </section>
+
+      <section id="lifecycle">
+        <h2>Kill switch, revocation and lifecycle</h2>
+        <p class="body-text">A short token life is the cheapest way to stop an agent, because access ends by itself. It is not enough alone, so I design the stop in layers and test each one.</p>
+        <ul class="plain-list">
+          <li><strong>Suspend the agent in the registry.</strong> The broker reads the status before issuing anything, so no new tokens come out.</li>
+          <li><strong>Let tokens run out.</strong> With lifetimes in minutes, existing access fades quickly. Anything longer-lived, such as a refresh grant, is revoked at the authorization server. Whether an issued access token can be killed early depends on the token type and on whether servers check its status, so I confirm that per system.</li>
+          <li><strong>Block it at the tool.</strong> The MCP server or its gateway keeps a deny list keyed on the agent ID.</li>
+          <li><strong>Rotate what sits downstream.</strong> If the agent or its credentials may have been exposed, rotate the secrets the tool uses to reach the target systems.</li>
+        </ul>
+        <p class="body-text">Then the lifecycle, which has three moments.</p>
+        <ul class="plain-list">
+          <li><strong>Register.</strong> The owner states the purpose, tool list, principals and risk tier. A reviewer approves the registration before the broker issues anything, and it carries an expiry date.</li>
+          <li><strong>Review.</strong> On a rhythm tied to the risk tier, the owner confirms the agent is still needed and compares granted permissions with what it did. Unused permissions are removed. The drift report from step 7 earns its place here.</li>
+          <li><strong>Retire.</strong> When the project ends or the agent goes quiet, it is suspended, grants are revoked, downstream credentials are rotated, and the record is kept with its logs. An owner who leaves triggers a reassignment, and with no taker the agent is suspended.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">A target-state model for agent identity that issues permission per task, re-evaluates it continuously, and treats human approval as a designed control rather than a fallback — replacing the standing-role, annual-review pattern that agentic workloads outgrow within days of deployment.</p>
+      <section id="roadmap">
+        <h2>How to build it without stalling</h2>
+        <p class="body-text">I would not do all of this at once. Each phase is useful on its own, and the order follows the risk.</p>
+        <ol class="phases">
+          <li><b>1. Find the agents and name the owners</b>Inventory what already runs, including agents on personal keys. Create the registry and give every agent an owner. Retire what nobody claims.<small><em>Done when</em>Every known agent has an owner and a purpose on record.</small></li>
+          <li><b>2. Put a broker in front of the first tools</b>Pick one or two tools with real impact. Issue short-lived, audience-restricted tokens through a broker and take the long-lived keys out of the configuration.<small><em>Done when</em>Those agents hold no standing credential for those tools.</small></li>
+          <li><b>3. Add per-action policy and approval</b>Define risk tiers. Allow low-risk reads, require a person for hard-to-undo actions, and bind each approval to its parameters.<small><em>Done when</em>A deletion or payment cannot go through without a recorded approver.</small></li>
+          <li><b>4. Record delegation and watch for drift</b>Make every token and log line carry the agent, the principal and a correlation ID. Report granted permissions against observed behaviour.<small><em>Done when</em>You can answer &ldquo;which agent did this, for whom&rdquo; from the logs alone.</small></li>
+          <li><b>5. Practise the stop and the lifecycle</b>Run a drill that suspends an agent and measures how long access takes to end. Add expiry dates, owner attestation and retirement to the routine.<small><em>Done when</em>A drill has been run and its result recorded, and registrations expire when nobody confirms them.</small></li>
+        </ol>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#agentic-ai</span><span>#non-human-identity</span><span>#zero-standing-privilege</span><span>#mcp</span><span>#continuous-authorization</span></div>
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Every agent has its own identity and a named owner</td><td data-label="What it stops">Agents running on a person&rsquo;s login or a shared key, with nobody accountable</td><td data-label="How you check it">Report of agents with no owner, a departed owner or a shared credential</td></tr>
+            <tr><td data-label="Guardrail">No standing access between tasks</td><td data-label="What it stops">A forgotten agent keeping working access for months</td><td data-label="How you check it">List of long-lived credentials held by agents; the target is none</td></tr>
+            <tr><td data-label="Guardrail">Short-lived tokens, one tool each</td><td data-label="What it stops">A leaked token opening more than one system for a long time</td><td data-label="How you check it">Token lifetimes and scopes in the issuance log</td></tr>
+            <tr><td data-label="Guardrail">Audience-restricted tokens, no passthrough</td><td data-label="What it stops">A token for one server being replayed against another</td><td data-label="How you check it">Send a token issued for server A to server B in a test and confirm it is refused</td></tr>
+            <tr><td data-label="Guardrail">A decision on every action</td><td data-label="What it stops">A permission granted once being reused for something different</td><td data-label="How you check it">Decision records exist for each tool call, with the policy version</td></tr>
+            <tr><td data-label="Guardrail">Human approval for hard-to-undo actions, bound to exact parameters</td><td data-label="What it stops">Approvals that cover more than the person saw</td><td data-label="How you check it">Sample approvals and compare what was shown with what was executed</td></tr>
+            <tr><td data-label="Guardrail">Downstream systems keep their own authorization</td><td data-label="What it stops">Trusting the model to decide what is allowed</td><td data-label="How you check it">Call a target directly with the agent&rsquo;s identity and confirm it still refuses out-of-scope requests</td></tr>
+            <tr><td data-label="Guardrail">Logs held outside the agent&rsquo;s reach</td><td data-label="What it stops">Evidence changed by what it describes</td><td data-label="How you check it">Confirm neither the agent nor its owner can edit the log store</td></tr>
+            <tr><td data-label="Guardrail">Tested kill switch</td><td data-label="What it stops">Not knowing how fast access really ends</td><td data-label="How you check it">Run a drill and time it from suspend to last accepted call</td></tr>
+          </tbody></table></div>
       </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Which agents exist, and who owns each one?</td><td data-label="Where the answer comes from">Registry export with owner, purpose, risk tier and review date</td></tr>
+            <tr><td data-label="Question">Which agent made this change, and for whom?</td><td data-label="Where the answer comes from">Correlated trail: request, decision, token (subject and actor), tool call, target log</td></tr>
+            <tr><td data-label="Question">Who approved it, and what did they see?</td><td data-label="Where the answer comes from">Approval record with the parameters shown and the time</td></tr>
+            <tr><td data-label="Question">What could this agent do last quarter, and what did it do?</td><td data-label="Where the answer comes from">Granted scopes from the issuance log compared with tool calls from the access logs</td></tr>
+            <tr><td data-label="Question">Are there agents using shared or personal keys?</td><td data-label="Where the answer comes from">Credential scan results and the exception register</td></tr>
+            <tr><td data-label="Question">How fast can you switch it off?</td><td data-label="Where the answer comes from">Drill record with start and stop times</td></tr>
+          </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <p class="body-text" style="margin-top:6px">Each row is something I read in the source. Where I use a reference as a design input, I say so.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for, and how I use it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-6</code></td><td data-label="What it asks for, and how I use it">Least privilege: allow only the accesses necessary for assigned tasks, for users and for processes acting on their behalf. Agents are processes acting on behalf of someone.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">IA-5</code></td><td data-label="What it asks for, and how I use it">Authenticator management, including changing or refreshing authenticators and procedures for loss, compromise and revocation. This is the basis for short lives and the kill switch.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for, and how I use it">Decide which events are logged, and generate the audit records. For agents that means decisions, approvals, token issuance and tool calls.</td></tr>
+            <tr><td data-label="Standard">NIST SP 800-207</td><td data-label="Reference">Tenets 3, 4 and 6</td><td data-label="What it asks for, and how I use it">Access to individual resources is granted per session, determined by dynamic policy, and authentication and authorization are dynamic and strictly enforced before access. This is the origin of the per-action decision.</td></tr>
+            <tr><td data-label="Standard">NIST AI RMF 1.0</td><td data-label="Reference">Govern, Map, Measure, Manage</td><td data-label="What it asks for, and how I use it">A risk-management structure for AI systems. I use Govern for ownership and accountability, and Measure and Manage for the drift reporting and review loop. It is a framework, so the mapping to specific controls is my own.</td></tr>
+            <tr><td data-label="Standard">OWASP Top 10 for Agentic Applications (2026)</td><td data-label="Reference"><code class="ref">ASI02</code>, <code class="ref">ASI03</code>, <code class="ref">ASI09</code>, <code class="ref">ASI10</code></td><td data-label="What it asks for, and how I use it">Tool Misuse, Identity &amp; Privilege Abuse, Human-Agent Trust Exploitation and Rogue Agents are the risk names these controls answer. I used the published list of names and did not read the full guidance for each item.</td></tr>
+            <tr><td data-label="Standard">OWASP Top 10 for LLM Applications 2025</td><td data-label="Reference"><code class="ref">LLM06</code> Excessive Agency</td><td data-label="What it asks for, and how I use it">Limit extensions, functions and permissions to the minimum, use human approval for high-impact actions, and enforce authorization in downstream systems instead of relying on the model.</td></tr>
+            <tr><td data-label="Standard">RFC 8693</td><td data-label="Reference">Token Exchange</td><td data-label="What it asks for, and how I use it">The delegation model and the <code class="ref">act</code> claim. A design input for the broker, and not an MCP requirement.</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Agent owner</td><td data-label="Owns">The agent&rsquo;s purpose, its tool list, requests for more scope, the periodic confirmation and its retirement</td></tr>
+            <tr><td data-label="Role">Approver</td><td data-label="Owns">The yes or no on actions above the threshold. Sees the exact action, can refuse, and is never the agent</td></tr>
+            <tr><td data-label="Role">Platform team</td><td data-label="Owns">The registry, the broker, the policy engine and the log pipeline: availability, upgrades and integrations</td></tr>
+            <tr><td data-label="Role">MCP server and tool owners</td><td data-label="Owns">The tools they expose, their scope definitions, audience validation and the credentials they use downstream</td></tr>
+            <tr><td data-label="Role">Principal (the person or process delegating)</td><td data-label="Owns">The authority the agent borrows. Their identity is recorded, and their access is the ceiling for what the agent can do for them</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Risk tiers, approval thresholds, token lifetimes and the exception criteria</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>The owner and the approver are different jobs.</strong> For the top risk tier I want them to be different people, so that the person who set up the agent is not also the one who waves its riskiest actions through.</li>
+          <li><strong>Measure coverage and age.</strong> Useful measures: share of known agents with an owner, long-lived credentials held by agents, time since last review, share of high-risk actions with a recorded approval, and the result of the latest drill.</li>
+          <li><strong>Exceptions have owners and end dates.</strong> An agent that cannot use the broker goes on a register with a reason and a date.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>Approval fatigue.</strong> If everything needs a click, people click through. Keep approvals for hard-to-undo actions and show the exact action.</li>
+          <li><strong>Broad scopes granted up front.</strong> It is easy to ask for everything once and avoid later prompts. The MCP security guidance lists wildcard and omnibus scopes as a common mistake, and a general-purpose client with no scope challenge may fall back to requesting everything the server lists, so the server side matters here.</li>
+          <li><strong>The MCP server as a pass-through.</strong> Forwarding the caller&rsquo;s token looks simpler. It erases the audit trail and breaks the audience boundary.</li>
+          <li><strong>Logs that name the person and hide the agent.</strong> If delegation is not recorded, the human gets blamed for, or credited with, actions they never saw.</li>
+          <li><strong>Sub-agents that inherit everything.</strong> A child that carries the parent&rsquo;s full rights turns one compromise into a chain of them.</li>
+          <li><strong>The prompt treated as a control.</strong> An instruction to the model is a request. The OWASP guidance on excessive agency is clear that authorization belongs in the downstream system and not in the model&rsquo;s judgement.</li>
+          <li><strong>Local servers that nobody registered.</strong> Servers started on a laptop through stdio sit outside the broker. Decide what is allowed there early.</li>
+          </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep with any new kind of non-human identity. They come from how I run access programs and from my own reading and testing, and they are not a record of any one project.</p>
+        <ul class="plain-list">
+          <li><strong>Start with the owner.</strong> I used to start with the technology. Now my first question about any agent is who answers for it. Everything else, from scope to review, hangs off that name.</li>
+          <li><strong>Treat every agent as a new hire with a narrow job.</strong> I write the job in one sentence, give it only the tools it needs, and expect to be asked for more access later, with a reason.</li>
+          <li><strong>Read the protocol before designing around it.</strong> I check what the MCP authorization section requires and what it leaves open before I decide what my broker has to do. That saves me from rebuilding what the protocol gives me and from assuming it covers things it does not.</li>
+          <li><strong>Make the approval screen honest.</strong> If I would not understand the request when tired, the screen is wrong. It shows the exact action, the target and what cannot be undone.</li>
+          <li><strong>Test the stop before I need it.</strong> I want a measured answer to &ldquo;how long until this agent can do nothing&rdquo;, from a drill.</li>
+          <li><strong>Check the sources and label what I inferred.</strong> When a mapping is my own, as with the AI RMF, I say so in the text.</li>
+        </ul>
+        <p class="body-text">The way I run the surrounding program is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>. For the short-lived access side, see <a href="/case-studies/jit-jea-elevation/">Just-in-Time &amp; Just-Enough-Access Elevation</a>, and for the wider non-human estate, <a href="/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <p class="body-text">I opened and read each of these for this page, except where a note says otherwise. Secondary sources are marked.</p>
+        <ol class="sources">
+          <li><a href="https://modelcontextprotocol.io/specification/draft/basic/authorization">Model Context Protocol, Authorization (draft specification)</a></li>
+          <li><a href="https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices">Model Context Protocol, Security Best Practices (2026-07-28)</a></li>
+          <li><a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools">Model Context Protocol, Tools (2026-07-28 revision), user interaction model and security considerations</a></li>
+          <li><a href="https://www.rfc-editor.org/rfc/rfc9728.html">RFC 9728, OAuth 2.0 Protected Resource Metadata</a></li>
+          <li><a href="https://www.rfc-editor.org/info/rfc8707/">RFC 8707, Resource Indicators for OAuth 2.0</a></li>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc8693">RFC 8693, OAuth 2.0 Token Exchange</a></li>
+          <li><a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13">OAuth 2.1 Internet-Draft (draft-ietf-oauth-v2-1-13), as cited by the MCP specification. I took its status from the MCP page and did not read the draft.</a></li>
+          <li><a href="https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/">OWASP GenAI Security Project, Top 10 for Agentic Applications (announcement, 9 Dec 2025)</a></li>
+          <li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/2_0_vulns/LLM06_ExcessiveAgency.html">OWASP Top 10 for LLM Applications 2025, LLM06 Excessive Agency</a></li>
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html">OWASP AI Agent Security Cheat Sheet</a></li>
+          <li><a href="https://airc.nist.gov/airmf-resources/airmf/5-sec-core/">NIST AI Risk Management Framework, AI RMF Core (Govern, Map, Measure, Manage)</a></li>
+          <li><a href="https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=930420">NIST SP 800-207, Zero Trust Architecture (August 2020)</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls. I read the AC-6, IA-5, AU-2 and AU-12 text through the CSF Tools mirror (csf.tools), which is a secondary source.</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. The worked example is an illustration. Quotations of requirements are paraphrased from the documents listed above, and the specifications and drafts may have changed since the review date.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#agentic-ai</span><span>#non-human-identity</span><span>#zero-standing-privilege</span><span>#mcp</span><span>#continuous-authorization</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#c4b5fd" href="/case-studies/ciem-at-scale/"><small><i></i>&larr; Previous</small><strong>Cloud Entitlement Management at Scale</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/ai-processing-tax/"><small><i></i>Next &rarr;</small><strong>The AI Decision Tax</strong></a></div></nav>
       <footer class="page-footer">
@@ -98,6 +369,7 @@
       </footer>
     </main>
 
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

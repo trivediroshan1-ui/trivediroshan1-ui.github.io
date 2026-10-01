@@ -19,7 +19,9 @@
     <title>Access Recertification & IGA Automation · Roshan Trivedi</title>
 
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -41,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/access-recertification/",
   "image": "https://roshantrivedi.co.in/assets/og-case-access-recertification.png",
   "articleSection": "Governance",
@@ -52,43 +54,237 @@
   "keywords": "access certification, identity governance, entitlement review"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-  <body>
+    </head>
+  <body style="--c:#f7c873">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Governance &middot; Case study</p>
-        <p class="cat-badge" style="color:#f7c873;background:rgba(247,200,115,0.12);border-color:#f7c87333">Governance</p>
         <h1>Access Recertification &amp; IGA Automation</h1>
-        <p class="dek">Turning a manual quarterly access review into a governed process backed by usage evidence.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
+        <p class="dek">Turning a manual quarterly access review into a governed process backed by usage evidence, so that a reviewer&rsquo;s &ldquo;keep&rdquo; means something.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Quarterly access certification asked managers to approve long entitlement lists from memory, so recertification became a rubber stamp instead of an actual control, and dormant access routinely survived every cycle.</p>
-      </section>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>A quarterly review that asks managers to approve long lists from memory produces a signature, not a control. Dormant access survives every cycle.</li>
+          <li>Give the reviewer evidence on every line: who owns the account, whether it was used, and an advisory keep or revoke suggestion they can overrule. Then let the decision execute from the identity governance system, and check that it worked.</li>
+          <li>A certification is only finished when the access is gone and you can show it. Everything before that is paperwork.</li>
+        </ul>
+      </div>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Connected entitlement data to actual usage logs, so every certification decision starts from evidence of whether the access was used, not just whether it was granted.</li>
-          <li>Added an advisory recommendation that pre-flags likely-dormant entitlements for revocation, leaving the reviewer to confirm or override rather than evaluate every line from a blank state.</li>
-          <li>Fed every certification decision back into the identity governance system of record, so revocations execute automatically instead of generating a second manual follow-up task.</li>
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Access certification, or recertification, is the periodic check that the people who hold access should still hold it. On paper it is simple. Every quarter, each manager gets a list of what their people can reach, and ticks keep or revoke.</p>
+        <p class="body-text">In practice the list is long and the manager does not know what half the entries are. &ldquo;SG-FIN-RW-04&rdquo; tells them nothing. They cannot remember whether the person still uses it, so they do the sensible thing under time pressure and approve it all. The campaign closes on schedule, the audit file shows the campaign complete, and the dormant access is still there next quarter. The review became a rubber stamp instead of a control.</p>
+        <p class="body-text">The weak point is rarely the tool that sends the emails. It is the quality of what the reviewer sees and what happens after they answer. Four things tend to be missing:</p>
+        <ul class="plain-list">
+          <li><strong>Context.</strong> Entitlement names that only an administrator can read, with no hint of what they allow.</li>
+          <li><strong>Evidence.</strong> No sign of whether the access was ever used, so &ldquo;keep&rdquo; is the safe guess.</li>
+          <li><strong>The right reviewer.</strong> Managers asked about application roles they have never seen, and nobody asked about the accounts that have no manager at all.</li>
+          <li><strong>Follow-through.</strong> A revoke decision that turns into a ticket, which waits in a queue, and is closed without anyone looking at the target system.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Cut the average certification review time while increasing the revocation rate for dormant entitlements, because reviewers were confirming evidenced recommendations instead of reconstructing usage from memory.</p>
+      <section id="architecture">
+        <h2>How it fits together</h2>
+        <p class="body-text">The flow has seven steps, and the same few records travel through all of them. Account and entitlement data comes in from the directory, the applications and the HR feed, and sits next to usage logs. A risk tier decides how often each account is reviewed and by whom. The reviewer sees the line with its evidence and a suggestion. The decision goes back into the identity governance system, which executes it, and a separate check confirms the access is gone.</p>
+        <figure class="diagram-card" style="--c:#f7c873;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 460" role="img" aria-labelledby="r1t r1d"><title id="r1t">Access recertification flow</title><desc id="r1d">Account, entitlement and usage data from the directory, applications, usage logs and the HR feed is collected into one inventory. Each account is placed in a risk tier that sets review frequency and reviewer. The reviewer sees usage and an advisory flag for each line and decides to keep, revoke or change, with a reason recorded. Approved revokes are executed from the identity governance system of record, then checked in the target system, and an evidence pack and sign-off close the cycle. Every decision, change and check is logged outside the platform.</desc><defs><marker id="arm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><g class="node" style="--i:0"><rect x="30" y="250" width="170" height="64" rx="12"/><text class="ttl" x="115.0" y="271" text-anchor="middle">Sources</text><text class="sub" x="115.0" y="289" text-anchor="middle">directory, apps, usage</text><text class="sub" x="115.0" y="305" text-anchor="middle">logs and the HR feed</text></g><g class="node" style="--i:0.0"><rect x="30" y="40" width="170" height="110" rx="12"/><text class="ttl" x="115.0" y="76" text-anchor="middle">Collect</text><text class="sub" x="115.0" y="94" text-anchor="middle">one inventory: account,</text><text class="sub" x="115.0" y="110" text-anchor="middle">entitlement, owner,</text><text class="sub" x="115.0" y="126" text-anchor="middle">last use</text></g><g class="badge"><circle cx="32" cy="42" r="11"/><text x="32" y="46">1</text></g><g class="node" style="--i:0.7"><rect x="270" y="40" width="170" height="110" rx="12"/><text class="ttl" x="355.0" y="84" text-anchor="middle">Tier by risk</text><text class="sub" x="355.0" y="102" text-anchor="middle">risk tier sets how often</text><text class="sub" x="355.0" y="118" text-anchor="middle">and who reviews</text></g><g class="badge"><circle cx="272" cy="42" r="11"/><text x="272" y="46">2</text></g><g class="node" style="--i:1.4"><rect x="510" y="40" width="170" height="110" rx="12"/><text class="ttl" x="595.0" y="76" text-anchor="middle">Review</text><text class="sub" x="595.0" y="94" text-anchor="middle">owner and manager see</text><text class="sub" x="595.0" y="110" text-anchor="middle">usage and an advisory</text><text class="sub" x="595.0" y="126" text-anchor="middle">flag per line</text></g><g class="badge"><circle cx="512" cy="42" r="11"/><text x="512" y="46">3</text></g><g class="node" style="--i:2.0999999999999996"><rect x="750" y="40" width="170" height="110" rx="12"/><text class="ttl" x="835.0" y="76" text-anchor="middle">Decide</text><text class="sub" x="835.0" y="94" text-anchor="middle">keep, revoke or change;</text><text class="sub" x="835.0" y="110" text-anchor="middle">reason recorded</text><text class="sub" x="835.0" y="126" text-anchor="middle">with the flag shown</text></g><g class="badge"><circle cx="752" cy="42" r="11"/><text x="752" y="46">4</text></g><g class="node" style="--i:2.8"><rect x="750" y="250" width="170" height="64" rx="12"/><text class="ttl" x="835.0" y="271" text-anchor="middle">Revoke</text><text class="sub" x="835.0" y="289" text-anchor="middle">sent to the system</text><text class="sub" x="835.0" y="305" text-anchor="middle">of record to execute</text></g><g class="badge"><circle cx="752" cy="252" r="11"/><text x="752" y="256">5</text></g><g class="node" style="--i:3.5"><rect x="510" y="250" width="170" height="64" rx="12"/><text class="ttl" x="595.0" y="271" text-anchor="middle">Verify</text><text class="sub" x="595.0" y="289" text-anchor="middle">check the access is</text><text class="sub" x="595.0" y="305" text-anchor="middle">really gone</text></g><g class="badge"><circle cx="512" cy="252" r="11"/><text x="512" y="256">6</text></g><g class="node" style="--i:4.2"><rect x="270" y="250" width="170" height="64" rx="12"/><text class="ttl" x="355.0" y="271" text-anchor="middle">Report</text><text class="sub" x="355.0" y="289" text-anchor="middle">evidence pack, open</text><text class="sub" x="355.0" y="305" text-anchor="middle">items, sign-off</text></g><g class="badge"><circle cx="272" cy="252" r="11"/><text x="272" y="256">7</text></g><path class="flow" d="M 115 250 L 115 152" marker-end="url(#arm)"/><text class="sub" x="127" y="200" text-anchor="start">accounts, usage,</text><text class="sub" x="127" y="214" text-anchor="start">joiners, leavers</text><path class="flow" d="M 200 95 L 268 95" marker-end="url(#arm)"/><text class="sub" x="235" y="84" text-anchor="middle">inventory</text><path class="flow" d="M 440 95 L 508 95" marker-end="url(#arm)"/><text class="sub" x="475" y="70" text-anchor="middle">review</text><text class="sub" x="475" y="84" text-anchor="middle">packs</text><path class="flow" d="M 680 95 L 748 95" marker-end="url(#arm)"/><text class="sub" x="715" y="70" text-anchor="middle">keep or</text><text class="sub" x="715" y="84" text-anchor="middle">revoke</text><path class="flow" d="M 835 150 L 835 248" marker-end="url(#arm)"/><text class="sub" x="847" y="205" text-anchor="start">approved revokes</text><path class="flow" d="M 750 282 L 682 282" marker-end="url(#arm)"/><text class="sub" x="716" y="256" text-anchor="middle">ticket</text><text class="sub" x="716" y="270" text-anchor="middle">closed</text><path class="flow" d="M 510 282 L 442 282" marker-end="url(#arm)"/><text class="sub" x="476" y="256" text-anchor="middle">proof of</text><text class="sub" x="476" y="270" text-anchor="middle">removal</text><rect class="logbar" x="30" y="372" width="890" height="56" rx="10"/><text class="ttl" x="475" y="395" text-anchor="middle">Decisions, changes and checks are logged all the way through</text><text class="sub" x="475" y="413" text-anchor="middle">kept outside the platform, so its admins cannot edit them</text><path class="log" d="M 355 314 L 355 372"/><path class="log" d="M 595 314 L 595 372"/><path class="log" d="M 835 314 L 835 372"/><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="14s" begin="0s" repeatCount="indefinite" path="M 115 250 L 115 95 L 355 95 L 595 95 L 835 95 L 835 282 L 595 282 L 355 282"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="4.7s"/><animateMotion dur="14s" begin="4.7s" repeatCount="indefinite" path="M 115 250 L 115 95 L 355 95 L 595 95 L 835 95 L 835 282 L 595 282 L 355 282"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="9.3s"/><animateMotion dur="14s" begin="9.3s" repeatCount="indefinite" path="M 115 250 L 115 95 L 355 95 L 595 95 L 835 95 L 835 282 L 595 282 L 355 282"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 810" role="img" aria-labelledby="r2t r2d"><title id="r2t">Access recertification flow</title><desc id="r2d">Account, entitlement and usage data from the directory, applications, usage logs and the HR feed is collected into one inventory. Each account is placed in a risk tier that sets review frequency and reviewer. The reviewer sees usage and an advisory flag for each line and decides to keep, revoke or change, with a reason recorded. Approved revokes are executed from the identity governance system of record, then checked in the target system, and an evidence pack and sign-off close the cycle. Every decision, change and check is logged outside the platform.</desc><defs><marker id="art" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><g class="node" style="--i:0.0"><rect x="30" y="10" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="36" text-anchor="middle">Sources</text><text class="sub" x="180.0" y="54" text-anchor="middle">directory, apps, usage logs, HR feed</text></g><path class="flow" d="M 180 66 L 180 98" marker-end="url(#art)"/><text class="sub" x="192" y="87" text-anchor="start">accounts, usage, joiners</text><g class="node" style="--i:0.6"><rect x="30" y="100" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="126" text-anchor="middle">Collect</text><text class="sub" x="180.0" y="144" text-anchor="middle">one inventory with owner and last use</text></g><g class="badge"><circle cx="32" cy="102" r="11"/><text x="32" y="106">1</text></g><path class="flow" d="M 180 156 L 180 188" marker-end="url(#art)"/><text class="sub" x="192" y="177" text-anchor="start">inventory</text><g class="node" style="--i:1.2"><rect x="30" y="190" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="216" text-anchor="middle">Tier by risk</text><text class="sub" x="180.0" y="234" text-anchor="middle">risk tier sets frequency and reviewer</text></g><g class="badge"><circle cx="32" cy="192" r="11"/><text x="32" y="196">2</text></g><path class="flow" d="M 180 246 L 180 278" marker-end="url(#art)"/><text class="sub" x="192" y="267" text-anchor="start">review packs</text><g class="node" style="--i:1.7999999999999998"><rect x="30" y="280" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="306" text-anchor="middle">Review</text><text class="sub" x="180.0" y="324" text-anchor="middle">usage and an advisory flag per line</text></g><g class="badge"><circle cx="32" cy="282" r="11"/><text x="32" y="286">3</text></g><path class="flow" d="M 180 336 L 180 368" marker-end="url(#art)"/><text class="sub" x="192" y="357" text-anchor="start">keep or revoke</text><g class="node" style="--i:2.4"><rect x="30" y="370" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="396" text-anchor="middle">Decide</text><text class="sub" x="180.0" y="414" text-anchor="middle">keep, revoke or change, reason recorded</text></g><g class="badge"><circle cx="32" cy="372" r="11"/><text x="32" y="376">4</text></g><path class="flow" d="M 180 426 L 180 458" marker-end="url(#art)"/><text class="sub" x="192" y="447" text-anchor="start">approved revokes</text><g class="node" style="--i:3.0"><rect x="30" y="460" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="486" text-anchor="middle">Revoke</text><text class="sub" x="180.0" y="504" text-anchor="middle">executed from the system of record</text></g><g class="badge"><circle cx="32" cy="462" r="11"/><text x="32" y="466">5</text></g><path class="flow" d="M 180 516 L 180 548" marker-end="url(#art)"/><text class="sub" x="192" y="537" text-anchor="start">ticket closed</text><g class="node" style="--i:3.5999999999999996"><rect x="30" y="550" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="576" text-anchor="middle">Verify</text><text class="sub" x="180.0" y="594" text-anchor="middle">check the access is really gone</text></g><g class="badge"><circle cx="32" cy="552" r="11"/><text x="32" y="556">6</text></g><path class="flow" d="M 180 606 L 180 638" marker-end="url(#art)"/><text class="sub" x="192" y="627" text-anchor="start">proof of removal</text><g class="node" style="--i:4.2"><rect x="30" y="640" width="300" height="56" rx="12"/><text class="ttl" x="180.0" y="666" text-anchor="middle">Report</text><text class="sub" x="180.0" y="684" text-anchor="middle">evidence pack, open items, sign-off</text></g><g class="badge"><circle cx="32" cy="642" r="11"/><text x="32" y="646">7</text></g><rect class="logbar" x="30" y="730" width="300" height="64" rx="10"/><text class="ttl" x="180" y="756" text-anchor="middle">Every step is logged</text><text class="sub" x="180" y="776" text-anchor="middle">outside the platform admins&#8217; reach</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="12s" begin="0s" repeatCount="indefinite" path="M 180 38 L 180 668"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="6s"/><animateMotion dur="12s" begin="6s" repeatCount="indefinite" path="M 180 38 L 180 668"/></circle></svg>
+          <figcaption>The dots show one review line travelling from source data to a verified revocation. The advisory flag at step 3 helps the reviewer. It never decides, and the reviewer&rsquo;s answer is what gets executed.</figcaption>
+        </figure>
+        <p class="body-text" style="margin-top:14px">Two choices in this design carry most of the weight. The first is that usage data is joined to entitlement data before the reviewer sees anything, so evidence is part of the question and not a lookup the reviewer has to do. The second is that the identity governance system stays the system of record for the decision and its execution. A revoke does not leave that system as an email asking someone to do something.</p>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#access-certification</span><span>#identity-governance</span><span>#entitlement-review</span></div>
+      <section id="reviewers">
+        <h2>Choosing the reviewer</h2>
+        <p class="body-text">&ldquo;The manager reviews everything&rdquo; is the default, and it is wrong for a lot of access. A manager knows whether a person still needs access to the team&rsquo;s shared drive. They usually cannot judge a database role, an admin console permission or a finance approval limit.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>What is being reviewed</th><th>Who should review</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td data-label="What is being reviewed">Day-to-day access for a person</td><td data-label="Who should review">Line manager</td><td data-label="Why">They know the person&rsquo;s current job and whether it still needs this</td></tr>
+            <tr><td data-label="What is being reviewed">Application roles with business meaning</td><td data-label="Who should review">Application or data owner</td><td data-label="Why">They know what the role allows and who ought to hold it</td></tr>
+            <tr><td data-label="What is being reviewed">Privileged and admin access</td><td data-label="Who should review">Platform owner, plus the manager&rsquo;s confirmation of the person</td><td data-label="Why">Two questions need two answers: does the person still work here in this role, and does the privilege still match the work</td></tr>
+            <tr><td data-label="What is being reviewed">Service and machine accounts</td><td data-label="Who should review">The named owner of the system</td><td data-label="Why">There is no manager, so the owner is the only person who can say what depends on it</td></tr>
+            <tr><td data-label="What is being reviewed">Third-party accounts</td><td data-label="Who should review">The internal sponsor of the contract</td><td data-label="Why">The vendor will always say keep. The sponsor answers for the engagement</td></tr>
+            <tr><td data-label="What is being reviewed">Accounts with no owner</td><td data-label="Who should review">The platform owner, who triages them</td><td data-label="Why">Nobody else can. They are reported separately and treated as findings</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">A reviewer should not approve their own access, and should not be the only person who approved it in the first place. The tool can enforce both. Where it cannot, the line is routed to a second reviewer.</p>
       </section>
+
+      <section id="workflow">
+        <h2>One review cycle, step by step</h2>
+        <ol class="steps">
+          <li><h3>Collect entitlements into one inventory</h3><p>Each connected system sends its accounts and entitlements. They are matched to a person or an owner, and stamped with the last time the access was used. Where a system cannot report usage, the line says &ldquo;no usage data&rdquo; in plain words, so the reviewer knows the evidence is missing and does not read silence as activity.</p><div class="why"><span><b>Guardrail</b>Every account maps to a person or a named owner, or it is flagged</span><span><b>Evidence</b>Inventory snapshot with collection time</span></div></li>
+          <li><h3>Tier by risk and set the frequency</h3><p>Not every line deserves the same attention. Privileged access, access to sensitive data and anything that can move money are reviewed more often than a read-only role on an internal wiki. The tier is set once by security, written down, and applied by the system, so a team cannot choose a gentler schedule for itself.</p><div class="why"><span><b>Guardrail</b>Frequency follows tier, and tiers are set by security</span><span><b>Evidence</b>Tier policy and the tier on each line</span></div></li>
+          <li><h3>Pick the reviewer and build the pack</h3><p>The system assigns the reviewer from the table above, not from a single manager field. Each line shows a readable description of what the entitlement allows, when it was granted, who approved it, and when it was last used. The pack is as short as the tier allows. Low-risk access that has been used recently is grouped so the reviewer can confirm it in one action.</p><div class="why"><span><b>Guardrail</b>No self-review, and a second reviewer where the owner is the holder</span><span><b>Evidence</b>Reviewer assignment record</span></div></li>
+          <li><h3>Review with usage evidence and the advisory flag</h3><p>Entitlements with no use in the agreed window are pre-flagged as likely revokes, with the reason shown: &ldquo;not used in the last N days&rdquo;. The reviewer confirms or overrides each flag. Starting from a suggestion with a reason is faster than starting from a blank line, and it makes agreement a visible choice. Any model that produces the flag is advisory only, and its inputs are the usage and ownership data already in the inventory.</p><div class="why"><span><b>Guardrail</b>The flag is a suggestion. Overriding it needs a short reason, and so does approving a line with no usage</span><span><b>Evidence</b>Flag, reviewer action and reason, per line</span></div></li>
+          <li><h3>Record the decision</h3><p>Every line ends as keep, revoke or change, with the reviewer, the time and the evidence that was on screen when they chose. A campaign cannot be closed with open lines. Lines nobody answers escalate to the reviewer&rsquo;s manager after a set time, and after a second deadline the default is to suspend the access for review, not to keep it.</p><div class="why"><span><b>Guardrail</b>No answer is never an implicit approval</span><span><b>Evidence</b>Decision log with timestamps and escalations</span></div></li>
+          <li><h3>Execute revocations from the system of record</h3><p>Approved revokes are pushed by the identity governance system to the target system through its connector, or raised as a task to the owning team where no connector exists. The decision and the execution stay on one record, so nobody has to re-key a list from a spreadsheet. Where removal has a business impact, the change goes through the normal change process first.</p><div class="why"><span><b>Guardrail</b>A revoke has a due date, and an overdue revoke escalates</span><span><b>Evidence</b>Revocation request and its completion time</span></div></li>
+          <li><h3>Verify and report</h3><p>After execution, the system reads the target again and confirms the entitlement is gone. A revoke that did not take effect is reopened. Reporting then covers what was reviewed, what was changed, what was overridden, what is still open and who signed off. The report is built from the logs, not typed up afterward.</p><div class="why"><span><b>Guardrail</b>Done means verified in the target system</span><span><b>Evidence</b>Re-read result and the sign-off record</span></div></li>
+        </ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: one reviewer, one quarter</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event. The counts are made up to show the shape of the work.</p>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>A manager of eight people gets one spreadsheet with every entitlement, named by technical ID.</li><li>Nothing shows which lines were used.</li><li>They approve all of it on the last day, because rejecting something they do not understand feels risky.</li><li>Revokes, if any, go to a service desk queue by email.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>The manager sees plain descriptions, the last-used date and a flag on lines unused for the agreed window.</li><li>Grouped low-risk lines are confirmed together. The flagged lines get individual attention.</li><li>An override of a flag needs a sentence, so &ldquo;keep&rdquo; on an unused line is a considered choice.</li><li>Approved revokes execute from the governance system, and the re-read shows them gone.</li></ul></div>
+        </div>
+      </section>
+
+      <section id="special-accounts">
+        <h2>Orphaned, dormant, privileged and service accounts</h2>
+        <p class="body-text">The ordinary employee account is the easy case. The ones that keep surfacing in audits are the accounts the standard flow does not fit.</p>
+        <ul class="plain-list">
+          <li><strong>Dormant accounts</strong> exist and are valid, but nothing has used them for a long time. A review that shows last use catches them, and a rule that disables them after an agreed period of inactivity catches them between reviews. The review should confirm what the rule has done, not be the only thing that does it.</li>
+          <li><strong>Orphaned accounts</strong> have no active owner: the person left, the team was reorganised, the system changed hands. They come out of the inventory step as lines with no person to match. They go to the platform owner, who either assigns an owner within a deadline or disables the account.</li>
+          <li><strong>Privileged accounts</strong> get the shortest cycle and a stricter reviewer path. The questions are whether the person still needs this level, and whether the privilege is standing or can be requested when needed. Reviews find the standing access, and the answer is often to move it to request-and-approve rather than keep it.</li>
+          <li><strong>Service accounts</strong> have no manager, no leaving date and often no obvious owner. They stay in the same review, with an owner recorded at creation, a purpose, and a note of where the credential is used. The owner is asked to confirm the account still has a job. An account whose owner cannot be found goes onto the orphan list.</li>
+          <li><strong>Movers</strong> carry old access into a new role. The review is a backstop. The better control is removing access when the person moves, which is why the HR feed sits at the source end of the diagram.</li>
+        </ul>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Account type</th><th>Review rhythm</th><th>What the reviewer sees</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Account type">Standard employee</td><td data-label="Review rhythm">Set by tier, at least periodic</td><td data-label="What the reviewer sees">Description, grant date, last use</td></tr>
+            <tr><td data-label="Account type">Privileged</td><td data-label="Review rhythm">Shortest cycle</td><td data-label="What the reviewer sees">Standing or on request, last elevation, last use</td></tr>
+            <tr><td data-label="Account type">Service</td><td data-label="Review rhythm">Set by tier, with owner confirmation</td><td data-label="What the reviewer sees">Owner, purpose, where used, last sign-in or token use</td></tr>
+            <tr><td data-label="Account type">Third party</td><td data-label="Review rhythm">Aligned to the contract</td><td data-label="What the reviewer sees">Sponsor, end date, last use</td></tr>
+            <tr><td data-label="Account type">Orphaned</td><td data-label="Review rhythm">Triage on discovery</td><td data-label="What the reviewer sees">Last known owner, last use, what it can reach</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="rubber-stamp">
+        <h2>Keeping the review from becoming a stamp</h2>
+        <p class="body-text">Evidence helps, but people still find ways to click through. These are the habits I design against.</p>
+        <ul class="plain-list">
+          <li><strong>Short packs.</strong> A reviewer handed hundreds of lines will approve hundreds of lines. Group the low-risk, recently used access, and spend attention on the rest.</li>
+          <li><strong>Visible agreement.</strong> If the reviewer approves a line the system flagged as unused, they give a reason. It takes seconds and it changes behaviour.</li>
+          <li><strong>Watch the pattern.</strong> A reviewer who approves everything in a few minutes, campaign after campaign, is a finding in itself. Reviewers see their own override and revoke counts, and the platform owner sees the outliers.</li>
+          <li><strong>No silent defaults.</strong> Unanswered lines escalate and then suspend. Waiting it out is not allowed to be a way to keep access.</li>
+          <li><strong>Spot checks.</strong> Security samples a few &ldquo;keep&rdquo; decisions each cycle, asks the reviewer why, and checks the answer against the usage record.</li>
+          <li><strong>Respect the reviewer&rsquo;s time.</strong> Review dates are announced early, reminders go out on a schedule, and the pack is ready when the campaign opens. A rushed review is a rubber stamp by design.</li>
+        </ul>
+      </section>
+
+      <section id="roadmap">
+        <h2>How to build it in stages</h2>
+        <ol class="phases">
+          <li><b>1. Agree the scope and the owners</b>Which systems, which account types, which tiers, and who owns the process end to end.<small><em>Done when</em>The in-scope systems and tiers are written down and signed off by the people who will be reviewed.</small></li>
+          <li><b>2. Build the inventory</b>Connect the highest-risk systems first, along with the HR feed, and map every account to a person or an owner.<small><em>Done when</em>The inventory exists, and the orphaned accounts in it are listed, not hidden.</small></li>
+          <li><b>3. Make the lines readable</b>Replace technical entitlement names with plain descriptions, and add last-used data where systems can supply it.<small><em>Done when</em>A manager can say what a line allows without asking an administrator.</small></li>
+          <li><b>4. Run a pilot campaign</b>One tier and a small set of reviewers, with the advisory flag on. Ask reviewers what confused them.<small><em>Done when</em>Reviewers can finish without help, and the pilot&rsquo;s revokes were executed and verified.</small></li>
+          <li><b>5. Close the loop and widen</b>Automate execution through connectors, add the remaining systems, and bring the privileged and service accounts into the same cycle.<small><em>Done when</em>Approved revokes execute and are verified without a manual follow-up task.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Every account maps to a person or a named owner</td><td data-label="What it stops">Orphaned accounts that nobody reviews</td><td data-label="How you check it">Report of accounts with no owner or a departed owner</td></tr>
+            <tr><td data-label="Guardrail">Tiers and frequency set by security</td><td data-label="What it stops">Teams choosing an easier schedule for their own access</td><td data-label="How you check it">Compare each campaign&rsquo;s schedule with the tier policy</td></tr>
+            <tr><td data-label="Guardrail">No self-review</td><td data-label="What it stops">People approving their own access</td><td data-label="How you check it">Query for decisions where reviewer and holder match</td></tr>
+            <tr><td data-label="Guardrail">Advisory flag with a reason, overrides explained</td><td data-label="What it stops">Silent approval of unused access</td><td data-label="How you check it">Sample overrides and read the reasons</td></tr>
+            <tr><td data-label="Guardrail">No answer is never an approval</td><td data-label="What it stops">Access surviving by neglect</td><td data-label="How you check it">Count lines closed by escalation, and what happened to them</td></tr>
+            <tr><td data-label="Guardrail">Revoke is verified in the target system</td><td data-label="What it stops">Tickets marked done while the access remains</td><td data-label="How you check it">Re-read results, and a periodic independent spot check</td></tr>
+            <tr><td data-label="Guardrail">Logs held outside the platform</td><td data-label="What it stops">Evidence edited by the people it covers</td><td data-label="How you check it">Confirm platform admins cannot change the log store</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Was every in-scope account reviewed in the period?</td><td data-label="Where the answer comes from">Inventory snapshot compared with the campaign&rsquo;s decision log</td></tr>
+            <tr><td data-label="Question">Who decided, and what did they see?</td><td data-label="Where the answer comes from">Decision record with the reviewer, time, evidence and flag</td></tr>
+            <tr><td data-label="Question">Was the right person the reviewer?</td><td data-label="Where the answer comes from">Reviewer assignment record against the reviewer rules</td></tr>
+            <tr><td data-label="Question">Did the revoked access actually go?</td><td data-label="Where the answer comes from">Revocation record and the re-read of the target system</td></tr>
+            <tr><td data-label="Question">How are dormant and orphaned accounts handled?</td><td data-label="Where the answer comes from">Disable rule configuration, plus the orphan register with owners and dates</td></tr>
+            <tr><td data-label="Question">How do you know privileged and service accounts were included?</td><td data-label="Where the answer comes from">Tier report showing those accounts and their review dates</td></tr>
+            <tr><td data-label="Question">Can the evidence be trusted?</td><td data-label="Where the answer comes from">Logs held outside the platform, and the independent sample</td></tr>
+          </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-2</code></td><td data-label="What it asks for">Review accounts for compliance with account management requirements at an organization-defined frequency, and notify account managers when users are terminated or transferred.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-2(3)</code></td><td data-label="What it asks for">Disable accounts that have expired, are no longer associated with a user, violate policy, or have been inactive for a defined period.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-5</code>, <code class="ref">AC-6(7)</code></td><td data-label="What it asks for">Separation of duties, and periodic review of assigned privileges to validate the need, with reassignment or removal where needed.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for">Deciding which events are logged, and generating the audit records.</td></tr>
+            <tr><td data-label="Standard">NIST CSF 2.0</td><td data-label="Reference"><code class="ref">PR.AA-05</code></td><td data-label="What it asks for">Access permissions, entitlements and authorizations are defined, managed, enforced and reviewed, with least privilege and separation of duties.</td></tr>
+            <tr><td data-label="Standard">ISO/IEC 27001:2022</td><td data-label="Reference"><code class="ref">A.5.15</code>, <code class="ref">A.5.16</code>, <code class="ref">A.5.18</code></td><td data-label="What it asks for">Access control rules, identity management, and access rights that are provisioned, reviewed, modified and removed.</td></tr>
+            <tr><td data-label="Standard">CIS Controls v8</td><td data-label="Reference"><code class="ref">5.1</code>, <code class="ref">5.3</code>, <code class="ref">5.5</code></td><td data-label="What it asks for">An inventory of accounts that is validated on a regular schedule, disabling dormant accounts after 45 days of inactivity where supported, and an inventory of service accounts reviewed regularly.</td></tr>
+            <tr><td data-label="Standard">PCI DSS v4.0.1</td><td data-label="Reference"><code class="ref">7.2.4</code>, <code class="ref">8.2.6</code></td><td data-label="What it asks for">Review of all user accounts and access privileges, including third-party accounts, at least every six months, and removal or disabling of inactive accounts within 90 days.</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Platform product owner</td><td data-label="Owns">The review process, the campaign calendar, the connectors roadmap and the quality of what reviewers see</td></tr>
+            <tr><td data-label="Role">Reviewers: managers, application and data owners, sponsors</td><td data-label="Owns">The keep or revoke decision for each line, and the reason behind it</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Risk tiers, frequency, separation-of-duties rules and exception criteria</td></tr>
+            <tr><td data-label="Role">System and application administrators</td><td data-label="Owns">Executing revokes where there is no connector, and accurate entitlement data from their systems</td></tr>
+            <tr><td data-label="Role">HR</td><td data-label="Owns">The joiner, mover and leaver feed that triggers changes between reviews</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking of the process and a sample of decisions, separate from those who run it</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>Reviewers answer for their decisions.</strong> A keep decision on unused access carries the reviewer&rsquo;s name and reason.</li>
+          <li><strong>Measure the quality of the review, not just completion.</strong> Useful measures: revokes verified as done, time to execute, lines closed by escalation, overrides of the advisory flag, and accounts with no owner.</li>
+          <li><strong>Exceptions have owners and end dates.</strong> A system that cannot supply usage data, or an account that cannot be disabled, goes on a register that is reviewed on a rhythm.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>The data is worse than expected.</strong> Entitlement exports are inconsistent, owners are missing, and some systems report no usage at all. Say so in the pack instead of hiding it.</li>
+          <li><strong>Usage is a hint and not a verdict.</strong> Access held for a quarterly close, a disaster recovery role or an annual task can look dormant. The flag needs to be overridable, and reviewers need room to explain.</li>
+          <li><strong>Reviewer fatigue returns.</strong> Once the novelty fades, people click through again. Keep packs short, and keep watching the approval patterns.</li>
+          <li><strong>Revokes break something.</strong> Removing access that a process quietly depended on causes an incident and a loss of trust. Higher-impact removals go through change control, and a restore path exists.</li>
+          <li><strong>Connectors take time.</strong> Some systems have no clean way to remove access automatically. Those stay as tracked tasks with owners until they can be connected.</li>
+          <li><strong>The advisory step gets treated as the decision.</strong> If reviewers start accepting every flag without reading, the control has moved to a model nobody is accountable for. Keep a human reason on record.</li>
+        </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep when I design or run a certification process. They are not a record of one project.</p>
+        <ul class="plain-list">
+          <li><strong>Start by reading a real review pack as the reviewer.</strong> I open one and try to answer it. If I cannot tell what a line allows, neither can they, and the tool is not the problem.</li>
+          <li><strong>Fix the data before the workflow.</strong> A polished campaign built on a bad inventory produces confident wrong answers. I spend the first stage on the inventory and on owners.</li>
+          <li><strong>Treat the follow-through as part of the review.</strong> I do not count a campaign as complete until the revokes are verified. The completion rate that matters is on removals.</li>
+          <li><strong>Give reviewers a reason to trust the flag.</strong> I show why a line is flagged, and I let them overrule it without friction. A suggestion that cannot be argued with gets ignored or obeyed blindly.</li>
+          <li><strong>Pilot with the people who will complain.</strong> A small group of sceptical reviewers finds the confusing wording and the missing data faster than a sponsor does.</li>
+          <li><strong>Agree the reviewer rules with the business first.</strong> Who reviews what, and how long they have, is written down and approved before the first campaign. It saves arguments later.</li>
+          <li><strong>Keep privileged and service accounts in the same cycle.</strong> It is tempting to handle them separately because they are awkward. I bring them in early, with their own reviewer path, so they do not become a permanent exception.</li>
+        </ul>
+        <p class="body-text">The wider method, from first conversation to handover, is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a> (official publication page)</li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-2/">AC-2 Account Management, and enhancement AC-2(3), as reproduced on CSF Tools</a> (secondary mirror of the NIST text)</li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-6/ac-6-7/">AC-6(7) Review of User Privileges, as reproduced on CSF Tools</a> (secondary mirror of the NIST text)</li>
+          <li><a href="https://csf.tools/reference/nist-cybersecurity-framework/v2-0/pr/pr-aa/">NIST CSF 2.0, PR.AA: Identity Management, Authentication, and Access Control</a> (secondary mirror)</li>
+          <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022, Annex A</a> (the standard itself is paid. Control titles here are taken from secondary summaries)</li>
+          <li><a href="https://cas8.docs.cisecurity.org/en/latest/source/Controls5/">CIS Controls v8, Control 5: Account Management (Assessment Specification)</a></li>
+          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS, PCI Security Standards Council document library</a> (requirement text read from a third-party copy of v4.0.1, so check the numbering against the council&rsquo;s own document)</li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. The example is illustrative, and its numbers are made up. Control numbers are as published in the standards listed above.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#access-certification</span><span>#identity-governance</span><span>#entitlement-review</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#7df2d0" href="/case-studies/vendor-privileged-access/"><small><i></i>&larr; Previous</small><strong>Third-Party Privileged Access Governance</strong></a><a class="next" style="--c:#c4b5fd" href="/case-studies/passwordless-authentication/"><small><i></i>Next &rarr;</small><strong>Risk-Sequenced Passwordless Rollout</strong></a></div></nav>
       <footer class="page-footer">
@@ -96,7 +292,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
