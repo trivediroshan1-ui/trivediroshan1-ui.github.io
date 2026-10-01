@@ -93,3 +93,9 @@
   .themes a span { display: none; }
   .watch figcaption { font-size: .9rem; }
 }
+
+/* Touch targets: stand-alone links get at least 28px of height (WCAG 2.2 asks for 24px). Links inside sentences are untouched. */
+.back, .page-footer a, .footer-links a, .nav-desktop a, .start-grid a, .site-footer a, .filters + a { display: inline-flex; align-items: center; min-height: 28px; }
+@media (pointer: coarse) { .back, .page-footer a, .footer-links a, .start-grid a, .site-footer a { min-height: 40px; } }
+.nhi-announce a { display: inline-block; padding-block: 5px; }
+.footer-links a { min-width: 28px; justify-content: center; }

@@ -27,10 +27,10 @@
   <style>
     :root {
       --navy:#1a237e; --navy-mid:#283593; --navy-light:#3949ab;
-      --teal:#00897b; --teal-light:#00acc1;
-      --amber:#ff8f00; --saffron:#ff6d00; --green-ind:#388e3c;
+      --teal:#006d5f; --teal-light:#00acc1;
+      --amber:#ff8f00; --saffron:#ff6d00; --green-ind:#1b5e20;
       --white:#ffffff; --off-white:#f8f9fa; --light-bg:#e8eaf6;
-      --grey-200:#eeeeee; --grey-600:#757575; --dark:#212121;
+      --grey-200:#eeeeee; --grey-600:#616161; --dark:#212121;
       --radius:8px;
       --shadow:0 2px 12px rgba(26,35,126,.12);
       --shadow-lg:0 8px 32px rgba(26,35,126,.18);
@@ -170,7 +170,7 @@
     .footer-social{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
     .social-pill{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);padding:4px 12px;border-radius:20px;font-size:.78rem;transition:background .2s}
     .social-pill:hover{background:var(--teal);color:var(--white);text-decoration:none}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:.76rem;color:rgba(255,255,255,.38);text-align:center}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;font-size:.76rem;color:rgba(255,255,255,.6);text-align:center}
 
     /* UTILS */
     .text-center{text-align:center}
@@ -207,7 +207,8 @@
       .page-divider{page-break-before:always;height:0}
       body{font-size:13px}
     }
-  </style>
+  .skip{position:absolute;left:12px;top:-60px;z-index:300;background:#fff;color:#1a237e;font-weight:700;padding:10px 16px;border-radius:8px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.25)}.skip:focus{top:12px}
+</style>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -234,9 +235,10 @@
   "image": "https://roshantrivedi.co.in/og-image.png"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
+      <link rel="stylesheet" href="/assets/polish.css?v=20261002">
   </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <div class="tricolor"><div class="tri-saffron"></div><div class="tri-white"></div><div class="tri-green"></div></div>
 
@@ -263,6 +265,7 @@
 </nav>
 
 <!-- ═══════════════════════ HERO ═══════════════════════ -->
+<main id="main">
 <span class="section-anchor" id="home"></span>
 <section class="hero">
   <span class="hero-flag">🇮🇳</span>
@@ -905,9 +908,9 @@
     <p class="section-sub">A phased programme with clear milestones, ₹1,419 crore budget, RACI accountability, and measurable KPIs.</p>
 
     <div class="grid-3">
-      <div class="card card-navy"><h3>Phase 1 — Foundation (M1–6)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>Stand up National Exam-SOC</li><li>Deploy PAM for NTA central staff</li><li>Procure HSMs; establish NE-PKI</li><li>Deploy UEBA baselines</li><li>Pilot 200 high-risk centres</li><li>Security awareness training</li></ul><p style="margin-top:12px;font-weight:700;color:var(--amber)">₹385 crore</p></div>
-      <div class="card"><h3>Phase 2 — Core Deployment (M7–18)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>Full encrypted paper distribution</li><li>Digital watermarking on all exams</li><li>Biometric enrolment (80% staff)</li><li>MEI rollout — 2,000 Tier B centres</li><li>AI proctoring at 500 Tier A centres</li><li>Dark web monitoring live</li></ul><p style="margin-top:12px;font-weight:700;color:var(--amber)">₹539 crore</p></div>
-      <div class="card card-green"><h3>Phase 3 — Full Scale (M19–36)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>All 5,000 centres on MEI</li><li>Rural VSAT connectivity rollout</li><li>100% biometric coverage</li><li>Post-quantum cryptography</li><li>ISO 27001 certification</li><li>Standing red team programme</li></ul><p style="margin-top:12px;font-weight:700;color:var(--amber)">₹495 crore</p></div>
+      <div class="card card-navy"><h3>Phase 1 — Foundation (M1–6)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>Stand up National Exam-SOC</li><li>Deploy PAM for NTA central staff</li><li>Procure HSMs; establish NE-PKI</li><li>Deploy UEBA baselines</li><li>Pilot 200 high-risk centres</li><li>Security awareness training</li></ul><p style="margin-top:12px;font-weight:700;color:#a14a00">₹385 crore</p></div>
+      <div class="card"><h3>Phase 2 — Core Deployment (M7–18)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>Full encrypted paper distribution</li><li>Digital watermarking on all exams</li><li>Biometric enrolment (80% staff)</li><li>MEI rollout — 2,000 Tier B centres</li><li>AI proctoring at 500 Tier A centres</li><li>Dark web monitoring live</li></ul><p style="margin-top:12px;font-weight:700;color:#a14a00">₹539 crore</p></div>
+      <div class="card card-green"><h3>Phase 3 — Full Scale (M19–36)</h3><ul style="font-size:.86rem;color:var(--grey-600);padding-left:16px;line-height:1.9"><li>All 5,000 centres on MEI</li><li>Rural VSAT connectivity rollout</li><li>100% biometric coverage</li><li>Post-quantum cryptography</li><li>ISO 27001 certification</li><li>Standing red team programme</li></ul><p style="margin-top:12px;font-weight:700;color:#a14a00">₹495 crore</p></div>
     </div>
 
     <h3 class="sub-head">Budget by Line Item</h3>
@@ -1002,8 +1005,8 @@
         <thead><tr><th>Severity</th><th>Description</th><th>Response Time</th><th>Decision Authority</th></tr></thead>
         <tbody>
           <tr><td><strong style="color:#c62828">P1 — Critical</strong></td><td>Paper leak confirmed; HSM compromise; biometric system breach; active attacker in exam systems</td><td>Immediate (&lt; 5 min)</td><td>Exam-SOC duty officer (auto-contain) + NTA DG notified</td></tr>
-          <tr><td><strong style="color:#ff8f00">P2 — High</strong></td><td>Suspected leak; credential theft; camera system outage; insider access anomaly above UEBA threshold 85</td><td>&lt; 15 min</td><td>Exam-SOC Tier 2 analyst + NTA security head</td></tr>
-          <tr><td><strong style="color:#388e3c">P3 — Medium</strong></td><td>Single centre connectivity failure; device tamper alert; failed biometric above baseline; suspicious login</td><td>&lt; 30 min</td><td>Exam-SOC Tier 1 analyst</td></tr>
+          <tr><td><strong style="color:#a14a00">P2 — High</strong></td><td>Suspected leak; credential theft; camera system outage; insider access anomaly above UEBA threshold 85</td><td>&lt; 15 min</td><td>Exam-SOC Tier 2 analyst + NTA security head</td></tr>
+          <tr><td><strong style="color:#1b5e20">P3 — Medium</strong></td><td>Single centre connectivity failure; device tamper alert; failed biometric above baseline; suspicious login</td><td>&lt; 30 min</td><td>Exam-SOC Tier 1 analyst</td></tr>
           <tr><td><strong>P4 — Low</strong></td><td>Individual access anomaly; failed login attempts below threshold; minor physical irregularity</td><td>&lt; 2 hours</td><td>SOC alert queue</td></tr>
         </tbody>
       </table>
@@ -1219,6 +1222,7 @@
 
 <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
 <div class="page-divider"></div>
+</main>
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-grid">
