@@ -339,6 +339,12 @@
         <p class="body-text">The way I run the surrounding program is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>. For the short-lived access side, see <a href="/case-studies/jit-jea-elevation/">Just-in-Time &amp; Just-Enough-Access Elevation</a>, and for the wider non-human estate, <a href="/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a>.</p>
       </section>
 
+      <section id="lab">
+        <h2>Try the pattern</h2>
+        <p class="body-text">Status: live. I built a working lab of the approval step described above, so you can run it instead of reading about it. An agent asks to use a tool, a policy engine decides, higher-risk requests wait for a person with the right role, and an approval is time-bound, single-use and tied to the exact request. The lab also answers real MCP calls from a local server, and the source, threat model and tests are public.</p>
+        <p class="body-text"><a href="/mcp-human-approval-gateway/">Open the MCP lab</a> &middot; <a href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a>. All data in it is synthetic, and the reviewers are simulated, so it shows the pattern and proves nothing about any real deployment.</p>
+      </section>
+
       <section id="sources">
         <h2>Sources</h2>
         <p class="body-text">I opened and read each of these for this page, except where a note says otherwise. Secondary sources are marked.</p>
