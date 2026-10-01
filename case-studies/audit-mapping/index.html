@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -42,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/audit-mapping/",
   "image": "https://roshantrivedi.co.in/assets/og-case-audit-mapping.png",
   "articleSection": "Governance",
@@ -54,41 +55,278 @@
 }
     </script>
   </head>
-  <body>
+  <body style="--c:#f7c873">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Governance &middot; Case study</p>
-        <p class="cat-badge" style="color:#f7c873;background:rgba(247,200,115,0.12);border-color:#f7c87333">Governance</p>
         <h1>IAM Audit &amp; Control-Mapping Framework</h1>
-        <p class="dek">Translating control intent into platform responsibility, implementation evidence and sustainable ownership.</p>
-        <p class="meta">IAM control evaluation contributor</p>
+        <p class="dek">How to connect what an IAM control is meant to do with the proof that it did, who holds that proof, and how often someone looks at it.</p>
+        <p class="meta">IAM control evaluation contributor &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Audit language and platform implementation often describe the same risk differently, leaving ambiguity around evidence and ownership.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Audit wording and platform settings describe the same risk in different languages. The gap between them is where evidence goes missing and ownership gets vague.</li>
+          <li>Close it with a control register: one row per control, with a plain objective, one owner, the system setting that enforces it, the evidence it produces, and how fresh that evidence must be.</li>
+          <li>Collect evidence by a scheduled job into a store the audited people cannot edit. Record every gap with an owner and an expiry date. Then one control can answer to several frameworks without being written twice.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">An auditor reads a requirement such as &ldquo;access is reviewed periodically&rdquo;. An engineer reads a screen of group settings. A control owner reads a policy paragraph. All three are talking about the same risk, and each of them is sure the other two have the proof.</p>
+        <p class="body-text">The trouble shows up when the question arrives. Someone asks to see the last review of privileged access, and the answer is a search through email, a screenshot taken for a different purpose, and a person who has since moved teams. The control may well have been working. Nobody can show it, and the weeks spent reconstructing proof are weeks not spent improving anything.</p>
+        <p class="body-text">The work I contributed to was evaluating IAM control intent against what the platforms could actually do and what the operating process actually did. The aim was a plain path from each design decision to the evidence that shows the control works, with a named owner at each point and a review that someone really performs.</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Evaluated Identity and Access Management (IAM) control intent against platform capabilities and operational processes.</li>
-          <li>Mapped control objectives to owners, evidence types, dependencies and review considerations.</li>
-          <li>Identified where policy, technology and operating practice needed clearer alignment.</li>
+      <section id="architecture">
+        <h2>From objective to auditor&rsquo;s question</h2>
+        <p class="body-text">Every control gets the same chain. The objective says what the rule is for. The control says what the organization does about it. The system configuration is where that action is switched on. The configuration produces records, and a job gathers those records into a store. The auditor&rsquo;s question is answered from that store, and what the auditor finds feeds back into the control. The register sits across the top and holds the owners, the frequency and any exceptions.</p>
+        <figure class="diagram-card" style="--c:#f7c873;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 480" role="img" aria-labelledby="am1t am1d"><title id="am1t">From control objective to auditor question</title><desc id="am1d">A control objective is met by a control, which is built into a system configuration. The configuration produces an evidence source. Evidence is gathered on a schedule into an evidence store that the people being audited cannot edit, and it answers the auditor's question. A finding feeds back into the control. A control register holds the owner, evidence owner, frequency and any exception with an expiry date for each control.</desc><defs><marker id="amw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><rect style="fill:color-mix(in srgb,var(--c) 8%,transparent);stroke:var(--c);stroke-width:1.4" x="30" y="10" width="900" height="46" rx="10"/><text class="ttl" x="480" y="30" text-anchor="middle">Control register</text><text class="sub" x="480" y="47" text-anchor="middle">one row per control: owner, evidence owner, frequency, exceptions with an expiry date</text><path class="log" d="M 130 56 L 130 90"/><path class="log" d="M 480 56 L 480 90"/><path class="log" d="M 830 56 L 830 90"/><g class="node" style="--i:0"><rect x="30" y="90" width="200" height="90" rx="12"/><text class="ttl" x="130.0" y="121" text-anchor="middle">Control objective</text><text class="sub" x="130.0" y="140" text-anchor="middle">what the risk or rule asks,</text><text class="sub" x="130.0" y="156" text-anchor="middle">in plain words</text></g><g class="badge"><circle cx="32" cy="92" r="11"/><text x="32" y="96">1</text></g><g class="node" style="--i:0.8"><rect x="380" y="90" width="200" height="90" rx="12"/><text class="ttl" x="480.0" y="121" text-anchor="middle">Control</text><text class="sub" x="480.0" y="140" text-anchor="middle">what we do about it,</text><text class="sub" x="480.0" y="156" text-anchor="middle">written once, one owner</text></g><g class="badge"><circle cx="382" cy="92" r="11"/><text x="382" y="96">2</text></g><g class="node" style="--i:1.6"><rect x="730" y="90" width="200" height="90" rx="12"/><text class="ttl" x="830.0" y="121" text-anchor="middle">System configuration</text><text class="sub" x="830.0" y="140" text-anchor="middle">where the control is</text><text class="sub" x="830.0" y="156" text-anchor="middle">switched on</text></g><g class="badge"><circle cx="732" cy="92" r="11"/><text x="732" y="96">3</text></g><g class="node" style="--i:2.4"><rect x="730" y="250" width="200" height="90" rx="12"/><text class="ttl" x="830.0" y="281" text-anchor="middle">Evidence source</text><text class="sub" x="830.0" y="300" text-anchor="middle">what the system records:</text><text class="sub" x="830.0" y="316" text-anchor="middle">export, log, ticket, review</text></g><g class="badge"><circle cx="732" cy="252" r="11"/><text x="732" y="256">4</text></g><g class="node" style="--i:3.2"><rect x="380" y="250" width="200" height="90" rx="12"/><text class="ttl" x="480.0" y="281" text-anchor="middle">Evidence collection</text><text class="sub" x="480.0" y="300" text-anchor="middle">pulled by a job, stamped</text><text class="sub" x="480.0" y="316" text-anchor="middle">with date and who ran it</text></g><g class="badge"><circle cx="382" cy="252" r="11"/><text x="382" y="256">5</text></g><g class="node" style="--i:4.0"><rect x="30" y="250" width="200" height="90" rx="12"/><text class="ttl" x="130.0" y="281" text-anchor="middle">Auditor's question</text><text class="sub" x="130.0" y="300" text-anchor="middle">can you show me?</text><text class="sub" x="130.0" y="316" text-anchor="middle">answered from the store</text></g><g class="badge"><circle cx="32" cy="252" r="11"/><text x="32" y="256">6</text></g><path class="flow" d="M 230 135 L 378 135" marker-end="url(#amw)"/><text class="sub" x="304" y="125" text-anchor="middle">is met by</text><path class="flow" d="M 580 135 L 728 135" marker-end="url(#amw)"/><text class="sub" x="654" y="125" text-anchor="middle">is built into</text><path class="flow" d="M 830 180 L 830 248" marker-end="url(#amw)"/><text class="sub" x="820" y="218" text-anchor="end">produces</text><path class="flow" d="M 730 295 L 582 295" marker-end="url(#amw)"/><text class="sub" x="656" y="285" text-anchor="middle">is gathered by</text><path class="flow" d="M 380 295 L 232 295" marker-end="url(#amw)"/><text class="sub" x="306" y="285" text-anchor="middle">answers</text><path class="flow" d="M 130 250 L 130 182" marker-end="url(#amw)"/><text class="sub" x="140" y="218" text-anchor="start">a finding changes the control</text><rect class="logbar" x="30" y="396" width="900" height="64" rx="10"/><text class="ttl" x="480" y="420" text-anchor="middle">Evidence store, outside the reach of the people being audited</text><text class="sub" x="480" y="440" text-anchor="middle">read-only for control owners and platform admins, so nobody edits their own evidence</text><path class="log" d="M 830 340 L 830 396"/><path class="log" d="M 480 340 L 480 396"/><text class="sub" x="840" y="372" text-anchor="start">copy goes in</text><text class="sub" x="490" y="372" text-anchor="start">saved with the query</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="14s" begin="0s" repeatCount="indefinite" path="M 130 135 L 830 135 L 830 295 L 130 295 L 130 135"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="7s"/><animateMotion dur="14s" begin="7s" repeatCount="indefinite" path="M 130 135 L 830 135 L 830 295 L 130 295 L 130 135"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 920" role="img" aria-labelledby="am2t am2d"><title id="am2t">From control objective to auditor question</title><desc id="am2d">A control objective is met by a control, which is built into a system configuration. The configuration produces an evidence source. Evidence is gathered on a schedule into an evidence store that the people being audited cannot edit, and it answers the auditor's question. A finding feeds back into the control. A control register holds the owner, evidence owner, frequency and any exception with an expiry date for each control.</desc><defs><marker id="amt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--c)"/></marker></defs><rect style="fill:color-mix(in srgb,var(--c) 8%,transparent);stroke:var(--c);stroke-width:1.4" x="30" y="10" width="300" height="80" rx="12"/><text class="ttl" x="180" y="36" text-anchor="middle">Control register</text><text class="sub" x="180" y="56" text-anchor="middle">one row per control: owner,</text><text class="sub" x="180" y="73" text-anchor="middle">evidence owner, frequency, exceptions</text><path class="log" d="M 180 90 L 180 130"/><g class="node" style="--i:0.0"><rect x="30" y="130" width="300" height="64" rx="12"/><text class="ttl" x="180.0" y="148" text-anchor="middle">Control objective</text><text class="sub" x="180.0" y="167" text-anchor="middle">what the risk or rule asks,</text><text class="sub" x="180.0" y="183" text-anchor="middle">in plain words</text></g><g class="badge"><circle cx="32" cy="132" r="11"/><text x="32" y="136">1</text></g><g class="node" style="--i:0.8"><rect x="30" y="238" width="300" height="64" rx="12"/><text class="ttl" x="180.0" y="256" text-anchor="middle">Control</text><text class="sub" x="180.0" y="275" text-anchor="middle">what we do about it,</text><text class="sub" x="180.0" y="291" text-anchor="middle">written once, one owner</text></g><g class="badge"><circle cx="32" cy="240" r="11"/><text x="32" y="244">2</text></g><g class="node" style="--i:1.6"><rect x="30" y="346" width="300" height="64" rx="12"/><text class="ttl" x="180.0" y="372" text-anchor="middle">System configuration</text><text class="sub" x="180.0" y="391" text-anchor="middle">where the control is switched on</text></g><g class="badge"><circle cx="32" cy="348" r="11"/><text x="32" y="352">3</text></g><g class="node" style="--i:2.4000000000000004"><rect x="30" y="454" width="300" height="64" rx="12"/><text class="ttl" x="180.0" y="472" text-anchor="middle">Evidence source</text><text class="sub" x="180.0" y="491" text-anchor="middle">what the system records:</text><text class="sub" x="180.0" y="507" text-anchor="middle">export, log, ticket, review</text></g><g class="badge"><circle cx="32" cy="456" r="11"/><text x="32" y="460">4</text></g><g class="node" style="--i:3.2"><rect x="30" y="562" width="300" height="64" rx="12"/><text class="ttl" x="180.0" y="580" text-anchor="middle">Evidence collection</text><text class="sub" x="180.0" y="599" text-anchor="middle">pulled by a job, stamped with</text><text class="sub" x="180.0" y="615" text-anchor="middle">date and who ran it</text></g><g class="badge"><circle cx="32" cy="564" r="11"/><text x="32" y="568">5</text></g><g class="node" style="--i:4.0"><rect x="30" y="670" width="300" height="64" rx="12"/><text class="ttl" x="180.0" y="688" text-anchor="middle">Auditor's question</text><text class="sub" x="180.0" y="707" text-anchor="middle">can you show me?</text><text class="sub" x="180.0" y="723" text-anchor="middle">answered from the store</text></g><g class="badge"><circle cx="32" cy="672" r="11"/><text x="32" y="676">6</text></g><path class="flow" d="M 180 194 L 180 236" marker-end="url(#amt)"/><text class="sub" x="192" y="221" text-anchor="start">is met by</text><path class="flow" d="M 180 302 L 180 344" marker-end="url(#amt)"/><text class="sub" x="192" y="329" text-anchor="start">is built into</text><path class="flow" d="M 180 410 L 180 452" marker-end="url(#amt)"/><text class="sub" x="192" y="437" text-anchor="start">produces</text><path class="flow" d="M 180 518 L 180 560" marker-end="url(#amt)"/><text class="sub" x="192" y="545" text-anchor="start">is gathered by</text><path class="flow" d="M 180 626 L 180 668" marker-end="url(#amt)"/><text class="sub" x="192" y="653" text-anchor="start">answers</text><path class="flow" d="M 30 702 L 14 702 L 14 162 L 28 162" marker-end="url(#amt)"/><path class="log" d="M 330 486 L 350 486 L 350 790 L 330 790"/><path class="log" d="M 330 594 L 350 594"/><rect class="logbar" x="30" y="780" width="300" height="130" rx="12"/><text class="ttl" x="180" y="806" text-anchor="middle">Evidence store</text><text class="sub" x="180" y="828" text-anchor="middle">outside the reach of the people</text><text class="sub" x="180" y="846" text-anchor="middle">being audited, read-only for control</text><text class="sub" x="180" y="864" text-anchor="middle">owners and platform admins.</text><text class="sub" x="180" y="886" text-anchor="middle">A finding changes the control (left).</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="10s" begin="0s" repeatCount="indefinite" path="M 180 162 L 180 702"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="5s"/><animateMotion dur="10s" begin="5s" repeatCount="indefinite" path="M 180 162 L 180 702"/></circle></svg>
+          <figcaption>The dots follow one control through the chain, from its objective to the question an auditor will ask, and back to the control when a finding changes it. The bars show what sits alongside: the register that owns each row, and an evidence store that control owners and platform admins can read but not edit.</figcaption>
+        </figure>
+        <p class="body-text">The register is the part people skip, so it is worth saying what a row holds.</p>
+        <ul class="plain-list">
+          <li><strong>Control ID and objective.</strong> One sentence in plain words, written so a non-specialist could check it.</li>
+          <li><strong>Control statement.</strong> What is done, by whom, how often.</li>
+          <li><strong>Control owner.</strong> One named role accountable for the control working.</li>
+          <li><strong>System and configuration.</strong> The setting, policy or workflow where the control lives.</li>
+          <li><strong>Evidence type, source and owner.</strong> What proves it, where it comes from, and who collects it.</li>
+          <li><strong>Freshness.</strong> How recent the evidence has to be to count.</li>
+          <li><strong>Framework tags.</strong> The requirements this one control is read against.</li>
+          <li><strong>Gaps and exceptions.</strong> Each with an owner, a reason, a compensating step and an expiry date.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Improved the traceability between IAM design decisions and the evidence needed to demonstrate control effectiveness.</p>
+      <section id="evidence">
+        <h2>Four kinds of evidence, and what each one cannot show</h2>
+        <p class="body-text">Auditors collect evidence by examining records, interviewing people and testing the system. NIST&rsquo;s assessment guidance names those three methods. An interview helps explain a control, but it is the weakest thing to rely on, so I design for the first and third. That means records the system produced and results anyone can re-run.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Evidence type</th><th>What it shows</th><th>Where it is weak</th><th>Freshness it needs</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Evidence type">Configuration export</td><td data-label="What it shows">How a setting stands at one moment, such as a policy, a group list or a rotation rule</td><td data-label="Where it is weak">Says nothing about the weeks before or after. A change last month is invisible.</td><td data-label="Freshness it needs">Taken on the collection date, and again after every change to that setting</td></tr>
+            <tr><td data-label="Evidence type">Log query</td><td data-label="What it shows">What happened across a period: sign-ins, approvals, privileged sessions, changes</td><td data-label="Where it is weak">A wrong query or a missing log source looks the same as a clean result</td><td data-label="Freshness it needs">Covers the whole audit period. The query text is saved with the result.</td></tr>
+            <tr><td data-label="Evidence type">Ticket or approval record</td><td data-label="What it shows">A person asked, another person approved, the work was done</td><td data-label="Where it is weak">Proves the process ran for that item, not that every item went through it</td><td data-label="Freshness it needs">Per item. Pair it with a list of all changes so the tickets can be matched to the whole population.</td></tr>
+            <tr><td data-label="Evidence type">Review record</td><td data-label="What it shows">A named person looked at a list and decided to keep or remove each entry</td><td data-label="Where it is weak">Rubber-stamping. A signature without the list and the decisions proves very little.</td><td data-label="Freshness it needs">Dated inside the review cycle, with the list as it stood on the day</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Most controls need two types together. A configuration export shows the rule. A log query or review record shows the rule was followed over time.</p>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#iam-controls</span><span>#audit-readiness</span><span>#evidence-mapping</span></div>
+      <section id="freshness">
+        <h2>Freshness and sampling</h2>
+        <p class="body-text">Evidence goes stale. A screenshot from last year proves what a setting looked like last year. Each register row carries a freshness rule, and the collection job is built around it. Frequency also has to follow the strictest framework the control answers to. CIS Controls v8, for example, asks that active accounts are validated as authorized at a minimum of quarterly, and PCI DSS v4.0 asks for user accounts and privileges to be reviewed at least once every six months. A quarterly review satisfies both.</p>
+        <p class="body-text">Sampling is the auditor&rsquo;s call, and how many items they pick is theirs to decide. What I can control is the population they pick from and how the picks are recorded.</p>
+        <ul class="plain-list">
+          <li><strong>The population is complete.</strong> A full export of accounts, tickets or changes for the period, with the date and query that produced it. A sample from an incomplete list proves nothing about the rest.</li>
+          <li><strong>The pick is recorded.</strong> How items were chosen, by whom, and when. If the auditor chooses, their selection is saved as it was given.</li>
+        </ul>
       </section>
+
+      <section id="workflow">
+        <h2>Mapping one control, step by step</h2>
+        <ol class="steps">
+          <li><h3>Write the objective in plain words</h3><p>Take the requirement as the framework words it, then restate it as one sentence about the risk. If the owner cannot read the sentence and say whether it is true, rewrite it.</p><div class="why"><span><b>Guardrail</b>No jargon the owner cannot check</span><span><b>Evidence</b>Register row</span></div></li>
+          <li><h3>Write the control and name one owner</h3><p>State what is done, by whom and how often. One role is accountable. A committee is not an owner, and neither is a team mailbox.</p><div class="why"><span><b>Guardrail</b>A row with no named owner does not go live</span><span><b>Evidence</b>Owner field and approval of the row</span></div></li>
+          <li><h3>Point to the configuration</h3><p>Name the system and the exact setting, policy or workflow that makes the control real. If the control depends on a person remembering, mark it as a manual control and plan its evidence accordingly.</p><div class="why"><span><b>Guardrail</b>Manual controls are labelled as manual</span><span><b>Evidence</b>Configuration export</span></div></li>
+          <li><h3>Choose the evidence and its freshness</h3><p>Pick the evidence type from the four above, name the system it comes from, and set how recent it must be. Name a second evidence type if one alone would leave a gap, as with a setting that is shown but not shown to have been followed.</p><div class="why"><span><b>Guardrail</b>Every row names its source and freshness</span><span><b>Evidence</b>Evidence plan in the register</span></div></li>
+          <li><h3>Collect by job, into a store people cannot edit</h3><p>A scheduled job pulls the evidence and writes it to the store with the date, the source and the query. Control owners and platform admins can read it. They cannot change it.</p><div class="why"><span><b>Guardrail</b>Collection is automated and the store is read-only to the audited</span><span><b>Evidence</b>Collection log and store permissions</span></div></li>
+          <li><h3>Review it, and sign the review</h3><p>A reviewer who is not the collector looks at what arrived. They check that it is complete, current and answers the objective. Their name and the date go on the record.</p><div class="why"><span><b>Guardrail</b>The reviewer is not the person who collected</span><span><b>Evidence</b>Signed review record</span></div></li>
+          <li><h3>Record gaps and exceptions with an expiry</h3><p>Where the control or its evidence falls short, write it down. Each entry gets an owner, a reason, a compensating step and an end date, and it comes back to the reviewer on that date.</p><div class="why"><span><b>Guardrail</b>No exception without an expiry</span><span><b>Evidence</b>Exception register</span></div></li>
+          <li><h3>Rehearse the auditor&rsquo;s question</h3><p>Ask the question the way an auditor would and answer it from the store alone, with nobody going to find a screenshot. Fix what breaks, then update the row.</p><div class="why"><span><b>Guardrail</b>Dry run before the audit, and after a major change</span><span><b>Evidence</b>Dry-run notes</span></div></li>
+        </ol>
+      </section>
+
+      <section id="example">
+        <h2>Worked example: reviewing privileged access</h2>
+        <p class="body-text">This is an illustration of one row, not a record of a real control or a real audit. It shows how one control carries its own evidence through the chain.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Part of the row</th><th>What it says (illustrative)</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Part of the row">Objective</td><td data-label="What it says (illustrative)">People who hold privileged access still need it. Access that is no longer needed gets removed.</td></tr>
+            <tr><td data-label="Part of the row">Control</td><td data-label="What it says (illustrative)">Every quarter, the owner of each privileged group reviews its members and confirms or removes each one. Removals follow within the time the standard sets.</td></tr>
+            <tr><td data-label="Part of the row">System configuration</td><td data-label="What it says (illustrative)">Privileged groups are listed in the directory, each tagged with an owner. The review workflow pulls membership for those groups and no others.</td></tr>
+            <tr><td data-label="Part of the row">Evidence source</td><td data-label="What it says (illustrative)">Membership export when the review opens, the review record with a decision per member, the removal tickets, and a membership export after the removals.</td></tr>
+            <tr><td data-label="Part of the row">Evidence collection</td><td data-label="What it says (illustrative)">A scheduled job writes both exports to the evidence store with date and query. The review record is exported when the review closes.</td></tr>
+            <tr><td data-label="Part of the row">Freshness</td><td data-label="What it says (illustrative)">A review record dated within the last quarter. Exports from both ends of the review.</td></tr>
+            <tr><td data-label="Part of the row">Owners</td><td data-label="What it says (illustrative)">Control owner: head of the team that runs access reviews. Evidence owner: the person who runs the collection job. Reviewer: someone from risk or security who is neither of those.</td></tr>
+            <tr><td data-label="Part of the row">Exception</td><td data-label="What it says (illustrative)">A group whose owner has left. Recorded with an interim owner, the reason, and an end date by which a new owner must be named.</td></tr>
+            <tr><td data-label="Part of the row">Auditor&rsquo;s question</td><td data-label="What it says (illustrative)">&ldquo;Show me the last review of this admin group, and who was removed.&rdquo;</td></tr>
+            <tr><td data-label="Part of the row">Frameworks</td><td data-label="What it says (illustrative)"><code class="ref">AC-2</code> and <code class="ref">AC-6(7)</code>, <code class="ref">PR.AA-05</code>, <code class="ref">A.5.18</code> and <code class="ref">A.8.2</code>, CIS <code class="ref">5.1</code>, PCI DSS <code class="ref">7.2.4</code>, SOC 2 <code class="ref">CC6.3</code></td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">The answer to the auditor comes out of the store in minutes: both exports, the decisions, the tickets, and the reviewer&rsquo;s sign-off.</p>
+      </section>
+
+      <section id="frameworks">
+        <h2>One control, several frameworks</h2>
+        <p class="body-text">Frameworks overlap heavily on IAM. Account review, least privilege, authentication and logging turn up in all of them. Writing a separate control for each framework produces duplicates that drift apart, so I write the control once and tag it.</p>
+        <ul class="plain-list">
+          <li><strong>Map many to one, and read the words.</strong> The review control above carries six tags. They are not word-for-word equal. Some cover all user accounts, some only privileged ones, some only service accounts. Where scope differs, the control statement widens until it covers the largest scope, or a second row covers the remainder.</li>
+          <li><strong>Treat the mapping as my reading.</strong> A framework does not say a particular control meets it. The auditor and the framework owner decide that. The tag records who mapped it, when, and on which version of the standard.</li>
+          <li><strong>Keep the register framework-neutral.</strong> Frameworks change versions. A register organized by control survives a new standard. One organized by a standard does not.</li>
+        </ul>
+        <p class="body-text">The full list of references I checked is in the standards map further down.</p>
+      </section>
+
+      <section id="integrity">
+        <h2>Evidence the audited cannot edit</h2>
+        <p class="body-text">If the people running a control also control its evidence, the evidence is only as good as their honesty on the worst day. The people involved can be entirely trustworthy and the arrangement is still weak, because the auditor cannot tell the difference.</p>
+        <p class="body-text">NIST SP 800-53 Rev. 5 covers this under AU-9, protection of audit information. The base control is to protect audit information and audit logging tools from unauthorized access, modification and deletion, and to alert when it happens. Its enhancements describe the means. They include storing audit records on a physically different system from the one audited (<code class="ref">AU-9(2)</code>), limiting who can manage audit logging (<code class="ref">AU-9(4)</code>), dual authorization for moving or deleting audit information (<code class="ref">AU-9(5)</code>) and read-only access (<code class="ref">AU-9(6)</code>). PCI DSS v4.0 has the same intent in requirement 10.3.2, which asks that audit log files are protected to prevent modifications by individuals.</p>
+        <ul class="plain-list">
+          <li><strong>Separate the store from the system.</strong> Evidence for a platform lives somewhere the platform&rsquo;s admins cannot write.</li>
+          <li><strong>Write once, read many.</strong> Control owners and admins read. A small, named group holds the right to manage the store itself, and its changes are logged.</li>
+          <li><strong>Prove the lock.</strong> Try to edit an item with an owner account and an admin account, and keep the failed attempt as evidence.</li>
+        </ul>
+      </section>
+
+      <section id="gaps">
+        <h2>Gaps and exceptions, with an end date</h2>
+        <p class="body-text">Some controls will not work as written, and some evidence will not exist. A register that shows everything green is either wrong or hiding things. A good one shows a few honest gaps, each with a plan.</p>
+        <ul class="plain-list">
+          <li><strong>A gap</strong> is a control or its evidence falling short of what the register says it should be. It is recorded the day it is found.</li>
+          <li><strong>An exception</strong> is a decision to accept the shortfall for a while. It needs an owner who accepts the risk, a reason, a compensating step, and an expiry date.</li>
+          <li><strong>Expiry forces a decision.</strong> On the date, the exception is closed because it is fixed, renewed by the same approver with a fresh reason, or escalated. Letting it run on silently is the one thing it cannot do.</li>
+        </ul>
+      </section>
+
+      <section id="prep">
+        <h2>Preparing for internal and external audit</h2>
+        <p class="body-text">Internal and external audits ask for similar things in different tones. Internal audit usually wants to find problems early and will accept a recorded gap with a plan. External audit wants the control demonstrated across the period and has less room for surprises. The same register and store serve both.</p>
+        <ul class="plain-list">
+          <li><strong>Walk the scope with the auditor first.</strong> Which controls, which period, which systems. Agree it in writing so the register and the request list line up.</li>
+          <li><strong>Run the register against the request list.</strong> Every item the auditor asks for should map to a row. Items that do not map point to a missing control or a missing row.</li>
+          <li><strong>Hand over by link and permission, not by email.</strong> Give the auditor read access to the relevant part of the store. Everything they pull is logged, and there is one copy of each item.</li>
+          <li><strong>Treat findings as register changes.</strong> A finding becomes an update to the control, the configuration or the evidence plan, with an owner and a date, and goes back through the chain.</li>
+        </ul>
+      </section>
+
+      <section id="roadmap">
+        <h2>How to build it without stalling</h2>
+        <ol class="phases">
+          <li><b>1. Start the register small</b>Pick the IAM controls that matter most and write one row each, in plain words, with an owner.<small><em>Done when</em>Every row has an objective, a control statement and a named owner.</small></li>
+          <li><b>2. Map to systems and evidence</b>For each row, find the real configuration and the real evidence source. Mark the gaps honestly.<small><em>Done when</em>Every row points to a setting and a source, and every gap has an entry.</small></li>
+          <li><b>3. Automate collection and lock the store</b>Replace hand-gathered screenshots with scheduled exports and saved queries.<small><em>Done when</em>The highest-risk controls collect their own evidence into a read-only store.</small></li>
+          <li><b>4. Rehearse</b>Answer real auditor questions from the store, with someone outside the team asking.<small><em>Done when</em>The questions get answered without anyone going to find a file.</small></li>
+          <li><b>5. Keep it alive</b>Review the register on a rhythm and whenever a system, a framework version or an owner changes.<small><em>Done when</em>The register changes in the same week as the system it describes.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">One named owner per control and per evidence item</td><td data-label="What it stops">Controls everyone assumes someone else covers</td><td data-label="How you check it">Report of rows with an empty or departed owner</td></tr>
+            <tr><td data-label="Guardrail">Evidence collected by job</td><td data-label="What it stops">Proof assembled the week before the audit</td><td data-label="How you check it">Compare collection timestamps with the schedule</td></tr>
+            <tr><td data-label="Guardrail">Evidence store read-only to the audited</td><td data-label="What it stops">Edits by the people the evidence describes</td><td data-label="How you check it">Try an edit as an owner and as an admin, and keep the result</td></tr>
+            <tr><td data-label="Guardrail">Query text and run details saved with each result</td><td data-label="What it stops">Results nobody can reproduce</td><td data-label="How you check it">Re-run an old query and compare it with the stored result</td></tr>
+            <tr><td data-label="Guardrail">Exceptions carry an owner, a reason and an expiry date</td><td data-label="What it stops">Temporary gaps that become permanent</td><td data-label="How you check it">List of exceptions past expiry</td></tr>
+            <tr><td data-label="Guardrail">Reviewer is not the collector</td><td data-label="What it stops">Self-marked homework</td><td data-label="How you check it">Compare the two names on each record</td></tr>
+            <tr><td data-label="Guardrail">Register reviewed when systems or standards change</td><td data-label="What it stops">A register that drifts from reality</td><td data-label="How you check it">Date of last review on each row</td></tr>
+            <tr><td data-label="Guardrail">Dry run before every audit</td><td data-label="What it stops">Surprises in the audit room</td><td data-label="How you check it">Pick a control at random and answer from the store alone</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Which controls cover this requirement?</td><td data-label="Where the answer comes from">The register, filtered by framework tag</td></tr>
+            <tr><td data-label="Question">Who owns this control, and who supplies its evidence?</td><td data-label="Where the answer comes from">The owner and evidence owner fields</td></tr>
+            <tr><td data-label="Question">Show me it working across the whole period.</td><td data-label="Where the answer comes from">Saved log queries and review records for each cycle in the period</td></tr>
+            <tr><td data-label="Question">How do you know this evidence was not changed?</td><td data-label="Where the answer comes from">Store permissions, the access list, and the record of the edit attempt</td></tr>
+            <tr><td data-label="Question">What was not working, and what did you do?</td><td data-label="Where the answer comes from">Gap and exception register, with owners and expiry dates</td></tr>
+            <tr><td data-label="Question">How was this sample picked?</td><td data-label="Where the answer comes from">Sampling record with the full population export and the method</td></tr>
+            <tr><td data-label="Question">Who checks the people who collect?</td><td data-label="Where the answer comes from">Reviewer sign-off on each record, and the internal audit report</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Questions specific to privileged access and credentials are in the audit sections of <a href="/case-studies/pam-modernization/">PAM Modernization &amp; Zero Standing Privilege</a> and <a href="/case-studies/credential-platform/">Credential Management Platform Strategy</a>.</p>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-2</code>, <code class="ref">AC-6(7)</code></td><td data-label="What it asks for">Review accounts for compliance with account management requirements at a defined frequency, and review privilege assignments periodically.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">IA-2</code>, <code class="ref">IA-5</code></td><td data-label="What it asks for">Uniquely identify and authenticate users, and manage authenticators across their lifecycle.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for">Decide which events are logged, and generate the audit records for them.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-6</code></td><td data-label="What it asks for">Review and analyze audit records at a defined frequency, and report findings to defined roles.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-9</code></td><td data-label="What it asks for">Protect audit information and logging tools from unauthorized access, modification and deletion.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">CA-7</code></td><td data-label="What it asks for">A continuous monitoring strategy with metrics, frequencies for monitoring and for assessing control effectiveness, analysis, response and reporting.</td></tr>
+            <tr><td data-label="Standard">NIST CSF 2.0</td><td data-label="Reference"><code class="ref">PR.AA-01</code>, <code class="ref">PR.AA-05</code></td><td data-label="What it asks for">Identities and credentials are managed. Permissions are defined in policy, managed, enforced and reviewed, with least privilege and separation of duties.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">GV.RR-02</code>, <code class="ref">GV.OV-03</code>, <code class="ref">ID.IM-01</code></td><td data-label="What it asks for">Roles and responsibilities are established and enforced. Risk management performance is evaluated. Improvements are identified from evaluations.</td></tr>
+            <tr><td data-label="Standard">ISO/IEC 27001:2022 (secondary summaries)</td><td data-label="Reference"><code class="ref">9.1</code></td><td data-label="What it asks for">Decide what to monitor and measure, the methods, who does it and when, when results are analysed and by whom, and keep documented information as evidence of the results.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">A.5.15</code>, <code class="ref">A.5.16</code>, <code class="ref">A.5.17</code>, <code class="ref">A.5.18</code>, <code class="ref">A.8.2</code></td><td data-label="What it asks for">Access control, identity management, authentication information, access rights and privileged access rights.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">A.8.15</code>, <code class="ref">A.5.35</code>, <code class="ref">A.5.36</code></td><td data-label="What it asks for">Logging, independent review of information security, and compliance with policies, rules and standards.</td></tr>
+            <tr><td data-label="Standard">CIS Controls v8</td><td data-label="Reference"><code class="ref">5.1</code>, <code class="ref">5.3</code>, <code class="ref">5.5</code></td><td data-label="What it asks for">Inventory accounts and validate them at least quarterly, disable dormant accounts after 45 days where supported, and review service accounts at least quarterly.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">6.1</code>, <code class="ref">6.2</code></td><td data-label="What it asks for">A documented process for granting access and for revoking it.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">8.2</code>, <code class="ref">8.9</code>, <code class="ref">8.11</code></td><td data-label="What it asks for">Collect audit logs, centralize them, and review them to detect anomalies.</td></tr>
+            <tr><td data-label="Standard">PCI DSS v4.0 (read via secondary)</td><td data-label="Reference"><code class="ref">7.2.4</code>, <code class="ref">7.2.5.1</code></td><td data-label="What it asks for">Review user accounts and privileges at least every six months. Review application and system account access at a frequency set by targeted risk analysis.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">10.2.1.2</code>, <code class="ref">10.3.2</code>, <code class="ref">10.5.1</code></td><td data-label="What it asks for">Log all administrative actions, protect audit logs from modification by individuals, and retain history for at least 12 months with the latest three months immediately available.</td></tr>
+            <tr><td data-label="Standard">SOC 2 (AICPA TSC)</td><td data-label="Reference"><code class="ref">CC4.1</code>, <code class="ref">CC6.2</code>, <code class="ref">CC6.3</code>, <code class="ref">CC7.2</code></td><td data-label="What it asks for">Ongoing or separate evaluations of controls. Registering and authorizing users before access. Authorizing, modifying and removing access by role with least privilege and segregation of duties. Monitoring for anomalies.</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Control owner</td><td data-label="Owns">That the control is designed well and works. Answers for gaps and signs exceptions for their area.</td></tr>
+            <tr><td data-label="Role">Evidence owner</td><td data-label="Owns">That the evidence is collected on time, complete and saved with its source and query. Keeps the collection job running.</td></tr>
+            <tr><td data-label="Role">Reviewer</td><td data-label="Owns">An independent check that the evidence is complete, current and answers the objective. Not the control owner and not the collector.</td></tr>
+            <tr><td data-label="Role">Register keeper</td><td data-label="Owns">The structure of the register, framework tags and the review rhythm. Does not own the controls themselves.</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent testing of the whole arrangement, separate from those who run the controls and those who review them.</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>Separate the three jobs.</strong> The person who runs a control, the person who collects its evidence and the person who reviews it should not all be the same person. Where a small team makes that impossible, record the overlap as an exception with a compensating check.</li>
+          <li><strong>Review on a rhythm.</strong> The register gets a regular review, and an extra one when a system, an owner or a framework version changes.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>The register becomes a spreadsheet nobody opens.</strong> If updating it is separate work from changing a system, it will fall behind. Tie the register change to the system change.</li>
+          <li><strong>Evidence is built for the audit.</strong> A burst of screenshots the week before only proves the week before. Collection by job fixes this.</li>
+          <li><strong>Everything gets mapped to everything.</strong> Tagging a control to a requirement it only loosely touches makes the mapping look complete and wastes the auditor&rsquo;s time. Tag only what the control really answers.</li>
+          <li><strong>Review turns into signing.</strong> If the reviewer sees only a form and never the list, the review proves nothing. The record must hold the list as it stood and the decision for each item.</li>
+          <li><strong>Exceptions pile up.</strong> Without expiry dates the register fills with accepted risk nobody remembers accepting.</li>
+        </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep when I work on controls and evidence. They are not a checklist from any one engagement.</p>
+        <ul class="plain-list">
+          <li><strong>Start from the question, then work backwards.</strong> I write down what an auditor would ask and trace it back to the system that could answer it. That finds missing evidence faster than reading the standard top to bottom.</li>
+          <li><strong>Name one owner, even when it is awkward.</strong> I would rather have an owner who objects early than a shared owner who is surprised later.</li>
+          <li><strong>Test the evidence, not only the control.</strong> I try to answer a question from the store with nobody helping. If it takes a conversation, the evidence is not ready.</li>
+          <li><strong>Say what the control does not cover.</strong> Writing the limits down in the register protects the owner and keeps the auditor&rsquo;s scope honest.</li>
+          <li><strong>Treat a gap as normal news.</strong> If people are afraid to report one, they will hide it. I ask for gaps early and reward the people who raise them.</li>
+        </ul>
+        <p class="body-text">The longer account of how I run a program from first conversation to handover, including the audit documents I expect at the end, is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a>. AC-2 item j was checked in a NIST-derived copy. The wording of AC-6(7), IA-2, AU-2, AU-6, AU-9, AU-12 and CA-7 was read through the <a href="https://csf.tools/reference/nist-sp-800-53/r5/au/au-9/">CSF Tools mirror</a>, a secondary source.</li>
+          <li><a href="https://csrc.nist.gov/glossary/term/assessment_method">NIST glossary: assessment method</a>, quoting SP 800-53A Rev. 5 (examine, interview, test)</li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf">NIST Cybersecurity Framework 2.0</a></li>
+          <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022</a>. The standard is paid, so I did not read it directly. Clause 9.1 and the Annex A names come from secondary summaries (<a href="https://27kay.com/blog/iso-27001-clause-9-1-monitoring-measurement/">27kay</a>, <a href="https://iseoblue.com/iso-27001/annex-a/iso-27001-controls-list/">iseoblue</a>, <a href="https://www.urmconsulting.com/blog/iso-27001-2022-a-5-organisational-controls-access-management">URM</a>).</li>
+          <li><a href="https://cas.docs.cisecurity.org/en/latest/source/Controls5/">CIS Controls Assessment Specification, Control 5</a>, <a href="https://cas.docs.cisecurity.org/en/latest/source/Controls6/">Control 6</a> and <a href="https://cas.docs.cisecurity.org/en/latest/source/Controls8/">Control 8</a>, published by the Center for Internet Security. These are v8 and v8.1 wording.</li>
+          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0, PCI Security Standards Council</a>. The standard needs a download agreement, so requirement wording was read through Microsoft Learn, a secondary source: <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-10">Requirement 10</a> and <a href="https://learn.microsoft.com/th-th/entra/standards/pci-requirement-7">Requirement 7</a>.</li>
+          <li><a href="https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022">AICPA 2017 Trust Services Criteria (with revised points of focus, 2022)</a>. The criteria text was read in a third-party <a href="https://gccertification.com/wp-content/uploads/2024/06/AICPA-TSP-Section-100-Trust-Services-Criteria-2022.pdf">hosted copy of TSP Section 100</a>, a secondary source.</li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data, and the worked example is illustrative. Control numbers and wording are as published in the sources above. Where a source is secondary, check the standard itself before you cite it in an audit.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#iam-controls</span><span>#audit-readiness</span><span>#evidence-mapping</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#c4b5fd" href="/case-studies/platform-evaluation/"><small><i></i>&larr; Previous</small><strong>PAM Platform Evaluation</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/ai-coworker/"><small><i></i>Next &rarr;</small><strong>AI as a Coworker in Identity Operations</strong></a></div></nav>
       <footer class="page-footer">
@@ -96,7 +334,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

@@ -19,7 +19,9 @@
     <title>Cloud Entitlement Management (CIEM) at Scale · Roshan Trivedi</title>
 
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -41,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/ciem-at-scale/",
   "image": "https://roshantrivedi.co.in/assets/og-case-ciem-at-scale.png",
   "articleSection": "Cloud identity",
@@ -52,43 +54,239 @@
   "keywords": "ciem, cloud iam, least privilege"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-  <body>
+    </head>
+  <body style="--c:#c4b5fd">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Cloud identity &middot; Case study</p>
-        <p class="cat-badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Cloud identity</p>
         <h1>Cloud Entitlement Management (CIEM) at Scale</h1>
-        <p class="dek">Finding the toxic entitlement combinations that individual cloud IAM rules miss.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
+        <p class="dek">How to find the toxic entitlement combinations that individual cloud IAM rules miss, cut excess access from what people and workloads actually use, and keep it from growing back.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">Cloud Identity and Access Management (IAM) policies were reviewed one role or one permission at a time, so combinations of individually reasonable entitlements that together created an unintended privilege escalation path went undetected until they were exploited or found by chance.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Cloud identities hold far more access than they use. That gap is the main thing a cloud entitlement program works on, and each cloud already records the usage data needed to measure it.</li>
+          <li>Reviewing one role or one policy at a time misses combinations. What an identity can really do is the union of everything attached to it, plus whatever it can reach through trust links to other accounts.</li>
+          <li>Every cut goes to an owner for approval, ships with a rollback, and is backed by policy as code and organization-level guardrails, so the excess does not return.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Cloud permissions pile up. A role is created for a project and given broad rights so the launch does not slip. A person changes teams and keeps their old access. A pipeline&rsquo;s service account gets one more policy each time a deploy fails. Nobody takes anything away, because removing access can break something and nobody can say for sure that it will not.</p>
+        <p class="body-text">Four kinds of identity sit in that pile: people, workloads, federated identities that arrive through a corporate directory or an outside provider, and service accounts that exist for one job. Each cloud models them in its own way. The names, the policy languages and the ways of attaching permissions all differ, so a view built for one cloud tells you little about the next.</p>
+        <p class="body-text">Two problems come out of this. The first is size. Granted permissions are much larger than used permissions, and that gap is attack surface. The second is shape. When policies are reviewed one at a time, combinations go unseen. An identity can hold two permissions that each look reasonable and that together let it change its own access, or reach data that another account controls. The real entitlement is the union of every policy attached to the identity. In the program this page describes, that was the starting point: policies reviewed singly, with risky combinations found late or by chance.</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Built a unified view of effective permissions across cloud accounts and providers, since the real entitlement a principal holds is the union of every policy attached to it, not any single policy in isolation.</li>
-          <li>Added an advisory reasoning pass over the entitlement graph that surfaces combinations — not just individual over-permissioned roles — that together allow privilege escalation or unintended data access.</li>
-          <li>Routed every flagged combination through the same human-approval gate used for standing privileged access changes, so remediation follows an existing accountable process instead of a one-off cleanup.</li>
+      <section id="identities">
+        <h2>Four kinds of identity, four kinds of owner</h2>
+        <p class="body-text">Before measuring anything, I list what kinds of identity exist and who answers for each. The owner column matters most. A finding with no owner has nowhere to go.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Identity</th><th>Typical examples</th><th>What goes stale</th><th>Owner to ask for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Identity">Human</td><td data-label="Typical examples">Engineers, administrators, people on call</td><td data-label="What goes stale">Access kept after a team move. Admin rights used a few times a year.</td><td data-label="Owner to ask for">The line manager and the resource owner</td></tr>
+            <tr><td data-label="Identity">Workload</td><td data-label="Typical examples">Functions, containers, roles attached to virtual machines</td><td data-label="What goes stale">A role created broad for launch and never narrowed</td><td data-label="Owner to ask for">The service team</td></tr>
+            <tr><td data-label="Identity">Federated</td><td data-label="Typical examples">People or systems arriving through a directory or an external identity provider</td><td data-label="What goes stale">Trust that still points at a provider or account nobody uses. Mapping rules wider than intended.</td><td data-label="Owner to ask for">The identity team and the account owner</td></tr>
+            <tr><td data-label="Identity">Service account</td><td data-label="Typical examples">Service principals, app registrations, accounts with long-lived keys</td><td data-label="What goes stale">Keys unused for months and still valid. No owner once the creator left.</td><td data-label="Owner to ask for">A named application owner</td></tr>
+          </tbody></table></div>
+        <p class="body-text">Federated identities deserve a second look. The trust relationship that lets an outside identity assume a role is an entitlement in its own right. Reading only the permissions on the role misses who is allowed to become it.</p>
+      </section>
+
+      <section id="effective">
+        <h2>Granted, effective and used</h2>
+        <p class="body-text">Three words carry most of the confusion in this area, so I define them early and keep them fixed.</p>
+        <ul class="plain-list">
+          <li><strong>Granted</strong> is what is written in the policies attached to an identity.</li>
+          <li><strong>Effective</strong> is what the identity can do once everything is combined: direct policies, group or role membership, resource policies, permission boundaries, organization-level guardrails, deny rules and trust relationships. Effective permissions are what an attacker inherits.</li>
+          <li><strong>Used</strong> is what the logs show the identity did over a stated window.</li>
+        </ul>
+        <p class="body-text">The work is the gap between effective and used, and the paths hidden inside effective. The three major clouds each publish usage data that helps. The table below summarizes what their documentation says, without ranking them.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Need</th><th>AWS</th><th>Microsoft Azure and Entra</th><th>Google Cloud</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Need">Report on unused access</td><td data-label="AWS">IAM Access Analyzer unused access findings cover unused roles, access keys and passwords, and unused services and actions for active roles and users. The tracking period can be set from 1 to 365 days, for one account or a whole organization.</td><td data-label="Microsoft Azure and Entra">Access reviews can be limited to inactive users, for up to 730 days. Reviewers see the person&rsquo;s last sign-in or last application access as a recommendation.</td><td data-label="Google Cloud">The IAM recommender compares the permissions a principal holds with those it used, using at most the most recent 90 days of data.</td></tr>
+            <tr><td data-label="Need">Right-size from observed use</td><td data-label="AWS">Policy generation reads up to 90 days of CloudTrail activity and drafts a policy from the actions it finds.</td><td data-label="Microsoft Azure and Entra">Access reviews cover Azure resource roles and Entra roles in Privileged Identity Management, including service principals with direct access.</td><td data-label="Google Cloud">Role recommendations suggest removing a role, replacing it with a less permissive one, or creating a custom role from the permissions observed.</td></tr>
+            <tr><td data-label="Need">Per-identity last use</td><td data-label="AWS">Last accessed information shows service and action use, including denied attempts. Service information is tracked for at least 400 days.</td><td data-label="Microsoft Azure and Entra">Sign-in and application activity shown to reviewers.</td><td data-label="Google Cloud">Recommendations consider direct API calls and use through the console.</td></tr>
+            <tr><td data-label="Need">Applying and undoing</td><td data-label="AWS">A generated policy is reviewed, edited and attached by a person.</td><td data-label="Microsoft Azure and Entra">An optional setting applies review results automatically and removes denied access.</td><td data-label="Google Cloud">Recommendations are never applied automatically. Applied or dismissed choices can be reverted from the history for 90 days.</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Two limits from the AWS documentation shape how I use any of this. Policy generation leaves out data events and the <code class="ref">iam:PassRole</code> action, which CloudTrail does not record, and last accessed data excludes data plane events. A permission can look unused because the log cannot see it. Absence from the log is evidence, and a person still decides.</p>
+        <p class="body-text">One product note, since it comes up. Microsoft announced end of sale for Microsoft Entra Permissions Management from 1 April 2025, with retirement later that year. Its own pages give slightly different retirement dates, 1 October and 1 November 2025, so I do not count on it and I check the provider&rsquo;s current documentation before building around any product. For Azure, I use Entra access reviews and Privileged Identity Management for review and removal, plus my own analysis for effective permissions.</p>
+      </section>
+
+      <section id="architecture">
+        <h2>How it fits together</h2>
+        <p class="body-text">Collection is read-only. Each account, subscription or project feeds three kinds of data into one analysis step: which identities exist, what permissions they hold, and what they did. The analysis has two parts. Rules compute effective permissions and the gap against use. A second, model-assisted pass reads the same graph and proposes combinations worth a look, for example an identity that can create a role and also attach policies to it. That pass only advises. It cites the policy statements behind every finding, and it has no path to change a policy.</p>
+        <figure class="diagram-card" style="--c:#c4b5fd;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 495" role="img" aria-labelledby="c1t c1d"><title id="c1t">Cloud entitlement management architecture</title><desc id="c1d">Cloud accounts, subscriptions and projects feed three kinds of data into an analysis step: which identities exist, what permissions they hold, and what they actually did. Analysis produces a ranked finding, which becomes a right-sizing proposal. The resource owner and security approve it, the change is enforced with a rollback copy, and the result is recorded as evidence. Evidence leads back to observing the estate again. Every step writes to an audit log.</desc><g class="node" style="--i:0"><rect x="20" y="50" width="180" height="180" rx="12"/><text class="ttl" x="110.0" y="120" text-anchor="middle">Cloud estate</text><text class="sub" x="110.0" y="136" text-anchor="middle">accounts, subscriptions,</text><text class="sub" x="110.0" y="152" text-anchor="middle">projects, folders,</text><text class="sub" x="110.0" y="170" text-anchor="middle">more than one cloud</text></g><g class="badge"><circle cx="20" cy="50" r="11"/><text x="20" y="54">1</text></g><path class="flow" d="M 200 95 L 410 95"/><path d="M 410 95 l -8 -5 v 10 z" style="fill:var(--c)"/><text class="sub" x="305" y="87" text-anchor="middle" style="font-size:12.5px">who exists</text><path class="flow" d="M 200 140 L 410 140"/><path d="M 410 140 l -8 -5 v 10 z" style="fill:var(--c)"/><text class="sub" x="305" y="132" text-anchor="middle" style="font-size:12.5px">what is held</text><path class="flow" d="M 200 185 L 410 185"/><path d="M 410 185 l -8 -5 v 10 z" style="fill:var(--c)"/><text class="sub" x="305" y="177" text-anchor="middle" style="font-size:12.5px">what ran</text><g class="node" style="--i:0.6"><rect x="410" y="50" width="180" height="180" rx="12"/><text class="ttl" x="500.0" y="120" text-anchor="middle">Analysis</text><text class="sub" x="500.0" y="136" text-anchor="middle">granted vs. used,</text><text class="sub" x="500.0" y="152" text-anchor="middle">trust links,</text><text class="sub" x="500.0" y="170" text-anchor="middle">escalation paths</text></g><g class="badge"><circle cx="410" cy="50" r="11"/><text x="410" y="54">2</text></g><path class="flow" d="M 590 140 L 730 140"/><path d="M 730 140 l -8 -5 v 10 z" style="fill:var(--c)"/><text class="sub" x="660" y="132" text-anchor="middle" style="font-size:12.5px">findings</text><g class="node" style="--i:1.5"><rect x="730" y="90" width="210" height="100" rx="12"/><text class="ttl" x="835.0" y="136" text-anchor="middle">Right-sizing proposal</text><text class="sub" x="835.0" y="152" text-anchor="middle">remove, narrow or split</text></g><g class="badge"><circle cx="730" cy="90" r="11"/><text x="730" y="94">3</text></g><path class="flow" d="M 835 190 L 835 330"/><path d="M 835 330 l -5 -8 h 10 z" style="fill:var(--c)"/><text class="sub" x="823" y="265" text-anchor="end" style="font-size:12.5px">for review</text><g class="node" style="--i:2.36"><rect x="730" y="330" width="210" height="100" rx="12"/><text class="ttl" x="835.0" y="368" text-anchor="middle">Approval</text><text class="sub" x="835.0" y="384" text-anchor="middle">owner and security</text><text class="sub" x="835.0" y="401" text-anchor="middle">sign off</text></g><g class="badge"><circle cx="730" cy="330" r="11"/><text x="730" y="334">4</text></g><path class="flow" d="M 730 380 L 590 380"/><path d="M 590 380 l 8 -5 v 10 z" style="fill:var(--c)"/><text class="sub" x="660" y="372" text-anchor="middle" style="font-size:12.5px">approved</text><g class="node" style="--i:3.2"><rect x="410" y="330" width="180" height="100" rx="12"/><text class="ttl" x="500.0" y="368" text-anchor="middle">Enforce</text><text class="sub" x="500.0" y="384" text-anchor="middle">scoped change,</text><text class="sub" x="500.0" y="401" text-anchor="middle">rollback kept</text></g><g class="badge"><circle cx="410" cy="330" r="11"/><text x="410" y="334">5</text></g><path class="flow" d="M 410 380 L 200 380"/><path d="M 200 380 l 8 -5 v 10 z" style="fill:var(--c)"/><text class="sub" x="305" y="372" text-anchor="middle" style="font-size:12.5px">applied, logged</text><g class="node" style="--i:4.31"><rect x="20" y="330" width="180" height="100" rx="12"/><text class="ttl" x="110.0" y="368" text-anchor="middle">Evidence</text><text class="sub" x="110.0" y="384" text-anchor="middle">change record,</text><text class="sub" x="110.0" y="401" text-anchor="middle">rollback copy</text></g><g class="badge"><circle cx="20" cy="330" r="11"/><text x="20" y="334">6</text></g><path class="flow" d="M 110 330 L 110 230"/><path d="M 110 230 l -5 8 h 10 z" style="fill:var(--c)"/><text class="sub" x="122" y="285" text-anchor="start" style="font-size:12.5px">observe again</text><rect class="logbar" x="20" y="452" width="920" height="30" rx="8"/><text class="sub" x="480" y="472" text-anchor="middle" style="font-size:12.5px">Every step writes to an audit log that the people being reviewed cannot edit</text><circle class="dot" r="6" cx="0" cy="0"><animateMotion dur="12s" repeatCount="indefinite" path="M 200 140 L 410 140 L 590 140 L 835 140 L 835 380 L 590 380 L 200 380 L 110 380 L 110 230"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 830" role="img" aria-labelledby="c2t c2d"><title id="c2t">Cloud entitlement management architecture</title><desc id="c2d">Cloud accounts, subscriptions and projects feed identities, grants and usage data into analysis. Analysis produces findings, which become a right-sizing proposal. The owner and security approve, the change is enforced with a rollback copy, and the result is recorded as evidence. Evidence loops back to observing the estate again. Every step writes to an audit log.</desc><g class="node" style="--i:0"><rect x="20" y="10" width="280" height="70" rx="12"/><text class="ttl" x="160.0" y="42" text-anchor="middle">Cloud estate</text><text class="sub" x="160.0" y="58" text-anchor="middle">accounts, subscriptions, projects</text></g><g class="badge"><circle cx="20" cy="10" r="11"/><text x="20" y="14">1</text></g><path class="flow" d="M 64 80 L 64 110"/><g class="node" style="--i:0.3"><rect x="20" y="110" width="88" height="56" rx="12"/><text class="ttl" x="64.0" y="134" text-anchor="middle" style="font-size:13px">Identities</text><text class="sub" x="64.0" y="150" text-anchor="middle">who exists</text></g><path class="flow" d="M 64 166 C 64 190 160 182 160 205"/><path class="flow" d="M 160 80 L 160 110"/><g class="node" style="--i:0.3"><rect x="116" y="110" width="88" height="56" rx="12"/><text class="ttl" x="160.0" y="134" text-anchor="middle" style="font-size:13px">Grants</text><text class="sub" x="160.0" y="150" text-anchor="middle">what is held</text></g><path class="flow" d="M 160 166 C 160 190 160 182 160 205"/><path class="flow" d="M 256 80 L 256 110"/><g class="node" style="--i:0.3"><rect x="212" y="110" width="88" height="56" rx="12"/><text class="ttl" x="256.0" y="134" text-anchor="middle" style="font-size:13px">Usage</text><text class="sub" x="256.0" y="150" text-anchor="middle">what ran</text></g><path class="flow" d="M 256 166 C 256 190 160 182 160 205"/><path d="M 160 205 l -5 -8 h 10 z" style="fill:var(--c)"/><g class="node" style="--i:0.88"><rect x="20" y="205" width="280" height="80" rx="12"/><text class="ttl" x="160.0" y="233" text-anchor="middle">Analysis</text><text class="sub" x="160.0" y="249" text-anchor="middle">granted vs. used, trust links,</text><text class="sub" x="160.0" y="266" text-anchor="middle">escalation paths</text></g><g class="badge"><circle cx="20" cy="205" r="11"/><text x="20" y="209">2</text></g><path class="flow" d="M 160 285 L 160 335"/><path d="M 160 335 l -5 -8 h 10 z" style="fill:var(--c)"/><text class="sub" x="172" y="315" text-anchor="start" style="font-size:12.5px">findings</text><path class="flow" d="M 160 405 L 160 455"/><path d="M 160 455 l -5 -8 h 10 z" style="fill:var(--c)"/><text class="sub" x="172" y="435" text-anchor="start" style="font-size:12.5px">for review</text><path class="flow" d="M 160 525 L 160 575"/><path d="M 160 575 l -5 -8 h 10 z" style="fill:var(--c)"/><text class="sub" x="172" y="555" text-anchor="start" style="font-size:12.5px">approved</text><path class="flow" d="M 160 645 L 160 695"/><path d="M 160 695 l -5 -8 h 10 z" style="fill:var(--c)"/><text class="sub" x="172" y="675" text-anchor="start" style="font-size:12.5px">applied, logged</text><g class="node" style="--i:1.59"><rect x="20" y="335" width="280" height="70" rx="12"/><text class="ttl" x="160.0" y="366" text-anchor="middle">Right-sizing proposal</text><text class="sub" x="160.0" y="382" text-anchor="middle">remove, narrow or split</text></g><g class="badge"><circle cx="20" cy="335" r="11"/><text x="20" y="339">3</text></g><g class="node" style="--i:2.25"><rect x="20" y="455" width="280" height="70" rx="12"/><text class="ttl" x="160.0" y="486" text-anchor="middle">Approval</text><text class="sub" x="160.0" y="502" text-anchor="middle">owner and security sign off</text></g><g class="badge"><circle cx="20" cy="455" r="11"/><text x="20" y="459">4</text></g><g class="node" style="--i:2.9"><rect x="20" y="575" width="280" height="70" rx="12"/><text class="ttl" x="160.0" y="606" text-anchor="middle">Enforce</text><text class="sub" x="160.0" y="622" text-anchor="middle">scoped change, rollback kept</text></g><g class="badge"><circle cx="20" cy="575" r="11"/><text x="20" y="579">5</text></g><g class="node" style="--i:3.56"><rect x="20" y="695" width="280" height="70" rx="12"/><text class="ttl" x="160.0" y="726" text-anchor="middle">Evidence</text><text class="sub" x="160.0" y="742" text-anchor="middle">change record, rollback copy</text></g><g class="badge"><circle cx="20" cy="695" r="11"/><text x="20" y="699">6</text></g><path class="flow" d="M 300 730 L 335 730 L 335 45 L 308 45"/><path d="M 300 45 l 8 -5 v 10 z" style="fill:var(--c)"/><text class="sub" transform="translate(322 390) rotate(-90)" text-anchor="middle" style="font-size:12px">observe again</text><rect class="logbar" x="20" y="784" width="280" height="32" rx="8"/><text class="sub" x="160" y="805" text-anchor="middle" style="font-size:12px">Every step is written to the audit log</text><circle class="dot" r="6" cx="0" cy="0"><animateMotion dur="12s" repeatCount="indefinite" calcMode="linear" keyPoints="0;0.3983;0.5;0.8983;1" keyTimes="0;0.75;0.82;0.96;1" path="M 160 45 L 160 730 L 335 730 L 335 45 L 160 45"/></circle></svg>
+          <figcaption>The dot is one finding travelling the loop: from the estate into analysis, out as a proposal, through approval and enforcement, and into the evidence record, which feeds the next round of observation. The same data sources exist in every major cloud, so any equivalent combination fits these slots.</figcaption>
+        </figure>
+      </section>
+
+      <section id="workflow">
+        <h2>One finding, start to finish</h2>
+        <p class="body-text">The same eight steps apply to a human, a workload, a federated role or a service account. Each has a guardrail and leaves evidence.</p>
+        <ol class="steps">
+          <li><h3>Inventory the identities and name an owner</h3><p>List every identity in every account, subscription and project, tagged by kind. Each gets a named owner. An identity with no owner is the first thing to review, because nobody else can speak for it.</p><div class="why"><span><b>Guardrail</b>No owner, no standing access</span><span><b>Evidence</b>Inventory record with owner</span></div></li>
+          <li><h3>Compute effective permissions</h3><p>For each identity, combine every source: direct and inherited policies, resource policies, boundaries, guardrails, deny rules and trust relationships, including links to other accounts. This is the picture that single-policy review never produces.</p><div class="why"><span><b>Guardrail</b>Collection runs with read-only access</span><span><b>Evidence</b>Dated effective-permission snapshot</span></div></li>
+          <li><h3>Join it with observed use</h3><p>Pick a window that covers the longest regular job, then compare. AWS unused access analysis, for one, only judges permissions that have existed for the whole tracking period, and I apply the same rule everywhere so new identities are not judged early.</p><div class="why"><span><b>Guardrail</b>Window at least as long as the longest regular job</span><span><b>Evidence</b>Usage report with window dates</span></div></li>
+          <li><h3>Look for escalation paths and toxic combinations</h3><p>Rules flag the known patterns. The advisory pass looks for new ones, such as permission sets that let an identity widen its own access or reach another account&rsquo;s data. Each finding lists the policy statements it rests on, so a reviewer can check it without trusting the story.</p><div class="why"><span><b>Guardrail</b>A finding that cites no statements is discarded</span><span><b>Evidence</b>Finding record with cited statements</span></div></li>
+          <li><h3>Draft the smallest change that keeps real work running</h3><p>Remove what is unused first. Narrow wildcards to observed resources. Split roles that serve two jobs. Add by hand any permission the logs cannot show. Run the draft through policy validation before a person sees it.</p><div class="why"><span><b>Guardrail</b>Policy checks pass before review</span><span><b>Evidence</b>Before and after diff</span></div></li>
+          <li><h3>Approve</h3><p>The resource owner confirms the work still runs. Security confirms the risk. This is the same approval gate used for standing privileged access changes, so remediation follows a process people already know and auditors already trust.</p><div class="why"><span><b>Guardrail</b>The author of a change cannot approve it</span><span><b>Evidence</b>Approval record</span></div></li>
+          <li><h3>Apply in stages, with a rollback ready</h3><p>Start in the lowest-risk environment. Keep the previous policy in version control and rehearse the restore before the cut. Watch denied calls for a set period afterwards and treat a new denial as a signal to look, not as proof the cut was wrong.</p><div class="why"><span><b>Guardrail</b>Rollback tested before the change</span><span><b>Evidence</b>Change record and rollback copy</span></div></li>
+          <li><h3>Keep it from growing back</h3><p>Move the new policy into code, so the repository is the source of truth. Put organization-level boundaries in place for the grants nobody should make. Re-run the loop on a schedule.</p><div class="why"><span><b>Guardrail</b>Console changes outside the pipeline raise an alert</span><span><b>Evidence</b>Drift report and review record</span></div></li>
+        </ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: a nightly pipeline role</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event.</p>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>Two broad policies give write access to every storage bucket and every queue in the account.</li><li>The role can also create roles and attach policies to them, which is a path to more access.</li><li>A trust link lets a second account assume it, left over from a migration that finished long ago.</li><li>The owner field is empty.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>Write access covers one bucket prefix and one queue, which is what the logs showed.</li><li>The ability to create roles and attach policies is gone.</li><li>The trust link is removed after the owning team confirmed the migration was over.</li><li>A named team owns the role, and the change sits in version control with its rollback.</li></ul></div>
+        </div>
+        <p class="body-text" style="margin-top:14px">Three checks sat between the logs and the cut. The first window was 90 days, and the team mentioned a quarterly job, so we widened the window and held that permission until the owner confirmed. The permission to pass a role to another service does not appear in the usage data, so we reviewed it by hand. And the rollback copy was restored once in a test account before the change went to production.</p>
+      </section>
+
+      <section id="drift">
+        <h2>Keeping it from growing back</h2>
+        <p class="body-text">A cleanup that ends is a cleanup that reverses. Three mechanisms work together.</p>
+        <ul class="plain-list">
+          <li><strong>Policy as code.</strong> Policies live in a repository and ship through a pipeline. AWS describes custom policy checks in IAM Access Analyzer that compare an updated policy with the existing one and report new access, or confirm that specified access is not allowed. Wired into the pipeline, a change that adds access stops there for review.</li>
+          <li><strong>Organization-level boundaries.</strong> Service control policies in AWS Organizations do not grant permissions. They set the outer limit of what can be granted, so an undesired permission cannot take effect even when an attached policy allows it. They govern principals inside the organization, and they do not apply to the management account. Google Cloud offers deny policies, which override allow policies. Both are blunt tools, so I write each one narrowly, with a named exception route.</li>
+          <li><strong>A rhythm of review.</strong> Entra access reviews, with owners or managers as reviewers, give a scheduled way to confirm human and service principal access. For the rest, I rerun the analysis on a calendar and compare it with the last snapshot.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Surfaced toxic entitlement combinations that per-policy review had missed, and closed them through the existing privileged-access approval process rather than a separate one-time remediation effort.</p>
+      <section id="roadmap">
+        <h2>How to build it without stalling</h2>
+        <ol class="phases">
+          <li><b>1. Agree scope and owners</b>Decide which clouds, accounts and identity kinds are in the first release, and who approves changes.<small><em>Done when</em>Every in-scope account has an owner and an approver.</small></li>
+          <li><b>2. Get read-only visibility</b>Collect identities, grants and activity logs. Confirm logging is on and complete before trusting any usage number.<small><em>Done when</em>One inventory exists, and gaps in logging are written down.</small></li>
+          <li><b>3. Take the easy cuts</b>Retire identities, keys and roles with no use and no owner, through the approval gate.<small><em>Done when</em>The first batch is approved, applied and recorded, with rollback proven.</small></li>
+          <li><b>4. Tackle combinations and trust</b>Review cross-account and federated trust, then escalation paths from the analysis.<small><em>Done when</em>Every trust link has an owner and a reason.</small></li>
+          <li><b>5. Add prevention</b>Put policies in code, add organization-level boundaries and turn on drift alerts.<small><em>Done when</em>A broad grant made outside the pipeline is caught or blocked.</small></li>
+          <li><b>6. Run it on a rhythm</b>Schedule the loop, keep the exception register and report to owners.<small><em>Done when</em>The loop runs without me asking for it.</small></li>
+        </ol>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#ciem</span><span>#cloud-iam</span><span>#least-privilege</span></div>
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Collection access is read-only</td><td data-label="What it stops">The tool that finds excess becoming the largest excess</td><td data-label="How you check it">Review the permissions of the collection role itself</td></tr>
+            <tr><td data-label="Guardrail">Every identity has a named owner</td><td data-label="What it stops">Findings with nowhere to go</td><td data-label="How you check it">Report of identities with no owner or a departed owner</td></tr>
+            <tr><td data-label="Guardrail">Usage window covers the longest regular job</td><td data-label="What it stops">Cutting access that a quarterly or yearly job needs</td><td data-label="How you check it">Compare the window with the job calendar</td></tr>
+            <tr><td data-label="Guardrail">The model advises and has no write path</td><td data-label="What it stops">A generated finding being applied with no person involved</td><td data-label="How you check it">Confirm the model&rsquo;s credentials cannot change policy</td></tr>
+            <tr><td data-label="Guardrail">Findings cite the statements behind them</td><td data-label="What it stops">Conclusions nobody can check</td><td data-label="How you check it">Sample findings and re-derive them by hand</td></tr>
+            <tr><td data-label="Guardrail">Author cannot approve their own change</td><td data-label="What it stops">One person changing access alone</td><td data-label="How you check it">Approval log shows two different people</td></tr>
+            <tr><td data-label="Guardrail">Rollback tested before the change</td><td data-label="What it stops">A broken service staying broken while people search for the old policy</td><td data-label="How you check it">Restore drill in a test account</td></tr>
+            <tr><td data-label="Guardrail">Organization-level boundaries and policy checks</td><td data-label="What it stops">Broad grants reappearing later</td><td data-label="How you check it">Try a forbidden grant in a test account and confirm it fails</td></tr>
+            <tr><td data-label="Guardrail">Audit logs outside the control of the people reviewed</td><td data-label="What it stops">Evidence changing after the fact</td><td data-label="How you check it">Confirm administrators cannot edit the log store</td></tr>
+          </tbody></table></div>
       </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Which identities can reach production data, and why?</td><td data-label="Where the answer comes from">Effective-permission snapshot and owner records</td></tr>
+            <tr><td data-label="Question">How do you know this access is still needed?</td><td data-label="Where the answer comes from">Usage report with window dates, and the owner&rsquo;s confirmation</td></tr>
+            <tr><td data-label="Question">What was removed last quarter, and who approved it?</td><td data-label="Where the answer comes from">Change records and approval records</td></tr>
+            <tr><td data-label="Question">Which accounts and outside identity providers are trusted?</td><td data-label="Where the answer comes from">Trust inventory and external-access findings</td></tr>
+            <tr><td data-label="Question">Who can change the guardrails?</td><td data-label="Where the answer comes from">Repository history and the access list for the repository and the organization root</td></tr>
+            <tr><td data-label="Question">Can a bad change be undone?</td><td data-label="Where the answer comes from">Rollback copy and the last restore drill</td></tr>
+            <tr><td data-label="Question">Are administrative actions logged?</td><td data-label="Where the answer comes from">Logging configuration and a completeness check</td></tr>
+          </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-6</code></td><td data-label="What it asks for">Employ least privilege, allowing only authorized accesses that are necessary for assigned tasks.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-6(5)</code>, <code class="ref">AC-6(7)</code>, <code class="ref">AC-6(9)</code></td><td data-label="What it asks for">Enhancements titled Privileged Accounts, Review of User Privileges, and Log Use of Privileged Functions.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-2</code>, <code class="ref">AC-2(3)</code>, <code class="ref">AC-2(4)</code></td><td data-label="What it asks for">Account management, including monitoring account use and reviewing accounts. Disabling accounts that are expired or inactive. Automatically auditing account changes.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-12</code></td><td data-label="What it asks for">Audit record generation for the event types the organization has chosen to log.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">CM-3</code></td><td data-label="What it asks for">Configuration-controlled changes are reviewed, approved or disapproved with security impact in mind, documented, implemented, and recorded.</td></tr>
+            <tr><td data-label="Standard">CIS AWS Foundations Benchmark</td><td data-label="Reference">IAM section</td><td data-label="What it asks for">Includes recommendations titled &ldquo;IAM user credentials unused for 45 days should be removed&rdquo;, &ldquo;IAM users should not have IAM policies attached&rdquo;, and &ldquo;IAM Access Analyzer external access analyzer should be enabled&rdquo;. Recommendation numbers differ between benchmark versions, so check the version you use.</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Two caveats. I read the NIST control text through a public mirror of the catalog and the CIS titles through AWS Security Hub documentation, and both are secondary sources, listed as such below. I did not verify CIS benchmarks for other clouds, so I leave them out.</p>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Program owner</td><td data-label="Owns">Scope, roadmap, the approval process and the exception register</td></tr>
+            <tr><td data-label="Role">Cloud platform teams</td><td data-label="Owns">Account structure, organization-level boundaries and the pipeline that ships policy</td></tr>
+            <tr><td data-label="Role">Identity and resource owners</td><td data-label="Owns">Each identity: its purpose, its access and its retirement</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Risk rules, escalation patterns and exception criteria</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>Exceptions have owners and end dates.</strong> Anything left broad is on a register, reviewed on a rhythm, and removed when its reason ends.</li>
+          <li><strong>Measure what you can defend.</strong> Useful measures: identities with no owner, trust links with no reason, open exceptions past their end date, and time from finding to approved change.</li>
+          <li><strong>Use the gate people already know.</strong> Access changes to cloud identities follow the same approval path as standing privileged access, so there is one process to audit.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>The logs have blind spots.</strong> Some actions are not recorded at action level, and some cannot be seen in usage data at all. A permission can look unused and still be needed.</li>
+          <li><strong>The window is too short.</strong> Quarterly and yearly jobs show up in nobody&rsquo;s 90-day report, and they fail at the worst moment.</li>
+          <li><strong>Cuts land too fast.</strong> One broken service teaches a whole company to resist the next cleanup. Go in stages, and start with what has no owner and no use.</li>
+          <li><strong>Tool output gets treated as the answer.</strong> A report of unused access is a question for the owner. It is not a decision.</li>
+          <li><strong>Trust links are missed.</strong> Each account looks fine on its own, and the problem sits in the link between two of them.</li>
+          <li><strong>Blunt guardrails cause outages.</strong> An organization-level deny or boundary applies everywhere it is attached. A wrong one blocks legitimate work across many teams, so test it first in a small scope.</li>
+          <li><strong>Fixes drift back.</strong> Without policy as code and alerts on console changes, the next urgent deploy puts the wildcard back.</li>
+        </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep, not a record of any single project.</p>
+        <ul class="plain-list">
+          <li><strong>I start with identities nobody owns.</strong> That is the smallest argument to win, and it builds the approval routine on easy cases before hard ones.</li>
+          <li><strong>I ask for the job calendar before I pick a window.</strong> One conversation with the service team about what runs yearly saves a lot of rollbacks.</li>
+          <li><strong>I write the change in plain words next to the diff.</strong> Owners confirm what they understand. A raw policy diff gets a quick yes that means little.</li>
+          <li><strong>I treat the report as a question.</strong> I take it to the owner with the evidence and let them tell me what it misses.</li>
+          <li><strong>I rehearse the rollback.</strong> Restoring a policy in a test account takes minutes and changes how calm everyone is on the day.</li>
+          <li><strong>I keep the model in an advisory role and make it show its work.</strong> A finding that cites the statements behind it can be checked in a minute. One that does not gets dropped.</li>
+          <li><strong>I write the exception route into the guardrail.</strong> People will find a way around a boundary with no door. A documented door with an owner and an end date is easier to watch.</li>
+          <li><strong>I report open exceptions, not a single score.</strong> A number invites debate about the number. A list of named exceptions gets closed.</li>
+        </ul>
+        <p class="body-text">The method behind the approval gate and the wave planning is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html">AWS: What is IAM Access Analyzer</a> (external, unused and internal access, policy generation)</li>
+          <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-create-unused.html">AWS: Create an IAM Access Analyzer unused access analyzer</a> (tracking period, scope)</li>
+          <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html">AWS: IAM Access Analyzer policy generation</a> (CloudTrail, up to 90 days, limits)</li>
+          <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_last-accessed.html">AWS: Refine permissions using last accessed information</a></li>
+          <li><a href="https://docs.amazonaws.cn/en_us/IAM/latest/UserGuide/access-analyzer-custom-policy-checks.html">AWS: IAM Access Analyzer custom policy checks</a> (read on the AWS China documentation site)</li>
+          <li><a href="https://docs.aws.amazon.com/wellarchitected/2024-06-27/framework/sec_permissions_define_guardrails.html">AWS Well-Architected: SEC03-BP05 Define permission guardrails for your organization</a></li>
+          <li><a href="https://docs.aws.amazon.com/securityhub/latest/userguide/cis-aws-foundations-benchmark.html">AWS Security Hub: CIS AWS Foundations Benchmark</a> (secondary source for CIS recommendation titles)</li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/id-governance/deploy-access-reviews">Microsoft: Plan a Microsoft Entra access reviews deployment</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review">Microsoft: Create an access review of Azure resource and Microsoft Entra roles in PIM</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/previous-versions/entra/permissions-management/how-to-offboard-permissions-management">Microsoft: Entra Permissions Management offboarding guidance</a> (end of sale and retirement; the page gives two retirement dates)</li>
+          <li><a href="https://docs.cloud.google.com/policy-intelligence/docs/role-recommendations-overview">Google Cloud: Overview of role recommendations</a></li>
+          <li><a href="https://docs.cloud.google.com/policy-intelligence/docs/review-apply-role-recommendations">Google Cloud: Review and apply role recommendations</a></li>
+          <li><a href="https://docs.cloud.google.com/iam/docs/deny-access">Google Cloud: Deny access to resources</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-6/">CSF Tools: AC-6 Least Privilege</a>, <a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-2/">AC-2</a>, <a href="https://csf.tools/reference/nist-sp-800-53/r5/au/">AU family (AU-12)</a>, <a href="https://csf.tools/reference/nist-sp-800-53/r5/cm/">CM family (CM-3)</a> (secondary mirror of the NIST catalog, used to read control text)</li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. The worked example is illustrative. Provider features are cited only as sources of the facts stated, were read in vendor documentation on 1 Oct 2026, and change often, so check current documentation before relying on them. Control references are as published in the standards listed above.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#ciem</span><span>#cloud-iam</span><span>#least-privilege</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#c4b5fd" href="/case-studies/passwordless-authentication/"><small><i></i>&larr; Previous</small><strong>Risk-Sequenced Passwordless Rollout</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/agentic-ai-identity-governance/"><small><i></i>Next &rarr;</small><strong>Agentic AI Identity Governance</strong></a></div></nav>
       <footer class="page-footer">
@@ -96,7 +294,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

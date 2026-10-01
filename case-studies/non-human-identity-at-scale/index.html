@@ -1,517 +1,327 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#030712" />
-<meta name="robots" content="index,follow,max-image-preview:large" />
-<meta name="description" content="A privacy-safe case study on discovering, scoring and governing non-human identity at scale, with an interactive risk-scoring sandbox." />
-<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Non-Human Identity at Scale · Roshan Trivedi" />
-<meta property="og:description" content="Machines outnumber people 50 to 1 in most enterprises. A privacy-safe case study on discovering, scoring and governing that sprawl, with a live interactive sandbox." />
-<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/" />
-<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png" />
-<title>Non-Human Identity at Scale · Roshan Trivedi</title>
-<link rel="stylesheet" href="/assets/fonts.css">
-<style>
-  :root{
-    --bg:#030712;
-    --bg-panel:#0b1220;
-    --bg-panel-2:#0d1626;
-    --border:rgba(148,163,184,0.16);
-    --border-strong:rgba(77,226,255,0.35);
-    --text:#f8fafc;
-    --muted:#9fb0c4;
-    --teal:#4de2ff;
-    --green:#7df2d0;
-    --amber:#f7c873;
-    --red:#ff6b6b;
-    --display:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
---mono:"JetBrains Mono",ui-monospace,monospace;
---font:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family:var(--font);
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.6;
-    background-image:
-      radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
-      radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
-  }
-  a{color:var(--teal);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="A privacy-safe case study on finding, owning, scoring and reducing risk across non-human identities: service accounts, keys, tokens, workload identities and AI agents." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Non-Human Identity at Scale · Roshan Trivedi" />
+    <meta property="og:description" content="A privacy-safe case study on finding, owning, scoring and reducing risk across service accounts, keys, tokens, workload identities and AI agents." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png" />
+    <title>Non-Human Identity at Scale · Roshan Trivedi</title>
 
-  header.site{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:20px 24px;border-bottom:1px solid var(--border);
-    position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
-  }
-  header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
-  header.site .back:hover{color:var(--teal);text-decoration:none}
-  header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
-  header.site .brand span{color:var(--teal)}
-
-  .hero{padding:72px 0 40px}
-  .eyebrow{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-    color:var(--teal);margin-bottom:22px;
-  }
-  .eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
-  h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
-  h1 .accent{color:var(--teal)}
-  .lede{font-size:18px;color:var(--muted);max-width:680px}
-
-  .meta-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
-  }
-  .meta-card{
-    background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
-    padding:20px 22px;
-  }
-  .meta-card .label{
-    font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-    color:var(--muted);margin-bottom:10px;
-  }
-  .meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
-  .meta-card.role .value{font-weight:700;color:var(--green)}
-
-  section.approach{padding:64px 0}
-  .section-head{margin-bottom:36px}
-  .section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
-  .section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
-  .section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
-
-  .steps{display:grid;gap:14px}
-  .step{
-    display:grid;grid-template-columns:56px 1fr;gap:18px;
-    background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
-  }
-  .step .num{
-    font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
-  }
-  .step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
-  .step p{color:var(--muted);font-size:14.5px}
-
-  .tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
-section.fieldnote{padding:0 0 64px}
-.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
-.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
-.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
-.quote-card .who span{color:var(--teal)}
-.quote-card.mine{border-left-color:var(--green)}
-  .tag{
-    font-size:12px;font-weight:600;color:var(--muted);
-    border:1px solid var(--border);border-radius:999px;padding:7px 14px;
-  }
-
-  section.pipeline{padding:0 0 64px}
-  .pipeline svg text{font-family:var(--font)}
-
-  /* interactive sandbox */
-  section.sandbox{padding:64px 0 96px}
-  .sandbox-shell{
-    background:linear-gradient(160deg, rgba(77,226,255,0.05), rgba(3,10,20,0.4));
-    border:1px solid var(--border-strong);border-radius:20px;padding:32px;
-  }
-  .sandbox-note{
-    display:flex;gap:12px;align-items:flex-start;
-    background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
-    border-radius:12px;padding:14px 16px;margin-bottom:28px;font-size:13px;color:var(--amber);
-  }
-  .sandbox-note b{color:var(--amber)}
-
-  .controls{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
-  .toggle{
-    display:flex;align-items:center;gap:10px;
-    background:var(--bg-panel-2);border:1px solid var(--border);border-radius:10px;
-    padding:10px 14px;cursor:pointer;font-size:13.5px;font-weight:600;color:var(--text);
-    transition:border-color 150ms ease, background 150ms ease;
-  }
-  .toggle:hover{border-color:var(--border-strong)}
-  .toggle input{accent-color:#4de2ff;width:16px;height:16px;cursor:pointer}
-  .toggle.active{border-color:var(--border-strong);background:rgba(77,226,255,0.08)}
-  .btn-regen{
-    margin-left:auto;background:transparent;border:1px solid var(--border);color:var(--muted);
-    border-radius:10px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;
-    transition:border-color 150ms ease,color 150ms ease;
-  }
-  .btn-regen:hover{border-color:var(--border-strong);color:var(--teal)}
-
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
-  .stat{
-    background:var(--bg-panel-2);border:1px solid var(--border);border-radius:12px;
-    padding:16px 18px;
-  }
-  .stat .n{font-size:26px;font-weight:800;line-height:1;margin-bottom:6px}
-  .stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:700}
-  .stat.risk .n{color:var(--red)}
-  .stat.orphan .n{color:var(--amber)}
-  .stat.total .n{color:var(--teal)}
-  .stat.avg .n{color:var(--green)}
-
-  .identity-list{border:1px solid var(--border);border-radius:14px;overflow:hidden}
-  .id-row{
-    display:grid;grid-template-columns:1.6fr 0.9fr 0.9fr 0.9fr 1.1fr 90px;
-    align-items:center;gap:10px;padding:12px 16px;font-size:13px;
-    border-bottom:1px solid var(--border);transition:background 200ms ease;
-  }
-  .id-row:last-child{border-bottom:none}
-  .id-row.head{
-    background:rgba(255,255,255,0.02);font-size:11px;font-weight:700;
-    letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);
-  }
-  .id-row .name{display:flex;align-items:center;gap:10px;font-weight:600}
-  .id-row .badge{
-    font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;
-    text-transform:uppercase;letter-spacing:0.04em;white-space:nowrap;
-  }
-  .badge.service-account{background:rgba(77,226,255,0.14);color:var(--teal)}
-  .badge.api-key{background:rgba(125,242,208,0.14);color:var(--green)}
-  .badge.workload{background:rgba(247,200,115,0.14);color:var(--amber)}
-  .badge.cicd{background:rgba(148,163,184,0.14);color:var(--muted)}
-  .badge.ai-agent{background:rgba(255,107,107,0.14);color:var(--red)}
-  .owned{color:var(--green);font-weight:600}
-  .orphaned{color:var(--amber);font-weight:600}
-  .risk-cell{display:flex;align-items:center;gap:8px;justify-content:flex-end}
-  .risk-bar{width:44px;height:6px;border-radius:3px;background:rgba(255,255,255,0.08);overflow:hidden}
-  .risk-bar span{display:block;height:100%;border-radius:3px}
-  .risk-num{font-weight:800;font-size:13px;width:26px;text-align:right}
-  .more-row{padding:14px 16px;text-align:center;color:var(--muted);font-size:12.5px}
-
-  footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
-  footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-  footer.site p{color:var(--muted);font-size:13px}
-
-  @media (max-width:720px){
-    h1{font-size:32px}
-    .meta-grid{grid-template-columns:1fr}
-    .stats{grid-template-columns:repeat(2,1fr)}
-    .id-row{grid-template-columns:1.4fr 0.8fr 0.8fr;font-size:12px}
-    .id-row .col-rotated,.id-row .col-priv{display:none}
-  }
-h1,h2,h3,header.site .brand{font-family:var(--display)}
-.eyebrow,.meta,.tag{font-family:var(--mono)}
-</style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"Non-Human Identity at Scale","description":"A privacy-safe case study on discovering, scoring and governing non-human identity at scale, with an interactive risk-scoring sandbox.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-08-05","dateModified":"2026-08-11","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/","image":"https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png","keywords":"Non-human identity, Zero Standing Privilege, Secrets governance, Risk scoring"}
-</script>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-<body>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Non-Human Identity at Scale",
+  "description": "A privacy-safe case study on finding, owning, scoring and reducing risk across non-human identities: service accounts, keys, tokens, workload identities and AI agents.",
+  "author": {
+    "@type": "Person",
+    "name": "Roshan Trivedi",
+    "url": "https://roshantrivedi.co.in/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Roshan Trivedi"
+  },
+  "datePublished": "2026-08-05",
+  "dateModified": "2026-10-01",
+  "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/",
+  "image": "https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png",
+  "articleSection": "Emerging practice",
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "url": "https://roshantrivedi.co.in/case-studies/"
+  },
+  "keywords": "Non-human identity, Zero Standing Privilege, Secrets governance, Risk scoring"
+}
+    </script>
+    </head>
+  <body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
+    <main id="main">
+      <nav class="back-row" aria-label="Site"><a class="back" href="/#case-studies">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
-<header class="site">
-  <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
-  <div class="brand">RT <span>· Identity Security</span></div>
-</header>
+      <header class="hero">
+        <p class="eyebrow">Emerging practice &middot; Case study</p>
+        <h1>Non-Human Identity at Scale</h1>
+        <p class="dek">How to find the service accounts, keys, tokens and agents nobody wrote down, give each one an owner, rank them by risk, and replace the long-lived ones with credentials that expire.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+      </header>
 
-<main id="main" class="wrap hero">
-  <div class="eyebrow">Emerging Practice · Non-Human Identity</div>
-  <h1>Machines outnumber people <span class="accent">50 to 1</span> — and almost none of them have an owner.</h1>
-  <p class="lede">A privacy-safe case study on turning an invisible sprawl of service accounts, API keys, workload identities and AI agents into a governable, risk-ranked program — plus a live sandbox that runs the same scoring logic.</p>
-
-  <div class="meta-grid">
-    <div class="meta-card role">
-      <div class="label">My Role</div>
-      <div class="value">Credential Management Platform Owner &amp; PAM Product Owner</div>
-    </div>
-    <div class="meta-card">
-      <div class="label">Challenge</div>
-      <div class="value">Service accounts, API keys, workload identities and now AI agents accumulate faster than any team can govern them. Ownership gets lost at handoff, credentials outlive the systems that issued them, and audits default to belief instead of evidence.</div>
-    </div>
-    <div class="meta-card">
-      <div class="label">Public-Safe Outcome</div>
-      <div class="value">Built a non-human identity inventory and risk-scoring model that turned thousands of untracked machine identities into a ranked, ownable backlog — surfacing the small fraction driving most of the exposure.</div>
-    </div>
-  </div>
-</main>
-
-<section class="approach wrap">
-  <div class="section-head">
-    <span class="section-num">APPROACH</span>
-    <h2>Three moves, in order</h2>
-    <p>The same sequence the sandbox below simulates: see everything, rank what matters, then turn the top of the list into a standing control instead of a one-time cleanup.</p>
-  </div>
-  <div class="steps">
-    <div class="step">
-      <div class="num">01</div>
-      <div>
-        <h3>Discover</h3>
-        <p>Correlate identities across vault, Identity and Access Management (IAM), cloud IAM and CI/CD into one inventory — every service account, API key and workload identity, regardless of where it was created.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Machine identities get created faster than anyone records them. The first job is one inventory, with a named owner against every entry and a flag on every entry that has none.</li>
+          <li>A simple score turns that inventory into a queue. I rank on three things: how long since the secret changed, how much it can do, and whether anyone owns it. Evidence of exposure and last use come next.</li>
+          <li>The best fix removes the secret. Where a workload can use a role, federation or a short-lived token, do that before you rotate a static key.</li>
+        </ul>
       </div>
-    </div>
-    <div class="step">
-      <div class="num">02</div>
-      <div>
-        <h3>Score</h3>
-        <p>Rank each identity by blast radius, staleness and ownership gap, so a flat list of thousands becomes a short list of what actually matters this week.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="num">03</div>
-      <div>
-        <h3>Remediate &amp; Govern</h3>
-        <p>Route the highest-risk identities into rotation, ownership assignment or retirement — then keep the score current as a standing control, not a one-time audit finding.</p>
-      </div>
-    </div>
-  </div>
-  <div class="tags">
-    <span class="tag">#wip</span><span class="tag">Non-human identity</span>
-    <span class="tag">Secrets governance</span>
-    <span class="tag">Risk scoring</span>
-    <span class="tag">Zero Standing Privilege</span>
-  </div>
-</section>
 
-<section class="pipeline wrap">
-  <div class="section-head">
-    <span class="section-num">THE PIPELINE</span>
-    <h2>From sprawl to a ranked, governable list</h2>
-    <p>The same three-stage pipeline the sandbox below simulates, end to end.</p>
-  </div>
-  <svg viewBox="0 0 900 180" width="100%" style="height:auto" role="img" aria-label="Pipeline diagram: Discover, then Score, then Remediate and Govern">
-    <defs>
-      <marker id="pipeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"></path>
-      </marker>
-    </defs>
-    <line x1="232" y1="90" x2="328" y2="90" stroke="var(--border-strong)" stroke-width="2" marker-end="url(#pipeArrow)"></line>
-    <line x1="562" y1="90" x2="658" y2="90" stroke="var(--border-strong)" stroke-width="2" marker-end="url(#pipeArrow)"></line>
-    <g>
-      <rect x="10" y="30" width="220" height="120" rx="14" fill="var(--bg-panel)" stroke="var(--teal)" stroke-opacity="0.5"></rect>
-      <text x="30" y="58" fill="var(--teal)" font-size="12" font-weight="700">01 &#183; DISCOVER</text>
-      <text x="30" y="86" fill="var(--text)" font-size="14" font-weight="700">Inventory everything</text>
-      <text x="30" y="108" fill="var(--muted)" font-size="11">Vault, IAM, cloud IAM,</text>
-      <text x="30" y="124" fill="var(--muted)" font-size="11">CI/CD &mdash; one identity list</text>
-    </g>
-    <g>
-      <rect x="340" y="30" width="220" height="120" rx="14" fill="var(--bg-panel)" stroke="var(--amber)" stroke-opacity="0.5"></rect>
-      <text x="360" y="58" fill="var(--amber)" font-size="12" font-weight="700">02 &#183; SCORE</text>
-      <text x="360" y="86" fill="var(--text)" font-size="14" font-weight="700">Rank by risk</text>
-      <text x="360" y="108" fill="var(--muted)" font-size="11">Blast radius, staleness,</text>
-      <text x="360" y="124" fill="var(--muted)" font-size="11">ownership gap</text>
-    </g>
-    <g>
-      <rect x="670" y="30" width="220" height="120" rx="14" fill="var(--bg-panel)" stroke="var(--green)" stroke-opacity="0.5"></rect>
-      <text x="690" y="58" fill="var(--green)" font-size="12" font-weight="700">03 &#183; REMEDIATE &amp; GOVERN</text>
-      <text x="690" y="86" fill="var(--text)" font-size="14" font-weight="700">Fix, then keep it fixed</text>
-      <text x="690" y="108" fill="var(--muted)" font-size="11">Rotation, ownership,</text>
-      <text x="690" y="124" fill="var(--muted)" font-size="11">standing control</text>
-    </g>
-  </svg>
-</section>
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">A non-human identity is anything that signs in without a person at the keyboard: a service account, an API key, a token, a certificate, a workload identity, an OAuth app, a bot, and more and more often an AI agent. Each one is a way into a system, and each one raises the same questions as a person&rsquo;s account. Who is it for? What can it reach? When was it last changed? Who would notice if it were misused?</p>
+        <p class="body-text">The difference is how they come into being. A developer creates a service account to unblock a release. A pipeline needs a token, so someone makes one. A vendor integration asks for an OAuth grant, and an admin clicks yes. None of these goes through the process a new employee goes through, and none of them has a manager who changes jobs and hands the account over.</p>
+        <p class="body-text">So ownership gets lost at handoff, credentials outlive the systems that issued them, and audits fall back on belief. &ldquo;We think the team rotates these&rdquo; is a sentence I have heard in more than one review, and it is not evidence. OWASP&rsquo;s Non-Human Identities Top 10 puts improper offboarding first, which it describes as inadequate deactivation or removal of non-human identities when they are no longer needed. That is the same failure in different words.</p>
+        <p class="body-text">I have left out any ratio of machines to people. Figures like that circulate widely, and I could not trace one to a primary source with a method I trust. The program does not depend on the number. It depends on knowing your own inventory.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Kind</th><th>Where it tends to live</th><th>What usually goes wrong</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Kind">Service accounts</td><td data-label="Where it tends to live">Directories, databases, operating systems, cloud IAM</td><td data-label="What usually goes wrong">Created for one project, kept for ten. The password is shared and never changes.</td></tr>
+            <tr><td data-label="Kind">API keys and access keys</td><td data-label="Where it tends to live">Cloud accounts, SaaS admin consoles, config files</td><td data-label="What usually goes wrong">Copied into code or chat. No expiry, broad scope.</td></tr>
+            <tr><td data-label="Kind">Tokens</td><td data-label="Where it tends to live">Pipeline variables, developer machines, repositories</td><td data-label="What usually goes wrong">Tied to the person who made it, so it breaks or lingers when they move on.</td></tr>
+            <tr><td data-label="Kind">Certificates and keys</td><td data-label="Where it tends to live">Load balancers, services, key stores</td><td data-label="What usually goes wrong">Expiry surprises, and private keys copied between environments.</td></tr>
+            <tr><td data-label="Kind">Workload identities</td><td data-label="Where it tends to live">Cloud roles, managed identities, cluster service accounts</td><td data-label="What usually goes wrong">Roles that started narrow and grew permission by permission.</td></tr>
+            <tr><td data-label="Kind">OAuth apps and integrations</td><td data-label="Where it tends to live">SaaS platforms, identity provider consent screens</td><td data-label="What usually goes wrong">Third-party access granted once and never reviewed.</td></tr>
+            <tr><td data-label="Kind">Bots and automation</td><td data-label="Where it tends to live">Chat tools, ticketing, scheduled jobs</td><td data-label="What usually goes wrong">Run with an admin login because that was quickest.</td></tr>
+            <tr><td data-label="Kind">AI agents</td><td data-label="Where it tends to live">Agent platforms, tool servers, developer tooling</td><td data-label="What usually goes wrong">Share one key across agents, or act on a person&rsquo;s delegated token. See <a href="/case-studies/ai-agent-credential-sharing/">One Key, Every Agent</a>.</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">How the credentials themselves are stored, issued and rotated is covered in <a href="/case-studies/credential-platform/">Credential Management Platform Strategy</a>. This page picks up one step earlier: finding what exists, deciding who answers for it, and deciding what to fix first.</p>
+      </section>
 
-<section class="fieldnote wrap" id="field-note">
-  <div class="section-head">
-    <span class="section-num">FIELD NOTE · FROM THE COMMENTS</span>
-    <h2>Ownership is the bottleneck, not the scoring</h2>
-    <p>When this case study went out on LinkedIn, Gelson Monteiro raised the point that matters most: Zero Standing Privilege only holds up once ownership is actually enforced — otherwise you're just time-boxing access nobody remembers approving. His read: most orgs discover non-human identities faster than they can find a human willing to be accountable for one, so the fleet keeps outgrowing ownership.</p>
-  </div>
-  <div class="quote-card mine">
-    <p>Ownership is probably the hardest part here. Finding NHIs is getting easier — finding the right person willing to own and be accountable for one is a different challenge, and there's real risk in taking that on. Without ownership, ZSP alone won't fix it. For me, ownership, rotation and offboarding have to work together, or we're just shrinking the access window without fixing the lifecycle problem underneath it.</p>
-    <div class="who">— Roshan, <span>replying in the thread</span></div>
-  </div>
-</section>
+      <section id="architecture">
+        <h2>How it fits together</h2>
+        <p class="body-text">Five kinds of source tell you what exists. Cloud IAM lists roles, access keys and app registrations. CI/CD systems list pipeline variables and tokens. Code scanning finds secrets sitting in repositories and their history. Vaults know what is stored, when it last rotated and when it was last read. Directories hold the service accounts. Each source sees a different slice, and the same identity often appears in two or three of them under different names.</p>
+        <p class="body-text">Everything flows into one inventory. From there each record needs an owner, then a score, and then it lands in a queue where someone fixes it. A re-scan afterwards confirms the fix, and an evidence log keeps who, what and when for every step. The scanning is read-only. Fixing happens in the source system, by the owner.</p>
+        <figure class="diagram-card" style="--c:#4de2ff;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 470" role="img" aria-labelledby="n1t n1d"><title id="n1t">Non-human identity pipeline</title><desc id="n1d">Five discovery sources, cloud IAM, CI/CD, code and repositories, vaults and directories, send raw findings into one inventory. The inventory feeds owner assignment, then risk scoring, then a remediation queue. A re-scan loop returns from the queue to the inventory, and an evidence log records every step.</desc><text class="sub" x="90" y="34" text-anchor="middle" style="letter-spacing:.12em">DISCOVERY SOURCES</text><g class="node" style="--i:0"><rect x="20" y="60" width="140" height="54" rx="12"/><text class="ttl" x="34" y="83">Cloud IAM</text><text class="sub" x="34" y="101">roles, keys, apps</text></g><path class="flow" d="M 160 87 C 198 87 198 219 236 219"/><g class="node" style="--i:0"><rect x="20" y="126" width="140" height="54" rx="12"/><text class="ttl" x="34" y="149">CI/CD</text><text class="sub" x="34" y="167">pipeline tokens</text></g><path class="flow" d="M 160 153 C 198 153 198 219 236 219"/><g class="node" style="--i:0"><rect x="20" y="192" width="140" height="54" rx="12"/><text class="ttl" x="34" y="215">Code and repos</text><text class="sub" x="34" y="233">secrets in history</text></g><path class="flow" d="M 160 219 C 198 219 198 219 236 219"/><g class="node" style="--i:0"><rect x="20" y="258" width="140" height="54" rx="12"/><text class="ttl" x="34" y="281">Vaults</text><text class="sub" x="34" y="299">stored secrets</text></g><path class="flow" d="M 160 285 C 198 285 198 219 236 219"/><g class="node" style="--i:0"><rect x="20" y="324" width="140" height="54" rx="12"/><text class="ttl" x="34" y="347">Directories</text><text class="sub" x="34" y="365">service accounts</text></g><path class="flow" d="M 160 351 C 198 351 198 219 236 219"/><g class="node" style="--i:1"><rect x="236" y="144" width="120" height="150" rx="14"/><text class="ttl" x="296" y="178" text-anchor="middle">Inventory</text><text class="sub" x="296" y="206" text-anchor="middle">one record per</text><text class="sub" x="296" y="226" text-anchor="middle">identity, merged</text><text class="sub" x="296" y="246" text-anchor="middle">from all sources</text></g><g class="badge"><circle cx="236" cy="144" r="11"/><text x="236" y="148">2</text></g><g class="node" style="--i:2"><rect x="432" y="144" width="120" height="150" rx="14"/><text class="ttl" x="492" y="178" text-anchor="middle">Owners</text><text class="sub" x="492" y="206" text-anchor="middle">a named person</text><text class="sub" x="492" y="226" text-anchor="middle">or team for each</text><text class="sub" x="492" y="246" text-anchor="middle">none means flagged</text></g><g class="badge"><circle cx="432" cy="144" r="11"/><text x="432" y="148">3</text></g><g class="node" style="--i:3"><rect x="628" y="144" width="120" height="150" rx="14"/><text class="ttl" x="688" y="178" text-anchor="middle">Scoring</text><text class="sub" x="688" y="206" text-anchor="middle">privilege, age,</text><text class="sub" x="688" y="226" text-anchor="middle">exposure, owner</text><text class="sub" x="688" y="246" text-anchor="middle">gap, last use</text></g><g class="badge"><circle cx="628" cy="144" r="11"/><text x="628" y="148">4</text></g><g class="node" style="--i:4"><rect x="824" y="144" width="120" height="150" rx="14"/><text class="ttl" x="884" y="178" text-anchor="middle">Remediation</text><text class="sub" x="884" y="206" text-anchor="middle">rotate, federate,</text><text class="sub" x="884" y="226" text-anchor="middle">scope down, or</text><text class="sub" x="884" y="246" text-anchor="middle">retire</text></g><g class="badge"><circle cx="824" cy="144" r="11"/><text x="824" y="148">5</text></g><g class="badge"><circle cx="20" cy="60" r="11"/><text x="20" y="64">1</text></g><path class="flow" d="M 356 219 L 432 219"/><path class="flow" d="M 552 219 L 628 219"/><path class="flow" d="M 748 219 L 824 219"/><rect x="165" y="200" width="66" height="38" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text class="sub" x="198" y="216" text-anchor="middle">raw</text><text class="sub" x="198" y="231" text-anchor="middle">findings</text><rect x="361" y="200" width="66" height="38" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text class="sub" x="394" y="216" text-anchor="middle">unified</text><text class="sub" x="394" y="231" text-anchor="middle">records</text><rect x="557" y="200" width="66" height="38" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text class="sub" x="590" y="216" text-anchor="middle">owner or</text><text class="sub" x="590" y="231" text-anchor="middle">no owner</text><rect x="753" y="200" width="66" height="38" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text class="sub" x="786" y="216" text-anchor="middle">ranked</text><text class="sub" x="786" y="231" text-anchor="middle">by score</text><path class="flow" d="M 884 144 L 884 104 L 296 104 L 296 144"/><rect x="480" y="90" width="220" height="26" rx="8" style="fill:var(--surface);stroke:var(--border)"/><text class="sub" x="590" y="108" text-anchor="middle">re-scan confirms the fix</text><rect class="logbar" x="236" y="396" width="708" height="46" rx="10"/><text class="ttl" x="590" y="416" text-anchor="middle">Evidence log</text><text class="sub" x="590" y="434" text-anchor="middle">who, what, when for every finding, owner change and fix</text><path class="log" d="M 296 294 L 296 396"/><path class="log" d="M 492 294 L 492 396"/><path class="log" d="M 688 294 L 688 396"/><path class="log" d="M 884 294 L 884 396"/><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0.0s"/><animateMotion dur="8.4s" begin="0.0s" repeatCount="indefinite" path="M 160 87 C 198 87 198 219 236 219 L 884 219"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2.8s"/><animateMotion dur="8.4s" begin="2.8s" repeatCount="indefinite" path="M 160 219 C 198 219 198 219 236 219 L 884 219"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="5.6s"/><animateMotion dur="8.4s" begin="5.6s" repeatCount="indefinite" path="M 160 351 C 198 351 198 219 236 219 L 884 219"/></circle></svg>
+          <svg class="d-tall" viewBox="14 0 344 960" role="img" aria-labelledby="n2t n2d"><title id="n2t">Non-human identity pipeline</title><desc id="n2d">Discovery sources, cloud IAM, CI/CD, code and repositories, vaults and directories, send raw findings into one inventory. The inventory feeds owner assignment, then risk scoring, then a remediation queue. A re-scan loop returns from the queue to the inventory, and an evidence log records every step.</desc><g class="node" style="--i:0"><rect x="24" y="10" width="292" height="250" rx="14"/><text class="sub" x="170" y="32" text-anchor="middle" style="letter-spacing:.12em">DISCOVERY SOURCES</text><text class="ttl" x="48" y="62">Cloud IAM</text><text class="sub" x="48" y="78">roles, keys, apps</text><text class="ttl" x="48" y="102">CI/CD</text><text class="sub" x="48" y="118">pipeline tokens</text><text class="ttl" x="48" y="142">Code and repos</text><text class="sub" x="48" y="158">secrets in history</text><text class="ttl" x="48" y="182">Vaults</text><text class="sub" x="48" y="198">stored secrets</text><text class="ttl" x="48" y="222">Directories</text><text class="sub" x="48" y="238">service accounts</text></g><g class="badge"><circle cx="24" cy="10" r="11"/><text x="24" y="14">1</text></g><path class="flow" d="M 170 260 L 170 302"/><text class="sub" x="182" y="285">raw findings</text><g class="node" style="--i:1"><rect x="24" y="302" width="292" height="90" rx="14"/><text class="ttl" x="48" y="332">Inventory</text><text class="sub" x="48" y="354">one record per identity, merged</text><text class="sub" x="48" y="372">from every source</text></g><g class="badge"><circle cx="24" cy="302" r="11"/><text x="24" y="306">2</text></g><path class="flow" d="M 170 392 L 170 434"/><text class="sub" x="182" y="417">unified records</text><g class="node" style="--i:2"><rect x="24" y="434" width="292" height="90" rx="14"/><text class="ttl" x="48" y="464">Owners</text><text class="sub" x="48" y="486">a named person or team for each</text><text class="sub" x="48" y="504">none means flagged</text></g><g class="badge"><circle cx="24" cy="434" r="11"/><text x="24" y="438">3</text></g><path class="flow" d="M 170 524 L 170 566"/><text class="sub" x="182" y="549">owner or no owner</text><g class="node" style="--i:3"><rect x="24" y="566" width="292" height="90" rx="14"/><text class="ttl" x="48" y="596">Scoring</text><text class="sub" x="48" y="618">privilege, age, exposure,</text><text class="sub" x="48" y="636">owner gap, last use</text></g><g class="badge"><circle cx="24" cy="566" r="11"/><text x="24" y="570">4</text></g><path class="flow" d="M 170 656 L 170 698"/><text class="sub" x="182" y="681">ranked by score</text><g class="node" style="--i:4"><rect x="24" y="698" width="292" height="90" rx="14"/><text class="ttl" x="48" y="728">Remediation</text><text class="sub" x="48" y="750">rotate, federate, scope down,</text><text class="sub" x="48" y="768">or retire</text></g><g class="badge"><circle cx="24" cy="698" r="11"/><text x="24" y="702">5</text></g><path class="flow" d="M 316 743 L 336 743 L 336 347 L 316 347"/><text class="sub" transform="translate(354 545) rotate(-90)" text-anchor="middle">re-scan confirms the fix</text><path class="log" d="M 170 788 L 170 840"/><rect class="logbar" x="24" y="840" width="292" height="64" rx="10"/><text class="ttl" x="170" y="866" text-anchor="middle">Evidence log</text><text class="sub" x="170" y="886" text-anchor="middle">who, what, when for every step</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0.0s"/><animateMotion dur="9s" begin="0.0s" repeatCount="indefinite" path="M 170 70 L 170 770"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="4.5s"/><animateMotion dur="9s" begin="4.5s" repeatCount="indefinite" path="M 170 70 L 170 770"/></circle></svg>
+          <figcaption>Each dot is one identity: found in a source, merged into the inventory, given an owner, scored and queued. The numbers on the boxes match the first five steps of the workflow below. The dashed lines into the evidence log show that every stage writes to it.</figcaption>
+        </figure>
+      </section>
 
-<section class="sandbox wrap">
-  <div class="section-head">
-    <span class="section-num">TRY IT</span>
-    <h2>Non-Human Identity Risk Visualizer</h2>
-    <p>A synthetic fleet of machine identities, scored live in your browser. Apply governance controls below and watch the risk surface shrink.</p>
-  </div>
+      <section id="workflow">
+        <h2>The workflow, step by step</h2>
+        <p class="body-text">Seven steps. Each has a guardrail, which is the rule that keeps the step honest, and the evidence an auditor can ask to see.</p>
+        <ol class="steps">
+          <li><h3>Discover from every source you can reach</h3><p>Start with the two or three sources that hold the most: usually cloud IAM, the main vault and the code repositories. Keep a register of sources, with a person who answers for each one, so a gap in coverage is visible and not silent.</p><div class="why"><span><b>Guardrail</b>Read-only discovery access, every source has an owner</span><span><b>Evidence</b>Source register with last successful scan date</span></div></li>
+          <li><h3>Merge into one inventory</h3><p>Give each identity one record with a few required fields: type, system, environment, created date, last rotated, last used, privilege level, owner and the source that found it. When two sources describe the same identity, merge them. When a record is missing a field, flag it and keep it. A half-filled record is still better than no record.</p><div class="why"><span><b>Guardrail</b>Required fields, and incomplete records are flagged, not dropped</span><span><b>Evidence</b>Inventory export with field completeness</span></div></li>
+          <li><h3>Assign a named owner</h3><p>An owner is a person or a team that will answer for the identity, change it and retire it. Where nobody claims it, the record goes to the owner of the system it touches, and from there to a review queue with a deadline. Ownership has to be accepted, because being named by someone else does not make a person accountable.</p><div class="why"><span><b>Guardrail</b>No owner within the agreed time raises the score and routes to review</span><span><b>Evidence</b>Owner acceptance record</span></div></li>
+          <li><h3>Score every identity the same way</h3><p>Use one formula, version it, and store the inputs next to the result so anyone can see why an identity ranks where it does. The factors and a worked example are in the next section. The score orders the work. It says nothing about the quality of a team.</p><div class="why"><span><b>Guardrail</b>One versioned formula, inputs kept with the score</span><span><b>Evidence</b>Score history per identity</span></div></li>
+          <li><h3>Fix at the source, in a fixed order</h3><p>Work down the queue. For each identity ask four questions in order. Is it still used? If not, retire it. Can the workload use a role, federation or a short-lived token? If so, replace the secret. Is the access wider than the job needs? Cut it. Is a static secret still unavoidable? Rotate it, and set the next rotation. Retiring comes before rotating, because rotating something nobody uses only adds work.</p><div class="why"><span><b>Guardrail</b>Retire first, remove the secret second, rotate last</span><span><b>Evidence</b>Change record in the system that owns the identity</span></div></li>
+          <li><h3>Verify, then close</h3><p>A fix is closed when a re-scan shows the change and the owner confirms it. If the owner stays silent, the item escalates. Closing a ticket on someone&rsquo;s word is how stale findings come back at the next audit.</p><div class="why"><span><b>Guardrail</b>Closure needs a re-scan result, and a ticket status alone is not enough</span><span><b>Evidence</b>Before and after scan, owner confirmation</span></div></li>
+          <li><h3>Guard the front door</h3><p>The cleanup only holds if new identities arrive through a path that asks for an owner, a purpose and an expiry. Secret scanning on commits keeps new keys out of code. Anything created outside the path shows up in the next scan and counts against the owner of the system.</p><div class="why"><span><b>Guardrail</b>Creation path requires owner and expiry, secret scanning on commit</span><span><b>Evidence</b>Blocked-commit log, exceptions register</span></div></li>
+        </ol>
+      </section>
 
-  <div class="sandbox-shell">
-    <div class="sandbox-note">
-      <span>⚠️</span>
-      <span><b>Synthetic sandbox — no real infrastructure, credentials or company data.</b> Every identity below is randomly generated in your browser to demonstrate the scoring model described above.</span>
-    </div>
+      <section id="scoring">
+        <h2>Scoring: how I rank the list</h2>
+        <p class="body-text">A flat list of thousands of identities cannot be worked. A short score does the sorting. The model I use on this site has three factors. I keep it small on purpose, because a score people can recompute in their head gets trusted, and one they cannot gets ignored.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Factor</th><th>How it is calculated</th><th>Why it is there</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Factor">Staleness</td><td data-label="How it is calculated">Days since the credential last changed, divided by 30, capped at 10, then multiplied by 0.55</td><td data-label="Why it is there">A secret that has not changed has had more time to leak and be copied.</td></tr>
+            <tr><td data-label="Factor">Privilege</td><td data-label="How it is calculated">Standard counts 1, Elevated 2 and Admin 3.2, then multiplied by 1.6</td><td data-label="Why it is there">It sets the blast radius. The same leak costs far more at Admin.</td></tr>
+            <tr><td data-label="Factor">Ownership gap</td><td data-label="How it is calculated">Add 3.5 if no owner is recorded</td><td data-label="Why it is there">With no owner there is nobody to rotate, scope down or retire it.</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Add the three results, round to a whole number and keep it between 1 and 10. A score of 7 or more counts as high risk, 4 to 6 as medium and below that as low. These weights are starting values for the demonstration, and they are no standard. In a real program I would tune them with the data owner and the people who answer for incidents, then freeze the version.</p>
+        <p class="body-text">Two policies change the result and are easy to explain. Enforcing a 90-day rotation caps the staleness input at 90 days. Requiring an owner within 30 days of creation removes the ownership gap.</p>
 
-    <div class="controls">
-      <label class="toggle" id="toggleRotation">
-        <input type="checkbox" id="cbRotation" />
-        Enforce 90-day rotation policy
-      </label>
-      <label class="toggle" id="toggleOwnership">
-        <input type="checkbox" id="cbOwnership" />
-        Require ownership within 30 days of creation
-      </label>
-      <button class="btn-regen" id="btnRegen">⟲ Regenerate fleet</button>
-    </div>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Worked example: two identities</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration with made-up identities. It does not describe a specific event.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Input</th><th>A: deploy token for a pipeline</th><th>B: reporting service account</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Input">Privilege</td><td data-label="A: deploy token for a pipeline">Admin, 3.2 &times; 1.6 = 5.12</td><td data-label="B: reporting service account">Elevated, 2 &times; 1.6 = 3.20</td></tr>
+            <tr><td data-label="Input">Last changed</td><td data-label="A: deploy token for a pipeline">400 days. 400 / 30 = 13.3, capped at 10, &times; 0.55 = 5.50</td><td data-label="B: reporting service account">150 days. 150 / 30 = 5, &times; 0.55 = 2.75</td></tr>
+            <tr><td data-label="Input">Owner</td><td data-label="A: deploy token for a pipeline">None, +3.50</td><td data-label="B: reporting service account">Named team, +0</td></tr>
+            <tr><td data-label="Input">Total</td><td data-label="A: deploy token for a pipeline">14.12, kept at the maximum of 10. High.</td><td data-label="B: reporting service account">5.95, rounds to 6. Medium.</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Now take token A and apply fixes one at a time, to see which one does the work.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Change to token A</th><th>Calculation</th><th>Score</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Change to token A">Start</td><td data-label="Calculation">5.50 + 5.12 + 3.50 = 14.12</td><td data-label="Score">10, high</td></tr>
+            <tr><td data-label="Change to token A">Assign an owner and enforce 90-day rotation</td><td data-label="Calculation">1.65 + 5.12 + 0 = 6.77</td><td data-label="Score">7, still high</td></tr>
+            <tr><td data-label="Change to token A">Also cut Admin down to Elevated</td><td data-label="Calculation">1.65 + 3.20 + 0 = 4.85</td><td data-label="Score">5, medium</td></tr>
+            <tr><td data-label="Change to token A">Replace it with a federated, short-lived token, so nothing is stored</td><td data-label="Calculation">0 + 3.20 + 0 = 3.20</td><td data-label="Score">3, low</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">The lesson I draw from this is that ownership and rotation cut the score a long way and still left it at 7. The privilege cut and the removal of the stored secret finished the job. That is why the order in step 5 starts with retiring and replacing, and leaves rotation for last.</p>
+        <p class="body-text">What the score leaves out matters too. It does not see whether the secret has already been found in code, or whether the identity has been used in the last quarter. Once the inventory is trustworthy I add those two as extra factors. An identity with a known exposure moves to the top whatever its other numbers say.</p>
+      </section>
 
-    <div class="stats">
-      <div class="stat total"><div class="n" id="statTotal">0</div><div class="l">Total Identities</div></div>
-      <div class="stat risk"><div class="n" id="statHighRisk">0</div><div class="l">High Risk</div></div>
-      <div class="stat orphan"><div class="n" id="statOrphaned">0</div><div class="l">Orphaned</div></div>
-      <div class="stat avg"><div class="n" id="statAvg">0</div><div class="l">Avg Risk Score</div></div>
-    </div>
+      <section id="federation">
+        <h2>Removing the secret: federation and short-lived tokens</h2>
+        <p class="body-text">Rotation limits how long a stolen secret works. Removing the stored secret removes the thing to steal. Most major platforms now document a way for a workload to prove who it is and receive a credential that expires on its own.</p>
+        <p class="body-text"><strong>Roles on the platform itself.</strong> AWS&rsquo;s IAM guidance says workloads on its compute services should use temporary credentials delivered with an IAM role, and that there is no need to distribute long-lived credentials for an IAM user to workloads running on AWS. The same guidance says that where long-term keys cannot be avoided, you should update them when needed, and use last accessed information to find and remove credentials you no longer need.</p>
+        <p class="body-text"><strong>Federation for pipelines and outside workloads.</strong> GitHub Actions can request a signed OIDC token for each run and exchange it with a cloud provider for a short-lived access token, so no cloud credential has to be stored as a long-lived GitHub secret. The workflow needs the <code class="ref">id-token: write</code> permission, which does not by itself let it write to any resource. GitHub also says you must define at least one condition on the token&rsquo;s claims, so that untrusted repositories cannot request tokens for your cloud resources. The subject claim can narrow that to an environment, a branch or pull requests. Google Cloud describes Workload Identity Federation as a way to authenticate workloads outside Google Cloud without a static service account key. Microsoft Entra documents the same pattern for software outside Azure, including GitHub Actions and Kubernetes workloads. OWASP&rsquo;s list includes insecure cloud deployment configurations and mentions improperly validated OIDC tokens in that item, so the trust condition is where review effort belongs after the move.</p>
+        <p class="body-text"><strong>Workload identity across platforms.</strong> SPIFFE defines an ID for a workload in the form <code class="ref">spiffe://trust-domain/workload</code> and a verifiable document for it, called an SVID, as either an X.509 certificate or a JWT. The project notes that X.509 is preferred, because tokens are susceptible to replay. Through the Workload API a workload gets its credentials without holding an authentication secret, and the keys are short-lived and rotated automatically. SPIRE is the reference implementation: a server issues identities for a trust domain, an agent runs on each node, the agent is attested when it first connects, and each workload is attested by matching its properties to a registration entry. I reach for this when many services across several clusters or clouds need to identify each other. Where everything sits in one cloud, that cloud&rsquo;s native roles are simpler to run.</p>
+        <p class="body-text">NSA and CISA&rsquo;s 2024 cloud identity guidance points the same way. It asks for keys generated for short-term use, least privilege, and secrets kept in a secrets management tool and never in plain text or in source code.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Option</th><th>Good fit</th><th>What you still have to watch</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Option">Stored static secret</td><td data-label="Good fit">Legacy systems and third-party services that accept nothing else</td><td data-label="What you still have to watch">Owner, rotation, read access and where copies end up</td></tr>
+            <tr><td data-label="Option">Platform role or managed identity</td><td data-label="Good fit">Workloads running on the same cloud as the resource</td><td data-label="What you still have to watch">Permissions that grow over time</td></tr>
+            <tr><td data-label="Option">OIDC federation</td><td data-label="Good fit">Pipelines and workloads running outside the target cloud</td><td data-label="What you still have to watch">The trust condition. Too broad a rule lets the wrong repository in.</td></tr>
+            <tr><td data-label="Option">SPIFFE and SPIRE</td><td data-label="Good fit">Service-to-service identity across clusters and clouds</td><td data-label="What you still have to watch">Running the SPIRE servers, and the attestation and registration rules</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Every workload moved onto the lower rows drops out of the secrets inventory and into the trust-rule inventory. I count both, because the risk has moved and has not vanished.</p>
+      </section>
 
-    <div class="identity-list">
-      <div class="id-row head">
-        <div>Identity</div>
-        <div>Age</div>
-        <div class="col-rotated">Last Rotated</div>
-        <div class="col-priv">Privilege</div>
-        <div>Owner</div>
-        <div style="text-align:right">Risk</div>
-      </div>
-      <div id="idRows"></div>
-      <div class="more-row" id="moreRow"></div>
-    </div>
-  </div>
-</section>
+      <section id="roadmap">
+        <h2>How to roll it out</h2>
+        <ol class="phases">
+          <li><b>1. Agree scope and who decides</b>Write down which kinds of identity are in the first release and who signs off the formula, the owner rules and the exceptions.<small><em>Done when</em>Scope, decision-maker and escalation path are written and agreed.</small></li>
+          <li><b>2. Build a first inventory from two sources</b>Pick cloud IAM and the main vault, or whichever sources hold the most. Merge them and show the result to the system owners.<small><em>Done when</em>There is one list with required fields, and the gaps are visible.</small></li>
+          <li><b>3. Run an ownership sweep</b>Take the identities with no owner, group them by system, and walk each group through with the people who run that system.<small><em>Done when</em>Each identity has an accepted owner or a dated review item.</small></li>
+          <li><b>4. Score and work the top of the list</b>Turn on the formula and agree a working limit for the queue. Fix the highest scores first, in the order from step 5 of the workflow.<small><em>Done when</em>The top slice is closed with re-scan evidence.</small></li>
+          <li><b>5. Move pipelines and cloud workloads off stored keys</b>Start where a role or federation is available and the blast radius is large. Leave the awkward legacy cases on a named exception list.<small><em>Done when</em>New pipelines authenticate by federation by default.</small></li>
+          <li><b>6. Guard creation and run it as a routine</b>Require owner and expiry at creation, schedule rescans and put owner attestation on a calendar.<small><em>Done when</em>New identities outside the path appear in the next scan and are acted on.</small></li>
+        </ol>
+      </section>
 
-<p style="color:#9fb0c4;font-size:13px;max-width:980px;margin:0 auto;padding:0 24px 24px">Related reading: <a href="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/" style="color:#4de2ff">One Key, Every Agent</a> &mdash; three real 2025-2026 breaches traced back to shared AI agent credentials.</p>
-<p style="color:#9fb0c4;font-size:13px;max-width:980px;margin:0 auto;padding:0 24px 24px">Related reading: <a href="https://roshantrivedi.co.in/case-studies/shadow-ai-discovery-gap/" style="color:#4de2ff">The AI Stack Nobody Approved</a> — why security can't govern the AI tools it doesn't know exist.</p>
-<nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/ai-coworker/"><small><i></i>&larr; Previous</small><strong>AI as a Coworker in Identity Operations</strong></a><a class="next" style="--c:#7df2d0" href="/case-studies/jit-jea-elevation/"><small><i></i>Next &rarr;</small><strong>Just-in-Time &amp; Just-Enough-Access Elevation</strong></a></div></nav>
-      <footer class="site">
-  <div class="wrap">
-    <p>Roshan Trivedi · Credential Management &amp; PAM Product Leader</p>
-    <a href="/#contact">Get in touch →</a>
-  </div>
-</footer>
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Every identity has an accepted owner</td><td data-label="What it stops">Orphaned identities that nobody can change or retire</td><td data-label="How you check it">Report of identities with no owner or a departed owner</td></tr>
+            <tr><td data-label="Guardrail">One inventory, many sources, with a source register</td><td data-label="What it stops">Blind spots that nobody knows about</td><td data-label="How you check it">Compare the source register with the list of systems that can create identities</td></tr>
+            <tr><td data-label="Guardrail">Retire before rotate</td><td data-label="What it stops">Effort spent on identities nobody uses</td><td data-label="How you check it">Last-used date checked before each rotation ticket</td></tr>
+            <tr><td data-label="Guardrail">Federation or short-lived tokens by default for new pipelines</td><td data-label="What it stops">New long-lived secrets in pipeline variables</td><td data-label="How you check it">Count of pipelines still using stored cloud keys</td></tr>
+            <tr><td data-label="Guardrail">Narrow trust conditions on federation</td><td data-label="What it stops">A repository or workload that should not get a token getting one</td><td data-label="How you check it">Review trust rules for wildcards and missing conditions</td></tr>
+            <tr><td data-label="Guardrail">Secret scanning on commits</td><td data-label="What it stops">New keys landing in code and history</td><td data-label="How you check it">Plant a test secret and confirm the pipeline blocks it</td></tr>
+            <tr><td data-label="Guardrail">Closure needs a re-scan</td><td data-label="What it stops">Findings marked done and still open</td><td data-label="How you check it">Sample closed items and compare with the live system</td></tr>
+            <tr><td data-label="Guardrail">Exceptions have owners and end dates</td><td data-label="What it stops">Temporary workarounds becoming permanent</td><td data-label="How you check it">Exceptions register reviewed on a schedule</td></tr>
+          </tbody></table></div>
+      </section>
 
-<script>
-(function () {
-  var TYPES = [
-    { key: 'service-account', label: 'Service Account' },
-    { key: 'api-key', label: 'API Key' },
-    { key: 'workload', label: 'Workload Identity' },
-    { key: 'cicd', label: 'CI/CD Token' },
-    { key: 'ai-agent', label: 'AI Agent' }
-  ];
-  var PRIV = ['Standard', 'Elevated', 'Admin'];
-  var PRIV_WEIGHT = { Standard: 1, Elevated: 2, Admin: 3.2 };
-  var NAME_PARTS = ['payments', 'billing', 'checkout', 'inventory', 'auth', 'notifications', 'reporting', 'etl', 'crm-sync', 'analytics', 'search', 'gateway', 'scheduler', 'ledger', 'onboarding'];
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">How many non-human identities do you have, and how do you know?</td><td data-label="Where the answer comes from">Inventory with the source register and the date of each last scan</td></tr>
+            <tr><td data-label="Question">Who owns this one?</td><td data-label="Where the answer comes from">Owner field and acceptance record</td></tr>
+            <tr><td data-label="Question">Which ones have no owner today?</td><td data-label="Where the answer comes from">Orphan report, with age of each item</td></tr>
+            <tr><td data-label="Question">When did it last change, and when was it last used?</td><td data-label="Where the answer comes from">Rotation history and last-used data from the source system</td></tr>
+            <tr><td data-label="Question">Why is this one ranked above that one?</td><td data-label="Where the answer comes from">Score with stored inputs and formula version</td></tr>
+            <tr><td data-label="Question">What did you do about the top of the list?</td><td data-label="Where the answer comes from">Closed items with before and after scans</td></tr>
+            <tr><td data-label="Question">How do you stop new ones appearing unchecked?</td><td data-label="Where the answer comes from">Creation path rules, blocked-commit log, exceptions register</td></tr>
+          </tbody></table></div>
 
-  var FLEET_SIZE = 42;
-  var SHOW_COUNT = 12;
-  var fleet = [];
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-2</code></td><td data-label="What it asks for">Account management: define the types of accounts allowed, assign account managers, create, modify, disable and remove accounts by procedure, monitor use and review accounts.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-6</code></td><td data-label="What it asks for">Least privilege: allow only the accesses that are necessary for assigned tasks.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">IA-5</code></td><td data-label="What it asks for">Authenticator management: change default authenticators before first use, change or refresh authenticators on a defined period or event, and protect authenticator content from disclosure and modification.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">SC-12</code></td><td data-label="What it asks for">Establish and manage cryptographic keys where cryptography is used, to defined requirements.</td></tr>
+            <tr><td data-label="Standard">CIS Controls v8</td><td data-label="Reference"><code class="ref">5.5</code></td><td data-label="What it asks for">Establish and maintain an inventory of service accounts, with department owner, review date and purpose, and validate it at least quarterly.</td></tr>
+            <tr><td data-label="Standard">NSA and CISA, March 2024</td><td data-label="Reference">Use Secure Cloud Identity and Access Management Practices</td><td data-label="What it asks for">Short-lived keys, least privilege, and secrets held in a secrets manager and never in source code.</td></tr>
+          </tbody></table></div>
 
-  function rand(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-  function pick(arr) { return arr[rand(0, arr.length - 1)]; }
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">OWASP Non-Human Identities Top 10 (2025), and where each item lands</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Item</th><th>Where this approach deals with it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Item"><code class="ref">NHI1</code> Improper Offboarding</td><td data-label="Where this approach deals with it">Retire before rotate, owner attestation, last-used data</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI2</code> Secret Leakage</td><td data-label="Where this approach deals with it">Code and repository discovery, secret scanning on commits</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI3</code> Vulnerable Third-Party NHI</td><td data-label="Where this approach deals with it">OAuth apps and integrations are in the inventory, with an owner</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI4</code> Insecure Authentication</td><td data-label="Where this approach deals with it">Move to roles, federation and short-lived tokens</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI5</code> Overprivileged NHI</td><td data-label="Where this approach deals with it">The privilege factor in the score, and the scope-down step</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI6</code> Insecure Cloud Deployment Configurations</td><td data-label="Where this approach deals with it">Narrow trust conditions on federation, reviewed regularly</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI7</code> Long-Lived Secrets</td><td data-label="Where this approach deals with it">The staleness factor, expiry required at creation</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI8</code> Environment Isolation</td><td data-label="Where this approach deals with it">Environment is a required inventory field, so reuse across environments is visible</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI9</code> NHI Reuse</td><td data-label="Where this approach deals with it">One identity per application, with one owner</td></tr>
+            <tr><td data-label="Item"><code class="ref">NHI10</code> Human Use of NHI</td><td data-label="Where this approach deals with it">Last-used and sign-in data checked for interactive use of machine accounts</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">The item names are as OWASP lists them. The right-hand column is my own mapping, and OWASP has not endorsed it.</p>
+      </section>
 
-  function genFleet() {
-    fleet = [];
-    for (var i = 0; i < FLEET_SIZE; i++) {
-      var type = pick(TYPES);
-      var ageDays = rand(4, 900);
-      var rotatedDays = Math.min(ageDays, rand(0, 420));
-      var owned = Math.random() > 0.42;
-      var priv = pick(PRIV);
-      fleet.push({
-        id: pick(NAME_PARTS) + '-' + type.key + '-' + rand(100, 999),
-        type: type,
-        ageDays: ageDays,
-        rotatedDays: rotatedDays,
-        owned: owned,
-        priv: priv
-      });
-    }
-  }
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Program owner</td><td data-label="Owns">Scope, the formula, the roadmap and the exceptions register</td></tr>
+            <tr><td data-label="Role">Identity owners</td><td data-label="Owns">Each identity: its purpose, its access and its retirement</td></tr>
+            <tr><td data-label="Role">System owners</td><td data-label="Owns">Identities with no accepted owner, until one is found</td></tr>
+            <tr><td data-label="Role">Platform engineering</td><td data-label="Owns">Discovery connectors, the inventory and the creation path</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Rotation and expiry rules, federation patterns and trust-condition standards</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checks, separate from the people running the controls</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>Ownership, rotation and offboarding work together.</strong> A reader on LinkedIn, Gelson Monteiro, made the point that Zero Standing Privilege only holds once ownership is enforced, and that finding non-human identities is getting easier while finding a person willing to be accountable for one is harder. I agree. Shrinking an access window without a lifecycle underneath it just times out access that nobody remembers approving.</li>
+          <li><strong>Measure what moves.</strong> Share of identities with an accepted owner, count of high-scoring identities, age of the oldest unrotated secret, share using short-lived credentials, and time from discovery to closure.</li>
+        </ul>
+      </section>
 
-  function computeRisk(identity, enforceRotation, requireOwnership) {
-    var rotatedDays = enforceRotation ? Math.min(identity.rotatedDays, 90) : identity.rotatedDays;
-    var owned = requireOwnership ? true : identity.owned;
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>Nobody wants the owner field.</strong> Being named owner feels like taking on risk. If the only consequence is a nagging email, people decline or click through. Make the route to ownership easy and the alternative clear, and expect the first sweep to be slow.</li>
+          <li><strong>Sources disagree.</strong> The same identity has a different name in the directory, the cloud and the vault. Merging them takes judgement, and a wrong merge hides a real finding.</li>
+          <li><strong>A big queue gets ignored.</strong> Thousands of tickets on day one teach everyone to stop looking. Release a working slice at a time.</li>
+          <li><strong>Federation moves the risk.</strong> A loose trust condition can be worse than the key it replaced, since it is easy to miss. Review the rules as carefully as you reviewed the secrets.</li>
+          <li><strong>The score gets treated as truth.</strong> It orders the work and nothing more. A low score on an identity that is plainly exposed still gets fixed.</li>
+          <li><strong>Agents multiply faster than reviews.</strong> AI agents hold keys, tokens and delegated access like any other machine identity, and they appear faster than a quarterly review can follow. Treat them as part of this inventory from the start. See <a href="/case-studies/shadow-ai-discovery-gap/">The AI Stack Nobody Approved</a>.</li>
+        </ul>
+      </section>
 
-    var staleness = Math.min(rotatedDays / 30, 10);
-    var privWeight = PRIV_WEIGHT[identity.priv];
-    var ownerGap = owned ? 0 : 3.5;
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <ul class="plain-list">
+          <li><strong>I start with ownership and treat scoring as the second job.</strong> A perfect score on an ownerless list changes nothing. When I begin with the people who run the systems, the rest goes faster.</li>
+          <li><strong>I show the inventory to owners before I publish it.</strong> They find the mistakes in minutes, and they are more willing to accept an entry they have seen than one that appears in a report.</li>
+          <li><strong>I keep the formula small and write the arithmetic down.</strong> If a system owner can recompute their own score on paper, the argument moves from the number to the fix.</li>
+          <li><strong>I ask whether the secret is needed before I ask how to rotate it.</strong> The best answer is often to retire or replace, and asking first saves a lot of work.</li>
+          <li><strong>I treat the trust rules for federation as inventory too.</strong> They are small and easy to forget, and they decide who gets in.</li>
+          <li><strong>I close items on evidence.</strong> A re-scan result goes in the ticket. I would rather close fewer items and defend each one.</li>
+          <li><strong>I put expiry in at creation.</strong> Cleaning up later is always more expensive than asking for an end date on day one.</li>
+        </ul>
+        <p class="body-text">The way I run the surrounding program is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>, and the platform side is in <a href="/case-studies/credential-platform/">Credential Management Platform Strategy</a>.</p>
+      </section>
 
-    var raw = (staleness * 0.55) + (privWeight * 1.6) + ownerGap;
-    var score = Math.max(1, Math.min(10, Math.round(raw)));
-    return { score: score, rotatedDays: rotatedDays, owned: owned };
-  }
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://owasp.github.io/www-project-non-human-identities-top-10/">OWASP Non-Human Identities Top 10 (2025)</a></li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls (AC-2, AC-6, IA-5, SC-12)</a>. Control wording was checked against a third-party mirror, <a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-2/">CSF Tools</a>, so the descriptions here are paraphrased.</li>
+          <li><a href="https://www.cisecurity.org/controls">CIS Critical Security Controls v8</a>, Safeguard 5.5. The wording was checked on a <a href="https://csf.tools/reference/critical-security-controls/v8-1/csc-5/csc-5-5/">third-party mirror</a>.</li>
+          <li><a href="https://media.defense.gov/2024/Mar/07/2003407866/-1/-1/0/CSI-CloudTop10-Identity-Access-Management.PDF">NSA and CISA, Use Secure Cloud Identity and Access Management Practices (March 2024)</a></li>
+          <li><a href="https://docs.github.com/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-cloud-providers">GitHub Docs: Configuring OpenID Connect in cloud providers</a></li>
+          <li><a href="https://docs.github.com/en/enterprise-cloud@latest/actions/reference/security/oidc">GitHub Docs: OpenID Connect reference</a></li>
+          <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/IAMBestPractices.html">AWS: Security best practices in IAM</a></li>
+          <li><a href="https://aws.amazon.com/blogs/security/beyond-iam-access-keys-modern-authentication-approaches-for-aws/">AWS Security Blog: Beyond IAM access keys (July 2025)</a></li>
+          <li><a href="https://docs.cloud.google.com/iam/docs/tutorial-cloud-run-workload-id-federation">Google Cloud: Integrate Cloud Run and Workload Identity Federation</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation">Microsoft Entra: Workload identity federation</a></li>
+          <li><a href="https://spiffe.io/docs/latest/spiffe-about/spiffe-concepts/">SPIFFE Concepts</a></li>
+          <li><a href="https://spiffe.io/docs/latest/spire-about/spire-concepts/">SPIRE Concepts</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. Names, scores and identities in the worked example are made up. Control and item names are as published in the sources above.</p>
+      </section>
 
-  function riskColor(score) {
-    if (score >= 7) return 'var(--red)';
-    if (score >= 4) return 'var(--amber)';
-    return 'var(--green)';
-  }
+      <section id="tags"><div class="tags"><span>#non-human-identity</span><span>#secrets-governance</span><span>#risk-scoring</span><span>#zero-standing-privilege</span></div></section>
 
-  function fmtDays(d) {
-    if (d === 0) return 'today';
-    if (d < 30) return d + 'd ago';
-    if (d < 365) return Math.round(d / 30) + 'mo ago';
-    return (d / 365).toFixed(1) + 'yr ago';
-  }
-
-  function render() {
-    var enforceRotation = document.getElementById('cbRotation').checked;
-    var requireOwnership = document.getElementById('cbOwnership').checked;
-
-    document.getElementById('toggleRotation').classList.toggle('active', enforceRotation);
-    document.getElementById('toggleOwnership').classList.toggle('active', requireOwnership);
-
-    var scored = fleet.map(function (identity) {
-      var r = computeRisk(identity, enforceRotation, requireOwnership);
-      return Object.assign({}, identity, r);
-    });
-
-    scored.sort(function (a, b) { return b.score - a.score; });
-
-    var total = scored.length;
-    var highRisk = scored.filter(function (s) { return s.score >= 7; }).length;
-    var orphaned = scored.filter(function (s) { return !s.owned; }).length;
-    var avg = (scored.reduce(function (sum, s) { return sum + s.score; }, 0) / total).toFixed(1);
-
-    document.getElementById('statTotal').textContent = total;
-    document.getElementById('statHighRisk').textContent = highRisk;
-    document.getElementById('statOrphaned').textContent = orphaned;
-    document.getElementById('statAvg').textContent = avg;
-
-    var rowsHtml = scored.slice(0, SHOW_COUNT).map(function (s) {
-      var pct = (s.score / 10) * 100;
-      return (
-        '<div class="id-row">' +
-          '<div class="name"><span class="badge ' + s.type.key + '">' + s.type.label + '</span> ' + s.id + '</div>' +
-          '<div>' + Math.round(s.ageDays / 30) + 'mo</div>' +
-          '<div class="col-rotated">' + fmtDays(s.rotatedDays) + '</div>' +
-          '<div class="col-priv">' + s.priv + '</div>' +
-          '<div class="' + (s.owned ? 'owned' : 'orphaned') + '">' + (s.owned ? 'Owned' : 'Orphaned') + '</div>' +
-          '<div class="risk-cell"><span class="risk-num" style="color:' + riskColor(s.score) + '">' + s.score + '</span>' +
-            '<span class="risk-bar"><span style="width:' + pct + '%;background:' + riskColor(s.score) + '"></span></span>' +
-          '</div>' +
-        '</div>'
-      );
-    }).join('');
-
-    document.getElementById('idRows').innerHTML = rowsHtml;
-
-    var remaining = total - SHOW_COUNT;
-    document.getElementById('moreRow').textContent = remaining > 0
-      ? ('showing top ' + SHOW_COUNT + ' by risk score — ' + remaining + ' more identities in this fleet')
-      : '';
-  }
-
-  document.getElementById('cbRotation').addEventListener('change', render);
-  document.getElementById('cbOwnership').addEventListener('change', render);
-  document.getElementById('btnRegen').addEventListener('click', function () {
-    genFleet();
-    render();
-  });
-
-  genFleet();
-  render();
-})();
-</script>
-
-<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "444a1ec20a754e468bd77d1fb0a93adc"}'></script>
+      <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/ai-coworker/"><small><i></i>&larr; Previous</small><strong>AI as a Coworker in Identity Operations</strong></a><a class="next" style="--c:#7df2d0" href="/case-studies/jit-jea-elevation/"><small><i></i>Next &rarr;</small><strong>Just-in-Time &amp; Just-Enough-Access Elevation</strong></a></div></nav>
+      <footer class="page-footer">
+        <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
-</body>
+  </body>
 </html>

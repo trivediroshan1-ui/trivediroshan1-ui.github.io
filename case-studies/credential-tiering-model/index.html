@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#030712" />
@@ -20,186 +20,8 @@
 
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-
-    <style>
-      :root {
-        --bg: #030712;
-        --surface: #0b1220;
-        --surface-2: #101a2c;
-        --border: #1f2a40;
-        --text: #f1f5f9;
-        --muted: #93a1bd;
-        --accent: #4de2ff;
-        --safe: #7df2d0;
-        --warn: #f7c873;
-        --danger: #ff7a93;
-        --mono: "JetBrains Mono", ui-monospace, monospace;
-        --display: "DM Sans", system-ui, sans-serif;
-        --body: "Manrope", system-ui, sans-serif;
-        color-scheme: dark;
-      }
-      * { box-sizing: border-box; }
-      html, body { background: var(--bg); }
-      body {
-        color: var(--text);
-        font-family: var(--body);
-        margin: 0;
-        padding-inline: 16px;
-        padding-block: 28px 60px;
-        line-height: 1.6;
-      }
-      main { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 44px; }
-
-      .back {
-        display: inline-block;
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 13px;
-        font-weight: 600;
-      }
-      .back:hover, .back:focus-visible { color: var(--accent); }
-
-      header.hero { display: flex; flex-direction: column; gap: 14px; margin-top: 6px; }
-
-      .jump-nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: -20px;
-        padding: 12px 14px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-      }
-      .jump-nav a {
-        color: var(--muted);
-        font-size: 12px;
-        font-weight: 600;
-        text-decoration: none;
-        padding: 5px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        white-space: nowrap;
-      }
-      .jump-nav a:hover, .jump-nav a:focus-visible {
-        color: var(--accent);
-        border-color: var(--accent);
-        outline: none;
-      }
-      section { scroll-margin-top: 20px; }
-      .eyebrow {
-        font-family: var(--mono);
-        font-size: 11px;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin: 0;
-      }
-      h1 {
-        font-family: var(--display);
-        font-size: clamp(28px, 5vw, 42px);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.12;
-        margin: 0;
-        text-wrap: balance;
-      }
-      .dek { color: var(--muted); font-size: 16px; max-width: 68ch; margin: 0; }
-      .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; }
-
-      h2 {
-        font-family: var(--display);
-        font-size: clamp(20px, 3vw, 25px);
-        font-weight: 800;
-        letter-spacing: -0.01em;
-        margin: 0 0 6px;
-      }
-      .section-sub { color: var(--muted); font-size: 14.5px; max-width: 70ch; margin: 0 0 18px; line-height: 1.6; }
-      p.body-text { color: var(--text); font-size: 15px; max-width: 72ch; margin: 0; }
-      p.body-text + p.body-text { margin-top: 14px; }
-
-      figure { margin: 0; }
-      .diagram-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        padding: 20px clamp(12px, 3vw, 28px) 22px;
-      }
-      svg { width: 100%; height: auto; display: block; overflow: visible; }
-      figcaption { margin-top: 14px; color: var(--muted); font-size: 13.5px; line-height: 1.55; max-width: 70ch; }
-      figcaption strong { color: var(--text); }
-      .legend { display: flex; flex-wrap: wrap; gap: 14px 22px; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--muted); }
-      .legend span { display: inline-flex; align-items: center; gap: 7px; }
-      .legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
-
-      .stage-strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 18px; }
-      .stage { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 10px; text-align: center; }
-      .stage .num { font-family: var(--mono); font-size: 11px; color: var(--accent); display: block; margin-bottom: 6px; }
-      .stage .label { font-family: var(--display); font-weight: 700; font-size: 13px; display: block; margin-bottom: 4px; }
-      .stage .desc { font-size: 11.5px; color: var(--muted); line-height: 1.4; display: block; }
-      @media (max-width: 720px) { .stage-strip { grid-template-columns: repeat(2, 1fr); } }
-
-      .step-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 18px; }
-      .step-strip .stage { display: flex; flex-direction: column; }
-
-      .gap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; margin-top: 18px; }
-      .gap-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
-      .gap-card .tier-tag { font-family: var(--mono); font-size: 10.5px; color: var(--warn); letter-spacing: 0.08em; text-transform: uppercase; }
-      .gap-card h3 { font-family: var(--display); font-size: 15px; margin: 6px 0 8px; }
-      .gap-card ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; line-height: 1.6; }
-      .gap-card ul li strong { color: var(--text); }
-
-      table.market { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13.5px; }
-      table.market th, table.market td { border: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; }
-      table.market th { background: var(--surface-2); font-family: var(--display); font-size: 12.5px; color: var(--text); }
-      table.market td { color: var(--muted); }
-      table.market td strong, table.market td.org { color: var(--text); }
-      .table-wrap { overflow-x: auto; border-radius: 12px; }
-
-      .callout {
-        background: var(--surface-2);
-        border: 1px solid var(--border);
-        border-left: 3px solid var(--accent);
-        border-radius: 10px;
-        padding: 14px 18px;
-        font-size: 13.5px;
-        color: var(--muted);
-        line-height: 1.6;
-      }
-      .callout strong { color: var(--text); }
-
-      .sources { font-size: 12.5px; color: var(--muted); }
-      .sources ol { padding-left: 20px; margin: 8px 0 0; }
-      .sources a { color: var(--accent); text-decoration: none; }
-      .sources a:hover, .sources a:focus-visible { text-decoration: underline; }
-
-      footer.page-footer {
-        border-top: 1px solid var(--border);
-        padding-top: 20px;
-        font-size: 12.5px;
-        color: var(--muted);
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-      footer.page-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
-
-      @keyframes dashTravel { to { stroke-dashoffset: -240; } }
-      .flow-breach { stroke-dasharray: 10 8; animation: dashTravel 2.6s linear infinite; }
-      @keyframes pulseGate { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
-      .gate-pulse { animation: pulseGate 2.2s ease-in-out infinite; }
-      @keyframes spinDash { to { stroke-dashoffset: -188.4; } }
-      .ring-progress { animation: spinDash 9s linear infinite; }
-      @media (prefers-reduced-motion: reduce) {
-        .flow-breach, .gate-pulse, .ring-progress { animation: none !important; }
-      }
-      .cat-badge {
-        align-self: flex-start;
-        font-family: var(--mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
-        border: 1px solid; border-radius: 999px; padding: 4px 10px; margin: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -221,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-09-28",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/credential-tiering-model/",
   "image": "https://roshantrivedi.co.in/assets/og-case-credential-tiering-model.png",
   "articleSection": "Independent research",
@@ -232,588 +54,263 @@
   "keywords": "pam, credential management, zero trust, nhi"
 }
     </script>
-  </head>
-  <body>
+    </head>
+  <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Independent research &middot; Credential management &middot; PAM</p>
-        <p class="cat-badge" style="color:#7df2d0;background:rgba(125,242,208,0.12);border-color:#7df2d033">Independent research</p>
-        <h1>Credential Tiering & the PAM Market: Closing the Tier 0 Gap</h1>
-        <p class="dek">Privileged-access tiers (Tier&nbsp;0&ndash;3) are a claim about which credentials can mint access to which other credentials, not a reporting structure. This piece walks through the actual containment mechanism, the guardrails that keep it holding day to day, where it maps to the standards an auditor actually checks, and how the credential-management market splits by organization type.</p>
-        <div class="meta">
-          <span>September 2026</span>
-          <span>#wip</span><span>#pam</span><span>#credential-management</span><span>#zero-trust</span><span>#nhi</span>
-        </div>
-                <p class="tc-link" style="margin-top:14px"><a href="/tools/tier-check/" style="color:var(--accent);font-weight:700">Try the 3-minute self-check &rarr;</a></p>
-        </header>
+        <h1>Credential Tiering &amp; the PAM Market: Closing the Tier 0 Gap</h1>
+        <p class="dek">A tier is a claim about which credentials can mint access to which other credentials. This page shows how I place each credential by blast radius and use, what controls each tier gets, and where the PAM tool market fits.</p>
+        <p class="meta">Independent research &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+        <p class="tc-link" style="margin:0"><a href="/tools/tier-check/" style="color:var(--accent);font-weight:700">Try the 3-minute self-check &rarr;</a></p>
+      </header>
 
-      <nav class="jump-nav" aria-label="Jump to a section">
-        <a href="#mechanism">The mechanism</a>
-        <a href="#lifecycle">Lifecycle</a>
-        <a href="#gaps">Where the gaps are</a>
-        <a href="#topology">On-prem / hybrid / cloud</a>
-        <a href="#nhi-detection">NHI &amp; MCP visibility</a>
-        <a href="#pipeline-gate">Pipeline gate</a>
-        <a href="#ai-governance">AI &amp; governance</a>
-        <a href="#ttl-vs-zero-trust">TTL vs. zero trust</a>
-        <a href="#break-glass">Break-glass</a>
-        <a href="#framework">Framework diagram</a>
-        <a href="#audit-mapping">Audit mapping</a>
-        <a href="#market">Market fit</a>
-      </nav>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>A tier describes blast radius. A credential belongs in the highest tier of anything it can change or mint access to, wherever it happens to be stored.</li>
+          <li>Each tier gets a fixed set of controls: storage, rotation, access path, monitoring, approval and session recording. They get stronger towards Tier 0, and a credential that is valid in one tier is never valid in another.</li>
+          <li>PAM products are sold as capabilities such as vaulting, session management and just-in-time access, not as tiers. Work out what each tier needs first, then see which tools supply it.</li>
+        </ul>
+      </div>
 
-      <section id="mechanism">
-        <h2>The mechanism: why a phished laptop shouldn't reach a domain controller</h2>
-        <p class="section-sub">Tier 0 holds the identity control plane: domain controllers, PKI, Privileged Access Management (PAM) vaults, and just as importantly today, the admin plane of whatever runs your SSO &mdash; Entra ID, Okta, Ping. A cloud identity provider's global admin role is Tier 0 even though there's no server rack behind it; several of the highest-profile breaches of the last few years (Okta's support-system compromise, the SolarWinds-linked Microsoft cloud-tenant abuse) targeted exactly this layer instead of a physical domain controller. Tier 1 is the app/cloud/CI-CD estate. Tier 2 is workstation and helpdesk admin, the most common entry point. Tier 3 is everyone else, the largest attack surface. The tiers only protect anything if a credential valid at one tier is never valid at another.</p>
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Most organizations have a vault. Far fewer can say which of their credentials are worth the most to an attacker, and which controls those credentials get. So the same standard ends up applied to a helpdesk password and to the account that administers the identity provider. Either the strong controls are too expensive to use everywhere, or the weak ones sit in front of things that matter.</p>
+        <p class="body-text">The usual attack path is short. Someone phishes a laptop, finds a credential that also works somewhere more valuable, and keeps moving. Nothing in that story needs a clever exploit. It needs one credential that is valid in more places than it should be. Tiering is the habit of asking, for every credential, how far it could go if it were stolen, and then drawing a hard line at each step so that it cannot go further.</p>
+        <p class="body-text">Friction has a cost too. If every credential needs two approvers and a hardware key, people route around the process. If none do, the account that can rewrite your identity system is protected like a shared mailbox. Tiers are how you spend the friction where it buys the most.</p>
+      </section>
 
-        <figure class="diagram-card">
-          <svg viewBox="0 0 920 590" role="img" aria-label="Two lanes show a compromised Tier 2 workstation credential. In the left lane, standing cross-tier access lets the credential travel unchecked up through Tier 1 into Tier 0, reaching the domain vault. In the right lane, a Just-in-Time gate sits at each tier boundary; the same credential attempt is stopped and revoked at the Tier 2 to Tier 1 gate.">
-            <defs>
-              <marker id="arrowDanger" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M0,0 L10,5 L0,10 z" fill="var(--danger)"></path>
-              </marker>
-              <marker id="arrowSafe" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                <path d="M0,0 L10,5 L0,10 z" fill="var(--safe)"></path>
-              </marker>
-            </defs>
+      <section id="origin">
+        <h2>Where the tier idea comes from</h2>
+        <p class="body-text">The Tier 0, 1, 2 language comes from Microsoft's Active Directory tier model, which was designed to contain unauthorized escalation of privilege in an on-premises Windows Server Active Directory environment. Microsoft's current guidance, the enterprise access model, builds on that model and widens it to cover on-premises, multiple clouds, internal and external users, and more. It did not throw the idea away. It renamed and split the tiers so they still make sense outside a single directory.</p>
+        <p class="body-text">In Microsoft's mapping, Tier 0 becomes the control plane: identity systems, centralized access enforcement and, where it is the only option, network controls. Tier 1 is split into a management plane for enterprise-wide IT management and a data and workload plane for per-workload management. Tier 2 becomes access pathways for users and for applications and APIs. Microsoft's wording differs a little between pages, so I read the mapping as a direction. One sentence from the architecture page is the reason Tier 0 gets the most attention: compromise of the control plane often enables indirect control of all other planes.</p>
+        <p class="body-text">Microsoft's privileged access strategy also defines three security levels: enterprise, specialized and privileged. At the privileged level, a person does not do sensitive work and everyday productivity tasks on the same account or device. I use that as the access-path rule for Tier 0.</p>
+        <p class="body-text">Two things here are my own. I use four tiers, with Tier 3 as a home for low-impact credentials. And I place individual credentials into tiers, where Microsoft's pages talk about planes and access pathways. The credential-level placement and the control set are my working method.</p>
+      </section>
 
-            <rect x="318" y="2" width="164" height="30" rx="8" fill="var(--danger)"></rect>
-            <text x="400" y="21.5" font-size="10.5" font-weight="800" fill="#1a0006" text-anchor="middle">DOMAIN COMPROMISED</text>
-            <rect x="626" y="2" width="160" height="30" rx="8" fill="var(--safe)"></rect>
-            <text x="706" y="21.5" font-size="10.5" font-weight="800" fill="#04140f" text-anchor="middle">CONTAINED AT TIER 2</text>
-
-            <g class="tier-rows">
-              <rect x="20" y="46" width="880" height="88" rx="10" fill="var(--danger)" opacity="0.12"></rect>
-              <rect x="20" y="144" width="880" height="88" rx="10" fill="var(--warn)" opacity="0.1"></rect>
-              <rect x="20" y="242" width="880" height="88" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="340" width="880" height="88" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
-            </g>
-
-            <g class="tier-labels" fill="var(--text)">
-              <text x="34" y="82" font-size="13" font-weight="700">TIER 0</text>
-              <text x="34" y="96" font-size="10.5" fill="var(--muted)">Domain / PKI / PAM vault /</text>
-              <text x="34" y="108" font-size="10.5" fill="var(--muted)">cloud IdP global admin</text>
-              <text x="34" y="120" font-size="10.5" fill="var(--muted)">issues all other access</text>
-
-              <text x="34" y="182" font-size="13" font-weight="700">TIER 1</text>
-              <text x="34" y="198" font-size="10.5" fill="var(--muted)">App servers, DBs, cloud</text>
-              <text x="34" y="211" font-size="10.5" fill="var(--muted)">IAM roles, CI/CD</text>
-
-              <text x="34" y="280" font-size="13" font-weight="700">TIER 2</text>
-              <text x="34" y="296" font-size="10.5" fill="var(--muted)">Workstation / helpdesk</text>
-              <text x="34" y="309" font-size="10.5" fill="var(--muted)">admin &mdash; usual entry point</text>
-
-              <text x="34" y="378" font-size="13" font-weight="700">TIER 3</text>
-              <text x="34" y="394" font-size="10.5" fill="var(--muted)">Standard end-user accounts</text>
-              <text x="34" y="407" font-size="10.5" fill="var(--muted)">largest attack surface</text>
-            </g>
-
-            <line x1="480" y1="46" x2="480" y2="428" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 5"></line>
-            <text x="400" y="458" font-size="12" font-weight="700" fill="var(--danger)" text-anchor="middle">STANDING, SHARED CREDENTIAL</text>
-            <text x="400" y="474" font-size="10.5" fill="var(--muted)" text-anchor="middle">no boundary between tiers</text>
-            <text x="706" y="458" font-size="12" font-weight="700" fill="var(--safe)" text-anchor="middle">JUST-IN-TIME, VAULTED CREDENTIAL</text>
-            <text x="706" y="474" font-size="10.5" fill="var(--muted)" text-anchor="middle">gate + auto-revoke at every boundary</text>
-
-            <g>
-              <circle cx="400" cy="386" r="16" fill="var(--danger)"></circle>
-              <text x="400" y="390" font-size="11" font-weight="700" fill="#1a0006" text-anchor="middle">T2</text>
-              <text x="400" y="420" font-size="10" fill="var(--muted)" text-anchor="middle">phished laptop</text>
-
-              <path class="flow-breach" d="M400,370 C400,320 400,320 400,288" fill="none" stroke="var(--danger)" stroke-width="3" marker-end="url(#arrowDanger)"></path>
-              <text x="424" y="332" font-size="10" fill="var(--danger)">cached admin hash reused</text>
-
-              <circle cx="400" cy="272" r="15" fill="var(--danger)" opacity="0.85"></circle>
-              <text x="400" y="276" font-size="10" font-weight="700" fill="#1a0006" text-anchor="middle">T1</text>
-
-              <path class="flow-breach" d="M400,257 C400,206 400,206 400,190" fill="none" stroke="var(--danger)" stroke-width="3" marker-end="url(#arrowDanger)"></path>
-              <text x="424" y="232" font-size="10" fill="var(--danger)">service-account token reused</text>
-
-              <circle cx="400" cy="174" r="15" fill="var(--danger)" opacity="0.85"></circle>
-              <text x="400" y="178" font-size="10" font-weight="700" fill="#1a0006" text-anchor="middle">T0</text>
-
-              <path class="flow-breach" d="M400,159 C400,115 400,115 400,90" fill="none" stroke="var(--danger)" stroke-width="3" marker-end="url(#arrowDanger)"></path>
-            </g>
-
-            <g>
-              <circle cx="706" cy="386" r="16" fill="var(--safe)"></circle>
-              <text x="706" y="390" font-size="11" font-weight="700" fill="#04140f" text-anchor="middle">T2</text>
-              <text x="706" y="420" font-size="10" fill="var(--muted)" text-anchor="middle">phished laptop</text>
-
-              <path d="M706,370 C706,300 706,300 706,252" fill="none" stroke="var(--muted)" stroke-width="3" marker-end="url(#arrowSafe)" opacity="0.8"></path>
-
-              <g class="gate-pulse">
-                <rect x="666" y="222" width="80" height="30" rx="8" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></rect>
-                <text x="706" y="241.5" font-size="10.5" font-weight="700" fill="var(--safe)" text-anchor="middle">PAM GATE</text>
-              </g>
-              <text x="706" y="266" font-size="9.5" fill="var(--muted)" text-anchor="middle">no standing token to steal</text>
-              <text x="768" y="233" font-size="10" fill="var(--danger)" text-anchor="start">request denied,</text>
-              <text x="768" y="247" font-size="10" fill="var(--danger)" text-anchor="start">session revoked</text>
-
-              <g opacity="0.28">
-                <circle cx="706" cy="188" r="15" fill="var(--muted)"></circle>
-                <text x="706" y="192" font-size="10" font-weight="700" fill="var(--bg)" text-anchor="middle">T1</text>
-                <path d="M706,222 C706,212 706,212 706,203" fill="none" stroke="var(--muted)" stroke-width="3" stroke-dasharray="4 6"></path>
-                <circle cx="706" cy="90" r="15" fill="var(--muted)"></circle>
-                <text x="706" y="94" font-size="10" font-weight="700" fill="var(--bg)" text-anchor="middle">T0</text>
-                <path d="M706,173 C706,140 706,140 706,105" fill="none" stroke="var(--muted)" stroke-width="3" stroke-dasharray="4 6"></path>
-              </g>
-            </g>
-          </svg>
-          <figcaption>
-            Same starting point, same phished workstation. <strong style="color:var(--danger)">Left</strong>: a standing credential works identically at every tier, so a single reuse trick (pass-the-hash, a cached token) carries the attacker from Tier&nbsp;2 to the Tier&nbsp;0 vault with nothing to stop it. <strong style="color:var(--safe)">Right</strong>: no credential is valid outside its issued task and window, so the identical technique has nothing to reuse &mdash; the request is logged and revoked at the first gate.
-          </figcaption>
-          <div class="legend">
-            <span><i style="background:var(--danger)"></i>credential reused across a tier boundary</span>
-            <span><i style="background:var(--safe)"></i>just-in-time, auto-expiring credential</span>
-            <span><i style="background:var(--muted); opacity:.5"></i>path never reached &mdash; blocked upstream</span>
-          </div>
+      <section id="architecture">
+        <h2>How the tiers fit together</h2>
+        <p class="body-text">Read the diagram one row at a time. A request starts at the left, passes the controls on its tier's path, and only then reaches what it can change on the right. Tier 0 has four gates, Tier 1 three, Tier 2 two and Tier 3 one. Every row writes to the same audit log, kept outside the platform being audited.</p>
+        <figure class="diagram-card" style="--c:#7df2d0;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 474" role="img" aria-labelledby="tw1 tw2"><title id="tw1">Credential tiers and the controls on each path</title><desc id="tw2">Four horizontal paths, one per tier. A request from Tier 0 passes a hardware key, a two-person approval, a recorded session and a short grant before it reaches the identity control plane. Tier 1 has three controls, Tier 2 has two and Tier 3 has one. Every path writes to one audit log kept outside the platform.</desc><text class="sub" x="105" y="26" text-anchor="middle" style="letter-spacing:.12em">REQUEST</text><text class="sub" x="471" y="26" text-anchor="middle" style="letter-spacing:.12em">CONTROLS ON ITS PATH, MORE TOWARDS THE TOP</text><text class="sub" x="848" y="26" text-anchor="middle" style="letter-spacing:.12em">WHAT IT CAN REACH</text><path class="flow" d="M 190 78 H 756"/><path class="flow" d="M 190 170 H 756"/><path class="flow" d="M 190 262 H 756"/><path class="flow" d="M 190 354 H 756"/><g class="node" style="--i:0"><rect x="20" y="40" width="170" height="76" rx="12"/><text class="ttl" x="40" y="72">Tier 0</text><text class="sub" x="40" y="92">admins, break glass</text></g><g class="badge"><circle cx="20" cy="40" r="11"/><text x="20" y="44">0</text></g><text class="sub" x="211" y="70" text-anchor="middle">ask</text><g class="node" style="--i:1"><rect x="232" y="48" width="114" height="60" rx="10"/><text class="ttl" x="289" y="75" text-anchor="middle" style="font-size:13px">Hardware key</text><text class="sub" x="289" y="94" text-anchor="middle">resists phishing</text></g><g class="node" style="--i:2"><rect x="354" y="48" width="114" height="60" rx="10"/><text class="ttl" x="411" y="75" text-anchor="middle" style="font-size:13px">Approval</text><text class="sub" x="411" y="94" text-anchor="middle">two people</text></g><g class="node" style="--i:3"><rect x="476" y="48" width="114" height="60" rx="10"/><text class="ttl" x="533" y="75" text-anchor="middle" style="font-size:13px">Recording</text><text class="sub" x="533" y="94" text-anchor="middle">every session</text></g><g class="node" style="--i:4"><rect x="598" y="48" width="114" height="60" rx="10"/><text class="ttl" x="655" y="75" text-anchor="middle" style="font-size:13px">Short grant</text><text class="sub" x="655" y="94" text-anchor="middle">re-auth often</text></g><text class="sub" x="734" y="70" text-anchor="middle">use</text><g class="node" style="--i:4"><rect x="756" y="40" width="184" height="76" rx="12"/><text class="ttl" x="772" y="72">Identity control plane</text><text class="sub" x="772" y="92">IdP admin, DCs, vault, PKI</text></g><path class="log" d="M 940 78 H 950 V 410"/><g class="node" style="--i:1"><rect x="20" y="132" width="170" height="76" rx="12"/><text class="ttl" x="40" y="164">Tier 1</text><text class="sub" x="40" y="184">service, NHI, cloud key</text></g><g class="badge"><circle cx="20" cy="132" r="11"/><text x="20" y="136">1</text></g><text class="sub" x="211" y="162" text-anchor="middle">ask</text><g class="node" style="--i:1"><rect x="232" y="140" width="114" height="60" rx="10"/><text class="ttl" x="289" y="167" text-anchor="middle" style="font-size:13px">MFA sign-in</text><text class="sub" x="289" y="186" text-anchor="middle">named owner</text></g><g class="node" style="--i:2"><rect x="354" y="140" width="114" height="60" rx="10"/><text class="ttl" x="411" y="167" text-anchor="middle" style="font-size:13px">Approval</text><text class="sub" x="411" y="186" text-anchor="middle">ticket or owner</text></g><g class="node" style="--i:3"><rect x="476" y="140" width="114" height="60" rx="10"/><text class="ttl" x="533" y="167" text-anchor="middle" style="font-size:13px">Short-lived</text><text class="sub" x="533" y="186" text-anchor="middle">expires itself</text></g><text class="sub" x="734" y="162" text-anchor="middle">use</text><g class="node" style="--i:4"><rect x="756" y="132" width="184" height="76" rx="12"/><text class="ttl" x="772" y="164">App, cloud, CI/CD</text><text class="sub" x="772" y="184">roles, keys, pipelines</text></g><path class="log" d="M 940 170 H 950 V 410"/><g class="node" style="--i:2"><rect x="20" y="224" width="170" height="76" rx="12"/><text class="ttl" x="40" y="256">Tier 2</text><text class="sub" x="40" y="276">helpdesk, local admin</text></g><g class="badge"><circle cx="20" cy="224" r="11"/><text x="20" y="228">2</text></g><text class="sub" x="211" y="254" text-anchor="middle">ask</text><g class="node" style="--i:1"><rect x="232" y="232" width="114" height="60" rx="10"/><text class="ttl" x="289" y="259" text-anchor="middle" style="font-size:13px">Unique login</text><text class="sub" x="289" y="278" text-anchor="middle">vaulted, per host</text></g><g class="node" style="--i:2"><rect x="354" y="232" width="114" height="60" rx="10"/><text class="ttl" x="411" y="259" text-anchor="middle" style="font-size:13px">Elevation</text><text class="sub" x="411" y="278" text-anchor="middle">timed, on request</text></g><text class="sub" x="734" y="254" text-anchor="middle">use</text><g class="node" style="--i:4"><rect x="756" y="224" width="184" height="76" rx="12"/><text class="ttl" x="772" y="256">Workstations</text><text class="sub" x="772" y="276">local admin, helpdesk tools</text></g><path class="log" d="M 940 262 H 950 V 410"/><g class="node" style="--i:3"><rect x="20" y="316" width="170" height="76" rx="12"/><text class="ttl" x="40" y="348">Tier 3</text><text class="sub" x="40" y="368">standard users, apps</text></g><g class="badge"><circle cx="20" cy="316" r="11"/><text x="20" y="320">3</text></g><text class="sub" x="211" y="346" text-anchor="middle">ask</text><g class="node" style="--i:1"><rect x="232" y="324" width="114" height="60" rx="10"/><text class="ttl" x="289" y="351" text-anchor="middle" style="font-size:13px">Vaulted secret</text><text class="sub" x="289" y="370" text-anchor="middle">rotated, scanned</text></g><text class="sub" x="734" y="346" text-anchor="middle">use</text><g class="node" style="--i:4"><rect x="756" y="316" width="184" height="76" rx="12"/><text class="ttl" x="772" y="348">Everyone else</text><text class="sub" x="772" y="368">standard users, small apps</text></g><path class="log" d="M 940 354 H 950 V 410"/><rect class="logbar" x="20" y="410" width="930" height="50" rx="10"/><text class="ttl" x="485" y="432" text-anchor="middle" style="font-size:14px">Audit log, kept outside the platform</text><text class="sub" x="485" y="450" text-anchor="middle">every request, approval and session from all four tiers lands in the same place</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0.0s"/><animateMotion dur="5s" begin="0.0s" repeatCount="indefinite" path="M 190 78 H 756"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="1.2s"/><animateMotion dur="5s" begin="1.2s" repeatCount="indefinite" path="M 190 170 H 756"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2.4s"/><animateMotion dur="5s" begin="2.4s" repeatCount="indefinite" path="M 190 262 H 756"/></circle><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="3.6s"/><animateMotion dur="5s" begin="3.6s" repeatCount="indefinite" path="M 190 354 H 756"/></circle></svg>
+          <svg class="d-tall" viewBox="0 0 360 818" role="img" aria-labelledby="tt1 tt2"><title id="tt1">Credential tiers and the controls on each path</title><desc id="tt2">Four stacked tiers. Tier 0 has four controls in front of the identity control plane, Tier 1 has three, Tier 2 has two and Tier 3 has one. All tiers write to one audit log kept outside the platform.</desc><g class="node" style="--i:0"><rect x="20" y="10" width="320" height="210" rx="14"/></g><text class="ttl" x="40" y="36">Tier 0 &#183; Identity control plane</text><text class="sub" x="40" y="54">Asks: admins, break glass</text><path class="flow" d="M 40 64 V 190"/><circle cx="40" cy="78" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="82" style="font-size:13px">Hardware key</text><text class="sub" x="160" y="82">resists phishing</text><circle cx="40" cy="104" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="108" style="font-size:13px">Approval</text><text class="sub" x="160" y="108">two people</text><circle cx="40" cy="130" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="134" style="font-size:13px">Recording</text><text class="sub" x="160" y="134">every session</text><circle cx="40" cy="156" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="160" style="font-size:13px">Short grant</text><text class="sub" x="160" y="160">re-auth often</text><text class="sub" x="54" y="192">then reaches</text><text class="ttl" x="140" y="192" style="font-size:13px">IdP admin, DCs, vault, PKI</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0.0s"/><animateMotion dur="4s" begin="0.0s" repeatCount="indefinite" path="M 40 64 V 190"/></circle><g class="node" style="--i:1"><rect x="20" y="236" width="320" height="184" rx="14"/></g><text class="ttl" x="40" y="262">Tier 1 &#183; App, cloud, CI/CD</text><text class="sub" x="40" y="280">Asks: service, NHI, cloud key</text><path class="flow" d="M 40 290 V 390"/><circle cx="40" cy="304" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="308" style="font-size:13px">MFA sign-in</text><text class="sub" x="160" y="308">named owner</text><circle cx="40" cy="330" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="334" style="font-size:13px">Approval</text><text class="sub" x="160" y="334">ticket or owner</text><circle cx="40" cy="356" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="360" style="font-size:13px">Short-lived</text><text class="sub" x="160" y="360">expires itself</text><text class="sub" x="54" y="392">then reaches</text><text class="ttl" x="140" y="392" style="font-size:13px">roles, keys, pipelines</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="1.2s"/><animateMotion dur="4s" begin="1.2s" repeatCount="indefinite" path="M 40 290 V 390"/></circle><g class="node" style="--i:2"><rect x="20" y="436" width="320" height="158" rx="14"/></g><text class="ttl" x="40" y="462">Tier 2 &#183; Workstations</text><text class="sub" x="40" y="480">Asks: helpdesk, local admin</text><path class="flow" d="M 40 490 V 564"/><circle cx="40" cy="504" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="508" style="font-size:13px">Unique login</text><text class="sub" x="160" y="508">vaulted, per host</text><circle cx="40" cy="530" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="534" style="font-size:13px">Elevation</text><text class="sub" x="160" y="534">timed, on request</text><text class="sub" x="54" y="566">then reaches</text><text class="ttl" x="140" y="566" style="font-size:13px">local admin, helpdesk tools</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2.4s"/><animateMotion dur="4s" begin="2.4s" repeatCount="indefinite" path="M 40 490 V 564"/></circle><g class="node" style="--i:3"><rect x="20" y="610" width="320" height="132" rx="14"/></g><text class="ttl" x="40" y="636">Tier 3 &#183; Everyone else</text><text class="sub" x="40" y="654">Asks: standard users, apps</text><path class="flow" d="M 40 664 V 712"/><circle cx="40" cy="678" r="4" style="fill:var(--c)"/><text class="ttl" x="54" y="682" style="font-size:13px">Vaulted secret</text><text class="sub" x="160" y="682">rotated, scanned</text><text class="sub" x="54" y="714">then reaches</text><text class="ttl" x="140" y="714" style="font-size:13px">standard users, small apps</text><circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="3.6s"/><animateMotion dur="4s" begin="3.6s" repeatCount="indefinite" path="M 40 664 V 712"/></circle><rect class="logbar" x="20" y="758" width="320" height="50" rx="10"/><text class="ttl" x="180" y="780" text-anchor="middle" style="font-size:13px">Audit log, kept outside the platform</text><text class="sub" x="180" y="798" text-anchor="middle">all four tiers write here</text></svg>
+          <figcaption>Each moving dot is a credential in use. It only reaches the right-hand side after passing every control on its own row. No arrow runs from one row to another, so a Tier 2 credential has no path into Tier 0. The gates show the shape of the control set, not a product.</figcaption>
         </figure>
+        <p class="body-text">Tier 0 holds the identity control plane: domain controllers, certificate authorities, the PAM vaults, and the admin plane of whatever runs your single sign-on. A cloud identity provider's global admin role is Tier 0 even with no server rack behind it. Tier 1 is the application, cloud and CI/CD estate. Tier 2 is workstation and helpdesk administration, the most common way in. Tier 3 is everyone else, the largest attack surface by count.</p>
       </section>
 
-      <section id="lifecycle">
-        <h2>The lifecycle every tiered credential has to move through</h2>
-        <p class="section-sub">Tiering only holds if every credential moves through the same governed lifecycle &mdash; a credential that skips a stage (issued without an owner, never rotated, never retired) is exactly the standing access the left-hand lane above exploits.</p>
-        <figure class="diagram-card" style="text-align:center;">
-          <svg viewBox="0 0 420 420" style="max-width:320px; margin:0 auto;" role="img" aria-label="A five-stage credential lifecycle ring: Onboard, Vault, Just-in-Time Grant, Rotate and Monitor, Retire and Revoke, connecting back to Onboard.">
-            <circle cx="210" cy="210" r="150" fill="none" stroke="var(--border)" stroke-width="18"></circle>
-            <circle class="ring-progress" cx="210" cy="210" r="150" fill="none" stroke="var(--accent)" stroke-width="18"
-              stroke-dasharray="47 895" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 210 210)"></circle>
-            <g font-family="var(--display)" font-weight="700" font-size="12.5" fill="var(--text)" text-anchor="middle">
-              <circle cx="210" cy="45" r="30" fill="var(--surface)" stroke="var(--accent)" stroke-width="2.5"></circle>
-              <text x="210" y="41">Onboard</text>
-              <text x="210" y="55" font-size="9" font-family="var(--mono)" fill="var(--muted)">identity + owner</text>
-
-              <circle cx="358" cy="145" r="30" fill="var(--surface)" stroke="var(--border)" stroke-width="2.5"></circle>
-              <text x="358" y="141">Vault</text>
-              <text x="358" y="155" font-size="9" font-family="var(--mono)" fill="var(--muted)">issue &amp; store</text>
-
-              <circle cx="305" cy="330" r="30" fill="var(--surface)" stroke="var(--border)" stroke-width="2.5"></circle>
-              <text x="305" y="326">JIT Grant</text>
-              <text x="305" y="340" font-size="9" font-family="var(--mono)" fill="var(--muted)">scoped &amp; timed</text>
-
-              <circle cx="115" cy="330" r="30" fill="var(--surface)" stroke="var(--border)" stroke-width="2.5"></circle>
-              <text x="115" y="326">Rotate</text>
-              <text x="115" y="340" font-size="9" font-family="var(--mono)" fill="var(--muted)">monitor usage</text>
-
-              <circle cx="62" cy="145" r="30" fill="var(--surface)" stroke="var(--border)" stroke-width="2.5"></circle>
-              <text x="62" y="141">Retire</text>
-              <text x="62" y="155" font-size="9" font-family="var(--mono)" fill="var(--muted)">revoke &amp; audit</text>
-            </g>
-          </svg>
-        </figure>
-        <div class="stage-strip">
-          <div class="stage"><span class="num">01</span><span class="label">Onboard</span><span class="desc">Every credential gets a named human or workload owner before it's created.</span></div>
-          <div class="stage"><span class="num">02</span><span class="label">Vault</span><span class="desc">Secrets live in a PAM/HSM vault, never in code, config or a shared sheet.</span></div>
-          <div class="stage"><span class="num">03</span><span class="label">JIT Grant</span><span class="desc">Access is requested, scoped to one task, dual-authorized where risk warrants it, time-boxed.</span></div>
-          <div class="stage"><span class="num">04</span><span class="label">Rotate & Monitor</span><span class="desc">Credentials rotate on schedule; UEBA flags use that doesn't match granted scope.</span></div>
-          <div class="stage"><span class="num">05</span><span class="label">Retire</span><span class="desc">Access reverts to zero automatically when the task ends.</span></div>
-        </div>
+      <section id="classes">
+        <h2>Six kinds of credential, and where each tends to land</h2>
+        <p class="body-text">A human admin password, a database login and an AI agent's token all open doors, but they are issued, stored and retired in different ways. I sort credentials into six classes by use, then place each one in a tier by what it can reach.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Class</th><th>What it is</th><th>Where it usually lands</th><th>What decides the tier</th></tr></thead>
+<tbody>
+<tr><td data-label="Class">Human privileged</td><td data-label="What it is">Admin accounts used by people: directory, cloud, database, helpdesk</td><td data-label="Where it usually lands">Tier 0, 1 or 2</td><td data-label="What decides the tier">What the account can administer. One person may hold three in three tiers.</td></tr>
+<tr><td data-label="Class">Service account</td><td data-label="What it is">A non-interactive account that software uses to run on a host or in a directory</td><td data-label="Where it usually lands">Tier of the systems it can reach</td><td data-label="What decides the tier">Its rights, and whether it allows interactive login. Directory rights mean Tier 0.</td></tr>
+<tr><td data-label="Class">Application secret</td><td data-label="What it is">Database passwords, API keys and tokens an application uses at runtime</td><td data-label="Where it usually lands">Mostly Tier 1, small ones in Tier 3</td><td data-label="What decides the tier">What the secret unlocks: the data, the system, or another secret.</td></tr>
+<tr><td data-label="Class">Machine and NHI</td><td data-label="What it is">Workload identities, pipeline identities, AI agent and MCP server credentials</td><td data-label="Where it usually lands">Tier 1 at least when it can change infrastructure</td><td data-label="What decides the tier">The highest permission it holds. If it can create roles or edit a pipeline, it ranks above the system it was built for.</td></tr>
+<tr><td data-label="Class">Cloud key</td><td data-label="What it is">Long-lived access keys, service principals and role assumptions in a cloud account</td><td data-label="Where it usually lands">Tier 1, or Tier 0 when it can manage identity or permissions</td><td data-label="What decides the tier">Whether it only uses resources or can also change who may use them.</td></tr>
+<tr><td data-label="Class">Break glass</td><td data-label="What it is">Emergency accounts for when the normal path is down</td><td data-label="Where it usually lands">Tier 0, always</td><td data-label="What decides the tier">It can reach the control plane, so it carries the strongest controls.</td></tr>
+</tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Machine and NHI credentials are the class I find least inventoried. An MCP server is a new case of the old service account problem: it usually holds a standing credential to whatever it connects to, and any agent that can reach it can use it. I treat it like a service account, with an owner, a tier, a scope and an expiry. The <a href="/case-studies/non-human-identity-at-scale/">non-human identity at scale</a> and <a href="/case-studies/agentic-ai-identity-governance/">agentic AI identity governance</a> studies go further on this.</p>
       </section>
 
-      <section id="gaps">
-        <h2>Where most organizations actually have the gap</h2>
-        <p class="section-sub">The diagram assumes a PAM gate exists at every boundary. In practice, most organizations have a vault at Tier&nbsp;0 and stop there. Below is what's typically missing at each layer and the category of tool that closes it. Which specific vendor fits is a separate question &mdash; it depends heavily on the organization's profile, covered in the market table further down.</p>
-
-        <div class="gap-grid">
-          <div class="gap-card">
-            <span class="tier-tag">Tier 0 &mdash; identity control plane</span>
-            <h3>Missing: M-of-N control, phishing-resistant auth</h3>
-            <ul>
-              <li><strong>Common gap:</strong> a single domain admin or vault master key can act alone, often protected by nothing stronger than SMS or push-based multi-factor authentication (MFA) &mdash; both of which are routinely bypassed by MFA fatigue and SIM-swap attacks.</li>
-              <li><strong>Guardrail:</strong> dual/M-of-N authorization for any Tier 0 action, hardware-key (FIDO2) auth for every Tier 0 admin, full session recording, re-auth every 15 minutes.</li>
-              <li><strong>Tool category:</strong> PAM vault with session recording (CyberArk, Delinea, BeyondTrust), phishing-resistant MFA (FIDO2 security keys, Windows Hello for Business).</li>
-            </ul>
-          </div>
-          <div class="gap-card">
-            <span class="tier-tag">Tier 1 &mdash; app / cloud / CI-CD</span>
-            <h3>Missing: cross-cloud effective-permission visibility</h3>
-            <ul>
-              <li><strong>Common gap:</strong> service accounts and cloud Identity and Access Management (IAM) roles reviewed one policy at a time; combinations create unintended escalation paths.</li>
-              <li><strong>Guardrail:</strong> a unified view of effective permissions across providers, reasoning over combinations, not single roles.</li>
-              <li><strong>Tool category:</strong> Cloud Infrastructure Entitlement Management (CIEM) / cloud entitlement management (Wiz, Clutch Security, Sonrai).</li>
-            </ul>
-          </div>
-          <div class="gap-card">
-            <span class="tier-tag">Tier 2 &mdash; workstation / helpdesk</span>
-            <h3>Missing: local-admin credential elimination</h3>
-            <ul>
-              <li><strong>Common gap:</strong> the same local-admin password is reused across a whole fleet of laptops. That's the exact reuse path the diagram shows, and it's still the single most common way a phishing hit turns into a fleet-wide incident.</li>
-              <li><strong>Guardrail:</strong> a unique, vaulted local-admin credential per machine, with just-in-time elevation replacing standing admin rights (this is the same just-enough-access model covered in the <a href="/case-studies/jit-jea-elevation/" style="color:var(--accent);">JIT/JEA elevation case study</a>).</li>
-              <li><strong>Tool category:</strong> endpoint privilege management (BeyondTrust EPM, Delinea, ManageEngine PAM360 for smaller estates).</li>
-            </ul>
-          </div>
-          <div class="gap-card">
-            <span class="tier-tag">Cross-cutting &mdash; non-human identity</span>
-            <h3>Missing: an inventory of what even exists</h3>
-            <ul>
-              <li><strong>Common gap:</strong> service accounts, API keys and AI-agent credentials outnumber human identities roughly 50&ndash;79:1 and are rarely inventoried at all.</li>
-              <li><strong>Guardrail:</strong> continuous discovery and risk-scoring of every non-human identity, tied back to an owner.</li>
-              <li><strong>Tool category:</strong> NHI governance (a fast-consolidating 2026 vendor wave being absorbed into core PAM/IAM platforms).</li>
-            </ul>
-          </div>
-          <div class="gap-card">
-            <span class="tier-tag">Cross-cutting &mdash; secrets in code</span>
-            <h3>Missing: pre-merge secret detection</h3>
-            <ul>
-              <li><strong>Common gap:</strong> hard-coded credentials enter repos faster than manual review can catch them. GitGuardian logged 28.65 million leaked secrets added to public GitHub in 2025 alone.</li>
-              <li><strong>Guardrail:</strong> scanning that blocks a commit with a hard-coded credential at the pipeline stage, before it ever merges (see the <a href="/case-studies/secrets-consolidation/" style="color:var(--accent);">secrets sprawl and consolidation case study</a> for what this looks like once a codebase already has the problem).</li>
-              <li><strong>Tool category:</strong> DevOps-native secrets management (HashiCorp Vault, Infisical) + scanning (GitGuardian).</li>
-            </ul>
-          </div>
-          <div class="gap-card">
-            <span class="tier-tag">Cross-cutting &mdash; audit evidence</span>
-            <h3>Missing: usage-backed access certification</h3>
-            <ul>
-              <li><strong>Common gap:</strong> quarterly access reviews get approved from memory against an entitlement list, not against actual usage. That's the classic rubber-stamp problem, and it's how dormant access survives every audit cycle.</li>
-              <li><strong>Guardrail:</strong> certification decisions driven by usage evidence, with likely-dormant entitlements pre-flagged for revocation (worked through in detail in the <a href="/case-studies/access-recertification/" style="color:var(--accent);">access recertification case study</a>).</li>
-              <li><strong>Tool category:</strong> Identity Governance & Administration (SailPoint, Saviynt), integrated with the PAM layer.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="callout" style="margin-top:16px;">
-          <strong>The gate itself is a single point of failure &mdash; plan for that, don't ignore it.</strong> If the PAM vault or JIT approval system goes down during an actual incident, the response can't be "wait for the vault." That's what break-glass access is for, walked through in detail further down this page.
-        </div>
+      <section id="controls">
+        <h2>The control set for each tier</h2>
+        <p class="body-text">Every tier answers the same six questions: where the secret is stored, how it changes, what path leads to it, what watches its use, who approves a grant, and whether the session is recorded. The answers get stricter as the tier number falls. I kept the cells qualitative because intervals depend on your risk appetite and tooling.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Control</th><th>Tier 0</th><th>Tier 1</th><th>Tier 2</th><th>Tier 3</th></tr></thead>
+<tbody>
+<tr><td data-label="Control">Storage</td><td data-label="Tier 0">Vault or HSM-backed store, no other copy. Vault admins are separate from secret users.</td><td data-label="Tier 1">Vault or secrets manager, fetched at runtime. Nothing in code, config or pipeline variables.</td><td data-label="Tier 2">Vaulted, with a unique local admin credential for every machine.</td><td data-label="Tier 3">Identity provider for people, secrets manager for shared app secrets, scanned for leaks.</td></tr>
+<tr><td data-label="Control">Rotation</td><td data-label="Tier 0">After every checkout and on a risk-based schedule. Forced when a break-glass session ends.</td><td data-label="Tier 1">Short-lived or dynamic first. Static secrets rotate automatically, with an alert on failure.</td><td data-label="Tier 2">Local admin rotated automatically after use or on a schedule.</td><td data-label="Tier 3">On evidence of compromise or the owner's schedule. Prefer expiring tokens.</td></tr>
+<tr><td data-label="Control">Access path</td><td data-label="Tier 0">Only through the PAM gate. Separate admin account and device. Hardware-key sign-in, re-authentication during the session. Direct logins blocked.</td><td data-label="Tier 1">Through the platform with MFA. Pipelines use a workload identity. No shared accounts.</td><td data-label="Tier 2">Helpdesk elevates on request. No standing local admin.</td><td data-label="Tier 3">Normal sign-in with MFA.</td></tr>
+<tr><td data-label="Control">Monitoring</td><td data-label="Tier 0">Every action visible to the SIEM. Use outside the granted scope is flagged.</td><td data-label="Tier 1">Read and use logs per credential. Alerts on unusual use. Review of combined permissions.</td><td data-label="Tier 2">Elevation events logged and sampled.</td><td data-label="Tier 3">Standard sign-in logs. Leak scanning on code.</td></tr>
+<tr><td data-label="Control">Approval</td><td data-label="Tier 0">Two people and a ticket. Break glass notifies instead of blocking.</td><td data-label="Tier 1">The owner or a ticket, with an end time.</td><td data-label="Tier 2">Policy or ticket. A manager for exceptions.</td><td data-label="Tier 3">Approved once with the role, not per use.</td></tr>
+<tr><td data-label="Control">Session recording</td><td data-label="Tier 0">Always.</td><td data-label="Tier 1">Human sessions to servers, databases and consoles. Machine use is logged.</td><td data-label="Tier 2">Elevated actions logged. Full recording only where risk calls for it.</td><td data-label="Tier 3">None.</td></tr>
+</tbody></table></div>
+        <p class="body-text" style="margin-top:14px">Two rules sit above the table. A credential is valid in one tier only: if the same secret opens a Tier 2 workstation and a Tier 0 server, the table is decoration. And a time limit is one control inside a wider model. It stops access living forever, but a hijacked session can still be misused inside the window. Continuous checks such as device posture and behavior signals are worth their engineering cost at Tier 0 and on the break-glass path. A plain time limit is usually enough lower down. The <a href="/case-studies/jit-jea-elevation/">just-in-time elevation</a> study has more.</p>
       </section>
 
-      <section id="topology">
-        <h2>The same model, three different starting points</h2>
-        <p class="section-sub">Everything above describes the mechanism. What it takes to actually build depends heavily on the estate it's protecting &mdash; an on-prem shop, a hybrid one, and a company mid-migration to cloud each hit a different wall first.</p>
-        <div class="table-wrap">
-          <table class="market">
-            <thead>
-              <tr>
-                <th>Topology</th>
-                <th>Where the gap actually is</th>
-                <th>What changes in the PAM architecture</th>
-                <th>Where the friction shows up</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="org">On-premises<br><span style="color:var(--muted); font-weight:400;">AD-centric</span></td>
-                <td>Standing local-admin rights and shared service accounts inside the domain; Tier 0 is usually just the domain controllers and the internal CA.</td>
-                <td>The vault sits in front of AD and delegates through it rather than replacing its RBAC; JIT grants map to time-boxed group membership or a LAPS-style rotated local-admin password.</td>
-                <td>Legacy applications that hard-depend on a static service-account password are the slow part of the rollout, not the vault itself.</td>
-              </tr>
-              <tr>
-                <td class="org">Fully hybrid<br><span style="color:var(--muted); font-weight:400;">AD + Entra ID/Okta + multi-cloud</span></td>
-                <td>Tier 0 now has two control planes &mdash; the on-prem domain and the cloud IdP's global admin role &mdash; and they're rarely governed by the same process or the same reviewer.</td>
-                <td>The vault needs synchronized policy across both planes; a JIT grant issued in one directory has to be revocable from the other during an incident, not just from the one it was issued in.</td>
-                <td>The sync lag between the two identity stores is where privilege actually drifts, and it's usually the first thing an assessor finds.</td>
-              </tr>
-              <tr>
-                <td class="org">Cloud-transitioning<br><span style="color:var(--muted); font-weight:400;">actively migrating</span></td>
-                <td>Temporary dual-running accounts created to bridge the migration outlive the migration itself, and often get provisioned with broad standing access to make the cutover easier.</td>
-                <td>Every migration-created credential should carry an expiry date at creation, not get added to a cleanup backlog afterward.</td>
-                <td>The most common real-world gap: migration credentials are forgotten precisely because they were never meant to be permanent.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section id="nhi-detection">
-        <h2>Finding what a vault alone won't show you</h2>
-        <p class="section-sub">A vault protects the credentials it knows about. The actual exposure, most of the time, is what was never inventoried in the first place &mdash; shadow admin accounts, forgotten service accounts, and increasingly, AI agents and Model Context Protocol (MCP) servers holding their own standing credentials.</p>
-        <p class="body-text">Two categories of tooling do different jobs here. <strong style="color:var(--text)">Wiz</strong> builds a cloud security graph that correlates IAM roles, network exposure, and workload data to answer "what can actually reach what" &mdash; including combination paths across accounts and subscriptions that a single-policy review misses entirely, like a Tier 1 service role that becomes an effective Tier 0 path only when paired with a public-facing workload. <strong style="color:var(--text)">Clutch Security</strong> is purpose-built for the non-human-identity inventory itself: every API key, service account, and workload identity across cloud and SaaS, aged and risk-scored, with orphaned ones flagged automatically &mdash; the owner left, the app was decommissioned, the key was never rotated.</p>
-        <p class="body-text" style="margin-top:14px;">MCP servers are a new instance of the same old service-account problem. An MCP server typically holds a standing credential to whatever it connects to &mdash; a database, a ticketing system, a cloud account &mdash; and unlike a human user, it can be invoked by any agent that can reach it, at any hour, without the friction of a login. The tooling above should treat every MCP server exactly like a service account: inventoried, owned, scoped, and time-boxed, not implicitly trusted because it's "internal." The <a href="/case-studies/agentic-ai-identity-governance/" style="color:var(--accent);">agentic AI identity governance</a> and <a href="/case-studies/ai-agent-credential-sharing/" style="color:var(--accent);">AI agent credential sharing</a> case studies case studies go through what this looks like in practice.</p>
-      </section>
-
-      <section id="pipeline-gate">
-        <h2>The pipeline gate: how a hardcoded credential actually gets stopped</h2>
-        <p class="section-sub">A secret scanner only helps if it sits somewhere it can block a build, not just flag one after the fact.</p>
-        <div class="step-strip">
-          <div class="stage"><span class="num">01</span><span class="label">Commit</span><span class="desc">A credential gets typed into code or config and committed locally.</span></div>
-          <div class="stage"><span class="num">02</span><span class="label">Pre-merge scan</span><span class="desc">A pre-commit hook or a required pipeline stage &mdash; GitHub Actions, GitLab CI, Jenkins, Vela, whatever actually runs the build &mdash; scans the diff against known secret patterns and entropy checks before merge.</span></div>
-          <div class="stage"><span class="num">03</span><span class="label">Build blocked</span><span class="desc">A match fails the pipeline stage outright. The merge or build doesn't proceed &mdash; it isn't a Slack alert to look at later.</span></div>
-          <div class="stage"><span class="num">04</span><span class="label">Fix &amp; rotate</span><span class="desc">The credential is pulled out, rotated (it's already been committed, so treat it as already exposed), and replaced with a vault reference before the pipeline re-runs.</span></div>
-        </div>
-        <p class="body-text" style="margin-top:16px;">Which scanner does the matching &mdash; GitGuardian, TruffleHog, Gitleaks &mdash; matters less than where it sits. A scanner that only runs nightly against the whole repo tells you a secret leaked days ago; one wired into the pipeline as a required check stops the merge itself. That difference is the entire gap described in the Tier 1 gap-card above.</p>
-      </section>
-
-      <section id="ai-governance">
-        <h2>Where AI actually helps with governance &mdash; and where it needs the same guardrails</h2>
-        <p class="body-text">AI's real value here is pattern-matching at a volume no reviewer can sustain: flagging access that doesn't match a role's normal behavior, pre-filling certification decisions with usage evidence instead of asking a manager to guess, drafting the justification for a JIT request from the ticket it's attached to. None of that replaces the approval decision. It removes the manual work in front of it, so the human decision is actually informed instead of rubber-stamped.</p>
-        <p class="body-text" style="margin-top:14px;">Where it stops helping &mdash; and starts becoming its own Tier 0/Tier 1 risk &mdash; is when the AI doing this analysis is itself handed standing, broadly-scoped access to the identity and vault systems it's supposed to be reviewing. That's the same containment principle as the rest of this piece, applied to the tool instead of the person: the agent's own credential needs to be tiered, scoped, and time-boxed too, and its actions need to trace back to a specific run, not a generic service account everyone shares. The <a href="/case-studies/agentic-ai-identity-governance/" style="color:var(--accent);">agentic AI identity governance case study</a> covers this in more depth.</p>
-      </section>
-
-      <section id="ttl-vs-zero-trust">
-        <h2>Is a TTL enough, or do you need full zero trust?</h2>
-        <p class="body-text">This isn't really a choice between two options &mdash; a TTL is one control inside a zero-trust model, not an alternative to it. A time-boxed credential stops access from living forever, but it doesn't stop that access from being misused for the full length of its window if the session itself gets hijacked mid-grant. Zero trust adds continuous verification on top of the timer: device posture, network context, and behavioral signals checked throughout the session, not just at the moment it was issued.</p>
-        <p class="body-text" style="margin-top:14px;">Where they genuinely trade off is engineering cost. A TTL is a field on a grant. Continuous verification means plumbing EDR and device-posture signals into every access decision in real time, which is a materially heavier lift. In practice that argues for layering rather than picking one: TTL/JIT as the default baseline everywhere, with continuous verification added specifically at Tier 0 and on the break-glass path, where the cost of a hijacked session is highest. Standing elevation at Tier 2 or Tier 3 rarely justifies that investment on its own &mdash; TTL alone is the pragmatic starting point there, and continuous verification is the maturity step that comes after tiering is already in place, not before it.</p>
-      </section>
-
-      <section id="break-glass">
-        <h2>The break-glass path, in detail</h2>
-        <p class="section-sub">The PAM gate is itself a single point of failure. Break-glass isn't a workaround for that &mdash; it's a separate, deliberately narrower path built to be used rarely and audited every time it is.</p>
-
-        <figure class="diagram-card">
-          <svg viewBox="0 0 920 230" role="img" aria-label="An animated six-stage break-glass framework, each stage lighting up in sequence: trigger conditions defined in advance, invocation logged before access is granted, access that is narrower and shorter than a normal just-in-time grant, full session recording, a second approver notified without blocking the request, and forced credential rotation the instant the session ends.">
-            <g>
-              <path d="M110,100 L190,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
-              <path d="M250,100 L330,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
-              <path d="M390,100 L470,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
-              <path d="M530,100 L610,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
-              <path d="M670,100 L750,100" fill="none" stroke="var(--safe)" stroke-width="2.5" class="flow-breach" marker-end="url(#arrowSafe)"></path>
-            </g>
-
-            <g class="gate-pulse" style="animation-delay:0s">
-              <circle cx="80" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
-              <text x="80" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">01</text>
-            </g>
-            <text x="80" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Trigger defined</text>
-            <text x="80" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">set in advance</text>
-
-            <g class="gate-pulse" style="animation-delay:0.35s">
-              <circle cx="220" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
-              <text x="220" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">02</text>
-            </g>
-            <text x="220" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Invocation logged</text>
-            <text x="220" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">reason recorded first</text>
-
-            <g class="gate-pulse" style="animation-delay:0.7s">
-              <circle cx="360" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
-              <text x="360" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">03</text>
-            </g>
-            <text x="360" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Narrower access</text>
-            <text x="360" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">shorter than normal JIT</text>
-
-            <g class="gate-pulse" style="animation-delay:1.05s">
-              <circle cx="500" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
-              <text x="500" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">04</text>
-            </g>
-            <text x="500" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Session recorded</text>
-            <text x="500" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">every action logged</text>
-
-            <g class="gate-pulse" style="animation-delay:1.4s">
-              <circle cx="640" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
-              <text x="640" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">05</text>
-            </g>
-            <text x="640" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Approver notified</text>
-            <text x="640" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">alerted, not blocking</text>
-
-            <g class="gate-pulse" style="animation-delay:1.75s">
-              <circle cx="780" cy="100" r="30" fill="var(--surface)" stroke="var(--safe)" stroke-width="2.5"></circle>
-              <text x="780" y="106" font-size="14" font-weight="800" fill="var(--safe)" text-anchor="middle">06</text>
-            </g>
-            <text x="780" y="152" font-size="11.5" font-weight="700" fill="var(--text)" text-anchor="middle">Forced rotation</text>
-            <text x="780" y="167" font-size="9.5" fill="var(--muted)" text-anchor="middle">rotated the instant it ends</text>
-
-            <text x="80" y="205" font-size="10" fill="var(--muted)" text-anchor="middle">t = 0</text>
-            <text x="780" y="205" font-size="10" fill="var(--muted)" text-anchor="middle">session closed</text>
-          </svg>
-          <figcaption>Six stages, always in this order: defined ahead of time, logged before granted, narrower than standing JIT, fully recorded, notified without blocking, rotated the instant the session ends.</figcaption>
-        </figure>
-
-        <div class="step-strip">
-          <div class="stage"><span class="num">01</span><span class="label">Trigger defined in advance</span><span class="desc">Conditions for invoking break-glass are written down before an incident, not decided in the moment.</span></div>
-          <div class="stage"><span class="num">02</span><span class="label">Invocation logged first</span><span class="desc">A named requester and a reason are recorded before access is granted, never after.</span></div>
-          <div class="stage"><span class="num">03</span><span class="label">Narrower, not wider</span><span class="desc">Access is broader in scope but shorter in duration than a normal JIT grant &mdash; often an hour or less.</span></div>
-          <div class="stage"><span class="num">04</span><span class="label">Full session recording</span><span class="desc">Every action taken during a break-glass session is recorded, the same as any other Tier 0 access.</span></div>
-          <div class="stage"><span class="num">05</span><span class="label">Second approver notified</span><span class="desc">Security and a second approver are notified the moment it's invoked &mdash; a notification, not a blocking permission step, so it doesn't defeat the point of an emergency path.</span></div>
-          <div class="stage"><span class="num">06</span><span class="label">Forced rotation on exit</span><span class="desc">The credential used is rotated automatically the instant the session ends, whether or not it was actually used for anything.</span></div>
-        </div>
-        <p class="body-text" style="margin-top:16px;">The stage that gets skipped most often in practice is the post-use justification, written and reviewed within a fixed window after every single invocation. If break-glass is used often enough that this review becomes routine, that's not evidence the process is working &mdash; it's a sign the standing JIT process is missing a legitimate use case that people are routing around instead. The <a href="/case-studies/break-glass-access/" style="color:var(--accent);">break-glass access case study</a> covers the full design in more depth.</p>
-      </section>
-
-      <section id="framework">
-        <h2>The full picture: which tool answers which risk, and why</h2>
-        <p class="section-sub">Every category discussed above mapped to the layer it actually closes.</p>
-        <figure class="diagram-card">
-          <svg viewBox="0 0 920 630" role="img" aria-label="An animated seven-row diagram mapping each risk layer discussed in this piece to a tool category and a one-line reason it closes that gap, with a scanning indicator sweeping down the stack: Tier 0 identity control plane to PAM vault and phishing-resistant MFA; Tier 1 app and cloud estate to CIEM; Tier 2 workstation to endpoint privilege management; NHI, shadow accounts and MCP servers to NHI governance and CIEM; hardcoded secrets to pipeline-gated scanning and a secrets manager; access certification to identity governance and administration; and break-glass emergency access to an isolated, logged, forced-rotation path.">
-            <line x1="9" y1="48" x2="9" y2="620" stroke="var(--accent)" stroke-width="2" class="flow-breach" opacity="0.7"></line>
-
-            <text x="42" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">RISK LAYER</text>
-            <text x="300" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">TOOL CATEGORY</text>
-            <text x="598" y="28" font-size="10.5" font-weight="700" fill="var(--muted)" letter-spacing="0.06em">WHY IT MATTERS</text>
-
-            <g>
-              <rect x="20" y="50" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="50" width="5" height="76" rx="2" fill="var(--accent)" class="gate-pulse" style="animation-delay:0s"></rect>
-              <text x="42" y="76" font-size="12.5" font-weight="700" fill="var(--text)">Tier 0 &mdash; identity control plane</text>
-              <text x="42" y="94" font-size="10.5" fill="var(--muted)">domain, PKI, PAM vault, cloud IdP admin</text>
-              <text x="300" y="76" font-size="12" font-weight="700" fill="var(--text)">PAM vault + FIDO2 / M-of-N</text>
-              <text x="300" y="94" font-size="10.5" fill="var(--muted)">CyberArk, BeyondTrust, Delinea</text>
-              <text x="598" y="80" font-size="11" fill="var(--muted)">Stops standing Tier 0 credential reuse &mdash;</text>
-              <text x="598" y="98" font-size="11" fill="var(--muted)">the highest-impact path in the diagram above</text>
-            </g>
-
-            <g>
-              <rect x="20" y="132" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
-              <rect x="20" y="132" width="5" height="76" rx="2" fill="var(--accent)" class="gate-pulse" style="animation-delay:0.3s"></rect>
-              <text x="42" y="158" font-size="12.5" font-weight="700" fill="var(--text)">Tier 1 &mdash; app / cloud / CI-CD</text>
-              <text x="42" y="176" font-size="10.5" fill="var(--muted)">service accounts, cloud IAM roles</text>
-              <text x="300" y="158" font-size="12" font-weight="700" fill="var(--text)">CIEM</text>
-              <text x="300" y="176" font-size="10.5" fill="var(--muted)">Wiz, Clutch Security, Sonrai</text>
-              <text x="598" y="162" font-size="11" fill="var(--muted)">Surfaces the permission combinations a</text>
-              <text x="598" y="180" font-size="11" fill="var(--muted)">single-role review never catches</text>
-            </g>
-
-            <g>
-              <rect x="20" y="214" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="214" width="5" height="76" rx="2" fill="var(--accent)" class="gate-pulse" style="animation-delay:0.6s"></rect>
-              <text x="42" y="240" font-size="12.5" font-weight="700" fill="var(--text)">Tier 2 &mdash; workstation / helpdesk</text>
-              <text x="42" y="258" font-size="10.5" fill="var(--muted)">local admin, the usual entry point</text>
-              <text x="300" y="240" font-size="12" font-weight="700" fill="var(--text)">Endpoint privilege management</text>
-              <text x="300" y="258" font-size="10.5" fill="var(--muted)">BeyondTrust EPM, Delinea, PAM360</text>
-              <text x="598" y="244" font-size="11" fill="var(--muted)">Removes the shared local-admin password</text>
-              <text x="598" y="262" font-size="11" fill="var(--muted)">behind most fleet-wide incidents</text>
-            </g>
-
-            <g>
-              <rect x="20" y="296" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
-              <rect x="20" y="296" width="5" height="76" rx="2" fill="var(--warn)" class="gate-pulse" style="animation-delay:0.9s"></rect>
-              <text x="42" y="322" font-size="12.5" font-weight="700" fill="var(--text)">NHI, shadow accounts, MCP servers</text>
-              <text x="42" y="340" font-size="10.5" fill="var(--muted)">cross-cutting, rarely inventoried</text>
-              <text x="300" y="322" font-size="12" font-weight="700" fill="var(--text)">NHI governance + CIEM</text>
-              <text x="300" y="340" font-size="10.5" fill="var(--muted)">Clutch Security, Wiz</text>
-              <text x="598" y="326" font-size="11" fill="var(--muted)">Finds the exposure tiering doesn't reach</text>
-              <text x="598" y="344" font-size="11" fill="var(--muted)">until it's inventoried and owned</text>
-            </g>
-
-            <g>
-              <rect x="20" y="378" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="378" width="5" height="76" rx="2" fill="var(--warn)" class="gate-pulse" style="animation-delay:1.2s"></rect>
-              <text x="42" y="404" font-size="12.5" font-weight="700" fill="var(--text)">Secrets hardcoded in code</text>
-              <text x="42" y="422" font-size="10.5" fill="var(--muted)">cross-cutting, enters faster than review</text>
-              <text x="300" y="404" font-size="12" font-weight="700" fill="var(--text)">Pipeline-gated scanning + secrets manager</text>
-              <text x="300" y="422" font-size="10.5" fill="var(--muted)">GitGuardian, Gitleaks, Vault, Infisical</text>
-              <text x="598" y="408" font-size="11" fill="var(--muted)">Blocks the credential at the merge gate &mdash;</text>
-              <text x="598" y="426" font-size="11" fill="var(--muted)">before it's ever exposed, not after</text>
-            </g>
-
-            <g>
-              <rect x="20" y="460" width="880" height="76" rx="10" fill="var(--surface-2)" opacity="0.6"></rect>
-              <rect x="20" y="460" width="5" height="76" rx="2" fill="var(--safe)" class="gate-pulse" style="animation-delay:1.5s"></rect>
-              <text x="42" y="486" font-size="12.5" font-weight="700" fill="var(--text)">Access certification / audit evidence</text>
-              <text x="42" y="504" font-size="10.5" fill="var(--muted)">cross-cutting, the classic rubber stamp</text>
-              <text x="300" y="486" font-size="12" font-weight="700" fill="var(--text)">Identity Governance &amp; Administration</text>
-              <text x="300" y="504" font-size="10.5" fill="var(--muted)">SailPoint, Saviynt</text>
-              <text x="598" y="490" font-size="11" fill="var(--muted)">Replaces a memory-based review with</text>
-              <text x="598" y="508" font-size="11" fill="var(--muted)">usage-backed certification evidence</text>
-            </g>
-
-            <g>
-              <rect x="20" y="542" width="880" height="76" rx="10" fill="var(--surface-2)"></rect>
-              <rect x="20" y="542" width="5" height="76" rx="2" fill="var(--safe)" class="gate-pulse" style="animation-delay:1.8s"></rect>
-              <text x="42" y="568" font-size="12.5" font-weight="700" fill="var(--text)">Break-glass / emergency access</text>
-              <text x="42" y="586" font-size="10.5" fill="var(--muted)">the path around the gate itself</text>
-              <text x="300" y="568" font-size="12" font-weight="700" fill="var(--text)">Isolated emergency path</text>
-              <text x="300" y="586" font-size="10.5" fill="var(--muted)">logged, time-boxed, forced rotation</text>
-              <text x="598" y="572" font-size="11" fill="var(--muted)">Keeps the one bypass from becoming a</text>
-              <text x="598" y="590" font-size="11" fill="var(--muted)">silent, ungoverned standing account</text>
-            </g>
-          </svg>
-          <figcaption>Same seven risk layers this piece walks through, read left to right: the risk, the tool category that closes it, and why. <span style="color:var(--accent)">&#9679;</span> identity-plane tiers &nbsp; <span style="color:var(--warn)">&#9679;</span> cross-cutting hygiene &nbsp; <span style="color:var(--safe)">&#9679;</span> governance &amp; containment.</figcaption>
-        </figure>
-      </section>
-
-      <section id="audit-mapping">
-        <h2>Where this maps to what an auditor actually checks</h2>
-        <p class="section-sub">Everything above is engineering. This section is what turns it into audit evidence &mdash; the tiering model is a fairly direct answer to specific control requirements most compliance frameworks already ask for.</p>
-        <div class="table-wrap">
-          <table class="market">
-            <thead>
-              <tr>
-                <th>Framework / regulation</th>
-                <th>What it requires</th>
-                <th>How tiering + JIT answers it</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="org">NIST SP 800-53 (AC-6, IA-2, AC-2)</td>
-                <td>Least privilege, multi-factor auth for privileged accounts, timely account review</td>
-                <td>JIT grants are least privilege by construction; Tier 0 hardware-key MFA satisfies IA-2; auto-expiry replaces manual account review for standing access</td>
-              </tr>
-              <tr>
-                <td class="org">PCI-DSS 4.0 (Req. 7 &amp; 8)</td>
-                <td>Restrict access by business need-to-know; unique IDs and strong authentication for every user with access to cardholder data</td>
-                <td>Per-machine vaulted credentials and scoped JIT grants satisfy the need-to-know test directly; session recording gives the evidence trail an assessor asks for</td>
-              </tr>
-              <tr>
-                <td class="org">SOX (ITGC access controls)</td>
-                <td>Segregation of duties; access changes tied to an approval record</td>
-                <td>Dual/M-of-N authorization at Tier 0 is segregation of duties in its literal form; every JIT grant is its own approval record instead of a point-in-time review sample</td>
-              </tr>
-              <tr>
-                <td class="org">HIPAA Security Rule (&sect;164.312)</td>
-                <td>Unique user identification, automatic logoff, audit controls on systems holding ePHI</td>
-                <td>Time-boxed grants are automatic logoff by design; vault and session-recording logs are the audit control</td>
-              </tr>
-              <tr>
-                <td class="org">ISO/IEC 27001:2022 (Annex A.8, A.5)</td>
-                <td>Privileged access rights restricted and reviewed; formal access provisioning and de-provisioning process</td>
-                <td>The five-stage lifecycle above (Onboard &rarr; Vault &rarr; JIT Grant &rarr; Rotate &rarr; Retire) is a direct, evidenced answer to this control &mdash; the same approach this site's <a href="/secure-india-exams/" style="color:var(--accent);">Secure India Exams proposal</a> maps against NIST CSF and ISO 27001 in full.</td>
-              </tr>
-            </tbody>
-          </table>
+      <section id="workflow">
+        <h2>The workflow: classify, place, control, review</h2>
+        <p class="body-text">This is the loop I run for every credential, whether it already exists or someone is asking for a new one.</p>
+        <ol class="steps">
+<li><h3>Name an owner and find the credential</h3><p>Every credential needs a named person or team first. For existing credentials this is a discovery job across vaults, pipelines, directories, cloud accounts and code. For new ones it is an intake request saying what it is for and who answers for it.</p><div class="why"><span><b>Guardrail</b>No owner, no credential</span><span><b>Evidence</b>Inventory entry with owner and purpose</span></div></li>
+<li><h3>Classify it</h3><p>Pick the class from the six above, then write down what it can do. Can it create or change other credentials? Edit a pipeline or a role? Log in interactively? What it can change decides the class. Where it is stored does not count.</p><div class="why"><span><b>Guardrail</b>Classification is based on permissions held, checked by someone other than the owner</span><span><b>Evidence</b>Classification record with the answers to those questions</span></div></li>
+<li><h3>Place it in a tier</h3><p>Apply the mint test: what is the highest tier this credential could reach, directly or by creating something else? That is its tier.</p><div class="why"><span><b>Guardrail</b>The owner cannot lower a tier alone. Tier 0 and Tier 1 placement needs security architecture sign-off</span><span><b>Evidence</b>Tier assignment with approver and date</span></div></li>
+<li><h3>Apply the tier's controls and close the old path</h3><p>Configure all six controls before the credential is issued or moved. Then close the old way in: a direct login, a copy in a config file or a shared account.</p><div class="why"><span><b>Guardrail</b>No issue until all six controls are set, and a test shows the old path is closed</span><span><b>Evidence</b>Policy as configured, plus the result of a deliberate attempt to use the old path</span></div></li>
+<li><h3>Review, and move it when things change</h3><p>Review on a rhythm, using usage evidence instead of memory. Also review when something changes: new permissions, a new owner, a migration finishing. Move the credential if the answer to the mint test has changed.</p><div class="why"><span><b>Guardrail</b>Review decisions are driven by usage, and a permission change triggers a tier check</span><span><b>Evidence</b>Attestation record and usage report</span></div></li>
+</ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Example: a pipeline deploy key</h3>
+        <p class="body-text" style="margin-top:6px">This is an illustration, not a specific event.</p>
+        <p class="body-text">A pipeline holds a cloud key to deploy an application. First placement looks easy: a cloud key used by CI/CD, so Tier 1. Then the mint test. The role behind the key can create roles and attach policies in the cloud account, so the key can give itself anything, including admin rights over the account's identity layer. Its real tier is Tier 0 until the permissions change.</p>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>The key is long-lived and sits in a pipeline variable that every maintainer can read.</li><li>The role was made broad so deployments would stop failing.</li><li>Nobody can say which tier it belongs to.</li><li>It is never reviewed because the pipeline works.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>The pipeline gets short-lived credentials through a workload identity and no stored key remains.</li><li>The role is cut down to deploy actions. Role creation is removed, so the credential drops to Tier 1.</li><li>The owner, tier and expiry sit in the inventory.</li><li>A change to the role triggers a tier check.</li></ul></div>
         </div>
       </section>
 
       <section id="market">
-        <h2>Matching the market to the organization, not the other way round</h2>
-        <p class="section-sub">There's no single best credential-management tool. It depends on org size, regulatory load, and whether the estate is on-prem, cloud-native, or mixed. What shows up consistently across vendor comparisons is a trade-off between <strong style="color:var(--text)">audit/compliance depth and total cost of ownership</strong>. The table below is a profile-based framework, not a ranking.</p>
-
-        <div class="table-wrap">
-          <table class="market">
-            <thead>
-              <tr>
-                <th>Organization profile</th>
-                <th>What matters most</th>
-                <th>Best-fit category</th>
-                <th>Ops + cost trade-off</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="org">Large regulated enterprise<br><span style="color:var(--muted); font-weight:400;">500+ employees, finance/healthcare/gov</span></td>
-                <td>Deepest audit trail, Gartner-Leader compliance record, mixed Windows/Linux/Mac estates</td>
-                <td>Enterprise PAM suite (CyberArk, BeyondTrust)</td>
-                <td>Highest TCO and a 3&ndash;6 month deployment, but the compliance depth is what regulators expect &mdash; the cost shows up as dedicated admin headcount, not as audit findings.</td>
-              </tr>
-              <tr>
-                <td class="org">Mid-market<br><span style="color:var(--muted); font-weight:400;">200&ndash;2,000 employees, standard infra</span></td>
-                <td>Meets standard compliance needs without enterprise-suite overhead</td>
-                <td>Mid-tier PAM (Delinea Secret Server)</td>
-                <td>Significantly lower TCO than the enterprise suites with materially faster implementation &mdash; the trade-off is less maturity for cloud-native/DevOps workloads.</td>
-              </tr>
-              <tr>
-                <td class="org">Cloud-native / DevOps-first<br><span style="color:var(--muted); font-weight:400;">SaaS companies, Kubernetes/AWS/GCP/Azure</span></td>
-                <td>Eliminating standing credentials entirely, fast onboarding, engineer-friendly access</td>
-                <td>Cloud-native access platforms (StrongDM, Teleport) + CIEM (Wiz)</td>
-                <td>Cloud-native efficiency drives down both cost and operational drag &mdash; but compliance reporting is comparatively less mature, so pair it with an IGA layer if audit depth (e.g. SOC 2 Type II and beyond) is required.</td>
-              </tr>
-              <tr>
-                <td class="org">SMB / first PAM deployment<br><span style="color:var(--muted); font-weight:400;">Under ~200 employees</span></td>
-                <td>Lowest cost and complexity to get any tiering in place at all</td>
-                <td>Accessible PAM platforms (ManageEngine PAM360 and similar)</td>
-                <td>The most accessible option on cost and setup time, with less enterprise-compliance depth &mdash; the right trade for an org whose real risk today is having zero tiering, not sub-optimal tiering.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout" style="margin-top:16px;">
-          <strong>The cost-reduction case isn't just licensing.</strong> A properly tiered, JIT-based model reduces operational cost the same way it reduces risk: fewer standing accounts means a smaller population to certify every quarter, fewer emergency credential rotations after an incident, and audit evidence that's generated automatically (session recordings, usage logs) instead of assembled by hand before every review. The tool license is the visible cost; the audit and incident-response hours it removes are the larger, less visible saving.
-        </div>
+        <h2>Where the PAM market fits the tiers</h2>
+        <p class="body-text">Tiers describe credentials. PAM products are packaged as capabilities, and the two do not line up one to one. Gartner defines PAM as a set of tools to control access and secure accounts that provide an elevated level of technical access, for human and machine accounts. Its capability list includes vaulting and rotation, session management, just-in-time privilege and provisioning, secrets management, command control, account discovery and onboarding, and privilege elevation. Those are the building blocks, and each tier needs a different mix.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Tier</th><th>What its controls need</th><th>Tool category that supplies it</th><th>Examples named elsewhere on this site</th></tr></thead>
+<tbody>
+<tr><td data-label="Tier">Tier 0</td><td data-label="What its controls need">Vaulting, session recording, more than one approver, phishing-resistant sign-in, a break-glass path</td><td data-label="Tool category that supplies it">PAM vault with session recording, plus hardware-key sign-in</td><td data-label="Examples named elsewhere on this site">CyberArk, Delinea, BeyondTrust; FIDO2 security keys, Windows Hello for Business</td></tr>
+<tr><td data-label="Tier">Tier 1</td><td data-label="What its controls need">Dynamic secrets, visibility of combined cloud permissions, secret scanning before merge</td><td data-label="Tool category that supplies it">Secrets management, cloud entitlement management, scanning</td><td data-label="Examples named elsewhere on this site">HashiCorp Vault, Infisical, GitGuardian; Wiz, Clutch Security, Sonrai</td></tr>
+<tr><td data-label="Tier">Tier 2</td><td data-label="What its controls need">Unique local admin credentials, just-in-time elevation</td><td data-label="Tool category that supplies it">Endpoint privilege management</td><td data-label="Examples named elsewhere on this site">BeyondTrust EPM, Delinea, ManageEngine PAM360</td></tr>
+<tr><td data-label="Tier">Across tiers</td><td data-label="What its controls need">An inventory of non-human identities and usage-backed access reviews</td><td data-label="Tool category that supplies it">NHI governance, identity governance and administration</td><td data-label="Examples named elsewhere on this site">SailPoint, Saviynt</td></tr>
+</tbody></table></div>
+        <p class="body-text" style="margin-top:14px">These are examples of each category, not a ranking. No product here is the answer for every tier, and one suite may cover Tier 0 and Tier 2 well and still need another tool for pipelines.</p>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Organization shape changes the shortlist</h3>
+        <p class="body-text" style="margin-top:6px">The shape of the organization changes which categories to look at first. This is a profile view, not a league table.</p>
+        <ul class="plain-list">
+          <li><strong>Large regulated enterprise.</strong> Audit depth matters most. Enterprise PAM suites such as CyberArk and BeyondTrust are the usual starting point.</li>
+          <li><strong>Mid-market.</strong> Standard compliance needs without heavy overhead. Mid-tier PAM such as Delinea Secret Server is the usual fit.</li>
+          <li><strong>Cloud-native and DevOps-first.</strong> Removing standing credentials and fast onboarding matter most. Cloud-native access platforms such as StrongDM and Teleport, plus cloud entitlement tooling such as Wiz, sit here. Compliance reporting is described as less mature, so pair them with identity governance if you need audit depth.</li>
+          <li><strong>Small organization, first PAM deployment.</strong> The risk is having no tiering at all. Accessible platforms such as ManageEngine PAM360 get something in place quickly.</li>
+        </ul>
+        <p class="body-text">Comparison sites describe enterprise suites as heavier on cost and deployment effort. I have not checked that against vendor pricing, so read it as direction only.</p>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Two market signals worth knowing</h3>
+        <p class="body-text" style="margin-top:6px">GitGuardian's 2026 report counts 28.65 million new hardcoded secrets in public GitHub commits in 2025. That figure covers public repositories only. I use it to show why a scanner that blocks a merge belongs in the Tier 1 controls. The second signal is consolidation. A 2026 tracker of non-human identity deals lists eight acquisitions or agreements between May and September 2026, with buyers from identity, network security, data security and credential management. It reads this as NHI turning from a standalone purchase into a capability inside larger platforms. That tracker is a secondary source built from press releases and trade reporting, so treat the count as indicative. Check whether a platform you already own offers the NHI inventory before buying another tool.</p>
+        <p class="body-text">The <a href="/case-studies/credential-platform/">credential platform strategy</a> study is the next step if you want to see how these capabilities become one service with owners and a catalog.</p>
       </section>
 
-      <section class="sources">
-        <h2 style="font-size:16px;">Sources</h2>
-        <ol>
-          <li><a href="https://www.gartner.com/en/documents/7051198" target="_blank" rel="noopener">Gartner, Magic Quadrant for Privileged Access Management</a></li>
-          <li><a href="https://www.beyondtrust.com/resources/gartner-magic-quadrant-for-pam" target="_blank" rel="noopener">BeyondTrust, 2025 Gartner Magic Quadrant for PAM (vendor summary)</a></li>
-          <li><a href="https://techcloudpro.com/blog/cyberark-vs-delinea-vs-beyondtrust-pam-comparison/" target="_blank" rel="noopener">TechCloudPro, CyberArk vs Delinea vs BeyondTrust: PAM Compared (2026)</a></li>
-          <li><a href="https://www.comparisec.com/blog/best-pam-software-2026" target="_blank" rel="noopener">Comparisec, Best PAM Software 2026</a></li>
-          <li><a href="https://blog.gitguardian.com/top-secrets-management-tools/" target="_blank" rel="noopener">GitGuardian, Top Secrets Management Tools and Platforms for 2026</a></li>
+      <section id="roadmap">
+        <h2>How to build it in phases</h2>
+        <ol class="phases">
+<li><b>1. Agree the definitions</b>Write the tier definitions and six classes on one page. Name who owns the standard and signs off placement.<small><em>Done when</em>Every class has a default tier, and the people who will be bound by the standard have approved it.</small></li>
+<li><b>2. Inventory and classify, Tier 0 first</b>Find the credentials, give each an owner, classify them, from the control plane down.<small><em>Done when</em>Every Tier 0 credential is known, owned and classified.</small></li>
+<li><b>3. Close Tier 0</b>Put the gate in front of it, add hardware-key sign-in, two approvers and recording, and test the break-glass path.<small><em>Done when</em>No route into the control plane remains except the documented ones, and a boundary test proves it.</small></li>
+<li><b>4. Tier 1 and Tier 2</b>Move to short-lived credentials, block secrets in the pipeline, make local admin unique, replace standing admin with elevation.<small><em>Done when</em>New credentials in these tiers cannot be created outside the platform.</small></li>
+<li><b>5. Tier 3, measure, retire the old paths</b>Bring the low-risk estate in, report on the measures below, and remove the old stores and habits.<small><em>Done when</em>The review rhythm runs without a project team pushing it.</small></li>
+</ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep the tiers honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+<tbody>
+<tr><td data-label="Guardrail">A credential is valid in one tier only</td><td data-label="What it stops">A stolen workstation credential carrying on into the control plane</td><td data-label="How you check it">A boundary test: try a Tier 2 credential against a Tier 0 system and expect a refusal</td></tr>
+<tr><td data-label="Guardrail">Placement follows the highest tier reachable</td><td data-label="What it stops">A wide-permission key sitting in a low tier</td><td data-label="How you check it">Report of credentials whose effective permissions exceed their tier</td></tr>
+<tr><td data-label="Guardrail">No direct path around the gate</td><td data-label="What it stops">A vault in place while the old door stays open</td><td data-label="How you check it">Attempt a direct login and confirm it is refused and alerted</td></tr>
+<tr><td data-label="Guardrail">Tier 0 actions need two people and are recorded</td><td data-label="What it stops">One compromised admin acting alone</td><td data-label="How you check it">Sample sessions and confirm an approver and a recording exist</td></tr>
+<tr><td data-label="Guardrail">Audit log kept outside the platform</td><td data-label="What it stops">Evidence being altered by the people it covers</td><td data-label="How you check it">Confirm platform admins cannot edit the log store</td></tr>
+<tr><td data-label="Guardrail">Break glass rotated on exit and reviewed after every use</td><td data-label="What it stops">Emergency access that quietly becomes routine</td><td data-label="How you check it">Last rotation and review record for each invocation</td></tr>
+<tr><td data-label="Guardrail">Temporary and migration credentials expire at creation</td><td data-label="What it stops">Bridge accounts outliving the migration</td><td data-label="How you check it">Report of credentials with no expiry date</td></tr>
+</tbody></table></div>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and where the answers come from</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+<tbody>
+<tr><td data-label="Question">Which tier is this credential in, and why?</td><td data-label="Where the answer comes from">Classification record and tier assignment with approver and date</td></tr>
+<tr><td data-label="Question">Which controls apply at that tier, and are they on for this credential?</td><td data-label="Where the answer comes from">Policy as configured, compared with the tier standard</td></tr>
+<tr><td data-label="Question">Who approved this access, and for how long?</td><td data-label="Where the answer comes from">Request and approval record with grant start and end</td></tr>
+<tr><td data-label="Question">What happened in the session?</td><td data-label="Where the answer comes from">Session recording or command log, held outside the platform</td></tr>
+<tr><td data-label="Question">When did the secret last change?</td><td data-label="Where the answer comes from">Rotation history</td></tr>
+<tr><td data-label="Question">Can a lower-tier credential reach a higher-tier system?</td><td data-label="Where the answer comes from">Result of the most recent boundary test</td></tr>
+<tr><td data-label="Question">When was this last reviewed, and what was removed?</td><td data-label="Where the answer comes from">Attestation records and usage report</td></tr>
+</tbody></table></div>
+      </section>
+
+      <section id="standards">
+        <h2>Standards this maps to</h2>
+        <p class="body-text">Only references I checked while writing are listed. I read the SP 800-53 text on CSF Tools, a mirror, so cite the NIST publication formally. The SC-28 text I read was Rev. 4 wording.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th><th>How I use it</th></tr></thead>
+<tbody>
+<tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">AC-6</code> and enhancements <code class="ref">AC-6(1)</code>, <code class="ref">(2)</code>, <code class="ref">(5)</code>, <code class="ref">(7)</code>, <code class="ref">(9)</code></td><td data-label="What it asks for">Least privilege: only the accesses needed for assigned tasks. Enhancements cover security-function access, non-privileged accounts for routine work, restricting privileged accounts, reviewing privileges and logging privileged functions.</td><td data-label="How I use it">The case for tier placement, timed grants, the periodic review step and Tier 0 logging.</td></tr>
+<tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">IA-5</code></td><td data-label="What it asks for">Authenticator management: strength, revocation, changing defaults, rotation on a schedule or event, and protection from disclosure. <code class="ref">IA-5(7)</code> covers no embedded unencrypted static authenticators.</td><td data-label="How I use it">Storage and rotation controls, and keeping secrets out of code.</td></tr>
+<tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">SC-12</code></td><td data-label="What it asks for">Establish and manage cryptographic keys under defined requirements.</td><td data-label="How I use it">Custody of Tier 0 keys such as PKI and vault keys.</td></tr>
+<tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">SC-28</code></td><td data-label="What it asks for">Protect the confidentiality or integrity of information at rest.</td><td data-label="How I use it">The storage row of the control table.</td></tr>
+<tr><td data-label="Standard">NIST SP 800-207</td><td data-label="Reference">Zero Trust Architecture</td><td data-label="What it asks for">Zero trust is a set of guiding principles, not a single architecture, aimed at least-privilege per-request access decisions. Logical components: policy engine, policy administrator, policy enforcement point.</td><td data-label="How I use it">My reading: the PAM gate acts as the enforcement point for privileged sessions.</td></tr>
+</tbody></table></div>
+        <p class="body-text" style="margin-top:14px">An earlier version of this page also mapped the model to PCI DSS, SOX, HIPAA and ISO/IEC 27001. I have taken those rows out until I have checked the clause numbers against the published text again. Microsoft's enterprise access model is vendor guidance, not a standard, so it is in the sources and not in this table.</p>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+<thead><tr><th>Role</th><th>Owns</th></tr></thead>
+<tbody>
+<tr><td data-label="Role">Platform product owner</td><td data-label="Owns">The tier standard, the control sets, the exception policy and the roadmap</td></tr>
+<tr><td data-label="Role">Security architecture</td><td data-label="Owns">Tier definitions, sign-off on Tier 0 and Tier 1 placement, and boundary tests</td></tr>
+<tr><td data-label="Role">Credential owners</td><td data-label="Owns">The classification of their credentials, the access list, the review attestation and the retirement</td></tr>
+<tr><td data-label="Role">Platform engineering</td><td data-label="Owns">Running the gate and the vault, availability, and the break-glass path</td></tr>
+<tr><td data-label="Role">Security operations</td><td data-label="Owns">Watching and responding to alerts on each tier</td></tr>
+<tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from the people who run the controls</td></tr>
+</tbody></table></div>
+        <ul class="plain-list">
+<li><strong>One person never moves a credential down a tier alone.</strong> The owner proposes, someone else approves, and the record shows both.</li>
+<li><strong>Review the standard too.</strong> If every team asks for an exception to the same control, the control is wrong or the front door is too slow.</li>
+<li><strong>Exceptions have owners and end dates.</strong> Anything that cannot meet its tier's controls, such as a legacy application needing a static password, goes on a register with a plan and a date.</li>
+<li><strong>Measure coverage and drift.</strong> Useful measures are the share of known credentials classified, credentials with no owner, credentials above their tier, Tier 0 systems still reachable by a direct path, and the age of the oldest unrotated secret.</li>
+</ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+<li><strong>Tier 0 is drawn too small.</strong> Teams list the domain controllers and forget the cloud identity provider's admin roles, the pipelines that deploy to the identity layer, or the vault.</li>
+<li><strong>The vault stops at Tier 0.</strong> Many estates have a vault at the top and little below it, yet Tier 1 and Tier 2 are where a first foothold usually lands.</li>
+<li><strong>Classification is done once.</strong> A Tier 1 credential can pick up permissions and become Tier 0 unnoticed. Review on change, not only on a calendar.</li>
+<li><strong>The gate is a single point of failure.</strong> If the vault or approval system is down during an incident, the response cannot be to wait for it. That is what a tested break-glass path is for. See <a href="/case-studies/break-glass-access/">break-glass access</a>.</li>
+<li><strong>Tiers turn into org charts.</strong> Tier 0 is for credentials that can mint other credentials, not a list of senior people.</li>
+<li><strong>A product gets mistaken for a tier.</strong> A tool bought for one tier gets assumed to cover the rest.</li>
+<li><strong>Temporary credentials stay forever.</strong> Accounts made to bridge a migration get forgotten because they were never meant to last.</li>
+<li><strong>AI agents get standing access.</strong> An agent that reviews access or manages secrets needs its own tier, scope and expiry. See <a href="/case-studies/ai-agent-credential-sharing/">AI agent credential sharing</a>.</li>
+</ul>
+      </section>
+
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits from how I run this kind of work. They are not a report on any one project.</p>
+        <ul class="plain-list">
+<li><strong>I ask what a credential can mint before I ask where it lives.</strong> Location is easy to see and misleading. Reach decides the tier.</li>
+<li><strong>I finish Tier 0 before I start the rest.</strong> A half-built gate in every tier gives false comfort. A complete gate on the control plane is a smaller area I can defend properly.</li>
+<li><strong>I keep the number of tiers small.</strong> When a team asks for a fifth tier, I look for a missing control in one of the four.</li>
+<li><strong>I test the boundary by trying to cross it.</strong> Reading a policy proves little. Taking a low-tier credential and attempting to use it in a higher tier shows what is real.</li>
+<li><strong>I write the tier definitions on one page and get them approved by the people they bind.</strong> If only security has read them, they last until the first incident review.</li>
+<li><strong>I judge tools after I have written what each tier needs.</strong> Then I try two or three candidates on a small slice. That settles more than a comparison table.</li>
+<li><strong>I give every temporary credential an expiry the day it is created.</strong> Cleanup backlogs do not get done.</li>
+<li><strong>I test break-glass before go-live.</strong> It is part of the Tier 0 design, so it gets built and tried before the gate goes live.</li>
+</ul>
+        <p class="body-text">The longer method, from the first stakeholder conversation to the last training session, is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>. For how the zero-standing-privilege side works in practice, see <a href="/case-studies/pam-modernization/">PAM Modernization</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <p class="body-text">Each of these was fetched while writing. Secondary and vendor sources are labelled.</p>
+        <ol class="sources">
+          <li><a href="https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-access-model">Microsoft Learn, Securing privileged access: Enterprise access model</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/security/zero-trust/security-adoption-discipline-identity-access-enterprise-model">Microsoft Learn, Build an enterprise access architecture</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/security/privileged-access-workstations/privileged-access-security-levels">Microsoft Learn, Securing privileged access: security levels</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-6/">NIST SP 800-53 AC-6, via CSF Tools (secondary mirror of the NIST text)</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/ia/ia-5/">NIST SP 800-53 IA-5, via CSF Tools (secondary mirror)</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r5/sc/sc-12/">NIST SP 800-53 SC-12, via CSF Tools (secondary mirror)</a></li>
+          <li><a href="https://csf.tools/reference/nist-sp-800-53/r4/sc/sc-28/">NIST SP 800-53 SC-28, via CSF Tools (Rev. 4 page, secondary mirror)</a></li>
+          <li><a href="https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=930420">NIST SP 800-207, Zero Trust Architecture (NIST-hosted PDF)</a></li>
+          <li><a href="https://csrc.nist.gov/News/2020/zero-trust-architecture-nist-publishes-sp-800-207">NIST CSRC, Zero Trust Architecture: NIST Publishes SP 800-207</a></li>
+          <li><a href="https://www.gartner.com/en/insights/gartner-market-overviews/privileged-access-management">Gartner, What is Privileged Access Management?</a></li>
+          <li><a href="https://www.helpnetsecurity.com/2026/03/27/gitguardian-exposed-credentials-risk-report/">Help Net Security, coverage of the GitGuardian 2026 report (secondary)</a></li>
+          <li><a href="https://nhigovernance.com/market/nhi-consolidation-tracker.html">NHI market consolidation tracker (independent site, secondary)</a></li>
+          <li><a href="https://www.beyondtrust.com/press/2025-gartner-magic-quadrant-privileged-access-management">BeyondTrust press release on the 2025 Gartner Magic Quadrant for PAM (vendor source)</a></li>
+          <li><a href="https://techcloudpro.com/blog/cyberark-vs-delinea-vs-beyondtrust-pam-comparison/">TechCloudPro, PAM comparison (carried over from the earlier version, not re-checked)</a></li>
+          <li><a href="https://www.comparisec.com/blog/best-pam-software-2026">Comparisec, Best PAM Software 2026 (carried over, not re-checked)</a></li>
         </ol>
-        <p style="margin-top:10px; color:var(--muted);">Platform and vendor names above reflect public market research and personal evaluation experience, not vendor endorsement or client association &mdash; consistent with how vendor names are used elsewhere on this site.</p>
+        <p class="note-box">This is a reference approach, not a description of any employer's system. It contains no client or internal data. Vendor and product names reflect public market research and personal evaluation experience, and are not an endorsement or a client association.</p>
       </section>
+
+      <section id="tags"><div class="tags"><span>#pam</span><span>#credential-management</span><span>#zero-trust</span><span>#nhi</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev all" href="/case-studies/"><small>&larr; Back to</small><strong>All case studies</strong></a><a class="next" style="--c:#7df2d0" href="/case-studies/credential-platform/"><small><i></i>Next &rarr;</small><strong>Credential Management Platform Strategy</strong></a></div></nav>
       <footer class="page-footer">
@@ -821,7 +318,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>

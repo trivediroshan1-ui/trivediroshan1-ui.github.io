@@ -19,7 +19,9 @@
     <title>Passwordless Authentication Rollout · Roshan Trivedi</title>
 
     <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
     <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -41,7 +43,7 @@
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-09-29",
+  "dateModified": "2026-10-01",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/passwordless-authentication/",
   "image": "https://roshantrivedi.co.in/assets/og-case-passwordless-authentication.png",
   "articleSection": "Authentication",
@@ -52,43 +54,326 @@
   "keywords": "passwordless authentication, phishing resistant mfa, risk based migration"
 }
     </script>
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
-  </head>
-  <body>
+    </head>
+  <body style="--c:#c4b5fd">
     <a class="skip" href="#main">Skip to content</a>
     <main id="main">
-      <nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
       <header class="hero">
         <p class="eyebrow">Authentication &middot; Case study</p>
-        <p class="cat-badge" style="color:#c4b5fd;background:rgba(196,181,253,0.12);border-color:#c4b5fd33">Authentication</p>
         <h1>Passwordless Authentication Rollout</h1>
-        <p class="dek">Sequencing a passwordless migration by risk instead of rolling it out to everyone at once.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner</p>
+        <p class="dek">How to move a workforce from passwords and weak MFA to phishing-resistant sign-in in risk order, and how to solve recovery, legacy apps and break-glass access on the way.</p>
+        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
-      <section id="challenge">
-        <h2>The challenge</h2>
-        <p class="body-text">A blanket passwordless rollout risked locking out the users least prepared for it, while the accounts most worth protecting — the highest-risk users and devices — would migrate on the same generic timeline as everyone else.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>Move people to phishing-resistant sign-in in risk order: privileged users first, then people who reach high-risk apps, then everyone else. One company-wide date puts the heaviest support load on the day you can least afford it.</li>
+          <li>Recovery decides whether the program works. If a lost key can be fixed with a text message or a password reset, an attacker will use that route instead of the strong one.</li>
+          <li>Keep a fallback during each wave and retire it only when adoption and help-desk data say the wave is stable. Legacy apps and break-glass accounts get named plans, not quiet exceptions.</li>
+        </ul>
+      </div>
+
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Most workforces still sign in with a password and something extra: a text message code, an app code, or a push notification to approve. That is better than a password alone, and it is still phishable. A convincing fake sign-in page can collect the password and the code together and replay them to the real site. CISA&rsquo;s phishing-resistant MFA fact sheet lists SMS and voice codes, push notifications without number matching and app one-time codes without number matching as forms of MFA that remain open to phishing, and it calls SMS and voice a last resort.</p>
+        <p class="body-text">Phishing-resistant sign-in closes that gap. It also creates a project that is easy to get wrong. A blanket rollout can lock out the users least ready for it, while the accounts most worth protecting wait on the same generic timeline as everyone else. The administrator who can change every other account&rsquo;s access ends up in the same queue as a part-time user of a low-risk tool.</p>
+        <p class="body-text">So I start with practical questions. Who needs it most? What happens the day someone loses the device? Which applications cannot take a modern sign-in at all? And how will we know that people use the new method and do not drift back to the old one?</p>
       </section>
 
-      <section id="approach">
-        <h2>The approach</h2>
-        <ul class="approach-list">
-          <li>Inventoried authentication methods and device posture across the user population before setting a migration order, instead of assuming uniform readiness.</li>
-          <li>Added an advisory risk score per user and device that sequences migration waves — highest-risk accounts move to phishing-resistant authentication first, not last.</li>
-          <li>Kept a fallback authentication path available during each wave and retired it only after adoption and support-ticket data confirmed the wave was stable.</li>
+      <section id="terms">
+        <h2>The terms, in plain words</h2>
+        <ul class="plain-list">
+          <li><strong>WebAuthn.</strong> The W3C Web Authentication standard. It defines an API for creating and using public key credentials that are scoped to the site that created them. A credential can only be used with the same relying party it was registered with, which is why a look-alike site gets nothing useful.</li>
+          <li><strong>Passkey.</strong> The FIDO Alliance describes a passkey as a FIDO authentication credential that lets a person sign in with the same process they use to unlock their device: a biometric, a PIN or a pattern.</li>
+          <li><strong>Device-bound and synced.</strong> FIDO describes synced passkeys as credentials synced between a person&rsquo;s devices through a cloud service, and device-bound passkeys as ones that never leave a single device, such as those on a security key.</li>
+          <li><strong>Attestation.</strong> Evidence about the make and model of an authenticator, which a relying party can ask for at registration.</li>
+          <li><strong>Authenticator assurance levels (AAL).</strong> NIST SP 800-63B uses these to describe how much confidence a sign-in gives. In the current revision, applications assessed at AAL2 have to offer a phishing-resistant option, and AAL3 requires a non-exportable private key and phishing resistance.</li>
+          <li><strong>Authentication strength.</strong> Microsoft Entra&rsquo;s name for a conditional access control that requires a set of methods. It has three built-in strengths: multifactor, passwordless and phishing-resistant. Phishing-resistant includes FIDO2 security keys, Windows Hello for Business or a platform credential, and certificate-based authentication.</li>
+        </ul>
+        <p class="body-text">I use Microsoft Entra as the worked example because its documentation is public and I checked it for this page. The same slots exist in other identity providers.</p>
+      </section>
+
+      <section id="architecture">
+        <h2>How a passkey sign-in fits together</h2>
+        <p class="body-text">There are four parts on the normal path and two on the side. On the normal path, the user and their authenticator, the identity provider, the conditional access and risk decision, and the resource. On the side, a recovery path and break-glass accounts. Logging runs under all of it.</p>
+        <figure class="diagram-card" style="--c:#c4b5fd;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 440" role="img" aria-labelledby="p1t p1d"><title id="p1t">Passkey sign-in architecture</title><desc id="p1d">A user unlocks a passkey or security key on their device. The authenticator signs a challenge and the identity provider checks it. Conditional access and a risk decision then allow, step up or block. If allowed, the resource gets a token. If the user has no usable key, they go to a recovery path that ends in a new passkey. Break-glass accounts sit outside the policy and raise an alert. Sign-in, recovery and emergency events all go to logs and a SIEM.</desc>
+            <text class="sub" x="125" y="34" text-anchor="middle" style="letter-spacing:.12em">USER SIDE</text><text class="sub" x="480" y="34" text-anchor="middle" style="letter-spacing:.12em">DECISION</text><text class="sub" x="835" y="34" text-anchor="middle" style="letter-spacing:.12em">ACCESS</text>
+            <path class="flow" d="M 230 110 L 360 110"/>
+            <path class="flow" d="M 480 160 L 480 210"/>
+            <path class="flow" d="M 600 260 L 665 260 L 665 110 L 730 110"/>
+            <path class="flow" d="M 360 260 L 230 260"/>
+            <path class="flow" d="M 125 210 L 125 160"/>
+            <path class="flow" d="M 835 210 L 835 160"/>
+            <path class="log" d="M 125 310 L 125 360"/><path class="log" d="M 480 310 L 480 360"/><path class="log" d="M 835 310 L 835 360"/>
+            <g class="node" style="--i:0"><rect x="20" y="60" width="210" height="100" rx="12"/><text class="ttl" x="38" y="86">User and authenticator</text><text class="sub" x="38" y="108">Passkey or security key</text><text class="sub" x="38" y="124">PIN or biometric unlocks it</text><text class="sub" x="38" y="140">on the device</text></g>
+            <g class="node" style="--i:1"><rect x="360" y="60" width="240" height="100" rx="12"/><text class="ttl" x="378" y="86">Identity provider</text><text class="sub" x="378" y="108">Relying party for the sign-in</text><text class="sub" x="378" y="124">Checks the signature against</text><text class="sub" x="378" y="140">the registered public key</text></g>
+            <g class="node" style="--i:2"><rect x="360" y="210" width="240" height="100" rx="12"/><text class="ttl" x="378" y="236">Conditional access and risk</text><text class="sub" x="378" y="258">Strength, device, app, location,</text><text class="sub" x="378" y="274">sign-in risk. Then allow,</text><text class="sub" x="378" y="290">step up or block</text></g>
+            <g class="node" style="--i:3"><rect x="730" y="60" width="210" height="100" rx="12"/><text class="ttl" x="748" y="86">Resource</text><text class="sub" x="748" y="108">Application or admin portal</text><text class="sub" x="748" y="124">Gets a token only after</text><text class="sub" x="748" y="140">the policy is met</text></g>
+            <g class="node" style="--i:4"><rect x="20" y="210" width="210" height="100" rx="12"/><text class="ttl" x="38" y="236">Recovery path</text><text class="sub" x="38" y="258">Identity check, then a</text><text class="sub" x="38" y="274">time-limited pass, then</text><text class="sub" x="38" y="290">a new passkey</text></g>
+            <g class="node" style="--i:4"><rect x="730" y="210" width="210" height="100" rx="12"/><text class="ttl" x="748" y="236">Break-glass accounts</text><text class="sub" x="748" y="258">Outside the policy</text><text class="sub" x="748" y="274">Own keys, kept sealed</text><text class="sub" x="748" y="290">Any sign-in raises an alert</text></g>
+            <g class="logbar"><rect class="logbar" x="20" y="360" width="920" height="60" rx="12"/></g>
+            <text class="ttl" x="480" y="386" text-anchor="middle">Logs and SIEM</text><text class="sub" x="480" y="406" text-anchor="middle">Sign-in, recovery and emergency events are recorded. Break-glass use alerts a person.</text>
+            <text class="sub" x="295" y="90" text-anchor="middle">signed challenge</text><text class="sub" x="295" y="140" text-anchor="middle">for this site only</text>
+            <text class="sub" x="498" y="189">who, what, risk</text>
+            <text class="sub" x="684" y="181">allowed:</text><text class="sub" x="684" y="196">token issued</text>
+            <text class="sub" x="295" y="238" text-anchor="middle">no usable key</text><text class="sub" x="295" y="288" text-anchor="middle">or lost device</text>
+            <text class="sub" x="143" y="189">new passkey</text>
+            <text class="sub" x="853" y="189">emergency</text>
+            <g class="badge"><circle cx="295" cy="110" r="11"/><text x="295" y="114">1</text></g>
+            <g class="badge"><circle cx="480" cy="185" r="11"/><text x="480" y="189">2</text></g>
+            <g class="badge"><circle cx="665" cy="185" r="11"/><text x="665" y="189">3</text></g>
+            <g class="badge"><circle cx="295" cy="260" r="11"/><text x="295" y="264">4</text></g>
+            <g class="badge"><circle cx="125" cy="185" r="11"/><text x="125" y="189">5</text></g>
+            <g class="badge"><circle cx="835" cy="185" r="11"/><text x="835" y="189">6</text></g>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="6s" begin="0s" repeatCount="indefinite" path="M 230 110 L 480 110 L 480 260 L 665 260 L 665 110 L 730 110"/></circle>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2.5s"/><animateMotion dur="6s" begin="2.5s" repeatCount="indefinite" path="M 360 260 L 125 260 L 125 160"/></circle>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="4s"/><animateMotion dur="6s" begin="4s" repeatCount="indefinite" path="M 835 210 L 835 130"/></circle>
+          </svg>
+          <svg class="d-tall" viewBox="0 0 360 910" role="img" aria-labelledby="p1tt p1td"><title id="p1tt">Passkey sign-in architecture</title><desc id="p1td">A user unlocks a passkey or security key. The identity provider checks the signed challenge. Conditional access and risk decide to allow, step up or block. If allowed, the resource gets a token. With no usable key, the user goes to a recovery path. Break-glass accounts sit outside the policy. All events go to logs and a SIEM.</desc>
+            <path class="flow" d="M 165 110 L 165 150"/><path class="flow" d="M 165 250 L 165 290"/><path class="flow" d="M 165 390 L 165 430"/>
+            <path class="flow" d="M 310 340 L 328 340 L 328 600 L 310 600"/>
+            <path class="log" d="M 165 770 L 165 810"/>
+            <g class="node" style="--i:0"><rect x="20" y="10" width="290" height="100" rx="14"/><text class="ttl" x="38" y="36">User and authenticator</text><text class="sub" x="38" y="58">Passkey or security key</text><text class="sub" x="38" y="76">PIN or biometric unlocks it</text><text class="sub" x="38" y="94">on the device</text></g>
+            <g class="node" style="--i:1"><rect x="20" y="150" width="290" height="100" rx="14"/><text class="ttl" x="38" y="176">Identity provider</text><text class="sub" x="38" y="198">Relying party for the sign-in</text><text class="sub" x="38" y="216">Checks the signature against</text><text class="sub" x="38" y="234">the registered public key</text></g>
+            <g class="node" style="--i:2"><rect x="20" y="290" width="290" height="100" rx="14"/><text class="ttl" x="38" y="316">Conditional access and risk</text><text class="sub" x="38" y="338">Strength, device, app, location,</text><text class="sub" x="38" y="356">sign-in risk. Then allow,</text><text class="sub" x="38" y="374">step up or block</text></g>
+            <g class="node" style="--i:3"><rect x="20" y="430" width="290" height="100" rx="14"/><text class="ttl" x="38" y="456">Resource</text><text class="sub" x="38" y="478">Application or admin portal</text><text class="sub" x="38" y="496">Gets a token only after</text><text class="sub" x="38" y="514">the policy is met</text></g>
+            <g class="node" style="--i:4"><rect x="20" y="570" width="290" height="200" rx="14"/><text class="sub" x="165" y="592" text-anchor="middle" style="letter-spacing:.12em">NO USABLE KEY</text><text class="ttl" x="38" y="620">Recovery path</text><text class="sub" x="38" y="638">Identity check, then a</text><text class="sub" x="38" y="654">time-limited pass, then</text><text class="sub" x="38" y="670">a new passkey</text><text class="ttl" x="38" y="706">Break-glass accounts</text><text class="sub" x="38" y="724">Outside the policy, own keys,</text><text class="sub" x="38" y="740">kept sealed. Any sign-in</text><text class="sub" x="38" y="756">raises an alert</text></g>
+            <rect class="logbar" x="20" y="810" width="290" height="80" rx="14"/>
+            <text class="ttl" x="165" y="838" text-anchor="middle">Logs and SIEM</text><text class="sub" x="165" y="858" text-anchor="middle">Sign-in, recovery and emergency</text><text class="sub" x="165" y="874" text-anchor="middle">events. Break-glass use alerts.</text>
+            <text class="sub" x="183" y="134">signed challenge</text>
+            <text class="sub" x="183" y="274">who, what, risk</text>
+            <text class="sub" x="183" y="414">allowed: token issued</text>
+            <text class="sub" x="183" y="798">every event logged</text>
+            <text class="sub" transform="translate(350 470) rotate(90)" text-anchor="middle">no usable key</text>
+            <g class="badge"><circle cx="165" cy="130" r="11"/><text x="165" y="134">1</text></g>
+            <g class="badge"><circle cx="165" cy="270" r="11"/><text x="165" y="274">2</text></g>
+            <g class="badge"><circle cx="165" cy="410" r="11"/><text x="165" y="414">3</text></g>
+            <g class="badge"><circle cx="328" cy="400" r="11"/><text x="328" y="404">4</text></g>
+            <g class="badge"><circle cx="165" cy="790" r="11"/><text x="165" y="794">5</text></g>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="7s" repeatCount="indefinite" path="M 165 40 L 165 500"/></circle>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2s"/><animateMotion dur="5s" begin="2s" repeatCount="indefinite" path="M 310 340 L 328 340 L 328 600 L 310 600"/></circle>
+          </svg>
+          <figcaption>The dots show a sign-in. The first dot follows the normal path: the device signs, the identity provider checks, the policy decides, and the resource gets a token. The second shows what happens when the user has no usable key. The recovery path ends with a new passkey, so recovery repairs the strong method and does not replace it. Break-glass accounts sit outside the policy and every use raises an alert. The identity provider and policy engine are examples of each role. Any equivalent product fits the same slots.</figcaption>
+        </figure>
+        <p class="body-text">Read the numbers in the picture in order. The authenticator signs a challenge for one site (1). The identity provider checks the signature against the public key it holds for that user (2, with the policy engine asking who, what and how risky). If the policy is met, the resource gets a token (3). If the user has no usable key, the policy does not fall back to a weaker method. It sends them to recovery (4), and recovery ends with a new passkey (5). Break-glass accounts stay outside the policy so a bad rule cannot lock everyone out, and every use alerts a person (6).</p>
+        <p class="body-text">Two details from the Microsoft documentation shape the design. An authentication strength is evaluated after the initial sign-in, so it does not by itself limit which method a user starts with. And sign-in risk and user risk need Entra ID Protection. The per-user score I describe below is a separate, advisory input for planning waves. It never blocks anyone on its own.</p>
+      </section>
+
+      <section id="workflow">
+        <h2>The migration, in risk order</h2>
+        <p class="body-text">I run the move as waves. Each wave has a guardrail that has to hold and evidence that shows it held.</p>
+        <ol class="steps">
+          <li><h3>Inventory methods and device posture</h3><p>Before setting an order, list which authentication methods each person has registered and what devices they sign in from. Readiness is uneven and assuming otherwise is how the least prepared users get locked out. In a directory such as Entra, the authentication methods activity report shows registration and usage by method, which gives a starting picture.</p><div class="why"><span><b>Guardrail</b>No wave is planned from assumptions</span><span><b>Evidence</b>Method and device inventory, agreed with the owners</span></div></li>
+          <li><h3>Score and order the waves</h3><p>Add an advisory risk score per user and device. It draws on things like privilege, access to sensitive apps, current method strength and device condition, and it can be rules, a model, or both. The score proposes an order. A person owns the order. Highest-risk accounts go first.</p><div class="why"><span><b>Guardrail</b>The score advises and a named owner decides</span><span><b>Evidence</b>Wave list with the owner&rsquo;s sign-off</span></div></li>
+          <li><h3>Fix recovery before enrolling anyone</h3><p>Decide how a lost key, a new joiner and a locked-out user are handled, and test it, before the first wave. Recovery must end in a strong method again. The section on recovery below covers the design.</p><div class="why"><span><b>Guardrail</b>No enrolment until recovery is written and tested</span><span><b>Evidence</b>Recovery runbook and a test record</span></div></li>
+          <li><h3>Enrol two authenticators, with supervision</h3><p>Each person registers at least two, for example a security key and a passkey on a managed device, so one loss does not mean a recovery event. Registration is a sign-in that matters, so it needs a strong prior sign-in. Entra requires a user to have completed MFA within the past five minutes before registering a passkey (FIDO2).</p><div class="why"><span><b>Guardrail</b>Two authenticators per person before enforcement</span><span><b>Evidence</b>Registration report by user</span></div></li>
+          <li><h3>Enforce by wave, report-only first</h3><p>Turn the phishing-resistant requirement on for one population at a time. Microsoft&rsquo;s own guidance is to confirm a policy in report-only mode before switching it on. Exclude the break-glass group deliberately and document why.</p><div class="why"><span><b>Guardrail</b>Report-only results reviewed before enforcement</span><span><b>Evidence</b>Policy impact review and the exclusion record</span></div></li>
+          <li><h3>Keep the fallback, and watch the data</h3><p>During each wave a fallback path stays available. I watch adoption, sign-in failures and help-desk tickets for that population. If tickets climb or people keep using the old method, the wave is not done, whatever the calendar says.</p><div class="why"><span><b>Guardrail</b>Fallback stays until the exit criteria are met</span><span><b>Evidence</b>Adoption and ticket data per wave</span></div></li>
+          <li><h3>Retire the weak methods for that population</h3><p>Once adoption and ticket data confirm the wave is stable, remove passwords and weak methods for those users and take the fallback away. Then move to the next wave. This is how the highest-risk accounts end up on phishing-resistant sign-in ahead of the general population, and how help-desk load spreads across waves instead of landing on one cutover date.</p><div class="why"><span><b>Guardrail</b>Fallback removal needs a named approver</span><span><b>Evidence</b>Change record and a method report showing what is left</span></div></li>
+        </ol>
+        <h3 style="font:800 17px var(--display);margin:26px 0 0">Waves at a glance</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Wave</th><th>Who</th><th>What they get</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Wave">0. Pilot</td><td data-label="Who">The identity team and a few volunteers from IT</td><td data-label="What they get">The full flow, including recovery, tried by people who can tell us what is broken</td></tr>
+            <tr><td data-label="Wave">1. Privileged</td><td data-label="Who">Administrators and people who can change access for others</td><td data-label="What they get">Device-bound authenticators, phishing-resistant strength required, no weak fallback</td></tr>
+            <tr><td data-label="Wave">2. High-risk apps</td><td data-label="Who">Everyone who reaches finance, HR, source code, customer data or identity tools</td><td data-label="What they get">Phishing-resistant strength required for those apps first, with a short fallback window</td></tr>
+            <tr><td data-label="Wave">3. Everyone</td><td data-label="Who">The rest of the workforce</td><td data-label="What they get">Passkeys on managed devices, with synced passkeys allowed where the risk is low</td></tr>
+            <tr><td data-label="Wave">4. Close the gaps</td><td data-label="Who">Legacy apps, shared devices, special cases</td><td data-label="What they get">A fix, a compensating control, or a dated exception</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="recovery">
+        <h2>The recovery problem</h2>
+        <p class="body-text">A strong sign-in method is only as strong as the way back in. If a user who loses a key can reset it by answering a text message, the text message is now the real sign-in. NIST SP 800-63B-4 treats recovery as its own topic (Sec. 4.2), including saved recovery codes and a notification to the user after recovery (Sec. 4.2.3). I did not verify the full list of recovery methods and requirements, so read that section before you write yours.</p>
+        <p class="body-text">What I design for is a recovery that repairs the strong method and does not step around it. Four cases come up again and again.</p>
+        <ul class="plain-list">
+          <li><strong>Lost or broken device, second key available.</strong> The person signs in with the other authenticator and registers a replacement. This is the cheap case, and it is why I want two authenticators for everyone before enforcement.</li>
+          <li><strong>Lost device, no second key.</strong> The help desk verifies identity with a process that does not rely on anything the attacker could phish, such as a video call with the manager present, or in person. Then it issues a time-limited pass. In Entra, a Temporary Access Pass is a time-limited passcode, configured for one use or several, that lets a user onboard passwordless methods and makes recovery easier when a strong method is lost. Its lifetime is configurable, with a default of one hour, and a single-use pass needs the registration finished within 10 minutes of sign-in. The user registers a new passkey straight away.</li>
+          <li><strong>New joiner.</strong> The same pass, issued at day one after HR and the manager confirm the person, ideally handed over alongside a security key. The first thing a new joiner does is register two authenticators.</li>
+          <li><strong>Privileged user.</strong> I raise the bar: in person or two-person approval, a shorter pass, and an alert to the security team. A recovery for an administrator is a high-risk event and gets treated as one.</li>
+        </ul>
+        <p class="body-text">The Entra documentation notes that a Temporary Access Pass cannot be used with the Network Policy Server extension or the AD FS adapter, so check where else a pass will not work. Whatever the product, the pass is itself a credential. It is short-lived, issued by a verified process, sent to a verified channel, and logged, and the user is told when it is issued.</p>
+      </section>
+
+      <section id="synced">
+        <h2>Device-bound or synced, and what attestation changes</h2>
+        <p class="body-text">The choice between device-bound and synced passkeys is a risk decision. NIST SP 800-63B-4 says syncable authenticators cannot be used at AAL3 because the private key has to be exportable, and it allows them at AAL2 and below. That gives a simple starting rule: device-bound for people and apps that need the top level of assurance, and synced passkeys where AAL2 is the target and the convenience is worth it.</p>
+        <p class="body-text">Microsoft&rsquo;s passkey documentation adds three practical points. When attestation is enforced at registration, Entra can verify the make and model of the authenticator against trusted metadata. When it is not enforced, Entra cannot guarantee any attribute of a passkey, including whether it is synced or device-bound. And the documentation advises treating synced passkeys as phishing-resistant credentials with the same security posture as other unattested authenticators. Its synced passkey page adds that synced passkeys do not support attestation, and suggests device-bound passkeys such as security keys or passkeys in Microsoft Authenticator for admins and highly privileged users.</p>
+        <p class="body-text">So the policy I write has two profiles. Privileged users and the highest-risk apps require attested, device-bound authenticators. Everyone else may use synced passkeys. Entra supports this with passkey profiles, which are named sets of rules that govern registration and sign-in for targeted groups, and it allows up to three of them, including the default. Two cautions from the same page. Key restrictions, which allow or block authenticators by AAGUID, apply to both registration and sign-in, so removing an allowed AAGUID stops people who registered that model from signing in. And attestation is checked only at registration, so users who registered without it are not blocked later if you turn it on.</p>
+      </section>
+
+      <section id="legacy">
+        <h2>Legacy apps that cannot do modern sign-in</h2>
+        <p class="body-text">Every program meets the application that only knows a username and password. I handle these in the open. List them, give each an owner, and pick one of four routes.</p>
+        <ul class="plain-list">
+          <li><strong>Put it behind the identity provider.</strong> If the app can speak SAML or OpenID Connect, move it to single sign-on so the policy applies. OMB M-22-09 asks that MFA be enforced at the application layer, not only at the network layer.</li>
+          <li><strong>Upgrade or replace it.</strong> CISA&rsquo;s fact sheet advises a plan to either upgrade systems that do not support MFA or migrate away from them, and to escalate the risk of any system that does not support MFA to senior leadership. I follow that literally. The owner of the risk gets the decision in writing.</li>
+          <li><strong>Contain it.</strong> Where neither is possible yet, narrow who can reach it, put it on a restricted network path, scope its accounts and monitor its sign-ins more closely.</li>
+          <li><strong>Block legacy protocols where you can.</strong> In Entra, legacy authentication clients, such as POP3, IMAP4 and SMTP, do not support MFA or pass device state, so conditional access grant controls like requiring MFA or a compliant device block them. Check what depends on them first.</li>
+        </ul>
+        <p class="body-text">Anything left over goes on the exception register with an owner, a reason, a compensating control and an end date, reviewed on a rhythm. An exception with no end date is a decision nobody made.</p>
+      </section>
+
+      <section id="breakglass">
+        <h2>Break-glass access during the move</h2>
+        <p class="body-text">Emergency access accounts are the part of a passwordless program that people forget until a policy locks them out. Microsoft recommends two or more emergency access accounts, authenticated with a passkey (FIDO2) or certificate-based authentication, using phishing-resistant methods that differ from those of the normal admin accounts. It also recommends excluding a dedicated group from conditional access policies that block or restrict sign-in, monitoring their sign-in and audit logs with alerts, and testing them at regular intervals, at least every 90 days.</p>
+        <p class="body-text">The interaction I plan for is simple. Each new wave and each new policy gets a check that the emergency accounts still work and still alert. Break-glass accounts belong in the first wave, because they are privileged by definition. The full design is in <a href="/case-studies/break-glass-access/">Break-Glass Access</a>.</p>
+      </section>
+
+      <section id="helpdesk">
+        <h2>The help-desk process</h2>
+        <p class="body-text">The help desk is where recovery meets people, so it needs its own script. The agent proves identity with the agreed method, issues a time-limited pass, and never reads out or resets a password as a shortcut. The ticket records who verified whom, how, and when the pass was issued. A recovery for a privileged account goes to a second person. After recovery the user gets a notice on a channel the requester does not control, and the old authenticators are reviewed and removed if they are lost.</p>
+      </section>
+
+      <section id="example">
+        <h2>Worked example</h2>
+        <p class="body-text">This is an illustration of the flow, not a specific event or company.</p>
+        <h3 style="font:800 17px var(--display);margin:18px 0 0">An infrastructure administrator, before and after wave 1</h3>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>Signs in with a password and approves a push notification on a phone.</li><li>Has one registered method, so a lost phone means a help-desk call.</li><li>Recovery over the phone with a few personal questions.</li><li>Sits in the same wave as every other user.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>Signs in with a security key and a PIN. Phishing-resistant strength is required for admin roles.</li><li>Has a second key stored securely, so a lost key is a swap.</li><li>If both are lost: video call with the manager, then a short-lived pass issued by a second person, then a new key at once.</li><li>The recovery alerts the security team and notifies the admin.</li></ul></div>
+        </div>
+        <p class="body-text">The fallback stayed in place for this group for the first weeks and was removed only after adoption and ticket data looked stable. The general population follows the same flow in a later wave, with synced passkeys on managed devices.</p>
+      </section>
+
+      <section id="roadmap">
+        <h2>How I phase it</h2>
+        <ol class="phases">
+          <li><b>1. Inventory and design</b>List methods, devices and legacy apps, and write the recovery design, the policy profiles and the wave order.<small><em>Done when</em>The inventory is agreed with its owners and recovery is written down.</small></li>
+          <li><b>2. Pilot</b>Run the identity team and a few volunteers through enrolment, sign-in, loss and recovery.<small><em>Done when</em>Every recovery case has been tried at least once and the runbook has been corrected.</small></li>
+          <li><b>3. Privileged users and break-glass</b>Enrol administrators on device-bound authenticators and enforce phishing-resistant strength for admin roles.<small><em>Done when</em>Admin roles cannot sign in with a weak method and the emergency accounts have been tested.</small></li>
+          <li><b>4. High-risk apps, then everyone</b>Require phishing-resistant strength for the sensitive apps, then widen to the whole workforce wave by wave.<small><em>Done when</em>Each wave meets its exit criteria and its fallback is removed.</small></li>
+          <li><b>5. Close the long tail</b>Resolve or date every legacy app and special case, and remove old methods from the tenant.<small><em>Done when</em>Weak methods can no longer be registered and the exception register is short and dated.</small></li>
+        </ol>
+      </section>
+
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">Recovery tested before enrolment</td><td data-label="What it stops">A lost key sending people to a weak reset path</td><td data-label="How you check it">Run each recovery case in the pilot and keep the record</td></tr>
+            <tr><td data-label="Guardrail">Two authenticators per person</td><td data-label="What it stops">One lost device becoming a recovery event</td><td data-label="How you check it">Report of users with fewer than two registered authenticators</td></tr>
+            <tr><td data-label="Guardrail">Report-only before enforcement</td><td data-label="What it stops">A policy locking out a group nobody expected</td><td data-label="How you check it">Review report-only results for each wave</td></tr>
+            <tr><td data-label="Guardrail">Time-limited recovery pass, verified issuer</td><td data-label="What it stops">A recovery credential that stays useful or is issued to an impostor</td><td data-label="How you check it">Pass lifetime in policy, and a sample of recovery tickets against the script</td></tr>
+            <tr><td data-label="Guardrail">Device-bound and attested for privileged users</td><td data-label="What it stops">Unknown authenticators on the highest-risk accounts</td><td data-label="How you check it">Registered authenticator models for admin roles against the allowed list</td></tr>
+            <tr><td data-label="Guardrail">Break-glass excluded, alerted and tested</td><td data-label="What it stops">Lockout from a bad policy, or silent misuse of the exception</td><td data-label="How you check it">Alert test and sign-in test at least every 90 days</td></tr>
+            <tr><td data-label="Guardrail">Fallback retired only on data</td><td data-label="What it stops">The old method surviving forever</td><td data-label="How you check it">Sign-ins by method for the wave, and the approver&rsquo;s record</td></tr>
+            <tr><td data-label="Guardrail">Exceptions have owners and end dates</td><td data-label="What it stops">Legacy apps that nobody is accountable for</td><td data-label="How you check it">Exception register, reviewed on a rhythm</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="measure">
+        <h2>Measuring adoption</h2>
+        <p class="body-text">I want measures that show whether people use the strong method as well as whether they registered it. In Entra the authentication methods activity report has a registration view, which shows how many users are capable of passwordless authentication and how many are registered by method, and a usage view, which shows sign-ins by authentication requirement and by method. Other identity providers offer similar reports.</p>
+        <ul class="plain-list">
+          <li><strong>Registered and capable.</strong> Share of each wave with a phishing-resistant authenticator, and with two.</li>
+          <li><strong>Actually used.</strong> Share of each wave&rsquo;s sign-ins done with the phishing-resistant method, and how many users still sign in with a weak one.</li>
+          <li><strong>Privileged coverage.</strong> Admin roles with a device-bound authenticator and no weak fallback.</li>
+          <li><strong>Support load.</strong> Credential-related tickets per wave, time to recover, and recoveries that needed a second approver.</li>
+          <li><strong>Long tail.</strong> Legacy apps and exceptions open, and how many have an end date.</li>
+        </ul>
+        <p class="body-text">I read these by wave. A single company-wide number hides the cases that matter.</p>
+      </section>
+
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Which users can still sign in with a weak method?</td><td data-label="Where the answer comes from">Registered methods report and sign-ins by method</td></tr>
+            <tr><td data-label="Question">Why was this person moved in this wave?</td><td data-label="Where the answer comes from">Wave list with the advisory score and the owner&rsquo;s sign-off</td></tr>
+            <tr><td data-label="Question">How is a lost key handled, and who checked it?</td><td data-label="Where the answer comes from">Recovery runbook, ticket records and notification logs</td></tr>
+            <tr><td data-label="Question">Which apps cannot enforce phishing-resistant sign-in, and why?</td><td data-label="Where the answer comes from">Exception register with owner, reason and end date</td></tr>
+            <tr><td data-label="Question">Who approved removing the fallback for this group?</td><td data-label="Where the answer comes from">Change record with the adoption and ticket data attached</td></tr>
+            <tr><td data-label="Question">Do the emergency accounts work, and who is told when they are used?</td><td data-label="Where the answer comes from">Test records and alert history</td></tr>
+          </tbody></table></div>
+        <h3 style="font:800 17px var(--display);margin:24px 0 0">Standards and guidance this maps to</h3>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Source</th><th>Reference</th><th>What it says</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Source">NIST SP 800-63B-4</td><td data-label="Reference"><code class="ref">Sec. 3.2.5</code></td><td data-label="What it says">Defines phishing resistance. Applications assessed at AAL2 must offer a phishing-resistant option.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference">AAL3</td><td data-label="What it says">The authenticator must have a non-exportable private key and provide phishing resistance. Syncable authenticators cannot be used at AAL3.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference"><code class="ref">Sec. 4.2</code>, <code class="ref">Sec. 4.2.3</code></td><td data-label="What it says">Account recovery, and notification to the user after recovery.</td></tr>
+            <tr><td data-label="Source"></td><td data-label="Reference">Passwords</td><td data-label="What it says">Do not require periodic password changes unless there is evidence of compromise, and do not impose composition rules.</td></tr>
+            <tr><td data-label="Source">CISA, Implementing Phishing-Resistant MFA</td><td data-label="Reference">Fact sheet</td><td data-label="What it says">Names FIDO/WebAuthn and PKI-based MFA as the phishing-resistant options, lists methods that are not, and points first to administrators and other high-value targets.</td></tr>
+            <tr><td data-label="Source">OMB M-22-09</td><td data-label="Reference">Identity pillar</td><td data-label="What it says">For US federal agencies: phishing-resistant MFA for users, MFA enforced at the application layer, and removal of password rules that require special characters and regular rotation. I use it as a reference point, and it binds only the agencies it addresses.</td></tr>
+            <tr><td data-label="Source">W3C WebAuthn Level 3 and FIDO Alliance</td><td data-label="Reference">Definitions</td><td data-label="What it says">Scoped public key credentials, attestation, and the device-bound and synced passkey terms used on this page.</td></tr>
+          </tbody></table></div>
+      </section>
+
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Authentication product owner</td><td data-label="Owns">The wave plan, the policy profiles, the exit criteria and the metrics</td></tr>
+            <tr><td data-label="Role">Identity engineering</td><td data-label="Owns">Running the policies, registration and reporting</td></tr>
+            <tr><td data-label="Role">Help desk lead</td><td data-label="Owns">The recovery script, training and the monthly ticket sample</td></tr>
+            <tr><td data-label="Role">Application owners</td><td data-label="Owns">Moving their apps to modern sign-in, or owning the exception</td></tr>
+            <tr><td data-label="Role">Security operations</td><td data-label="Owns">Alerts on recovery and break-glass use</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>One owner for the order.</strong> The risk score is advisory. A named person approves the wave list and can change it.</li>
+          <li><strong>Exit criteria written before each wave.</strong> Adoption and ticket thresholds are agreed first, so nobody argues about them mid-wave.</li>
+          <li><strong>Changes to recovery are policy changes.</strong> Loosening the recovery path goes through the same approval as loosening sign-in.</li>
         </ul>
       </section>
 
-      <section id="outcome">
-        <h2>Outcome</h2>
-        <p class="callout">Migrated the highest-risk accounts to phishing-resistant authentication ahead of the general population, and reduced credential-based helpdesk tickets as each wave completed instead of concentrating support load at a single cutover date.</p>
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>Recovery becomes the weak door.</strong> Teams harden sign-in and leave password reset or phone verification in place. Attackers go to whichever door is easier.</li>
+          <li><strong>Enforcing too early.</strong> A strict policy that was never run in report-only mode catches the shared mailbox, the service desk tool or the executive assistant&rsquo;s old laptop.</li>
+          <li><strong>Treating synced and device-bound as the same.</strong> Without attestation you cannot tell them apart, so the policy cannot treat them differently.</li>
+          <li><strong>The fallback never goes away.</strong> If weak methods stay registered, an attacker can ask for them. Users, too, will drift back to the familiar one.</li>
+          <li><strong>Legacy apps on an endless exception.</strong> Without owners and end dates, the long tail stays long.</li>
+        </ul>
       </section>
 
-      <section id="tags">
-        <div class="tags"><span>#wip</span><span>#passwordless-authentication</span><span>#phishing-resistant-mfa</span><span>#risk-based-migration</span></div>
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep, not a checklist from any one project.</p>
+        <ul class="plain-list">
+          <li><strong>Start from the data, then talk to the owners.</strong> I inventory methods and devices first, and then walk the list with the people who own each group. The order comes from that conversation, with the score as an input.</li>
+          <li><strong>Write recovery first.</strong> I used to treat it as a support detail for later. Now I write it before the first enrolment, and I try to break it in the pilot.</li>
+          <li><strong>Ask for two authenticators from day one.</strong> It is easier to ask at enrolment than to chase people after the first loss.</li>
+          <li><strong>Make the fallback expire.</strong> Every fallback gets a review date and a named approver when I create it.</li>
+          <li><strong>Treat the help desk as part of the design.</strong> I sit in on calls, read the tickets and change the script, because the control lives there as much as in the policy.</li>
+          <li><strong>Test the emergency accounts every wave.</strong> I do it even when the last test passed. A new policy is a new chance to lock them out.</li>
+        </ul>
+        <p class="body-text">The broader approach, from first conversation to last training session, is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
       </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <p class="body-text">All are primary documents, read for this page on 1 October 2026. Where a document could not be read in full, the text above says what I did not verify.</p>
+        <ol class="sources">
+          <li><a href="https://pages.nist.gov/800-63-4/sp800-63b.html">NIST SP 800-63B-4, Digital Identity Guidelines: Authentication and Authenticator Management</a></li>
+          <li><a href="https://www.cisa.gov/sites/default/files/publications/fact-sheet-implementing-phishing-resistant-mfa-508c.pdf">CISA, Implementing Phishing-Resistant MFA</a></li>
+          <li><a href="https://www.whitehouse.gov/wp-content/uploads/2022/01/M-22-09.pdf">OMB M-22-09, Moving the U.S. Government Toward Zero Trust Cybersecurity Principles</a></li>
+          <li><a href="https://www.w3.org/TR/webauthn-3/">W3C, Web Authentication: An API for accessing Public Key Credentials, Level 3</a></li>
+          <li><a href="https://fidoalliance.org/passkeys/">FIDO Alliance, Passkeys</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths">Microsoft Learn: Conditional Access authentication strengths</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-authentication-passkeys-fido2">Microsoft Learn: Enable passkeys (FIDO2) in Microsoft Entra ID</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-synced-passkeys">Microsoft Learn: Enable synced passkeys in Microsoft Entra ID</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/howto-authentication-temporary-access-pass">Microsoft Learn: Configure a Temporary Access Pass</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access">Microsoft Learn: Manage emergency access admin accounts</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-conditions">Microsoft Learn: Conditional Access conditions</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-mfa-strength">Microsoft Learn: Require MFA for all users with Conditional Access</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/howto-authentication-methods-activity">Microsoft Learn: Authentication methods activity</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data, and the example is illustrative. Product behaviour is as stated in the Microsoft documentation linked above on the review date and can change.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#passwordless-authentication</span><span>#phishing-resistant-mfa</span><span>#risk-based-migration</span></div></section>
 
       <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#f7c873" href="/case-studies/access-recertification/"><small><i></i>&larr; Previous</small><strong>Access Recertification Automation</strong></a><a class="next" style="--c:#c4b5fd" href="/case-studies/ciem-at-scale/"><small><i></i>Next &rarr;</small><strong>Cloud Entitlement Management at Scale</strong></a></div></nav>
       <footer class="page-footer">
@@ -96,7 +381,7 @@
         <a href="/">roshantrivedi.co.in</a>
       </footer>
     </main>
-
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
