@@ -223,19 +223,43 @@ window.SITE_QA = [
   },
   {
     id: "mcp-lab",
-    title: "MCP Human Approval Gateway (research prototype)",
-    url: "https://github.com/trivediroshan1-ui/mcp-human-approval-gateway",
-    keywords: ["mcp human approval gateway", "mcp lab", "interactive lab", "human approval gateway", "agentic ai lab"],
+    title: "MCP Human Approval Gateway (interactive lab)",
+    url: "/mcp-human-approval-gateway/",
+    keywords: ["mcp human approval gateway", "mcp lab", "mcp", "interactive lab", "human approval gateway", "agentic ai lab", "approval gateway", "ai agent approval"],
     answer:
-      "The \"MCP Human Approval Gateway\" is Roshan's open research prototype for controlling AI-agent tool actions: deterministic policy decides, a role-qualified human approves higher-risk requests, approvals are time-bound, single-use and bound to the exact request, and every step lands in a hash-chained audit log. All data is synthetic. The source, threat model and tests are on GitHub: github.com/trivediroshan1-ui/mcp-human-approval-gateway.",
+      "The MCP lab is a hands-on demo you can run in the browser at /mcp-human-approval-gateway/. An AI agent asks to use a tool, a deterministic policy engine decides, higher-risk requests wait for a role-qualified human to approve or deny, and an approval is time-bound, single-use and tied to the exact request. Every step goes into a hash-chained audit log, and an animated architecture view shows the path each scenario takes. Nine scenarios cover auto-approval, review queues, prompt-injected context, scope creep, unregistered tools, replay and audit tampering. All data is synthetic, the AI analyst is advisory only, and the source, threat model and tests are on GitHub: github.com/trivediroshan1-ui/mcp-human-approval-gateway.",
   },
   {
     id: "blog",
     title: "Writing / blog",
     url: "/writing/",
-    keywords: ["blog", "writing", "articles", "posts", "openai huggingface", "breach analysis"],
+    keywords: ["blog", "writing", "articles", "posts", "openai huggingface", "breach analysis", "pam framework", "pam project plan", "pam as an identity"],
     answer:
-      "The site's writing section includes independent security analysis, such as \"When the Attacker Was the AI Itself: A Cybersecurity Breakdown of the OpenAI–Hugging Face Breach\" (July 25, 2026) — a deep-dive on the July 2026 incident where an OpenAI capability-evaluation model escaped its sandbox and compromised Hugging Face's production infrastructure, covering problem statement, impact, risk analysis, mitigations and AI governance implications.",
+      "The writing section has four posts. Three are a PAM series: \"PAM Framework and Design: What Sits Around the Vault\" (4 Oct 2026), \"A PAM Project Plan for Tier 1, 2 and 3 Organisations\" (11 Oct 2026) and \"PAM as an Identity: What Changes When the Vault Can Talk to Your Governance System\" (18 Oct 2026). The fourth is independent security analysis, \"When the Attacker Was the AI Itself: A Cybersecurity Breakdown of the OpenAI–Hugging Face Breach\" (25 July 2026). Everything is at /writing/, and there is an RSS feed.",
+  },
+  {
+    id: "post-pam-framework",
+    title: "Blog: PAM Framework and Design",
+    url: "/writing/pam-framework-and-design/",
+    keywords: ["pam framework", "pam design", "pam architecture", "sso mfa pam", "help desk pam", "least privilege authorization authentication pam"],
+    answer:
+      "\"PAM Framework and Design: What Sits Around the Vault\" is a ten-layer reference framework: scope and discovery, account tiering, authentication (SSO and MFA), authorization and least privilege, vaulting and session control, service and application secrets, help desk and operations, monitoring and audit evidence, governance and resilience. It includes an animated architecture and request workflow, tables for where MFA applies and what the help desk may and may not do, and common design mistakes.",
+  },
+  {
+    id: "post-pam-project-plan",
+    title: "Blog: PAM project plan by organisation tier",
+    url: "/writing/pam-project-plan-by-organisation-tier/",
+    keywords: ["pam project plan", "pam roadmap", "pam 90 days", "pam 365 days", "pam sizing", "pam readiness", "pam tier 1 2 3"],
+    answer:
+      "\"A PAM Project Plan for Tier 1, 2 and 3 Organisations\" shows how to size a PAM programme from readiness gates (RFC, POC, tool chosen, contract signed, professional-services hours bought, team named) and capacity inputs (privileged users, assets, service accounts, use cases). It works through a sizing formula and gives illustrative 90-day, 180-day and 270 to 365-day plans. The unit costs in it are labelled planning assumptions, not industry benchmarks.",
+  },
+  {
+    id: "post-pam-identity",
+    title: "Blog: PAM as an identity",
+    url: "/writing/pam-as-an-identity/",
+    keywords: ["pam as an identity", "pam iga", "iga integration", "privileged identity governance", "pam identity governance", "mover leaver privileged"],
+    answer:
+      "\"PAM as an Identity\" treats a privileged account as an identity with an owner and a lifecycle. It compares PAM with no IGA, with an IGA planned and with a mature IGA, shows what stays in PAM (secrets, sessions, checkout, break-glass) and what moves to IGA (who is entitled, request, certification, separation of duties), walks through mover and leaver flows, and lists what should not be linked, such as letting an IGA outage block break-glass access.",
   },
   {
     id: "resume",
@@ -259,7 +283,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["what is this site", "what is this website", "purpose of site", "site about"],
     answer:
-      "This is the personal site of Roshan Trivedi — Identity & Security. It covers his bio, expertise, career experience, a portfolio of privacy-safe PAM/IAM/NHI case studies and independent AI-security research, his independent Secure India Exams zero-trust proposal, a security-writing blog, and his resume/contact details. Every page is plain HTML/CSS with no framework, hosted on GitHub Pages at roshantrivedi.co.in.",
+      "This is the personal site of Roshan Trivedi — Identity & Security. It covers his bio, expertise, career experience, a portfolio of privacy-safe PAM/IAM/NHI case studies and independent AI-security research, an interactive MCP Human Approval Gateway lab, his independent Secure India Exams zero-trust proposal, a security-writing blog with a PAM series, and his resume/contact details. Most pages are plain HTML/CSS with no framework, hosted on GitHub Pages at roshantrivedi.co.in.",
   },
   {
     id: "platforms-disclaimer",
