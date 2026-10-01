@@ -1,6 +1,9 @@
 /*
  * Site chatbot for roshantrivedi.co.in
- * Answers visitor questions from the site's own content (chatbot-data.js).
+ * Answers visitor questions from the site's own content, entirely in the browser:
+ *  1. hand-written answers in chatbot-data.js (used first when a keyword matches), then
+ *  2. passage search over chatbot-index.json, built from every page by scripts/build-chat-index.py.
+ * No server, no API key and no cost. It quotes the site; it does not write new text.
  *
  * If AI_ENDPOINT below is set to a deployed Cloudflare Worker URL (see
  * worker/README.md), the bot calls it for natural, conversational Claude
@@ -40,19 +43,24 @@
     });
   }
 
+  function hasPhrase(text, phrase) {
+    var p = phrase.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp("(^|[^a-z0-9])" + p + "([^a-z0-9]|$)").test(text);
+  }
+
   function scoreEntry(entry, queryTokens, rawQuery) {
     var score = 0;
     var haystack = (entry.title + " " + entry.keywords.join(" ") + " " + entry.answer).toLowerCase();
 
     // phrase / keyword substring matches (strong signal)
     entry.keywords.forEach(function (kw) {
-      if (rawQuery.indexOf(kw.toLowerCase()) !== -1) score += 6;
+      if (hasPhrase(rawQuery, kw)) score += 6;
     });
-    if (rawQuery.indexOf(entry.title.toLowerCase()) !== -1) score += 8;
+    if (hasPhrase(rawQuery, entry.title)) score += 8;
 
     // token overlap
     queryTokens.forEach(function (t) {
-      if (haystack.indexOf(t) !== -1) score += 1;
+      if (hasPhrase(haystack, t)) score += 1;
     });
 
     return score;
@@ -69,6 +77,104 @@
 
     scored.sort(function (a, b) { return b.score - a.score; });
     return scored.filter(function (s) { return s.score > 0; }).slice(0, 2);
+  }
+
+
+  // ---------- passage search over the whole site (loaded on first use) ----------
+  var INDEX = null, INDEX_STATE = "idle", INDEX_WAITERS = [];
+  var SYN = {
+    pam: ["privileged", "access", "management"], nhi: ["non-human", "identity"], nhis: ["non-human", "identity"],
+    mcp: ["model", "context", "protocol"], jit: ["just-in-time"], jea: ["just-enough-access"], zsp: ["zero", "standing", "privilege"],
+    ciem: ["cloud", "entitlement"], iga: ["governance", "administration"], mfa: ["multi-factor", "authentication"],
+    sso: ["single", "sign-on"], ai: ["artificial", "intelligence"], agent: ["agents", "agentic"], agents: ["agent", "agentic"],
+    vault: ["vaulting", "secrets"], secret: ["secrets", "credential"], password: ["credential", "passwordless"],
+    breakglass: ["break-glass", "emergency"], "break-glass": ["emergency"], audit: ["auditor", "evidence"],
+    hire: ["role", "leadership"], experience: ["years", "career"], exams: ["exam", "nta"], nta: ["exam", "national"]
+  };
+  function stem(w) {
+    w = w.replace(/'s$/, "");
+    return w.length > 4 ? w.replace(/(ing|ed|es|s)$/, "") : w;
+  }
+  function terms(str) {
+    return (str.toLowerCase().match(/[a-z0-9][a-z0-9-]*/g) || []).filter(function (w) {
+      return w.length > 1 && !STOPWORDS.has(w);
+    });
+  }
+  function buildIndex(raw) {
+    var df = {}, total = 0;
+    INDEX = raw.map(function (r) {
+      var toks = terms(r.x).map(stem);
+      var head = terms(r.h + " " + r.t).map(stem);
+      var tf = {};
+      toks.forEach(function (t) { tf[t] = (tf[t] || 0) + 1; });
+      head.forEach(function (t) { tf[t] = (tf[t] || 0) + 2; });
+      Object.keys(tf).forEach(function (t) { df[t] = (df[t] || 0) + 1; });
+      var len = toks.length + head.length;
+      total += len;
+      return { r: r, tf: tf, len: len, head: head };
+    });
+    INDEX.df = df;
+    INDEX.avg = total / Math.max(1, INDEX.length);
+  }
+  function loadIndex(cb) {
+    if (INDEX_STATE === "ready" || INDEX_STATE === "failed") { cb(); return; }
+    INDEX_WAITERS.push(cb);
+    if (INDEX_STATE === "loading") return;
+    INDEX_STATE = "loading";
+    fetch("/assets/chatbot-index.json")
+      .then(function (res) { if (!res.ok) throw new Error("status " + res.status); return res.json(); })
+      .then(function (raw) { buildIndex(raw); INDEX_STATE = "ready"; })
+      .catch(function () { INDEX_STATE = "failed"; })
+      .then(function () { var w = INDEX_WAITERS; INDEX_WAITERS = []; w.forEach(function (f) { f(); }); });
+  }
+  function retrieve(query) {
+    if (!INDEX || !INDEX.length) return [];
+    var base = terms(query), q = {};
+    base.forEach(function (t) {
+      var st = stem(t);
+      q[st] = Math.max(q[st] || 0, 1);
+      (SYN[t] || []).forEach(function (x) { var sx = stem(x); q[sx] = Math.max(q[sx] || 0, 0.5); });
+    });
+    var qs = Object.keys(q);
+    if (!qs.length) return [];
+    var N = INDEX.length, k1 = 1.4, b = 0.75, hits = [];
+    INDEX.forEach(function (d) {
+      var score = 0, matched = 0;
+      qs.forEach(function (t) {
+        var f = d.tf[t];
+        if (!f) return;
+        var n = INDEX.df[t] || 0;
+        var idf = Math.log(1 + (N - n + 0.5) / (n + 0.5));
+        score += q[t] * idf * ((f * (k1 + 1)) / (f + k1 * (1 - b + (b * d.len) / INDEX.avg)));
+        if (q[t] === 1) matched++;
+      });
+      if (!score) return;
+      var needed = Math.min(2, base.length);
+      if (matched < needed) return;
+      hits.push({ d: d, score: score + matched * 0.6 });
+    });
+    hits.sort(function (a, b2) { return b2.score - a.score; });
+    if (!hits.length || hits[0].score < 4.2) return [];
+    var out = [hits[0]];
+    for (var i = 1; i < hits.length && out.length < 3; i++) {
+      var sameSpot = out.some(function (o) { return o.d.r.u === hits[i].d.r.u && o.d.r.h === hits[i].d.r.h; });
+      if (!sameSpot && hits[i].score >= hits[0].score * 0.62) out.push(hits[i]);
+    }
+    return out;
+  }
+  function passageHtml(hits) {
+    var top = hits[0].d.r;
+    var html = escapeHtml(top.x);
+    html += ' <a class="sc-link" href="' + top.u + (top.a ? "#" + top.a : "") + '">' +
+      escapeHtml(top.t + (top.h && top.h !== top.t ? " › " + top.h : "")) + " →</a>";
+    if (hits.length > 1) {
+      html += '<br><span class="sc-more">Also relevant: ' + hits.slice(1).map(function (h) {
+        var r = h.d.r;
+        return '<a class="sc-link" href="' + r.u + (r.a ? "#" + r.a : "") + '">' +
+          escapeHtml(r.h && r.h !== r.t ? r.t + " › " + r.h : r.t) + "</a>";
+      }).join(" · ") + "</span>";
+    }
+    return html;
   }
 
   var FALLBACK =
@@ -251,7 +357,7 @@
       if (greeted) return;
       greeted = true;
       addMessage(
-        "Hi — ask me anything about this site: the case studies, the MCP lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch.",
+        "Hi, ask me anything about this site: the case studies, the MCP lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch. I answer from the text on the site, so I quote it rather than make anything up.",
         "bot"
       );
       renderSuggestions();
@@ -260,15 +366,24 @@
     function answerLocally() {
       var lastUser = history.length ? history[history.length - 1].content : "";
       var results = search(lastUser);
-      if (!results.length) {
-        addMessage(FALLBACK, "bot");
-        return;
+      var strong = results.length && results[0].score >= 6;
+      function showCurated() {
+        results.filter(function (r, i) { return i === 0 || r.score >= results[0].score * 0.85; }).forEach(function (r) {
+          var html = linkify(r.entry.answer, r.entry.url);
+          if (CONTACT_ENTRY_IDS[r.entry.id]) html += contactActionsHtml();
+          addMessage(html, "bot");
+        });
       }
-      results.forEach(function (r) {
-        var html = linkify(r.entry.answer, r.entry.url);
-        if (CONTACT_ENTRY_IDS[r.entry.id]) html += contactActionsHtml();
-        addMessage(html, "bot");
-      });
+      if (strong) { showCurated(); return; }
+      function viaIndex() {
+        var hits = retrieve(lastUser);
+        if (hits.length) { addMessage(passageHtml(hits), "bot"); return; }
+        if (results.length && results[0].score >= 3) { showCurated(); return; }
+        addMessage(FALLBACK, "bot");
+      }
+      if (INDEX_STATE === "ready" || INDEX_STATE === "failed") { viaIndex(); return; }
+      var typingRow = addTyping();
+      loadIndex(function () { typingRow.remove(); viaIndex(); });
     }
 
     function askAI(text) {
@@ -324,6 +439,7 @@
     }
 
     function openPanel() {
+      loadIndex(function () {});
       panel.style.display = "flex";
       launcher.classList.add("sc-launcher-open");
       greet();
