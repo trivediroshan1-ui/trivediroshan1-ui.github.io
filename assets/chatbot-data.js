@@ -233,7 +233,7 @@ window.SITE_QA = [
     id: "blog",
     title: "Writing / blog",
     url: "/writing/",
-    keywords: ["blog", "writing", "articles", "posts", "openai huggingface", "breach analysis", "pam framework", "pam project plan", "pam as an identity"],
+    keywords: ["blog", "writing", "articles", "posts", "openai huggingface", "breach analysis", "written", "wrote", "pam series", "latest posts"],
     answer:
       "The writing section has four posts. Three are a PAM series: \"PAM Framework and Design: What Sits Around the Vault\" (4 Oct 2026), \"A PAM Project Plan for Tier 1, 2 and 3 Organisations\" (11 Oct 2026) and \"PAM as an Identity: What Changes When the Vault Can Talk to Your Governance System\" (18 Oct 2026). The fourth is independent security analysis, \"When the Attacker Was the AI Itself: A Cybersecurity Breakdown of the OpenAI–Hugging Face Breach\" (25 July 2026). Everything is at /writing/, and there is an RSS feed.",
   },
