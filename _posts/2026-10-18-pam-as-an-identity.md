@@ -1,7 +1,7 @@
 ---
 title: "PAM as an Identity: What Changes When the Vault Can Talk to Your Governance System"
 layout: post
-date: 2026-10-01 13:00:00 +0530
+date: 2026-10-18 10:00:00 +0530
 author: Roshan Trivedi
 tags: [pam, iga, identity-governance, privileged-access, joiner-mover-leaver, access-certification]
 diagrams: true
