@@ -74,3 +74,9 @@ Watch the green checkmark under **Deployments → github-pages** on the repo's m
 - `/case-studies/` filter chips use `assets/filter.js` and each card's `data-group`.
 - `feed.xml` is the RSS feed (Jekyll builds it from `_posts`).
 - Share images `assets/og-case-*.png` were generated from the case-study titles and group colours (1200x630).
+
+## Site chatbot index
+
+The chatbot answers from the site's own pages, in the browser, with no API. After you add or change a page, rebuild its search index and commit the result:
+
+    python3 scripts/build-chat-index.py
