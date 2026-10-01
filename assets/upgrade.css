@@ -1,0 +1,95 @@
+/* Visual upgrade layer: loads after home.css. Additive and safe to remove. */
+
+/* Smooth page-to-page fades on browsers that support cross-document view transitions */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
+}
+.site-header { view-transition-name: site-header; }
+
+/* Section colour: each numbered section takes its own accent */
+#about { --sec: #4de2ff; } #expertise { --sec: #7df2d0; } #case-studies { --sec: #c4b5fd; }
+#platforms { --sec: #f7c873; } #research { --sec: #4de2ff; } #career { --sec: #7df2d0; } #contact { --sec: #c4b5fd; }
+.block .section-label b { color: var(--sec, var(--cyan)); }
+.block .section-label::before { content: ""; display: block; width: 36px; height: 3px; border-radius: 2px; margin-bottom: 14px; background: linear-gradient(90deg, var(--sec, var(--cyan)), transparent); }
+.block .section-title { background: linear-gradient(100deg, var(--ink) 55%, color-mix(in srgb, var(--sec, var(--cyan)) 70%, #fff)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Hero: soft moving colour behind the copy, less dead space */
+.hero { position: relative; isolation: isolate; }
+.hero::before {
+  content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(40% 50% at 12% 30%, rgba(88,230,246,.14), transparent 70%),
+    radial-gradient(35% 45% at 88% 20%, rgba(196,181,253,.13), transparent 70%),
+    radial-gradient(40% 40% at 70% 90%, rgba(125,242,208,.10), transparent 70%);
+}
+@media (min-width: 980px) { .hero-grid { min-height: min(760px, calc(100vh - var(--header-height) - 7rem)); } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero::before { animation: aurora 18s ease-in-out infinite alternate; }
+  @keyframes aurora { from { transform: translate3d(-1.5%, 0, 0) scale(1); } to { transform: translate3d(1.5%, -1%, 0) scale(1.06); } }
+}
+
+/* Stats: five columns, each in its own colour */
+.stats { grid-template-columns: repeat(2, 1fr); }
+.stats li:last-child { grid-column: 1 / -1; border-right: 0; }
+.stats b { color: var(--c, var(--cyan)); text-shadow: 0 0 22px color-mix(in srgb, var(--c, var(--cyan)) 40%, transparent); font-variant-numeric: tabular-nums; }
+.stats li { transition: background .25s ease; }
+.stats li:hover { background: color-mix(in srgb, var(--c, var(--cyan)) 7%, transparent); }
+@media (min-width: 900px) {
+  .stats { grid-template-columns: repeat(5, 1fr); }
+  .stats li:last-child { grid-column: auto; }
+  .stats li, .stats li:nth-child(2n) { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+/* Standards strip */
+.standards { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 22px 0 6px; }
+.standards p { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--subtle); margin: 0 6px 0 0; }
+.standards ul { display: flex; flex-wrap: wrap; gap: 8px; }
+.standards li { font-size: 12.5px; font-weight: 600; color: var(--c); padding: 6px 12px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--c) 35%, transparent); background: color-mix(in srgb, var(--c) 9%, transparent); }
+
+/* Theme tiles */
+.themes { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); margin: 34px 0 6px; }
+@media (min-width: 900px) { .themes { grid-template-columns: repeat(4, 1fr); } }
+.themes a { --c: var(--cyan); position: relative; display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 18px 18px 20px; border-radius: 18px; overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--c) 28%, transparent);
+  background: radial-gradient(120% 90% at 100% 0, color-mix(in srgb, var(--c) 20%, transparent), transparent 60%), linear-gradient(180deg, rgba(13,27,45,.7), rgba(7,16,29,.9));
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.themes li { display: contents; }
+.themes li a { color: inherit; }
+.themes a b { font: 700 2.4rem/1 var(--display); letter-spacing: -.04em; color: var(--c); }
+.themes a strong { font: 700 1rem/1.25 var(--display); }
+.themes a span { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+.themes a:hover, .themes a:focus-visible { transform: translateY(-4px); border-color: color-mix(in srgb, var(--c) 65%, transparent); box-shadow: 0 20px 44px rgba(0,0,0,.45), 0 0 34px color-mix(in srgb, var(--c) 18%, transparent); }
+.themes li:nth-child(1) a { --c: #7df2d0; } .themes li:nth-child(2) a { --c: #c4b5fd; } .themes li:nth-child(3) a { --c: #4de2ff; } .themes li:nth-child(4) a { --c: #f7c873; }
+
+/* Video */
+.watch { margin: 38px 0 6px; display: grid; gap: 14px; }
+@media (min-width: 900px) { .watch { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: center; gap: 28px; } }
+.watch video { width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; border: 1px solid var(--line-strong); background: #050b14; box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 40px rgba(196,181,253,.12); }
+.watch figcaption { color: var(--muted); font-size: .95rem; line-height: 1.7; }
+.watch figcaption strong { display: block; color: var(--ink); font: 700 1.2rem/1.3 var(--display); margin-bottom: 8px; }
+.watch figcaption a { color: var(--cyan); font-weight: 700; }
+
+/* Small hover polish */
+.start-grid > div { transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+.start-grid > div:hover { transform: translateY(-3px); }
+.btn { transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
+.btn:hover { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .btn:hover, .start-grid > div:hover, .themes a:hover { transform: none; } }
+.themes a, .themes a:hover { text-decoration: none; }
+.standards { margin-bottom: 22px; }
+
+/* Phones: shorter page, same content */
+@media (max-width: 639px) {
+  section.block { padding-block: 3rem; }
+  .hero { padding-bottom: 2rem; }
+  .hero-visual { max-width: 320px; padding-bottom: 46px; }
+  .portrait { aspect-ratio: 0.82; }
+  .cs-art { height: 96px; }
+  .cs-card p { -webkit-line-clamp: 3; line-clamp: 3; }
+  .grid-3 article .tags, .grid-3 article .chips { display: none; }
+  .cs-more a { padding: 10px 6px; }
+  .cs-more small { display: none; }
+  .themes a span { display: none; }
+  .watch figcaption { font-size: .9rem; }
+}

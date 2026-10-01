@@ -85,6 +85,7 @@
     </script>
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/home.css">
+    <link rel="stylesheet" href="/assets/upgrade.css?v=20261002">
     <script defer src="/assets/home.js"></script>
 
     <style>
@@ -311,11 +312,24 @@ font-size: 13px;
 
       <div class="wrap">
         <ul class="stats reveal">
-          <li><b>14+</b><span>Years across identity and security</span></li>
-          <li><b>3</b><span>Regions: India, UK and Australia</span></li>
-          <li><b>CIAM</b><span>Certified identity practitioner</span></li>
-          <li><b>1</b><span>Published public-interest security study</span></li>
+          <li style="--c:#4de2ff"><b data-count="14" data-suffix="+">14+</b><span>Years across identity and security</span></li>
+          <li style="--c:#7df2d0"><b data-count="20">20</b><span>Public-safe case studies, four themes</span></li>
+          <li style="--c:#c4b5fd"><b data-count="203">203</b><span>Automated tests in the open-source MCP lab</span></li>
+          <li style="--c:#f7c873"><b data-count="3">3</b><span>Regions: India, UK and Australia</span></li>
+          <li style="--c:#4de2ff"><b>CIAM</b><span>Certified identity practitioner</span></li>
         </ul>
+        <section class="standards reveal" aria-label="Standards and frameworks the case studies draw on">
+          <p>Standards the case studies draw on</p>
+          <ul>
+            <li style="--c:#4de2ff">NIST guidance</li>
+            <li style="--c:#7df2d0">ISO/IEC 27001</li>
+            <li style="--c:#f7c873">PCI DSS</li>
+            <li style="--c:#c4b5fd">OWASP</li>
+            <li style="--c:#4de2ff">Model Context Protocol spec</li>
+            <li style="--c:#7df2d0">OAuth RFCs 8693, 8707, 9728</li>
+            <li style="--c:#f7c873">Zero Trust</li>
+          </ul>
+        </section>
       </div>
 
       <div class="wrap">
@@ -477,6 +491,12 @@ font-size: 13px;
               </div>
             </article>
           </div>
+          <ul class="themes reveal" aria-label="Browse case studies by theme">
+            <li style="--c:#7df2d0"><a href="/case-studies/#pam"><b>7</b><strong>Privileged access</strong><span>Programs, elevation, break-glass, third parties</span></a></li>
+            <li style="--c:#c4b5fd"><a href="/case-studies/#platform"><b>5</b><strong>Platform and architecture</strong><span>Evaluation, migration, secrets, cloud entitlements</span></a></li>
+            <li style="--c:#4de2ff"><a href="/case-studies/#ai"><b>6</b><strong>AI and agentic</strong><span>Agents, non-human identity, shadow AI</span></a></li>
+            <li style="--c:#f7c873"><a href="/case-studies/#gov"><b>2</b><strong>Governance</strong><span>Audit mapping and recertification</span></a></li>
+          </ul>
           <h3 class="cs-more-title reveal">More case studies</h3>
           <ul class="cs-more reveal">
               <li style="--c:#7df2d0"><a href="/case-studies/privileged-access-program/"><i></i><span>How I Run a Privileged Access Program</span><small>Method</small></a></li>
@@ -494,6 +514,12 @@ font-size: 13px;
               <li style="--c:#4de2ff"><a href="/case-studies/agentic-ai-identity-governance/"><i></i><span>Agentic AI Identity Governance</span><small>Agent identity governance</small></a></li>
               <li style="--c:#4de2ff"><a href="/case-studies/ai-processing-tax/"><i></i><span>The AI Decision Tax</span><small>AI Governance</small></a></li>
           </ul>
+          <figure class="watch reveal">
+            <video controls preload="none" playsinline poster="/assets/mcp-workflow-poster.webp" aria-label="The MCP human approval gateway explained in 55 seconds, with captions">
+              <source src="/assets/mcp-workflow.mp4" type="video/mp4">
+            </video>
+            <figcaption><strong>Watch: who is acting when an AI agent calls a tool.</strong> A 55-second, captioned walk through the MCP hierarchy and the approval gateway. <a href="/mcp-human-approval-gateway/">Open the live lab &rarr;</a></figcaption>
+          </figure>
           <div class="cs-all">
             <a class="btn btn-primary" href="/case-studies/">Browse all 20 by theme</a>
             <a class="btn btn-ghost" href="/writing/">Read the writing</a>
