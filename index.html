@@ -333,6 +333,32 @@ font-size: 13px;
       </div>
 
       <div class="wrap">
+        <section class="feature reveal" aria-labelledby="feature-title">
+          <div class="feature-copy">
+            <p class="feature-tag"><i></i>New &middot; open source &middot; live</p>
+            <h2 id="feature-title">MCP Human Approval Gateway</h2>
+            <p>A working lab for one question: when an AI agent asks to use a tool, who decides, and what exactly was approved? Policy decides, a person who is not the requester approves, and the approval is tied to a hash of that exact request. It works once and it expires. If a response is lost, the call stays unresolved until a reviewer settles it.</p>
+            <ul class="feature-facts">
+              <li>Speaks MCP revision 2026-07-28, with 2025-11-25 compatibility</li>
+              <li>203 automated tests, hash-chained audit log</li>
+              <li>Tools are synthetic. Not yet tested against a third-party MCP client or a real environment.</li>
+            </ul>
+            <div class="feature-actions">
+              <a class="btn btn-primary" href="/mcp-human-approval-gateway/">Try the lab</a>
+              <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a>
+              <a class="btn btn-ghost" href="#mcp-video">Watch the 55-second video</a>
+            </div>
+          </div>
+          <div class="feature-art" aria-hidden="true">
+            <ol>
+              <li style="--c:#4de2ff"><b>Agent</b><span>asks to use a tool</span></li>
+              <li style="--c:#7df2d0"><b>Policy</b><span>decides, deterministic</span></li>
+              <li style="--c:#f7c873"><b>Human</b><span>approves, not the requester</span></li>
+              <li style="--c:#c4b5fd"><b>Grant</b><span>bound to the request hash, single use</span></li>
+              <li style="--c:#4de2ff"><b>Execute</b><span>then write the audit record</span></li>
+            </ol>
+          </div>
+        </section>
         <section class="start reveal" aria-labelledby="start-title">
           <h2 id="start-title" class="start-title">Start here</h2>
           <div class="start-grid">
@@ -514,7 +540,7 @@ font-size: 13px;
               <li style="--c:#4de2ff"><a href="/case-studies/agentic-ai-identity-governance/"><i></i><span>Agentic AI Identity Governance</span><small>Agent identity governance</small></a></li>
               <li style="--c:#4de2ff"><a href="/case-studies/ai-processing-tax/"><i></i><span>The AI Decision Tax</span><small>AI Governance</small></a></li>
           </ul>
-          <figure class="watch reveal">
+          <figure class="watch reveal" id="mcp-video">
             <video controls preload="none" playsinline poster="/assets/mcp-workflow-poster.webp" aria-label="The MCP human approval gateway explained in 55 seconds, with captions">
               <source src="/assets/mcp-workflow.mp4" type="video/mp4">
             </video>
