@@ -1,7 +1,7 @@
 ---
 title: "A PAM Project Plan for Tier 1, 2 and 3 Organisations"
 layout: post
-date: 2026-10-01 12:00:00 +0530
+date: 2026-10-11 10:00:00 +0530
 author: Roshan Trivedi
 tags: [pam, iam, privileged-access, project-planning, zero-standing-privilege]
 diagrams: true
