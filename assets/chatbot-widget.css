@@ -294,3 +294,4 @@
     transition: none;
   }
 }
+.sc-more { display: inline-block; margin-top: 6px; font-size: 12px; color: #93a1bd; }
