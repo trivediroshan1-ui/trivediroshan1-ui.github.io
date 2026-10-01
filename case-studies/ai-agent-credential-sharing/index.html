@@ -1,449 +1,352 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#030712" />
-<meta name="robots" content="index,follow,max-image-preview:large" />
-<meta name="description" content="Three 2025–2026 breaches, one root cause: a long-lived credential shared across everything an AI agent touches. Plus the guardrails that would have helped." />
-<link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/" />
-<meta property="og:type" content="article" />
-<meta property="og:title" content="One Key, Every Agent &middot; Roshan Trivedi" />
-<meta property="og:description" content="Three 2025–2026 breaches, one root cause: a long-lived credential shared across everything an AI agent touches. Plus the guardrails that would have helped." />
-<meta property="og:url" content="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/" />
-<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-ai-agent-credential-sharing.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ai-agent-credential-sharing.png" />
-<title>One Key, Every Agent &middot; Roshan Trivedi</title>
-<link rel="stylesheet" href="/assets/fonts.css">
-<style>
-:root{
---bg:#030712;
---bg-panel:#0b1220;
---bg-panel-2:#0d1626;
---border:rgba(148,163,184,0.16);
---border-strong:rgba(77,226,255,0.35);
---text:#f8fafc;
---muted:#9fb0c4;
---teal:#4de2ff;
---green:#7df2d0;
---amber:#f7c873;
---red:#ff6b6b;
---display:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
---mono:"JetBrains Mono",ui-monospace,monospace;
---font:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-font-family:var(--font);
-background:var(--bg);
-color:var(--text);
-line-height:1.6;
-background-image:
-radial-gradient(circle at 85% 0%, rgba(77,226,255,0.08), transparent 40%),
-radial-gradient(circle at 0% 100%, rgba(125,242,208,0.06), transparent 40%);
-}
-a{color:var(--teal);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="What goes wrong when AI agents share a person's or a team's credentials, and how to give each agent its own short-lived, scoped credentials instead." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="One Key, Every Agent &middot; Roshan Trivedi" />
+    <meta property="og:description" content="What goes wrong when AI agents share a person's or a team's credentials, and how to give each agent its own short-lived, scoped credentials instead." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-ai-agent-credential-sharing.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ai-agent-credential-sharing.png" />
+    <title>One Key, Every Agent &middot; Roshan Trivedi</title>
 
-header.site{
-display:flex;align-items:center;justify-content:space-between;
-padding:20px 24px;border-bottom:1px solid var(--border);
-position:sticky;top:0;background:rgba(3,7,18,0.85);backdrop-filter:blur(12px);z-index:50;
-}
-header.site .back{font-size:13px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
-header.site .back:hover{color:var(--teal);text-decoration:none}
-header.site .brand{font-size:13px;font-weight:700;letter-spacing:0.04em;color:var(--text)}
-header.site .brand span{color:var(--teal)}
-
-.hero{padding:72px 0 40px}
-.eyebrow{
-display:inline-flex;align-items:center;gap:8px;
-font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
-color:var(--teal);margin-bottom:22px;
-}
-.eyebrow::before{content:"";width:18px;height:1px;background:var(--teal);display:inline-block}
-h1{font-size:44px;line-height:1.12;letter-spacing:-0.02em;font-weight:800;margin-bottom:20px}
-h1 .accent{color:var(--teal)}
-.lede{font-size:18px;color:var(--muted);max-width:680px}
-
-.meta-grid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;
-}
-.meta-card{
-background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;
-padding:20px 22px;
-}
-.meta-card .label{
-font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
-color:var(--muted);margin-bottom:10px;
-}
-.meta-card .value{font-size:14.5px;color:var(--text);line-height:1.55}
-.meta-card.role .value{font-weight:700;color:var(--green)}
-
-section.approach{padding:64px 0}
-.section-head{margin-bottom:36px}
-.section-num{color:var(--teal);font-weight:700;font-size:12px;letter-spacing:0.1em;margin-bottom:10px;display:block}
-.section-head h2{font-size:28px;font-weight:800;letter-spacing:-0.01em}
-.section-head p{color:var(--muted);margin-top:10px;font-size:15px;max-width:640px}
-
-.steps{display:grid;gap:14px}
-.step{
-display:grid;grid-template-columns:56px 1fr;gap:18px;
-background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:22px 24px;
-}
-.step .num{
-font-size:22px;font-weight:800;color:var(--teal);opacity:0.55;
-}
-.step h3{font-size:16.5px;font-weight:700;margin-bottom:6px}
-.step p{color:var(--muted);font-size:14.5px}
-.step.risk .num{color:var(--red);opacity:0.7}
-.step.guardrail .num{color:var(--green);opacity:0.7}
-
-.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
-.tag{
-font-size:12px;font-weight:600;color:var(--muted);
-border:1px solid var(--border);border-radius:999px;padding:7px 14px;
-}
-
-section.pipeline{padding:0 0 64px}
-.pipeline svg text{font-family:var(--font)}
-
-section.fieldnote{padding:0 0 64px}
-.quote-card{background:var(--bg-panel);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:20px 22px;margin-bottom:16px}
-.quote-card p{color:var(--text);font-size:15px;line-height:1.65}
-.quote-card .who{margin-top:12px;font-size:12.5px;font-weight:700;color:var(--muted)}
-.quote-card .who span{color:var(--teal)}
-.quote-card.mine{border-left-color:var(--green)}
-
-section.market{padding:0 0 64px}
-.vendor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
-.vendor-card{background:var(--bg-panel);border:1px solid var(--border);border-radius:14px;padding:18px 20px}
-.vendor-card .name{font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:6px}
-.vendor-card .focus{font-size:13px;color:var(--muted);line-height:1.5}
-.market-note{color:var(--muted);font-size:15px;margin-top:20px;line-height:1.7}
-
-section.solution{padding:0 0 64px}
-.status-note{
-display:flex;gap:12px;align-items:flex-start;
-background:rgba(247,200,115,0.08);border:1px solid rgba(247,200,115,0.3);
-border-radius:12px;padding:14px 16px;margin-top:24px;font-size:13px;color:var(--amber);
-}
-.status-note b{color:var(--amber)}
-.status-note.shipped{background:rgba(125,242,208,0.08);border-color:rgba(125,242,208,0.3);color:var(--green)}
-.status-note.shipped b{color:var(--green)}
-
-footer.site{border-top:1px solid var(--border);padding:32px 0;margin-top:20px}
-footer.site .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-footer.site p{color:var(--muted);font-size:13px}
-.related{color:var(--muted);font-size:13px}
-.related a{margin-left:10px}
-
-@media (max-width:720px){
-h1{font-size:32px}
-.meta-grid{grid-template-columns:1fr}
-.vendor-grid{grid-template-columns:1fr}
-}
-h1,h2,h3,header.site .brand{font-family:var(--display)}
-.eyebrow,.meta,.tag{font-family:var(--mono)}
-</style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Article","headline":"One Key, Every Agent","description":"Three 2025–2026 breaches, one root cause: a long-lived credential shared across everything an AI agent touches. Plus the guardrails that would have helped.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"publisher":{"@type":"Person","name":"Roshan Trivedi"},"datePublished":"2026-09-07","dateModified":"2026-09-07","mainEntityOfPage":"https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/","image":"https://roshantrivedi.co.in/assets/og-case-ai-agent-credential-sharing.png","keywords":"Non-human identity, AI agent security, Credential sharing, Zero standing privilege, NHI market, Machine identity"}
-</script>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="stylesheet" href="/assets/study.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-      <link rel="stylesheet" href="/assets/polish.css?v=20260930b">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "One Key, Every Agent",
+  "description": "What goes wrong when AI agents share a person's or a team's credentials, and how to give each agent its own short-lived, scoped credentials instead.",
+  "author": {
+    "@type": "Person",
+    "name": "Roshan Trivedi",
+    "url": "https://roshantrivedi.co.in/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Roshan Trivedi"
+  },
+  "datePublished": "2026-09-07",
+  "dateModified": "2026-10-01",
+  "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/",
+  "image": "https://roshantrivedi.co.in/assets/og-case-ai-agent-credential-sharing.png",
+  "keywords": "Non-human identity, AI agent security, Credential sharing, Zero standing privilege, Machine identity"
+}
+    </script>
   </head>
-<body>
+  <body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
+    <main id="main">
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
 
-<header class="site">
-<nav class="back-row" aria-label="Site" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px"><a class="back" href="/#case-studies">&larr; Back to roshantrivedi.co.in</a> <span class="back" aria-hidden="true">&middot;</span> <a class="back" href="/case-studies/">all case studies</a></nav>
-<div class="brand">RT <span>&middot; Identity Security</span></div>
-</header>
+      <header class="hero">
+        <p class="eyebrow">AI governance &middot; Non-human identity</p>
+        <h1>Every agent gets a name. Almost none get their own key.</h1>
+        <p class="dek">The quickest way to connect an AI agent to five systems is to hand it one long-lived credential. This is what that costs, and how I would issue credentials to agents instead.</p>
+        <p class="meta">Independent research &amp; control design &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+      </header>
 
-<main id="main" class="wrap hero">
-<div class="eyebrow">AI Governance &middot; Non-Human Identity</div>
-<h1>Every agent gets a name. Almost none get their <span class="accent">own key</span>.</h1>
-<p class="lede">Three real breaches in the last thirteen months, three different industries, the same root cause: one long-lived credential wired into everything an agent touches. A deep dive into how AI agents actually get authenticated, the market now selling against this exact failure, and the guardrails that would have changed each outcome.</p>
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>When an agent runs on a person&rsquo;s token or a team&rsquo;s shared key, the logs name the wrong party, the access is wider than the task, and the secret tends to end up in prompts, config files, logs and tool output.</li>
+          <li>The alternative is simple to say. Each agent has its own identity. A broker issues a short-lived credential for one task, scoped to one target, on behalf of a named user. The model never sees the secret.</li>
+          <li>Every record then shows two names: the agent that acted and the person it acted for. That is what an auditor, and an incident responder, will ask for.</li>
+        </ul>
+      </div>
 
-<div class="meta-grid">
-<div class="meta-card role">
-<div class="label">Role</div>
-<div class="value">Independent Research &amp; Control Design</div>
-</div>
-<div class="meta-card">
-<div class="label">Challenge</div>
-<div class="value">Machine identities in the average enterprise grew roughly 5x between 2021 and 2025. The fastest way to wire a new AI agent into five systems is still one shared, long-lived credential &mdash; it works in a demo, and it means a single leaked key doesn't cost you one system, it costs you every system that credential can reach.</div>
-</div>
-<div class="meta-card">
-<div class="label">Outcome</div>
-<div class="value">Traced three documented 2025-2026 breaches to the same credential-sharing pattern, checked it against current NHI research and the vendor market now built to fix it, and set out the credential-issuance guardrails that would have contained each one to a single system instead of hundreds.</div>
-</div>
-</div>
-</main>
+      <section id="problem">
+        <h2>The problem</h2>
+        <p class="body-text">Agents are easy to start and hard to account for. A developer wires one into a ticketing system, a code host, a data store and a cloud account. The fastest way to make that work is to paste in a credential that already works: a personal access token, a team service account, or an API key from a shared vault entry. It works in a demo. It keeps working long after the demo.</p>
+        <p class="body-text">I see five things go wrong with that shortcut, and they feed each other.</p>
+        <ul class="plain-list">
+          <li><strong>Attribution is lost.</strong> The target system sees the person&rsquo;s name, or the team account&rsquo;s name. Nothing says an agent acted, which agent it was, or what it was asked to do. If three agents share one key, even the agent&rsquo;s own team cannot tell them apart.</li>
+          <li><strong>Access is wider than the task.</strong> A person&rsquo;s token carries everything that person can do. An agent that only needed to read tickets can now delete them, read the finance share, or push to production. OWASP lists excessive functionality, excessive permissions and excessive autonomy as the three root causes of what it calls excessive agency. A borrowed human credential supplies the second one for free.</li>
+          <li><strong>Secrets leak into places they should never be.</strong> A key in the system prompt can be repeated back by the model. A key in a config file lands in version control. A key echoed in a tool result lands in the conversation history and the trace store. OWASP&rsquo;s guidance on system prompt leakage says sensitive data such as credentials and connection strings should not be in the system prompt at all.</li>
+          <li><strong>Tokens live too long.</strong> A credential made for a demo is rarely retired. Nobody remembers it exists until it is used by someone who should not have it.</li>
+          <li><strong>One leak means every system.</strong> Because the same key reaches everything the agent touches, a single exposure, whether from prompt injection, a log line or a stolen laptop, is an incident in all of those systems at once.</li>
+        </ul>
+        <p class="body-text">None of this is new. Shared accounts and long-lived keys were a problem long before agents. What agents change is the speed and the number. They make many calls, they chain tools, and they read untrusted text that can steer them. The credential that was risky in a script is riskier when a model decides what to do with it.</p>
+      </section>
 
-<section class="approach wrap">
-<div class="section-head">
-<span class="section-num">APPROACH</span>
-<h2>Three moves, in order</h2>
-<p>Start from documented incidents, not hypothetical risk. Check the pattern against current research. Then map both the market response and the guardrails that actually close the gap.</p>
-</div>
-<div class="steps">
-<div class="step">
-<div class="num">01</div>
-<div>
-<h3>Ground it in incidents</h3>
-<p>The Salesloft Drift OAuth token compromise (700+ downstream organizations), a four-year-old Salesforce credential that cascaded through roughly 200 companies via Klue, and a single unprotected maintenance credential that exposed 62 million PowerSchool students and 10 million teachers &mdash; three breaches, one pattern.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">02</div>
-<div>
-<h3>Check it against the data</h3>
-<p>Cross-referenced against 2026 identity research: 69% of enterprises share AI agent credentials across workflows, non-human identities now outnumber humans by a composite ratio near 79:1 (144:1 in cloud-native environments), and GitGuardian logged 28.65 million hardcoded secrets added to public GitHub in 2025 alone.</p>
-</div>
-</div>
-<div class="step">
-<div class="num">03</div>
-<div>
-<h3>Map the response</h3>
-<p>Reviewed how the market is answering: a wave of purpose-built NHI vendors, a 2026 consolidation wave that shows how fast this category is being absorbed into core identity platforms, and the guardrail patterns &mdash; scoped issuance, short-lived credentials, lifecycle automation, behavioral monitoring &mdash; converging as the actual fix.</p>
-</div>
-</div>
-</div>
-<div class="tags">
-<span class="tag">#wip</span><span class="tag">AI Governance</span>
-<span class="tag">Non-Human Identity</span>
-<span class="tag">Credential Sharing</span>
-<span class="tag">Zero Standing Privilege</span>
-<span class="tag">Machine Identity</span>
-<span class="tag">NHI Market</span>
-</div>
-</section>
+      <section id="evidence">
+        <h2>Why I do not treat this as theory</h2>
+        <p class="body-text">The clearest public example I found is the 2025 compromise of tokens issued to a third-party integration. Between 8 and 18 August 2025, a group tracked by Google Threat Intelligence as UNC6395 used stolen OAuth tokens for the Salesloft Drift integration to pull data out of customers&rsquo; Salesforce instances. Google reported being aware of more than 700 potentially affected organizations. By 20 August, Salesloft had started working with Salesforce to revoke all active access and refresh tokens for the Drift application. The attackers went through the stolen data looking for secrets such as AWS access keys, passwords and Snowflake access tokens, which is a reminder that credentials pasted into records and notes become a second leak.</p>
+        <p class="body-text">That incident was about a vendor integration, not an agent run inside someone&rsquo;s own company. I include it because the shape is the same: a token that was trusted broadly, kept alive, and valid across many customers. Revoking everything was the only fast way to stop it. A design where each connection had its own token, scoped and short-lived, would have made the blast radius smaller and the revocation more precise.</p>
+      </section>
 
-<section class="pipeline wrap">
-<div class="section-head">
-<span class="section-num">THE WORKFLOW</span>
-<h2>One key wired everywhere, versus one key per connection</h2>
-<p>Both patterns get an agent talking to five systems. Only one of them keeps a single leaked credential from becoming five compromised systems.</p>
-</div>
-<svg viewBox="0 0 680 500" width="100%" height="auto" role="img" aria-label="Workflow diagram comparing one shared long-lived credential wired into five systems against a credential broker issuing a scoped, short-lived credential per connection">
-<defs>
-<marker id="acsArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</marker>
-</defs>
+      <section id="architecture">
+        <h2>Two ways to connect the same agent</h2>
+        <p class="body-text">Both designs get an agent talking to the same systems. The top lane is the shortcut. The bottom lane gives the agent a name of its own and puts a broker between the agent and every credential. The broker is a vault or secrets service that can mint or hand out credentials by policy and write the log. In the second design the model decides what it wants to do. It does not hold the key that does it.</p>
+        <figure class="diagram-card" style="--c:#4de2ff;margin-top:14px">
+          <button type="button" class="anim-toggle" aria-pressed="false">Pause animation</button>
+          <svg class="d-wide" viewBox="0 0 960 470" role="img" aria-labelledby="a1t a1d"><title id="a1t">Shared credential compared with a brokered credential</title><desc id="a1d">Top lane: three agents reuse one long-lived shared token that reaches every connected system, and the audit log shows one name. Bottom lane: a requesting user delegates a task to an agent that has its own identity. The agent asks a broker. The broker checks agent, user, task and target, mints a short-lived scoped token and hands it to the tool, not the model. The target system checks the token itself, and the audit log records agent, user, task, target and time.</desc>
+            <text class="lane" x="20" y="26">TODAY: ONE SHARED KEY</text>
+            <g class="node" style="--i:0;--c:var(--warn)"><rect x="20" y="42" width="190" height="92" rx="12"/><text class="ttl" x="115" y="76" text-anchor="middle">Three agents</text><text class="sub" x="115" y="96" text-anchor="middle">no identity of their own</text><text class="sub" x="115" y="114" text-anchor="middle">key pasted into config</text></g>
+            <path class="flow" style="stroke:var(--warn)" d="M 210 88 L 290 88"/>
+            <text class="sub" x="250" y="78" text-anchor="middle">same key</text>
+            <g class="node" style="--i:1;--c:var(--warn)"><rect x="290" y="42" width="210" height="92" rx="12"/><text class="ttl" x="395" y="76" text-anchor="middle">One shared token</text><text class="sub" x="395" y="96" text-anchor="middle">a person&rsquo;s or a team&rsquo;s</text><text class="sub" x="395" y="114" text-anchor="middle">long-lived, wide scope</text></g>
+            <path class="flow" style="stroke:var(--warn)" d="M 500 88 L 580 88"/>
+            <text class="sub" x="540" y="78" text-anchor="middle">any call</text>
+            <g class="node" style="--i:2;--c:var(--warn)"><rect x="580" y="42" width="190" height="92" rx="12"/><text class="ttl" x="675" y="76" text-anchor="middle">Connected systems</text><text class="sub" x="675" y="96" text-anchor="middle">ticketing, data, cloud</text><text class="sub" x="675" y="114" text-anchor="middle">all reachable by the key</text></g>
+            <path class="log" d="M 770 88 L 800 88"/>
+            <rect class="logbar" x="800" y="42" width="140" height="92" rx="12"/><text class="ttl" x="870" y="76" text-anchor="middle">Audit log</text><text class="sub" x="870" y="96" text-anchor="middle">shows one name</text><text class="sub" x="870" y="114" text-anchor="middle">agent or person?</text>
+            <text class="sub" x="480" y="164" text-anchor="middle">A leaked key, a prompt injection or a log line exposes every system the key reaches.</text>
 
-<rect x="40" y="40" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
-<text x="60" y="66" fill="var(--muted)" font-size="14" font-weight="600">TODAY &mdash; ONE SHARED, LONG-LIVED KEY</text>
+            <text class="lane" x="20" y="214">BETTER: OWN IDENTITY, BROKERED, SHORT-LIVED</text>
+            <g class="node" style="--i:3"><rect x="20" y="236" width="150" height="110" rx="12"/><text class="ttl" x="95" y="274" text-anchor="middle">Agent</text><text class="sub" x="95" y="294" text-anchor="middle">its own identity</text><text class="sub" x="95" y="312" text-anchor="middle">acts for a named user</text></g>
+            <path class="flow" d="M 170 291 L 270 291"/>
+            <text class="sub" x="220" y="281" text-anchor="middle">task + user</text>
+            <g class="node" style="--i:4"><rect x="270" y="236" width="250" height="110" rx="12"/><text class="ttl" x="395" y="262" text-anchor="middle">Broker or vault</text><text class="sub" x="395" y="286" text-anchor="middle">checks agent, user, task, target</text><text class="sub" x="395" y="304" text-anchor="middle">mints a short-lived scoped token</text><text class="sub" x="395" y="322" text-anchor="middle">hands it to the tool, not the model</text></g>
+            <path class="flow" d="M 520 291 L 610 291"/>
+            <text class="sub" x="565" y="281" text-anchor="middle">scoped token</text>
+            <g class="node" style="--i:5"><rect x="610" y="236" width="180" height="110" rx="12"/><text class="ttl" x="700" y="274" text-anchor="middle">Target systems</text><text class="sub" x="700" y="294" text-anchor="middle">check the token themselves</text><text class="sub" x="700" y="312" text-anchor="middle">one scope each, expires</text></g>
+            <path class="log" d="M 790 291 L 820 291"/>
+            <rect class="logbar" x="820" y="236" width="120" height="110" rx="12"/><text class="ttl" x="880" y="274" text-anchor="middle">Audit log</text><text class="sub" x="880" y="294" text-anchor="middle">agent, user, task,</text><text class="sub" x="880" y="312" text-anchor="middle">target, time</text>
+            <g class="node" style="--i:0"><rect x="20" y="390" width="250" height="56" rx="12"/><text class="ttl" x="145" y="414" text-anchor="middle">Requesting user</text><text class="sub" x="145" y="432" text-anchor="middle">delegation recorded, name kept</text></g>
+            <path class="flow" d="M 95 390 L 95 346"/>
+            <text class="sub" x="106" y="372">delegates</text>
+            <text class="sub" x="300" y="422">The token expires with the task. Revoking the agent ends its access.</text>
+            <g class="badge"><circle cx="20" cy="236" r="11"/><text x="20" y="240">1</text></g>
+            <g class="badge"><circle cx="270" cy="236" r="11"/><text x="270" y="240">2</text></g>
+            <g class="badge"><circle cx="610" cy="236" r="11"/><text x="610" y="240">3</text></g>
+            <g class="badge"><circle cx="820" cy="236" r="11"/><text x="820" y="240">4</text></g>
+            <circle class="dot" r="5" opacity="0" style="fill:var(--warn);filter:drop-shadow(0 0 6px var(--warn))"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="4s" begin="0s" repeatCount="indefinite" path="M 210 88 L 290 88 L 500 88 L 580 88"/></circle>
+            <circle class="dot" r="5" opacity="0" style="fill:var(--warn);filter:drop-shadow(0 0 6px var(--warn))"><set attributeName="opacity" to="1" begin="2s"/><animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M 210 88 L 290 88 L 500 88 L 580 88"/></circle>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="0s"/><animateMotion dur="5s" begin="0s" repeatCount="indefinite" path="M 170 291 L 270 291 L 520 291 L 610 291"/></circle>
+            <circle class="dot" r="5" opacity="0"><set attributeName="opacity" to="1" begin="2.5s"/><animateMotion dur="5s" begin="2.5s" repeatCount="indefinite" path="M 170 291 L 270 291 L 520 291 L 610 291"/></circle>
+          </svg>
+          <svg class="d-tall" viewBox="0 0 360 880" role="img" aria-labelledby="a1tt a1td"><title id="a1tt">Shared credential compared with a brokered credential</title><desc id="a1td">Top: three agents reuse one long-lived shared token that reaches every connected system, and the audit log shows one name. Bottom: a requesting user delegates to an agent with its own identity. The agent asks a broker, which checks agent, user, task and target, mints a short-lived scoped token and hands it to the tool, not the model. The target system checks the token, and the audit log records agent, user, task, target and time.</desc>
+            <text class="lane" x="30" y="22">TODAY: ONE SHARED KEY</text>
+            <g class="node" style="--i:0;--c:var(--warn)"><rect x="30" y="34" width="300" height="66" rx="12"/><text class="ttl" x="180" y="60" text-anchor="middle">Three agents</text><text class="sub" x="180" y="80" text-anchor="middle">no identity of their own</text></g>
+            <path class="flow" style="stroke:var(--warn)" d="M 180 100 L 180 130"/>
+            <text class="sub" x="192" y="119">same key</text>
+            <g class="node" style="--i:1;--c:var(--warn)"><rect x="30" y="130" width="300" height="66" rx="12"/><text class="ttl" x="180" y="156" text-anchor="middle">One shared token</text><text class="sub" x="180" y="176" text-anchor="middle">a person&rsquo;s or a team&rsquo;s, long-lived</text></g>
+            <path class="flow" style="stroke:var(--warn)" d="M 180 196 L 180 226"/>
+            <text class="sub" x="192" y="215">any call</text>
+            <g class="node" style="--i:2;--c:var(--warn)"><rect x="30" y="226" width="300" height="66" rx="12"/><text class="ttl" x="180" y="252" text-anchor="middle">Connected systems</text><text class="sub" x="180" y="272" text-anchor="middle">ticketing, data, cloud</text></g>
+            <rect class="logbar" x="30" y="312" width="300" height="48" rx="12"/><text class="ttl" x="180" y="334" text-anchor="middle">Audit log: one name</text><text class="sub" x="180" y="351" text-anchor="middle">agent or person? Nobody can tell.</text>
 
-<g fill="var(--bg-panel)" stroke="var(--muted)" stroke-width="1">
-<rect x="60" y="90" width="110" height="56" rx="8"/>
-<rect x="190" y="90" width="200" height="56" rx="8"/>
-<rect x="410" y="90" width="210" height="56" rx="8"/>
-</g>
-<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
-<text x="115" y="122" font-size="14">AI Agent</text>
-<text x="290" y="114" font-size="14" font-weight="600">One static key</text>
-<text x="290" y="132" font-size="12" fill="var(--muted)">same secret, every system</text>
-<text x="515" y="114" font-size="14" font-weight="600">5 connected systems</text>
-<text x="515" y="132" font-size="12" fill="var(--muted)">one leak exposes all five</text>
-</g>
+            <text class="lane" x="30" y="396">BETTER: OWN IDENTITY, BROKERED</text>
+            <g class="node" style="--i:3"><rect x="30" y="408" width="300" height="58" rx="12"/><text class="ttl" x="180" y="432" text-anchor="middle">Requesting user</text><text class="sub" x="180" y="451" text-anchor="middle">delegation recorded, name kept</text></g>
+            <path class="flow" d="M 180 466 L 180 496"/>
+            <text class="sub" x="192" y="485">delegates</text>
+            <g class="node" style="--i:4"><rect x="30" y="496" width="300" height="66" rx="12"/><text class="ttl" x="180" y="522" text-anchor="middle">Agent</text><text class="sub" x="180" y="542" text-anchor="middle">its own identity, acts for the user</text></g>
+            <path class="flow" d="M 180 562 L 180 592"/>
+            <text class="sub" x="192" y="581">task + user</text>
+            <g class="node" style="--i:5"><rect x="30" y="592" width="300" height="112" rx="12"/><text class="ttl" x="180" y="618" text-anchor="middle">Broker or vault</text><text class="sub" x="180" y="642" text-anchor="middle">checks agent, user, task, target</text><text class="sub" x="180" y="660" text-anchor="middle">mints a short-lived scoped token</text><text class="sub" x="180" y="678" text-anchor="middle">hands it to the tool, not the model</text></g>
+            <path class="flow" d="M 180 704 L 180 734"/>
+            <text class="sub" x="192" y="723">scoped token</text>
+            <g class="node" style="--i:6"><rect x="30" y="734" width="300" height="66" rx="12"/><text class="ttl" x="180" y="760" text-anchor="middle">Target systems</text><text class="sub" x="180" y="780" text-anchor="middle">check the token, one scope each</text></g>
+            <rect class="logbar" x="30" y="820" width="300" height="48" rx="12"/><text class="ttl" x="180" y="842" text-anchor="middle">Audit log</text><text class="sub" x="180" y="859" text-anchor="middle">agent, user, task, target, time</text>
+            <path class="log" d="M 330 648 L 348 648 L 348 844 L 330 844"/>
+            <g class="badge"><circle cx="30" cy="496" r="11"/><text x="30" y="500">1</text></g>
+            <g class="badge"><circle cx="30" cy="592" r="11"/><text x="30" y="596">2</text></g>
+            <g class="badge"><circle cx="30" cy="734" r="11"/><text x="30" y="738">3</text></g>
+            <g class="badge"><circle cx="30" cy="820" r="11"/><text x="30" y="824">4</text></g>
+            <circle class="dot" r="5" style="fill:var(--warn);filter:drop-shadow(0 0 6px var(--warn))"><animateMotion dur="5s" repeatCount="indefinite" path="M 180 50 L 180 270"/></circle>
+            <circle class="dot" r="5"><animateMotion dur="8s" repeatCount="indefinite" path="M 180 430 L 180 760"/></circle>
+          </svg>
+          <figcaption>The warm dots show one shared key reaching everything. The bright dots show a request moving through the broker. The numbers match the four moments that matter: the agent asks as itself (1), the broker decides and mints (2), the target checks the token (3), and the log records both names (4). Users and agents are generic labels here, not a particular product.</figcaption>
+        </figure>
+        <p class="body-text">Two details in the lower lane carry most of the weight. The token goes to the tool layer that makes the call. It does not pass through the model&rsquo;s context. And the target system checks the token on its own. OWASP&rsquo;s guidance on excessive agency says to implement authorization in downstream systems rather than relying on the model to decide whether an action is allowed.</p>
+      </section>
 
-<g stroke="var(--muted)" stroke-width="1" fill="none">
-<path d="M170 118 H190" marker-end="url(#acsArrow)"/>
-<path d="M390 118 H410" marker-end="url(#acsArrow)"/>
-</g>
-<g font-family="var(--font)" font-size="12" fill="var(--muted)" text-anchor="middle">
-<text x="180" y="164">issued once</text>
-<text x="400" y="164">reused everywhere</text>
-</g>
+      <section id="delegation">
+        <h2>Acting for a person without becoming that person</h2>
+        <p class="body-text">The hard part of the better design is how an agent acts on a user&rsquo;s behalf and still leaves both names in the record. OAuth has a vocabulary for this. RFC 8693, the token exchange specification, separates two ideas. With impersonation, principal A is given all the rights of principal B and is indistinguishable from B in that context. With delegation, A keeps its own identity, and any action is understood to be taken by A representing B.</p>
+        <p class="body-text">For agents, delegation is the one I want. Impersonation is what a pasted personal token does: the log says Priya did it. Delegation keeps the agent visible. RFC 8693 expresses this with the <code class="ref">act</code> claim, which identifies the acting party to whom authority has been delegated, and nested <code class="ref">act</code> claims can show a chain of prior actors. A <code class="ref">may_act</code> claim states that one party is authorized to become the actor for another. The token request can carry an <code class="ref">actor_token</code> that represents the acting party.</p>
+        <p class="body-text">I do not think every environment needs to implement RFC 8693 literally. Some identity providers offer their own on-behalf-of flows, and some target systems only accept static API keys. The test I apply is the one the RFC describes: after the action, can I see both who acted and who they acted for, and can the agent be switched off without touching the person&rsquo;s account?</p>
+        <p class="body-text">The MCP authorization specification adds two useful rules for tool servers. Tokens are bound to their intended audience with the RFC 8707 <code class="ref">resource</code> parameter, and a server must accept only tokens issued for it. If it calls an upstream API, it must not pass through the token it received. It uses a separate token issued by the upstream authorization server. The same specification says authorization servers should issue short-lived access tokens to limit the damage of a leak, and that local stdio servers should read credentials from the environment instead of following the HTTP flow. That last point matters: an environment variable is still a secret sitting next to the model&rsquo;s tools, so I treat it as the weaker option and keep it out of the model&rsquo;s context.</p>
+      </section>
 
-<rect x="40" y="260" width="600" height="200" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1"/>
-<text x="60" y="286" fill="var(--teal)" font-size="14" font-weight="600">GUARDRAIL &mdash; SCOPED KEY PER CONNECTION</text>
+      <section id="workflow">
+        <h2>Issuing a credential to an agent, step by step</h2>
+        <p class="body-text">This is the path I would put in front of a team that wants to launch a new agent. Each step has a guardrail that stops a specific mistake and a piece of evidence you can show later. It assumes a person still owns the agent, and that risky actions still go to a person for approval. Agents do a lot of useful work, and the people who own them stay accountable for it.</p>
+        <ol class="steps">
+          <li><h3>Register the agent as its own identity, with an owner</h3><p>The agent gets a unique identity that is not a person&rsquo;s account and not a team account. The record names a human owner, a purpose, the environment it runs in and the systems it may reach.</p><div class="why"><span><b>Guardrail</b>No owner, no identity</span><span><b>Evidence</b>Agent registry entry</span></div></li>
+          <li><h3>Write down the tasks and the smallest scope each one needs</h3><p>List what the agent does, such as read tickets, post a comment or close a ticket. Map each task to the narrowest permission on each target. Reading and writing are separate scopes. Destructive actions are separate again.</p><div class="why"><span><b>Guardrail</b>Scope decided at design time, per task</span><span><b>Evidence</b>Task-to-scope map, reviewed by the system owner</span></div></li>
+          <li><h3>Record the delegation when a person starts a task</h3><p>When a user asks the agent to do something, the user&rsquo;s identity travels with the request. The agent never receives the user&rsquo;s own credential. It receives a record that says this user asked, for this task, until this time.</p><div class="why"><span><b>Guardrail</b>Delegation, not impersonation</span><span><b>Evidence</b>Delegation record with user, task and expiry</span></div></li>
+          <li><h3>The agent asks the broker, and the broker decides</h3><p>The agent authenticates to the broker as itself. The broker checks the agent, the user, the task and the target against policy. Actions that change or delete data, or that touch sensitive data, require a person to approve before the broker issues anything.</p><div class="why"><span><b>Guardrail</b>Policy check outside the model; human approval for high-impact actions</span><span><b>Evidence</b>Decision log and approval record</span></div></li>
+          <li><h3>Issue a short-lived, narrow credential and keep it from the model</h3><p>The broker mints or releases a credential for that one task and target, with a lifetime measured in minutes where the target allows it. It is delivered to the tool layer that makes the call. The model gets the result of the call, not the secret.</p><div class="why"><span><b>Guardrail</b>Secret never in the prompt, the context or the tool output</span><span><b>Evidence</b>Issue record with scope and expiry; prompt and trace scans find no secrets</span></div></li>
+          <li><h3>The target authorizes the call and the log keeps both names</h3><p>The target system checks the credential itself and enforces its own permissions. The record carries the agent, the user, the task, the target, the scope and the time. It goes to a log store the agent and its owner cannot edit.</p><div class="why"><span><b>Guardrail</b>Authorization in the target system, log kept outside the agent&rsquo;s reach</span><span><b>Evidence</b>Audit record with agent and user identity</span></div></li>
+          <li><h3>Expire, revoke and review</h3><p>The credential ends with the task or at its expiry. If the agent misbehaves, you disable the agent&rsquo;s identity and everything it can obtain stops with it. The owner re-confirms the agent and its scopes on a regular rhythm, and unused scopes are removed.</p><div class="why"><span><b>Guardrail</b>Kill switch on the agent identity; periodic owner attestation</span><span><b>Evidence</b>Revocation drill result and attestation record</span></div></li>
+        </ol>
+      </section>
 
-<g fill="var(--bg-panel)" stroke="var(--teal)" stroke-width="1">
-<rect x="60" y="310" width="110" height="56" rx="8"/>
-<rect x="195" y="310" width="210" height="56" rx="8"/>
-<rect x="430" y="310" width="190" height="56" rx="8"/>
-</g>
-<g font-family="var(--font)" fill="var(--text)" text-anchor="middle">
-<text x="115" y="342" font-size="14">AI Agent</text>
-<text x="300" y="334" font-size="14" font-weight="600">Credential broker</text>
-<text x="300" y="352" font-size="12" fill="var(--muted)">short-lived, scoped per task</text>
-<text x="525" y="334" font-size="14" font-weight="600">5 connected systems</text>
-<text x="525" y="352" font-size="12" fill="var(--muted)">one leak exposes one</text>
-</g>
+      <section id="example">
+        <h2>Example: a support agent that summarizes and closes tickets</h2>
+        <p class="body-text">This is an illustration, not a specific event.</p>
+        <div class="compare">
+          <div class="bad"><h3>Before</h3><ul><li>The agent runs on Priya&rsquo;s personal access token, which she created last spring.</li><li>The token can read, edit and delete in the ticketing system and read the customer database.</li><li>The token sits in the agent&rsquo;s config file, and the framework prints it in debug traces.</li><li>Closed tickets show Priya as the actor. Nobody can tell which closures were hers.</li><li>The token has no expiry.</li></ul></div>
+          <div class="good"><h3>After</h3><ul><li>The agent has its own identity and a named owner in the support team.</li><li>For each task it asks the broker for a token that can read tickets, or comment, or close a single ticket.</li><li>Closing a ticket needs a person to approve it, and the approval is attached to the record.</li><li>Tokens last minutes and are handed to the tool, never to the model.</li><li>Closed tickets show the agent as actor and Priya as the person it acted for.</li></ul></div>
+        </div>
+        <p class="body-text" style="margin-top:14px">An audit record for one action in the second setup might look like this. The values are made up.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Field</th><th>Example value</th><th>Why it is there</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Field">Actor</td><td data-label="Example value">agent: support-summarizer-02</td><td data-label="Why it is there">Which agent acted, down to the instance</td></tr>
+            <tr><td data-label="Field">On behalf of</td><td data-label="Example value">user: priya</td><td data-label="Why it is there">The person who asked, kept from the original request</td></tr>
+            <tr><td data-label="Field">Task and target</td><td data-label="Example value">close one ticket in the ticketing system</td><td data-label="Why it is there">What was done and where</td></tr>
+            <tr><td data-label="Field">Scope</td><td data-label="Example value">tickets: close, a single ticket</td><td data-label="Why it is there">Shows the credential was narrower than the person&rsquo;s own access</td></tr>
+            <tr><td data-label="Field">Issued and expires</td><td data-label="Example value">12:04, expires 12:09</td><td data-label="Why it is there">Shows the credential was short-lived</td></tr>
+            <tr><td data-label="Field">Approval</td><td data-label="Example value">approval reference from a named person</td><td data-label="Why it is there">Links a high-impact action to a human decision</td></tr>
+          </tbody></table></div>
+      </section>
 
-<g stroke="var(--teal)" stroke-width="1" fill="none">
-<path d="M170 338 H195" marker-end="url(#acsArrow)"/>
-<path d="M405 338 H430" marker-end="url(#acsArrow)"/>
-<path d="M300 366 V412 H115 V366" marker-end="url(#acsArrow)"/>
-</g>
-<g font-family="var(--font)" font-size="12" fill="var(--teal)" text-anchor="middle">
-<text x="418" y="386">scoped to one system</text>
-<text x="207" y="430">expires &rarr; reissued per task</text>
-</g>
-</svg>
-</section>
+      <section id="roadmap">
+        <h2>How to roll it out without stalling</h2>
+        <ol class="phases">
+          <li><b>1. Find where agents already hold credentials</b>Search repositories, pipeline variables, agent configuration and trace stores for keys and tokens. List which agent uses which credential and whose credential it is.<small><em>Done when</em>There is one list of agents, their credentials and the people behind them.</small></li>
+          <li><b>2. Give each agent an identity and an owner</b>Create an identity per agent and stop issuing new shared keys for agent work.<small><em>Done when</em>Every active agent has its own identity and a named owner.</small></li>
+          <li><b>3. Put the broker in front of the first few systems</b>Start with the systems where a leak would hurt most, and those that already support short-lived tokens.<small><em>Done when</em>Agents reach those systems only through the broker, and the old shared keys are revoked.</small></li>
+          <li><b>4. Carry the user&rsquo;s identity</b>Add delegation so the record shows the agent and the person it acted for. Add human approval for high-impact actions.<small><em>Done when</em>An audit record answers who acted and for whom without anyone asking the team.</small></li>
+          <li><b>5. Monitor, drill and retire</b>Alert on an agent touching a system it has never used. Rehearse revoking one agent. Remove the leftover static keys and the exceptions that have run out of reasons.<small><em>Done when</em>A revocation drill succeeds on the clock you set, and exceptions have owners and end dates.</small></li>
+        </ol>
+      </section>
 
-<section class="fieldnote wrap">
-<div class="section-head">
-<span class="section-num">THE EVIDENCE &middot; THREE INCIDENTS, ONE PATTERN</span>
-<h2>This didn't start as a theory</h2>
-<p>Three documented breaches from the last thirteen months, at three different scales, all tracing back to the same design choice.</p>
-</div>
-<div class="quote-card">
-<p><b>Aug 2025 &middot; Salesloft Drift OAuth breach.</b> A set of long-lived, broadly-trusted OAuth tokens, once compromised by the group tracked as UNC6395, gave attackers a path into 700+ downstream organizations' Salesforce environments &mdash; including Cloudflare, Google, PagerDuty, Palo Alto Networks, Proofpoint and Zscaler. The tokens were revoked only after the fact, on August 20.</p>
-<div class="who">&mdash; per Google Threat Intelligence and multiple vendor disclosures</div>
-</div>
-<div class="quote-card">
-<p><b>2026 &middot; Klue / Salesforce credential cascade.</b> A four-year-old Salesforce credential, never rotated, was used to breach Klue and cascade into roughly 200 companies, including LastPass, Jamf and HackerOne.</p>
-<div class="who">&mdash; as reported via Tech Insider</div>
-</div>
-<div class="quote-card">
-<p><b>PowerSchool breach.</b> Attackers used a single unprotected maintenance credential &mdash; with no multi-factor authentication (MFA) in front of it &mdash; to access the data of 62 million students and nearly 10 million teachers.</p>
-<div class="who">&mdash; per public breach disclosures</div>
-</div>
-<div class="quote-card mine">
-<p>Three incidents, three industries, one identical root cause: a credential built to be shared, not scoped &mdash; issued once, trusted everywhere, and never re-evaluated per connection.</p>
-<div class="who">&mdash; the pattern across all three</div>
-</div>
-</section>
+      <section id="guardrails">
+        <h2>Guardrails that keep it honest</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Guardrail">One identity per agent, with an owner</td><td data-label="What it stops">Lost attribution and orphaned agents</td><td data-label="How you check it">Report of agents with no owner, or sharing an identity</td></tr>
+            <tr><td data-label="Guardrail">No personal or team credentials in agent configuration</td><td data-label="What it stops">An agent inheriting everything a person can do</td><td data-label="How you check it">Scan agent configuration and pipelines for personal tokens</td></tr>
+            <tr><td data-label="Guardrail">Scope per task and per target</td><td data-label="What it stops">Excessive permissions and wide blast radius</td><td data-label="How you check it">Compare issued scope with the task-to-scope map</td></tr>
+            <tr><td data-label="Guardrail">Short-lived credentials by default</td><td data-label="What it stops">A leaked token staying useful for months</td><td data-label="How you check it">Share of agent credentials with an expiry, and the longest lifetime</td></tr>
+            <tr><td data-label="Guardrail">Secrets kept out of prompts, context and tool output</td><td data-label="What it stops">The model repeating a key, or a trace store holding one</td><td data-label="How you check it">Plant a test secret and search prompts, traces and logs for it</td></tr>
+            <tr><td data-label="Guardrail">Authorization enforced in the target system</td><td data-label="What it stops">Trusting the model to decide what is allowed</td><td data-label="How you check it">Try an out-of-scope call and confirm the target refuses it</td></tr>
+            <tr><td data-label="Guardrail">Human approval for high-impact actions</td><td data-label="What it stops">Excessive autonomy on deletes, payments and bulk changes</td><td data-label="How you check it">Sample high-impact actions and find the approval for each</td></tr>
+            <tr><td data-label="Guardrail">Logs written outside the agent&rsquo;s reach</td><td data-label="What it stops">Evidence changed by the party it covers</td><td data-label="How you check it">Confirm the agent and its owner cannot edit the log store</td></tr>
+            <tr><td data-label="Guardrail">Tested revocation of an agent identity</td><td data-label="What it stops">Not knowing how to stop a misbehaving agent quickly</td><td data-label="How you check it">Run a drill and time it</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">I keep rotation on this list for credentials that have to be long-lived, such as a static key at a legacy target. The OWASP Secrets Management Cheat Sheet says to rotate regularly so that stolen credentials work only for a short time. For agents the better lever is to avoid the long-lived credential in the first place, because a credential that expires in minutes needs no rotation schedule.</p>
+      </section>
 
-<section class="pipeline wrap">
-<div class="section-head">
-<span class="section-num">THE RISK PROFILE</span>
-<h2>Why non-human identity breaks the old assumptions</h2>
-<p>Machine identities don't behave like the human accounts identity programs were designed around.</p>
-</div>
-<div class="steps">
-<div class="step risk">
-<div class="num">01</div>
-<div>
-<h3>Unmanaged lifecycle</h3>
-<p>Credentials outlive the project, the vendor relationship, or the employee who created them. Non-human identities are seldom retired &mdash; the Klue credential was four years old when it was used.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">02</div>
-<div>
-<h3>Overprivileged by default</h3>
-<p>The fastest scope to request is usually the broadest one available on the target system, and almost nobody revisits it once the integration is working.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">03</div>
-<div>
-<h3>No MFA, no logout</h3>
-<p>Machine identities can't complete a second factor and don't have a session that expires on its own, so a stolen credential behaves like a permanent key rather than a temporary one.</p>
-</div>
-</div>
-<div class="step risk">
-<div class="num">04</div>
-<div>
-<h3>Invisible growth</h3>
-<p>Machine identities in the average enterprise grew roughly 5x between 2021 and 2025 &mdash; from about 50,000 to about 250,000 &mdash; far outpacing the humans who are supposed to own and review them.</p>
-</div>
-</div>
-</div>
-</section>
+      <section id="audit">
+        <h2>Audit: the questions, and the evidence</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Question">Which agent made this change?</td><td data-label="Where the answer comes from">Audit record with the agent&rsquo;s own identity</td></tr>
+            <tr><td data-label="Question">Which person was it acting for?</td><td data-label="Where the answer comes from">Delegation record, carried into the audit record</td></tr>
+            <tr><td data-label="Question">What could the agent reach, and why?</td><td data-label="Where the answer comes from">Task-to-scope map and the policy that granted it</td></tr>
+            <tr><td data-label="Question">How long was the credential valid?</td><td data-label="Where the answer comes from">Issue record with time of issue and expiry</td></tr>
+            <tr><td data-label="Question">Did a person approve the risky action?</td><td data-label="Where the answer comes from">Approval record linked to the action</td></tr>
+            <tr><td data-label="Question">Were any secrets exposed to the model or to logs?</td><td data-label="Where the answer comes from">Scan results for prompts, traces and logs, and the exception register</td></tr>
+            <tr><td data-label="Question">Who owns this agent, and when was it last reviewed?</td><td data-label="Where the answer comes from">Agent registry and the last attestation</td></tr>
+            <tr><td data-label="Question">Can we turn it off, and how fast?</td><td data-label="Where the answer comes from">Latest revocation drill result</td></tr>
+          </tbody></table></div>
+      </section>
 
-<section class="market wrap">
-<div class="section-head">
-<span class="section-num">THE MARKET RESPONSE</span>
-<h2>A category getting absorbed as fast as it formed</h2>
-<p>A wave of purpose-built vendors emerged to discover, govern and secure non-human identities &mdash; and in 2026, the biggest identity and security platforms started buying their way in rather than building it themselves.</p>
-</div>
-<div class="vendor-grid">
-<div class="vendor-card">
-<div class="name">Astrix Security</div>
-<div class="focus">Discovers NHIs across SaaS, cloud and code; flags over-privileged or untrusted connections.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Oasis Security</div>
-<div class="focus">Full lifecycle coverage &mdash; discovery, posture, rotation and decommissioning in one place.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Entro Security</div>
-<div class="focus">Secrets-centric view: traces where a secret lives, how it's used, and which NHI owns it.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Aembit</div>
-<div class="focus">Runtime access and policy-based enforcement for workload-to-workload authentication.</div>
-</div>
-<div class="vendor-card">
-<div class="name">Akeyless</div>
-<div class="focus">SaaS-native secrets management using distributed key-fragment encryption instead of a single master key.</div>
-</div>
-<div class="vendor-card">
-<div class="name">GitGuardian</div>
-<div class="focus">Secrets-sprawl detection across source code and CI/CD pipelines, at public-repo scale.</div>
-</div>
-</div>
-<p class="market-note">This category is consolidating fast. In 2026 alone: Cisco announced its intent to acquire Astrix (May), SailPoint closed its acquisition of Entro (June), and Cyera signed a letter of intent for Oasis (July, at roughly $1B). Non-human identity management is being absorbed into core identity platforms rather than staying a standalone product line &mdash; a strong signal that credential sharing has moved from "edge case" to "board-level line item" in about eighteen months.</p>
-</section>
+      <section id="standards">
+        <h2>Standards this maps to</h2>
+        <p class="body-text">I list only what I checked against the published text. Control wording below is paraphrased.</p>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Standard</th><th>Reference</th><th>What it asks for</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Standard">NIST SP 800-53 Rev. 5</td><td data-label="Reference"><code class="ref">IA-5</code></td><td data-label="What it asks for">Authenticator management: verify who or what receives an authenticator, define distribution, loss, compromise and revocation procedures, refresh authenticators, and protect their content from unauthorized disclosure.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AC-6</code></td><td data-label="What it asks for">Least privilege: allow only the accesses, for users or processes acting on their behalf, that are necessary for assigned tasks.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">AU-2</code>, <code class="ref">AU-12</code></td><td data-label="What it asks for">Decide which events are logged and generate audit records for them, with the content AU-3 defines.</td></tr>
+            <tr><td data-label="Standard">OWASP Secrets Management Cheat Sheet</td><td data-label="Reference">Sections on dynamic secrets, rotation, least privilege, auditing, CI/CD</td><td data-label="What it asks for">Prefer dynamically generated secrets, rotate so stolen credentials expire, apply least privilege, audit who requested a secret and when, and give CI/CD tooling scoped service accounts.</td></tr>
+            <tr><td data-label="Standard">OWASP Top 10 for LLM Applications 2025</td><td data-label="Reference"><code class="ref">LLM02</code></td><td data-label="What it asks for">Sensitive information disclosure, which lists security credentials among the sensitive data, with least privilege as a mitigation.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">LLM06</code></td><td data-label="What it asks for">Excessive agency: limit permissions to the minimum, run actions in the context of the specific user, and authorize in downstream systems instead of leaving that to the model.</td></tr>
+            <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">LLM07</code></td><td data-label="What it asks for">System prompt leakage: keep credentials and connection strings out of the system prompt, and do not delegate privilege separation or authorization checks to the model.</td></tr>
+            <tr><td data-label="Standard">RFC 8693</td><td data-label="Reference">Section 1.1, <code class="ref">act</code>, <code class="ref">may_act</code>, <code class="ref">actor_token</code></td><td data-label="What it asks for">Defines delegation and impersonation, and a way to express the acting party in a token.</td></tr>
+            <tr><td data-label="Standard">MCP authorization specification</td><td data-label="Reference">2025-11-25 and 2026-07-28 revisions</td><td data-label="What it asks for">Tokens bound to their audience with resource indicators, no token passthrough, short-lived access tokens recommended, scopes kept to least privilege.</td></tr>
+          </tbody></table></div>
+        <p class="body-text" style="margin-top:14px">This page does not claim any particular framework certification or regulatory outcome. It maps a design to the published wording so that a reviewer can check the mapping.</p>
+      </section>
 
-<section class="solution wrap">
-<div class="section-head">
-<span class="section-num">THE GUARDRAILS</span>
-<h2>What would have contained each incident</h2>
-<p>Not "rotate keys more often." A credential-issuance discipline applied at the point a new agent integration is created.</p>
-</div>
-<div class="steps">
-<div class="step guardrail">
-<div class="num">01</div>
-<div>
-<h3>Least privilege at issuance</h3>
-<p>Scope every credential to exactly the actions one integration needs, decided at creation time &mdash; not trimmed later, if ever.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">02</div>
-<div>
-<h3>JIT, ephemeral by default</h3>
-<p>Issue short-lived credentials per task or session instead of standing keys valid indefinitely. A credential with a shelf life measured in hours can't still be active four years later.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">03</div>
-<div>
-<h3>Lifecycle automation</h3>
-<p>Trigger rotation and revocation automatically from identity lifecycle events &mdash; integration retired, vendor offboarded, agent decommissioned &mdash; instead of a manual ticket nobody files.</p>
-</div>
-</div>
-<div class="step guardrail">
-<div class="num">04</div>
-<div>
-<h3>Behavioral monitoring with a containment SLA</h3>
-<p>Flag a service account or agent touching a system it has never touched before, with a target of containing a compromised identity in under 24 hours rather than discovering it at the next audit.</p>
-</div>
-</div>
-</div>
-<div class="status-note">
-<span>&#9888;</span>
-<span><b>Status: framework, not a product build.</b> This is a credential-issuance and guardrail checklist grounded in real 2025-2026 incidents and current NHI market research &mdash; it pairs directly with the per-task credential model in <a href="https://roshantrivedi.co.in/case-studies/agentic-ai-identity-governance/">Agentic AI Identity Governance</a> and the risk-scoring inventory in <a href="https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a>.</span>
-</div>
-</section>
+      <section id="governance">
+        <h2>Governance: who owns what</h2>
+        <div class="tbl-wrap"><table class="tbl wrap-first stack">
+          <thead><tr><th>Role</th><th>Owns</th></tr></thead>
+          <tbody>
+            <tr><td data-label="Role">Agent owner</td><td data-label="Owns">The agent&rsquo;s purpose, its task list, its scopes and its retirement</td></tr>
+            <tr><td data-label="Role">Credential platform owner</td><td data-label="Owns">The broker or vault, the issuance policy, rotation and revocation</td></tr>
+            <tr><td data-label="Role">System owners</td><td data-label="Owns">What each scope on their system means, and the authorization the system enforces</td></tr>
+            <tr><td data-label="Role">Security architecture</td><td data-label="Owns">Which actions need human approval, token lifetimes and exception criteria</td></tr>
+            <tr><td data-label="Role">Monitoring team</td><td data-label="Owns">Alerts on unusual agent behavior and the response runbook</td></tr>
+            <tr><td data-label="Role">Internal audit</td><td data-label="Owns">Independent checking, separate from those who run the controls</td></tr>
+          </tbody></table></div>
+        <ul class="plain-list">
+          <li><strong>People stay accountable.</strong> I treat an agent as a capable assistant that works under a named owner. It does not take over the owner&rsquo;s responsibility. Security, governance, monitoring and collaboration between people and the agent make it safe to rely on.</li>
+          <li><strong>Measure a few things.</strong> Share of agents with their own identity, agents without an owner, longest credential lifetime, share of high-impact actions with an approval, and time to revoke one agent.</li>
+          <li><strong>Exceptions have owners and end dates.</strong> A legacy target that only takes a static key goes on a register, gets reviewed, and leaves when its reason ends.</li>
+        </ul>
+      </section>
 
-<nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/ai-processing-tax/"><small><i></i>&larr; Previous</small><strong>The AI Decision Tax</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/shadow-ai-discovery-gap/"><small><i></i>Next &rarr;</small><strong>The Shadow AI Discovery Gap</strong></a></div></nav>
-      <footer class="site">
-<div class="wrap">
-<p>Roshan Trivedi &middot; Credential Management &amp; PAM Product Leader</p>
-<a href="/#contact">Get in touch &rarr;</a>
-</div>
-</footer>
+      <section id="tradeoffs">
+        <h2>What tends to go wrong</h2>
+        <ul class="plain-list">
+          <li><strong>The broker becomes the new single point of failure and the new big target.</strong> It holds the means to reach many systems. It needs strong access control of its own, high availability, and a plan for when it is down. Agents that cannot reach it will be tempted to fall back to a shared key, so the plan has to cover that case.</li>
+          <li><strong>Scopes are too coarse to be useful.</strong> If the target offers only read and write, a read-only task cannot get a read-only credential. I record these gaps and ask the system owner for finer scopes. Meanwhile a gateway in front of the target can enforce the narrower rule.</li>
+          <li><strong>Delegation turns into impersonation.</strong> A flow that quietly passes the user&rsquo;s own token to the agent looks like delegation in a diagram and behaves like impersonation in the log. I check the log, not the diagram.</li>
+          <li><strong>Secrets still leak through the side doors.</strong> Debug traces, error messages, tool output and environment variables are where I find them. Redaction rules catch the formats someone thought of. I prefer designs where the model never receives the secret, and I test with a planted one.</li>
+          <li><strong>Tool servers pass tokens along.</strong> An MCP server or gateway that forwards the token it received to an upstream API recreates the shared key. The specification forbids it, so I check for it.</li>
+          <li><strong>Approval fatigue.</strong> If every action asks a person, people click through. Keep approvals for the actions that change or delete data or carry real cost, and make the approval screen show what will happen.</li>
+          <li><strong>Legacy targets resist.</strong> Some only accept a static key. Put those behind the broker, keep the key in the vault, restrict who can request it, and track them as named exceptions.</li>
+        </ul>
+      </section>
 
-<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "444a1ec20a754e468bd77d1fb0a93adc"}'></script>
+      <section id="lessons">
+        <h2>What I have learned to do differently</h2>
+        <p class="body-text">These are habits I keep when I look at an agent design. They come from how I run credential and access programs. They are not a record of any one project.</p>
+        <ul class="plain-list">
+          <li><strong>I ask whose name is on the log before I ask anything else.</strong> If the answer is a person who did not do the work, or a team account, the rest of the design review can wait.</li>
+          <li><strong>I look for the secret before I look at the model.</strong> I search config, pipelines and traces for keys first. The inventory usually explains the risk better than any architecture slide.</li>
+          <li><strong>I plant a test secret.</strong> I put a fake key into a prompt, a config and a tool result, then see where it turns up. That finds more than a policy document does.</li>
+          <li><strong>I design for the broker being down.</strong> If the only fallback is a shared key, the fallback will become the design. I agree the failure path with the owners before launch.</li>
+          <li><strong>I rehearse the kill switch.</strong> I run a drill on one agent and time it. A revocation process that has never been tried is a guess.</li>
+          <li><strong>I keep people in the loop where the damage is hard to undo.</strong> I am comfortable letting an agent read, summarize and draft on its own. Deleting, paying and bulk changes go to a person.</li>
+        </ul>
+        <p class="body-text">The longer version of how I run a program like this, from the first conversation to the last training session, is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>. The same approach to short-lived credentials for applications is in <a href="/case-studies/credential-platform/">Credential Management Platform Strategy</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html">OWASP Secrets Management Cheat Sheet</a></li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/">OWASP Top 10 for LLM Applications 2025, LLM06: Excessive Agency</a></li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/">OWASP Top 10 for LLM Applications 2025, LLM02: Sensitive Information Disclosure</a></li>
+          <li><a href="https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/">OWASP Top 10 for LLM Applications 2025, LLM07: System Prompt Leakage</a></li>
+          <li><a href="https://datatracker.ietf.org/doc/html/rfc8693">RFC 8693, OAuth 2.0 Token Exchange</a></li>
+          <li><a href="https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization">Model Context Protocol, Authorization (2025-11-25)</a></li>
+          <li><a href="https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/security-considerations">Model Context Protocol, Authorization Security Considerations (2026-07-28)</a></li>
+          <li><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a>. Control wording for IA-5, AC-6, AU-2 and AU-12 was read in a mirror of the NIST text (<a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/ac-6/">csf.tools</a>), a secondary source.</li>
+          <li><a href="https://www.cybersecuritydive.com/news/hackers-steal-data-salesforce-instances/758676/">Cybersecurity Dive, hackers steal data from Salesforce instances</a>. Secondary reporting on the Salesloft Drift incident.</li>
+          <li><a href="https://arcticwolf.com/resources/blog/widespread-salesforce-data-theft-via-compromised-salesloft-drift-oauth-tokens/">Arctic Wolf, widespread Salesforce data theft via compromised Salesloft Drift OAuth tokens</a>. Secondary reporting on the same incident.</li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. The worked example and the audit record are illustrations with invented values. Control wording is paraphrased from the sources above.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>AI Governance</span><span>Non-Human Identity</span><span>Credential Sharing</span><span>Zero Standing Privilege</span><span>Machine Identity</span></div></section>
+
+      <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#4de2ff" href="/case-studies/ai-processing-tax/"><small><i></i>&larr; Previous</small><strong>The AI Decision Tax</strong></a><a class="next" style="--c:#4de2ff" href="/case-studies/shadow-ai-discovery-gap/"><small><i></i>Next &rarr;</small><strong>The Shadow AI Discovery Gap</strong></a></div></nav>
+      <footer class="page-footer">
+        <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+    <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
-</body>
+  </body>
 </html>
