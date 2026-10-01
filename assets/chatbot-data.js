@@ -223,10 +223,11 @@ window.SITE_QA = [
   },
   {
     id: "mcp-lab",
-    title: "MCP Human Approval Gateway (concept)",
+    title: "MCP Human Approval Gateway (research prototype)",
+    url: "https://github.com/trivediroshan1-ui/mcp-human-approval-gateway",
     keywords: ["mcp human approval gateway", "mcp lab", "interactive lab", "human approval gateway", "agentic ai lab"],
     answer:
-      "The \"MCP Human Approval Gateway\" is a concept Roshan references in his case studies — deterministic policy, human approval, time-bound authorization and guarded AI-agent execution, the same human-in-the-loop approval pattern used in the Agentic AI Identity Governance case study. An interactive lab demonstrating it isn't published on the site yet.",
+      "The \"MCP Human Approval Gateway\" is Roshan's open research prototype for controlling AI-agent tool actions: deterministic policy decides, a role-qualified human approves higher-risk requests, approvals are time-bound, single-use and bound to the exact request, and every step lands in a hash-chained audit log. All data is synthetic. The source, threat model and tests are on GitHub: github.com/trivediroshan1-ui/mcp-human-approval-gateway.",
   },
   {
     id: "blog",
