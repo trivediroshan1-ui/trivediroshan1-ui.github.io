@@ -77,8 +77,8 @@
   var DEFAULT_SUGGESTIONS = [
     "Who is Roshan?",
     "What case studies are here?",
+    "What is the MCP lab?",
     "Tell me about Secure India Exams",
-    "How do I contact him?",
   ];
 
   // Page-aware suggestions: shown instead of the defaults when the visitor
@@ -96,7 +96,7 @@
     {
       test: /^\/case-studies\/non-human-identity-at-scale\/?/,
       suggestions: [
-        "What's the interactive sandbox?",
+        "How are non-human identities scored?",
         "What other case studies are here?",
         "Who is Roshan?",
       ],
@@ -114,7 +114,7 @@
       test: /^\/writing\//,
       suggestions: [
         "What is this blog post about?",
-        "What case studies are here?",
+        "What has Roshan written?",
         "Who is Roshan?",
       ],
     },
@@ -251,7 +251,7 @@
       if (greeted) return;
       greeted = true;
       addMessage(
-        "Hi — ask me anything about this site: the case studies, the Secure India Exams project, the writing, Roshan’s background, or how to get in touch.",
+        "Hi — ask me anything about this site: the case studies, the MCP lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch.",
         "bot"
       );
       renderSuggestions();
