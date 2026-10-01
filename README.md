@@ -7,7 +7,7 @@ Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity profe
 | Path | What it is |
 |---|---|
 | `index.html`, `assets/home.css`, `assets/home.js` | The homepage: plain, hand-editable HTML and CSS (no build step, no JavaScript needed to read it). Sections are in order: hero, stats, perspective, expertise, case studies, platforms, research, career, contact. The dismissible announcement banner, the Cloudflare beacon and the chatbot widget sit at the bottom of `index.html`. |
-| `case-studies/*/`, `secure-india-exams/` | All 19 case studies are standalone, hand-editable HTML/CSS. 5 have extra hand-built diagrams/sections (`credential-tiering-model`, `shadow-ai-discovery-gap`, `non-human-identity-at-scale`, `ai-agent-credential-sharing`, `ai-processing-tax`); the other 14 use a shared, simpler template (hero, challenge, approach, outcome, tags). |
+| `case-studies/*/`, `secure-india-exams/` | All 20 case studies are standalone, hand-editable HTML/CSS. 5 have extra hand-built diagrams/sections (`credential-tiering-model`, `shadow-ai-discovery-gap`, `non-human-identity-at-scale`, `ai-agent-credential-sharing`, `ai-processing-tax`); the other 14 use a shared, simpler template (hero, challenge, approach, outcome, tags). |
 | `_posts/`, `_layouts/post.html`, `writing/index.html` | Jekyll blog posts, built by GitHub Pages automatically (no `.nojekyll` file) and served under `/writing/:title/`. `/writing/` lists every post automatically. Plain HTML/CSS, genuinely hand-editable. |
 | `assets/site.css`, `assets/polish.css` | `site.css` holds the shared styles for the 14 standard case-study pages (colours are variables at the top; each page sets its theme colour with `<body style="--c:#hex">`). The five hand-built case studies and the exam study keep their own `<style>` blocks. `polish.css` is small and additive and loads on every case-study, index and writing page: reading-progress line, previous/next cards, print view. |
 | `assets/fonts.css` | Self-hosted DM Sans, Manrope and JetBrains Mono (all SIL OFL) for every standalone page. Don't link Google Fonts: the site's CSP only allows fonts from this domain, so they'd be blocked. |
@@ -24,7 +24,7 @@ Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity profe
 
 Things that changed in the rebuild, so nothing surprises you:
 
-- The homepage now lists all 19 case studies (the React version listed 18 and left out Credential Tiering). Each row links to its own page; the old in-page "Preview" panels were dropped because every case study has a full page.
+- The homepage now lists all 20 case studies (the React version listed 18 and left out Credential Tiering). Each row links to its own page; the old in-page "Preview" panels were dropped because every case study has a full page.
 - The nav gained a **Writing** link. On phones the menu is a plain HTML `<details>` element, so it works without JavaScript.
 - Scroll-reveal animations are gone; the hero has a small load-in animation that switches off for people who prefer reduced motion.
 - Case-study titles and categories on the homepage match the pages themselves. The one-line summaries are the homepage's original wording.

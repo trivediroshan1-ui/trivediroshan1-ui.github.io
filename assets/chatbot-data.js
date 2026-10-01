@@ -9,41 +9,33 @@ window.SITE_QA = [
     id: "credential-tiering-model",
     title: "Research: Credential Tiering & the PAM Market",
     url: "/case-studies/credential-tiering-model/",
-    keywords: ["tier 0", "tier 1", "tier 2", "tier 3", "credential tiering", "tiering model", "privileged access tiering", "pam market", "which pam tool", "best pam tool", "cyberark", "delinea", "beyondtrust", "strongdm vs", "gartner magic quadrant pam"],
+    keywords: ["tier 0", "tier 1", "tier 2", "tier 3", "credential tiering", "tiering model", "privileged access tiering", "pam market", "which pam tool", "best pam tool", "cyberark", "delinea", "beyondtrust", "strongdm vs", "mint test", "blast radius"],
     answer:
-      "\"Credential Tiering & the PAM Market: Closing the Tier 0 Gap\" is an independent research piece with an animated diagram showing why Tier 0 (domain/PKI/PAM vault/cloud IdP global admin), Tier 1 (app/cloud/CI-CD), Tier 2 (workstation/helpdesk) and Tier 3 (end users) are a containment mechanism, not an org chart — comparing a standing shared credential (which lets an attacker walk from a phished Tier 2 laptop to a Tier 0 domain compromise) against a Just-in-Time vaulted credential (contained at the first PAM gate). It maps common gaps at each tier to the tool category that closes them, covers deployment topology (on-prem, hybrid, cloud-transitioning), non-human-identity and MCP-server visibility, secrets-in-code pipeline gating, where AI helps with governance, TTL vs. zero trust, a full break-glass framework, a framework diagram mapping every tool category to the risk it closes, an audit/compliance mapping table (NIST, PCI-DSS, SOX, HIPAA, ISO 27001), and a profile-based market table (large regulated enterprise, mid-market, cloud-native/DevOps-first, SMB) matching organization type to the audit/compliance-vs-cost trade-off of tools like CyberArk, Delinea, BeyondTrust, StrongDM, Teleport, Wiz and others — sourced from Gartner and current vendor comparisons, not vendor endorsement.",
+      "\"Credential Tiering & the PAM Market: Closing the Tier 0 Gap\" is independent research. A tier is a claim about which credentials can mint access to which other credentials, so a credential belongs in the highest tier of anything it can change, wherever it is stored. Each tier gets a fixed set of controls (storage, rotation, access path, monitoring, approval and session recording) that get stronger toward Tier 0. The page covers six credential classes, a classify-place-control-review workflow with a pipeline deploy key example, how PAM products map to what each tier needs, a profile view of which categories to shortlist by organization shape (large regulated enterprise, mid-market, cloud-native, small first deployment), a phased build, guardrails, audit questions and common mistakes. It says plainly that the examples are not a ranking and that no vendor is the answer for every tier.",
   },
   {
-    id: "credential-tiering-topology",
-    title: "Credential tiering: on-prem vs. hybrid vs. cloud-transitioning",
+    id: "credential-tiering-workflow",
+    title: "Credential tiering: the workflow and the deploy-key example",
     url: "/case-studies/credential-tiering-model/",
-    keywords: ["on-prem pam", "hybrid identity", "active directory pam", "entra id tier 0", "okta global admin", "cloud migration credentials", "migration accounts", "multi-cloud pam"],
+    keywords: ["classify credential", "place credential in tier", "credential classes", "deploy key", "pipeline key", "owner for every credential", "six controls", "old path"],
     answer:
-      "The Credential Tiering & the PAM Market piece has a section on how the tiering model changes by deployment topology. On-prem/AD-centric shops usually have Tier 0 limited to domain controllers and the internal CA, with the vault delegating through AD's own RBAC rather than replacing it — the slow part of rollout is legacy apps hard-coded to a static service-account password. Fully hybrid orgs (AD + Entra ID/Okta + multi-cloud) end up with two Tier 0 control planes that are rarely governed by the same process, and the real drift shows up in the sync lag between them. Cloud-transitioning orgs create temporary dual-running migration accounts that outlive the migration and often carry broad standing access to ease the cutover — the fix is giving every migration credential an expiry date at creation, not adding it to a cleanup backlog later.",
+      "The tiering page runs one loop for every credential: name an owner, classify it by what it can change, place it with the mint test (the highest tier it could reach, directly or by creating something else), apply the tier's controls and close the old path, then review on usage and whenever something changes. Its worked example is a pipeline deploy key that looks like Tier 1 until the mint test shows its role can create roles and attach policies, which makes it Tier 0 until the permissions are cut.",
   },
   {
-    id: "credential-tiering-nhi-detection",
-    title: "Finding NHIs, shadow accounts and MCP server risk (Wiz, Clutch Security)",
+    id: "credential-tiering-market",
+    title: "Credential tiering: where the PAM market fits",
     url: "/case-studies/credential-tiering-model/",
-    keywords: ["wiz security", "clutch security", "nhi discovery", "shadow accounts", "mcp server security", "mcp misuse", "ai agent credentials", "non-human identity", "ciem"],
+    keywords: ["pam vendors", "pam shortlist", "wiz security", "clutch security", "teleport", "manageengine", "hashicorp vault", "gitguardian", "nhi market", "pam capabilities"],
     answer:
-      "The case study covers what a PAM vault alone can't see: shadow admin accounts, forgotten service accounts, and AI agents/MCP servers holding their own standing credentials. Wiz builds a cloud security graph correlating IAM roles, network exposure and workload data to find effective-permission combinations a single-policy review misses — like a Tier 1 service role that becomes an effective Tier 0 path only when paired with a public-facing workload. Clutch Security is purpose-built for non-human-identity inventory: every API key, service account and workload identity across cloud and SaaS, aged and risk-scored, with orphaned ones flagged automatically. The piece treats MCP servers as a new instance of the same service-account problem — a standing credential any agent can invoke at any hour — and argues they should be inventoried, owned, scoped and time-boxed exactly like a service account, cross-linking to the site's agentic AI identity governance, AI agent credential sharing, and MCP human approval gateway work.",
+      "The tiering page says PAM products are sold as capabilities such as vaulting, session management and just-in-time access, not as tiers, so you write down what each tier needs first and then look at tools. It lists tool categories per tier (PAM vault with session recording for Tier 0, secrets management, cloud entitlement management and scanning for Tier 1, endpoint privilege management for Tier 2, NHI governance and identity governance across tiers) and a profile view by organization shape. The examples are not a league table. It also notes two market signals: GitGuardian's count of new hardcoded secrets in public commits, and consolidation of NHI products into larger platforms.",
   },
   {
-    id: "credential-tiering-pipeline-and-ai",
-    title: "Secrets pipeline gating, AI for governance, and TTL vs. zero trust",
+    id: "credential-tiering-guardrails",
+    title: "Credential tiering: phases, guardrails and what goes wrong",
     url: "/case-studies/credential-tiering-model/",
-    keywords: ["secret scanning pipeline", "gitguardian", "gitleaks", "trufflehog", "pre-merge scan", "ai governance", "ai identity risk", "ttl authentication", "zero trust vs ttl", "just in time vs zero trust"],
+    keywords: ["tiering phases", "tiering guardrails", "tier 0 too small", "tiering mistakes", "ai agent tier", "temporary credentials expiry", "tiering lessons"],
     answer:
-      "Two more sections in the Credential Tiering piece: a four-step walkthrough of how a hardcoded secret actually gets stopped (commit, pre-merge scan in a required pipeline stage like GitHub Actions/GitLab CI/Jenkins/Vela, build blocked outright rather than just flagged, fix and rotate) — the point being where the scanner sits (GitGuardian, TruffleHog, Gitleaks) matters more than which one you pick. And a section on AI and governance: AI is genuinely useful for pattern-matching access anomalies, pre-filling certification decisions with usage evidence, and drafting JIT justifications — but the AI agent doing that analysis needs its own credential tiered, scoped and time-boxed too, or it becomes its own Tier 0/1 risk. On TTL vs. zero trust, the piece argues it's not a real choice — TTL is one control inside zero trust, not an alternative — and recommends TTL/JIT everywhere as the baseline, with continuous device/behavioral verification layered on top specifically at Tier 0 and the break-glass path.",
-  },
-  {
-    id: "credential-tiering-breakglass",
-    title: "The break-glass access framework (animated diagram)",
-    url: "/case-studies/credential-tiering-model/",
-    keywords: ["break glass access", "emergency access process", "break glass framework", "break glass steps", "pam gate failure", "emergency credential"],
-    answer:
-      "The Credential Tiering piece has a full break-glass section with its own animated six-stage framework diagram: trigger conditions defined in advance, invocation logged (requester + reason) before access is granted, access that's narrower in scope but shorter in duration than a normal JIT grant, full session recording, a second approver notified the moment it's invoked (a notification, not a blocking step), and forced credential rotation the instant the session ends whether or not it was used. The piece argues the PAM gate itself is a single point of failure and break-glass is the deliberately narrow path for that — and that if break-glass gets used often enough to feel routine, that's a sign the standing JIT process is missing a legitimate use case, not evidence the process is working. The dedicated break-glass access case study goes further into the design.",
+      "The tiering page builds in phases, Tier 0 first: agree the definitions, inventory and classify, close Tier 0 with a gate, hardware-key sign-in, two approvers and recording, then work down. Common failures it lists: Tier 0 drawn too small, a vault that stops at Tier 0, classification done once, the gate being a single point of failure (hence a tested break-glass path), tiers turning into org charts, a product mistaken for a tier, temporary credentials that never expire, and AI agents with standing access. Habits it recommends include asking what a credential can mint before where it lives, finishing Tier 0 first, keeping to four tiers and testing the boundary by trying to cross it.",
   },
   {
     id: "about",
@@ -67,7 +59,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["case studies", "case study", "portfolio", "projects", "work examples", "list of case studies", "what's on this site", "whats on this site", "what is on the website", "sections"],
     answer:
-      "The site has a portfolio of privacy-safe case studies (employer names, client details and internal metrics are deliberately excluded from all of them): Credential Management Platform Strategy, PAM Modernization & Zero Standing Privilege, Privileged Access Migration Planning, PAM/NHI & Cloud Platform Evaluation, IAM Audit & Control-Mapping Framework, AI as a Security Product Co-worker, Non-Human Identity at Scale, Just-in-Time & Just-Enough-Access Elevation, Break-Glass Access, Secrets Sprawl & Consolidation, Third-Party & Vendor Privileged Access Governance, Access Recertification & IGA Automation, Passwordless Authentication Rollout, Cloud Entitlement Management (CIEM) at Scale, Agentic AI Identity Governance, the AI Processing Tax research piece, AI Agent Credential Sharing (three real breaches, one root cause), and the Shadow AI Discovery Gap research piece, and Credential Tiering & the PAM Market (the Tier 0-3 containment model plus a PAM vendor-fit market table). There's also the independent Secure India Exams project and a security blog.",
+      "The site has 20 privacy-safe case studies (employer names, client details and internal metrics are left out of all of them): Credential Management Platform Strategy, PAM Modernization & Zero Standing Privilege, How I Run a Privileged Access Program, Privileged Access Migration Planning, PAM/NHI & Cloud Platform Evaluation, IAM Audit & Control-Mapping Framework, AI as a Security Product Co-worker, Non-Human Identity at Scale, Just-in-Time & Just-Enough-Access Elevation, Break-Glass Emergency Access, Secrets Sprawl & Consolidation, Third-Party & Vendor Privileged Access Governance, Access Recertification & IGA Automation, Passwordless Authentication Rollout, Cloud Entitlement Management (CIEM) at Scale, Agentic AI Identity Governance, the AI Processing Tax research piece, One Key, Every Agent (AI agent credential sharing), the Shadow AI Discovery Gap research piece, and Credential Tiering & the PAM Market (the Tier 0-3 model and where PAM tools fit). There's also the independent Secure India Exams project and a security blog.",
   },
   {
     id: "credential-platform",
@@ -75,7 +67,7 @@ window.SITE_QA = [
     url: "/case-studies/credential-platform/",
     keywords: ["credential management platform strategy", "credential platform"],
     answer:
-      "\"Credential Management Platform Strategy\" — turning fragmented credential use cases into a coherent, governable enterprise service. Problem: credentials were handled across different technologies, teams and operating patterns, creating inconsistent ownership and control expectations. Approach: defined platform personas, service boundaries and an IAM-facing service catalog; mapped credential lifecycles from onboarding through rotation, monitoring and retirement; connected product decisions to governance and auditable controls. Outcome: a reusable product framework for selecting, onboarding and governing credential-management capabilities.",
+      "\"Credential Management Platform Strategy\" covers how to turn scattered passwords, keys and tokens into one service. Credentials end up in vaults, config files, chat, wikis and pipeline variables, and the usual problem is that nobody owns the whole picture. The platform has three parts: a short service catalog, one named owner for every credential, and a lifecycle that runs the same way for all of them. Where a short-lived identity will do, use it before vaulting a long-lived secret.",
   },
   {
     id: "pam-modernization",
@@ -83,15 +75,23 @@ window.SITE_QA = [
     url: "/case-studies/pam-modernization/",
     keywords: ["pam modernization", "zero standing privilege"],
     answer:
-      "\"PAM Modernization & Zero Standing Privilege\" — evolving privileged access from persistent entitlement toward verified, time-bound access. Developed a capability view spanning vaulting, rotation, session governance and just-in-time authorization; evaluated Zero Standing Privilege patterns against user journeys and integration constraints. Outcome: a modernization direction treating privileged access as a governed product journey, not just a vault deployment.",
+      "\"PAM Modernization & Zero Standing Privilege\" is about moving privileged access from permanent admin rights to short, approved, recorded sessions, and proving to an auditor that it works. Most PAM programs stop once passwords are in a vault, and the remaining risk is access that never expires. Modernizing means four things together: vault the secret, rotate it, put a recorded session in front of it, and grant access only for the length of the task, with evidence at every step.",
+  },
+  {
+    id: "privileged-access-program",
+    title: "Case study: How I Run a Privileged Access Program",
+    url: "/case-studies/privileged-access-program/",
+    keywords: ["privileged access program", "pam program", "how i run", "pam roadmap", "pam rollout", "pam architecture", "pam poc", "proof of concept", "pam training", "go-live", "hypercare"],
+    answer:
+      "\"How I Run a Privileged Access Program\" is the order I follow from the first conversation to the last training session. It starts with the organization's pain, not a tool: talk to stakeholders, assess any existing tool, run a proof of concept with more than one product against the real problems, then decide and engage professional services. Design and planning cover the architecture, inventory sign-off, wave plan and requirements, and policies such as break-glass and naming are approved before they are built. Delivery goes Dev, pre-prod, production with go/no-go criteria, a rollback plan and a security review of the platform, then training, go-live and hypercare. It also covers privilege beyond people (service accounts, IoT, OT, AI agents) and lists the documents I leave behind.",
   },
   {
     id: "migration-planning",
     title: "Case study: Privileged Access Migration Planning",
     url: "/case-studies/migration-planning/",
-    keywords: ["migration planning", "privileged access migration", "erpm"],
+    keywords: ["migration planning", "privileged access migration", "pam migration"],
     answer:
-      "\"Privileged Access Migration Planning\" — leading the analysis to move privileged capabilities safely between platforms. Led ERPM PAM tool analysis and capability mapping for the target-state decision; structured migration waves around dependency, risk, access criticality and rollback readiness. Outcome: a risk-aware migration approach that made hidden dependencies visible before implementation.",
+      "\"Privileged Access Migration Planning\" is how I plan a move from one privileged access tool to another so nothing the old tool quietly did gets lost. I start by analysing what the current tool does, what it fails to do and what is inside it, then run discovery and get the plan signed off before anything moves. Waves follow dependency, risk, access criticality and rollback readiness, every secret is rotated at cutover, and the plan covers archiving logs and recordings and switching the old tool off.",
   },
   {
     id: "platform-evaluation",
@@ -99,7 +99,7 @@ window.SITE_QA = [
     url: "/case-studies/platform-evaluation/",
     keywords: ["platform evaluation", "delinea", "strongdm", "clutch security", "wiz"],
     answer:
-      "\"PAM, NHI & Cloud Platform Evaluation\" — comparing platforms through use-case fit, controls and operating-model readiness. Completed Delinea Secret Server and PRA proof-of-concept work, led StrongDM product analysis and operating-model planning, alongside structured assessments of Clutch Security and Wiz. Outcome: decision-ready analysis connecting technical capability to governance, integration and product ownership.",
+      "\"PAM, NHI & Cloud Platform Evaluation\" is a method for comparing platforms. Feature lists do not settle a decision, so I write scenarios, weights and pass marks first, run every candidate through the same scripts, and score before anyone argues. The result is a decision record linking what a tool can do to integration, operations, audit and ownership. The work covered Delinea Secret Server and Privileged Remote Access proofs of concept, StrongDM product analysis and operating-model planning, and assessments of Clutch Security and Wiz. The page is about method and does not rank those products.",
   },
   {
     id: "audit-mapping",
@@ -107,7 +107,7 @@ window.SITE_QA = [
     url: "/case-studies/audit-mapping/",
     keywords: ["audit mapping", "control mapping", "iam audit"],
     answer:
-      "\"IAM Audit & Control-Mapping Framework\" — translating control intent into platform responsibility, implementation evidence and sustainable ownership. Evaluated IAM control intent against platform capabilities and mapped control objectives to owners, evidence types and review considerations. Outcome: improved traceability between IAM design decisions and the evidence needed to demonstrate control effectiveness.",
+      "\"IAM Audit & Control-Mapping Framework\" is about connecting what an IAM control is meant to do with the proof that it did, who holds that proof and how often someone looks at it. The tool is a control register with one row per control: a plain objective, one owner, the system setting that enforces it, the evidence it produces and how fresh that evidence must be. Evidence is collected by a scheduled job into a store the audited people cannot edit, and every gap gets an owner and an expiry date.",
   },
   {
     id: "ai-coworker",
@@ -115,15 +115,15 @@ window.SITE_QA = [
     url: "/case-studies/ai-coworker/",
     keywords: ["ai coworker", "ai co-worker", "chatgpt", "claude", "llm", "openai use"],
     answer:
-      "\"AI as a Security Product Co-worker\" — using LLMs and agent workflows to accelerate analysis while protecting judgment, provenance and sensitive data. Uses OpenAI/ChatGPT and Claude to structure research, compare options and improve executive communication; analyzes MCP and agentic-AI trust boundaries; keeps human validation, source checking and confidential-data boundaries explicit in every workflow. Outcome: a repeatable co-working model that increases analytical speed without outsourcing accountability.",
+      "\"AI as a Security Product Co-worker\" covers how to bring an AI assistant into a working team. Treat it like a new team member: a job, a named owner, its own identity, access limited to that job, and a written agreement about what it does alone and what needs a yes. Every connection to a company tool, including MCP, is an access decision, so a broker and a policy sit in front of it, a person checks anything that writes, sends or leaves the company, and everything is logged. The author uses OpenAI, ChatGPT and Claude to structure research, compare options and tighten writing.",
   },
   {
     id: "non-human-identity-at-scale",
     title: "Case study: Non-Human Identity at Scale",
     url: "/case-studies/non-human-identity-at-scale/",
-    keywords: ["non-human identity", "non human identity", "nhi", "machines outnumber people", "50 to 1", "interactive sandbox", "risk model"],
+    keywords: ["non-human identity", "non human identity", "nhi", "service account inventory", "machine identity", "risk scoring"],
     answer:
-      "\"Non-Human Identity at Scale\" — machines outnumber people roughly 50 to 1 in most enterprises. This is the site's newest case study, with a live interactive sandbox demonstrating the risk-scoring model. Problem: service accounts, API keys, workload identities and AI agents accumulate faster than any team can govern; ownership gets lost and audits default to belief instead of evidence. Approach: correlate identities across vault, IAM, cloud IAM and CI/CD into one inventory; rank each identity by blast radius, staleness and ownership gap; route the highest-risk identities into rotation, ownership assignment or retirement. Outcome: a non-human identity inventory and risk-scoring model turning thousands of untracked machine identities into a ranked, ownable backlog.",
+      "\"Non-Human Identity at Scale\" covers finding the service accounts, keys, tokens and agents nobody wrote down, giving each one an owner, ranking them by risk and replacing the long-lived ones with credentials that expire. Start with one inventory with a named owner against every entry and a flag on every entry with none. A simple score turns it into a queue, ranked on how long since the secret changed, how much it can do and whether anyone owns it, with exposure and last use next. The best fix removes the secret, using a role, federation or short-lived token before rotating a static key.",
   },
   {
     id: "jit-jea-elevation",
@@ -131,7 +131,7 @@ window.SITE_QA = [
     url: "/case-studies/jit-jea-elevation/",
     keywords: ["just-in-time", "just enough access", "jit", "jea", "elevation", "standing access"],
     answer:
-      "\"Just-in-Time & Just-Enough-Access Elevation\" — replacing standing administrative access with time-boxed, scope-limited elevation that closes automatically. An advisory step proposes scope and duration from request context, but the requester/approver still make the decision; elevation expires automatically and reverts to zero by default. Outcome: converted the majority of standing admin role assignments into time-boxed elevation without adding an approval bottleneck.",
+      "\"Just-in-Time & Just-Enough-Access Elevation\" replaces standing admin role membership with time-boxed, scope-limited elevation that closes automatically. Each request opens a window and the window closes on its own, sized from what people actually did with the role. An advisory step can propose scope and duration, but the requester and the approver still decide.",
   },
   {
     id: "break-glass-access",
@@ -139,7 +139,7 @@ window.SITE_QA = [
     url: "/case-studies/break-glass-access/",
     keywords: ["break glass", "break-glass", "emergency access"],
     answer:
-      "\"Break-Glass Access\" — designing emergency access that stays usable under pressure without becoming a permanent bypass. Separated break-glass credentials from standing accounts so invoking them is a distinct, logged event; added an advisory check flagging break-glass usage matching normal-hours, repeat-user patterns; required post-use justification and automatic credential rotation. Outcome: every break-glass invocation now produces a reviewed justification and a rotated credential the same day.",
+      "\"Break-Glass Emergency Access\" is about designing emergency access that stays usable under pressure without becoming a permanent bypass. It has to work when the PAM platform, identity provider and MFA service may all be down. Five habits keep it from turning into a side door: credentials kept apart from standing accounts, every use a logged event, an alert on any sign-in or checkout, a written justification, and rotation the same day. An advisory check flags use that looks routine, a person decides, and the account is tested on a calendar.",
   },
   {
     id: "secrets-consolidation",
@@ -147,7 +147,7 @@ window.SITE_QA = [
     url: "/case-studies/secrets-consolidation/",
     keywords: ["secrets sprawl", "secrets consolidation", "vault", "hard-coded credentials"],
     answer:
-      "\"Secrets Sprawl & Consolidation\" — turning credentials scattered across code, CI/CD and config files into a single governed vault. Scanned repositories, pipelines and configuration stores to build a real inventory of where credentials lived; added an advisory classifier ranking each secret by exposure and blast radius; migrated ranked secrets into a managed vault and blocked new hard-coded credentials at the pipeline stage. Outcome: replaced scattered credentials with a ranked, vaulted inventory.",
+      "\"Secrets Sprawl & Consolidation\" is about finding credentials scattered across repositories, pipelines and config files and moving them into one governed service that applications read at runtime. Anything a scan finds is treated as compromised: rotate first, clean history second, then move it into a governed store. Migrate one application at a time, fetch at runtime, use short-lived or federated credentials where possible, then block new secrets at commit and pipeline and retire the old stores. An advisory classifier can propose a ranking and a person confirms it.",
   },
   {
     id: "vendor-privileged-access",
@@ -155,7 +155,7 @@ window.SITE_QA = [
     url: "/case-studies/vendor-privileged-access/",
     keywords: ["vendor access", "third-party access", "vendor privileged access", "contractor access"],
     answer:
-      "\"Third-Party & Vendor Privileged Access Governance\" — governing external vendor access with the same scrutiny as internal privileged accounts. Built a distinct onboarding path scoped to a specific vendor, engagement and system; added an advisory plain-language summary of vendor access for approvers. Outcome: replaced shared, standing vendor credentials with engagement-scoped access that expires with the contract.",
+      "\"Third-Party & Vendor Privileged Access Governance\" treats a vendor engineer like any other privileged user, plus rules about sponsorship and end dates. Each vendor person gets their own named account, a named internal sponsor, MFA and an end date, and reaches the target through a broker that records the session with no network path of their own. Expiry does the offboarding: if nothing renews the access it ends, and the sponsor has to say yes again to keep it. An advisory plain-language summary helps approvers, and the real scope stays next to it.",
   },
   {
     id: "access-recertification",
@@ -163,7 +163,7 @@ window.SITE_QA = [
     url: "/case-studies/access-recertification/",
     keywords: ["access recertification", "iga automation", "recertification", "access review"],
     answer:
-      "\"Access Recertification & IGA Automation\" — turning a manual quarterly access review into a governed process backed by usage evidence. Connected entitlement data to actual usage logs; added an advisory recommendation pre-flagging likely-dormant entitlements for revocation; fed certification decisions back into the identity governance system so revocations execute automatically. Outcome: cut average certification review time while increasing the revocation rate for dormant entitlements.",
+      "\"Access Recertification & IGA Automation\" turns a manual quarterly review into a governed process backed by usage evidence. A review that asks managers to approve long lists from memory produces a signature, not a control. Each line shows who owns the account, whether it was used and an advisory keep or revoke suggestion the reviewer can overrule. The decision then executes from the identity governance system and is checked, because a certification is only finished when the access is gone and you can show it.",
   },
   {
     id: "passwordless-authentication",
@@ -171,7 +171,7 @@ window.SITE_QA = [
     url: "/case-studies/passwordless-authentication/",
     keywords: ["passwordless", "phishing-resistant", "authentication rollout"],
     answer:
-      "\"Passwordless Authentication Rollout\" — sequencing a passwordless migration by risk instead of rolling it out to everyone at once. Inventoried authentication methods and device posture before setting migration order; added an advisory risk score per user/device so highest-risk accounts migrate to phishing-resistant authentication first; kept a fallback path during each wave. Outcome: highest-risk accounts moved first, and credential-based helpdesk tickets fell as each wave completed.",
+      "\"Passwordless Authentication Rollout\" moves a workforce to phishing-resistant sign-in in risk order: privileged users first, then people who reach high-risk apps, then everyone else. A single company-wide date puts the heaviest support load on the worst day. Recovery decides whether the program works, since a lost key fixed by text message or password reset gives attackers an easier route. A fallback stays during each wave and retires only when adoption and help-desk data say it is stable. An advisory per-user risk score proposes the order and a named person approves it. Legacy apps and break-glass accounts get named plans.",
   },
   {
     id: "ciem-at-scale",
@@ -179,7 +179,7 @@ window.SITE_QA = [
     url: "/case-studies/ciem-at-scale/",
     keywords: ["ciem", "cloud entitlement management", "toxic combination", "privilege escalation"],
     answer:
-      "\"Cloud Entitlement Management (CIEM) at Scale\" — finding the toxic entitlement combinations that individual cloud IAM rules miss. Built a unified view of effective permissions across cloud accounts/providers; added an advisory reasoning pass over the entitlement graph surfacing combinations that together allow privilege escalation; routed flagged combinations through the existing human-approval gate. Outcome: surfaced toxic entitlement combinations that per-policy review had missed.",
+      "\"Cloud Entitlement Management (CIEM) at Scale\" is about finding toxic entitlement combinations that individual cloud IAM rules miss. Cloud identities hold far more access than they use, and each cloud already records the usage data to measure that gap. What an identity can really do is the union of everything attached to it plus whatever it reaches through trust links. Every cut goes to an owner for approval with a rollback, backed by policy as code and organization-level guardrails. An advisory pass over the entitlement graph proposes combinations and must cite the policy statements behind each finding.",
   },
   {
     id: "agentic-ai-identity-governance",
@@ -187,7 +187,7 @@ window.SITE_QA = [
     url: "/case-studies/agentic-ai-identity-governance/",
     keywords: ["agentic ai identity governance", "ai agent identity", "sub-agent", "agent permissions"],
     answer:
-      "\"Agentic AI Identity Governance\" — AI agents request permissions, spawn sub-agents and chain actions across systems at runtime, an identity that changes shape while it runs. Issued every agent a scoped, short-lived credential tied to a single task; replaced point-in-time access review with continuous re-authorization; routed high-risk agent actions through a human-in-the-loop approval gate (the same pattern used in the MCP Human Approval Gateway lab). Outcome: a target-state model issuing permission per task, re-evaluating continuously, with human approval as a designed control.",
+      "\"Agentic AI Identity Governance\" is a governance model for an identity that changes shape in the middle of a task, since agents pick up scopes, call APIs and launch sub-agents as they run. Each agent gets its own identity, a named human owner and no standing access, with one short-lived credential per task scoped to one tool, a decision on every action, and a person for actions that are expensive to undo. Sub-agents get less, never more. The record shows who the agent acted for, and there is a kill switch that gets practised.",
   },
   {
     id: "ai-processing-tax",
@@ -195,23 +195,23 @@ window.SITE_QA = [
     url: "/case-studies/ai-processing-tax/",
     keywords: ["ai processing tax", "humangate", "decision-package gate", "production cost", "processing cost"],
     answer:
-      "\"The AI Processing Tax\" — independent research: AI collapsed the cost of producing work, but not the cost of deciding on it — that unpaid cost lands on whoever has the least capacity to absorb it. Cross-checked against four independent studies (BetterUp/Stanford AI-ROI study, an NBER executive survey, Goldman Sachs data). Mapped the same pattern onto an identity/access workflow and specified a decision-package gate for a concept called HumanGate — requiring options, a recommendation and a confidence level before a human ever sees a request. Outcome: a named, evidence-backed failure mode (\"the processing tax\") and a specific, testable control — specified, not yet built.",
+      "\"The AI Processing Tax\" is independent research. AI made producing work nearly free but did not make deciding on it free, and that cost moves to whoever opens the file next, often the people with the least slack. The page checks the idea against four independent sources and is clear that none measures it directly. The control it specifies is a decision-package gate where an AI agent hands a request to a human: it sends back any handoff that has not done its own thinking first, and checks completeness, never correctness, so the human keeps the judgment. It is a design, not a built system.",
   },
   {
     id: "ai-agent-credential-sharing",
-    title: "Research: AI Agent Credential Sharing",
+    title: "Research: AI Agent Credential Sharing (One Key, Every Agent)",
     url: "/case-studies/ai-agent-credential-sharing/",
-    keywords: ["ai agent credential sharing", "salesloft drift", "klue", "powerschool", "shared credential", "long-lived credential"],
+    keywords: ["ai agent credential sharing", "one key every agent", "salesloft drift", "shared credential", "long-lived credential", "agent credentials"],
     answer:
-      "\"AI Agent Credential Sharing\" — independent research on three real breaches in thirteen months, three different industries, one shared root cause: a single long-lived credential wired into everything an agent touches. Traced Salesloft Drift, Klue and PowerSchool back to the same shared-credential pattern; cross-referenced current NHI research (69% of enterprises share AI agent credentials; machine identities outnumber humans by roughly 79:1; GitGuardian logged 28.65 million leaked secrets on public GitHub in 2025). Set out a credential-issuance guardrail checklist — least privilege at issuance, JIT ephemeral credentials, lifecycle automation, behavioral monitoring with a containment SLA — that would have contained each incident to a single system.",
+      "\"One Key, Every Agent\" looks at what goes wrong when AI agents run on a person's token or a team's shared key: the logs name the wrong party, access is wider than the task, secrets leak into prompts, config and logs, tokens live too long, and one leak reaches every system. It uses the 2025 Salesloft Drift token compromise as the clearest public example of the same shape. The alternative is that each agent has its own identity and a broker issues a short-lived credential for one task and one target on behalf of a named user, so the model never sees the secret and every record shows both the agent and the person.",
   },
   {
     id: "shadow-ai-discovery-gap",
     title: "Research: Shadow AI Discovery Gap",
     url: "/case-studies/shadow-ai-discovery-gap/",
-    keywords: ["shadow ai", "shadow-ai", "discovery gap", "unsanctioned ai", "sec filing", "samsung leak"],
+    keywords: ["shadow ai", "shadow-ai", "discovery gap", "unsanctioned ai", "unapproved ai", "samsung"],
     answer:
-      "\"Shadow AI Discovery Gap\" — independent research on a 2023 leak, a 2026 SEC filing, and a supply-chain breach through a browser extension: three incidents, one invisible root cause — AI tools employees adopted that security never approved. Traced Samsung's leak, the first-ever SEC Form 8-K filed over unauthorized employee AI use, and a browser-extension supply-chain breach back to unmanaged, unapproved AI tools. Found shadow-AI-linked incidents nearly doubled year over year (20% to 43% of AI-related breaches). Set out a discovery-first guardrail sequence: continuous AI/agent discovery, sanctioned alternatives instead of blanket bans, data controls at the AI boundary, and materiality-aware incident response.",
+      "\"You can't govern the AI tools you don't know exist\" is about the gap between the AI a company approves and the AI its people use. Discovery comes before policy and draws on proxy and network logs, browser and endpoint data, SaaS and OAuth grants, expense records and the data stores. Each finding is classified by the data it touches and gets one of four outcomes: allow, allow with controls, replace or block. A block alone moves use out of sight, so the approved route has to be quicker than the one people found, and the gap is measured by how much use moves onto it.",
   },
   {
     id: "secure-india-exams",
