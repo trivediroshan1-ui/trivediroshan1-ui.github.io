@@ -54,6 +54,7 @@
   "keywords": "agentic ai, non human identity, zero standing privilege, mcp, continuous authorization"
 }
     </script>
+      <link rel="stylesheet" href="/assets/casestudy.css?v=20261002">
   </head>
   <body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
@@ -343,6 +344,12 @@
         <h2>Try the pattern</h2>
         <p class="body-text">Status: live. I built a working lab of the approval step described above, so you can run it instead of reading about it. An agent asks to use a tool, a policy engine decides, higher-risk requests wait for a person with the right role, and an approval is time-bound, single-use and tied to the exact request. The lab also answers real MCP calls from a local server, and the source, threat model and tests are public.</p>
         <p class="body-text"><a href="/mcp-human-approval-gateway/">Open the MCP lab</a> &middot; <a href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a>. All data in it is synthetic, and the reviewers are simulated, so it shows the pattern and proves nothing about any real deployment.</p>
+        <figure class="watch">
+          <video controls preload="none" playsinline poster="/assets/mcp-workflow-poster.webp" aria-label="The MCP human approval gateway explained in 55 seconds, with captions">
+            <source src="/assets/mcp-workflow.mp4" type="video/mp4">
+          </video>
+          <figcaption>A 55-second, captioned walk through who is acting when an AI agent calls a tool, and where the approval step sits.</figcaption>
+        </figure>
       </section>
 
       <section id="sources">
@@ -380,5 +387,6 @@
     <link rel="stylesheet" href="/assets/chatbot-widget.css" />
     <script src="/assets/chatbot-data.js"></script>
     <script defer src="/assets/chatbot-widget.js"></script>
+      <script defer src="/assets/casestudy.js?v=20261002"></script>
   </body>
 </html>
