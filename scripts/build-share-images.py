@@ -46,6 +46,17 @@ body{width:1200px;height:630px;background:#04060c;position:relative;overflow:hid
 <div class=label>@@label@@</div><div class=title>@@title@@</div>
 <div class=by>Roshan Trivedi <span>&middot; Identity security</span></div><div class=url>roshantrivedi.co.in</div>"""
 
+# Section pages: name -> (title, label, accent). Home keeps the profile card.
+PAGES = {
+    "about": ("About Roshan Trivedi", "About", "cyan"),
+    "ai": ("AI and Agentic Security", "AI · Identity security", "violet"),
+    "now": ("What I'm working on now", "Now", "green"),
+    "resume": ("Resume: Roshan Trivedi", "Resume", "amber"),
+    "writing": ("Writing on identity and privileged access", "Writing", "green"),
+    "case-studies": ("Case Studies", "Case studies", "cyan"),
+    "tier-check": ("PAM Tier Check", "Tool · Privileged access", "amber"),
+}
+
 def main():
     # Drafts are skipped on purpose: an image file is public, so a draft's
     # title would be visible before the post is. The image is made when the
@@ -59,6 +70,8 @@ def main():
         if "share_title" not in fm:
             print("skip (no share_title):", p.name); continue
         todo.append((slug(p), fm))
+    for n, (t, l, a) in PAGES.items():
+        todo.append(("page-" + n, {"share_title": t, "share_label": l, "share_accent": a}))
     with sync_playwright() as pw:
         b = pw.chromium.launch(); pg = b.new_page(viewport={"width": 1200, "height": 630})
         for s, fm in todo:
