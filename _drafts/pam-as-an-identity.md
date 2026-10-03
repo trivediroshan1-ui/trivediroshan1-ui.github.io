@@ -5,6 +5,9 @@ date: 2026-10-18 10:00:00 +0530
 author: Roshan Trivedi
 tags: [pam, iga, identity-governance, privileged-access, joiner-mover-leaver, access-certification]
 diagrams: true
+share_title: "PAM as an Identity"
+share_label: "Article · Privileged access"
+share_accent: green
 description: "Why a privileged account should be managed as an identity with an owner and a lifecycle, what you have to build inside PAM when there is no IGA, and how the plan changes when PAM is linked to one."
 ---
 
