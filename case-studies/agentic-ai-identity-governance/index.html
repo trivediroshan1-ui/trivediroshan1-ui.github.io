@@ -73,7 +73,7 @@
         <ul>
           <li>An agent is a non-human identity that makes choices at runtime. Give it its own identity, a named human owner, and no standing access.</li>
           <li>Issue one short-lived credential per task, scoped to one tool, and decide again on every action. Actions that are expensive to undo wait for a person.</li>
-          <li>Record who the agent acted for, not only that it acted. Keep a switch that turns the agent off, and practise using it.</li>
+          <li>Record who the agent acted for, not only that it acted. Keep a switch that turns the agent off, and practice using it.</li>
         </ul>
       </div>
 
@@ -243,8 +243,8 @@
           <li><b>1. Find the agents and name the owners</b>Inventory what already runs, including agents on personal keys. Create the registry and give every agent an owner. Retire what nobody claims.<small><em>Done when</em>Every known agent has an owner and a purpose on record.</small></li>
           <li><b>2. Put a broker in front of the first tools</b>Pick one or two tools with real impact. Issue short-lived, audience-restricted tokens through a broker and take the long-lived keys out of the configuration.<small><em>Done when</em>Those agents hold no standing credential for those tools.</small></li>
           <li><b>3. Add per-action policy and approval</b>Define risk tiers. Allow low-risk reads, require a person for hard-to-undo actions, and bind each approval to its parameters.<small><em>Done when</em>A deletion or payment cannot go through without a recorded approver.</small></li>
-          <li><b>4. Record delegation and watch for drift</b>Make every token and log line carry the agent, the principal and a correlation ID. Report granted permissions against observed behaviour.<small><em>Done when</em>You can answer &ldquo;which agent did this, for whom&rdquo; from the logs alone.</small></li>
-          <li><b>5. Practise the stop and the lifecycle</b>Run a drill that suspends an agent and measures how long access takes to end. Add expiry dates, owner attestation and retirement to the routine.<small><em>Done when</em>A drill has been run and its result recorded, and registrations expire when nobody confirms them.</small></li>
+          <li><b>4. Record delegation and watch for drift</b>Make every token and log line carry the agent, the principal and a correlation ID. Report granted permissions against observed behavior.<small><em>Done when</em>You can answer &ldquo;which agent did this, for whom&rdquo; from the logs alone.</small></li>
+          <li><b>5. Practice the stop and the lifecycle</b>Run a drill that suspends an agent and measures how long access takes to end. Add expiry dates, owner attestation and retirement to the routine.<small><em>Done when</em>A drill has been run and its result recorded, and registrations expire when nobody confirms them.</small></li>
         </ol>
       </section>
 
@@ -321,7 +321,7 @@
           <li><strong>The MCP server as a pass-through.</strong> Forwarding the caller&rsquo;s token looks simpler. It erases the audit trail and breaks the audience boundary.</li>
           <li><strong>Logs that name the person and hide the agent.</strong> If delegation is not recorded, the human gets blamed for, or credited with, actions they never saw.</li>
           <li><strong>Sub-agents that inherit everything.</strong> A child that carries the parent&rsquo;s full rights turns one compromise into a chain of them.</li>
-          <li><strong>The prompt treated as a control.</strong> An instruction to the model is a request. The OWASP guidance on excessive agency is clear that authorization belongs in the downstream system and not in the model&rsquo;s judgement.</li>
+          <li><strong>The prompt treated as a control.</strong> An instruction to the model is a request. The OWASP guidance on excessive agency is clear that authorization belongs in the downstream system and not in the model&rsquo;s judgment.</li>
           <li><strong>Local servers that nobody registered.</strong> Servers started on a laptop through stdio sit outside the broker. Decide what is allowed there early.</li>
           </ul>
       </section>
