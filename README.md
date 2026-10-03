@@ -90,3 +90,7 @@ Each article can have its own 1200x630 preview image, in the same style as the c
     share_accent: green        # cyan, green, amber or violet
 
 Then run `python3 scripts/build-share-images.py` and commit the new `assets/og-post-<slug>.png`. Drafts are skipped on purpose, because an image file is public: make the image when the post moves from `_drafts/` to `_posts/`. A post without `share_title` falls back to the profile card.
+
+## Home page CSS is inline
+
+To keep the first paint fast on phones, the home page's four stylesheets are inlined into `index.html`. Edit the files in `assets/` as usual (`fonts.css`, `home.css`, `upgrade.css`, `chatbot-widget.css`), then run `python3 scripts/inline-home-css.py` and commit `index.html`.
