@@ -5,6 +5,9 @@ date: 2026-10-11 10:00:00 +0530
 author: Roshan Trivedi
 tags: [pam, iam, privileged-access, project-planning, zero-standing-privilege]
 diagrams: true
+share_title: "A PAM Project Plan for Tier 1, 2 and 3 Organisations"
+share_label: "Article · Privileged access"
+share_accent: green
 description: "How I size a privileged access management project from readiness gates and capacity inputs, and turn that into a 90, 180 or 365 day plan with phases, exit criteria and deferrals."
 ---
 

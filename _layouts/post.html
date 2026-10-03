@@ -11,16 +11,17 @@
     <meta name="description" content="{{ page.description | escape }}">
         <link rel="alternate" type="application/rss+xml" title="Roshan Trivedi — Writing" href="/feed.xml" />
     <link rel="canonical" href="https://roshantrivedi.co.in{{ page.url }}">
+    {% if page.share_title %}{% capture share_image %}https://roshantrivedi.co.in/assets/og-post-{{ page.slug }}.png{% endcapture %}{% else %}{% assign share_image = "https://roshantrivedi.co.in/assets/og-roshan-trivedi.png" %}{% endif %}
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ page.title | escape }}">
     <meta property="og:description" content="{{ page.description | escape }}">
     <meta property="og:url" content="https://roshantrivedi.co.in{{ page.url }}">
-    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png">
+    <meta property="og:image" content="{{ share_image }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="article:published_time" content="{{ page.date | date: '%Y-%m-%d' }}">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png">
+    <meta name="twitter:image" content="{{ share_image }}">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -31,7 +32,7 @@
       "author": { "@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/" },
       "publisher": { "@type": "Person", "name": "Roshan Trivedi" },
       "mainEntityOfPage": "https://roshantrivedi.co.in{{ page.url }}",
-      "image": "https://roshantrivedi.co.in/assets/og-roshan-trivedi.png",
+      "image": "{{ share_image }}",
       "keywords": {{ page.tags | join: ", " | jsonify }}
     }
     </script>
