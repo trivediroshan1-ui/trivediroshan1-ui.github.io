@@ -43,6 +43,14 @@
     });
   }
 
+  // Visitors may type British spellings; the site uses US ones.
+  function usSpelling(t) {
+    return t.replace(/(organ|author|minim|standard|recogn|summar|central|categor)is/g, "$1iz")
+      .replace(/behaviour/g, "behavior").replace(/colour/g, "color").replace(/centre/g, "center")
+      .replace(/licence/g, "license").replace(/programme/g, "program").replace(/enrol(?!l)/g, "enroll")
+      .replace(/analys(e|ed|ing)\b/g, "analyz$1");
+  }
+
   function hasPhrase(text, phrase) {
     var p = phrase.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     return new RegExp("(^|[^a-z0-9])" + p + "([^a-z0-9]|$)").test(text);
@@ -68,7 +76,7 @@
 
   function search(query) {
     var qTokens = tokenize(query);
-    var rawQuery = query.toLowerCase();
+    var rawQuery = usSpelling(query.toLowerCase());
     if (qTokens.length === 0) return [];
 
     var scored = window.SITE_QA.map(function (entry) {

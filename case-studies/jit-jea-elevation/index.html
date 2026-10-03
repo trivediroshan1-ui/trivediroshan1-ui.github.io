@@ -156,7 +156,7 @@
             <text class="sub" x="180" y="658" text-anchor="middle">Every step is logged to the SIEM</text>
             <circle class="dot" r="5"><animateMotion dur="8s" repeatCount="indefinite" path="M 40 250 L 40 600"/></circle>
           </svg>
-          <figcaption>Illustrative only. The top part shows the shape: a constant bar against short windows. The dots show one request travelling through its four steps. The windows in the diagram are not measured data.</figcaption>
+          <figcaption>Illustrative only. The top part shows the shape: a constant bar against short windows. The dots show one request traveling through its four steps. The windows in the diagram are not measured data.</figcaption>
         </figure>
       </section>
 
@@ -172,7 +172,7 @@
             <tr><td data-label="Target">Databases</td><td data-label="How the window is made">In my approach, a brokered session with a login or role that is granted for the window and revoked when it ends.</td><td data-label="Watch for">Applications often hold their own database logins. Those belong to the credential platform, not to this flow.</td></tr>
             <tr><td data-label="Target">Kubernetes</td><td data-label="How the window is made">In my approach, short-lived access bound to a narrow role, with cluster-wide admin reserved for a small, approved set of cases.</td><td data-label="Watch for">Cluster roles can be broader than anyone intended. Review what each role really allows before you size a window for it.</td></tr>
           </tbody></table></div>
-        <p class="body-text">A vendor-neutral summary comes from the UK National Cyber Security Centre. Instead of using a credential to reach an administration interface, the administrator uses it to request access, and if the request is approved a temporary credential is issued. The NCSC also says that shortening how long an administration credential can be used cuts the attacker&rsquo;s window if one is stolen.</p>
+        <p class="body-text">A vendor-neutral summary comes from the UK National Cyber Security Center. Instead of using a credential to reach an administration interface, the administrator uses it to request access, and if the request is approved a temporary credential is issued. The NCSC also says that shortening how long an administration credential can be used cuts the attacker&rsquo;s window if one is stolen.</p>
       </section>
 
       <section id="workflow">
