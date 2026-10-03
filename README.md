@@ -80,3 +80,13 @@ Watch the green checkmark under **Deployments → github-pages** on the repo's m
 The chatbot answers from the site's own pages, in the browser, with no API. After you add or change a page, rebuild its search index and commit the result:
 
     python3 scripts/build-chat-index.py
+
+## Article share images
+
+Each article can have its own 1200x630 preview image, in the same style as the case-study ones. Add three lines to the post's front matter:
+
+    share_title: "Short title for the image"
+    share_label: "Article · Privileged access"
+    share_accent: green        # cyan, green, amber or violet
+
+Then run `python3 scripts/build-share-images.py` and commit the new `assets/og-post-<slug>.png`. Drafts are skipped on purpose, because an image file is public: make the image when the post moves from `_drafts/` to `_posts/`. A post without `share_title` falls back to the profile card.
