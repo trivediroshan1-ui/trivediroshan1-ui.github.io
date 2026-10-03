@@ -9,7 +9,7 @@ It rewrites the block between the inline-css markers in index.html.
 """
 import re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-FILES = ["fonts.css", "home.css", "upgrade.css", "chatbot-widget.css"]
+FILES = ["fonts.css", "home.css", "upgrade.css", "chatbot-widget.css", "theme.css"]
 css = ""
 for f in FILES:
     t = (ROOT / "assets" / f).read_text()
