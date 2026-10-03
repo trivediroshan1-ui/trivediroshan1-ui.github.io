@@ -1,6 +1,6 @@
 # roshantrivedi.co.in
 
-Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity professional specialising in Identity & Access Management (IAM), Privileged Access Management (PAM), and Zero Trust architecture. Hosted on GitHub Pages at the custom domain [roshantrivedi.co.in](https://roshantrivedi.co.in).
+Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity professional specializing in Identity & Access Management (IAM), Privileged Access Management (PAM), and Zero Trust architecture. Hosted on GitHub Pages at the custom domain [roshantrivedi.co.in](https://roshantrivedi.co.in).
 
 ## What's here
 
@@ -9,7 +9,7 @@ Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity profe
 | `index.html`, `assets/home.css`, `assets/home.js` | The homepage: plain, hand-editable HTML and CSS (no build step, no JavaScript needed to read it). Sections are in order: hero, stats, perspective, expertise, case studies, platforms, research, career, contact. The dismissible announcement banner, the Cloudflare beacon and the chatbot widget sit at the bottom of `index.html`. |
 | `case-studies/*/`, `secure-india-exams/` | All 20 case studies are standalone, hand-editable HTML/CSS. 5 have extra hand-built diagrams/sections (`credential-tiering-model`, `shadow-ai-discovery-gap`, `non-human-identity-at-scale`, `ai-agent-credential-sharing`, `ai-processing-tax`); the other 14 use a shared, simpler template (hero, challenge, approach, outcome, tags). |
 | `_posts/`, `_layouts/post.html`, `writing/index.html` | Jekyll blog posts, built by GitHub Pages automatically (no `.nojekyll` file) and served under `/writing/:title/`. `/writing/` lists every post automatically. Plain HTML/CSS, genuinely hand-editable. |
-| `assets/site.css`, `assets/polish.css` | `site.css` holds the shared styles for the 14 standard case-study pages (colours are variables at the top; each page sets its theme colour with `<body style="--c:#hex">`). The five hand-built case studies and the exam study keep their own `<style>` blocks. `polish.css` is small and additive and loads on every case-study, index and writing page: reading-progress line, previous/next cards, print view. |
+| `assets/site.css`, `assets/polish.css` | `site.css` holds the shared styles for the 14 standard case-study pages (colors are variables at the top; each page sets its theme color with `<body style="--c:#hex">`). The five hand-built case studies and the exam study keep their own `<style>` blocks. `polish.css` is small and additive and loads on every case-study, index and writing page: reading-progress line, previous/next cards, print view. |
 | `assets/fonts.css` | Self-hosted DM Sans, Manrope and JetBrains Mono (all SIL OFL) for every standalone page. Don't link Google Fonts: the site's CSP only allows fonts from this domain, so they'd be blocked. |
 | `404.html` | Custom not-found page; GitHub Pages serves it for any missing URL. |
 | `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | Site icons (RT monogram), linked from every page. |
@@ -30,7 +30,7 @@ Things that changed in the rebuild, so nothing surprises you:
 - Case-study titles and categories on the homepage match the pages themselves. The one-line summaries are the homepage's original wording.
 - Fonts come from `assets/fonts.css` like every other page.
 
-**Editing the homepage:** open `index.html` and change the text directly. The markup is in section order, and every style is in `assets/home.css` (colours are variables at the top). `assets/home.js` is optional: it only closes the phone menu after you tap a link, and the page works without it. To add a case study to the list, copy an existing `<article class="cs-row">` block and update the number, category, title, link and summary.
+**Editing the homepage:** open `index.html` and change the text directly. The markup is in section order, and every style is in `assets/home.css` (colors are variables at the top). `assets/home.js` is optional: it only closes the phone menu after you tap a link, and the page works without it. To add a case study to the list, copy an existing `<article class="cs-row">` block and update the number, category, title, link and summary.
 
 ## How to update this site yourself
 
@@ -55,7 +55,7 @@ Add a new file under `_posts/` named `YYYY-MM-DD-a-short-slug.md`, following the
 
 **Change the homepage's layout or nav:** edit `index.html` and `assets/home.css` like any other page.
 
-**Add a new case study:** copy `case-studies/access-recertification/index.html` as a starting template (it uses `/assets/site.css`, so you only write content), fill in the content, set `--c` on `<body>` to the theme colour, and add the new URL to `sitemap.xml`. Then add it to the homepage list and to the previous/next order: each case study has a `<nav class="pager">` near the bottom, and the neighbours of the new page need their links updated by hand.
+**Add a new case study:** copy `case-studies/access-recertification/index.html` as a starting template (it uses `/assets/site.css`, so you only write content), fill in the content, set `--c` on `<body>` to the theme color, and add the new URL to `sitemap.xml`. Then add it to the homepage list and to the previous/next order: each case study has a `<nav class="pager">` near the bottom, and the neighbours of the new page need their links updated by hand.
 
 **Check it went live:**
 Watch the green checkmark under **Deployments → github-pages** on the repo's main page, then refresh [roshantrivedi.co.in](https://roshantrivedi.co.in) (hard-refresh / add `?v=2` to the URL if your browser cached the old version).
@@ -73,7 +73,7 @@ Watch the green checkmark under **Deployments → github-pages** on the repo's m
 - `/tools/tier-check/` is a client-side self-check driven by `assets/tier-check.js` (nothing is sent anywhere).
 - `/case-studies/` filter chips use `assets/filter.js` and each card's `data-group`.
 - `feed.xml` is the RSS feed (Jekyll builds it from `_posts`).
-- Share images `assets/og-case-*.png` were generated from the case-study titles and group colours (1200x630).
+- Share images `assets/og-case-*.png` were generated from the case-study titles and group colors (1200x630).
 
 ## Site chatbot index
 
