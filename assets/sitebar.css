@@ -1,5 +1,5 @@
 /* Shared slim navigation and "where next" band for inner pages. Uses tokens.css values with safe fallbacks. */
-.hg-sitenav{position:sticky;top:3px;z-index:60;display:flex;align-items:center;gap:1.1rem;padding:.55rem max(16px,calc((100vw - 1120px)/2));background:color-mix(in srgb,var(--bg,#05080f) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(138,160,190,.16);font-family:"DM Sans","Manrope",system-ui,sans-serif}
+.hg-sitenav{position:sticky;top:3px;z-index:60;display:flex;align-items:center;gap:1.1rem;padding:.55rem max(16px,calc((100vw - 1120px)/2));background:rgba(5,8,15,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(138,160,190,.16);font-family:"DM Sans","Manrope",system-ui,sans-serif}
 .hg-sitenav .brand{font-weight:700;letter-spacing:.01em;color:inherit;text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:.5rem}
 .hg-sitenav .brand i{width:9px;height:9px;border-radius:50%;background:#4de2ff;box-shadow:0 0 0 3px rgba(77,226,255,.18)}
 .hg-sitenav ul{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
@@ -55,3 +55,6 @@ html[data-theme="light"] .hg-series ol a:hover{border-color:#0a6150}
 html[data-theme="light"] .hg-sitenav li a{color:#25344a;opacity:1}
 html[data-theme="light"] .hg-sitenav li a[aria-current="page"]{color:#0a6178}
 html[data-theme="light"] .watch figcaption,html[data-theme="light"] .pager small,html[data-theme="light"] .pager .all strong,html[data-theme="light"] .rt-toc p,html[data-theme="light"] .sc-more{color:#475569}
+
+html[data-theme="light"] .hg-sitenav{background:rgba(245,247,251,.97)}
+.hg-series ol span{display:block}

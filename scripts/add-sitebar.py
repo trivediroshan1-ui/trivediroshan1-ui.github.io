@@ -32,7 +32,7 @@ for p in sorted(ROOT.rglob("*.html")):
     h = p.read_text()
     if "hg-sitenav" in h or 'class="page-footer"' not in h: continue
     url = "/" + rel[:-10] if rel.endswith("index.html") else "/" + rel
-    h = re.sub(r'(</head>)', '    <link rel="stylesheet" href="/assets/sitebar.css">\n  \\1', h, count=1)
+    h = re.sub(r'(</head>)', '    <link rel="stylesheet" href="/assets/sitebar.css?v=20261010b">\n  \\1', h, count=1)
     m = re.search(r'(<a class="skip"[^>]*>[^<]*</a>\s*)', h)
     if m: h = h[:m.end()] + nav(url) + h[m.end():]
     else:
