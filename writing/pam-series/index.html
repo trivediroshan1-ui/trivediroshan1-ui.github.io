@@ -92,30 +92,13 @@ layout: null
       </header>
 
       <div class="posts">
-        {% assign part1 = site.posts | where_exp: "p", "p.series == 'pam' and p.part == 1" | first %}
-        {% if part1 %}
-        <a class="post" href="{{ part1.url }}">
-          <span class="post-meta">Part 1 of 3 &middot; {{ part1.date | date: "%d %b %Y" }} &middot; {{ part1.content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</span>
-          <h2>{{ part1.title }}</h2>
-          {% if part1.description %}<p>{{ part1.description }}</p>{% endif %}
+        {% for post in site.posts reversed %}{% if post.series == "pam" %}
+        <a class="post" href="{{ post.url }}">
+          <span class="post-meta">Part {{ post.part }} of 3 &middot; {{ post.date | date: "%d %b %Y" }} &middot; {{ post.content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</span>
+          <h2>{{ post.title }}</h2>
+          {% if post.description %}<p>{{ post.description }}</p>{% endif %}
         </a>
-        {% endif %}
-        {% assign part2 = site.posts | where_exp: "p", "p.series == 'pam' and p.part == 2" | first %}
-        {% if part2 %}
-        <a class="post" href="{{ part2.url }}">
-          <span class="post-meta">Part 2 of 3 &middot; {{ part2.date | date: "%d %b %Y" }} &middot; {{ part2.content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</span>
-          <h2>{{ part2.title }}</h2>
-          {% if part2.description %}<p>{{ part2.description }}</p>{% endif %}
-        </a>
-        {% endif %}
-        {% assign part3 = site.posts | where_exp: "p", "p.series == 'pam' and p.part == 3" | first %}
-        {% if part3 %}
-        <a class="post" href="{{ part3.url }}">
-          <span class="post-meta">Part 3 of 3 &middot; {{ part3.date | date: "%d %b %Y" }} &middot; {{ part3.content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</span>
-          <h2>{{ part3.title }}</h2>
-          {% if part3.description %}<p>{{ part3.description }}</p>{% endif %}
-        </a>
-        {% endif %}
+        {% endif %}{% endfor %}
       </div>
 
       <footer class="page-footer">
