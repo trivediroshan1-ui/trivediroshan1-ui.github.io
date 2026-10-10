@@ -94,3 +94,7 @@ Then run `python3 scripts/build-share-images.py` and commit the new `assets/og-p
 ## Home page CSS is inline
 
 To keep the first paint fast on phones, the home page's four stylesheets are inlined into `index.html`. Edit the files in `assets/` as usual (`fonts.css`, `home.css`, `upgrade.css`, `chatbot-widget.css`), then run `python3 scripts/inline-home-css.py` and commit `index.html`.
+
+## Design system
+
+Shared colours, type, spacing and components live in `assets/tokens.css` (prefix `hg-`) and are documented, with measured contrast, at `/design-system/`. The idea: colour says who acts (cyan policy gate, violet a person, green verified execution, amber audit or unknown, rose refused). After editing the home page's stylesheets, run `python3 scripts/inline-home-css.py`.
