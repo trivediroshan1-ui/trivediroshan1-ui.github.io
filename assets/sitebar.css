@@ -1,0 +1,22 @@
+/* Shared slim navigation and "where next" band for inner pages. Uses tokens.css values with safe fallbacks. */
+.hg-sitenav{position:sticky;top:3px;z-index:60;display:flex;align-items:center;gap:1.1rem;padding:.55rem max(16px,calc((100vw - 1120px)/2));background:color-mix(in srgb,var(--bg,#05080f) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(138,160,190,.16);font-family:"DM Sans","Manrope",system-ui,sans-serif}
+.hg-sitenav .brand{font-weight:700;letter-spacing:.01em;color:inherit;text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:.5rem}
+.hg-sitenav .brand i{width:9px;height:9px;border-radius:50%;background:#4de2ff;box-shadow:0 0 0 3px rgba(77,226,255,.18)}
+.hg-sitenav ul{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.hg-sitenav ul::-webkit-scrollbar{display:none}
+.hg-sitenav li a{display:inline-flex;align-items:center;min-height:40px;padding:0 .7rem;border-radius:999px;color:inherit;opacity:.78;text-decoration:none;font-size:.9rem;white-space:nowrap;transition:opacity .2s,background .2s}
+.hg-sitenav li a:hover{opacity:1;background:rgba(77,226,255,.1)}
+.hg-sitenav li a[aria-current="page"]{opacity:1;background:rgba(77,226,255,.14);box-shadow:inset 0 -2px 0 #4de2ff}
+.hg-sitenav a:focus-visible,.hg-next a:focus-visible{outline:2px solid #4de2ff;outline-offset:2px}
+.hg-next{max-width:1120px;margin:3.5rem auto 1.5rem;padding:0 16px;font-family:"DM Sans","Manrope",system-ui,sans-serif}
+.hg-next .ttl{font-weight:700;font-size:clamp(1.3rem,3vw,1.7rem);margin:.2rem 0 .3rem}
+.hg-next .eyebrow{font:600 .72rem/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:#4de2ff;margin:0}
+.hg-next .lede{margin:0 0 1.1rem;max-width:60ch;opacity:.8}
+.hg-next .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem}
+.hg-next .grid a{display:flex;flex-direction:column;gap:.25rem;padding:1rem 1.1rem;min-height:92px;border:1px solid rgba(138,160,190,.22);border-top:3px solid var(--k,#4de2ff);border-radius:12px;background:rgba(255,255,255,.03);color:inherit;text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
+.hg-next .grid a:hover{transform:translateY(-2px);background:rgba(255,255,255,.06)}
+.hg-next .grid b{font-size:1rem}.hg-next .grid span{font-size:.85rem;opacity:.75;line-height:1.35}
+@media (max-width:900px){.hg-next .grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.hg-sitenav ul{gap:0}.hg-sitenav{gap:.2rem;padding-inline:12px}.hg-sitenav li a{padding:0 .3rem;font-size:.8rem}.hg-sitenav .brand span{display:none}.hg-sitenav .brand{margin-right:.2rem}.hg-sitenav ul{margin-left:0;flex:1;justify-content:space-between}.hg-next .grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.hg-next .grid a,.hg-sitenav li a{transition:none}.hg-next .grid a:hover{transform:none}}
+@media print{.hg-sitenav,.hg-next{display:none}}

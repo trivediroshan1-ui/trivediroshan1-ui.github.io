@@ -21,10 +21,12 @@
     <link rel="stylesheet" href="/assets/theme.css">
     <link rel="stylesheet" href="/assets/mcp-results.css?v=20261010">
     <script src="/assets/theme.js"></script>
-</head>
+    <link rel="stylesheet" href="/assets/sitebar.css">
+  </head>
   <body style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
-    <main id="main">
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true"></i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Case studies</a></li><li><a href="/writing/">Writing</a></li><li><a href="/mcp-lab-case-study/" aria-current="page">MCP lab</a></li><li><a href="/about/">About</a></li><li><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
       <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a></nav>
       <header class="hero mcp-hero">
         <p class="eyebrow">MCP lab</p>
@@ -64,6 +66,17 @@ node scripts/run-use-cases.mjs</code></pre>
 <section id="notyet" class="ucgrp" style="--g:#2563eb"><h2>Not done yet</h2><p class="body-text">Honest list of what has not been tested.</p><article class="uc" id="U14"><h3><code>U14</code> A second MCP client</h3><dl><dt>What I do</dt><dd>Run a second, different MCP client against the same gateway.</dd><dt>What happened</dt><dd>Not done.</dd></dl></article><article class="uc" id="U15"><h3><code>U15</code> Policy changes while an approval is pending</h3><dl><dt>What I do</dt><dd>The policy version is in the hash, so it should invalidate.</dd><dt>What happened</dt><dd>Not done. Needs a code change to test.</dd></dl></article><article class="uc" id="U16"><h3><code>U16</code> A tool definition changes after approval</h3><dl><dt>What I do</dt><dd>Sometimes called a rug pull.</dd><dt>What happened</dt><dd>Not done.</dd></dl></article><article class="uc" id="X1"><h3><code>X1</code> Binding profiles</h3><dl><dt>What I do</dt><dd>Each tool declares locked fields and fields allowed to vary, with a version number on the rules.</dd><dt>What happened</dt><dd>Not built. This is the open design idea behind T15, T17 and E1 to E11.</dd></dl></article><article class="uc" id="X2"><h3><code>X2</code> Smuggling through allowed-to-vary fields</h3><dl><dt>What I do</dt><dd>Put a payload in a field that is allowed to change.</dd><dt>What happened</dt><dd>Not built.</dd></dl></article><article class="uc" id="X3"><h3><code>X3</code> A conformance runner for any approval gateway</h3><dl><dt>What I do</dt><dd>The same cases against any gateway, printed as a pass/fail table.</dd><dt>What happened</dt><dd>Not built.</dd></dl></article></section>
 
       <section><p class="mcp-cta"><a class="btn btn-primary" href="/assets/humangate-mcp-lab-test-results.pdf">Download the full report (PDF, 43 pages)</a> <a class="btn btn-ghost" href="/mcp-human-approval-gateway/">Try the lab in your browser</a> <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a></p></section>
+      <aside class="hg-next" aria-labelledby="hg-next-t">
+        <p class="eyebrow">Where next</p>
+        <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>
+        <p class="lede">Everything here is written to be useful on its own. If it matches a problem you are working on, I would like to hear how you handle it.</p>
+        <div class="grid">
+          <a href="/case-studies/" style="--k:#7df2d0"><b>All case studies</b><span>Privileged access, credentials, governance and agent identity.</span></a>
+          <a href="/#mcp-flow" style="--k:#4de2ff"><b>The MCP approval lab</b><span>Follow one request through the gateway, with the tests behind it.</span></a>
+          <a href="/Roshan_Trivedi_Resume.pdf" style="--k:#c4b5fd"><b>R&eacute;sum&eacute;</b><span>Roles, focus areas and background (PDF).</span></a>
+          <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>LinkedIn, GitHub and email, all in one place.</span></a>
+        </div>
+      </aside>
       <footer class="page-footer">
         <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
         <a href="/">roshantrivedi.co.in</a>
