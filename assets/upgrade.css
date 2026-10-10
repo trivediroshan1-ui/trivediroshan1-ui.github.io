@@ -129,3 +129,8 @@
   @keyframes stepflow { 0%, 22%, 100% { box-shadow: none; transform: none; } 8%, 16% { box-shadow: 0 0 28px color-mix(in srgb, var(--c) 35%, transparent); transform: translateX(6px); } }
 }
 .feature { margin-bottom: 34px; }
+
+/* hero: keep the calls to action on the first screen */
+html body .hero .hero-grid{min-height:0;align-items:start}
+@media (min-width:980px){html body .hero{padding-top:calc(var(--header-height) + 1.25rem + var(--notice-h,0px))}}
+@media (min-width:980px){html body .hero .portrait{aspect-ratio:.8}html body .hero .portrait img{object-position:50% 16%}html body .hero-visual{max-width:420px}}
