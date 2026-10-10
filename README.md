@@ -98,3 +98,5 @@ To keep the first paint fast on phones, the home page's four stylesheets are inl
 ## Design system
 
 Shared colours, type, spacing and components live in `assets/tokens.css` (prefix `hg-`) and are documented, with measured contrast, at `/design-system/`. The idea: colour says who acts (cyan policy gate, violet a person, green verified execution, amber audit or unknown, rose refused). After editing the home page's stylesheets, run `python3 scripts/inline-home-css.py`.
+
+The slim top bar and the "Where next" band on inner pages are added by `python3 scripts/add-sitebar.py` (safe to re-run; styles in `assets/sitebar.css`).
