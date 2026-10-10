@@ -135,8 +135,8 @@
     .raci-i{background:var(--grey-600);color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
 
     /* FLOW */
-    .flow{display:flex;flex-wrap:wrap;gap:0;margin:20px 0}
-    .flow-step{flex:1 1 130px;background:var(--light-bg);padding:14px 10px;text-align:center;position:relative;font-size:.8rem}
+    .flow{display:flex;flex-wrap:wrap;gap:0;margin:20px 0;max-width:100%}
+    .flow-step{flex:1 1 130px;min-width:0;max-width:100%;overflow-wrap:anywhere;background:var(--light-bg);padding:14px 10px;text-align:center;position:relative;font-size:.8rem}
     .flow-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:1.2rem;color:var(--navy);font-weight:700;z-index:1}
     .flow-step .flow-icon{font-size:1.3rem;display:block;margin-bottom:5px}
     .flow-step strong{display:block;color:var(--navy);font-weight:700;font-size:.78rem;margin-bottom:2px}
