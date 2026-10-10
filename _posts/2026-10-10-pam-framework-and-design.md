@@ -1,8 +1,10 @@
 ---
 title: "PAM Framework and Design: What Sits Around the Vault"
 layout: post
-date: 2026-10-04 10:00:00 +0530
+date: 2026-10-10 10:35:00 +0530
 author: Roshan Trivedi
+series: pam
+part: 1
 tags: [pam, iam, privileged-access, architecture, zero-trust, help-desk]
 share_title: "PAM Framework and Design: What Sits Around the Vault"
 share_label: "Article · Privileged access"

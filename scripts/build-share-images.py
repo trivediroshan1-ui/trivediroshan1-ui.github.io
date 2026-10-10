@@ -54,6 +54,7 @@ PAGES = {
     "resume": ("Resume: Roshan Trivedi", "Resume", "amber"),
     "writing": ("Writing on identity and privileged access", "Writing", "green"),
     "case-studies": ("Case Studies", "Case studies", "cyan"),
+    "pam-series": ("The PAM series", "Series · Privileged access", "green"),
     "tier-check": ("PAM Tier Check", "Tool · Privileged access", "amber"),
 }
 

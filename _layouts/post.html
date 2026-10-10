@@ -70,6 +70,8 @@
       .tags { display: flex; flex-wrap: wrap; gap: 6px; }
       .tags span { border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; background: rgba(255,255,255,0.02); }
       h2::before { content: ""; display: inline-block; width: 4px; height: 0.9em; margin-right: 10px; vertical-align: -0.1em; border-radius: 2px; background: linear-gradient(180deg, var(--accent), #7df2d0); }
+      .series-line { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin: 0 0 18px; }
+      .series-line a { color: var(--accent); font-weight: 600; }
       .post-cta { margin-top: 3rem; padding: 20px 22px; border-radius: 16px; border: 1px solid rgba(88,230,246,0.28); background: linear-gradient(135deg, rgba(34,211,238,0.09), rgba(11,18,32,0.9)); display: flex; flex-direction: column; gap: 6px; }
       .post-cta strong { font-family: var(--display); font-size: 17px; }
       .post-cta span { color: var(--muted); font-size: 14px; line-height: 1.6; }
@@ -96,6 +98,7 @@
   <nav class="nav"><a href="/">&larr; roshantrivedi.co.in</a> &middot; <a href="/writing/">all writing</a> &middot; <a href="/case-studies/">case studies</a></nav>
   <div class="meta">{{ page.date | date: "%d %b %Y" }} · {{ page.author }} · {{ content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</div>
   <div class="tags">{% for tag in page.tags %}<span>#{{ tag }}</span>{% endfor %}</div>
+  {% if page.series == "pam" %}<p class="series-line">Part {{ page.part }} of 3 in the PAM series, <a href="/writing/pam-series/">see all parts</a></p>{% endif %}
   {{ content }}
   <aside class="post-cta">
     <strong>Want the deeper dive?</strong>
