@@ -227,7 +227,55 @@ window.SITE_QA = [
     url: "/mcp-human-approval-gateway/",
     keywords: ["mcp human approval gateway", "mcp lab", "mcp", "interactive lab", "human approval gateway", "agentic ai lab", "approval gateway", "ai agent approval"],
     answer:
-      "The MCP lab is a hands-on demo you can run in the browser at /mcp-human-approval-gateway/. An AI agent asks to use a tool, a deterministic policy engine decides, higher-risk requests wait for a role-qualified human to approve or deny, and an approval is time-bound, single-use and tied to the exact request. Every step goes into a hash-chained audit log, and an animated architecture view shows the path each scenario takes. Nine scenarios cover auto-approval, review queues, prompt-injected context, scope creep, unregistered tools, replay and audit tampering. All data is synthetic, the AI analyst is advisory only, and the source, threat model and tests are on GitHub: github.com/trivediroshan1-ui/mcp-human-approval-gateway.",
+      "The MCP lab is a hands-on demo you can run in the browser at /mcp-human-approval-gateway/. An AI agent asks to use a tool, a deterministic policy engine decides (not an AI model), higher-risk requests wait for a person who is not the requester, and an approval is tied to the exact request, works once and expires after 10 to 60 minutes depending on risk. Every step, including refusals, goes into a hash-chained audit log. All tools are synthetic and the AI analyst is advisory only. Source, threat model and tests: github.com/trivediroshan1-ui/mcp-human-approval-gateway. Roshan tested it with 210 automated tests and a 76-case runner: 72 behaved as expected, 1 differed, 3 are for information. The write-ups are the case study (/mcp-lab-case-study/), 81 documented use cases (/mcp-lab-use-cases/), the results page (/mcp-lab-results/) and a 43-page PDF report. This shows what this gateway did on these cases; it does not prove it secure.",
+  },
+  {
+    id: "mcp-lab-case-study",
+    title: "MCP lab case study",
+    url: "/mcp-lab-case-study/",
+    keywords: ["mcp case study","mcp lab case study","can a person stay in control of an ai agent","what held","what did not hold","humangate"],
+    answer:
+      "The MCP lab case study asks: can a person stay in control of an AI agent? Roshan built a small approval gate for MCP tool calls, then tried to break it 76 ways. The page explains what held, what did not and what he still does not know. Colours show who acts: policy gate, a person, execution, audit or unknown, refused. Read it at /mcp-lab-case-study/.",
+  },
+  {
+    id: "mcp-lab-results",
+    title: "MCP lab test results",
+    url: "/mcp-lab-results/",
+    keywords: ["mcp results","mcp test results","how many tests","76 cases","210 tests","what failed","test report","mcp report pdf","report"],
+    answer:
+      "The results page lists what happened in the MCP lab tests: 210 automated tests and a 76-case runner, with 72 as expected, 1 different and 3 for information. It records the gaps found and what was fixed, and the full 43-page report is a PDF at /assets/humangate-mcp-lab-test-results.pdf. Tools are synthetic, reviewer names are typed rather than proven, and each case was run once on Roshan's own machines.",
+  },
+  {
+    id: "mcp-lab-use-cases",
+    title: "MCP lab use cases",
+    url: "/mcp-lab-use-cases/",
+    keywords: ["mcp use cases","use cases","81 use cases","replay","binding mismatch","expired approval","unknown outcome","lost reply"],
+    answer:
+      "The use-cases page documents 81 scenarios for the MCP approval gateway, each with what was done, what was expected, what happened and why it matters. Examples: a low-risk call runs at once, a risky call waits for a person, an approval used twice is refused as a replay, a request changed after approval is refused as a binding mismatch, an approval expires after its window, and a lost reply stays unknown until a person settles it. 76 of the 81 were run in the runner. See /mcp-lab-use-cases/.",
+  },
+  {
+    id: "request-explorer",
+    title: "Request explorer on the homepage",
+    url: "/#mcp-flow",
+    keywords: ["explorer","request explorer","pick a request","see where it stops","interactive flow","stages"],
+    answer:
+      "On the homepage, 'Pick a request. See where it stops.' lets you choose one of six recorded situations (a docs lookup, a production deploy, a change after approval, an approval used twice, an expired approval, a lost reply) and see what the gateway did at each stage: request, policy gate, a person, grant, execute, audit. It is an illustrative walk-through of recorded outcomes with synthetic tools, not a live feed.",
+  },
+  {
+    id: "design-system",
+    title: "Design system",
+    url: "/design-system/",
+    keywords: ["design system","design","colours","colors","tokens","who acts","website design","light theme","dark theme"],
+    answer:
+      "The site's design idea is that colour says who acts: cyan for the policy gate, violet for a person, green for a verified execution, amber for audit or an unknown outcome, rose for refused. The design system page at /design-system/ documents the tokens and components with measured contrast. The site has dark and light themes, works on phones, and respects reduced-motion settings.",
+  },
+  {
+    id: "mcp-video",
+    title: "MCP lab video",
+    url: "/#mcp-video",
+    keywords: ["video","90 second video","mcp video","watch","walkthrough"],
+    answer:
+      "The MCP lab video is a silent, captioned walk-through of about 90 seconds on the homepage. It follows one request through the six stages (request, policy gate, a person, grant, execute, audit) and shows what happens when a request is changed after approval or replayed. Tools are synthetic.",
   },
   {
     id: "blog",
