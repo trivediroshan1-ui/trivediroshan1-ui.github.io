@@ -60,7 +60,6 @@ Add a new file under `_posts/` named `YYYY-MM-DD-a-short-slug.md`, following the
 **Check it went live:**
 Watch the green checkmark under **Deployments → github-pages** on the repo's main page, then refresh [roshantrivedi.co.in](https://roshantrivedi.co.in) (hard-refresh / add `?v=2` to the URL if your browser cached the old version).
 
-**Prefer not to touch code at all?** You can always describe the change you want in plain English to Claude and have it make the edit and commit for you the same way this update was made.
 
 ## Contact
 
