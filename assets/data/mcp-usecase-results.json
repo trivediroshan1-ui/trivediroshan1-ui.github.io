@@ -1,0 +1,1300 @@
+{
+ "title": "HumanGate use-case run (after the fixes)",
+ "startedAt": "2026-10-10T16:08:16.809Z",
+ "finishedAt": "2026-10-10T16:08:26.158Z",
+ "environment": {
+  "node": "v22.22.2",
+  "os": "linux 6.18.44-fc-v114 x64",
+  "gatewayCommit": "e3eebdd",
+  "realWaitIncluded": false
+ },
+ "tally": {
+  "as expected": 72,
+  "different from prediction": 1,
+  "info": 3
+ },
+ "total": 76,
+ "cases": [
+  {
+   "id": "B1",
+   "group": "Baseline",
+   "title": "tools/list",
+   "expected": "9 tools",
+   "observed": "9 tools",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "B2",
+   "group": "Baseline",
+   "title": "Low-risk tool (docs.search) runs without a human",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "B3",
+   "group": "Baseline",
+   "title": "deploy.production waits for a human",
+   "expected": "pending_approval",
+   "observed": "pending_approval",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "riskLevel": "critical",
+     "requiredRole": "security-lead"
+    }
+   ]
+  },
+  {
+   "id": "B5",
+   "group": "Baseline",
+   "title": "Approved request runs once",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "B6",
+   "group": "Baseline",
+   "title": "Same approval used a second time",
+   "expected": "replay_blocked",
+   "observed": "replay_blocked",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "B7",
+   "group": "Baseline",
+   "title": "Extra scope on a low-risk tool",
+   "expected": "denied",
+   "observed": "denied",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "B8",
+   "group": "Baseline",
+   "title": "Resource changed after approval, then the original",
+   "expected": "binding_mismatch, then executed",
+   "observed": "binding_mismatch, then executed",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "T15",
+   "group": "A. Changed after approval",
+   "title": "Harmless field (timestamp) changed",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    },
+    {
+     "note": "execute the original afterwards",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id 27043ec0-f6f3-4b5d-92da-210290515ae4, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "T16",
+   "group": "A. Changed after approval",
+   "title": "Key order swapped in arguments",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id 2eb97594-d1e0-4fdc-b129-e37648f28686, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "T17",
+   "group": "A. Changed after approval",
+   "title": "One trailing space added to the justification (trimmed by the binding rules)",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id 78ff0ca2-9f2d-4078-9d34-cff4bb3cd3d8, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "T18",
+   "group": "A. Changed after approval",
+   "title": "Cyrillic 'a' in the resource name",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "T19",
+   "group": "A. Changed after approval",
+   "title": "Extra argument added",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "T20",
+   "group": "A. Changed after approval",
+   "title": "Two executions at the same moment",
+   "expected": "executed + replay_blocked",
+   "observed": "executed + replay_blocked",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "call A",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id e8c55e1d-1e80-4234-af55-c39b8f91d43b, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    },
+    {
+     "note": "call B",
+     "http": 200,
+     "outcome": "replay_blocked",
+     "text": "REFUSED (replay_blocked). This authorization has already been consumed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "T29",
+   "group": "A. Changed after approval",
+   "title": "existingScopes changed (not part of the hash)",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id 8ac9e41d-dc18-41d7-b95c-b851e1d18fe5, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "T30",
+   "group": "A. Changed after approval",
+   "title": "Context text changed",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "E1",
+   "group": "F. Encoding and normalization",
+   "title": "environment 'production' then 'Production'",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id 7e31d21c-eef4-4821-a169-169fa601ff40, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "E2",
+   "group": "F. Encoding and normalization",
+   "title": "trailing space on the resource",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id ab7fa067-60a7-4208-91a0-d10c97468115, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "E3",
+   "group": "F. Encoding and normalization",
+   "title": "trailing space inside an arguments value",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "E4",
+   "group": "F. Encoding and normalization",
+   "title": "arguments: null value vs key missing",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "E5",
+   "group": "F. Encoding and normalization",
+   "title": "composed vs decomposed \u00e9 (NFC vs NFD)",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "E6",
+   "group": "F. Encoding and normalization",
+   "title": "number 1 vs text \"1\" in arguments",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "E7",
+   "group": "F. Encoding and normalization",
+   "title": "double space inside the justification",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "E8",
+   "group": "F. Encoding and normalization",
+   "title": "trailing space on the context",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id b8f59a7c-cbfb-4fba-8bf9-3175cff76c9a, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "E9",
+   "group": "F. Encoding and normalization",
+   "title": "dataClassification 'confidential' then 'Confidential'",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id 508b19af-ec7d-45d9-8a03-063efdee1b59, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "E10",
+   "group": "F. Encoding and normalization",
+   "title": "key order inside a nested argument object",
+   "expected": "executed",
+   "observed": "executed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "executed",
+     "text": "EXECUTED (simulated). Pretended to deploy a synthetic build. No real system was touched. Execution id 5b02409f-c192-4fb9-93b3-474736ee2b10, result digest fb3e1204edbbf67dec8113d86697602e2741189a6473783459d278156711f024. The approval is used up. Repeating this call with the same idempotencyKey return"
+    }
+   ]
+  },
+  {
+   "id": "E11",
+   "group": "F. Encoding and normalization",
+   "title": "zero-width space appended to the justification",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "approve",
+     "http": 200
+    },
+    {
+     "note": "execute with the change",
+     "http": 200,
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "T22",
+   "group": "D. People and abuse",
+   "title": "Hostile instructions inside the request text",
+   "expected": "denied",
+   "observed": "denied",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "first call",
+     "outcome": "denied"
+    }
+   ]
+  },
+  {
+   "id": "T23",
+   "group": "D. People and abuse",
+   "title": "Guessed approval id",
+   "expected": "approval_not_found",
+   "observed": "approval_not_found",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "T24",
+   "group": "D. People and abuse",
+   "title": "Wrong reviewer role tries to approve a critical request",
+   "expected": "insufficient_role",
+   "observed": "insufficient_role",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "http": 409,
+     "message": "security-lead approval is required."
+    }
+   ]
+  },
+  {
+   "id": "T25",
+   "group": "D. People and abuse",
+   "title": "Agent approves its own request",
+   "expected": "self_approval",
+   "observed": "self_approval",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "http": 409,
+     "message": "A requester cannot approve its own request."
+    }
+   ]
+  },
+  {
+   "id": "T26",
+   "group": "D. People and abuse",
+   "title": "Denied request: run it, then try to approve it",
+   "expected": "denied, then invalid_state",
+   "observed": "denied, then invalid_state",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "T31",
+   "group": "D. People and abuse",
+   "title": "Made-up reviewer name with a claimed security-lead role",
+   "expected": "refused",
+   "observed": "accepted (http 200), then executed",
+   "verdict": "different from prediction",
+   "steps": [
+    {
+     "note": "Reviewer identity is asserted in the request body, not authenticated. This is a limit of the lab, recorded as a finding."
+    }
+   ],
+   "finding": true
+  },
+  {
+   "id": "T31b",
+   "group": "D. People and abuse",
+   "title": "Made-up reviewer name when REVIEWER_ALLOWLIST is set",
+   "expected": "unlisted refused, listed accepted",
+   "observed": "unlisted http 409 insufficient_role; listed http 200",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "Names are still typed, not proven. The allowlist only limits which typed names count."
+    }
+   ]
+  },
+  {
+   "id": "T27",
+   "group": "G. Retries and status",
+   "title": "Retry with the same key, then with a new key",
+   "expected": "executed; replayed=true; replay_blocked",
+   "observed": "executed; replayed=true; replay_blocked",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "T28",
+   "group": "G. Retries and status",
+   "title": "check_approval_status and get_execution_result after running",
+   "expected": "executed (consumed=true) and executed",
+   "observed": "executed (consumed=true) and executed",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "U11a",
+   "group": "I. Protocol hygiene",
+   "title": "No MCP-Protocol-Version header",
+   "expected": "http 400",
+   "observed": "http 400",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "-32020 Header mismatch: The MCP-Protocol-Version header is missing."
+    }
+   ]
+  },
+  {
+   "id": "U11b",
+   "group": "I. Protocol hygiene",
+   "title": "Invalid JSON body",
+   "expected": "http 400",
+   "observed": "http 400",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "-32700 Parse error: the body is not valid JSON."
+    }
+   ]
+  },
+  {
+   "id": "U11c",
+   "group": "I. Protocol hygiene",
+   "title": "GET instead of POST",
+   "expected": "http 405",
+   "observed": "http 405",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "-32600 This endpoint accepts POST only."
+    }
+   ]
+  },
+  {
+   "id": "U11d",
+   "group": "I. Protocol hygiene",
+   "title": "Origin header from another site",
+   "expected": "http 403",
+   "observed": "http 403",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "-32600 Origin not allowed."
+    }
+   ]
+  },
+  {
+   "id": "U11e",
+   "group": "I. Protocol hygiene",
+   "title": "Host header for another site (DNS rebinding)",
+   "expected": "http 403",
+   "observed": "http 403",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "U11f",
+   "group": "I. Protocol hygiene",
+   "title": "Unknown method",
+   "expected": "http 404",
+   "observed": "http 404",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "-32601 Method not found: nope/nothing"
+    }
+   ]
+  },
+  {
+   "id": "U11g",
+   "group": "I. Protocol hygiene",
+   "title": "Tool that is not registered (shell.root)",
+   "expected": "http 200",
+   "observed": "http 200",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "-32602 Unknown tool: shell.root"
+    }
+   ]
+  },
+  {
+   "id": "U11h1",
+   "group": "I. Protocol hygiene",
+   "title": "requestedScopes sent as text, not a list",
+   "expected": "http 200",
+   "observed": "http 200",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "invalid_arguments"
+    }
+   ]
+  },
+  {
+   "id": "U11h2",
+   "group": "I. Protocol hygiene",
+   "title": "Unknown extra argument (isAdmin)",
+   "expected": "http 200",
+   "observed": "http 200",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "invalid_arguments"
+    }
+   ]
+  },
+  {
+   "id": "U11h3",
+   "group": "I. Protocol hygiene",
+   "title": "Missing required fields",
+   "expected": "http 200",
+   "observed": "http 200",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "invalid_arguments"
+    }
+   ]
+  },
+  {
+   "id": "U11i",
+   "group": "I. Protocol hygiene",
+   "title": "approvalId of 5,000 characters",
+   "expected": "http 200",
+   "observed": "http 200",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "invalid_arguments"
+    }
+   ]
+  },
+  {
+   "id": "U11j",
+   "group": "I. Protocol hygiene",
+   "title": "Body of 2 MB",
+   "expected": "http 413",
+   "observed": "http 413",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "detail": "-32600 The request body is larger than 65536 bytes."
+    }
+   ]
+  },
+  {
+   "id": "U7",
+   "group": "I. Protocol hygiene",
+   "title": "Burst of 300 requests in a few seconds (limit is 240 per minute per gateway)",
+   "expected": "some get 429",
+   "observed": "231 allowed, 69 got 429 from request 232, retry-after 60",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "seconds": 0.71
+    }
+   ]
+  },
+  {
+   "id": "U12",
+   "group": "E. Audit log",
+   "title": "Audit chain after all the live cases above",
+   "expected": "valid and signed",
+   "observed": "valid and signed, 209 events",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "valid": true,
+     "checkedEvents": 209,
+     "headSequence": 209,
+     "headHash": "4a664fab3d6984a9b9b8708471685e72da9803e2d6849297feea1b79ce9c9238",
+     "signed": true,
+     "anchorChecked": false
+    }
+   ]
+  },
+  {
+   "id": "T32",
+   "group": "E. Restart and audit key",
+   "title": "Restart the gateway after approval, then execute",
+   "expected": "executed; chain valid and signed",
+   "observed": "executed; status after restart approved; chain valid signed (6 events before, 10 after)",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "T33",
+   "group": "E. Restart and audit key",
+   "title": "Start with no key, a wrong key, then the right key",
+   "expected": "no key: unsigned; wrong key: invalid; right key: valid and signed",
+   "observed": "no key: valid, unsigned | wrong key: INVALID, signed (signature_invalid) | right key: valid, signed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "label": "no key",
+     "valid": true,
+     "signed": false,
+     "reason": null
+    },
+    {
+     "label": "wrong key",
+     "valid": false,
+     "signed": true,
+     "reason": "signature_invalid"
+    },
+    {
+     "label": "right key",
+     "valid": true,
+     "signed": true,
+     "reason": null
+    }
+   ],
+   "finding": true
+  },
+  {
+   "id": "U6",
+   "group": "D. People and abuse",
+   "title": "Agent B tries to use Agent A's approval id",
+   "expected": "approval_not_found; A's approval untouched",
+   "observed": "approval_not_found / approval_not_found; A's approval still approved, consumed=false",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "U1",
+   "group": "G. Lost response and status",
+   "title": "Work done, but the reply is lost: retry safely",
+   "expected": "work runs once; a person settles the unknown outcome; requester cannot",
+   "observed": "downstream ran 1; after 6 min status=unknown_outcome, result=unknown_outcome; requester settle 409 self_reconcile; wrong role 409 insufficient_role; security-lead 200",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "first call (work done, reply lost)",
+     "state": "executing",
+     "outcome": "executing",
+     "replayed": false,
+     "text": "NOT CONFIRMED YET. The action was reserved and handed to the tool, but no result has been recorded. Repeat the call with the same idempotencyKey, or call get_execution_result with executionId 0904ae31-a5a6-405a-bb82-cd3935918c74, to read the outcome. Do not us",
+     "downstreamEffects": {
+      "attempts": 1,
+      "effects": 1,
+      "keys": 1
+     }
+    },
+    {
+     "note": "check_approval_status",
+     "state": "executing",
+     "outcome": "approval_status",
+     "text": "Request 41d634c9-7da8-49c3-be43-20451655ec36 is executing. Reserved and handed to the tool, not confirmed yet. Use get_execution_result."
+    },
+    {
+     "note": "retry same key before the 5 minute timeout",
+     "state": "executing",
+     "outcome": "executing",
+     "replayed": true,
+     "text": "REPEATED CALL, NOTHING RAN AGAIN. NOT CONFIRMED YET. The action was reserved and handed to the tool, but no result has been recorded. Repeat the call with the same idempotencyKey, or call get_execution_result with executionId 0904ae31-a5a6-405a-bb82-cd3935918c",
+     "downstreamEffects": {
+      "attempts": 1,
+      "effects": 1,
+      "keys": 1
+     }
+    },
+    {
+     "note": "check_approval_status after 6 minutes",
+     "state": "unknown_outcome",
+     "outcome": "approval_status",
+     "text": "Request 41d634c9-7da8-49c3-be43-20451655ec36 is unknown_outcome. The outcome is unknown. A person has to reconcile it. Never dispatch again."
+    },
+    {
+     "note": "get_execution_result after 6 minutes",
+     "state": "unknown_outcome",
+     "outcome": "execution_state",
+     "text": "Execution 0904ae31-a5a6-405a-bb82-cd3935918c74 is unknown_outcome. A person has to reconcile this. Never dispatch again."
+    },
+    {
+     "note": "retry NEW key after timeout",
+     "state": "replay_blocked",
+     "outcome": "replay_blocked",
+     "text": "REFUSED (replay_blocked). This authorization has already been consumed. Nothing was executed.",
+     "downstreamEffects": {
+      "attempts": 1,
+      "effects": 1,
+      "keys": 1
+     }
+    },
+    {
+     "note": "requester settles own call",
+     "http": 409,
+     "code": "self_reconcile"
+    },
+    {
+     "note": "wrong role settles",
+     "http": 409,
+     "code": "insufficient_role"
+    },
+    {
+     "note": "security-lead settles as executed",
+     "http": 200
+    },
+    {
+     "note": "check_approval_status after settling",
+     "state": "executed",
+     "outcome": "approval_status",
+     "text": "Request 41d634c9-7da8-49c3-be43-20451655ec36 is executed. Already used. A new request is needed to do it again."
+    }
+   ]
+  },
+  {
+   "id": "U1-status",
+   "group": "G. Lost response and status",
+   "title": "After the 5 minute timeout, do the status tool and the result tool agree?",
+   "expected": "both say unknown_outcome",
+   "observed": "status tool: unknown_outcome; result tool: unknown_outcome",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "U2",
+   "group": "G. Lost response and status",
+   "title": "Nothing done, reply lost: person settles as failed",
+   "expected": "failed; approval used up; new key replay_blocked",
+   "observed": "settle 200; same key -> failed; new key -> replay_blocked",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "first call (nothing done, reply lost)",
+     "state": "executing",
+     "outcome": "executing",
+     "replayed": false,
+     "text": "NOT CONFIRMED YET. The action was reserved and handed to the tool, but no result has been recorded. Repeat the call with the same idempotencyKey, or call get_execution_result with executionId 80dd56aa-0de8-41a6-8c89-823f8977323c, to read the outcome. Do not us",
+     "downstreamEffects": {
+      "attempts": 2,
+      "effects": 1,
+      "keys": 1
+     }
+    },
+    {
+     "note": "security-lead settles as failed",
+     "http": 200
+    },
+    {
+     "note": "retry same key after settling",
+     "state": "failed",
+     "outcome": "failed",
+     "replayed": true,
+     "text": "REPEATED CALL, NOTHING RAN AGAIN. FAILED. The synthetic tool reported reconciled_failed. Nothing was changed. The approval is used up, so a new request is needed to try again.",
+     "downstreamEffects": {
+      "attempts": 2,
+      "effects": 1,
+      "keys": 1
+     }
+    },
+    {
+     "note": "retry NEW key after settling",
+     "state": "replay_blocked",
+     "outcome": "replay_blocked",
+     "text": "REFUSED (replay_blocked). This authorization has already been consumed. Nothing was executed.",
+     "downstreamEffects": {
+      "attempts": 2,
+      "effects": 1,
+      "keys": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "U3",
+   "group": "G. Lost response and status",
+   "title": "Tool fails cleanly",
+   "expected": "failed; same key replays; new key replay_blocked",
+   "observed": "failed; replayed; replay_blocked",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "call when the tool reports an error",
+     "state": "failed",
+     "outcome": "failed",
+     "replayed": false,
+     "text": "FAILED. The synthetic tool reported downstream_error. Nothing was changed. The approval is used up, so a new request is needed to try again."
+    },
+    {
+     "note": "retry same key",
+     "state": "failed",
+     "outcome": "failed",
+     "replayed": true,
+     "text": "REPEATED CALL, NOTHING RAN AGAIN. FAILED. The synthetic tool reported downstream_error. Nothing was changed. The approval is used up, so a new request is needed to try again."
+    },
+    {
+     "note": "retry new key",
+     "state": "replay_blocked",
+     "outcome": "replay_blocked",
+     "text": "REFUSED (replay_blocked). This authorization has already been consumed. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "U4",
+   "group": "G. Lost response and status",
+   "title": "Retry after a lost reply, but with a changed request and the same key",
+   "expected": "binding_mismatch",
+   "observed": "binding_mismatch",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "first call (reply lost)",
+     "state": "executing",
+     "outcome": "executing",
+     "replayed": false,
+     "text": "NOT CONFIRMED YET. The action was reserved and handed to the tool, but no result has been recorded. Repeat the call with the same idempotencyKey, or call get_execution_result with executionId e9b3f359-f0e0-479d-8854-86ac27a6ca40, to read the outcome. Do not us",
+     "downstreamEffects": {
+      "attempts": 4,
+      "effects": 2,
+      "keys": 2
+     }
+    },
+    {
+     "note": "retry same key with one argument changed",
+     "state": "binding_mismatch",
+     "outcome": "binding_mismatch",
+     "text": "REFUSED (binding_mismatch). These arguments are not the ones that were reviewed. Nothing was executed.",
+     "downstreamEffects": {
+      "attempts": 4,
+      "effects": 2,
+      "keys": 2
+     }
+    },
+    {
+     "note": "retry same key, original request",
+     "state": "executing",
+     "outcome": "executing",
+     "replayed": true,
+     "text": "REPEATED CALL, NOTHING RAN AGAIN. NOT CONFIRMED YET. The action was reserved and handed to the tool, but no result has been recorded. Repeat the call with the same idempotencyKey, or call get_execution_result with executionId e9b3f359-f0e0-479d-8854-86ac27a6ca",
+     "downstreamEffects": {
+      "attempts": 4,
+      "effects": 2,
+      "keys": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "U5",
+   "group": "G. Lost response and status",
+   "title": "Status tool in each state",
+   "expected": "pending, approved, executed, denied",
+   "observed": "pending_human, approved, executed, denied",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "pending",
+     "state": "pending_human",
+     "outcome": "approval_status",
+     "text": "Request 212cbe7a-6fbb-4cca-a5f5-7e95c8b1992e is pending_human. Still waiting for a reviewer. Check again later."
+    },
+    {
+     "note": "approved",
+     "state": "approved",
+     "outcome": "approval_status",
+     "text": "Request 212cbe7a-6fbb-4cca-a5f5-7e95c8b1992e is approved. Approved. Call deploy.production again with identical arguments plus approvalId. It works once and expires at 2026-10-10T09:22:00.000Z."
+    },
+    {
+     "note": "executed",
+     "state": "executed",
+     "outcome": "approval_status",
+     "text": "Request 212cbe7a-6fbb-4cca-a5f5-7e95c8b1992e is executed. Already used. A new request is needed to do it again."
+    },
+    {
+     "note": "denied",
+     "state": "denied",
+     "outcome": "approval_status",
+     "text": "Request e31f1068-1564-48d3-9050-cf62b7505a79 is denied. Denied. Do not retry the same request."
+    }
+   ]
+  },
+  {
+   "id": "U5b",
+   "group": "C. Time",
+   "title": "Request waits over 240 minutes in the queue, then a person approves",
+   "expected": "approval refused; status says expired",
+   "observed": "approve http 409 invalid_state; status tool says expired",
+   "verdict": "as expected",
+   "steps": [],
+   "finding": false
+  },
+  {
+   "id": "T21",
+   "group": "C. Time",
+   "title": "Approval expires after 10 minutes (clock moved forward 11 minutes)",
+   "expected": "authorization expired",
+   "observed": "expired; status expired",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "execute 11 minutes after approval",
+     "state": "expired",
+     "outcome": "expired",
+     "text": "REFUSED (authorization_expired). The time-bound authorization has expired. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "U8",
+   "group": "D. People and abuse",
+   "title": "Two reviewers decide at the same moment (approve and deny)",
+   "expected": "200 + 409",
+   "observed": "200 + 409",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "first": [
+      200,
+      null
+     ],
+     "second": [
+      409,
+      "invalid_state"
+     ],
+     "final": "approved"
+    }
+   ]
+  },
+  {
+   "id": "U10",
+   "group": "D. People and abuse",
+   "title": "Approval made for deploy.production presented to docs.search",
+   "expected": "approval_not_found",
+   "observed": "approval_not_found",
+   "verdict": "as expected",
+   "steps": []
+  },
+  {
+   "id": "U9-public-research",
+   "group": "H. Every tool and tier",
+   "title": "public-research on docs.search",
+   "expected": "auto_approved / low",
+   "observed": "executed / low / needs -",
+   "verdict": "info",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-private-repo-review",
+   "group": "H. Every tool and tier",
+   "title": "private-repo-review on repo.read",
+   "expected": "pending_human / medium",
+   "observed": "pending_approval / medium / needs resource-owner",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-secret-metadata",
+   "group": "H. Every tool and tier",
+   "title": "secret-metadata on secrets.read",
+   "expected": "pending_human / critical",
+   "observed": "pending_approval / critical / needs security-lead",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-iam-privilege-change",
+   "group": "H. Every tool and tier",
+   "title": "iam-privilege-change on iam.roles.update",
+   "expected": "pending_human / critical",
+   "observed": "pending_approval / critical / needs security-lead",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-prompt-injection",
+   "group": "H. Every tool and tier",
+   "title": "prompt-injection on repo.read",
+   "expected": "denied / critical",
+   "observed": "denied / critical / needs -",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-scope-creep",
+   "group": "H. Every tool and tier",
+   "title": "scope-creep on repo.read",
+   "expected": "denied / critical",
+   "observed": "denied / critical / needs -",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-production-deployment",
+   "group": "H. Every tool and tier",
+   "title": "production-deployment on deploy.production",
+   "expected": "pending_human / critical",
+   "observed": "pending_approval / critical / needs security-lead",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-unknown-tool",
+   "group": "H. Every tool and tier",
+   "title": "unknown-tool on shell.root",
+   "expected": "denied / critical",
+   "observed": "Unknown tool: shell.root / - / needs -",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "U9-ungated-handoff",
+   "group": "H. Every tool and tier",
+   "title": "ungated-handoff on iam.roles.update",
+   "expected": "gate_rejected / critical",
+   "observed": "rejected_by_gate / critical / needs security-lead",
+   "verdict": "info",
+   "steps": [],
+   "info": false
+  },
+  {
+   "id": "D1",
+   "group": "K. Database tampering",
+   "title": "Stored request edited in the database after approval, then the agent executes the original",
+   "expected": "integrity_failed",
+   "observed": "integrity_failed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "execute",
+     "http": 200,
+     "outcome": "integrity_failed",
+     "text": "REFUSED (integrity_failed). The stored request no longer matches the approved hash. Authorization revoked. Nothing was executed."
+    }
+   ]
+  },
+  {
+   "id": "D2",
+   "group": "K. Database tampering",
+   "title": "Pending request flipped to approved straight in the database, no human decision behind it",
+   "expected": "integrity_failed",
+   "observed": "integrity_failed",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "note": "execute",
+     "http": 200,
+     "outcome": "integrity_failed",
+     "text": "REFUSED (integrity_failed). The stored request no longer matches the approved hash. Authorization revoked. Nothing was executed."
+    },
+    {
+     "note": "audit chain",
+     "valid": true,
+     "checkedEvents": 7,
+     "headSequence": 7,
+     "headHash": "f8e437ca0c40a409bb9dc53c67c587fff5a201e9fa6d656277ee6cddf52cd2a7",
+     "signed": true,
+     "anchorChecked": false
+    }
+   ]
+  },
+  {
+   "id": "D3",
+   "group": "K. Database tampering",
+   "title": "One audit event edited in the database (signed chain)",
+   "expected": "hash_mismatch at event 2",
+   "observed": "hash_mismatch at event 2",
+   "verdict": "as expected",
+   "steps": [
+    {
+     "before": {
+      "valid": true,
+      "checkedEvents": 6,
+      "headSequence": 6,
+      "headHash": "19b7ba0898a9f098a9e11696b500a73b6f2638390c657465cd0860b691d750e8",
+      "signed": true,
+      "anchorChecked": false
+     },
+     "after": {
+      "valid": false,
+      "checkedEvents": 6,
+      "failedSequence": 2,
+      "reason": "hash_mismatch",
+      "signed": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "F1",
+   "group": "L. People",
+   "title": "Approval fatigue: 40 production deploys approved back to back with the same one-line reason",
+   "expected": "for information",
+   "observed": "40 of 40 accepted in 0.4s, no friction",
+   "verdict": "info",
+   "steps": [],
+   "info": true
+  },
+  {
+   "id": "B10",
+   "group": "Baseline",
+   "title": "The repo's automated tests (npm test)",
+   "expected": "0 failed",
+   "observed": "210 passed, 0 failed",
+   "verdict": "as expected",
+   "steps": [],
+   "info": false,
+   "observedNumbers": {
+    "pass": 210,
+    "fail": 0
+   }
+  }
+ ],
+ "note": "All tools are synthetic. Reviewer identity is asserted, not authenticated, in this lab. One run on one machine.",
+ "runBy": "Run by me with one command: node scripts/run-use-cases.mjs, after the fixes described in the report."
+}
