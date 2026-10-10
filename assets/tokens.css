@@ -1,0 +1,124 @@
+/* Design tokens and shared components for roshantrivedi.co.in.
+   One idea runs through the site: colour says WHO ACTS.
+     cyan   = the policy gate / the system deciding
+     violet = a person
+     green  = execution that is verified
+     amber  = audit, caution, unknown outcome
+     rose   = refused
+   Everything below is documented, with live samples and measured contrast,
+   at /design-system/. Older pages keep their own variable names; the
+   compatibility block at the end maps them onto these tokens' palette
+   without changing how they look. Breakpoints (media queries cannot use
+   variables): 560px, 760px, 980px, 1240px. */
+:root {
+  color-scheme: dark;
+  /* surfaces */
+  --hg-bg: #030712;
+  --hg-surface-1: #07101d;
+  --hg-surface-2: #0a1627;
+  --hg-surface-3: #0d1b2d;
+  --hg-line: rgba(148, 163, 184, .17);
+  --hg-line-strong: rgba(148, 163, 184, .30);
+  /* ink */
+  --hg-ink: #f8fafc;
+  --hg-ink-2: #a9b6c7;
+  --hg-ink-3: #8393aa;
+  /* actors (dark theme) */
+  --hg-policy: #22d3ee;  --hg-policy-soft: rgba(34, 211, 238, .12);  --hg-policy-line: rgba(34, 211, 238, .45);
+  --hg-person: #a78bfa;  --hg-person-soft: rgba(167, 139, 250, .13); --hg-person-line: rgba(167, 139, 250, .45);
+  --hg-exec:   #34d399;  --hg-exec-soft:   rgba(52, 211, 153, .12);  --hg-exec-line:   rgba(52, 211, 153, .45);
+  --hg-audit:  #fbbf24;  --hg-audit-soft:  rgba(251, 191, 36, .12);  --hg-audit-line:  rgba(251, 191, 36, .45);
+  --hg-refuse: #fb7185;  --hg-refuse-soft: rgba(251, 113, 133, .12); --hg-refuse-line: rgba(251, 113, 133, .45);
+  --hg-accent: var(--hg-policy);
+  /* type */
+  --hg-font-display: "DM Sans", system-ui, sans-serif;
+  --hg-font-body: "Manrope", "DM Sans", system-ui, sans-serif;
+  --hg-font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --hg-fs-1: .75rem;  --hg-fs-2: .875rem; --hg-fs-3: 1rem;     --hg-fs-4: 1.125rem;
+  --hg-fs-5: 1.375rem; --hg-fs-6: clamp(1.6rem, 3vw, 2.1rem);
+  --hg-fs-7: clamp(2.1rem, 4.6vw, 3.2rem); --hg-fs-8: clamp(2.8rem, 7vw, 4.9rem);
+  --hg-lh-tight: 1.1; --hg-lh-snug: 1.3; --hg-lh-body: 1.65;
+  /* space (4px base) */
+  --hg-sp-1: .25rem; --hg-sp-2: .5rem; --hg-sp-3: .75rem; --hg-sp-4: 1rem; --hg-sp-5: 1.5rem;
+  --hg-sp-6: 2rem;   --hg-sp-7: 3rem;  --hg-sp-8: 4.5rem; --hg-sp-9: 7rem;
+  --hg-content: 1240px; --hg-prose: 68ch;
+  /* shape and depth */
+  --hg-r-sm: 8px; --hg-r-md: 14px; --hg-r-lg: 22px; --hg-r-pill: 999px;
+  --hg-shadow-1: 0 1px 0 rgba(255,255,255,.04) inset, 0 8px 24px rgba(0,0,0,.35);
+  --hg-shadow-2: 0 22px 60px rgba(0,0,0,.5);
+  /* motion */
+  --hg-dur-fast: 120ms; --hg-dur: 220ms; --hg-dur-slow: 480ms;
+  --hg-ease: cubic-bezier(.2, .7, .2, 1);
+}
+html[data-theme="light"] {
+  color-scheme: light;
+  --hg-bg: #f5f7fb; --hg-surface-1: #ffffff; --hg-surface-2: #f1f5f9; --hg-surface-3: #e8eef6;
+  --hg-line: rgba(15, 23, 42, .12); --hg-line-strong: rgba(15, 23, 42, .26);
+  --hg-ink: #0f172a; --hg-ink-2: #475569; --hg-ink-3: #5b6a80;
+  --hg-policy: #0e7490; --hg-person: #6d28d9; --hg-exec: #047857; --hg-audit: #b45309; --hg-refuse: #be123c;
+  --hg-policy-soft: rgba(14,116,144,.10); --hg-person-soft: rgba(109,40,217,.09); --hg-exec-soft: rgba(4,120,87,.10); --hg-audit-soft: rgba(180,83,9,.10); --hg-refuse-soft: rgba(190,18,60,.08);
+  --hg-policy-line: rgba(14,116,144,.5); --hg-person-line: rgba(109,40,217,.45); --hg-exec-line: rgba(4,120,87,.5); --hg-audit-line: rgba(180,83,9,.5); --hg-refuse-line: rgba(190,18,60,.45);
+  --hg-shadow-1: 0 1px 2px rgba(15,23,42,.08), 0 8px 24px rgba(15,23,42,.08);
+  --hg-shadow-2: 0 22px 50px rgba(15,23,42,.16);
+}
+@media (prefers-reduced-motion: reduce) { :root { --hg-dur-fast: 0ms; --hg-dur: 0ms; --hg-dur-slow: 0ms; } }
+
+/* ---- focus: one visible style everywhere ---- */
+.hg :focus-visible, .hg-btn:focus-visible, .hg-chip:focus-visible {
+  outline: 2px solid var(--hg-accent); outline-offset: 3px; border-radius: var(--hg-r-sm);
+}
+
+/* ---- section identifier: the small mono label above a heading ---- */
+.hg-label {
+  display: inline-flex; align-items: center; gap: .6rem; margin: 0 0 var(--hg-sp-3);
+  font: 600 var(--hg-fs-1)/1 var(--hg-font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--hg-ink-3);
+}
+.hg-label::before { content: ""; width: 22px; height: 1px; background: var(--hg-accent); }
+.hg-label b { color: var(--hg-accent); font-weight: 700; }
+
+/* ---- buttons ---- */
+.hg-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .65rem 1.25rem;
+  font: 700 var(--hg-fs-2)/1 var(--hg-font-display); text-decoration: none; cursor: pointer; color: var(--hg-ink);
+  background: transparent; border: 1px solid var(--hg-line-strong); border-radius: var(--hg-r-pill);
+  transition: border-color var(--hg-dur) var(--hg-ease), background var(--hg-dur) var(--hg-ease), color var(--hg-dur) var(--hg-ease), transform var(--hg-dur-fast) var(--hg-ease);
+}
+.hg-btn:hover { border-color: var(--hg-accent); color: var(--hg-accent); }
+.hg-btn:active { transform: translateY(1px); }
+.hg-btn-primary { background: var(--hg-accent); color: #04121a; border-color: transparent; }
+.hg-btn-primary:hover { background: var(--hg-accent); color: #04121a; filter: brightness(1.1); }
+html[data-theme="light"] .hg-btn-primary, html[data-theme="light"] .hg-btn-primary:hover { color: #fff; }
+.hg-btn-quiet { border-color: transparent; padding-inline: .75rem; }
+.hg-btn[disabled], .hg-btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; pointer-events: none; }
+
+/* ---- badges and chips: actor colour only where it carries meaning ---- */
+.hg-badge {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .2rem .65rem; border-radius: var(--hg-r-pill);
+  font: 600 var(--hg-fs-1)/1.2 var(--hg-font-mono); letter-spacing: .04em; color: var(--c, var(--hg-ink-2));
+  background: var(--cs, transparent); border: 1px solid var(--cl, var(--hg-line-strong)); white-space: nowrap;
+}
+.hg-policy { --c: var(--hg-policy); --cs: var(--hg-policy-soft); --cl: var(--hg-policy-line); }
+.hg-person { --c: var(--hg-person); --cs: var(--hg-person-soft); --cl: var(--hg-person-line); }
+.hg-exec   { --c: var(--hg-exec);   --cs: var(--hg-exec-soft);   --cl: var(--hg-exec-line); }
+.hg-audit  { --c: var(--hg-audit);  --cs: var(--hg-audit-soft);  --cl: var(--hg-audit-line); }
+.hg-refuse { --c: var(--hg-refuse); --cs: var(--hg-refuse-soft); --cl: var(--hg-refuse-line); }
+.hg-chip {
+  display: inline-flex; align-items: center; min-height: 40px; padding: .4rem .95rem; border-radius: var(--hg-r-pill); cursor: pointer;
+  font: 600 var(--hg-fs-2)/1 var(--hg-font-display); color: var(--hg-ink-2); background: transparent; border: 1px solid var(--hg-line-strong);
+  transition: all var(--hg-dur) var(--hg-ease);
+}
+.hg-chip:hover { color: var(--hg-ink); border-color: var(--hg-ink-3); }
+.hg-chip[aria-pressed="true"], .hg-chip[aria-selected="true"] { color: var(--hg-ink); background: var(--cs, var(--hg-policy-soft)); border-color: var(--cl, var(--hg-policy-line)); }
+
+/* ---- card: flat by default; depth only when it is interactive ---- */
+.hg-card { padding: var(--hg-sp-5); background: var(--hg-surface-1); border: 1px solid var(--hg-line); border-radius: var(--hg-r-md); }
+a.hg-card, .hg-card.is-interactive { display: block; color: inherit; text-decoration: none; transition: border-color var(--hg-dur) var(--hg-ease), transform var(--hg-dur) var(--hg-ease), box-shadow var(--hg-dur) var(--hg-ease); }
+a.hg-card:hover, .hg-card.is-interactive:hover { border-color: var(--cl, var(--hg-line-strong)); transform: translateY(-2px); box-shadow: var(--hg-shadow-1); }
+
+/* ---- callouts ---- */
+.hg-callout { padding: var(--hg-sp-4) var(--hg-sp-5); border-left: 3px solid var(--cl, var(--hg-policy-line)); background: var(--cs, var(--hg-policy-soft)); border-radius: 0 var(--hg-r-sm) var(--hg-r-sm) 0; color: var(--hg-ink); }
+.hg-callout strong { color: var(--c, var(--hg-policy)); }
+
+/* ---- code / policy snippet ---- */
+.hg-code { font: 500 .85rem/1.6 var(--hg-font-mono); padding: var(--hg-sp-4); background: var(--hg-surface-2); border: 1px solid var(--hg-line); border-radius: var(--hg-r-sm); overflow-x: auto; color: var(--hg-ink); }
+.hg-code .k { color: var(--hg-person); } .hg-code .v { color: var(--hg-exec); } .hg-code .c { color: var(--hg-ink-3); }

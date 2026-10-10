@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="description" content="The design system behind roshantrivedi.co.in: tokens, components and rules, with measured contrast. Colour says who acts." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/design-system/" />
+    <meta property="og:title" content="Design system" /><meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>Design system &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/tokens.css?v=20261010">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/dsys.css?v=20261010">
+    <script src="/assets/theme.js"></script>
+</head>
+<body class="hg">
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+  <p class="back"><a href="/">&larr; roshantrivedi.co.in</a></p>
+  <header>
+    <p class="hg-label"><b>Design system</b> &middot; v1</p>
+    <h1>Colour says who acts.</h1>
+    <p class="lead">One rule runs through this site and the MCP lab: every colour that carries meaning names an actor. Cyan is the policy gate. Violet is a person. Green is verified execution. Amber is audit and the unknown. Rose is refusal. Nothing else gets a glow.</p>
+    <nav class="hg-jump" aria-label="On this page"><a href="#colour">Colour</a><a href="#type">Type</a><a href="#space">Space and shape</a><a href="#motion">Motion</a><a href="#components">Components</a><a href="#a11y">Contrast</a><a href="#rules">Rules</a></nav>
+  </header>
+
+  <section id="colour"><p class="hg-label"><b>01</b> Colour</p><h2>Five actors, four surfaces</h2>
+    <div class="grid5"><div class="hg-card hg-policy sw"><span class="chipdot" style="background:var(--hg-policy)"></span><h3>Policy</h3><code>--hg-policy</code><p>The policy gate. The system deciding by fixed rules. Also the default accent.</p></div><div class="hg-card hg-person sw"><span class="chipdot" style="background:var(--hg-person)"></span><h3>Person</h3><code>--hg-person</code><p>A person: a reviewer, an approver, someone who settles an outcome.</p></div><div class="hg-card hg-exec sw"><span class="chipdot" style="background:var(--hg-exec)"></span><h3>Exec</h3><code>--hg-exec</code><p>Execution that was verified. Passed checks, completed work.</p></div><div class="hg-card hg-audit sw"><span class="chipdot" style="background:var(--hg-audit)"></span><h3>Audit</h3><code>--hg-audit</code><p>Audit records, caution, and unknown outcomes.</p></div><div class="hg-card hg-refuse sw"><span class="chipdot" style="background:var(--hg-refuse)"></span><h3>Refuse</h3><code>--hg-refuse</code><p>Refused, denied, blocked. Never decoration.</p></div></div>
+    <div class="surfs"><div class="surf" style="background:var(--hg-bg)"><code>--hg-bg</code></div><div class="surf" style="background:var(--hg-surface-1)"><code>--hg-surface-1</code></div><div class="surf" style="background:var(--hg-surface-2)"><code>--hg-surface-2</code></div><div class="surf" style="background:var(--hg-surface-3)"><code>--hg-surface-3</code></div></div>
+    <p class="note">Each actor has a solid colour, a 12% fill and a 45% line (<code>--hg-policy</code>, <code>--hg-policy-soft</code>, <code>--hg-policy-line</code>). The light theme swaps in darker shades of the same hues so contrast holds.</p>
+  </section>
+
+  <section id="type"><p class="hg-label"><b>02</b> Type</p><h2>Three families, eight sizes</h2>
+    <p><strong>DM Sans</strong> for headings and interface, <strong>Manrope</strong> for reading, <strong>JetBrains Mono</strong> only for labels, identifiers and code. Long-form text is never monospace.</p>
+    <div class="tw"><table><tbody><tr><td><code>--hg-fs-1</code></td><td style="font-size:var(--hg-fs-1);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr><tr><td><code>--hg-fs-2</code></td><td style="font-size:var(--hg-fs-2);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr><tr><td><code>--hg-fs-3</code></td><td style="font-size:var(--hg-fs-3);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr><tr><td><code>--hg-fs-4</code></td><td style="font-size:var(--hg-fs-4);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr><tr><td><code>--hg-fs-5</code></td><td style="font-size:var(--hg-fs-5);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr><tr><td><code>--hg-fs-6</code></td><td style="font-size:var(--hg-fs-6);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr><tr><td><code>--hg-fs-7</code></td><td style="font-size:var(--hg-fs-7);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr><tr><td><code>--hg-fs-8</code></td><td style="font-size:var(--hg-fs-8);font-family:var(--hg-font-display);font-weight:600;line-height:1.15">Identity is the control plane</td></tr></tbody></table></div>
+  </section>
+
+  <section id="space"><p class="hg-label"><b>03</b> Space and shape</p><h2>A 4px base, four radii</h2>
+    <div class="spaces"><div class="spr"><code>--hg-sp-1</code><i style="width:var(--hg-sp-1)"></i></div><div class="spr"><code>--hg-sp-2</code><i style="width:var(--hg-sp-2)"></i></div><div class="spr"><code>--hg-sp-3</code><i style="width:var(--hg-sp-3)"></i></div><div class="spr"><code>--hg-sp-4</code><i style="width:var(--hg-sp-4)"></i></div><div class="spr"><code>--hg-sp-5</code><i style="width:var(--hg-sp-5)"></i></div><div class="spr"><code>--hg-sp-6</code><i style="width:var(--hg-sp-6)"></i></div><div class="spr"><code>--hg-sp-7</code><i style="width:var(--hg-sp-7)"></i></div><div class="spr"><code>--hg-sp-8</code><i style="width:var(--hg-sp-8)"></i></div><div class="spr"><code>--hg-sp-9</code><i style="width:var(--hg-sp-9)"></i></div></div>
+    <div class="radii"><div style="border-radius:var(--hg-r-sm)">sm 8</div><div style="border-radius:var(--hg-r-md)">md 14</div><div style="border-radius:var(--hg-r-lg)">lg 22</div><div style="border-radius:var(--hg-r-pill)">pill</div></div>
+    <p class="note">Content width <code>--hg-content: 1240px</code>, reading width <code>--hg-prose: 68ch</code>. Breakpoints: 560, 760, 980 and 1240px.</p>
+  </section>
+
+  <section id="motion"><p class="hg-label"><b>04</b> Motion</p><h2>Short, eased, and optional</h2>
+    <p>Three durations: <code>--hg-dur-fast</code> 120ms, <code>--hg-dur</code> 220ms, <code>--hg-dur-slow</code> 480ms, all on <code>--hg-ease</code>. When the visitor asks for reduced motion, all three become 0ms. Nothing animates to fill space.</p>
+    <button type="button" class="hg-btn mdemo" id="mdemo">Replay the 480ms slide</button><div class="mtrack"><i id="mdot"></i></div>
+  </section>
+
+  <section id="components"><p class="hg-label"><b>05</b> Components</p><h2>Used the same way everywhere</h2>
+    <h3>Buttons</h3>
+    <p class="row"><a class="hg-btn hg-btn-primary" href="#components">Primary</a><a class="hg-btn" href="#components">Secondary</a><a class="hg-btn hg-btn-quiet" href="#components">Quiet</a><button class="hg-btn" disabled>Disabled</button></p>
+    <h3>Badges</h3>
+    <p class="row"><span class="hg-badge hg-policy">policy</span><span class="hg-badge hg-person">a person</span><span class="hg-badge hg-exec">executed</span><span class="hg-badge hg-audit">unknown_outcome</span><span class="hg-badge hg-refuse">refused</span><span class="hg-badge">neutral</span></p>
+    <h3>Chips (filters)</h3>
+    <p class="row"><button class="hg-chip" aria-pressed="true">All</button><button class="hg-chip" aria-pressed="false">PAM</button><button class="hg-chip hg-person" aria-pressed="true">Person</button></p>
+    <h3>Cards</h3>
+    <div class="grid2"><div class="hg-card"><h4>Flat card</h4><p>The default. No glow, one border.</p></div><a class="hg-card hg-policy" href="#components"><h4>Interactive card</h4><p>Lifts two pixels and takes its actor&rsquo;s line colour on hover.</p></a></div>
+    <h3>Callouts</h3>
+    <p class="hg-callout hg-audit"><strong>Limit.</strong> Reviewer names are typed in, not proven.</p>
+    <p class="hg-callout hg-refuse"><strong>Refused.</strong> The stored request no longer matches the approved hash.</p>
+    <h3>Code and policy snippets</h3>
+    <pre class="hg-code"><span class="c">// illustrative</span>
+<span class="k">tool</span>: <span class="v">"deploy.production"</span>
+<span class="k">requiredRole</span>: <span class="v">"security-lead"</span>
+<span class="k">grant</span>: { <span class="k">singleUse</span>: <span class="v">true</span>, <span class="k">expiresInMinutes</span>: <span class="v">10</span> }</pre>
+  </section>
+
+  <section id="a11y"><p class="hg-label"><b>06</b> Contrast</p><h2>Measured, not assumed</h2>
+    <p>WCAG contrast of each token against its theme&rsquo;s card surface (<code>--hg-surface-1</code>). Computed from the hex values when this page was built.</p>
+    <h3>Dark theme</h3><div class="tw"><table><thead><tr><th>Token</th><th>Value</th><th>Ratio</th><th>Result</th></tr></thead><tbody><tr><td>Ink</td><td><code>#f8fafc</code></td><td>18.2 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Ink 2 (secondary text)</td><td><code>#a9b6c7</code></td><td>9.3 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Ink 3 (captions, labels)</td><td><code>#8393aa</code></td><td>6.1 : 1</td><td><span class="hg-badge hg-exec">AA</span></td></tr><tr><td>Policy</td><td><code>#22d3ee</code></td><td>10.6 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Person</td><td><code>#a78bfa</code></td><td>7.0 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Execute</td><td><code>#34d399</code></td><td>9.9 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Audit</td><td><code>#fbbf24</code></td><td>11.4 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Refuse</td><td><code>#fb7185</code></td><td>7.1 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr></tbody></table></div>
+    <h3>Light theme</h3><div class="tw"><table><thead><tr><th>Token</th><th>Value</th><th>Ratio</th><th>Result</th></tr></thead><tbody><tr><td>Ink</td><td><code>#0f172a</code></td><td>17.9 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Ink 2 (secondary text)</td><td><code>#475569</code></td><td>7.6 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Ink 3 (captions, labels)</td><td><code>#5b6a80</code></td><td>5.5 : 1</td><td><span class="hg-badge hg-exec">AA</span></td></tr><tr><td>Policy</td><td><code>#0e7490</code></td><td>5.4 : 1</td><td><span class="hg-badge hg-exec">AA</span></td></tr><tr><td>Person</td><td><code>#6d28d9</code></td><td>7.1 : 1</td><td><span class="hg-badge hg-exec">AAA</span></td></tr><tr><td>Execute</td><td><code>#047857</code></td><td>5.5 : 1</td><td><span class="hg-badge hg-exec">AA</span></td></tr><tr><td>Audit</td><td><code>#b45309</code></td><td>5.0 : 1</td><td><span class="hg-badge hg-exec">AA</span></td></tr><tr><td>Refuse</td><td><code>#be123c</code></td><td>6.3 : 1</td><td><span class="hg-badge hg-exec">AA</span></td></tr></tbody></table></div>
+    <p class="note">AA needs 4.5 : 1 for body text. Where an actor colour is used for a label, the label is also spelled out in words, so colour is never the only signal. Focus is a 2px outline with a 3px offset on every interactive element.</p>
+  </section>
+
+  <section id="rules"><p class="hg-label"><b>07</b> Rules</p><h2>What keeps it consistent</h2>
+    <ul class="rules">
+      <li><strong>Colour names an actor.</strong> If a colour does not mean policy, person, execution, audit or refusal, use ink.</li>
+      <li><strong>One emphasis per block.</strong> A card gets one actor colour at most. Glow is reserved for the primary call to action.</li>
+      <li><strong>Words before colour.</strong> Every status is written out. The colour supports it.</li>
+      <li><strong>Mono is for labels.</strong> Section identifiers, ids, hashes and code. Never paragraphs.</li>
+      <li><strong>Illustrative means labelled.</strong> A simulated flow says so beside it. Nothing static is dressed as a live feed.</li>
+      <li><strong>Motion is optional.</strong> Everything works with it off.</li>
+    </ul>
+    <p class="note">Older pages still use their own variable names (<code>--cyan</code>, <code>--accent</code>, <code>--safe</code>). They share this palette and are being moved onto the tokens page by page. The tokens live in <code>assets/tokens.css</code>.</p>
+  </section>
+  <footer><span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><a href="/">roshantrivedi.co.in</a></footer>
+</main>
+<script>
+(function(){var b=document.getElementById('mdemo'),d=document.getElementById('mdot');if(!b)return;b.addEventListener('click',function(){d.style.transition='none';d.style.transform='translateX(0)';void d.offsetWidth;d.style.transition='transform var(--hg-dur-slow) var(--hg-ease)';d.style.transform='translateX(calc(100% * 7))';});})();
+</script>
+</body>
+</html>
