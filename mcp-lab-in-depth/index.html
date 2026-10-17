@@ -71,9 +71,9 @@
         <tr><td>Conformance runner</td><td>A small test set any approval gateway could be run against.</td><td>15</td></tr>
         </tbody></table></div>
         <p class="body-text">I also ran real Claude Code as the MCP client, on one laptop, for one path: it connected, asked for a production deploy, waited, ran it after approval, and was refused on a second use. I then recomputed the audit log hashes outside the gateway (190 events, no break). In the browser lab I checked how hidden characters, long text, markup and a 44-request queue look to a reviewer.</p>
-        <h3>Round three: 46 more scripted checks, on Linux</h3>
+        <h3>Round three: 46 more scripted checks, on Linux and the Mac</h3>
         <p class="body-text">A reader of my last post asked what is unclear about a permit and receipt layer, what would make someone try it and what is missing. In my lab the permit is the approval and the receipt is the answer that comes back after the run, so I looked at both properly. The agent gets proof that something ran, but not who approved it or under which policy. The tool at the end gets no proof of the approval at all.</p>
-        <p class="body-text">I also checked how the gateway treats tokens, MFA and SSO claims, robots and other non-human identities, secrets and passwords, and I ran 20 made-up tools for government, schools and colleges, a company&rsquo;s ERP, IT and identity teams, robots and a plant. They behaved as the rules say. Three of them, written carelessly on purpose, landed one tier lower, which shows that the tool list needs an owner. Nothing in the gateway code changed. Eight more limits are written down. The PDF has the topic-by-topic map, from IAM to governance.</p>
+        <p class="body-text">I also checked how the gateway treats tokens, MFA and SSO claims, robots and other non-human identities, secrets and passwords, and I ran 20 made-up tools for government, schools and colleges, a company&rsquo;s ERP, IT and identity teams, robots and a plant. They behaved as the rules say. Three of them, written carelessly on purpose, landed one tier lower, which shows that the tool list needs an owner. The Mac gave the same results as Linux. Nothing in the gateway code changed. Eight more limits are written down. The PDF has the topic-by-topic map, from IAM to governance.</p>
       </section>
 
       <section>
