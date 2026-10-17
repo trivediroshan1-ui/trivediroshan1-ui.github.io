@@ -238,6 +238,22 @@ window.SITE_QA = [
       "The MCP lab case study asks: can a person stay in control of an AI agent? Roshan built a small approval gate for MCP tool calls, then tried to break it 76 ways. The page explains what held, what did not and what he still does not know. Colours show who acts: policy gate, a person, execution, audit or unknown, refused. Read it at /mcp-lab-case-study/.",
   },
   {
+    id: "book",
+    title: "The book: Who Approved That?",
+    url: "/book/",
+    keywords: ["book","the book","who approved that","your book","roshan's book","free book","download the book","book pdf","read the book","where is the book","ebook","pdf book","preface","book link","buy the book","print the book","printed copy","paperback","humangate book"],
+    answer:
+      "Roshan's book is called Who Approved That? Its subtitle is: putting a human approval step in front of AI agent tool calls, and testing it 210 times. It is a learner's lab notebook: how a curious beginner built a small approval gateway for AI agents (MCP), tried to break it three times, and wrote down what held, what did not and twelve guesses that were wrong. It has 81 use cases, 161 case cards online, findings and fixes, an OWASP MCP Top 10 mapping and a checklist of 13 questions for any approval step. It is free as a PDF (138 pages with covers, 7 by 10 inch) at /book/, and the portal at /mcp-lab-portal/ lets you try the risk score and browse the cases. Print files (interior and cover wrap) are on the same page; there is no printed edition on sale yet. Everything in it ran on made-up tools and data, so it shows what one gateway did on these cases and does not prove anything safe.",
+  },
+  {
+    id: "mcp-lab-portal",
+    title: "MCP lab portal",
+    url: "/mcp-lab-portal/",
+    keywords: ["portal","mcp portal","mcp lab portal","risk score","score calculator","161 cases","case explorer","explore the lab","web version of the book"],
+    answer:
+      "The portal at /mcp-lab-portal/ is the web version of the MCP lab. You can follow one request through seven stages, play with the risk score calculator, open any of the 161 case cards, read the 32 findings, see the OWASP MCP Top 10 mapping and the checklist of 13 questions, and download the report and the book, Who Approved That? (/book/). Everything in it is synthetic.",
+  },
+  {
     id: "mcp-lab-results",
     title: "MCP lab test results",
     url: "/mcp-lab-results/",

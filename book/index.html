@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#050b18">
+<title>Who Approved That? A free book &middot; Roshan Trivedi</title>
+<meta name="description" content="Who Approved That? Putting a human approval step in front of AI agent tool calls, and testing it 210 times. A free book and lab notebook by Roshan Trivedi, 138 pages, with the cases, the findings and a checklist of 13 questions.">
+<link rel="canonical" href="https://roshantrivedi.co.in/book/">
+<meta property="og:type" content="book">
+<meta property="og:site_name" content="Roshan Trivedi">
+<meta property="og:title" content="Who Approved That? A free book on human approval for AI agents">
+<meta property="og:description" content="I built a small approval gateway for AI agent tool calls and tried to break it, three times. 210 checks, 81 use cases, twelve wrong guesses, all written down. Free to read.">
+<meta property="og:url" content="https://roshantrivedi.co.in/book/">
+<meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-book.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Who Approved That? A free book by Roshan Trivedi on human approval for AI agent tool calls.">
+<meta property="book:author" content="Roshan Trivedi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Who Approved That? A free book">
+<meta name="twitter:description" content="A learner's lab notebook on keeping a person in the loop when AI agents use real tools. 210 checks, 81 use cases, free PDF.">
+<meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-post-page-book.png">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/portal.css?v=20261017">
+<link rel="stylesheet" href="/assets/book.css?v=20261018">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script src="/assets/theme.js"></script>
+</head>
+<body class="pt">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><i aria-hidden="true"></i>Who Approved That? <small>the book</small></a>
+    <nav aria-label="Book sections"><ul id="nav">
+      <li><a href="#why">Preface</a></li><li><a href="#inside">Inside</a></li><li><a href="#get">Get it</a></li><li><a href="#author">Author</a></li>
+    </ul></nav>
+    <a class="home" href="/">Site &rarr;</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">A free book &middot; HumanGate Lab &middot; October 2026</p>
+        <h1>Who approved <em>that?</em></h1>
+        <p class="dek">Putting a human approval step in front of AI agent tool calls, and testing it 210 times. A learner&rsquo;s lab notebook, written so that you can repeat every case.</p>
+        <div class="cta">
+          <a class="btn pri" href="/assets/who-approved-that-book.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download the PDF, 138 pages</a>
+          <a class="btn" href="#why">Read the preface</a>
+          <a class="btn" href="/mcp-lab-portal/">Explore the portal</a>
+        </div>
+        <p class="bk-note">Free. No sign-up. Opens on a phone, a tablet or a screen.</p>
+      </div>
+      <figure class="cover3d">
+        <img src="/assets/who-approved-that-cover-front.png" width="1069" height="1538" alt="Front cover of the book Who Approved That? by Roshan Trivedi" decoding="async">
+        <figcaption><b>Who Approved That?</b> 7 by 10 inch, free as a PDF</figcaption>
+      </figure>
+    </div>
+    <div class="stats" aria-label="The book in numbers">
+      <div class="stat" style="--k:var(--cy)"><b>138</b><span>pages with both covers</span></div>
+      <div class="stat" style="--k:var(--vi)"><b>210</b><span>scripted checks in three rounds</span></div>
+      <div class="stat" style="--k:var(--em)"><b>81</b><span>use cases, each with what happened</span></div>
+      <div class="stat" style="--k:var(--ro)"><b>12</b><span>times my own guess was wrong</span></div>
+      <div class="stat" style="--k:var(--am)"><b>13</b><span>questions to ask any approval step</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="why">
+  <div class="wrap">
+    <div class="sh"><p class="eyebrow">Preface</p><h2>I did not start as an AI person</h2></div>
+    <div class="bk-story">
+      <div class="bk-text">
+        <p>I began with a day job and a feeling that something big was moving past me. When I first opened ChatGPT, Gemini and Claude, I did not know what to ask, how to use them, or how safe they were. So I got curious. I watched random videos, argued with the answers, tried the tools on my phone and laptop, and used what my years in identity and security had taught me to keep asking one thing: what could go wrong here?</p>
+        <p>Slowly the buzzwords became things I understood: LLMs, agents, RAG, MCP. The first agent I built made me laugh at myself, and that laugh turned into a wish to build something useful. MCP gave me the place. I wrote down what I expected, built a small approval gateway, and tried to break it, three times over. Twelve of my guesses were wrong, and they are some of the most useful pages in the book.</p>
+        <p>After 180 days I still have more to learn than I have learned. So this is a learner&rsquo;s lab notebook, not a verdict. I hope it helps people learn, and helps organisations keep a person in the loop instead of trusting AI completely. If you find a case I missed, or a mistake, please tell me. I would rather fix it in the open.</p>
+        <p class="bk-thanks">My thanks to my mentor, and to every white paper, article and stranger who explained something for free.</p>
+        <p class="bk-sig"><b>Roshan Trivedi</b><span>Bengaluru, October 2026</span></p>
+      </div>
+      <figure class="bk-photo"><img src="/assets/roshan-trivedi-520.webp" width="520" height="519" alt="Portrait of Roshan Trivedi" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="inside">
+  <div class="wrap">
+    <div class="sh"><p class="eyebrow">What is inside</p><h2>Three parts, in plain order</h2>
+      <p>Start with the one-page summary at the front. Each case in the middle says what I did, what I expected, what happened and why it matters. An index at the back lists every case by id.</p></div>
+    <div class="cols3 bk-parts">
+      <article class="card k" style="--k:var(--cy)"><h3>Why, and what I built</h3><ul>
+        <li>If you only read one page</li><li>Purpose: why I did this</li><li>The problem in today&rsquo;s organisations</li><li>What HumanGate is</li><li>How this helps an organisation</li></ul></article>
+      <article class="card k" style="--k:var(--vi)"><h3>Three rounds of testing</h3><ul>
+        <li>How I tested it</li><li>Round one: the documented use cases</li><li>Round two: what round one left out</li><li>Round three: permits, receipts and who else is in the room</li><li>The lab on screen, annotated</li></ul></article>
+      <article class="card k" style="--k:var(--em)"><h3>What to take away</h3><ul>
+        <li>Findings and fixes</li><li>Mapping to the OWASP MCP Top 10</li><li>A checklist of 13 questions for your own approval step</li><li>Limits, decisions and closing the chapter</li><li>Appendices, glossary, references, index</li></ul></article>
+    </div>
+    <div class="callout"><b>Who it is for.</b> Security leads, IAM and PAM teams, auditors, and anyone who has to say yes to AI agents in a company. It assumes you know what a login is. It does not assume you know MCP.</div>
+    <div class="callout bk-limits"><b>What it does not show.</b> Everything ran on made-up tools and made-up data, once each, on my own machines. It shows what one gateway did on these cases. It does not prove anything safe.</div>
+  </div>
+</section>
+
+<section class="s" id="get">
+  <div class="wrap">
+    <div class="sh"><p class="eyebrow">Free to read, share and print</p><h2>Get the book</h2>
+      <p>The PDF has the front cover, the preface, contents, the full text with an index, and the back cover. The print files are for a printer. Checksums are below each file so you can confirm your copy.</p></div>
+    <div class="dl">
+      <article class="card" style="--k:var(--vi)"><span class="tag" style="color:var(--vi)">Read &middot; 7 &times; 10 in</span><h3>Who Approved That?, with covers</h3><p>138 pages for a phone, tablet or screen, with bookmarks and an index.</p><span class="meta">PDF &middot; 4.5 MB</span>
+        <div class="hash">SHA-256 1f6c0254c80c1db34f99cb550cd9bbdb23e93fc0b43e55ef21fa7f8c95d78a0f</div>
+        <div class="row"><a class="btn sm pri" href="/assets/who-approved-that-book.pdf">Download PDF</a><button class="btn sm" type="button" data-copy="1f6c0254c80c1db34f99cb550cd9bbdb23e93fc0b43e55ef21fa7f8c95d78a0f">Copy checksum</button></div></article>
+      <article class="card" style="--k:var(--cy)"><span class="tag">Explore online</span><h3>The portal</h3><p>Try the risk score, follow a request through seven stages and open any of the 161 case cards in your browser.</p><span class="meta">No download needed</span>
+        <div class="row"><a class="btn sm pri" href="/mcp-lab-portal/">Open the portal</a><a class="btn sm" href="/assets/humangate-mcp-lab-final-report.pdf">A4 report, 122 pages</a></div></article>
+      <article class="card" style="--k:var(--am)"><span class="tag" style="color:var(--am)">For a printer</span><h3>Print files</h3><p>Interior (136 pages, exactly 7 &times; 10 in) and the full cover wrap with bleed. The spine width is a working figure: confirm it with your printer.</p><span class="meta">PDF &middot; 4.2 MB and 119 KB</span>
+        <div class="row"><a class="btn sm" href="/assets/who-approved-that-book-interior.pdf">Interior</a><a class="btn sm" href="/assets/who-approved-that-book-cover-wrap.pdf">Cover wrap</a></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="author">
+  <div class="wrap">
+    <div class="sh"><p class="eyebrow">About the author</p><h2>Roshan Trivedi</h2></div>
+    <div class="bk-author card">
+      <img src="/assets/roshan-trivedi-520.webp" width="120" height="120" alt="" loading="lazy">
+      <div>
+        <p>I make secure access something people can actually use. I have spent fourteen years in identity and privileged access, and most of my thinking lately goes into one question: what happens to identity when the &ldquo;user&rdquo; is a service account, a pipeline or an AI agent? AI is the future, but people cannot be replaced. The two work together, with security, governance and monitoring.</p>
+        <p class="row2"><a class="btn sm" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/" target="_blank" rel="noopener">LinkedIn</a><a class="btn sm" href="/">roshantrivedi.co.in</a><a class="btn sm" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway" target="_blank" rel="noopener">Code on GitHub</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="share">
+  <div class="wrap">
+    <div class="sh"><p class="eyebrow">Pass it on</p><h2>Know someone who has to say yes to agents?</h2></div>
+    <div class="share">
+      <button class="btn" type="button" id="copyLink">Copy link</button>
+      <a class="btn" id="shWa" target="_blank" rel="noopener" href="https://wa.me/?text=Who%20Approved%20That%3F%20A%20free%20book%20on%20keeping%20a%20person%20in%20the%20loop%20when%20AI%20agents%20use%20real%20tools.%20https%3A%2F%2Froshantrivedi.co.in%2Fbook%2F">Share on WhatsApp</a>
+      <a class="btn" id="shLi" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Froshantrivedi.co.in%2Fbook%2F">Share on LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div>
+      <p><b>Roshan Trivedi</b> &middot; IAM, PAM and agentic AI security &middot; Bengaluru</p>
+      <p>Who Approved That? is the book edition of the HumanGate MCP Approval Lab report, HG-MCP-TR-002 version 4.2. Code under the MIT licence. Text may be shared whole; if you quote a number, please quote the case it comes from.</p>
+      <p><small>All tools and data in the lab are synthetic.</small></p>
+    </div>
+    <div>
+      <p><a href="/">roshantrivedi.co.in</a><br><a href="/mcp-lab-portal/">Portal</a> &middot; <a href="/mcp-lab-case-study/">Case study</a> &middot; <a href="/mcp-lab-use-cases/">Use cases</a> &middot; <a href="/mcp-lab-results/">Results</a></p>
+    </div>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/assets/book.js?v=20261018" defer></script>
+</body>
+</html>
