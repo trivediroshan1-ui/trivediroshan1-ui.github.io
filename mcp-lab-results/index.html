@@ -10,7 +10,11 @@
     <meta property="og:description" content="Every HumanGate MCP use case I ran, what I expected, and what actually happened. 76 cases, six surprises." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/mcp-lab-results/" />
-    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-mcp-lab-results.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-post-page-mcp-lab-results.png" />
     <title>MCP lab results &middot; Roshan Trivedi</title>
     <link rel="stylesheet" href="/assets/fonts.css">
     <link rel="stylesheet" href="/assets/site.css">
@@ -34,7 +38,7 @@
         <p class="dek">Each row is one test against my own MCP approval gateway: what I expected, and what came back. The ones that did not match my guess are the useful ones.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
-      <nav class="mcp-tabs" aria-label="MCP lab"><a href="/mcp-lab-case-study/">Case study</a><a href="/mcp-lab-in-depth/">In depth</a><a href="/mcp-lab-use-cases/">Use cases</a><a href="/mcp-lab-results/" aria-current="page">Results</a><a href="/mcp-human-approval-gateway/">Try the lab</a><a href="/assets/humangate-mcp-lab-final-report.pdf">Report (PDF)</a><a href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source</a></nav>
+      <nav class="mcp-tabs" aria-label="MCP lab"><a href="/mcp-lab-case-study/">Case study</a><a href="/mcp-lab-in-depth/">In depth</a><a href="/mcp-lab-use-cases/">Use cases</a><a href="/mcp-lab-results/" aria-current="page">Results</a><a href="/mcp-lab-portal/">Portal</a><a href="/mcp-human-approval-gateway/">Try the lab</a><a href="/assets/humangate-mcp-lab-final-report.pdf">Report (PDF)</a><a href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source</a></nav>
 
       <section><p class="mcp-key" aria-label="Colour key"><span><i style="background:#0891b2"></i>policy gate</span><span><i style="background:#7c3aed"></i>a person</span><span><i style="background:#059669"></i>execution</span><span><i style="background:#d97706"></i>audit and unknown</span><span><i style="background:#e11d48"></i>refused</span></p>
         <p class="body-text">Latest run: the one-command runner after the fixes, 76 cases. The first run on my laptop (71 cases) came out 64 as expected, 5 different, 2 for information. The full written account is in <a href="/assets/humangate-mcp-lab-final-report.pdf">the report</a>.</p>
@@ -84,7 +88,7 @@
         <h2>How to read this</h2>
         <p class="body-text">The gateway and every tool it guards are synthetic. Nothing real is touched. Each case was run once by a script that talks to the same <code>/mcp</code> endpoint the MCP Inspector uses. The lost-response and clock cases run inside the test harness, because the fault switch and the clock only exist there. A separate real 11-minute wait also ended in &ldquo;expired&rdquo;. Reviewer names are typed into the request, not authenticated, and one case shows why that matters. This shows what this gateway did on these cases. It does not prove it secure.</p>
         <p class="body-text">The short version: <a href="/mcp-lab-case-study/">the case study</a>. What each case does and why it matters: <a href="/mcp-lab-use-cases/">the use cases in detail</a>.</p>
-        <p class="mcp-cta"><a class="btn btn-primary" href="/assets/humangate-mcp-lab-final-report.pdf">Download the full report (PDF, 120 pages)</a> <a class="btn btn-ghost" href="/mcp-human-approval-gateway/">Try the lab in your browser</a> <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a></p>
+        <p class="mcp-cta"><a class="btn btn-primary" href="/assets/humangate-mcp-lab-final-report.pdf">Download the full report (PDF, 122 pages)</a> <a class="btn btn-ghost" href="/mcp-lab-portal/">Explore the portal</a> <a class="btn btn-ghost" href="/assets/humangate-mcp-lab-book-interior.pdf">Book edition (PDF, 136 pages)</a> <a class="btn btn-ghost" href="/mcp-human-approval-gateway/">Try the lab in your browser</a> <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a></p>
       </section>
       <aside class="hg-next" aria-labelledby="hg-next-t">
         <p class="eyebrow">Where next</p>

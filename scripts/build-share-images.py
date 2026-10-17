@@ -56,6 +56,11 @@ PAGES = {
     "case-studies": ("Case Studies", "Case studies", "cyan"),
     "pam-series": ("The PAM series", "Series · Privileged access", "green"),
     "tier-check": ("PAM Tier Check", "Tool · Privileged access", "amber"),
+    "mcp-lab-portal": ("Can a person stay in control of an AI agent?", "MCP lab · Portal", "cyan"),
+    "mcp-lab-case-study": ("The HumanGate MCP lab: case study", "MCP lab", "cyan"),
+    "mcp-lab-in-depth": ("The HumanGate MCP lab, in depth", "MCP lab", "violet"),
+    "mcp-lab-use-cases": ("Every MCP use case I tested", "MCP lab · Use cases", "green"),
+    "mcp-lab-results": ("What happened when I ran every case", "MCP lab · Results", "amber"),
 }
 
 def main():
