@@ -40,8 +40,8 @@
         <p class="body-text">Latest run: the one-command runner after the fixes, 76 cases. The first run on my laptop (71 cases) came out 64 as expected, 5 different, 2 for information. The full written account is in <a href="/assets/humangate-mcp-lab-final-report.pdf">the report</a>.</p>
       </section>
       <section>
-        <h2>Round two (17 October 2026)</h2>
-        <p class="body-text">The table below is round one (76 cases). Round two added about 88 scripted checks: gap cases, a second client, policy and tool changes, a harmless-fields prototype and a conformance runner, plus a real Claude Code run. Nothing from round two changed the round-one numbers. One gap was found and fixed (tool changed after approval), and four limits are written down. The details are on <a href="/mcp-lab-in-depth/">the in-depth page</a>.</p>
+        <h2>Rounds two and three (17 October 2026)</h2>
+        <p class="body-text">The table below is round one (76 cases). Round two added about 88 scripted checks: gap cases, a second client, policy and tool changes, a harmless-fields prototype and a conformance runner, plus a real Claude Code run. Nothing from round two changed the round-one numbers. One gap was found and fixed (tool changed after approval), and four limits are written down. Round three added 46 scripted checks on the permit and receipt, identity, secrets and 20 made-up sector tools, run on Linux, with eight more limits written down and no change to the gateway code. The details are on <a href="/mcp-lab-in-depth/">the in-depth page</a>.</p>
       </section>
       <div id="res-banner" class="res-banner" hidden></div>
       <section id="res-meta" class="res-meta" aria-live="polite"><p class="body-text">Loading results&hellip;</p></section>
@@ -84,7 +84,7 @@
         <h2>How to read this</h2>
         <p class="body-text">The gateway and every tool it guards are synthetic. Nothing real is touched. Each case was run once by a script that talks to the same <code>/mcp</code> endpoint the MCP Inspector uses. The lost-response and clock cases run inside the test harness, because the fault switch and the clock only exist there. A separate real 11-minute wait also ended in &ldquo;expired&rdquo;. Reviewer names are typed into the request, not authenticated, and one case shows why that matters. This shows what this gateway did on these cases. It does not prove it secure.</p>
         <p class="body-text">The short version: <a href="/mcp-lab-case-study/">the case study</a>. What each case does and why it matters: <a href="/mcp-lab-use-cases/">the use cases in detail</a>.</p>
-        <p class="mcp-cta"><a class="btn btn-primary" href="/assets/humangate-mcp-lab-final-report.pdf">Download the full report (PDF, 100 pages)</a> <a class="btn btn-ghost" href="/mcp-human-approval-gateway/">Try the lab in your browser</a> <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a></p>
+        <p class="mcp-cta"><a class="btn btn-primary" href="/assets/humangate-mcp-lab-final-report.pdf">Download the full report (PDF, 119 pages)</a> <a class="btn btn-ghost" href="/mcp-human-approval-gateway/">Try the lab in your browser</a> <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a></p>
       </section>
       <aside class="hg-next" aria-labelledby="hg-next-t">
         <p class="eyebrow">Where next</p>
