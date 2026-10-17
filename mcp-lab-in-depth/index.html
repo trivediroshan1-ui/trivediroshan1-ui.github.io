@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#030712" />
+    <meta name="description" content="The full story of the MCP approval lab: what I did, why, what I followed, what it found over two rounds, and what a firm can take from it." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/mcp-lab-in-depth/" />
+    <meta property="og:title" content="The MCP approval lab, in depth" />
+    <meta property="og:description" content="The full story of the MCP approval lab: what I did, why, what I followed, what it found over two rounds, and what a firm can take from it." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/mcp-lab-in-depth/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>The MCP approval lab, in depth &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261002">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261010b">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261010b">
+  </head>
+  <body style="--c:#4de2ff">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true"></i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Case studies</a></li><li><a href="/writing/">Writing</a></li><li><a href="/mcp-lab-case-study/" aria-current="page">MCP lab</a></li><li><a href="/about/">About</a></li><li><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      <nav class="back-row" aria-label="Site"><a class="back" href="/">&larr; back to roshantrivedi.co.in</a></nav>
+      <header class="hero mcp-hero">
+        <p class="eyebrow">MCP lab &middot; in depth</p>
+        <h1>The MCP approval lab, in depth</h1>
+        <p class="dek">What I did, why I did it, what I followed, what two rounds of testing found, and what a firm can take from it. Written plainly, with the limits left in.</p>
+        <div class="mcp-ribbon" aria-hidden="true"></div>
+      </header>
+      <nav class="mcp-tabs" aria-label="MCP lab"><a href="/mcp-lab-case-study/">Case study</a><a href="/mcp-lab-in-depth/" aria-current="page">In depth</a><a href="/mcp-lab-use-cases/">Use cases</a><a href="/mcp-lab-results/">Results</a><a href="/mcp-human-approval-gateway/">Try the lab</a><a href="/assets/humangate-mcp-lab-test-results.pdf">Report (PDF)</a><a href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source</a></nav>
+
+      <section>
+        <h2>The short version</h2>
+        <p class="body-text">AI agents now call real tools through MCP, the Model Context Protocol. Some of those calls matter: a deploy, a role change, a payment. The usual answer is &ldquo;a person approves it&rdquo;. I wanted to find out whether that approval actually holds. Does it cover exactly what was asked, work once, expire, and leave a record you can check later?</p>
+        <p class="body-text">So I built a small open-source approval gateway, called HumanGate, and then spent two rounds trying to break it. About 160 checks in total. Most things held. Several did not, and I fixed what I could and wrote down what I could not. Everything uses made-up tools and made-up data.</p>
+      </section>
+
+      <section>
+        <h2>Why I did this</h2>
+        <ul class="approach-list">
+          <li><b>Approval is the control everyone points to.</b> &ldquo;Human in the loop&rdquo; is said a lot and tested rarely. I wanted to see what happens at the edges: a changed argument, a second click, a lost reply, an expired approval.</li>
+          <li><b>My work is access and identity.</b> In privileged access, a yes from a person has always had to be tied to one exact action, once, with a record. Agents bring the same question back in a new place.</li>
+          <li><b>I prefer evidence to opinion.</b> A write-up of what a gate does when you push on it is more useful than a list of things it should do.</li>
+          <li><b>It is a personal project.</b> It runs on my own machines with nothing real in it. It says nothing about any employer or any product I work with.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What I built</h2>
+        <p class="body-text">The gateway sits between an agent and its tools. Fixed rules score each call. Low-risk calls run. Risky ones wait for a person with the right role. The approval is tied to a hash of the exact request, works once, and expires. Every decision, including every refusal, goes into a hash-chained audit log. An AI analyst can write advice for the reviewer, but it cannot approve, deny or change the score.</p>
+        <p class="body-text">The code is public, with tests. You can also try it in your browser, with a scenario runner and a queue of requests, no setup.</p>
+      </section>
+
+      <section>
+        <h2>What I did, in two rounds</h2>
+        <h3>Round one: 76 cases</h3>
+        <p class="body-text">I wrote down what I expected before each run, then ran each case once. A real MCP client (the official Inspector) clicked by hand, a script against the real endpoint, and a browser lab where I could make a tool lose its reply. 72 matched my guess, 1 was different, 3 were information only. Six of my guesses were wrong, which taught me the most.</p>
+        <h3>Round two: about 88 more scripted checks, plus hand runs</h3>
+        <div class="uc-table"><table><thead><tr><th>Area</th><th>What it asked</th><th>Checks</th></tr></thead><tbody>
+        <tr><td>Gap cases</td><td>Everything round one left out: screen display, limits, odd input, audit edges.</td><td>27 scripted, some by hand</td></tr>
+        <tr><td>Second client</td><td>Does a differently written MCP client behave the same?</td><td>6</td></tr>
+        <tr><td>Changes after approval</td><td>A policy version change, a tool definition change.</td><td>5</td></tr>
+        <tr><td>Harmless changes</td><td>Can a timestamp or trace id vary without opening a hole? Baseline first, then a prototype.</td><td>10 baseline, about 25 prototype</td></tr>
+        <tr><td>Conformance runner</td><td>A small test set any approval gateway could be run against.</td><td>15</td></tr>
+        </tbody></table></div>
+        <p class="body-text">I also ran real Claude Code as the MCP client, on one laptop, for one path: it connected, asked for a production deploy, waited, ran it after approval, and was refused on a second use. I then recomputed the audit log hashes outside the gateway (190 events, no break). In the browser lab I checked how hidden characters, long text, markup and a 44-request queue look to a reviewer.</p>
+      </section>
+
+      <section>
+        <h2>What I followed</h2>
+        <ul class="approach-list">
+          <li><b>Expected first, then run.</b> Every case has a line saying what I expected. A wrong guess is kept, not tidied away.</li>
+          <li><b>One run each.</b> No cherry-picking a good run. Scripts were also re-run on a Mac and a Linux box, with checksums so the same script is the same script.</li>
+          <li><b>Synthetic only.</b> Made-up tools, made-up people, temporary databases, nothing that touches a real system.</li>
+          <li><b>The MCP specification.</b> The 2025-11-25 version with its handshake, and the 2026-07-28 version without one. The gateway tracks both, and I tested a client of each kind.</li>
+          <li><b>The OWASP MCP Top 10.</b> My own reading of where each item shows up in the lab. Not an OWASP assessment and not a claim of coverage.</li>
+          <li><b>A written threat model.</b> In the repository, updated this round with the limits below.</li>
+          <li><b>Prior art.</b> Before saying anything is new, I looked. Tying an approval to an exact request, and letting harmless fields vary, are already discussed by several public projects. I do not claim either.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What it found</h2>
+        <div class="uc-table"><table><thead><tr><th>Finding</th><th>What happened</th><th></th><th>Status</th></tr></thead><tbody><tr><td>Approval did not cover the tool itself</td><td>A tool could be loosened after approval (lower base risk, wider scopes) and the old approval still ran.</td><td><span class="res-badge ok">fixed</span></td><td>Fixed. The tool definition is now part of what is hashed.</td></tr><tr><td>Hidden characters on screen</td><td>A direction mark made the reviewer read &ldquo;live&rdquo; where the stored word was &ldquo;evil&rdquo;.</td><td><span class="res-badge ok">fixed</span></td><td>Fixed in the lab screen. Hidden marks show as [U+XXXX].</td></tr><tr><td>Long unbroken text</td><td>One long run of text ran off the edge of the panel, so anything after it was invisible.</td><td><span class="res-badge ok">fixed</span></td><td>Fixed. It wraps now.</td></tr><tr><td>Queue rows looked identical</td><td>With 44 pending requests every row read the same.</td><td><span class="res-badge diff">partly</span></td><td>Partly fixed. Each row shows a short id and the start of the reason. There is still no search or filter.</td></tr><tr><td>Another client can use an approval id</td><td>The approval is tied to the gateway process, not to each client.</td><td><span class="res-badge info">limit</span></td><td>Not fixed. Written down as a limit.</td></tr><tr><td>Cut-off end of the audit log</td><td>Removing the last events is only noticed if you saved the head hash earlier.</td><td><span class="res-badge info">limit</span></td><td>Not fixed. Written down as a limit.</td></tr><tr><td>Restored database</td><td>Restoring an old copy of the database can bring a used approval back to life.</td><td><span class="res-badge info">limit</span></td><td>Not fixed. Written down as a limit.</td></tr><tr><td>Unsigned log</td><td>Without a signing key the chain proves it is consistent, not that nobody rewrote all of it.</td><td><span class="res-badge info">limit</span></td><td>Option exists (HMAC key). Off in my runs.</td></tr><tr><td>Reviewer names</td><td>The name is typed in, not proven.</td><td><span class="res-badge info">limit</span></td><td>Not fixed. Needs real sign-in, which a lab does not have.</td></tr></tbody></table></div>
+        <p class="body-text">Two lessons from building the harmless-fields prototype. A key named <code>__proto__</code> silently disappeared from the hash with plain assignment. And the execute path ignored one kind of policy refusal until I made it respect any denial. Anyone building this has to check the allowed-to-vary fields everywhere the hash is recomputed.</p>
+        <p class="body-text">Across 17 hostile payloads aimed at those fields, none executed on the prototype. Against today&rsquo;s gateway, 7 of 10 similar payloads went through in a field that is outside the hash. That is why the limits matter.</p>
+      </section>
+
+      <section>
+        <h2>How this can help a firm</h2>
+        <p class="body-text">This is not a product pitch or a certification. It is a way of asking better questions before an agent gets a production tool.</p>
+        <ul class="approach-list">
+          <li><b>Ask what exactly the approval covers.</b> The arguments, the target, the tool&rsquo;s own definition, the policy version? If the tool can change after approval and the yes still stands, that is the gap I found.</li>
+          <li><b>Ask whether it works once.</b> And what a retry does. In my runs a repeat with the same key returned the stored result, a new key was blocked.</li>
+          <li><b>Look at what the reviewer sees.</b> If the screen shows different words than the system stores, the approval is only as good as the screen.</li>
+          <li><b>Ask who the approver is.</b> A typed name is not an identity. Real sign-in and roles matter more than any hash.</li>
+          <li><b>Keep a log you can check later.</b> And save its head hash somewhere else, or a cut-off tail goes unnoticed.</li>
+          <li><b>Plan for a lost reply.</b> Somebody has to settle what happened, and that record is only as honest as that person.</li>
+          <li><b>Remember the client has its own controls.</b> Claude Code&rsquo;s auto-mode stopped one of my calls before it reached the gateway. That layer is useful and separate. Do not rely on one layer.</li>
+        </ul>
+        <p class="body-text">The conformance runner is built so other gateways can be tried the same way. Only one adapter exists today, mine, so it is a starting point and not a benchmark.</p>
+      </section>
+
+      <section>
+        <h2>What I still do not know</h2>
+        <p class="body-text">How this behaves with real clients at scale, with real people reviewing hundreds of requests, or with a real identity provider. Whether the allowed-to-vary idea survives a determined attacker I did not think of. Whether my 17 hostile payloads were the right 17. A search for prior art is not proof of absence.</p>
+      </section>
+
+      <section>
+        <h2>Honest limits</h2>
+        <p class="body-text">One run each, on my machines, with synthetic tools. This shows what this gateway did on these cases. It does not prove it secure, and it is not a review of any product or company.</p>
+        <h3>Reproduce it</h3>
+        <p class="body-text">Clone the repository, run <code>npm test</code>, then the scripts in <code>scripts/</code>. Each prints what it expected and what it got. The repository needs Node 24; I ran on Node 22 and saw the warning.</p>
+        <p class="mcp-cta"><a class="btn btn-primary" href="/mcp-lab-case-study/">Read the short case study</a> <a class="btn btn-ghost" href="/mcp-lab-results/">Results</a> <a class="btn btn-ghost" href="/mcp-human-approval-gateway/">Try the lab</a> <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source</a></p>
+      </section>
+<aside class="hg-next" aria-labelledby="hg-next-t">
+        <p class="eyebrow">Where next</p>
+        <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>
+        <p class="lede">Everything here is written to be useful on its own. If it matches a problem you are working on, I would like to hear how you handle it.</p>
+        <div class="grid">
+          <a href="/case-studies/" style="--k:#7df2d0"><b>All case studies</b><span>Privileged access, credentials, governance and agent identity.</span></a>
+          <a href="/#mcp-flow" style="--k:#4de2ff"><b>The MCP approval lab</b><span>Follow one request through the gateway, with the tests behind it.</span></a>
+          <a href="/Roshan_Trivedi_Resume.pdf" style="--k:#c4b5fd"><b>R&eacute;sum&eacute;</b><span>Roles, focus areas and background (PDF).</span></a>
+          <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>LinkedIn, GitHub and email, all in one place.</span></a>
+        </div>
+      </aside>
+      <footer class="page-footer">
+        <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <a href="/">roshantrivedi.co.in</a>
+      </footer>
+    </main>
+  </body>
+</html>
