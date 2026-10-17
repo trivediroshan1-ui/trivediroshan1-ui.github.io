@@ -43,7 +43,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["who is roshan", "who are you", "who is he", "roshan", "bio", "trivedi", "background", "what does he do", "what do you do", "his job", "his role", "job title"],
     answer:
-      "Roshan Trivedi is a Credential Management Platform Owner & PAM Product Leader based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern.",
+      "Roshan Trivedi is a Credential Management Platform Owner & PAM Product Leader based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern. Recently he wrote a free book, Who Approved That?, about keeping a person in the loop when AI agents use real tools (see /book/).",
   },
   {
     id: "expertise",
@@ -235,7 +235,15 @@ window.SITE_QA = [
     url: "/mcp-lab-case-study/",
     keywords: ["mcp case study","mcp lab case study","can a person stay in control of an ai agent","what held","what did not hold","humangate"],
     answer:
-      "The MCP lab case study asks: can a person stay in control of an AI agent? Roshan built a small approval gate for MCP tool calls, then tried to break it 76 ways. The page explains what held, what did not and what he still does not know. Colours show who acts: policy gate, a person, execution, audit or unknown, refused. Read it at /mcp-lab-case-study/.",
+      "The MCP lab case study asks: can a person stay in control of an AI agent? Roshan built a small approval gate for MCP tool calls, then tried to break it in three rounds (210 scripted checks in all, starting with 76 cases). The page explains what held, what did not and what he still does not know. The whole story is also a free book, Who Approved That? (/book/). Colours show who acts: policy gate, a person, execution, audit or unknown, refused. Read it at /mcp-lab-case-study/.",
+  },
+  {
+    id: "ai-journey",
+    title: "How Roshan got into AI, and why he wrote the book",
+    url: "/book/",
+    keywords: ["why did you write the book","why did you write this book","why did roshan write the book","why write the book","what made you write the book","how did you start with ai","your journey","his journey","why did you write","why write a book","learning ai","how to learn ai","180 days","beginner","where to start with ai","how to start with ai","first agent","started with ai","how did roshan learn ai","mentor"],
+    answer:
+      "Roshan did not start as an AI person. He began with a day job and a feeling that something big was moving past him. When he first used ChatGPT, Gemini and Claude he did not know what to ask or how safe they were. He got curious: random videos, arguing with the answers, trying the tools on his phone and laptop, and using his fourteen years in identity and security to keep asking what could go wrong. LLMs, agentic AI, RAG and MCP slowly became things he understood. The first agent he built made him laugh at himself, and that turned into a wish to build useful things. MCP then gave him one question he could not drop: when an agent can use real tools, what is a person's approval really worth? He built a small approval gateway, tried to break it in three rounds, and wrote it all down. After 180 days he says he still has more to learn than he has learned, so the book, Who Approved That?, is a learner's lab notebook and not an expert's verdict. His tips for beginners: start with a question you care about, argue with the answers, write your guess down before you test, use made-up data, and publish the wrong guesses too. Read the preface at /book/.",
   },
   {
     id: "book",
