@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#030712" />
-    <meta name="description" content="The full story of the MCP approval lab: what I did, why, what I followed, what it found over two rounds, and what a firm can take from it." />
+    <meta name="description" content="The full story of the MCP approval lab: what I did, why, what I followed, what it found over three rounds, and what a firm can take from it." />
     <link rel="canonical" href="https://roshantrivedi.co.in/mcp-lab-in-depth/" />
     <meta property="og:title" content="The MCP approval lab, in depth" />
-    <meta property="og:description" content="The full story of the MCP approval lab: what I did, why, what I followed, what it found over two rounds, and what a firm can take from it." />
+    <meta property="og:description" content="The full story of the MCP approval lab: what I did, why, what I followed, what it found over three rounds, and what a firm can take from it." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/mcp-lab-in-depth/" />
     <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
@@ -31,7 +31,7 @@
       <header class="hero mcp-hero">
         <p class="eyebrow">MCP lab &middot; in depth</p>
         <h1>The MCP approval lab, in depth</h1>
-        <p class="dek">What I did, why I did it, what I followed, what two rounds of testing found, and what a firm can take from it. Written plainly, with the limits left in.</p>
+        <p class="dek">What I did, why I did it, what I followed, what three rounds of testing found, and what a firm can take from it. Written plainly, with the limits left in.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
       <nav class="mcp-tabs" aria-label="MCP lab"><a href="/mcp-lab-case-study/">Case study</a><a href="/mcp-lab-in-depth/" aria-current="page">In depth</a><a href="/mcp-lab-use-cases/">Use cases</a><a href="/mcp-lab-results/">Results</a><a href="/mcp-human-approval-gateway/">Try the lab</a><a href="/assets/humangate-mcp-lab-final-report.pdf">Report (PDF)</a><a href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source</a></nav>
@@ -39,7 +39,7 @@
       <section>
         <h2>The short version</h2>
         <p class="body-text">AI agents now call real tools through MCP, the Model Context Protocol. Some of those calls matter: a deploy, a role change, a payment. The usual answer is &ldquo;a person approves it&rdquo;. I wanted to find out whether that approval actually holds. Does it cover exactly what was asked, work once, expire, and leave a record you can check later?</p>
-        <p class="body-text">So I built a small open-source approval gateway, called HumanGate, and then spent two rounds trying to break it. About 160 checks in total. Most things held. Several did not, and I fixed what I could and wrote down what I could not. Everything uses made-up tools and made-up data.</p>
+        <p class="body-text">So I built a small open-source approval gateway, called HumanGate, and then spent three rounds trying to break it. About 210 scripted checks in total. Most things held. Several did not, and I fixed what I could and wrote down what I could not. Everything uses made-up tools and made-up data.</p>
       </section>
 
       <section>
@@ -59,7 +59,7 @@
       </section>
 
       <section>
-        <h2>What I did, in two rounds</h2>
+        <h2>What I did, in three rounds</h2>
         <h3>Round one: 76 cases</h3>
         <p class="body-text">I wrote down what I expected before each run, then ran each case once. A real MCP client (the official Inspector) clicked by hand, a script against the real endpoint, and a browser lab where I could make a tool lose its reply. 72 matched my guess, 1 was different, 3 were information only. Six of my guesses were wrong, which taught me the most.</p>
         <h3>Round two: about 88 more scripted checks, plus hand runs</h3>
@@ -71,6 +71,9 @@
         <tr><td>Conformance runner</td><td>A small test set any approval gateway could be run against.</td><td>15</td></tr>
         </tbody></table></div>
         <p class="body-text">I also ran real Claude Code as the MCP client, on one laptop, for one path: it connected, asked for a production deploy, waited, ran it after approval, and was refused on a second use. I then recomputed the audit log hashes outside the gateway (190 events, no break). In the browser lab I checked how hidden characters, long text, markup and a 44-request queue look to a reviewer.</p>
+        <h3>Round three: 46 more scripted checks, on Linux</h3>
+        <p class="body-text">A reader of my last post asked what is unclear about a permit and receipt layer, what would make someone try it and what is missing. In my lab the permit is the approval and the receipt is the answer that comes back after the run, so I looked at both properly. The agent gets proof that something ran, but not who approved it or under which policy. The tool at the end gets no proof of the approval at all.</p>
+        <p class="body-text">I also checked how the gateway treats tokens, MFA and SSO claims, robots and other non-human identities, secrets and passwords, and I ran 20 made-up tools for government, schools and colleges, a company&rsquo;s ERP, IT and identity teams, robots and a plant. They behaved as the rules say. Three of them, written carelessly on purpose, landed one tier lower, which shows that the tool list needs an owner. Nothing in the gateway code changed. Eight more limits are written down. The PDF has the topic-by-topic map, from IAM to governance.</p>
       </section>
 
       <section>
