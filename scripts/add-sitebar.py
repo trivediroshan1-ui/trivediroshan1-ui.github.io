@@ -4,7 +4,7 @@ import re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKIP = {"index.html", "404.html", "design-system/index.html", "secure-india-exams/index.html", "worker"}
 LINKS = [("Case studies", "/case-studies/", "/case-studies"), ("Writing", "/writing/", "/writing"),
-         ("MCP lab", "/mcp-lab-case-study/", "/mcp-lab"), ("About", "/about/", "/about"),
+         ("MCP lab", "/mcp-lab-case-study/", "/mcp-lab"), ("Book", "/book/", "/book"), ("About", "/about/", "/about"),
          ("R&eacute;sum&eacute;", "/resume/", "/resume")]
 def nav(path):
     items = ""

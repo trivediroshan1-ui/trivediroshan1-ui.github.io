@@ -129,7 +129,7 @@
     INDEX_WAITERS.push(cb);
     if (INDEX_STATE === "loading") return;
     INDEX_STATE = "loading";
-    fetch("/assets/chatbot-index.json?v=20261010b")
+    fetch("/assets/chatbot-index.json?v=20261018")
       .then(function (res) { if (!res.ok) throw new Error("status " + res.status); return res.json(); })
       .then(function (raw) { buildIndex(raw); INDEX_STATE = "ready"; })
       .catch(function () { INDEX_STATE = "failed"; })
