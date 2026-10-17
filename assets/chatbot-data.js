@@ -243,7 +243,7 @@ window.SITE_QA = [
     url: "/mcp-lab-results/",
     keywords: ["mcp results","mcp test results","how many tests","76 cases","210 tests","what failed","test report","mcp report pdf","report"],
     answer:
-      "The results page lists what happened in the MCP lab tests: 210 automated tests and a 76-case runner, with 72 as expected, 1 different and 3 for information. It records the gaps found and what was fixed, and the full 120-page final report, covering three rounds and 210 scripted checks (round three looked at the permit and receipt, identity, secrets and 20 made-up sector tools), is a PDF at /assets/humangate-mcp-lab-final-report.pdf. Tools are synthetic, reviewer names are typed rather than proven, and each case was run once on Roshan's own machines.",
+      "The results page lists what happened in the MCP lab tests: 210 automated tests and a 76-case runner, with 72 as expected, 1 different and 3 for information. It records the gaps found and what was fixed, and the full 122-page final report (and a 136-page book edition, free as a PDF), covering three rounds and 210 scripted checks (round three looked at the permit and receipt, identity, secrets and 20 made-up sector tools), is a PDF at /assets/humangate-mcp-lab-final-report.pdf. A separate portal at /mcp-lab-portal/ lets you explore the path, a risk score calculator, 161 cases and the findings. Tools are synthetic, reviewer names are typed rather than proven, and each case was run once on Roshan's own machines.",
   },
   {
     id: "mcp-lab-use-cases",
