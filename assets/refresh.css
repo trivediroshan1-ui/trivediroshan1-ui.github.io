@@ -1,0 +1,50 @@
+/* October 2026 refresh: brings the inner pages into the home page's look (violet night, soft glow,
+   bigger headings, one footer). Loaded last, after sitebar.css. Page accents (--c) are kept. */
+:root {
+  --bg: #05061a; --surface: #0e0d2c; --surface-2: #14123a; --border: rgba(167, 139, 250, 0.2);
+  --text: #f5f3ff; --muted: #b9b4d8; --accent: #a78bfa;
+  --page: #05061a; --ink: #f5f3ff; --line: rgba(167, 139, 250, 0.2); --line-strong: rgba(167, 139, 250, 0.36);
+}
+html[data-theme="light"] {
+  --bg: #f6f5ff; --surface: #ffffff; --surface-2: #eceaff; --border: rgba(76, 52, 160, 0.18);
+  --text: #15122e; --muted: #4a4470; --accent: #6d4fd8;
+  --page: #f6f5ff; --ink: #15122e; --line: rgba(76, 52, 160, 0.16); --line-strong: rgba(76, 52, 160, 0.3);
+}
+html, body { background-color: var(--bg); }
+body { position: relative; }
+body::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 760px; z-index: -1; pointer-events: none;
+  background: radial-gradient(640px 460px at 88% 0%, rgba(124, 58, 237, 0.32), transparent 70%), radial-gradient(520px 380px at 0% 30%, rgba(76, 29, 149, 0.22), transparent 70%);
+  -webkit-mask-image: linear-gradient(#000 50%, transparent); mask-image: linear-gradient(#000 50%, transparent); }
+html[data-theme="light"] body::before { background: radial-gradient(640px 460px at 88% 0%, rgba(124, 58, 237, 0.13), transparent 70%); }
+
+/* Headings: larger, tighter, like the home page */
+main h1, .hero h1 { font-family: "DM Sans", system-ui, sans-serif; font-weight: 700; font-size: clamp(32px, 5.4vw, 54px); line-height: 1.05; letter-spacing: -0.035em; }
+main h2 { letter-spacing: -0.02em; }
+main .eyebrow, .hero .eyebrow { letter-spacing: 0.18em; }
+
+/* Breadcrumbs that replaced the old "back to" links */
+nav.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 13px; font-weight: 600; margin: 4px 0 18px; color: var(--muted); }
+nav.crumbs a { color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; min-height: 32px; }
+nav.crumbs a:hover { color: var(--text); }
+nav.crumbs span { opacity: 0.5; }
+
+/* "Where next" band */
+.hg-next .eyebrow { color: #a78bfa; }
+.hg-next .grid a { border: 1px solid var(--line); border-top: 3px solid var(--k, #a78bfa); border-radius: 16px; background: rgba(20, 18, 58, 0.55); }
+.hg-next .grid a:hover { border-color: #a78bfa; background: rgba(124, 58, 237, 0.14); }
+html[data-theme="light"] .hg-next .eyebrow { color: #5b3cc4; }
+html[data-theme="light"] .hg-next .grid a { background: rgba(255, 255, 255, 0.75); }
+
+/* One footer for every page */
+.hg-foot { border-top: 1px solid var(--line); margin-top: 48px; font-family: "DM Sans", "Manrope", system-ui, sans-serif; }
+.hg-foot > div { max-width: 1120px; margin: 0 auto; padding: 26px 16px 44px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px 24px; font-size: 14px; color: var(--muted); }
+.hg-foot nav { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.hg-foot a { color: var(--muted); text-decoration: none; display: inline-flex; align-items: center; min-height: 32px; }
+.hg-foot a:hover { color: var(--text); }
+
+/* Cards and boxes pick up the softer radius and violet line */
+main .card, main .tldr, main .callout, main .box { border-radius: 16px; }
+::selection { background: rgba(167, 139, 250, 0.35); }
+/* Room above the first heading on pages without breadcrumbs */
+main > header.hero:first-child, main > .hero:first-child, main > header:first-child { margin-top: 40px; }
+@media (max-width: 600px) { main > header.hero:first-child, main > .hero:first-child, main > header:first-child { margin-top: 24px; } }
