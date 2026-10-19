@@ -1,7 +1,7 @@
 /* Shared slim navigation and "where next" band for inner pages. Uses tokens.css values with safe fallbacks. */
 .hg-sitenav{position:sticky;top:3px;z-index:60;display:flex;align-items:center;gap:1.1rem;padding:.55rem max(16px,calc((100vw - 1120px)/2));background:rgba(5,8,15,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(138,160,190,.16);font-family:"DM Sans","Manrope",system-ui,sans-serif}
 .hg-sitenav .brand{font-weight:700;letter-spacing:.01em;color:inherit;text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:.5rem}
-.hg-sitenav .brand i{width:9px;height:9px;border-radius:50%;background:#4de2ff;box-shadow:0 0 0 3px rgba(77,226,255,.18)}
+.hg-sitenav .brand i{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#58e6f6,#a78bfa);color:#070a1f;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700;flex-shrink:0}
 .hg-sitenav ul{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
 .hg-sitenav ul::-webkit-scrollbar{display:none}
 .hg-sitenav li a{display:inline-flex;align-items:center;min-height:40px;padding:0 .7rem;border-radius:999px;color:inherit;opacity:.78;text-decoration:none;font-size:.9rem;white-space:nowrap;transition:opacity .2s,background .2s}
@@ -45,7 +45,7 @@ html[data-theme="light"] .chip.is-on{color:#fff!important}
 html[data-theme="light"] .res-badge.ok{color:#0b6b3a;border-color:#0b6b3a}
 html[data-theme="light"] .res-badge.diff{color:#7a4f00;border-color:#7a4f00}
 html[data-theme="light"] .hg-sitenav li a[aria-current="page"]{color:#0a6178;box-shadow:inset 0 -2px 0 #0a6178;background:rgba(10,97,120,.1)}
-html[data-theme="light"] .hg-sitenav .brand i{background:#0a6178;box-shadow:0 0 0 3px rgba(10,97,120,.18)}
+
 html[data-theme="light"] .hg-next .eyebrow{color:#0a6178}
 html[data-theme="light"] .hg-next .grid a{background:rgba(10,30,60,.03);border-color:rgba(60,80,110,.25)}
 html[data-theme="light"] .hg-series{background:linear-gradient(135deg,rgba(10,97,80,.07),rgba(10,97,120,.04));border-color:rgba(10,97,80,.3);border-left-color:#0a6150}
@@ -58,3 +58,25 @@ html[data-theme="light"] .watch figcaption,html[data-theme="light"] .pager small
 
 html[data-theme="light"] .hg-sitenav{background:rgba(245,247,251,.97)}
 .hg-series ol span{display:block}
+
+/* October 2026: one menu everywhere */
+.hg-sitenav.is-static{position:relative;top:0}
+.hg-sitenav li.res a{border:1px solid rgba(167,139,250,.6);opacity:1;margin-left:.3rem}
+.hg-sitenav li.res a:hover{background:rgba(167,139,250,.14)}
+html[data-theme="light"] .hg-sitenav li.res a{border-color:#6d4fd8;color:#3b2a8c}
+@media (max-width:520px){.hg-sitenav li.res a{margin-left:0;border-color:transparent}}
+/* MCP lab tab bar */
+.hg-tabs{border-bottom:1px solid rgba(138,160,190,.16);background:rgba(10,8,34,.6);font-family:"DM Sans","Manrope",system-ui,sans-serif}
+.hg-tabs>div{max-width:1120px;margin:0 auto;padding:.35rem 16px;display:flex;align-items:center;gap:.8rem}
+.hg-tabs .lab{font:700 .72rem/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:#a78bfa;text-decoration:none;white-space:nowrap}
+.hg-tabs ul{list-style:none;margin:0;padding:0;display:flex;gap:.15rem;overflow-x:auto;scrollbar-width:none;flex:1}
+.hg-tabs ul::-webkit-scrollbar{display:none}
+.hg-tabs ul a{display:inline-flex;align-items:center;min-height:36px;padding:0 .7rem;border-radius:8px;color:inherit;opacity:.78;text-decoration:none;font-size:.88rem;white-space:nowrap}
+.hg-tabs ul a:hover{opacity:1;background:rgba(167,139,250,.12)}
+.hg-tabs ul a[aria-current="page"]{opacity:1;background:rgba(167,139,250,.16);box-shadow:inset 0 -2px 0 #a78bfa}
+.hg-tabs .book{font-size:.85rem;font-weight:700;color:#a78bfa;text-decoration:none;white-space:nowrap}
+html[data-theme="light"] .hg-tabs{background:rgba(236,234,255,.7)}
+html[data-theme="light"] .hg-tabs .lab,html[data-theme="light"] .hg-tabs .book{color:#5b3cc4}
+html[data-theme="light"] .hg-tabs ul a[aria-current="page"]{box-shadow:inset 0 -2px 0 #5b3cc4}
+@media (max-width:620px){.hg-tabs .lab,.hg-tabs .book{display:none}}
+@media (max-width:440px){.hg-sitenav li.ct{display:none}}

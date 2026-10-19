@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labs and projects &middot; Roshan Trivedi</title>
+    <meta name="description" content="Things Roshan Trivedi builds to test identity-security ideas in the open: the HumanGate MCP approval lab, public research on securing India's national exams, and a credential tiering self-check.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/labs/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Labs and projects &middot; Roshan Trivedi">
+    <meta property="og:description" content="The HumanGate MCP approval lab, public research and small tools, built and tested in the open.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/labs/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/home2.css?v=20261019a">
+    <link rel="stylesheet" href="/assets/tokens.css">
+    <link rel="stylesheet" href="/assets/flow.css">
+    <link rel="stylesheet" href="/assets/chatbot-widget.css">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261019a">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script defer src="/assets/flow-data.js"></script>
+    <script defer src="/assets/flow.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <section class="sec" aria-labelledby="labs-title">
+        <div class="wrap">
+          <p class="ey">Labs and projects</p>
+          <h1 id="labs-title" class="labs-h1">Ideas I build and test <span class="grad">in the open.</span></h1>
+          <p class="lede">Case studies show how I think about a problem. These show what happens when I build something, try to break it, and write down what I got wrong.</p>
+        </div>
+      </section>
+
+      <section class="sec" aria-labelledby="hg-title">
+        <div class="wrap">
+          <div class="lab-main">
+            <div>
+              <p class="ey">Open-source lab &middot; October 2026</p>
+              <h2 id="hg-title">HumanGate: a person in the loop for AI agents</h2>
+              <p class="lede">A small approval gateway for MCP tool calls. Policy decides the risk, a person who is not the requester approves, and the approval is tied to that exact request, works once and expires. I tested it 210 times across three rounds, with made-up tools and data.</p>
+              <div class="acts">
+                <a class="btn btn-1" href="/mcp-lab-case-study/">Start with the overview</a>
+                <a class="btn btn-2" href="/mcp-lab-portal/">Open the portal</a>
+                <a class="btn btn-2" href="/book/">Read the book</a>
+              </div>
+            </div>
+            <ul class="lab-links" aria-label="The lab's pages">
+              <li><a href="/mcp-lab-case-study/"><b>Overview</b><span>The question, the gateway and what I found</span></a></li>
+              <li><a href="/mcp-lab-results/"><b>Results</b><span>Every case, what I expected and what happened</span></a></li>
+              <li><a href="/mcp-lab-use-cases/"><b>Use cases</b><span>81 documented situations, step by step</span></a></li>
+              <li><a href="/mcp-lab-in-depth/"><b>In depth</b><span>The design, the attacks and the limits</span></a></li>
+              <li><a href="/mcp-lab-portal/"><b>Portal</b><span>161 cases, a risk score to play with, the full report</span></a></li>
+              <li><a href="/mcp-human-approval-gateway/"><b>The code</b><span>Try the gateway yourself</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="flow-lab hg block" id="mcp-flow" aria-labelledby="flow-title">
+        <p class="hg-label"><b>MCP lab</b> &middot; follow one request</p>
+        <h2 id="flow-title" class="section-title">Pick a request. See where it stops.</h2>
+        <p class="fl-lead">Six situations from my tests of the approval gateway. Each shows what the gateway did at every stage, and the lab cases that checked it. <strong>Illustrative walk-through</strong> of recorded outcomes with synthetic tools, not a live feed.</p>
+        <div class="fl-chips" role="group" aria-label="Choose a request"><button type="button" class="hg-chip" data-s="docs" aria-pressed="false"><span>Look up docs</span><small>low risk</small></button><button type="button" class="hg-chip" data-s="deploy" aria-pressed="true"><span>Deploy to production</span><small>needs a person</small></button><button type="button" class="hg-chip" data-s="changed" aria-pressed="false"><span>Change it after approval</span><small>one field differs</small></button><button type="button" class="hg-chip" data-s="twice" aria-pressed="false"><span>Use the approval twice</span><small>replay</small></button><button type="button" class="hg-chip" data-s="late" aria-pressed="false"><span>Wait too long</span><small>11 minutes</small></button><button type="button" class="hg-chip" data-s="lost" aria-pressed="false"><span>The reply is lost</span><small>tool ran, answer did not arrive</small></button></div>
+        <ol class="fl-track" id="fl-track" aria-label="Stages of the selected request"><li class="fl-stage hg-neutral is-pass"><span class="fl-n">01</span><b>Request</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">deploy.production, production environment</span></li><li class="fl-stage hg-policy is-pass"><span class="fl-n">02</span><b>Policy gate</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Critical, score 100. Needs security-lead.</span></li><li class="fl-stage hg-person is-pass"><span class="fl-n">03</span><b>A person</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Security lead approves with a reason</span></li><li class="fl-stage hg-policy is-pass"><span class="fl-n">04</span><b>Grant</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Bound to the request hash. Expires in 10 minutes.</span></li><li class="fl-stage hg-exec is-pass"><span class="fl-n">05</span><b>Execute</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Reserve, dispatch, confirm</span></li><li class="fl-stage hg-audit is-pass"><span class="fl-n">06</span><b>Audit</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Decision and result logged</span></li></ol>
+        <div class="fl-result" id="fl-result" aria-live="polite"><span class="hg-badge hg-exec">Executed</span><h3>Executed after a person approved</h3><p>Critical risk waits for a security lead. The requester cannot approve its own request. The approval covers this exact request and works once.</p><p class="fl-tests">Tested as <a href="/mcp-lab-use-cases/#B3">B3</a> <a href="/mcp-lab-use-cases/#B4">B4</a> <a href="/mcp-lab-use-cases/#B5">B5</a></p></div>
+        <div class="fl-foot">
+          <p class="fl-evidence"><b>213</b> automated tests &middot; <b>76</b> cases in the one-command runner: <b>72</b> as expected, <b>1</b> different, <b>3</b> for information.</p>
+          <p class="hg-callout hg-audit fl-limit"><strong>Limits.</strong> Tools are synthetic. Reviewer names are typed in, not proven. One run per case, on my own machines. This shows what this gateway did on these cases. It does not prove it secure.</p>
+          <p class="fl-links"><a class="hg-btn hg-btn-primary" href="/mcp-human-approval-gateway/">Try the lab</a><a class="hg-btn" href="/mcp-lab-case-study/">Read the case study</a><a class="hg-btn hg-btn-quiet" href="/mcp-lab-results/">All 76 results</a></p>
+        </div>
+        <noscript><p class="fl-lead">Turn on JavaScript to switch requests. The full list is on <a href="/mcp-lab-use-cases/">the use-cases page</a>.</p></noscript>
+      </section>
+      </div>
+
+
+      <section class="sec" aria-labelledby="more-title">
+        <div class="wrap">
+          <div class="head"><div><p class="ey">More projects</p><h2 id="more-title">Research and small tools</h2></div></div>
+          <div class="g3">
+            <a class="card feat" href="/secure-india-exams/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6M8 15h3"/></svg></span></span><div><span class="tag">Public research</span><h3>Securing India&rsquo;s National Exams</h3><p>A Zero Trust lifecycle model for high-stakes exams: create, protect, deliver, verify, retire.</p><span class="go">Read the research &rarr;</span></div></a>
+            <a class="card feat" href="/tools/tier-check/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span></span><div><span class="tag">Tool</span><h3>Credential tiering self-check</h3><p>A few questions that show which tier a credential belongs in, and why Tier 0 is about containment.</p><span class="go">Try the check &rarr;</span></div></a>
+            <a class="card feat" href="/case-studies/credential-tiering-model/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span></span><div><span class="tag">Model</span><h3>The credential tiering model</h3><p>The thinking behind the self-check, written up as a full case study.</p><span class="go">Read the model &rarr;</span></div></a>
+            <!-- Hound card: goes live once Steve agrees.
+            <a class="card feat" href="https://houndchallenge.net/"><div><span class="tag">Side project</span><h3>Hound</h3><p>A social fitness app I am building with a friend. People take on challenges together, and a hound nags them, kindly, to move. I work on security and product ideas.</p><span class="go">Visit houndchallenge.net &rarr;</span></div></a>
+            -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-data.js?v=20261018b"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
+  </body>
+</html>
