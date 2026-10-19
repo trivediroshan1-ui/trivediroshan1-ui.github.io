@@ -80,3 +80,10 @@ html[data-theme="light"] .hg-tabs .lab,html[data-theme="light"] .hg-tabs .book{c
 html[data-theme="light"] .hg-tabs ul a[aria-current="page"]{box-shadow:inset 0 -2px 0 #5b3cc4}
 @media (max-width:620px){.hg-tabs .lab,.hg-tabs .book{display:none}}
 @media (max-width:440px){.hg-sitenav li.ct{display:none}}
+/* Keep the menu the same on pages that bring their own styles */
+nav.hg-sitenav{color:#eef1ff;font-size:16px;line-height:1.4}
+nav.hg-sitenav ul{flex-wrap:nowrap;align-items:center}
+nav.hg-sitenav li{list-style:none;margin:0;padding:0}
+nav.hg-sitenav a,nav.hg-sitenav li a{color:#eef1ff;font-weight:600}
+html[data-theme="light"] nav.hg-sitenav{color:#25344a}
+html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitenav li a{color:#25344a}
