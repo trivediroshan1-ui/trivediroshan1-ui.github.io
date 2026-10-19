@@ -4,6 +4,8 @@ url: "https://roshantrivedi.co.in"
 permalink: /writing/:title/
 markdown: kramdown
 future: true
+include:
+  - .well-known
 exclude:
   - README.md
   - worker/

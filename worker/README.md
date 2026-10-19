@@ -147,13 +147,11 @@ carries these headers.
 
 ### Keeping it in sync
 
-`_headers`'s CSP `script-src` allows the site's own scripts by exact SHA-256
-hash, one per inline `<script>` block (see the comment at the top of
-`_headers`). If you ever edit the text of an inline script in `index.html` or
-`case-studies/non-human-identity-at-scale/index.html`, its hash changes —
-regenerate it and update both `_headers` and the Transform Rule's CSP value,
-or the browser will silently block that script. Ask Claude to do this
-whenever an inline script changes; it's a five-second check.
+No page runs an inline `<script>` any more, so the CSP needs no hashes. Every
+page also carries the same policy as a `<meta>` tag (`scripts/set-security-meta.py`),
+which protects the site even before this rule exists. If the policy changes,
+update `_headers`, the script and this Transform Rule together. Put new
+scripts in `/assets/*.js` rather than inline.
 
 ## Security notes
 

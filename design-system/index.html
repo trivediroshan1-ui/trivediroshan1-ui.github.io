@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
     <meta name="description" content="The design system behind roshantrivedi.co.in: tokens, components and rules, with measured contrast. Colour says who acts." />
@@ -90,8 +92,6 @@
   </section>
   <footer><span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><a href="/">roshantrivedi.co.in</a></footer>
 </main>
-<script>
-(function(){var b=document.getElementById('mdemo'),d=document.getElementById('mdot');if(!b)return;b.addEventListener('click',function(){d.style.transition='none';d.style.transform='translateX(0)';void d.offsetWidth;d.style.transition='transform var(--hg-dur-slow) var(--hg-ease)';d.style.transform='translateX(calc(100% * 7))';});})();
-</script>
+<script src="/assets/dsys-demo.js" defer></script>
 </body>
 </html>
