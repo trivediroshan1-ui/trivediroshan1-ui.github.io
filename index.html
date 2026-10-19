@@ -84,706 +84,182 @@
       }
     </script>
     <script src="/assets/theme.js"></script>
-    <link rel="preload" as="font" type="font/woff2" href="/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/assets/dm-sans-latin-700-normal-DvUfVpUG.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/assets/manrope-latin-500-normal-BYYD-dBL.woff2" crossorigin>
 <!-- inline-css:start -->
 <style>
 @font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 400; src: url(/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2) format('woff2'), url(/assets/dm-sans-latin-400-normal-BwCSEQnW.woff) format('woff'); } @font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 500; src: url(/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2) format('woff2'), url(/assets/dm-sans-latin-500-normal-Dr3UlScf.woff) format('woff'); } @font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 600; src: url(/assets/dm-sans-latin-600-normal-Aqo67rzb.woff2) format('woff2'), url(/assets/dm-sans-latin-600-normal-BmdmIIQ2.woff) format('woff'); } @font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 700; src: url(/assets/dm-sans-latin-700-normal-DvUfVpUG.woff2) format('woff2'), url(/assets/dm-sans-latin-700-normal-CUSSCpQX.woff) format('woff'); } @font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 800; src: url(/assets/dm-sans-latin-800-normal.woff) format('woff'); } @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 400; src: url(/assets/manrope-latin-400-normal.woff) format('woff'); } @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 500; src: url(/assets/manrope-latin-500-normal-BYYD-dBL.woff2) format('woff2'), url(/assets/manrope-latin-500-normal-DMZssgOp.woff) format('woff'); } @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 600; src: url(/assets/manrope-latin-600-normal-4f0koTD-.woff2) format('woff2'), url(/assets/manrope-latin-600-normal-BqgrALkZ.woff) format('woff'); } @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 700; src: url(/assets/manrope-latin-700-normal-BZp_XxE4.woff2) format('woff2'), url(/assets/manrope-latin-700-normal-DGRFkw-m.woff) format('woff'); } @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 800; src: url(/assets/manrope-latin-800-normal-BfWYOv1c.woff2) format('woff2'), url(/assets/manrope-latin-800-normal-uHUdIJgA.woff) format('woff'); } @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 400; src: url(/assets/jetbrains-mono-latin-regular.woff) format('woff'); } @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 500; src: url(/assets/jetbrains-mono-latin-medium.woff) format('woff'); } @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 600; src: url(/assets/jetbrains-mono-latin-semibold.woff) format('woff'); } @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 700; src: url(/assets/jetbrains-mono-latin-bold.woff) format('woff'); }
-:root { color-scheme: dark; --ink: #f8fafc; --muted: #a9b6c7; --subtle: #728096; --page: #030712; --surface: #07101d; --surface-raised: #0a1627; --surface-soft: #0d1b2d; --line: rgba(148, 163, 184, 0.17); --line-strong: rgba(148, 163, 184, 0.29); --cyan: #58e6f6; --cyan-strong: #16d9ef; --cyan-soft: rgba(34, 211, 238, 0.12); --amber: #ff9f43; --green: #65e5ad; --header-height: 68px; --page-pad: clamp(1.15rem, 4vw, 4.5rem); --max-width: 1240px; --radius: 20px; --radius-lg: 30px; --display: "DM Sans", system-ui, sans-serif; --body: "Manrope", "DM Sans", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace; } * { box-sizing: border-box; } html { scroll-behavior: smooth; scroll-padding-top: 96px; } body { margin: 0; min-width: 320px; min-height: 100vh; color: var(--ink); font-family: var(--display); line-height: 1.6; background: linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px), radial-gradient(circle at 80% 2%, rgba(34,211,238,0.11), transparent 29rem), var(--page); background-size: 42px 42px, 42px 42px, auto, auto; -webkit-font-smoothing: antialiased; overflow-x: hidden; } @media (min-width: 900px) { body { background-size: 64px 64px, 64px 64px, auto, auto; } } a { color: inherit; } img { max-width: 100%; display: block; } h1, h2, h3, p, ul, ol { margin: 0; } ul, ol { padding: 0; list-style: none; } .skip-link { position: absolute; left: 12px; top: -60px; z-index: 300; background: var(--cyan); color: #04121a; font-weight: 700; padding: 10px 16px; border-radius: 10px; text-decoration: none; } .skip-link:focus { top: 12px; } :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; } .wrap { width: 100%; max-width: calc(var(--max-width) + 2 * var(--page-pad)); margin: 0 auto; padding-inline: var(--page-pad); } .site-header { position: fixed; top: 0; left: 0; z-index: 100; width: 100%; height: var(--header-height); display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 0.7rem; padding: 0 var(--page-pad); background: #030712d6; border-bottom: 1px solid var(--line); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); } .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; } .brand-mark { width: 38px; height: 38px; border-radius: 10px; flex: none; display: grid; place-items: center; background: var(--cyan); color: #04121a; font-weight: 800; font-size: 14px; letter-spacing: 0.02em; } .brand-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; } .brand-name { font-weight: 700; font-size: 15px; white-space: nowrap; } .brand-sub { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--subtle); white-space: nowrap; } .nav-desktop { display: none; gap: 30px; } .nav-desktop a, .nav-mobile a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; } .nav-desktop a:hover { color: var(--ink); } .btn-outline { display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(88,230,246,0.45); color: var(--cyan); background: rgba(88,230,246,0.05); text-decoration: none; font-weight: 700; font-size: 13.5px; padding: 9px 20px; border-radius: 999px; } .btn-outline:hover { background: rgba(88,230,246,0.14); } .menu { position: relative; } .menu summary { list-style: none; cursor: pointer; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--line-strong); display: grid; place-items: center; color: var(--ink); } .menu summary::-webkit-details-marker { display: none; } .menu summary span, .menu summary span::before, .menu summary span::after { display: block; width: 16px; height: 2px; background: currentColor; border-radius: 2px; position: relative; } .menu summary span::before, .menu summary span::after { content: ""; position: absolute; left: 0; } .menu summary span::before { top: -5px; } .menu summary span::after { top: 5px; } .nav-mobile { position: absolute; right: 0; top: 50px; min-width: 220px; display: flex; flex-direction: column; padding: 8px; background: var(--surface-raised); border: 1px solid var(--line-strong); border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); } .nav-mobile a { padding: 11px 14px; border-radius: 8px; font-size: 15px; } .nav-mobile a:hover { background: rgba(255,255,255,0.05); color: var(--ink); } @media (min-width: 980px) { :root { --header-height: 76px; } .site-header { grid-template-columns: auto 1fr auto; gap: 2rem; } .nav-desktop { display: flex; justify-content: center; } .menu { display: none; } } @media (max-width: 979px) { .site-header .btn-outline { display: none; } .site-header { grid-template-columns: 1fr auto; } } .hero { padding-top: calc(var(--header-height) + 1.25rem + var(--notice-h, 0px)); padding-bottom: 3rem; } .hero-grid { display: grid; gap: 3rem; align-items: center; } .eyebrow-line { display: flex; align-items: center; gap: 14px; font-family: var(--display); font-weight: 700; font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); } .eyebrow-line::before { content: ""; width: 32px; height: 1px; background: var(--cyan); } .hero h1 { font-weight: 700; letter-spacing: -0.05em; line-height: 0.98; font-size: clamp(3rem, 7.2vw, 4.9rem); margin: 16px 0 16px; } .hero h1 span { display: block; background: linear-gradient(90deg, #4de2ff 0%, #7df2d0 45%, #ff9f43 100%); -webkit-background-clip: text; background-clip: text; color: transparent; } .hero-role { font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-weight: 600; max-width: 24em; line-height: 1.35; } .hero-lead { color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.12rem); max-width: 34em; margin-top: 12px; line-height: 1.65; } .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; } .btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 700; font-size: 14.5px; padding: 14px 24px; border-radius: 999px; border: 1px solid transparent; } .btn-primary { background: var(--cyan); color: #04121a; box-shadow: 0 10px 34px rgba(88,230,246,0.25); } .btn-primary:hover { background: #7aeefa; } .btn-ghost { border-color: var(--line-strong); color: var(--ink); background: rgba(255,255,255,0.02); } .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); } .hero-visual { position: relative; max-width: 460px; width: 100%; margin: 0 auto; padding-bottom: 60px; } .portrait { position: relative; aspect-ratio: 0.58; border-radius: 30px; padding: 10px; background: linear-gradient(160deg, rgba(88,230,246,0.5), rgba(88,230,246,0.08) 55%, rgba(255,159,67,0.35)); box-shadow: 0 30px 80px rgba(0,0,0,0.55), 14px 14px 0 -2px rgba(88,230,246,0.05); } .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; border-radius: 22px; } .path-card { position: absolute; left: -4%; right: -6%; bottom: 0; background: rgba(7,16,29,0.94); border: 1px solid var(--line-strong); border-radius: 16px; padding: 14px 18px 16px; box-shadow: 0 22px 60px rgba(0,0,0,0.55); } .path-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); } .path-head b { color: var(--green); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; } .path-head b::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--green); } .path-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); } .path-steps li { font-size: 9.5px; color: var(--subtle); line-height: 1.4; } .path-steps li small { display: block; font-family: var(--mono); font-size: 9.5px; color: var(--cyan); margin-bottom: 3px; } .path-steps li strong { display: block; color: var(--ink); font-size: 11px; font-weight: 700; margin-bottom: 3px; line-height: 1.25; } @media (max-width: 560px) { .path-card { left: 0; right: 0; } .path-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; } .path-steps li span { display: none; } .hero-visual { padding-bottom: 54px; } } @media (min-width: 980px) { .hero-grid { grid-template-columns: 1.3fr 0.8fr; gap: 3rem; min-height: 0; align-items: start; } .hero-visual { margin: 0 0 0 auto; } } .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 30px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--subtle); } .hero-meta span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--green); margin-right: 9px; } .stats { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); } .stats li { display: flex; align-items: center; gap: 12px; padding: 22px 20px; border-right: 1px solid var(--line); } .stats li:nth-child(2n) { border-right: 0; } .stats li:nth-child(n+3) { border-top: 1px solid var(--line); } .stats b { font-size: 1.6rem; color: var(--cyan); font-weight: 700; letter-spacing: -0.02em; flex: none; } .stats span { font-size: 12.5px; color: var(--muted); line-height: 1.4; } @media (min-width: 900px) { .stats { grid-template-columns: repeat(4, 1fr); } .stats li, .stats li:nth-child(2n) { border-right: 1px solid var(--line); border-top: 0; } .stats li:last-child { border-right: 0; } } section.block { padding-block: clamp(4rem, 9vw, 7.5rem); border-bottom: 1px solid var(--line); } section.block:last-of-type { border-bottom: 0; } .section-head { display: grid; gap: 14px; margin-bottom: clamp(2rem, 5vw, 3.5rem); } .section-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--subtle); } .section-label b { color: var(--cyan); font-weight: 700; margin-right: 12px; } .section-title { font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; font-size: clamp(2.3rem, 6vw, 4.4rem); text-wrap: balance; } .section-lead { color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.1rem); max-width: 40em; margin-top: 18px; line-height: 1.75; } @media (min-width: 900px) { .section-head { grid-template-columns: 3fr 5fr; gap: 3rem; align-items: start; } .section-label { padding-top: 1.4rem; } } .perspective { display: grid; gap: 2.2rem; } .perspective .statement { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.16; text-wrap: balance; } .perspective .copy { display: grid; gap: 18px; color: var(--muted); font-size: 1.02rem; line-height: 1.8; } .callout { display: grid; gap: 8px; margin-top: 8px; padding: 20px 22px; border-radius: 14px; background: linear-gradient(135deg, rgba(34,211,238,0.1), rgba(7,16,29,0.9)); border: 1px solid rgba(88,230,246,0.25); font-size: 13.5px; color: var(--muted); line-height: 1.6; } .callout b { color: var(--cyan); font-size: 14px; } @media (min-width: 900px) { .perspective { grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; } .callout { grid-template-columns: auto 1fr; gap: 24px; align-items: start; } } .grid-3 { display: grid; border: 1px solid var(--line); } .grid-3 > article { padding: 30px 30px 32px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; } .grid-3 > article:last-child { border-bottom: 0; } .cell-num { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--cyan); letter-spacing: 0.1em; } .grid-3 h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; margin-top: 18px; } .grid-3 p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; } .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 10px; } .chips span { border: 1px solid var(--line-strong); border-radius: 999px; padding: 4px 11px; font-size: 11px; font-weight: 600; color: var(--ink); background: rgba(255,255,255,0.03); } @media (min-width: 700px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } .grid-3 > article { border-right: 1px solid var(--line); } .grid-3 > article:nth-child(2n) { border-right: 0; } .grid-3 > article:nth-last-child(-n+2) { border-bottom: 0; } } @media (min-width: 1000px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-3 > article, .grid-3 > article:nth-child(2n) { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); } .grid-3 > article:nth-child(3n) { border-right: 0; } .grid-3 > article:nth-last-child(-n+3) { border-bottom: 0; } } .platform-note { color: var(--subtle); font-size: 13px; max-width: 46em; margin-top: 4px; line-height: 1.7; } .platform-groups { display: grid; gap: 0; border-top: 1px solid var(--line); } .platform-group { display: grid; gap: 12px; padding: 22px 0; border-bottom: 1px solid var(--line); } .platform-group h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); font-weight: 600; } .platform-group ul { display: flex; flex-wrap: wrap; gap: 10px; } .platform-group li { border: 1px solid var(--line-strong); background: var(--surface); border-radius: 12px; padding: 8px 16px; font-size: 14px; font-weight: 600; } @media (min-width: 800px) { .platform-group { grid-template-columns: 220px 1fr; align-items: center; gap: 30px; } } .research-card { display: grid; overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(34,211,238,0.09), rgba(7,16,29,0.95) 45%); } .research-main { padding: clamp(1.6rem, 5vw, 4rem); display: flex; flex-direction: column; gap: 18px; align-items: flex-start; } .tag-row { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--display); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); } .research-main h3 { font-size: clamp(2rem, 4.4vw, 3.4rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; max-width: 12em; } .research-main > p { color: var(--muted); max-width: 38em; line-height: 1.75; } .research-main ul { display: grid; gap: 8px; color: var(--muted); font-size: 0.92rem; } .research-main li { padding-left: 18px; position: relative; } .research-main li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); } .research-steps { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); } .research-steps li { padding: 16px 10px; text-align: center; font-family: var(--mono); font-size: 11px; color: var(--muted); font-weight: 500; border-right: 1px solid var(--line); } .research-steps li:last-child { border-right: 0; } @media (min-width: 900px) { .research-card { grid-template-columns: 1fr 240px; } .research-steps { grid-template-columns: 1fr; grid-auto-rows: 1fr; border-top: 0; border-left: 1px solid var(--line); } .research-steps li { display: flex; align-items: center; text-align: left; padding: 0 22px; border-right: 0; border-bottom: 1px solid var(--line); } .research-steps li:last-child { border-bottom: 0; } } .quote { font-size: clamp(1.3rem, 2.4vw, 1.8rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; color: var(--cyan); margin: 0 0 36px; max-width: 26em; } .career-grid { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; } .career-grid article { padding: 26px 28px; border-bottom: 1px solid var(--line); display: grid; align-content: start; gap: 8px; background: rgba(7,16,29,0.5); } .career-grid article:last-child { border-bottom: 0; } .career-grid small { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); } .career-grid h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; } .career-grid p { color: var(--muted); font-size: 0.93rem; line-height: 1.7; } @media (min-width: 900px) { .career-grid { grid-template-columns: repeat(3, 1fr); } .career-grid article { border-bottom: 0; border-right: 1px solid var(--line); } .career-grid article:last-child { border-right: 0; } } .contact-box { display: grid; gap: 22px; max-width: 46em; } .contact-box h2 { font-size: clamp(2.2rem, 5.4vw, 4rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; text-wrap: balance; } .contact-box p { color: var(--muted); font-size: 1.05rem; line-height: 1.75; } .contact-box p.section-label { font-size: 11px; line-height: 1.4; color: var(--subtle); } .site-footer { border-top: 1px solid var(--line); padding-block: 34px 44px; } .footer-grid { display: grid; gap: 18px; } .footer-grid strong { display: block; font-size: 15px; } .footer-grid small { color: #6e86b0; font-size: 12.5px; } .footer-links { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 12.5px; color: #6e86b0; align-items: center; } .footer-links a { text-decoration: none; } .footer-links a:hover { color: var(--cyan); } @media (min-width: 800px) { .footer-grid { grid-template-columns: 1fr auto; align-items: end; } } @media (prefers-reduced-motion: no-preference) { .hero-copy, .hero-visual { animation: rise 0.7s ease both; } .hero-visual { animation-delay: 0.12s; } @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } } } @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } } section.block { border-bottom: 0; position: relative; } section.block::before { content: ""; position: absolute; top: 0; left: 50%; width: min(1240px, 100% - 2 * var(--page-pad)); transform: translateX(-50%); height: 1px; background: linear-gradient(90deg, transparent, var(--line-strong), transparent); } .site-header::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--cyan), var(--green), var(--amber)); transform-origin: 0 50%; transform: scaleX(0); } @supports (animation-timeline: scroll()) { @media (prefers-reduced-motion: no-preference) { .site-header::after { animation: progress linear both; animation-timeline: scroll(root); } @keyframes progress { to { transform: scaleX(1); } } } } @supports (animation-timeline: view()) { @media (prefers-reduced-motion: no-preference) { .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; } @keyframes reveal { from { opacity: 0.45; transform: translateY(22px); } to { opacity: 1; transform: none; } } } } .hero-visual::before { content: ""; position: absolute; inset: -8% -16% 6% -16%; background: radial-gradient(closest-side, rgba(88,230,246,0.22), rgba(255,159,67,0.07) 60%, transparent 75%); filter: blur(14px); z-index: -1; } .hero-visual { isolation: isolate; } .path-steps li { position: relative; } .path-steps li small { transition: color .2s; } @media (prefers-reduced-motion: no-preference) { .path-steps li small { animation: stepglow 7.5s ease-in-out infinite; } .path-steps li:nth-child(2) small { animation-delay: 1.5s; } .path-steps li:nth-child(3) small { animation-delay: 3s; } .path-steps li:nth-child(4) small { animation-delay: 4.5s; } .path-steps li:nth-child(5) small { animation-delay: 6s; } @keyframes stepglow { 0%, 16%, 100% { color: var(--cyan); text-shadow: none; } 4%, 12% { color: #fff; text-shadow: 0 0 10px var(--cyan); } } } .stats li { transition: background .2s; } .stats li:hover { background: rgba(88,230,246,0.05); } .cell-top { display: flex; align-items: center; justify-content: space-between; } .ex-icon { width: 28px; height: 28px; color: var(--cyan); opacity: .85; } .grid-3 > article { transition: background .25s; } .grid-3 > article:hover { background: radial-gradient(circle at 0 0, rgba(88,230,246,0.08), transparent 70%); } .grid-3 > article:hover .ex-icon { opacity: 1; filter: drop-shadow(0 0 8px rgba(88,230,246,.5)); } .chips span { transition: border-color .2s, color .2s; } .grid-3 > article:hover .chips span { border-color: rgba(88,230,246,.4); } .cs-grid { display: grid; gap: 18px; grid-template-columns: 1fr; } .cs-card { --c: var(--cyan); position: relative; display: flex; flex-direction: column; overflow: hidden; background: linear-gradient(180deg, rgba(13,27,45,0.7), rgba(7,16,29,0.9)); border: 1px solid var(--line); border-radius: var(--radius); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; } .cs-card:hover, .cs-card:focus-within { transform: translateY(-4px); border-color: color-mix(in srgb, var(--c) 55%, transparent); box-shadow: 0 22px 50px rgba(0,0,0,.45), 0 0 0 1px color-mix(in srgb, var(--c) 25%, transparent); } .cs-art { height: 132px; padding: 6px 0; color: var(--c); background: radial-gradient(circle at 70% 20%, color-mix(in srgb, var(--c) 18%, transparent), transparent 60%), linear-gradient(180deg, rgba(255,255,255,.03), transparent); border-bottom: 1px solid var(--line); overflow: hidden; } .cs-art svg { width: 100%; height: 100%; display: block; } .cs-body { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px 22px; flex: 1; } .cs-cat { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); } .cs-cat i, .cs-more i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); flex: none; } .cs-card h3 { font-size: 1.28rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.22; } .cs-card h3 a { text-decoration: none; } .cs-card h3 a::after { content: ""; position: absolute; inset: 0; } .cs-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; } .cs-card .more { margin-top: auto; padding-top: 6px; font-weight: 700; font-size: 13px; color: var(--c); } .cs-card:hover .more { text-decoration: underline; text-underline-offset: 4px; } @media (min-width: 700px) { .cs-grid { grid-template-columns: repeat(2, 1fr); } } @media (min-width: 1040px) { .cs-grid { grid-template-columns: repeat(3, 1fr); } } .cs-more-title { margin: 56px 0 14px; font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--subtle); font-weight: 600; } .cs-more { display: grid; gap: 0; border-top: 1px solid var(--line); } .cs-more li { --c: var(--cyan); border-bottom: 1px solid var(--line); } .cs-more a { display: grid; grid-template-columns: 14px 1fr; column-gap: 12px; align-items: center; padding: 14px 6px; text-decoration: none; transition: background .2s, padding .2s; } .cs-more a:hover { background: rgba(255,255,255,.03); padding-left: 12px; } .cs-more span { font-weight: 600; font-size: .98rem; } .cs-more a:hover span { color: var(--c); } .cs-more small { grid-column: 2; color: var(--subtle); font-size: 12px; } @media (min-width: 900px) { .cs-more { grid-template-columns: repeat(2, 1fr); column-gap: 40px; } } .cs-all { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; } .platform-group li { transition: border-color .2s, transform .2s; } .platform-group li:hover { border-color: rgba(88,230,246,.5); transform: translateY(-2px); } .btn { transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s; } .btn:hover { transform: translateY(-2px); } .research-card { transition: border-color .3s, box-shadow .3s; } .research-card:hover { border-color: rgba(88,230,246,.4); box-shadow: 0 30px 80px rgba(0,0,0,.4); } .hero { overflow-x: clip; } @media print { .reveal { animation: none !important; opacity: 1 !important; transform: none !important; } .site-header::after { display: none; } } .start { margin: 8px 0 8px; } .start-title { font-family: var(--display); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--cyan); margin: 0 0 14px; font-weight: 700; } .start-grid { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); } .start-grid > div { border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; background: rgba(255,255,255,.02); display: flex; flex-direction: column; gap: 6px; } .start-grid h3 { font-family: var(--display); font-size: 17px; margin: 0; line-height: 1.3; } .start-grid p { margin: 0 0 8px; color: var(--muted); font-size: 14.5px; } .start-grid a { color: var(--cyan); font-weight: 600; font-size: 14px; text-decoration: none; } .start-grid a:hover { text-decoration: underline; } @media (max-width: 820px) { .start-grid { grid-template-columns: 1fr; } } .lab-notices{position:fixed;top:var(--header-height);left:0;right:0;z-index:99;display:flex;flex-direction:column;box-shadow:0 2px 10px #0006} .lab-banner{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;justify-content:center;margin:0;padding:8px 16px;background:linear-gradient(90deg,#0b2a3a,#1e1b4b);color:#f8fafc;font-size:.88rem;text-align:center;line-height:1.35} .lab-banner a{color:#e0f2fe;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(224,242,254,.45)} .lab-banner a:hover,.lab-banner a:focus-visible{color:#fff;text-decoration-color:#fff} .lab-banner i{font-style:normal;opacity:.6} .lab-banner .lab-new{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#6ee7b7;border:1px solid rgba(110,231,183,.5);border-radius:99px;padding:1px 8px} @media (max-width:640px){.lab-banner i{display:none}.lab-banner a{display:block;padding:3px 0}} .lab-banner:hover,.lab-banner:focus-visible{background:#1b4aa3;text-decoration:underline} .lab-banner.pam{background:#0f3d33} .lab-banner.pam:hover,.lab-banner.pam:focus-visible{background:#15594a} .lab-banner .dot{flex:none;width:10px;height:10px;border-radius:50%;background:#34d399} @media (prefers-reduced-motion: no-preference){.lab-banner .dot{animation:labblink 1.1s ease-in-out infinite}} @keyframes labblink{50%{opacity:.25}} .qr-row{display:flex;gap:20px;margin-top:22px;flex-wrap:wrap} .qr-row figure{margin:0;text-align:center;font-size:.8rem} .qr-row img{background:#fff;padding:6px;border-radius:8px;display:block} .feature-note{font-size:.78rem;color:var(--muted);margin:12px 0 0;line-height:1.5}.feature-note a{color:var(--cyan)} .lab-banner.book{background:linear-gradient(90deg,#3b1f7a,#0b3a5a);} .lab-banner.book:hover,.lab-banner.book:focus-within{background:linear-gradient(90deg,#4a2a94,#0f4a72)} .lab-banner.book .lab-new{color:#fde68a;border-color:rgba(253,230,138,.6)} .lab-banner.book .dot{background:#fbbf24} .lab-banner.book a{font-weight:600;color:#fff} @media (prefers-reduced-motion: no-preference){.lab-banner.book .lab-new{animation:labglow 1.8s ease-in-out infinite}} @keyframes labglow{50%{box-shadow:0 0 0 4px rgba(251,191,36,.25)}} .book-band{display:grid;grid-template-columns:auto minmax(0,1fr);gap:30px;align-items:center;margin:28px 0 0;padding:28px 30px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(120deg,rgba(124,58,237,.16),rgba(6,182,212,.10)),var(--surface)} .book-band .bb-cover{display:block;line-height:0} .book-band img{width:168px;height:auto;border-radius:6px;box-shadow:0 16px 38px rgba(0,0,0,.45);transition:transform .25s} .book-band .bb-cover:hover img{transform:translateY(-3px) rotate(-1deg)} .book-band h2{font-family:var(--display);font-size:clamp(1.5rem,3vw,2.1rem);margin:6px 0 10px;line-height:1.1} .book-band p{color:var(--muted);max-width:62ch;margin:0 0 14px} .book-band .feature-tag{margin-bottom:4px} @media (max-width:640px){.book-band{grid-template-columns:minmax(0,1fr);padding:22px 18px}.book-band img{width:130px}}
-@view-transition { navigation: auto; } @media (prefers-reduced-motion: no-preference) { ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; } } .site-header { view-transition-name: site-header; } #about { --sec: #4de2ff; } #expertise { --sec: #7df2d0; } #case-studies { --sec: #c4b5fd; } #platforms { --sec: #f7c873; } #research { --sec: #4de2ff; } #career { --sec: #7df2d0; } #contact { --sec: #c4b5fd; } .block .section-label b { color: var(--sec, var(--cyan)); } .block .section-label::before { content: ""; display: block; width: 36px; height: 3px; border-radius: 2px; margin-bottom: 14px; background: linear-gradient(90deg, var(--sec, var(--cyan)), transparent); } .block .section-title { background: linear-gradient(100deg, var(--ink) 55%, color-mix(in srgb, var(--sec, var(--cyan)) 70%, #fff)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; } .hero { position: relative; isolation: isolate; } .hero::before { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: radial-gradient(40% 50% at 12% 30%, rgba(88,230,246,.14), transparent 70%), radial-gradient(35% 45% at 88% 20%, rgba(196,181,253,.13), transparent 70%), radial-gradient(40% 40% at 70% 90%, rgba(125,242,208,.10), transparent 70%); } @media (min-width: 980px) { .hero-grid { min-height: min(760px, calc(100vh - var(--header-height) - 7rem)); } } @media (prefers-reduced-motion: no-preference) { .hero::before { animation: aurora 18s ease-in-out infinite alternate; } @keyframes aurora { from { transform: translate3d(-1.5%, 0, 0) scale(1); } to { transform: translate3d(1.5%, -1%, 0) scale(1.06); } } } .stats { grid-template-columns: repeat(2, 1fr); } .stats li:last-child { grid-column: 1 / -1; border-right: 0; } .stats b { color: var(--c, var(--cyan)); text-shadow: 0 0 22px color-mix(in srgb, var(--c, var(--cyan)) 40%, transparent); font-variant-numeric: tabular-nums; } .stats li { transition: background .25s ease; } .stats li:hover { background: color-mix(in srgb, var(--c, var(--cyan)) 7%, transparent); } @media (min-width: 900px) { .stats { grid-template-columns: repeat(5, 1fr); } .stats li:last-child { grid-column: auto; } .stats li, .stats li:nth-child(2n) { flex-direction: column; align-items: flex-start; gap: 6px; } } .standards { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 22px 0 6px; } .standards p { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--subtle); margin: 0 6px 0 0; } .standards ul { display: flex; flex-wrap: wrap; gap: 8px; } .standards li { font-size: 12.5px; font-weight: 600; color: var(--c); padding: 6px 12px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--c) 35%, transparent); background: color-mix(in srgb, var(--c) 9%, transparent); } .themes { display: grid; gap: 14px; grid-template-columns: repeat(2, 1fr); margin: 34px 0 6px; } @media (min-width: 900px) { .themes { grid-template-columns: repeat(4, 1fr); } } .themes a { --c: var(--cyan); position: relative; display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 18px 18px 20px; border-radius: 18px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--c) 28%, transparent); background: radial-gradient(120% 90% at 100% 0, color-mix(in srgb, var(--c) 20%, transparent), transparent 60%), linear-gradient(180deg, rgba(13,27,45,.7), rgba(7,16,29,.9)); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; } .themes li { display: contents; } .themes li a { color: inherit; } .themes a b { font: 700 2.4rem/1 var(--display); letter-spacing: -.04em; color: var(--c); } .themes a strong { font: 700 1rem/1.25 var(--display); } .themes a span { font-size: .8rem; color: var(--muted); line-height: 1.5; } .themes a:hover, .themes a:focus-visible { transform: translateY(-4px); border-color: color-mix(in srgb, var(--c) 65%, transparent); box-shadow: 0 20px 44px rgba(0,0,0,.45), 0 0 34px color-mix(in srgb, var(--c) 18%, transparent); } .themes li:nth-child(1) a { --c: #7df2d0; } .themes li:nth-child(2) a { --c: #c4b5fd; } .themes li:nth-child(3) a { --c: #4de2ff; } .themes li:nth-child(4) a { --c: #f7c873; } .watch { margin: 38px 0 6px; display: grid; gap: 14px; } @media (min-width: 900px) { .watch { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: center; gap: 28px; } } .watch video { width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; border: 1px solid var(--line-strong); background: #050b14; box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 40px rgba(196,181,253,.12); } .watch figcaption { color: var(--muted); font-size: .95rem; line-height: 1.7; } .watch figcaption strong { display: block; color: var(--ink); font: 700 1.2rem/1.3 var(--display); margin-bottom: 8px; } .watch figcaption a { color: var(--cyan); font-weight: 700; } .start-grid > div { transition: transform .25s ease, border-color .25s ease, background .25s ease; } .start-grid > div:hover { transform: translateY(-3px); } .btn { transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; } .btn:hover { transform: translateY(-2px); } @media (prefers-reduced-motion: reduce) { .btn:hover, .start-grid > div:hover, .themes a:hover { transform: none; } } .themes a, .themes a:hover { text-decoration: none; } .standards { margin-bottom: 22px; } @media (max-width: 639px) { section.block { padding-block: 3rem; } .hero { padding-bottom: 2rem; } .hero-visual { max-width: 320px; padding-bottom: 46px; } .portrait { aspect-ratio: 0.82; } .cs-art { height: 96px; } .cs-card p { -webkit-line-clamp: 3; line-clamp: 3; } .grid-3 article .tags, .grid-3 article .chips { display: none; } .cs-more a { padding: 10px 6px; } .cs-more small { display: none; } .themes a span { display: none; } .watch figcaption { font-size: .9rem; } } .back, .page-footer a, .footer-links a, .nav-desktop a, .start-grid a, .site-footer a, .filters + a { display: inline-flex; align-items: center; min-height: 28px; } @media (pointer: coarse) { .back, .page-footer a, .footer-links a, .start-grid a, .site-footer a { min-height: 40px; } } .nhi-announce a { display: inline-block; padding-block: 5px; } .footer-links a { min-width: 28px; justify-content: center; } .feature { display: grid; gap: 28px; margin: 30px 0 10px; padding: clamp(22px, 4vw, 40px); border-radius: 26px; position: relative; overflow: hidden; border: 1px solid rgba(196,181,253,.35); background: radial-gradient(70% 90% at 100% 0, rgba(196,181,253,.20), transparent 62%), radial-gradient(60% 80% at 0 100%, rgba(77,226,255,.12), transparent 65%), linear-gradient(180deg, rgba(13,27,45,.8), rgba(7,16,29,.95)); box-shadow: 0 30px 70px rgba(0,0,0,.45); } @media (min-width: 980px) { .feature { grid-template-columns: 1.25fr 0.75fr; align-items: center; } } .feature-tag { display: inline-flex; align-items: center; gap: 9px; font: 600 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #c4b5fd; margin: 0 0 14px; } .feature-tag i { width: 7px; height: 7px; border-radius: 50%; background: #7df2d0; box-shadow: 0 0 12px #7df2d0; } .feature h2 { font: 800 clamp(1.7rem, 3.4vw, 2.5rem)/1.12 var(--display); letter-spacing: -.03em; margin: 0 0 14px; } .feature-copy > p { color: var(--muted); line-height: 1.75; max-width: 60ch; } .feature-facts { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; } .feature-facts li { position: relative; padding-left: 20px; font-size: .9rem; color: var(--ink); line-height: 1.55; } .feature-facts li::before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: #c4b5fd; } .feature-facts li:last-child { color: #f7c873; } .feature-facts li:last-child::before { background: #f7c873; } .feature-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; } .feature-art ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; position: relative; } .feature-art li { position: relative; display: grid; grid-template-columns: 1fr; padding: 12px 16px; margin-left: 18px; border: 1px solid color-mix(in srgb, var(--c) 40%, transparent); border-radius: 14px; background: color-mix(in srgb, var(--c) 8%, rgba(7,16,29,.9)); } .feature-art li + li { margin-top: 18px; } .feature-art li + li::before { content: ""; position: absolute; left: 22px; top: -18px; width: 2px; height: 18px; background: linear-gradient(var(--c), color-mix(in srgb, var(--c) 40%, transparent)); } .feature-art b { font: 700 .95rem/1.2 var(--display); color: var(--c); } .feature-art span { font-size: .78rem; color: var(--muted); margin-top: 3px; } @media (prefers-reduced-motion: no-preference) { .feature-art li { animation: stepflow 7.5s ease-in-out infinite; } .feature-art li:nth-child(2) { animation-delay: 1.2s; } .feature-art li:nth-child(3) { animation-delay: 2.4s; } .feature-art li:nth-child(4) { animation-delay: 3.6s; } .feature-art li:nth-child(5) { animation-delay: 4.8s; } @keyframes stepflow { 0%, 22%, 100% { box-shadow: none; transform: none; } 8%, 16% { box-shadow: 0 0 28px color-mix(in srgb, var(--c) 35%, transparent); transform: translateX(6px); } } } .feature { margin-bottom: 34px; } html body .hero .hero-grid{min-height:0;align-items:start} @media (min-width:980px){html body .hero{padding-top:calc(var(--header-height) + 1.25rem + var(--notice-h,0px))}} @media (min-width:980px){html body .hero .portrait{aspect-ratio:.8}html body .hero .portrait img{object-position:50% 16%}html body .hero-visual{max-width:420px}}
+:root { color-scheme: dark; --bg: #05061a; --bg2: #0a0b26; --card: rgba(18, 16, 48, 0.72); --card-solid: #110f30; --ink: #f5f3ff; --muted: #c4bfe0; --subtle: #9590b8; --line: rgba(167, 139, 250, 0.2); --line2: rgba(167, 139, 250, 0.38); --violet: #a78bfa; --violet-deep: #7c3aed; --cyan: #58e6f6; --amber: #fbbf24; --green: #65e5ad; --grad: linear-gradient(90deg, #58e6f6, #a78bfa 70%); --on-grad: #070a1f; --display: "DM Sans", system-ui, sans-serif; --body: "Manrope", "DM Sans", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace; --pad: clamp(16px, 5vw, 96px); --max: 1248px; --r: 18px; } html[data-theme="light"] { color-scheme: light; --bg: #f6f5ff; --bg2: #eceaff; --card: rgba(255, 255, 255, 0.86); --card-solid: #ffffff; --ink: #15122e; --muted: #433d66; --subtle: #5d5785; --line: rgba(76, 52, 160, 0.16); --line2: rgba(76, 52, 160, 0.32); --violet: #6d4fd8; --violet-deep: #5b3cc4; --cyan: #0a7f93; --amber: #9a6100; --green: #0f7a50; --grad: linear-gradient(90deg, #0a7f93, #6d4fd8 70%); --on-grad: #ffffff; } * { box-sizing: border-box; } html { scroll-behavior: smooth; scroll-padding-top: 84px; } body { margin: 0; min-width: 320px; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; } a { color: inherit; } img { max-width: 100%; height: auto; } .skip { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--card-solid); color: var(--ink); padding: 8px 14px; border-radius: 8px; } .skip:focus { left: 8px; } :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; } .wrap { max-width: var(--max); margin: 0 auto; padding-left: max(var(--pad), env(safe-area-inset-left, 0px)); padding-right: max(var(--pad), env(safe-area-inset-right, 0px)); } .ey { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet); margin: 0 0 10px; } h1, h2, h3 { font-family: var(--display); letter-spacing: -0.03em; text-wrap: balance; margin: 0; } h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.1; font-weight: 700; } .lede { color: var(--muted); max-width: 62ch; margin: 10px 0 0; } .sky { position: absolute; inset: 0 0 auto 0; height: 1100px; pointer-events: none; z-index: -1; -webkit-mask-image: linear-gradient(#000 55%, transparent); mask-image: linear-gradient(#000 55%, transparent); background: radial-gradient(760px 600px at 78% 34%, rgba(124, 58, 237, 0.42), transparent 70%), radial-gradient(520px 420px at 98% 70%, rgba(88, 230, 246, 0.14), transparent 70%), radial-gradient(600px 500px at 0% 90%, rgba(76, 29, 149, 0.32), transparent 70%); } .sky::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(167, 139, 250, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(167, 139, 250, 0.06) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: linear-gradient(#000 40%, transparent); mask-image: linear-gradient(#000 40%, transparent); } html[data-theme="light"] .sky { background: radial-gradient(760px 600px at 78% 34%, rgba(124, 58, 237, 0.16), transparent 70%), radial-gradient(520px 420px at 98% 70%, rgba(10, 127, 147, 0.1), transparent 70%); } main, header, footer { position: relative; } .top { position: sticky; top: 0; z-index: 50; background: rgba(5, 6, 26, 0.78); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid transparent; padding-top: env(safe-area-inset-top, 0px); } html[data-theme="light"] .top { background: rgba(246, 245, 255, 0.85); } .top .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; } .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 17px; } .brand i { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #58e6f6, #a78bfa); color: #070a1f; display: grid; place-items: center; font-style: normal; font-size: 14px; } .nav { display: flex; gap: 4px; margin-left: auto; } .nav a { text-decoration: none; font-weight: 600; font-size: 15px; padding: 8px 12px; border-radius: 999px; color: var(--muted); } .nav a:hover { color: var(--ink); background: rgba(167, 139, 250, 0.12); } .btn-res { text-decoration: none; border: 1px solid var(--violet); border-radius: 999px; padding: 9px 20px; font-weight: 700; font-size: 14px; } .btn-res:hover { background: rgba(167, 139, 250, 0.14); } .menu { display: none; margin-left: auto; position: relative; } .menu summary { list-style: none; cursor: pointer; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line2); display: grid; place-items: center; } .menu summary::-webkit-details-marker { display: none; } .menu summary span, .menu summary span::before, .menu summary span::after { display: block; width: 18px; height: 2px; background: var(--ink); border-radius: 2px; position: relative; content: ""; } .menu summary span::before { position: absolute; top: -6px; } .menu summary span::after { position: absolute; top: 6px; } .menu nav { position: absolute; right: 0; top: 54px; width: min(78vw, 300px); background: var(--card-solid); border: 1px solid var(--line2); border-radius: 16px; padding: 8px; display: grid; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45); } .menu nav a { text-decoration: none; padding: 12px 14px; border-radius: 10px; font-weight: 600; } .menu nav a:hover { background: rgba(167, 139, 250, 0.12); } @media (max-width: 960px) { .nav, .top .btn-res { display: none; } .menu { display: block; } } .hero { overflow-x: clip; } .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: 24px; align-items: start; padding-block: 48px 40px; } .pill { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; text-decoration: none; border: 1px solid var(--line2); background: rgba(124, 58, 237, 0.14); border-radius: 999px; padding: 6px 16px 6px 6px; font-size: 14px; } .pill b { background: var(--violet); color: #0b0720; border-radius: 999px; padding: 3px 10px; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; } html[data-theme="light"] .pill b { color: #ffffff; } .pill:hover { border-color: var(--violet); } .hero h1 { font-size: clamp(2.9rem, 6.2vw, 5.1rem); line-height: 0.96; letter-spacing: -0.045em; margin: 22px 0 18px; font-weight: 700; } .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; } .role { font-family: var(--display); font-weight: 700; font-size: clamp(1.1rem, 2vw, 1.35rem); margin: 0 0 10px; } .hero .intro { color: var(--muted); font-size: 1.06rem; max-width: 560px; margin: 0; } .acts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; } .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; text-decoration: none; border-radius: 999px; padding: 0 26px; font-weight: 700; font-size: 15px; } .btn-1 { background: var(--grad); color: var(--on-grad); font-weight: 800; } .btn-1:hover { filter: brightness(1.08); } .btn-2 { border: 1px solid var(--line2); } .btn-2:hover { border-color: var(--violet); background: rgba(167, 139, 250, 0.1); } .proof { list-style: none; padding: 22px 0 0; margin: 34px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); } .proof li { padding: 0 16px; border-left: 1px solid var(--line); } .proof li:first-child { padding-left: 0; border-left: 0; } .proof b { display: block; font-family: var(--display); font-size: 2rem; line-height: 1.1; } .proof span { font-size: 13.5px; color: var(--subtle); } .path { position: relative; height: 600px; } .tiles { position: absolute; left: calc(30% - 70px); top: 0; width: 250px; transform: rotateX(56deg) rotateZ(-42deg); transform-origin: 50% 0; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; } .tiles li { height: 56px; border-radius: 12px; display: flex; align-items: center; gap: 12px; padding: 0 18px; font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; border: 1px solid rgba(167, 139, 250, 0.6); background: rgba(124, 58, 237, 0.17); color: #ede9fe; box-shadow: 8px 8px 0 #24164f, 0 0 34px rgba(124, 58, 237, 0.4); } .tiles li span { opacity: 0.7; } .tiles .c { border-color: rgba(88, 230, 246, 0.6); background: rgba(88, 230, 246, 0.12); color: #ccfbff; box-shadow: 8px 8px 0 #102a4a, 0 0 34px rgba(88, 230, 246, 0.35); } .tiles .p { border: 2px solid #fbbf24; background: rgba(251, 191, 36, 0.2); color: #fff7d6; box-shadow: 8px 8px 0 #4a3108, 0 0 50px rgba(251, 191, 36, 0.55); } .tiles .g { border-color: rgba(101, 229, 173, 0.6); background: rgba(101, 229, 173, 0.13); color: #d6fff0; box-shadow: 8px 8px 0 #0f3b2c, 0 0 34px rgba(101, 229, 173, 0.35); } html[data-theme="light"] .tiles li { color: #2e1d75; background: rgba(124, 58, 237, 0.12); box-shadow: 8px 8px 0 #c9bdf5, 0 0 24px rgba(124, 58, 237, 0.18); } html[data-theme="light"] .tiles .c { color: #064c58; background: rgba(10, 127, 147, 0.1); box-shadow: 8px 8px 0 #b8e3ea, 0 0 24px rgba(10, 127, 147, 0.15); } html[data-theme="light"] .tiles .p { color: #5a3a00; background: rgba(251, 191, 36, 0.28); box-shadow: 8px 8px 0 #f0d58a, 0 0 30px rgba(251, 191, 36, 0.35); } html[data-theme="light"] .tiles .g { color: #0b4b33; background: rgba(15, 122, 80, 0.1); box-shadow: 8px 8px 0 #b9e5d2, 0 0 24px rgba(15, 122, 80, 0.15); } .decide { position: absolute; right: 0; top: 296px; width: 252px; border-radius: 16px; border: 1px solid rgba(251, 191, 36, 0.5); background: var(--card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 16px 18px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); } .decide p { margin: 0; } .decide .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--amber); font-weight: 700; } .decide .t { font-family: var(--mono); font-size: 13px; margin-top: 8px; } .decide .b { display: flex; gap: 8px; margin-top: 12px; } .decide .b span { border-radius: 8px; padding: 6px 12px; font-size: 12.5px; font-weight: 700; border: 1px solid var(--line2); } .decide .b span:first-child { background: #fbbf24; color: #241602; border-color: #fbbf24; } .me { position: absolute; left: 0; bottom: 44px; display: flex; align-items: center; gap: 14px; border-radius: 18px; border: 1px solid var(--line2); background: var(--card); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 12px 20px 12px 12px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); } .me img { width: 68px; height: 68px; border-radius: 14px; object-fit: cover; border: 1px solid rgba(88, 230, 246, 0.5); } .me b { display: block; font-family: var(--display); font-size: 16px; } .me span { font-size: 13px; color: var(--subtle); } .path-cap { position: absolute; left: 4px; bottom: 0; max-width: 420px; font-size: 12.5px; color: var(--subtle); margin: 0; } .path-cap a { color: var(--violet); } .sec { padding-block: 64px; } .sec + .sec { padding-top: 24px; } .head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; margin-bottom: 26px; } .more { text-decoration: none; font-weight: 700; color: var(--violet); white-space: nowrap; } .more:hover { text-decoration: underline; } .g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } .g4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } .card { position: relative; display: flex; flex-direction: column; gap: 6px; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; text-decoration: none; min-width: 0; transition: border-color 0.2s, transform 0.2s; } a.card:hover { border-color: var(--violet); transform: translateY(-3px); } .card .tag { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); } .card h3 { font-size: 1.15rem; line-height: 1.25; margin: 4px 0 2px; } .card p { margin: 0; color: var(--muted); font-size: 14.5px; } .card .go { margin-top: auto; padding-top: 12px; font-weight: 700; font-size: 14px; color: var(--violet); } .feat { flex-direction: row; gap: 18px; align-items: flex-start; } .feat .vis { flex-shrink: 0; width: 72px; } .feat .vis img { display: block; width: 72px; border-radius: 4px; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4); } .feat .icon { width: 64px; height: 64px; border-radius: 16px; display: grid; place-items: center; background: rgba(124, 58, 237, 0.16); border: 1px solid var(--line2); color: var(--cyan); } .feat .icon svg { width: 30px; height: 30px; } .feat > div:last-child { display: flex; flex-direction: column; gap: 6px; min-width: 0; height: 100%; } .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; } .chips span { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 13px; color: var(--muted); } .chips b { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--subtle); align-self: center; margin-right: 4px; } .note { font-size: 12.5px; color: var(--subtle); margin: 12px 0 0; } .posts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); } .posts a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 2px; border-bottom: 1px solid var(--line); text-decoration: none; } .posts a:hover b { color: var(--violet); } .posts b { font-family: var(--display); font-size: 1.12rem; font-weight: 700; } .posts span { color: var(--subtle); font-size: 13.5px; white-space: nowrap; } .contact { border-radius: 26px; border: 1px solid var(--line2); padding: clamp(24px, 4vw, 44px); background: radial-gradient(600px 300px at 100% 0, rgba(124, 58, 237, 0.3), transparent 70%), var(--card); display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px; align-items: center; } .contact .paths { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 8px; color: var(--muted); font-size: 15px; } .contact .paths b { color: var(--ink); } .contact .acts { margin-top: 0; justify-content: flex-end; } .foot { border-top: 1px solid var(--line); margin-top: 40px; } .foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; padding-block: 28px 40px; font-size: 14px; color: var(--subtle); } .foot nav { display: flex; flex-wrap: wrap; gap: 6px 18px; } .foot a { text-decoration: none; color: var(--muted); } .foot a:hover { color: var(--ink); } .theme-toggle { position: fixed; right: 16px; bottom: 84px; z-index: 70; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; padding: 0; background: var(--card-solid); color: var(--ink); border: 1px solid var(--line2); } .theme-toggle svg { width: 20px; height: 20px; } .theme-toggle .moon { display: none; } html[data-theme="light"] .theme-toggle .sun { display: none; } html[data-theme="light"] .theme-toggle .moon { display: block; } @media (max-width: 1080px) { .hero .wrap { grid-template-columns: 1fr; } .path { height: 560px; max-width: 620px; width: 100%; margin: 0 auto; } .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } } @media (max-width: 760px) { .hero .wrap { padding-top: 28px; } .proof { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 18px; } .proof li:nth-child(3) { padding-left: 0; border-left: 0; } .g3, .g4, .contact { grid-template-columns: 1fr; } .contact .acts { justify-content: flex-start; } .path { height: 520px; } .tiles { left: 50%; margin-left: -235px; transform: rotateX(56deg) rotateZ(-42deg) scale(0.86); } .decide { top: auto; bottom: 120px; right: 0; width: 230px; } .me { bottom: 0; } .path-cap { display: none; } .posts a { flex-direction: column; gap: 4px; } } @media (max-width: 420px) { .tiles { margin-left: -215px; transform: rotateX(56deg) rotateZ(-42deg) scale(0.76); } .decide { width: 200px; } .me { padding-right: 14px; } } @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } a.card { transition: none; } a.card:hover { transform: none; } } @media print { .top, .theme-toggle, .sky { display: none; } } .labs-h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.02; letter-spacing: -0.04em; font-weight: 700; margin-bottom: 8px; } .lab-main { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 32px; align-items: start; border: 1px solid var(--line2); border-radius: 26px; padding: clamp(22px, 4vw, 40px); background: radial-gradient(520px 300px at 100% 0, rgba(124, 58, 237, 0.28), transparent 70%), var(--card); } .lab-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; } .lab-links a { display: flex; flex-direction: column; text-decoration: none; padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line); background: rgba(5, 6, 26, 0.35); } html[data-theme="light"] .lab-links a { background: rgba(255, 255, 255, 0.6); } .lab-links a:hover { border-color: var(--violet); } .lab-links b { font-family: var(--display); } .lab-links span { font-size: 13.5px; color: var(--subtle); } .flow-lab { margin-top: 8px; } @media (max-width: 860px) { .lab-main { grid-template-columns: 1fr; } }
 #site-chatbot-root { position: fixed; right: 24px; bottom: 24px; z-index: 10000; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; } .sc-launcher { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; padding: 0; color: #03111d; background: #4de2ff; border: none; border-radius: 50%; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(77, 226, 255, 0.25); cursor: pointer; transition: transform 160ms ease, box-shadow 160ms ease; } .sc-launcher:hover, .sc-launcher:focus-visible { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(77, 226, 255, 0.35); outline: none; } .sc-launcher-open { background: #0f1e2e; color: #4de2ff; border: 1px solid rgba(77, 226, 255, 0.4); } .sc-panel { position: absolute; right: 0; bottom: 72px; width: min(380px, calc(100vw - 32px)); height: min(560px, calc(100vh - 140px)); flex-direction: column; overflow: hidden; background: linear-gradient(180deg, rgba(8, 20, 35, 0.99), rgba(3, 10, 20, 0.99)); border: 1px solid rgba(77, 226, 255, 0.25); border-radius: 18px; box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 35px rgba(77, 226, 255, 0.08); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); } .sc-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 16px 16px 14px; border-bottom: 1px solid rgba(148, 163, 184, 0.15); } .sc-avatar { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px rgba(77, 226, 255, 0.35); } .sc-avatar svg { display: block; } .sc-header .sc-header-text { flex: 1; } .sc-header-text strong { display: block; color: #f8fafc; font-size: 15px; font-weight: 800; letter-spacing: -0.01em; } .sc-header-text small { display: block; margin-top: 2px; color: #9fb0c4; font-size: 12px; font-weight: 500; } .sc-close { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; padding: 0; color: #9fb0c4; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 50%; font-size: 16px; line-height: 1; cursor: pointer; } .sc-close:hover, .sc-close:focus-visible { color: #f8fafc; background: rgba(255, 255, 255, 0.14); outline: none; } .sc-messages { flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; } .sc-row { display: flex; align-items: flex-end; gap: 7px; } .sc-row-user { justify-content: flex-end; } .sc-row-bot { justify-content: flex-start; } .sc-avatar-sm { flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 1px rgba(77, 226, 255, 0.3); } .sc-avatar-sm svg { display: block; } .sc-bubble { max-width: 88%; padding: 10px 13px; border-radius: 14px; font-size: 13.5px; line-height: 1.5; } .sc-bubble-bot { color: #e2e8f0; background: rgba(148, 163, 184, 0.1); border: 1px solid rgba(148, 163, 184, 0.15); border-bottom-left-radius: 4px; } .sc-bubble-user { color: #03111d; background: #4de2ff; border-bottom-right-radius: 4px; font-weight: 600; } .sc-link { display: inline-block; margin-top: 6px; color: #4de2ff; font-weight: 700; text-decoration: none; } .sc-link:hover, .sc-link:focus-visible { text-decoration: underline; } .sc-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; } .sc-action { padding: 6px 11px; color: #03111d; background: #7df2d0; border-radius: 999px; font-size: 12px; font-weight: 700; text-decoration: none; } .sc-action:hover, .sc-action:focus-visible { background: #4de2ff; outline: none; } .sc-typing { display: flex; align-items: center; gap: 4px; padding: 12px 14px; } .sc-typing span { width: 6px; height: 6px; background: #7df2d0; border-radius: 50%; animation: sc-typing-bounce 1.2s ease-in-out infinite; } .sc-typing span:nth-child(2) { animation-delay: 0.15s; } .sc-typing span:nth-child(3) { animation-delay: 0.3s; } @keyframes sc-typing-bounce { 0%, 60%, 100% { opacity: 0.35; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } } @media (prefers-reduced-motion: reduce) { .sc-typing span { animation: none; opacity: 0.8; } } .sc-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px; } .sc-chip { padding: 6px 10px; color: #4de2ff; background: rgba(77, 226, 255, 0.08); border: 1px solid rgba(77, 226, 255, 0.3); border-radius: 999px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 150ms ease; } .sc-chip:hover, .sc-chip:focus-visible { background: rgba(77, 226, 255, 0.18); outline: none; } .sc-form { display: flex; gap: 8px; padding: 12px 14px; border-top: 1px solid rgba(148, 163, 184, 0.15); } .sc-input { flex: 1; padding: 10px 12px; color: #f8fafc; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(148, 163, 184, 0.25); border-radius: 10px; font-size: 13.5px; outline: none; } .sc-input::placeholder { color: #64748b; } .sc-input:focus { border-color: rgba(77, 226, 255, 0.6); } .sc-send { flex: 0 0 auto; width: 38px; height: 38px; color: #03111d; background: #4de2ff; border: none; border-radius: 10px; font-size: 16px; font-weight: 800; cursor: pointer; } .sc-send:hover, .sc-send:focus-visible { background: #7df2d0; outline: none; } @media (max-width: 640px) { #site-chatbot-root { right: 16px; bottom: 16px; } .sc-panel { width: calc(100vw - 32px); height: min(70vh, 560px); } } @media (prefers-reduced-motion: reduce) { .sc-launcher { transition: none; } } .sc-more { display: inline-block; margin-top: 6px; font-size: 12px; color: #93a1bd; }
-:root { color-scheme: dark; --hg-bg: #030712; --hg-surface-1: #07101d; --hg-surface-2: #0a1627; --hg-surface-3: #0d1b2d; --hg-line: rgba(148, 163, 184, .17); --hg-line-strong: rgba(148, 163, 184, .30); --hg-ink: #f8fafc; --hg-ink-2: #a9b6c7; --hg-ink-3: #8393aa; --hg-policy: #22d3ee; --hg-policy-soft: rgba(34, 211, 238, .12); --hg-policy-line: rgba(34, 211, 238, .45); --hg-person: #a78bfa; --hg-person-soft: rgba(167, 139, 250, .13); --hg-person-line: rgba(167, 139, 250, .45); --hg-exec: #34d399; --hg-exec-soft: rgba(52, 211, 153, .12); --hg-exec-line: rgba(52, 211, 153, .45); --hg-audit: #fbbf24; --hg-audit-soft: rgba(251, 191, 36, .12); --hg-audit-line: rgba(251, 191, 36, .45); --hg-refuse: #fb7185; --hg-refuse-soft: rgba(251, 113, 133, .12); --hg-refuse-line: rgba(251, 113, 133, .45); --hg-accent: var(--hg-policy); --hg-font-display: "DM Sans", system-ui, sans-serif; --hg-font-body: "Manrope", "DM Sans", system-ui, sans-serif; --hg-font-mono: "JetBrains Mono", ui-monospace, monospace; --hg-fs-1: .75rem; --hg-fs-2: .875rem; --hg-fs-3: 1rem; --hg-fs-4: 1.125rem; --hg-fs-5: 1.375rem; --hg-fs-6: clamp(1.6rem, 3vw, 2.1rem); --hg-fs-7: clamp(2.1rem, 4.6vw, 3.2rem); --hg-fs-8: clamp(2.8rem, 7vw, 4.9rem); --hg-lh-tight: 1.1; --hg-lh-snug: 1.3; --hg-lh-body: 1.65; --hg-sp-1: .25rem; --hg-sp-2: .5rem; --hg-sp-3: .75rem; --hg-sp-4: 1rem; --hg-sp-5: 1.5rem; --hg-sp-6: 2rem; --hg-sp-7: 3rem; --hg-sp-8: 4.5rem; --hg-sp-9: 7rem; --hg-content: 1240px; --hg-prose: 68ch; --hg-r-sm: 8px; --hg-r-md: 14px; --hg-r-lg: 22px; --hg-r-pill: 999px; --hg-shadow-1: 0 1px 0 rgba(255,255,255,.04) inset, 0 8px 24px rgba(0,0,0,.35); --hg-shadow-2: 0 22px 60px rgba(0,0,0,.5); --hg-dur-fast: 120ms; --hg-dur: 220ms; --hg-dur-slow: 480ms; --hg-ease: cubic-bezier(.2, .7, .2, 1); } html[data-theme="light"] { color-scheme: light; --hg-bg: #f5f7fb; --hg-surface-1: #ffffff; --hg-surface-2: #f1f5f9; --hg-surface-3: #e8eef6; --hg-line: rgba(15, 23, 42, .12); --hg-line-strong: rgba(15, 23, 42, .26); --hg-ink: #0f172a; --hg-ink-2: #475569; --hg-ink-3: #5b6a80; --hg-policy: #0e7490; --hg-person: #6d28d9; --hg-exec: #047857; --hg-audit: #b45309; --hg-refuse: #be123c; --hg-policy-soft: rgba(14,116,144,.10); --hg-person-soft: rgba(109,40,217,.09); --hg-exec-soft: rgba(4,120,87,.10); --hg-audit-soft: rgba(180,83,9,.10); --hg-refuse-soft: rgba(190,18,60,.08); --hg-policy-line: rgba(14,116,144,.5); --hg-person-line: rgba(109,40,217,.45); --hg-exec-line: rgba(4,120,87,.5); --hg-audit-line: rgba(180,83,9,.5); --hg-refuse-line: rgba(190,18,60,.45); --hg-shadow-1: 0 1px 2px rgba(15,23,42,.08), 0 8px 24px rgba(15,23,42,.08); --hg-shadow-2: 0 22px 50px rgba(15,23,42,.16); } @media (prefers-reduced-motion: reduce) { :root { --hg-dur-fast: 0ms; --hg-dur: 0ms; --hg-dur-slow: 0ms; } } .hg :focus-visible, .hg-btn:focus-visible, .hg-chip:focus-visible { outline: 2px solid var(--hg-accent); outline-offset: 3px; border-radius: var(--hg-r-sm); } .hg-label { display: inline-flex; align-items: center; gap: .6rem; margin: 0 0 var(--hg-sp-3); font: 600 var(--hg-fs-1)/1 var(--hg-font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--hg-ink-3); } .hg-label::before { content: ""; width: 22px; height: 1px; background: var(--hg-accent); } .hg-label b { color: var(--hg-accent); font-weight: 700; } .hg-btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; padding: .65rem 1.25rem; font: 700 var(--hg-fs-2)/1 var(--hg-font-display); text-decoration: none; cursor: pointer; color: var(--hg-ink); background: transparent; border: 1px solid var(--hg-line-strong); border-radius: var(--hg-r-pill); transition: border-color var(--hg-dur) var(--hg-ease), background var(--hg-dur) var(--hg-ease), color var(--hg-dur) var(--hg-ease), transform var(--hg-dur-fast) var(--hg-ease); } .hg-btn:hover { border-color: var(--hg-accent); color: var(--hg-accent); } .hg-btn:active { transform: translateY(1px); } .hg-btn-primary { background: var(--hg-accent); color: #04121a; border-color: transparent; } .hg-btn-primary:hover { background: var(--hg-accent); color: #04121a; filter: brightness(1.1); } html[data-theme="light"] .hg-btn-primary, html[data-theme="light"] .hg-btn-primary:hover { color: #fff; } .hg-btn-quiet { border-color: transparent; padding-inline: .75rem; } .hg-btn[disabled], .hg-btn[aria-disabled="true"] { opacity: .45; cursor: not-allowed; pointer-events: none; } .hg-badge { display: inline-flex; align-items: center; gap: .4rem; padding: .2rem .65rem; border-radius: var(--hg-r-pill); font: 600 var(--hg-fs-1)/1.2 var(--hg-font-mono); letter-spacing: .04em; color: var(--c, var(--hg-ink-2)); background: var(--cs, transparent); border: 1px solid var(--cl, var(--hg-line-strong)); white-space: nowrap; } .hg-policy { --c: var(--hg-policy); --cs: var(--hg-policy-soft); --cl: var(--hg-policy-line); } .hg-person { --c: var(--hg-person); --cs: var(--hg-person-soft); --cl: var(--hg-person-line); } .hg-exec { --c: var(--hg-exec); --cs: var(--hg-exec-soft); --cl: var(--hg-exec-line); } .hg-audit { --c: var(--hg-audit); --cs: var(--hg-audit-soft); --cl: var(--hg-audit-line); } .hg-refuse { --c: var(--hg-refuse); --cs: var(--hg-refuse-soft); --cl: var(--hg-refuse-line); } .hg-chip { display: inline-flex; align-items: center; min-height: 40px; padding: .4rem .95rem; border-radius: var(--hg-r-pill); cursor: pointer; font: 600 var(--hg-fs-2)/1 var(--hg-font-display); color: var(--hg-ink-2); background: transparent; border: 1px solid var(--hg-line-strong); transition: all var(--hg-dur) var(--hg-ease); } .hg-chip:hover { color: var(--hg-ink); border-color: var(--hg-ink-3); } .hg-chip[aria-pressed="true"], .hg-chip[aria-selected="true"] { color: var(--hg-ink); background: var(--cs, var(--hg-policy-soft)); border-color: var(--cl, var(--hg-policy-line)); } .hg-card { padding: var(--hg-sp-5); background: var(--hg-surface-1); border: 1px solid var(--hg-line); border-radius: var(--hg-r-md); } a.hg-card, .hg-card.is-interactive { display: block; color: inherit; text-decoration: none; transition: border-color var(--hg-dur) var(--hg-ease), transform var(--hg-dur) var(--hg-ease), box-shadow var(--hg-dur) var(--hg-ease); } a.hg-card:hover, .hg-card.is-interactive:hover { border-color: var(--cl, var(--hg-line-strong)); transform: translateY(-2px); box-shadow: var(--hg-shadow-1); } .hg-callout { padding: var(--hg-sp-4) var(--hg-sp-5); border-left: 3px solid var(--cl, var(--hg-policy-line)); background: var(--cs, var(--hg-policy-soft)); border-radius: 0 var(--hg-r-sm) var(--hg-r-sm) 0; color: var(--hg-ink); } .hg-callout strong { color: var(--c, var(--hg-policy)); } .hg-code { font: 500 .85rem/1.6 var(--hg-font-mono); padding: var(--hg-sp-4); background: var(--hg-surface-2); border: 1px solid var(--hg-line); border-radius: var(--hg-r-sm); overflow-x: auto; color: var(--hg-ink); } .hg-code .k { color: var(--hg-person); } .hg-code .v { color: var(--hg-exec); } .hg-code .c { color: var(--hg-ink-3); }
-.flow-lab{max-width:1120px;margin:0 auto;padding:clamp(2.5rem,6vw,4.5rem) 16px} .flow-lab .fl-lead{max-width:62ch;color:var(--hg-ink-2,#aab4c3);margin:.5rem 0 1.4rem} .fl-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem} .fl-chips .hg-chip{display:flex;flex-direction:column;align-items:flex-start;gap:.1rem;padding:.55rem .9rem;min-height:44px;text-align:left} .fl-chips .hg-chip small{font-size:.72rem;opacity:.75} .fl-track{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;position:relative} .fl-stage{--c:var(--hg-ink-3,#8893a4);position:relative;display:flex;flex-direction:column;gap:.35rem;padding:.8rem .8rem 1rem;border:1px solid var(--cl,var(--hg-line,#2a3342));border-top:3px solid var(--c);border-radius:10px;background:var(--cs,transparent);transition:opacity .25s,transform .25s} .fl-stage .fl-n{font:600 .7rem/1 "JetBrains Mono",monospace;color:var(--c)} .fl-stage b{font-size:.95rem;color:var(--hg-ink,#e8edf4)} .fl-state{display:inline-flex;align-items:center;gap:.35rem;font:600 .72rem/1 "JetBrains Mono",monospace;color:var(--c)} .fl-state i{font-style:normal;display:inline-grid;place-items:center;width:1.2rem;height:1.2rem;border-radius:50%;border:1px solid currentColor} .fl-note{font-size:.82rem;line-height:1.4;color:var(--hg-ink-2,#aab4c3)} .fl-stage:not(:last-child)::after{content:"";position:absolute;right:-.6rem;top:1.6rem;width:.6rem;height:1px;background:var(--hg-line,#2a3342)} .fl-stage.is-skip{opacity:.55} .fl-stage.is-stop{--c:var(--hg-refuse);--cs:var(--hg-refuse-soft);--cl:var(--hg-refuse-line)} .fl-stage.is-warn{--c:var(--hg-audit);--cs:var(--hg-audit-soft);--cl:var(--hg-audit-line)} .fl-result{margin-top:1.1rem;padding:1.1rem 1.3rem;border:1px solid var(--hg-line,#2a3342);border-radius:12px;background:var(--hg-surface,rgba(255,255,255,.03))} .fl-result h3{margin:.6rem 0 .3rem;font-size:1.2rem} .fl-result p{margin:.3rem 0;max-width:68ch;color:var(--hg-ink-2,#aab4c3)} .fl-tests a{margin-right:.5rem} .fl-foot{display:grid;gap:.9rem;margin-top:1.2rem} .fl-evidence{margin:0;font-size:.9rem;color:var(--hg-ink-2,#aab4c3)} .fl-evidence b{color:var(--hg-ink,#e8edf4)} .fl-limit{margin:0;font-size:.88rem} .fl-links{display:flex;flex-wrap:wrap;gap:.6rem;margin:0} @media (max-width:980px){.fl-track{grid-template-columns:repeat(3,1fr)}.fl-stage:not(:last-child)::after{display:none}} @media (max-width:560px){.fl-track{grid-template-columns:1fr}.fl-stage{display:grid;grid-template-columns:2rem 1fr auto;column-gap:.6rem;align-items:center}.fl-note{grid-column:2/-1}} @media (prefers-reduced-motion:reduce){.fl-stage{transition:none}} html[data-theme="light"] .lab-banner .lab-new{color:#0a6150;border-color:rgba(10,97,80,.45)}
-html[data-theme="light"] { color-scheme: light; --ink: #0f172a; --muted: #475569; --subtle: #64748b; --page: #f5f7fb; --surface: #ffffff; --surface-raised: #ffffff; --surface-soft: #eef2f8; --line: rgba(15, 23, 42, 0.12); --line-strong: rgba(15, 23, 42, 0.22); --cyan: #0a7285; --cyan-strong: #0b8ba3; --cyan-soft: rgba(10, 114, 133, 0.1); --amber: #b45309; --green: #0f766e; --bg: #f5f7fb; --surface-2: #eef2f8; --border: #d5dce8; --text: #0f172a; --accent: #0a7285; --safe: #0f766e; --warn: #b45309; --danger: #be123c; } .theme-toggle { position: fixed; right: 30px; bottom: 92px; z-index: 40; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; padding: 0; background: rgba(11, 18, 32, 0.85); color: #f1f5f9; border: 1px solid rgba(148, 163, 184, 0.35); backdrop-filter: blur(8px); } .theme-toggle svg { width: 20px; height: 20px; } .theme-toggle .moon { display: none; } html[data-theme="light"] .theme-toggle { background: rgba(255, 255, 255, 0.92); color: #0f172a; border-color: rgba(15, 23, 42, 0.2); } html[data-theme="light"] .theme-toggle .sun { display: none; } html[data-theme="light"] .theme-toggle .moon { display: block; } .theme-toggle:focus-visible { outline: 2px solid #4de2ff; outline-offset: 3px; } @media print { .theme-toggle { display: none; } } html[data-theme="light"] body { background: var(--page); } html[data-theme="light"] body::before { opacity: .5; } html[data-theme="light"] .site-header { background: rgba(245, 247, 251, 0.88); } html[data-theme="light"] .nav-mobile { box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18); } html[data-theme="light"] .skip-link, html[data-theme="light"] .brand-mark, html[data-theme="light"] .btn-primary, html[data-theme="light"] .skip { color: #fff; } html[data-theme="light"] .btn-primary { box-shadow: 0 10px 28px rgba(10, 114, 133, 0.28); } html[data-theme="light"] .hero h1 span { background: linear-gradient(90deg, #0a7285 0%, #0f766e 50%, #b45309 100%); -webkit-background-clip: text; background-clip: text; } html[data-theme="light"] .hero::before { opacity: .55; } html[data-theme="light"] .portrait { box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2); } html[data-theme="light"] .path-card { background: #fff; box-shadow: 0 18px 44px rgba(15, 23, 42, 0.16); } html[data-theme="light"] .callout, html[data-theme="light"] .research-card { background: linear-gradient(135deg, rgba(10, 114, 133, 0.08), #fff 55%); } html[data-theme="light"] .career-grid article { background: rgba(255, 255, 255, 0.7); } html[data-theme="light"] .cs-card, html[data-theme="light"] .themes a { background: linear-gradient(180deg, #fff, #f1f5fa); } html[data-theme="light"] .cs-card:hover, html[data-theme="light"] .cs-card:focus-within, html[data-theme="light"] .themes a:hover, html[data-theme="light"] .themes a:focus-visible, html[data-theme="light"] .research-card:hover { box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16); } html[data-theme="light"] .feature { background: radial-gradient(70% 90% at 100% 0, rgba(109, 79, 214, 0.12), transparent 62%), linear-gradient(180deg, #fff, #f1f5fa); border-color: rgba(109, 79, 214, 0.3); box-shadow: 0 24px 56px rgba(15, 23, 42, 0.14); } html[data-theme="light"] .feature-art li { background: color-mix(in srgb, var(--c) 8%, #fff); } html[data-theme="light"] .feature-tag { color: #6d4fd6; } html[data-theme="light"] .feature-facts li::before { background: #6d4fd6; } html[data-theme="light"] .feature-facts li:last-child { color: #b45309; } html[data-theme="light"] .feature-facts li:last-child::before { background: #b45309; } html[data-theme="light"] .watch video { box-shadow: 0 18px 44px rgba(15, 23, 42, 0.2); } html[data-theme="light"] .block .section-title { background: none; -webkit-text-fill-color: currentColor; color: var(--ink); } html[data-theme="light"] #about, html[data-theme="light"] #research { --sec: #0a7285; } html[data-theme="light"] #expertise, html[data-theme="light"] #career { --sec: #0f766e; } html[data-theme="light"] #case-studies, html[data-theme="light"] #contact { --sec: #6d4fd6; } html[data-theme="light"] #platforms { --sec: #b45309; } html[data-theme="light"] .themes li:nth-child(1) a { --c: #0f766e; } html[data-theme="light"] .themes li:nth-child(2) a { --c: #6d4fd6; } html[data-theme="light"] .themes li:nth-child(3) a { --c: #0a7285; } html[data-theme="light"] .themes li:nth-child(4) a { --c: #b45309; } html[data-theme="light"] .nhi-announce { background: #0b1b2e; color: #f8fafc; } html[data-theme="light"] .nhi-announce a { color: #4de2ff !important; } html[data-theme="light"] .pager a { color: var(--text); background: #fff; border-color: var(--border); } html[data-theme="light"] .pager a:hover, html[data-theme="light"] .pager a:focus-visible { background: var(--surface-2); } html[data-theme="light"] .rt-toc ol { border-left-color: var(--border); } html[data-theme="light"] .rt-toc a:hover { color: var(--text); } html[data-theme="light"] .diagram-card { box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12); } html[data-theme="light"] .badge text { fill: #fff !important; } html[data-theme="light"] [style*="--c:#4de2ff"] { --c: #0a7285 !important; } html[data-theme="light"] [style*="--c:#7df2d0"] { --c: #0f766e !important; } html[data-theme="light"] [style*="--c:#c4b5fd"] { --c: #6d4fd6 !important; } html[data-theme="light"] [style*="--c:#f7c873"] { --c: #b45309 !important; } html[data-theme="light"] a:not([class]) { color: var(--accent); } html[data-theme="light"] .cta-row a { color: var(--text); } html[data-theme="light"] .cta-row a.primary { color: #fff; } html[data-theme="light"] .pull::before { background: linear-gradient(180deg, #0a7285, #0f766e); } html[data-theme="light"] .pull::after { color: #0a7285; } html[data-theme="light"] .pull .hl { background-image: linear-gradient(100deg, #0a7285 20%, #0f766e 45%, #6d4fd6 60%, #0a7285 85%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; } html[data-theme="light"] .help div { background: #fff; } html[data-theme="light"] .dl { color: var(--text); } @media (max-width: 640px) { .theme-toggle { right: 22px; bottom: 84px; } }
 </style>
 <!-- inline-css:end -->
-    <script defer src="/assets/home.js"></script>
-    <script defer src="/assets/flow-data.js"></script>
-    <script defer src="/assets/flow.js"></script>
-
-    <style>
-    .nhi-announce {
-position: fixed;
-top: 0;
-left: 0;
-right: 0;
-z-index: 200;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 14px;
-flex-wrap: wrap;
-padding: 10px 44px 10px 16px;
-color: #f8fafc;
-background: linear-gradient(135deg, rgba(77, 226, 255, 0.16), rgba(3, 10, 20, 0.98));
-border-bottom: 1px solid rgba(125, 242, 208, 0.35);
-font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-font-size: 13px;
-line-height: 1.4;
-text-align: center;
-}
-
-.nhi-announce a {
-color: #4de2ff;
-font-weight: 700;
-text-decoration: none;
-}
-
-.nhi-announce a:hover,
-.nhi-announce a:focus-visible {
-text-decoration: underline;
-}
-
-.nhi-announce-close { min-width: 40px; min-height: 40px;
-position: absolute;
-top: 50%;
-right: 14px;
-transform: translateY(-50%);
-
-display: flex;
-align-items: center;
-justify-content: center;
-
-width: 26px;
-height: 26px;
-padding: 0;
-
-color: #9fb0c4;
-background: rgba(255, 255, 255, 0.06);
-border: 1px solid rgba(148, 163, 184, 0.25);
-border-radius: 50%;
-
-font-size: 16px;
-line-height: 1;
-cursor: pointer;
-}
-
-.nhi-announce-close:hover,
-.nhi-announce-close:focus-visible {
-color: #f8fafc;
-background: rgba(255, 255, 255, 0.14);
-outline: none;
-}
-
-@media (max-width: 640px) {
-.nhi-announce {
-padding: 12px 40px 12px 14px;
-font-size: 13px;
-}
-}
-
-</style>
-      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
   </head>
 
   <body>
-    <div class="lab-notices">
-    <p class="lab-banner book"><span class="dot" aria-hidden="true"></span><span class="lab-new">New book</span><a href="/book/">Who Approved That? My free book on human approval for AI agents</a></p>
-    <p class="lab-banner"><span class="dot" aria-hidden="true"></span><a href="/writing/pam-series/">PAM series: three articles on privileged access</a><i aria-hidden="true">&middot;</i><a href="/mcp-lab-portal/">MCP lab: portal, 161 cases, 122-page report</a></p>
-    </div>
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-      <defs>
-        <symbol id="art-ai" viewBox="0 0 320 140">
-          <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="160" cy="70" r="56" stroke-dasharray="2 7" opacity=".55"/>
-            <circle cx="160" cy="70" r="32" opacity=".75"/>
-            <path d="M160 70 74 34M160 70 92 110M160 70 250 42M160 70 240 108M160 70 160 12" opacity=".5"/>
-            <rect x="140" y="50" width="40" height="40" rx="10" opacity=".35"/>
-          </g>
-          <g fill="currentColor">
-            <circle cx="160" cy="70" r="9"/>
-            <circle cx="74" cy="34" r="5" opacity=".85"/><circle cx="92" cy="110" r="4" opacity=".7"/>
-            <circle cx="250" cy="42" r="6" opacity=".85"/><circle cx="240" cy="108" r="4" opacity=".7"/>
-            <circle cx="160" cy="12" r="4" opacity=".7"/>
-          </g>
-        </symbol>
-        <symbol id="art-pam" viewBox="0 0 320 140">
-          <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="160" cy="70" r="54" opacity=".3"/>
-            <circle cx="160" cy="70" r="54" stroke-width="4" stroke-linecap="round" stroke-dasharray="230 110" transform="rotate(-100 160 70)"/>
-            <path d="M160 70V34M160 70l22 14" opacity=".8"/>
-            <path d="M40 70h66M214 70h66" stroke-dasharray="3 7" opacity=".45"/>
-          </g>
-          <g fill="currentColor"><circle cx="160" cy="70" r="6"/><rect x="146" y="72" width="28" height="22" rx="5" opacity=".18"/></g>
-          <path d="M152 72v-6a8 8 0 0 1 16 0v6" fill="none" stroke="currentColor" stroke-width="2" opacity=".0"/>
-        </symbol>
-        <symbol id="art-gov" viewBox="0 0 320 140">
-          <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="92" cy="34" r="10"/><path d="m87 34 4 4 7-8"/><path d="M118 34h150" opacity=".7"/>
-            <circle cx="92" cy="70" r="10"/><path d="m87 70 4 4 7-8"/><path d="M118 70h112" opacity=".7"/>
-            <circle cx="92" cy="106" r="10" stroke-dasharray="3 3" opacity=".7"/><path d="M118 106h84" stroke-dasharray="3 5" opacity=".5"/>
-          </g>
-          <g fill="currentColor" opacity=".25"><rect x="118" y="30" width="96" height="8" rx="4"/><rect x="118" y="66" width="64" height="8" rx="4"/></g>
-        </symbol>
-        <symbol id="art-platform" viewBox="0 0 320 140">
-          <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <rect x="70" y="20" width="180" height="30" rx="8" opacity=".9"/>
-            <rect x="90" y="54" width="180" height="30" rx="8" opacity=".6"/>
-            <rect x="110" y="88" width="140" height="30" rx="8" opacity=".35"/>
-            <path d="M160 50v4M180 84v4" stroke-dasharray="2 3"/>
-          </g>
-          <g fill="currentColor"><circle cx="90" cy="35" r="4"/><circle cx="110" cy="69" r="4" opacity=".7"/><circle cx="130" cy="103" r="4" opacity=".5"/></g>
-        </symbol>
-        <symbol id="art-tiers" viewBox="0 0 320 140">
-          <g fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="160" cy="70" r="62" opacity=".3" stroke-dasharray="2 6"/>
-            <circle cx="160" cy="70" r="46" opacity=".5"/>
-            <circle cx="160" cy="70" r="30" opacity=".75"/>
-            <circle cx="160" cy="70" r="15"/>
-            <path d="M175 70h47M190 70l0 0" opacity=".0"/>
-          </g>
-          <g fill="currentColor"><circle cx="160" cy="70" r="6"/><circle cx="160" cy="24" r="3.5" opacity=".8"/><circle cx="222" cy="70" r="3.5" opacity=".6"/><circle cx="114" cy="70" r="3.5" opacity=".8"/><circle cx="160" cy="116" r="3.5" opacity=".6"/><circle cx="204" cy="112" r="3" opacity=".45"/><circle cx="116" cy="28" r="3" opacity=".45"/></g>
-        </symbol>
-        <symbol id="art-share" viewBox="0 0 320 140">
-          <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-            <circle cx="70" cy="70" r="14"/><path d="M84 70h34M104 70v8M112 70v6" />
-            <path d="M118 70 C160 70 170 26 232 26M118 70 C160 70 180 52 236 52M118 70 C160 70 180 88 236 88M118 70 C160 70 170 114 232 114" opacity=".6" stroke-dasharray="4 4"/>
-          </g>
-          <g fill="none" stroke="currentColor" stroke-width="1.5"><rect x="232" y="16" width="34" height="20" rx="6"/><rect x="236" y="42" width="34" height="20" rx="6" opacity=".8"/><rect x="236" y="78" width="34" height="20" rx="6" opacity=".8"/><rect x="232" y="104" width="34" height="20" rx="6"/></g>
-          <g fill="currentColor"><circle cx="70" cy="70" r="4"/><circle cx="278" cy="26" r="3" opacity=".7"/><circle cx="282" cy="52" r="3" opacity=".7"/><circle cx="282" cy="88" r="3" opacity=".7"/><circle cx="278" cy="114" r="3" opacity=".7"/></g>
-        </symbol>
-        <symbol id="art-eye" viewBox="0 0 320 140">
-          <g fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M62 70Q160 4 258 70Q160 136 62 70Z"/>
-            <circle cx="160" cy="70" r="24" opacity=".8"/>
-            <circle cx="160" cy="70" r="10" fill="currentColor" fill-opacity=".9" stroke="none"/>
-          </g>
-          <g fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="3 3" opacity=".55"><rect x="18" y="26" width="22" height="16" rx="4"/><rect x="278" y="24" width="24" height="16" rx="4"/><rect x="28" y="100" width="24" height="16" rx="4"/><rect x="270" y="98" width="22" height="16" rx="4"/></g>
-        </symbol>
-        <symbol id="i-key" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3"/></g></symbol>
-        <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
-        <symbol id="i-nodes" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="4.5" cy="5" r="1.8"/><circle cx="19.5" cy="5" r="1.8"/><circle cx="4.5" cy="19" r="1.8"/><circle cx="19.5" cy="19" r="1.8"/><path d="m6 6.2 3.8 3.8M18 6.2 14.2 10M6 17.8 9.8 14M18 17.8 14.2 14"/></g></symbol>
-        <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="m8.5 12 2.5 2.5 4.5-5"/></g></symbol>
-        <symbol id="i-scale" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M6 21h12M5 7h14"/><path d="m5 7-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></g></symbol>
-        <symbol id="i-spark" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/></g></symbol>
-      </defs>
-    </svg>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="sky" aria-hidden="true"></div>
 
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Roshan Trivedi, home">
-        <span class="brand-mark" aria-hidden="true">RT</span>
-        <span class="brand-text"><span class="brand-name">Roshan Trivedi</span><span class="brand-sub">Identity security</span></span>
-      </a>
-      <nav class="nav-desktop" aria-label="Primary">
-        <a href="/about/">About</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#case-studies">Case Studies</a>
-        <a href="/writing/">Writing</a>
-        <a href="/mcp-human-approval-gateway/">MCP Lab</a>
-        <a href="/book/">Book</a>
-        <a href="#platforms">Platforms</a>
-        <a href="#research">Research</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a class="btn-outline" href="/Roshan_Trivedi_Resume.pdf">R&eacute;sum&eacute;</a>
-      <details class="menu">
-        <summary aria-label="Open menu"><span></span></summary>
-        <nav class="nav-mobile" aria-label="Mobile">
-          <a href="/about/">About</a>
-          <a href="#expertise">Expertise</a>
-          <a href="#case-studies">Case Studies</a>
-          <a href="/writing/">Writing</a>
-          <a href="/mcp-human-approval-gateway/">MCP Lab</a>
+    <header class="top">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="Roshan Trivedi, home"><i aria-hidden="true">RT</i>Roshan Trivedi</a>
+        <nav class="nav" aria-label="Main">
+          <a href="/case-studies/">Work</a>
+          <a href="/labs/">Labs</a>
           <a href="/book/">Book</a>
-          <a href="#platforms">Platforms</a>
-          <a href="#research">Research</a>
+          <a href="/writing/">Writing</a>
+          <a href="/about/">About</a>
           <a href="#contact">Contact</a>
-          <a href="/Roshan_Trivedi_Resume.pdf">View r&eacute;sum&eacute;</a>
         </nav>
-      </details>
+        <a class="btn-res" href="/resume/">R&eacute;sum&eacute;</a>
+        <details class="menu">
+          <summary aria-label="Open menu"><span></span></summary>
+          <nav aria-label="Mobile">
+            <a href="/case-studies/">Work</a>
+            <a href="/labs/">Labs</a>
+            <a href="/book/">Book</a>
+            <a href="/writing/">Writing</a>
+            <a href="/about/">About</a>
+            <a href="#contact">Contact</a>
+            <a href="/resume/">R&eacute;sum&eacute;</a>
+          </nav>
+        </details>
+      </div>
     </header>
 
-    <main id="main-content">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="wrap hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow-line">Identity security &middot; Product leadership</p>
-            <h1 id="hero-title">Security starts <span>with identity.</span></h1>
-            <p class="hero-role">Credential Management Platform Owner &amp; PAM Product Leader</p>
-            <p class="hero-lead">Building secure, scalable identity platforms across privileged access, credential management, Zero Standing Privilege, non-human identity and IAM governance.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#case-studies">Explore case studies</a>
-              <a class="btn btn-ghost" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">Connect on LinkedIn</a>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap">
+          <div>
+            <a class="pill" href="/book/"><b>NEW BOOK</b>Who Approved That? Free, 138 pages &rarr;</a>
+            <h1 id="hero-title">Security starts<br><span class="grad">with identity.</span></h1>
+            <p class="role">Credential Management Platform Owner &amp; PAM Product Leader</p>
+            <p class="intro">Fourteen years making secure access something people can actually use: privileged access, credentials, non-human identity, and now a person in the loop when an AI agent acts.</p>
+            <div class="acts">
+              <a class="btn btn-1" href="/case-studies/">See my work</a>
+              <a class="btn btn-2" href="/book/">Read the free book</a>
             </div>
-            <p class="hero-meta"><span>Bengaluru, India</span><span>Available for security leadership conversations</span></p>
-          </div>
-          <div class="hero-visual">
-            <div class="portrait">
-              <img src="/assets/roshan-trivedi-520.webp" srcset="/assets/roshan-trivedi-520.webp 520w, /assets/roshan-trivedi.webp 873w" sizes="(max-width: 700px) 80vw, 410px" alt="Portrait of Roshan Trivedi" width="873" height="871" fetchpriority="high">
-            </div>
-            <div class="path-card" aria-label="Identity decision path">
-              <div class="path-head"><span>Identity decision path</span><b>Human governed</b></div>
-              <ol class="path-steps">
-                <li><small>01</small><strong>Request</strong><span>Who or what needs access?</span></li>
-                <li><small>02</small><strong>Verify</strong><span>Identity, context and intent</span></li>
-                <li><small>03</small><strong>Authorize</strong><span>Least privilege, policy checked</span></li>
-                <li><small>04</small><strong>Time-bound access</strong><span>Just enough, just in time</span></li>
-                <li><small>05</small><strong>Observe</strong><span>Evidence, accountability, review</span></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="wrap">
-        <ul class="stats reveal">
-          <li style="--c:#4de2ff"><b data-count="14" data-suffix="+">14+</b><span>Years across identity and security</span></li>
-          <li style="--c:#7df2d0"><b data-count="20">20</b><span>Public-safe case studies, four themes</span></li>
-          <li style="--c:#c4b5fd"><b data-count="210">210</b><span>Automated tests in the open-source MCP lab</span></li>
-          <li style="--c:#f7c873"><b data-count="3">3</b><span>Regions: India, UK and Australia</span></li>
-          <li style="--c:#4de2ff"><b>CIAM</b><span>Certified identity practitioner</span></li>
-        </ul>
-        <section class="standards reveal" aria-label="Standards and frameworks the case studies draw on">
-          <p>Standards the case studies draw on</p>
-          <ul>
-            <li style="--c:#4de2ff">NIST guidance</li>
-            <li style="--c:#7df2d0">ISO/IEC 27001</li>
-            <li style="--c:#f7c873">PCI DSS</li>
-            <li style="--c:#c4b5fd">OWASP</li>
-            <li style="--c:#4de2ff">Model Context Protocol spec</li>
-            <li style="--c:#7df2d0">OAuth RFCs 8693, 8707, 9728</li>
-            <li style="--c:#f7c873">Zero Trust</li>
-          </ul>
-        </section>
-      </div>
-
-      <div class="wrap">
-        <section class="feature reveal" aria-labelledby="feature-title">
-          <div class="feature-copy">
-            <p class="feature-tag"><i></i>New &middot; open source &middot; live</p>
-            <h2 id="feature-title">MCP Human Approval Gateway</h2>
-            <p>A working lab for one question: when an AI agent asks to use a tool, who decides, and what exactly was approved? Policy decides, a person who is not the requester approves, and the approval is tied to a hash of that exact request. It works once and it expires. If a response is lost, the call stays unresolved until a reviewer settles it.</p>
-            <ul class="feature-facts">
-              <li>Speaks MCP revision 2026-07-28, with 2025-11-25 compatibility</li>
-              <li>210 automated tests, hash-chained audit log</li>
-              <li>Tools are synthetic. Tried by hand with the official MCP Inspector v2.9.0 (MCP 2025-11-25): approval, single use, an over-scope denial and a changed request (refused) all behaved. A one-command runner then ran 76 cases: 72 as expected, 1 different, 3 for information. No other client and no real environment yet.</li>
+            <ul class="proof" aria-label="At a glance">
+              <li><b>14+</b><span>years in identity and security</span></li>
+              <li><b>20</b><span>public case studies</span></li>
+              <li><b>210</b><span>tests in the open MCP lab</span></li>
+              <li><b>3</b><span>regions: India, UK, Australia</span></li>
             </ul>
-            <div class="feature-actions">
-              <a class="btn btn-primary" href="/mcp-human-approval-gateway/">Try the lab</a>
-              <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui/mcp-human-approval-gateway">Source on GitHub</a>
-              <a class="btn btn-ghost" href="#mcp-video">Watch the 90-second video</a>
-              <a class="btn btn-ghost" href="/mcp-lab-case-study/">Read the case study</a>
-              <a class="btn btn-ghost" href="/mcp-lab-in-depth/">In depth: what, why, how</a>
-              <a class="btn btn-ghost" href="/mcp-lab-use-cases/">81 use cases in detail</a>
-              <a class="btn btn-ghost" href="/mcp-lab-results/">Test results</a>
-              <a class="btn btn-ghost" href="/mcp-lab-portal/">Explore the portal</a>
-              <a class="btn btn-ghost" href="/book/">Read the book</a>
-              <a class="btn btn-ghost" href="/assets/humangate-mcp-lab-final-report.pdf">Full report (PDF, 122 pages)</a>
-            </div>
           </div>
-          <div class="feature-art" role="group" aria-label="How the approval gateway handles one request. Illustrative flow; the tools are synthetic.">
-            <ol>
-              <li style="--c:#4de2ff"><b>Agent</b><span>asks to use a tool</span></li>
-              <li style="--c:#7df2d0"><b>Policy</b><span>scores it with fixed rules, no model in the decision</span></li>
-              <li style="--c:#f7c873"><b>Person</b><span>approves or denies; never the requester</span></li>
-              <li style="--c:#c4b5fd"><b>Grant</b><span>bound to the exact request hash</span></li>
-              <li style="--c:#7df2d0"><b>Single use</b><span>expires in 10 to 60 minutes by risk</span></li>
-              <li style="--c:#4de2ff"><b>Execute</b><span>reserve, dispatch, confirm, then audit</span></li>
+
+          <div class="path">
+            <ol class="tiles" aria-label="The seven stages an AI agent's request walks through in my approval lab">
+              <li class="c"><span>01</span>REQUEST</li>
+              <li><span>02</span>POLICY</li>
+              <li class="p"><span>03</span>PERSON</li>
+              <li><span>04</span>BINDING</li>
+              <li><span>05</span>GUARD</li>
+              <li class="g"><span>06</span>TOOL</li>
+              <li class="g"><span>07</span>RECORD</li>
             </ol>
-            <p class="feature-note">Illustrative flow. Tools are synthetic; nothing real is touched. <a href="/mcp-lab-case-study/">What held and what did not</a></p>
-          </div>
-        </section>
-
-        <section class="book-band reveal" aria-labelledby="book-title">
-          <a class="bb-cover" href="/book/" aria-label="Open the book page"><img src="/assets/who-approved-that-cover-front.png" width="1069" height="1538" alt="Front cover of the book Who Approved That?" loading="lazy" decoding="async"></a>
-          <div class="bb-copy">
-            <p class="feature-tag"><i></i>New &middot; free book</p>
-            <h2 id="book-title">Who Approved That?</h2>
-            <p>I did not know what to ask an AI when I started. 180 days later I had built a small approval gateway for AI agents, tried to break it three times, and written everything down: 210 checks, 81 use cases and twelve guesses of mine that were wrong. It is a learner&rsquo;s lab notebook for teams who want a person in the loop, and it is free.</p>
-            <div class="feature-actions">
-              <a class="btn btn-primary" href="/book/">Read the book</a>
-              <a class="btn btn-ghost" href="/assets/who-approved-that-book.pdf">Download the PDF, 138 pages</a>
-              <a class="btn btn-ghost" href="/mcp-lab-portal/">Explore the portal</a>
+            <div class="decide" aria-hidden="true">
+              <p class="k">A PERSON DECIDES</p>
+              <p class="t">deploy_service &middot; production</p>
+              <p class="b"><span>Approve once</span><span>Deny</span></p>
             </div>
-          </div>
-        </section>
-        <section class="start reveal" aria-labelledby="start-title">
-          <h2 id="start-title" class="start-title">Start here</h2>
-          <div class="start-grid">
-            <div>
-              <h3>Hiring for a leadership role?</h3>
-              <p>Get the short story, then the r&eacute;sum&eacute;.</p>
-              <a href="/about/">About me &rarr;</a> <a href="/resume/">R&eacute;sum&eacute; &rarr;</a>
+            <div class="me">
+              <img src="/assets/roshan-trivedi-520.webp" width="68" height="68" alt="Roshan Trivedi">
+              <div><b>Roshan Trivedi</b><span>Bengaluru &middot; identity security</span></div>
             </div>
-            <div>
-              <h3>Fixing a PAM or credential program?</h3>
-              <p>Two studies on platform strategy and moving off permanent privilege.</p>
-              <a href="/case-studies/credential-platform/">Platform strategy &rarr;</a> <a href="/case-studies/pam-modernization/">PAM modernization &rarr;</a>
-            </div>
-            <div>
-              <h3>Working on machine or AI-agent identity?</h3>
-              <p>The research that goes deepest on machine and agent identity.</p>
-              <a href="/case-studies/non-human-identity-at-scale/">Non-human identity &rarr;</a> <a href="/case-studies/credential-tiering-model/">Credential tiering &rarr;</a>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="wrap">
-      <section class="flow-lab hg block" id="mcp-flow" aria-labelledby="flow-title">
-        <p class="hg-label"><b>MCP lab</b> &middot; follow one request</p>
-        <h2 id="flow-title" class="section-title">Pick a request. See where it stops.</h2>
-        <p class="fl-lead">Six situations from my tests of the approval gateway. Each shows what the gateway did at every stage, and the lab cases that checked it. <strong>Illustrative walk-through</strong> of recorded outcomes with synthetic tools, not a live feed.</p>
-        <div class="fl-chips" role="group" aria-label="Choose a request"><button type="button" class="hg-chip" data-s="docs" aria-pressed="false"><span>Look up docs</span><small>low risk</small></button><button type="button" class="hg-chip" data-s="deploy" aria-pressed="true"><span>Deploy to production</span><small>needs a person</small></button><button type="button" class="hg-chip" data-s="changed" aria-pressed="false"><span>Change it after approval</span><small>one field differs</small></button><button type="button" class="hg-chip" data-s="twice" aria-pressed="false"><span>Use the approval twice</span><small>replay</small></button><button type="button" class="hg-chip" data-s="late" aria-pressed="false"><span>Wait too long</span><small>11 minutes</small></button><button type="button" class="hg-chip" data-s="lost" aria-pressed="false"><span>The reply is lost</span><small>tool ran, answer did not arrive</small></button></div>
-        <ol class="fl-track" id="fl-track" aria-label="Stages of the selected request"><li class="fl-stage hg-neutral is-pass"><span class="fl-n">01</span><b>Request</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">deploy.production, production environment</span></li><li class="fl-stage hg-policy is-pass"><span class="fl-n">02</span><b>Policy gate</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Critical, score 100. Needs security-lead.</span></li><li class="fl-stage hg-person is-pass"><span class="fl-n">03</span><b>A person</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Security lead approves with a reason</span></li><li class="fl-stage hg-policy is-pass"><span class="fl-n">04</span><b>Grant</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Bound to the request hash. Expires in 10 minutes.</span></li><li class="fl-stage hg-exec is-pass"><span class="fl-n">05</span><b>Execute</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Reserve, dispatch, confirm</span></li><li class="fl-stage hg-audit is-pass"><span class="fl-n">06</span><b>Audit</b><span class="fl-state"><i aria-hidden="true">✓</i><span>passed</span></span><span class="fl-note">Decision and result logged</span></li></ol>
-        <div class="fl-result" id="fl-result" aria-live="polite"><span class="hg-badge hg-exec">Executed</span><h3>Executed after a person approved</h3><p>Critical risk waits for a security lead. The requester cannot approve its own request. The approval covers this exact request and works once.</p><p class="fl-tests">Tested as <a href="/mcp-lab-use-cases/#B3">B3</a> <a href="/mcp-lab-use-cases/#B4">B4</a> <a href="/mcp-lab-use-cases/#B5">B5</a></p></div>
-        <div class="fl-foot">
-          <p class="fl-evidence"><b>213</b> automated tests &middot; <b>76</b> cases in the one-command runner: <b>72</b> as expected, <b>1</b> different, <b>3</b> for information.</p>
-          <p class="hg-callout hg-audit fl-limit"><strong>Limits.</strong> Tools are synthetic. Reviewer names are typed in, not proven. One run per case, on my own machines. This shows what this gateway did on these cases. It does not prove it secure.</p>
-          <p class="fl-links"><a class="hg-btn hg-btn-primary" href="/mcp-human-approval-gateway/">Try the lab</a><a class="hg-btn" href="/mcp-lab-case-study/">Read the case study</a><a class="hg-btn hg-btn-quiet" href="/mcp-lab-results/">All 76 results</a></p>
-        </div>
-        <noscript><p class="fl-lead">Turn on JavaScript to switch requests. The full list is on <a href="/mcp-lab-use-cases/">the use-cases page</a>.</p></noscript>
-      </section>
-      </div>
-
-      <section class="block" id="about" aria-labelledby="about-title">
-        <div class="wrap">
-          <div class="section-head reveal">
-            <p class="section-label"><b>01</b>Perspective</p>
-            <div>
-              <h2 class="section-title" id="about-title">Identity is the control plane.</h2>
-              <p class="section-lead">I work where platform strategy, security architecture, product ownership and audit evidence meet.</p>
-            </div>
-          </div>
-          <div class="perspective reveal">
-            <p class="statement">I translate difficult identity-security problems into products people can adopt, teams can operate and leaders can govern.</p>
-            <div class="copy">
-              <p>My current focus spans credential-management platform ownership, PAM product leadership and IAM control evaluation. The work includes product roadmaps, architecture decisions, use-case analysis, proof-of-concept leadership, migrations and audit mapping.</p>
-              <p>I also analyze non-human identity, MCP and agentic-AI security, using AI as a co-worker while keeping privacy, source validation and human accountability explicit.</p>
-              <p><a href="/about/">More about me &rarr;</a></p>
-              <div class="callout"><b>Public by design.</b><span>Every portfolio case study is intentionally anonymized and excludes employer, client and internal operational data. My r&eacute;sum&eacute; (linked above) is the deliberate exception &mdash; it includes full employment history for verification.</span></div>
-            </div>
+            <p class="path-cap">Every tool call an AI agent makes walks this path in my <a href="/labs/">approval lab</a>.</p>
           </div>
         </div>
       </section>
 
-      <section class="block" id="expertise" aria-labelledby="expertise-title">
+      <section class="sec" aria-labelledby="work-title">
         <div class="wrap">
-          <div class="section-head reveal">
-            <p class="section-label"><b>02</b>Expertise</p>
-            <div>
-              <h2 class="section-title" id="expertise-title">From product decision to defensible control.</h2>
-              <p class="section-lead">A connected practice spanning strategy, architecture, delivery, governance and emerging identity risk.</p>
-            </div>
+          <div class="head">
+            <div><p class="ey">What I work on</p><h2 id="work-title">Three areas, one idea: make secure access usable</h2></div>
+            <a class="more" href="/case-studies/">All 20 case studies &rarr;</a>
           </div>
-          <div class="grid-3">
-        <article class="reveal">
-          <div class="cell-top"><span class="cell-num">01</span><svg class="ex-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-key"/></svg></div>
-          <h3>Credential platforms</h3>
-          <p>Product ownership for enterprise credential management—from service definition and onboarding through controls, lifecycle governance and operational adoption.</p>
-          <div class="chips"><span>Platform strategy</span><span>Secrets lifecycle</span><span>Service catalog</span></div>
-        </article>
-        <article class="reveal">
-          <div class="cell-top"><span class="cell-num">02</span><svg class="ex-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg></div>
-          <h3>PAM &amp; Zero Standing Privilege</h3>
-          <p>Roadmaps for vaulting, credential rotation, privileged sessions, just-in-time access and the shift from permanent privilege to time-bound authorization.</p>
-          <div class="chips"><span>PAM</span><span>JIT access</span><span>ZSP</span></div>
-        </article>
-        <article class="reveal">
-          <div class="cell-top"><span class="cell-num">03</span><svg class="ex-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-nodes"/></svg></div>
-          <h3>NHI &amp; machine identity</h3>
-          <p>Analysis of non-human identities, workload credentials and service accounts across cloud, DevOps and emerging agentic-AI ecosystems.</p>
-          <div class="chips"><span>NHI</span><span>Workload identity</span><span>Machine access</span></div>
-        </article>
-        <article class="reveal">
-          <div class="cell-top"><span class="cell-num">04</span><svg class="ex-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
-          <h3>IAM audit &amp; controls</h3>
-          <p>Mapping IAM capabilities to control intent, evidence expectations and ownership so security design remains defensible and audit-ready.</p>
-          <div class="chips"><span>Control mapping</span><span>Evidence</span><span>Governance</span></div>
-        </article>
-        <article class="reveal">
-          <div class="cell-top"><span class="cell-num">05</span><svg class="ex-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-scale"/></svg></div>
-          <h3>Product evaluation</h3>
-          <p>Structured platform analysis covering use-case fit, architecture, operational readiness, governance, integration and migration considerations.</p>
-          <div class="chips"><span>PoC leadership</span><span>Decision frameworks</span><span>Migration</span></div>
-        </article>
-        <article class="reveal">
-          <div class="cell-top"><span class="cell-num">06</span><svg class="ex-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-spark"/></svg></div>
-          <h3>AI-augmented delivery</h3>
-          <p>Using LLMs and agents as disciplined co-workers for research, product analysis and communication—with human review and privacy guardrails.</p>
-          <div class="chips"><span>MCP</span><span>Agentic AI</span><span>Human oversight</span></div>
-        </article>
+          <div class="g3">
+            <a class="card" href="/case-studies/#pam"><span class="tag">Privileged access</span><h3>PAM and credential management</h3><p>Vaults, credential tiering, break-glass, just-in-time access and Zero Standing Privilege.</p><span class="go">Privileged access work &rarr;</span></a>
+            <a class="card" href="/case-studies/#ai"><span class="tag">Machines and agents</span><h3>Non-human and AI agent identity</h3><p>Service accounts, secrets, workload identity, and a person in the loop when an AI agent acts.</p><span class="go">Agent and NHI work &rarr;</span></a>
+            <a class="card" href="/case-studies/#platform"><span class="tag">Product</span><h3>Turning security into products</h3><p>Roadmaps, platform evaluation, adoption, control mapping and audit-ready governance.</p><span class="go">Platform and governance work &rarr;</span></a>
+          </div>
+          <div class="chips" aria-label="Platforms I have worked with or evaluated">
+            <b>Platforms</b><span>CyberArk</span><span>BeyondTrust</span><span>Delinea</span><span>StrongDM</span><span>HashiCorp Vault</span><span>Saviynt CPAM</span><span>SailPoint</span><span>Microsoft Entra ID</span><span>Wiz</span><span>Clutch Security</span><span>PKI and HSM</span><span>MCP and LLM agents</span>
+          </div>
+          <p class="note">Platform names show personal knowledge and evaluation experience only. They do not imply vendor endorsement or client association.</p>
+        </div>
+      </section>
+
+      <section class="sec" aria-labelledby="feat-title">
+        <div class="wrap">
+          <div class="head"><div><p class="ey">Featured</p><h2 id="feat-title">What I have built and published</h2></div><a class="more" href="/labs/">All labs and projects &rarr;</a></div>
+          <div class="g3">
+            <a class="card feat" href="/book/"><span class="vis"><img src="/assets/who-approved-that-cover-144.webp" width="72" height="104" alt="" loading="lazy"></span><div><span class="tag">Book</span><h3>Who Approved That?</h3><p>Putting a human approval step in front of AI agent tool calls, and testing it 210 times. Free to read and download.</p><span class="go">Read the book &rarr;</span></div></a>
+            <a class="card feat" href="/mcp-lab-case-study/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.3-7 10-4-1.7-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span></span><div><span class="tag">Open-source lab</span><h3>HumanGate MCP lab</h3><p>An approval gateway for AI agents: a portal, 161 cases, a risk score to play with, and the full report.</p><span class="go">Explore the lab &rarr;</span></div></a>
+            <a class="card feat" href="/secure-india-exams/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6M8 15h3"/></svg></span></span><div><span class="tag">Public research</span><h3>Securing India&rsquo;s National Exams</h3><p>A Zero Trust model for high-stakes exams, from paper creation to verified destruction.</p><span class="go">Read the research &rarr;</span></div></a>
           </div>
         </div>
       </section>
 
-      <section class="block" id="case-studies" aria-labelledby="cs-title">
+      <section class="sec" aria-labelledby="cs-title">
         <div class="wrap">
-          <div class="section-head reveal">
-            <p class="section-label"><b>03</b>Selected work</p>
-            <div>
-              <h2 class="section-title" id="cs-title">Case studies without confidential data.</h2>
-              <p class="section-lead">The thinking, leadership and security principles are real. Employer names, client associations, internal metrics and proprietary decisions are deliberately omitted.</p>
-            </div>
+          <div class="head"><div><p class="ey">Selected case studies</p><h2 id="cs-title">Real problems, written without confidential data</h2></div><a class="more" href="/case-studies/">See all 20 &rarr;</a></div>
+          <div class="g4">
+            <a class="card" href="/case-studies/agentic-ai-identity-governance/"><span class="tag">AI and agents</span><h3>Agentic AI identity governance</h3><p>Who an agent is, what it may do, and who answers for what it did.</p></a>
+            <a class="card" href="/case-studies/break-glass-access/"><span class="tag">Privileged access</span><h3>Break-glass emergency access</h3><p>Emergency access that stays usable under pressure without becoming a permanent bypass.</p></a>
+            <a class="card" href="/case-studies/non-human-identity-at-scale/"><span class="tag">Machines</span><h3>Non-human identity at scale</h3><p>Owning, rotating and retiring machine credentials nobody remembers creating.</p></a>
+            <a class="card" href="/case-studies/credential-tiering-model/"><span class="tag">Strategy</span><h3>Credential tiering and the PAM market</h3><p>Why Tier 0 is a containment mechanism, not an org chart.</p></a>
           </div>
-          <div class="cs-grid">
-            <article class="cs-card reveal" style="--c:#7df2d0">
-              <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 140" preserveAspectRatio="xMidYMid meet"><use href="#art-tiers"/></svg></div>
-              <div class="cs-body">
-                <span class="cs-cat"><i></i>Independent research</span>
-                <h3><a href="/case-studies/credential-tiering-model/">Credential Tiering &amp; the PAM Market</a></h3>
-                <p>Why Tier 0-3 is a containment mechanism, the guardrails that make it hold, and how the PAM market maps to audit, compliance and cost needs.</p>
-                <span class="more" aria-hidden="true">Read case study &rarr;</span>
-              </div>
-            </article>
-            <article class="cs-card reveal" style="--c:#7df2d0">
-              <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 140" preserveAspectRatio="xMidYMid meet"><use href="#art-platform"/></svg></div>
-              <div class="cs-body">
-                <span class="cs-cat"><i></i>Platform ownership</span>
-                <h3><a href="/case-studies/credential-platform/">Credential Management Platform Strategy</a></h3>
-                <p>Turning fragmented credential use cases into a coherent, governable enterprise service.</p>
-                <span class="more" aria-hidden="true">Read case study &rarr;</span>
-              </div>
-            </article>
-            <article class="cs-card reveal" style="--c:#7df2d0">
-              <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 140" preserveAspectRatio="xMidYMid meet"><use href="#art-pam"/></svg></div>
-              <div class="cs-body">
-                <span class="cs-cat"><i></i>Privileged access</span>
-                <h3><a href="/case-studies/pam-modernization/">PAM Modernization &amp; Zero Standing Privilege</a></h3>
-                <p>Evolving privileged access from persistent entitlement toward verified, time-bound access.</p>
-                <span class="more" aria-hidden="true">Read case study &rarr;</span>
-              </div>
-            </article>
-            <article class="cs-card reveal" style="--c:#4de2ff">
-              <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 140" preserveAspectRatio="xMidYMid meet"><use href="#art-ai"/></svg></div>
-              <div class="cs-body">
-                <span class="cs-cat"><i></i>Emerging practice</span>
-                <h3><a href="/case-studies/non-human-identity-at-scale/">Non-Human Identity at Scale</a></h3>
-                <p>How to find the service accounts, keys, tokens and agents nobody wrote down, give each an owner, rank them by risk and replace long-lived secrets with ones that expire.</p>
-                <span class="more" aria-hidden="true">Read case study &rarr;</span>
-              </div>
-            </article>
-            <article class="cs-card reveal" style="--c:#4de2ff">
-              <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 140" preserveAspectRatio="xMidYMid meet"><use href="#art-share"/></svg></div>
-              <div class="cs-body">
-                <span class="cs-cat"><i></i>Non-Human Identity</span>
-                <h3><a href="/case-studies/ai-agent-credential-sharing/">AI Agent Credential Sharing</a></h3>
-                <p>What goes wrong when AI agents run on a person's token or a team's shared key, and how to give each agent its own short-lived, scoped credentials instead.</p>
-                <span class="more" aria-hidden="true">Read case study &rarr;</span>
-              </div>
-            </article>
-            <article class="cs-card reveal" style="--c:#4de2ff">
-              <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 140" preserveAspectRatio="xMidYMid meet"><use href="#art-eye"/></svg></div>
-              <div class="cs-body">
-                <span class="cs-cat"><i></i>Shadow AI</span>
-                <h3><a href="/case-studies/shadow-ai-discovery-gap/">The Shadow AI Discovery Gap</a></h3>
-                <p>How to find the AI tools people use that nobody approved, classify the data they touch, respond without driving use underground, and measure the gap closing.</p>
-                <span class="more" aria-hidden="true">Read case study &rarr;</span>
-              </div>
-            </article>
-          </div>
-          <ul class="themes reveal" aria-label="Browse case studies by theme">
-            <li style="--c:#7df2d0"><a href="/case-studies/#pam"><b>7</b><strong>Privileged access</strong><span>Programs, elevation, break-glass, third parties</span></a></li>
-            <li style="--c:#c4b5fd"><a href="/case-studies/#platform"><b>5</b><strong>Platform and architecture</strong><span>Evaluation, migration, secrets, cloud entitlements</span></a></li>
-            <li style="--c:#4de2ff"><a href="/case-studies/#ai"><b>6</b><strong>AI and agentic</strong><span>Agents, non-human identity, shadow AI</span></a></li>
-            <li style="--c:#f7c873"><a href="/case-studies/#gov"><b>2</b><strong>Governance</strong><span>Audit mapping and recertification</span></a></li>
+        </div>
+      </section>
+
+      <section class="sec" aria-labelledby="wr-title">
+        <div class="wrap">
+          <div class="head"><div><p class="ey">Latest writing</p><h2 id="wr-title">The PAM series</h2></div><a class="more" href="/writing/">All writing &rarr;</a></div>
+          <ul class="posts">
+            <li><a href="/writing/pam-as-an-identity/"><b>PAM as an identity: what changes when the vault can talk to your governance system</b><span>Part 3</span></a></li>
+            <li><a href="/writing/pam-project-plan-by-organization-tier/"><b>A PAM project plan for Tier 1, 2 and 3 organisations</b><span>Part 2</span></a></li>
+            <li><a href="/writing/pam-framework-and-design/"><b>PAM framework and design: what sits around the vault</b><span>Part 1</span></a></li>
           </ul>
-          <h3 class="cs-more-title reveal">More case studies</h3>
-          <ul class="cs-more reveal">
-              <li style="--c:#7df2d0"><a href="/case-studies/privileged-access-program/"><i></i><span>How I Run a Privileged Access Program</span><small>Method</small></a></li>
-              <li style="--c:#c4b5fd"><a href="/case-studies/migration-planning/"><i></i><span>Privileged Access Migration Planning</span><small>Migration leadership</small></a></li>
-              <li style="--c:#c4b5fd"><a href="/case-studies/platform-evaluation/"><i></i><span>PAM Platform Evaluation</span><small>Product evaluation</small></a></li>
-              <li style="--c:#f7c873"><a href="/case-studies/audit-mapping/"><i></i><span>IAM Control-to-Audit Mapping</span><small>Governance</small></a></li>
-              <li style="--c:#4de2ff"><a href="/case-studies/ai-coworker/"><i></i><span>AI as a Coworker in Identity Operations</span><small>Emerging practice</small></a></li>
-              <li style="--c:#7df2d0"><a href="/case-studies/jit-jea-elevation/"><i></i><span>Just-in-Time &amp; Just-Enough-Access Elevation</span><small>Privileged access</small></a></li>
-              <li style="--c:#7df2d0"><a href="/case-studies/break-glass-access/"><i></i><span>Break-Glass Emergency Access Design</span><small>Privileged access</small></a></li>
-              <li style="--c:#c4b5fd"><a href="/case-studies/secrets-consolidation/"><i></i><span>Secrets Discovery &amp; Consolidation</span><small>Secrets governance</small></a></li>
-              <li style="--c:#7df2d0"><a href="/case-studies/vendor-privileged-access/"><i></i><span>Third-Party Privileged Access Governance</span><small>Privileged access</small></a></li>
-              <li style="--c:#f7c873"><a href="/case-studies/access-recertification/"><i></i><span>Access Recertification Automation</span><small>Governance</small></a></li>
-              <li style="--c:#c4b5fd"><a href="/case-studies/passwordless-authentication/"><i></i><span>Risk-Sequenced Passwordless Rollout</span><small>Authentication</small></a></li>
-              <li style="--c:#c4b5fd"><a href="/case-studies/ciem-at-scale/"><i></i><span>Cloud Entitlement Management at Scale</span><small>Cloud identity</small></a></li>
-              <li style="--c:#4de2ff"><a href="/mcp-lab-case-study/"><i></i><span>Can a person stay in control of an AI agent?</span><small>MCP and agent control</small></a></li>
-              <li style="--c:#4de2ff"><a href="/case-studies/agentic-ai-identity-governance/"><i></i><span>Agentic AI Identity Governance</span><small>Agent identity governance</small></a></li>
-              <li style="--c:#4de2ff"><a href="/case-studies/ai-processing-tax/"><i></i><span>The AI Decision Tax</span><small>AI Governance</small></a></li>
-          </ul>
-          <figure class="watch reveal" id="mcp-video">
-            <video controls preload="none" playsinline poster="/assets/mcp-workflow-poster.webp" aria-label="The MCP human approval gateway explained in 90 seconds">
-              <source src="/assets/humangate-mcp-lab-90s.mp4" type="video/mp4">
-            </video>
-            <figcaption><strong>Watch: what the approval gateway did in my tests.</strong> A 90-second silent, captioned walk through the tests (synthetic tools): approval, single use, and what happens when the request is changed after approval. <a href="/mcp-human-approval-gateway/">Open the live lab &rarr;</a></figcaption>
-          </figure>
-          <div class="cs-all">
-            <a class="btn btn-primary" href="/case-studies/">Browse all 20 by theme</a>
-            <a class="btn btn-ghost" href="/writing/">Read the writing</a>
-            <a class="btn btn-ghost" href="/mcp-human-approval-gateway/">Try the MCP lab</a>
-          </div>
         </div>
       </section>
 
-      <section class="block" id="platforms" aria-labelledby="platforms-title">
+      <section class="sec" id="contact" aria-labelledby="contact-title">
         <div class="wrap">
-          <div class="section-head reveal">
-            <p class="section-label"><b>04</b>Platform ecosystem</p>
+          <div class="contact">
             <div>
-              <h2 class="section-title" id="platforms-title">Broad enough to compare. Deep enough to challenge.</h2>
-              <p class="section-lead">Technology knowledge and evaluation experience across established and emerging identity-security platforms.</p>
-              <p class="section-lead">I evaluate platforms through identity lifecycle, control coverage, architecture, integration, user journey and operating ownership&mdash;not feature lists alone.</p>
-              <p class="platform-note">Platform names indicate personal knowledge and evaluation experience only. They do not imply vendor endorsement or client association.</p>
-            </div>
-          </div>
-          <div class="platform-groups">
-        <div class="platform-group reveal">
-          <h3>Privileged access</h3>
-          <ul><li>CyberArk</li><li>BeyondTrust</li><li>Delinea Secret Server</li><li>Delinea PRA</li><li>StrongDM</li></ul>
-        </div>
-        <div class="platform-group reveal">
-          <h3>Credentials &amp; secrets</h3>
-          <ul><li>HashiCorp Vault</li><li>Saviynt CPAM</li><li>ERPM</li><li>PKI / HSM</li></ul>
-        </div>
-        <div class="platform-group reveal">
-          <h3>Identity &amp; governance</h3>
-          <ul><li>SailPoint</li><li>Microsoft Entra ID</li><li>IAM controls</li><li>CIAM</li></ul>
-        </div>
-        <div class="platform-group reveal">
-          <h3>Cloud &amp; NHI</h3>
-          <ul><li>Clutch Security</li><li>Wiz</li><li>Workload identity</li><li>Service accounts</li></ul>
-        </div>
-        <div class="platform-group reveal">
-          <h3>AI workflow</h3>
-          <ul><li>OpenAI</li><li>ChatGPT</li><li>Claude</li><li>MCP</li><li>LLM agents</li></ul>
-        </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="block" id="research" aria-labelledby="research-title">
-        <div class="wrap">
-          <div class="section-head reveal">
-            <p class="section-label"><b>05</b>Published research</p>
-            <div>
-              <h2 class="section-title" id="research-title">Applying Zero Trust to a problem that matters.</h2>
-              <p class="section-lead">Independent, non-commercial work translating security architecture into public-interest outcomes.</p>
-            </div>
-          </div>
-          <div class="research-card reveal">
-            <div class="research-main">
-              <p class="tag-row"><span>Public-interest security</span><span>Zero Trust reference model</span></p>
-              <h3>Securing India&rsquo;s National Examinations</h3>
-              <p>A public case study proposing a lifecycle security model for high-stakes examinations&mdash;from paper creation and protected storage to controlled delivery and verified destruction.</p>
-              <ul>
-                <li>Threat-led architecture rather than process-only controls</li>
-                <li>Cryptographic protection, least privilege and continuous evidence</li>
-                <li>Privacy, resilience and accountable human decision-making</li>
+              <p class="ey">Let&rsquo;s talk</p>
+              <h2 id="contact-title">Hiring, a hard access problem, or just the book?</h2>
+              <ul class="paths">
+                <li><b>Hiring for a leadership role?</b> My r&eacute;sum&eacute; and case studies show how I work.</li>
+                <li><b>Facing a PAM or credential problem?</b> I am open to advisory work and talks.</li>
+                <li><b>Working on agent identity?</b> Read the book and tell me what I missed.</li>
               </ul>
-              <a class="btn btn-primary" href="/secure-india-exams/">Read the published case study</a>
             </div>
-            <ol class="research-steps" aria-label="Examination lifecycle">
-              <li>01 &middot; Create</li><li>02 &middot; Protect</li><li>03 &middot; Deliver</li><li>04 &middot; Verify</li><li>05 &middot; Retire</li>
-            </ol>
-          </div>
-        </div>
-      </section>
-
-      <section class="block" id="career" aria-labelledby="career-title">
-        <div class="wrap">
-          <div class="section-head reveal">
-            <p class="section-label"><b>06</b>Career lens</p>
-            <div>
-              <h2 class="section-title" id="career-title">Global experience. One consistent focus.</h2>
-              <p class="section-lead">More than fourteen years across consulting and global enterprise environments in India, the United Kingdom and Australia.</p>
-            </div>
-          </div>
-          <p class="quote reveal">&ldquo;Make secure access usable, governable and explainable.&rdquo;</p>
-          <div class="career-grid">
-            <article class="reveal"><small>Now</small><h3>Platform owner &amp; PAM product leader</h3><p>Credential-management strategy, privileged-access products, control mapping and audit evaluation.</p></article>
-            <article class="reveal"><small>Global delivery</small><h3>IAM &amp; PAM programs</h3><p>Consulting and enterprise security work, including an on-site CyberArk engagement in Birmingham, UK.</p></article>
-            <article class="reveal"><small>Continuous</small><h3>Research &amp; emerging technology</h3><p>NHI, MCP, agentic AI, Zero Trust and public-interest security architecture.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="block" id="contact" aria-labelledby="contact-title">
-        <div class="wrap">
-          <div class="contact-box reveal">
-            <p class="section-label"><b>07</b>Start a conversation</p>
-            <h2 id="contact-title">Building the next identity-security capability?</h2>
-            <p>I&rsquo;m open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work.</p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">Connect on LinkedIn</a>
-              <a class="btn btn-ghost" href="mailto:trivedi.roshan1@gmail.com">Email Roshan</a>
-              <a class="btn btn-ghost" href="https://github.com/trivediroshan1-ui">View GitHub</a>
-            </div>
-            <div class="qr-row">
-              <figure><img src="/assets/qr-linkedin.svg" width="110" height="110" alt="QR code for Roshan Trivedi on LinkedIn" loading="lazy"><figcaption>LinkedIn</figcaption></figure>
-              <figure><img src="/assets/qr-site.svg" width="110" height="110" alt="QR code for roshantrivedi.co.in" loading="lazy"><figcaption>This site</figcaption></figure>
+            <div class="acts">
+              <a class="btn btn-1" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">Message me on LinkedIn</a>
+              <a class="btn btn-2" href="mailto:trivedi.roshan1@gmail.com">Email</a>
+              <a class="btn btn-2" href="https://github.com/trivediroshan1-ui">GitHub</a>
+              <a class="btn btn-2" href="/Roshan_Trivedi_Resume.pdf">R&eacute;sum&eacute; (PDF)</a>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="wrap footer-grid">
-        <div><strong>Roshan Trivedi</strong><small>Credential Management &middot; PAM &middot; Identity Security</small></div>
-        <div class="footer-links">
-          <a href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/">LinkedIn</a>
-          <a href="https://github.com/trivediroshan1-ui">GitHub</a>
-          <a href="/Roshan_Trivedi_Resume.pdf">R&eacute;sum&eacute;</a>
-          <a href="/about/">About</a>
-          <a href="/case-studies/">Case studies</a>
-          <a href="/writing/">Writing</a>
-          <a href="/mcp-human-approval-gateway/">MCP lab</a>
-          <a href="/now/">Now</a>
-          <a href="/ai/">How I use AI</a>
-          <a href="/feed.xml">RSS</a>
-          <span>&copy; 2026 &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
-        </div>
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <nav aria-label="Footer">
+          <a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/design-system/">Design system</a><a href="/feed.xml">RSS</a>
+        </nav>
       </div>
     </footer>
-
-<div class="nhi-announce" id="nhi-announce">
-<a href="/case-studies/credential-tiering-model/">New: Credential Tiering &amp; the PAM Market — why Tier 0 is a containment mechanism, not an org chart. See the model →</a>
-<button type="button" class="nhi-announce-close" aria-label="Dismiss this announcement">&#215;</button>
-</div>
-
-<script>
-(function () {
-var KEY = "site-announce-dismissed-v2";
-var el = document.getElementById("nhi-announce");
-if (!el) return;
-if (localStorage.getItem(KEY) === "1") {
-el.style.display = "none";
-return;
-}
-function shiftLayout() {
-var header = document.querySelector(".site-header");
-var h = el.offsetHeight;
-if (header) header.style.top = h + "px";
-document.body.style.marginTop = h + "px";
-}
-function resetLayout() {
-var header = document.querySelector(".site-header");
-if (header) header.style.top = "";
-document.body.style.marginTop = "";
-}
-shiftLayout();
-window.addEventListener("resize", shiftLayout);
-var tries = 0;
-var poll = setInterval(function () {
-tries++;
-shiftLayout();
-if (document.querySelector(".site-header") || tries > 40) clearInterval(poll);
-}, 100);
-var closeBtn = el.querySelector(".nhi-announce-close");
-if (closeBtn) {
-closeBtn.addEventListener("click", function (e) {
-e.preventDefault();
-e.stopPropagation();
-el.style.display = "none";
-resetLayout();
-localStorage.setItem(KEY, "1");
-});
-}
-})();
-</script>
 
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "444a1ec20a754e468bd77d1fb0a93adc"}'></script>
     <script defer src="/assets/chatbot-data.js?v=20261018b"></script>
     <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
-    <script defer src="/assets/notices.js"></script>
-</body>
+  </body>
 </html>

@@ -280,7 +280,7 @@ window.SITE_QA = [
   {
     id: "request-explorer",
     title: "Request explorer on the homepage",
-    url: "/#mcp-flow",
+    url: "/labs/#mcp-flow",
     keywords: ["explorer","request explorer","pick a request","see where it stops","interactive flow","stages"],
     answer:
       "On the homepage, 'Pick a request. See where it stops.' lets you choose one of six recorded situations (a docs lookup, a production deploy, a change after approval, an approval used twice, an expired approval, a lost reply) and see what the gateway did at each stage: request, policy gate, a person, grant, execute, audit. It is an illustrative walk-through of recorded outcomes with synthetic tools, not a live feed.",
