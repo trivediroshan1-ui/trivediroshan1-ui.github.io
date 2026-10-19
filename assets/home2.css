@@ -189,3 +189,10 @@ html[data-theme="light"] .lab-links a { background: rgba(255, 255, 255, 0.6); }
 .lab-links span { font-size: 13.5px; color: var(--subtle); }
 .flow-lab { margin-top: 8px; }
 @media (max-width: 860px) { .lab-main { grid-template-columns: 1fr; } }
+
+/* Background theme: the approval path, faint, fixed to the screen */
+html { background: var(--bg); }
+body { background: transparent; }
+body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: url(/assets/bg-path.svg) no-repeat center / cover; }
+html[data-theme="light"] body::after { opacity: 0.8; }
+@media (max-width: 760px) { body::after { background-position: 70% 40%; } }

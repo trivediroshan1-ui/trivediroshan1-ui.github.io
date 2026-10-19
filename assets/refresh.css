@@ -10,7 +10,11 @@ html[data-theme="light"] {
   --text: #15122e; --muted: #4a4470; --accent: #6d4fd8;
   --page: #f6f5ff; --ink: #15122e; --line: rgba(76, 52, 160, 0.16); --line-strong: rgba(76, 52, 160, 0.3);
 }
-html, body { background-color: var(--bg); }
+html { background-color: var(--bg); }
+body { background-color: transparent; }
+/* Background theme: a faint pattern of identity icons, fixed to the screen */
+body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: url(/assets/bg-icons.svg) repeat; background-size: 320px; }
+html[data-theme="light"] body::after { opacity: 0.85; }
 body { position: relative; }
 body::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 760px; z-index: -1; pointer-events: none;
   background: radial-gradient(640px 460px at 88% 0%, rgba(124, 58, 237, 0.32), transparent 70%), radial-gradient(520px 380px at 0% 30%, rgba(76, 29, 149, 0.22), transparent 70%);
