@@ -67,3 +67,21 @@ html[data-theme="light"] .res-tile:nth-child(1) b { color: #0e7490; } html[data-
 html[data-theme="light"] .res-tile:nth-child(3) b { color: #b45309; } html[data-theme="light"] .res-tile:nth-child(4) b { color: #6d28d9; }
 html[data-theme="light"] .hg-tabs a { color: #3b3566; }
 html[data-theme="light"] .res-filters button[aria-pressed="true"] { color: #fff; }
+/* Work page: what I bring */
+.skills { margin-top: 56px; }
+.skills h2 { font-family: "DM Sans", system-ui, sans-serif; font-size: clamp(24px, 3.4vw, 34px); line-height: 1.12; margin: 6px 0 8px; text-wrap: balance; }
+.skills .lede { color: var(--muted); max-width: 62ch; margin: 0 0 20px; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.skills-grid > div { border: 1px solid var(--line); border-top: 3px solid var(--k); border-radius: 16px; padding: 18px; background: rgba(20, 18, 58, 0.5); display: grid; gap: 8px; align-content: start; }
+html[data-theme="light"] .skills-grid > div { background: rgba(255, 255, 255, 0.8); }
+.skills-grid h3 { margin: 0; font-size: 17px; }
+.skills-grid p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--muted); }
+.skills-grid small { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--k); }
+html[data-theme="light"] .skills-grid small { color: var(--accent); }
+@media (max-width: 860px) { .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .skills-grid { grid-template-columns: minmax(0, 1fr); } }
+/* About page: jump links */
+nav.jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+nav.jump a { border: 1px solid var(--line-strong); border-radius: 999px; padding: 6px 14px; font-size: 14px; font-weight: 600; color: var(--text); text-decoration: none; min-height: 36px; display: inline-flex; align-items: center; }
+nav.jump a:hover { border-color: var(--accent); background: rgba(124, 58, 237, 0.14); }
+html { scroll-padding-top: 24px; }

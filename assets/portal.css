@@ -1,16 +1,16 @@
 /* HumanGate MCP lab portal. Dark first, light through html[data-theme="light"] (set by /assets/theme.js). */
 :root {
-  --bg: #050b18; --bg2: #08122a; --panel: #0b1630; --panel2: #101d3b; --line: rgba(148, 163, 184, .2); --line2: rgba(148, 163, 184, .34);
-  --ink: #e9f1fc; --mut: #a3b5cf; --dim: #7f93b1;
-  --cy: #4de2ff; --vi: #a78bfa; --em: #34d399; --am: #fbbf24; --ro: #fb7185; --bl: #60a5fa;
+  --bg: #05061a; --bg2: #0b0a26; --panel: #0e0d2c; --panel2: #14123a; --line: rgba(167, 139, 250, .2); --line2: rgba(167, 139, 250, .36);
+  --ink: #f5f3ff; --mut: #b9b4d8; --dim: #9590b8;
+  --cy: #58e6f6; --vi: #a78bfa; --em: #34d399; --am: #fbbf24; --ro: #fb7185; --bl: #60a5fa;
   --cy-s: rgba(77, 226, 255, .12); --vi-s: rgba(167, 139, 250, .14); --em-s: rgba(52, 211, 153, .13); --am-s: rgba(251, 191, 36, .13); --ro-s: rgba(251, 113, 133, .13);
   --btn-ink: #03121c; --bar-ink: #06101f; --shadow: 0 18px 50px rgba(0, 0, 0, .38);
   --r: 16px; --w: 1120px;
   color-scheme: dark;
 }
 html[data-theme="light"] {
-  --bg: #f3f6fb; --bg2: #e9eff8; --panel: #ffffff; --panel2: #f1f5fb; --line: rgba(15, 23, 42, .13); --line2: rgba(15, 23, 42, .26);
-  --ink: #0f172a; --mut: #435269; --dim: #64748b;
+  --bg: #f6f5ff; --bg2: #eceaff; --panel: #ffffff; --panel2: #f3f1ff; --line: rgba(76, 52, 160, .16); --line2: rgba(76, 52, 160, .3);
+  --ink: #15122e; --mut: #4a4470; --dim: #5f5a85;
   --cy: #0a6f84; --vi: #6d28d9; --em: #047857; --am: #a1580a; --ro: #be123c; --bl: #1d4ed8;
   --cy-s: rgba(10, 111, 132, .1); --vi-s: rgba(109, 40, 217, .09); --em-s: rgba(4, 120, 87, .1); --am-s: rgba(161, 88, 10, .1); --ro-s: rgba(190, 18, 60, .08);
   --btn-ink: #ffffff; --bar-ink: #ffffff; --shadow: 0 14px 38px rgba(15, 23, 42, .12);
