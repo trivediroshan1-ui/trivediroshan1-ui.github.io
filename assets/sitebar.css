@@ -87,3 +87,11 @@ nav.hg-sitenav li{list-style:none;margin:0;padding:0}
 nav.hg-sitenav a,nav.hg-sitenav li a{color:#eef1ff;font-weight:600}
 html[data-theme="light"] nav.hg-sitenav{color:#25344a}
 html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitenav li a{color:#25344a}
+
+/* Phones: smaller floating buttons, side by side at the bottom, so they cover less text */
+@media (max-width: 640px) {
+  .sc-launcher { width: 46px !important; height: 46px !important; }
+  .sc-launcher svg { width: 20px; height: 20px; }
+  .theme-toggle { right: 72px !important; bottom: 20px !important; width: 38px !important; height: 38px !important; opacity: .92; }
+  .theme-toggle svg { width: 17px !important; height: 17px !important; }
+}

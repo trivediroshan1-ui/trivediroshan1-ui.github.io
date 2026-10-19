@@ -196,3 +196,11 @@ body { background: transparent; }
 body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: url(/assets/bg-path.svg) no-repeat center / cover; }
 html[data-theme="light"] body::after { opacity: 0.8; }
 @media (max-width: 760px) { body::after { background-position: 70% 40%; } }
+
+/* Phones: smaller floating buttons, side by side at the bottom, so they cover less text */
+@media (max-width: 640px) {
+  .sc-launcher { width: 46px !important; height: 46px !important; }
+  .sc-launcher svg { width: 20px; height: 20px; }
+  .theme-toggle { right: 72px !important; bottom: 20px !important; width: 38px !important; height: 38px !important; opacity: .92; }
+  .theme-toggle svg { width: 17px !important; height: 17px !important; }
+}

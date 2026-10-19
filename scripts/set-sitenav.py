@@ -16,7 +16,7 @@ LINKS = [
     ("Contact", "/#contact", ()),
 ]
 STATIC = {"book/index.html", "mcp-lab-portal/index.html", "secure-india-exams/index.html", "tools/tier-check/index.html"}  # these keep their own sticky section bar
-CSS = '<link rel="stylesheet" href="/assets/sitebar.css?v=20261019b">'
+CSS = '<link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">'
 
 def nav(url, static):
     items = ""

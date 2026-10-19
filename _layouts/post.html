@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#030712">
+    <meta name="theme-color" content="#05061a">
     <meta name="robots" content="index,follow,max-image-preview:large">
     <title>{{ page.title }} — Roshan Trivedi</title>
     <meta name="description" content="{{ page.description | escape }}">
@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="/assets/fonts.css">
     <style>
       :root {
-        --bg: #030712; --surface: #0b1220; --surface-2: #101a2c; --border: #1f2a40; --text: #f1f5f9; --muted: #93a1bd; --accent: #4de2ff;
+        --bg: #05061a; --surface: #0b1220; --surface-2: #101a2c; --border: #1f2a40; --text: #f1f5f9; --muted: #93a1bd; --accent: #a78bfa;
         --mono: "JetBrains Mono", ui-monospace, monospace; --display: "DM Sans", system-ui, sans-serif; --body: "Manrope", system-ui, sans-serif;
         color-scheme: dark;
       }
@@ -66,10 +66,10 @@
       pre code { padding: 0; background: none; }
       blockquote { border-left: 3px solid var(--accent); margin-left: 0; padding: 4px 0 4px 1rem; color: var(--muted); background: var(--surface-2); border-radius: 0 8px 8px 0; }
       html { background: var(--bg); } body { background: transparent; position: relative; }
-      .post-glow { position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 300px; pointer-events: none; background: radial-gradient(ellipse 50% 50% at 18% 45%, rgba(77,226,255,0.14), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 70%, transparent); mask-image: linear-gradient(90deg, transparent, #000 22%, #000 70%, transparent); }
+      .post-glow { position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 300px; pointer-events: none; background: radial-gradient(ellipse 50% 50% at 18% 45%, rgba(124,58,237,0.24), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 70%, transparent); mask-image: linear-gradient(90deg, transparent, #000 22%, #000 70%, transparent); }
       .tags { display: flex; flex-wrap: wrap; gap: 6px; }
       .tags span { border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px; background: rgba(255,255,255,0.02); }
-      h2::before { content: ""; display: inline-block; width: 4px; height: 0.9em; margin-right: 10px; vertical-align: -0.1em; border-radius: 2px; background: linear-gradient(180deg, var(--accent), #7df2d0); }
+      h2::before { content: ""; display: inline-block; width: 4px; height: 0.9em; margin-right: 10px; vertical-align: -0.1em; border-radius: 2px; background: linear-gradient(180deg, #58e6f6, #a78bfa); }
       .series-line { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin: 0 0 18px; }
       .series-line a { color: var(--accent); font-weight: 600; }
       .post-cta { margin-top: 3rem; padding: 20px 22px; border-radius: 16px; border: 1px solid rgba(88,230,246,0.28); background: linear-gradient(135deg, rgba(34,211,238,0.09), rgba(11,18,32,0.9)); display: flex; flex-direction: column; gap: 6px; }
@@ -92,8 +92,8 @@
     {% if page.diagrams %}<link rel="stylesheet" href="/assets/diagram.css">{% endif %}
       <link rel="stylesheet" href="/assets/theme.css">
     <script src="/assets/theme.js"></script>
-    <link rel="stylesheet" href="/assets/sitebar.css?v=20261019b">
-    <link rel="stylesheet" href="/assets/refresh.css?v=20261019b">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019c">
     </head>
 <body>
   <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/" aria-current="page">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
@@ -117,7 +117,7 @@
     <span>&copy; {{ page.date | date: "%Y" }} Roshan Trivedi</span>
     <span><a href="/writing/">More writing</a> &middot; <a href="/case-studies/">Case studies</a></span>
   </footer>
-    <link rel="stylesheet" href="/assets/chatbot-widget.css" />
+    <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
     <script src="/assets/chatbot-data.js?v=20261018b"></script>
     <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
     {% if page.diagrams %}<script src="/assets/diagram.js" defer></script>{% endif %}
