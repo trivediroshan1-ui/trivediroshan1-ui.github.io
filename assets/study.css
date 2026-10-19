@@ -6,7 +6,7 @@ section > p.body-text + p.body-text, section > p.body-text + ul, section > ul + 
 .plain-list { margin: 12px 0 0; padding-left: 20px; display: grid; gap: 8px; font-size: 15px; max-width: 72ch; }
 .tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; margin-top: 14px; }
 table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; }
-.tbl th { text-align: left; font: 600 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); background: var(--surface); padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.tbl th { text-align: left; font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); background: var(--surface); padding: 10px 14px; border-bottom: 1px solid var(--border); }
 .tbl td { padding: 11px 14px; vertical-align: top; border-top: 1px solid var(--border); line-height: 1.5; }
 .tbl tr:first-child td { border-top: 0; }
 .tbl td:first-child { font-weight: 600; white-space: nowrap; }
@@ -18,10 +18,10 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .steps h3 { font: 800 16px var(--display); margin: 0 0 4px; }
 .steps p { margin: 0; font-size: 14.5px; }
 .steps .why { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
-.steps .why b { font: 600 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); margin-right: 6px; }
+.steps .why b { font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); margin-right: 6px; }
 .compare { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; margin-top: 14px; }
 .compare > div { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; background: var(--surface); }
-.compare h3 { font: 600 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; margin: 0 0 8px; }
+.compare h3 { font: 600 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; margin: 0 0 8px; }
 .compare .bad h3 { color: var(--warn); } .compare .good h3 { color: var(--c, var(--accent)); }
 .compare ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 14.5px; }
 @media (max-width: 640px) { .compare { grid-template-columns: 1fr; } }
@@ -29,7 +29,7 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .phases li { border: 1px solid var(--border); border-left: 3px solid var(--c, var(--accent)); border-radius: 12px; padding: 14px 16px; background: var(--surface); font-size: 14.5px; }
 .phases b { display: block; font: 800 15px var(--display); margin-bottom: 4px; }
 .phases small { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; }
-.phases small em { font: 600 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); font-style: normal; margin-right: 6px; }
+.phases small em { font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); font-style: normal; margin-right: 6px; }
 .sources { margin: 12px 0 0; padding-left: 20px; display: grid; gap: 6px; font-size: 14px; }
 .sources a { color: var(--c, var(--accent)); }
 .reviewed { font: 12px var(--mono); color: var(--muted); }
@@ -38,7 +38,7 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 /* Diagrams */
 .diagram-card { position: relative; }
 .diagram-card svg text { font-family: var(--body); fill: var(--text); }
-.diagram-card .sub { fill: var(--muted); font-size: 11.5px; }
+.diagram-card .sub { fill: var(--muted); font-size: 12px; }
 .diagram-card .ttl { font-weight: 700; font-size: 14px; }
 .diagram-card .lane { fill: var(--muted); font-size: 12.5px; font-weight: 600; }
 .node rect { fill: var(--surface-2); stroke: var(--border); stroke-width: 1.5; }
@@ -58,7 +58,7 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .jit { fill: var(--c); opacity: .55; animation: jit 10s linear infinite; animation-delay: calc(var(--d) * 1s); }
 @keyframes jit { 0%, 6% { opacity: 1; } 7%, 100% { opacity: .55; } }
 .standing { fill: color-mix(in srgb, var(--warn) 38%, transparent); stroke: var(--warn); stroke-width: 1.2; }
-.anim-toggle { display: block; margin: 0 0 10px auto; font: 600 11px var(--mono); color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; cursor: pointer; }
+.anim-toggle { display: block; margin: 0 0 10px auto; font: 600 12px var(--mono); color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; cursor: pointer; }
 .anim-toggle:hover { color: var(--text); border-color: var(--c, var(--accent)); }
 .diagram-card.paused * { animation-play-state: paused !important; }
 @media (prefers-reduced-motion: reduce) {
@@ -90,7 +90,7 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
   .stack tr { display: block; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 6px 14px; }
   .stack td { display: block; border: 0 !important; padding: 8px 0; white-space: normal !important; }
   .stack td:empty { display: none; }
-  .stack td::before { content: attr(data-label); display: block; font: 600 10.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); margin-bottom: 2px; }
+  .stack td::before { content: attr(data-label); display: block; font: 600 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--c, var(--accent)); margin-bottom: 2px; }
   .stack td:first-child { font-weight: 700; }
 }
 

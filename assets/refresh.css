@@ -56,3 +56,14 @@ main > header.hero:first-child, main > .hero:first-child, main > header:first-ch
 .cs-art { width: 300px; max-width: 78%; margin: 0 0 10px -18px; color: var(--c, #a78bfa); }
 .cs-art svg { display: block; width: 100%; height: auto; }
 @media (max-width: 600px) { .cs-art { width: 240px; margin-left: -12px; } }
+/* Accessibility pass, 19 Oct: readable small labels, clear focus, enough contrast in both themes */
+.hg-next .eyebrow, .hg-tabs a.lab, main small { font-size: max(12px, 0.75rem); }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible { outline: 3px solid #58e6f6; outline-offset: 3px; border-radius: 6px; }
+html[data-theme="light"] :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible { outline-color: #5b3cc4; }
+a.skip:focus { position: fixed; left: 12px; top: 12px; z-index: 1000; padding: 10px 16px; border-radius: 10px; background: #f5f3ff; color: #15122e; font-weight: 700; clip: auto; width: auto; height: auto; }
+.ucgrp .uc h3 code { color: color-mix(in srgb, var(--g) 55%, #fff); }
+html[data-theme="light"] .ucgrp .uc h3 code { color: color-mix(in srgb, var(--g) 70%, #000); }
+html[data-theme="light"] .res-tile:nth-child(1) b { color: #0e7490; } html[data-theme="light"] .res-tile:nth-child(2) b { color: #047857; }
+html[data-theme="light"] .res-tile:nth-child(3) b { color: #b45309; } html[data-theme="light"] .res-tile:nth-child(4) b { color: #6d28d9; }
+html[data-theme="light"] .hg-tabs a { color: #3b3566; }
+html[data-theme="light"] .res-filters button[aria-pressed="true"] { color: #fff; }
