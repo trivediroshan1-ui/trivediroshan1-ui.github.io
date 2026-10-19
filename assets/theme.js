@@ -8,7 +8,7 @@
     btn.setAttribute("aria-label", isLight() ? "Switch to dark theme" : "Switch to light theme");
     btn.setAttribute("aria-pressed", isLight() ? "true" : "false");
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute("content", isLight() ? "#f5f7fb" : "#030712");
+    if (meta) meta.setAttribute("content", isLight() ? "#f5f7fb" : "#05061a");
   }
 
   document.addEventListener("DOMContentLoaded", function () {

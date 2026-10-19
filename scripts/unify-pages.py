@@ -5,7 +5,7 @@ import re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKIP = {"index.html", "labs/index.html", "book/index.html", "mcp-lab-portal/index.html",
         "secure-india-exams/index.html", "design-system/index.html"}
-CSS = '<link rel="stylesheet" href="/assets/refresh.css?v=20261019b">'
+CSS = '<link rel="stylesheet" href="/assets/refresh.css?v=20261019c">'
 FOOT = ('<footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>'
         '<nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a>'
         '<a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a>'
