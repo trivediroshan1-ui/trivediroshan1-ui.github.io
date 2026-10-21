@@ -22,3 +22,5 @@
   .bk-photo img { width: 150px; }
   .bk-author { flex-direction: column; align-items: flex-start; }
 }
+/* Light theme contrast */
+html[data-theme="light"] .bk-limits b{color:#864a08}
