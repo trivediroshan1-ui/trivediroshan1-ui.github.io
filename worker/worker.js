@@ -180,6 +180,14 @@ export default {
       });
     }
 
+    // Small bodies only: a real question plus a short history is well under 8 KB.
+    if (Number(request.headers.get("Content-Length") || 0) > 8192) {
+      return new Response(JSON.stringify({ error: "Request too large" }), {
+        status: 413,
+        headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
+      });
+    }
+
     let body;
     try {
       body = await request.json();
@@ -224,8 +232,9 @@ export default {
       });
 
       if (!resp.ok) {
-        const errText = await resp.text();
-        return new Response(JSON.stringify({ error: "Upstream error", detail: errText.slice(0, 300) }), {
+        // Keep the upstream error in the Worker's own logs, not in the visitor's response.
+        console.error("Upstream error", resp.status, (await resp.text()).slice(0, 300));
+        return new Response(JSON.stringify({ error: "The assistant is unavailable right now. Please try again later." }), {
           status: 502,
           headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
         });
@@ -238,7 +247,8 @@ export default {
         headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
       });
     } catch (e) {
-      return new Response(JSON.stringify({ error: "Worker error", detail: String(e).slice(0, 300) }), {
+      console.error("Worker error", String(e).slice(0, 300));
+      return new Response(JSON.stringify({ error: "The assistant is unavailable right now. Please try again later." }), {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
       });
