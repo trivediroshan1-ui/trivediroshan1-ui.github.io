@@ -217,3 +217,20 @@ html[data-theme="light"] body::after { opacity: 0.8; }
   .tiles li.p { animation: tile-on 0.5s ease-out 1.1s both, person-glow 2.4s ease-in-out 1.6s 2; }
   .decide { animation: card-in 0.5s ease-out 1.45s both; }
 }
+
+/* case-study cards with a cover illustration (same scenes as the Work page) */
+.card.has-art { padding: 0; overflow: hidden; }
+.card.has-art > :not(.art) { margin-left: 22px; margin-right: 22px; }
+.card.has-art > .tag { margin-top: 18px; }
+.card.has-art > p { margin-bottom: 22px; }
+.card .art { height: 104px; color: var(--c, var(--cyan)); border-bottom: 1px solid var(--line); overflow: hidden; background: radial-gradient(circle at 78% 10%, color-mix(in srgb, var(--c, var(--cyan)) 22%, transparent), transparent 62%), linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent); }
+.card .art svg { width: 100%; height: 100%; display: block; }
+.card .art .ln { opacity: .35; } .card .art .ring { opacity: .55; transform-origin: center; transform-box: fill-box; } .card .art .hub { filter: drop-shadow(0 0 6px var(--c, var(--cyan))); }
+a.card.has-art:hover { border-color: color-mix(in srgb, var(--c, var(--violet)) 60%, transparent); }
+html[data-theme="light"] .card .art { color: color-mix(in srgb, var(--c, #0a6178) 30%, #0a4a5c); background: radial-gradient(circle at 78% 10%, color-mix(in srgb, var(--c, var(--cyan)) 16%, transparent), transparent 62%); }
+@media (prefers-reduced-motion: no-preference) {
+  .card .art .ring { animation: ringspin 26s linear infinite; }
+  .card .art .hub { animation: hubpulse 3.2s ease-in-out infinite; }
+  @keyframes ringspin { to { transform: rotate(360deg); } }
+  @keyframes hubpulse { 50% { opacity: .55; } }
+}
