@@ -1,0 +1,214 @@
+/* Mega menus (assets/nav.js) and logo marks.
+   Without the script none of the .nv-* parts exist, so the bar stays the plain row of links it always was.
+   Dark is the default; light is html[data-theme="light"]. Motion is switched off for people who ask for less of it. */
+
+:root {
+  --nv-bg: rgba(8, 11, 22, .985);
+  --nv-edge: rgba(150, 170, 205, .22);
+  --nv-ink: #eef1ff;
+  --nv-soft: #b4bdd6;
+  --nv-mute: #8e99b6;
+  --nv-tile: rgba(255, 255, 255, .035);
+  --nv-tile-hover: rgba(255, 255, 255, .075);
+  --nv-shadow: 0 28px 70px -18px rgba(0, 0, 0, .7), 0 2px 0 rgba(255, 255, 255, .04) inset;
+  --nv-ai: #4de2ff; --nv-pam: #b9a2ff; --nv-gov: #f4c46a; --nv-plat: #62e0a5;
+}
+html[data-theme="light"] {
+  --nv-bg: rgba(251, 252, 255, .99);
+  --nv-edge: rgba(40, 55, 90, .16);
+  --nv-ink: #14203a;
+  --nv-soft: #3b4968;
+  --nv-mute: #55627f;
+  --nv-tile: rgba(20, 32, 58, .035);
+  --nv-tile-hover: rgba(20, 32, 58, .075);
+  --nv-shadow: 0 28px 60px -20px rgba(30, 40, 80, .35);
+  --nv-ai: #0a6178; --nv-pam: #5b3fc4; --nv-gov: #8a5a00; --nv-plat: #0b6b47;
+}
+
+/* three index pages carry their own page padding; the bar still runs edge to edge */
+html:is([data-bg="work"], [data-bg="writing"], [data-bg="series"]) body > nav.hg-sitenav { margin: -28px -16px 0; }
+
+/* ---- the bar: link + small chevron button -------------------------------------------------------------- */
+.nv-has { position: relative; display: inline-flex; align-items: center; border-radius: 999px; }
+.hg-sitenav li.nv-has { display: flex; }
+.nv-has > a { padding-right: .15rem !important; }
+.hg-sitenav.nv-ready ul { position: relative; }
+.hg-sitenav.nv-ready li { position: relative; z-index: 1; }
+.nv-toggle {
+  appearance: none; border: 0; background: none; color: inherit; cursor: pointer; font: inherit;
+  width: 28px; height: 34px; margin-left: -2px; margin-right: 2px; padding: 0; border-radius: 999px;
+  display: grid; place-items: center; opacity: .72; transition: opacity .2s, background .2s;
+}
+.nv-toggle:hover, .nv-has.is-open .nv-toggle { opacity: 1; }
+.nv-toggle:focus-visible { outline: 2px solid var(--nv-ai); outline-offset: 1px; opacity: 1; }
+.nv-chev { width: 7px; height: 7px; border-right: 1.8px solid currentColor; border-bottom: 1.8px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .28s cubic-bezier(.3, .8, .3, 1.2); }
+.nv-has.is-open .nv-chev { transform: translateY(1px) rotate(225deg); }
+.nv-has.is-open > a { opacity: 1; }
+
+/* the soft pill that glides under whichever item the pointer or keyboard is on */
+.nv-pill {
+  position: absolute; left: 0; top: 50%; height: 36px; margin-top: -18px; width: 0; opacity: 0; z-index: 0; pointer-events: none;
+  border-radius: 999px; background: linear-gradient(90deg, rgba(77, 226, 255, .14), rgba(167, 139, 250, .16));
+  box-shadow: inset 0 0 0 1px rgba(150, 170, 205, .18);
+  transition: transform .32s cubic-bezier(.2, .9, .25, 1), width .32s cubic-bezier(.2, .9, .25, 1), opacity .2s;
+}
+html[data-theme="light"] .nv-pill { background: linear-gradient(90deg, rgba(10, 97, 120, .10), rgba(91, 63, 196, .10)); box-shadow: inset 0 0 0 1px rgba(40, 55, 90, .14); }
+.hg-sitenav.nv-ready li a:hover { background: none; }
+.hg-sitenav.nv-ready li a[aria-current="page"], html .hg-sitenav.nv-ready li a[aria-current="page"], html[data-theme="light"] .hg-sitenav.nv-ready li a[aria-current="page"] { background: none; box-shadow: none; position: relative; }
+html .hg-sitenav.nv-ready li a[aria-current="page"]::after { content: ""; position: absolute; left: .7rem; right: .7rem; bottom: 4px; height: 2px; border-radius: 2px; background: var(--nv-ai); }
+html .hg-sitenav.nv-ready li.nv-has a[aria-current="page"]::after { right: .15rem; }
+html[data-theme="light"] .hg-sitenav.nv-ready li a[aria-current="page"]::after { background: var(--nv-ai); }
+/* on the home page there is no pill, so the item itself lights up */
+header.top .nv-has:hover, header.top .nv-has.is-open { background: rgba(167, 139, 250, .12); }
+header.top .nv-has > a:hover { background: none; }
+header.top .nv-has > a { padding-right: 4px; }
+header.top .nv-toggle { width: 26px; height: 32px; }
+
+/* ---- the panel ------------------------------------------------------------------------------------------- */
+.nv-panel {
+  position: absolute; left: 0; right: 0; top: 100%; z-index: 70; display: flex; justify-content: center;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); pointer-events: none;
+}
+.nv-panel[hidden] { display: none; }
+.nv-inner {
+  pointer-events: auto; position: relative; width: min(1080px, 100%); box-sizing: border-box;
+  display: grid; grid-template-columns: minmax(230px, 1fr) minmax(0, 3.1fr); gap: 22px; padding: 22px;
+  background: var(--nv-bg); color: var(--nv-ink); border: 1px solid var(--nv-edge); border-radius: 22px; box-shadow: var(--nv-shadow);
+  font-family: "DM Sans", "Manrope", system-ui, sans-serif; font-size: 15px; line-height: 1.4; text-align: left;
+  opacity: 0; transform: translateY(-10px) scale(.985); transform-origin: var(--nv-x, 50%) 0;
+  transition: opacity .2s ease, transform .3s cubic-bezier(.2, .9, .25, 1);
+}
+.nv-panel.is-open .nv-inner { opacity: 1; transform: none; }
+/* invisible bridge so the pointer can cross the gap without closing the menu */
+.nv-inner::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; }
+/* caret that points at the button that opened it */
+.nv-inner::after {
+  content: ""; position: absolute; top: -7px; left: var(--nv-x, 50%); width: 12px; height: 12px; margin-left: -6px; transform: rotate(45deg);
+  background: var(--nv-bg); border-left: 1px solid var(--nv-edge); border-top: 1px solid var(--nv-edge); border-top-left-radius: 3px;
+}
+
+html .nv-panel .nv-inner .nv-feature {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; gap: .55rem; padding: 18px; border-radius: 16px;
+  color: inherit; text-decoration: none; border: 1px solid var(--nv-edge);
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--nv-ai) 22%, transparent), transparent 62%),
+    radial-gradient(100% 90% at 100% 100%, color-mix(in srgb, var(--nv-pam) 24%, transparent), transparent 64%),
+    var(--nv-tile);
+}
+html .nv-panel .nv-inner .nv-feature:hover, html .nv-panel .nv-inner .nv-feature:focus-visible { border-color: color-mix(in srgb, var(--nv-ai) 55%, var(--nv-edge)); }
+html .nv-panel .nv-inner .nv-feature:focus-visible, html .nv-panel .nv-inner .nv-tile:focus-visible, html .nv-panel .nv-inner .nv-all:focus-visible { outline: 2px solid var(--nv-ai); outline-offset: 2px; }
+html .nv-panel .nv-inner .nv-art { position: relative; display: flex; align-items: center; gap: 6px; height: 52px; margin-bottom: .4rem; }
+html .nv-panel .nv-inner .nv-art-i { width: 34px; height: 34px; padding: 7px; box-sizing: border-box; border-radius: 11px; color: var(--nv-ink); background: var(--nv-tile-hover); border: 1px solid var(--nv-edge); flex: none; position: relative; z-index: 1; }
+html .nv-panel .nv-inner .nv-art-line { flex: 1; height: 0; border-top: 2px dashed color-mix(in srgb, var(--nv-ink) 38%, transparent); min-width: 8px; }
+html .nv-panel .nv-inner .nv-art-dot { position: absolute; left: 20px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--nv-ai); box-shadow: 0 0 12px var(--nv-ai); z-index: 2; }
+html .nv-panel .nv-inner .nv-portrait { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--nv-edge); box-shadow: 0 0 0 4px color-mix(in srgb, var(--nv-ai) 28%, transparent); }
+html .nv-panel .nv-inner .nv-kicker { font: 600 11.5px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--nv-mute); }
+html .nv-panel .nv-inner .nv-ftitle { font: 700 1.2rem/1.2 "Manrope", "DM Sans", system-ui, sans-serif; letter-spacing: -.01em; text-wrap: balance; }
+html .nv-panel .nv-inner .nv-ftext { color: var(--nv-soft); font-size: .92rem; }
+html .nv-panel .nv-inner .nv-cta { margin-top: auto; padding-top: .5rem; display: inline-flex; align-items: center; gap: .35rem; font-weight: 700; color: var(--nv-ai); font-size: .92rem; }
+html .nv-panel .nv-inner .nv-cta-i { width: 16px; height: 16px; transition: transform .25s; }
+html .nv-panel .nv-inner .nv-feature:hover .nv-cta-i, html .nv-panel .nv-inner .nv-all:hover .nv-cta-i { transform: translateX(4px); }
+
+html .nv-panel .nv-inner .nv-cols { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 18px; align-content: start; }
+html .nv-panel .nv-inner .nv-col { display: grid; gap: 18px; align-content: start; min-width: 0; }
+html .nv-panel .nv-inner .nv-group { padding: 0; border: 0; margin: 0; --nk: var(--nv-ai); min-width: 0; }
+html .nv-panel .nv-inner .nv-group.k-pam { --nk: var(--nv-pam); } html .nv-panel .nv-inner .nv-group.k-gov { --nk: var(--nv-gov); } html .nv-panel .nv-inner .nv-group.k-plat { --nk: var(--nv-plat); }
+html .nv-panel .nv-inner .nv-gtitle { display: flex; align-items: center; gap: .5rem; margin: 0 0 .55rem; padding: 0 0 .5rem; font: 700 11.5px/1.2 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--nk); border-bottom: 1px solid color-mix(in srgb, var(--nk) 35%, transparent); }
+html .nv-panel .nv-inner .nv-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; overflow: visible; }
+html .nv-panel .nv-inner .nv-list li { margin: 0; padding: 0; }
+html .nv-panel .nv-inner .nv-tile {
+  --mx: 50%; --my: 50%; background: none; white-space: normal; position: relative; isolation: isolate; display: flex; align-items: center; gap: .65rem; min-height: 40px; padding: 5px 8px 5px 6px; border-radius: 12px;
+  color: var(--nv-ink); text-decoration: none; font-weight: 600; font-size: .93rem; line-height: 1.25; opacity: 0; transform: translateY(8px);
+  transition: opacity .3s ease, transform .35s cubic-bezier(.2, .9, .25, 1), background .15s; transition-delay: calc(var(--i, 0) * 16ms + 50ms), calc(var(--i, 0) * 16ms + 50ms), 0s;
+}
+html .nv-panel.is-open .nv-inner .nv-tile { opacity: 1; transform: none; }
+html .nv-panel .nv-inner .nv-tile:hover, html .nv-panel .nv-inner .nv-tile[aria-current="page"] { background: none; }
+html .nv-panel .nv-inner .nv-tile::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; opacity: 0; transition: opacity .2s; background: radial-gradient(150px circle at var(--mx) var(--my), color-mix(in srgb, var(--nk) 26%, transparent), transparent 70%), var(--nv-tile-hover); }
+html .nv-panel .nv-inner .nv-tile:hover::before, html .nv-panel .nv-inner .nv-tile:focus-visible::before { opacity: 1; }
+html .nv-panel .nv-inner .nv-tile[aria-current="page"] { box-shadow: inset 2px 0 0 var(--nk); }
+html .nv-panel .nv-inner .nv-ic { flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; color: var(--nk); background: color-mix(in srgb, var(--nk) 14%, transparent); transition: transform .25s cubic-bezier(.3, .8, .3, 1.4), background .2s; }
+html .nv-panel .nv-inner .nv-ic svg { width: 17px; height: 17px; }
+html .nv-panel .nv-inner .nv-tile:hover .nv-ic, html .nv-panel .nv-inner .nv-tile:focus-visible .nv-ic { transform: scale(1.12) rotate(-5deg); background: color-mix(in srgb, var(--nk) 24%, transparent); }
+html .nv-panel .nv-inner .nv-label { flex: 1; min-width: 0; }
+html .nv-panel .nv-inner .nv-go { flex: none; width: 15px; height: 15px; color: var(--nk); opacity: 0; transform: translateX(-6px); transition: opacity .2s, transform .25s; }
+html .nv-panel .nv-inner .nv-tile:hover .nv-go, html .nv-panel .nv-inner .nv-tile:focus-visible .nv-go { opacity: 1; transform: none; }
+
+html .nv-panel .nv-inner .nv-foot { grid-column: 1 / -1; display: flex; justify-content: flex-end; padding-top: 12px; margin-top: -2px; border-top: 1px solid var(--nv-edge); }
+html .nv-panel .nv-inner .nv-all { display: inline-flex; align-items: center; gap: .4rem; font-weight: 700; font-size: .92rem; color: var(--nv-ink); text-decoration: none; padding: 6px 12px; border-radius: 999px; }
+html .nv-panel .nv-inner .nv-all:hover { background: var(--nv-tile-hover); }
+
+/* the feature card's little diagram: a dot travels along the dashed line, and the chips light up in turn */
+@keyframes nv-travel { 0% { left: 14px; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: calc(100% - 22px); opacity: 0; } }
+.nv-panel.is-open .nv-art-dot { animation: nv-travel 2.6s ease-in-out .4s infinite; }
+@keyframes nv-chip { 0%, 100% { border-color: var(--nv-edge); } 50% { border-color: var(--nv-ai); } }
+.nv-panel.is-open .nv-art-i:nth-of-type(1) { animation: nv-chip 2.6s ease-in-out .4s infinite; }
+.nv-panel.is-open .nv-art-i:nth-of-type(2) { animation: nv-chip 2.6s ease-in-out 1.1s infinite; }
+.nv-panel.is-open .nv-art-i:nth-of-type(3) { animation: nv-chip 2.6s ease-in-out 1.8s infinite; }
+
+/* a dim wash behind an open menu, so the page recedes. It is a body-level element made by the script. */
+.nv-scrim { position: fixed; inset: 0; z-index: 40; background: rgba(3, 5, 12, .4); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+.nv-scrim.is-on { opacity: 1; }
+html[data-theme="light"] .nv-scrim { background: rgba(20, 30, 60, .16); }
+
+/* phones and narrow windows keep the plain links: the index pages list everything */
+@media (max-width: 899px) { .nv-toggle, .nv-panel, .nv-pill { display: none !important; } .nv-has > a { padding-right: .7rem !important; } .nv-scrim { display: none; } }
+@media (max-width: 1060px) { .nv-inner { grid-template-columns: 1fr; } html .nv-panel .nv-inner .nv-feature { display: none; } }
+@media (max-width: 1060px) and (min-width: 900px) { html .nv-panel .nv-inner .nv-cols { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) {
+  .nv-inner, html .nv-panel .nv-inner .nv-tile, .nv-pill, .nv-chev, html .nv-panel .nv-inner .nv-ic, html .nv-panel .nv-inner .nv-go, html .nv-panel .nv-inner .nv-cta-i { transition: none !important; }
+  html .nv-panel .nv-inner .nv-tile { opacity: 1; transform: none; }
+  .nv-panel.is-open .nv-art-dot, .nv-panel.is-open .nv-art-i { animation: none; }
+  .nv-scrim { transition: none; }
+}
+@media print { .nv-panel, .nv-toggle { display: none !important; } }
+@media (forced-colors: active) { .nv-inner { border: 1px solid CanvasText; } html .nv-panel .nv-inner .nv-tile[aria-current="page"] { outline: 2px solid Highlight; } }
+
+/* ---- logo marks: the same simple line drawings, coloured by the text around them ---------------------- */
+.nv-logo, .lg {
+  display: inline-block; flex: none; width: 1.15em; height: 1.15em; vertical-align: -.2em; background: currentColor;
+  -webkit-mask: var(--logo) center / contain no-repeat; mask: var(--logo) center / contain no-repeat;
+}
+.lg-rt { --logo: url(/assets/logos/rt.svg); } .lg-humangate { --logo: url(/assets/logos/humangate.svg); } .lg-ailab { --logo: url(/assets/logos/ailab.svg); }
+.lg-book { --logo: url(/assets/logos/book.svg); } .lg-pam { --logo: url(/assets/logos/pam.svg); } .lg-exams { --logo: url(/assets/logos/exams.svg); } .lg-writing { --logo: url(/assets/logos/writing.svg); }
+.eyebrow .lg, .ey .lg { width: 1.55em; height: 1.55em; margin-right: .6em; vertical-align: -.5em; }
+
+/* ---- motion -------------------------------------------------------------------------------------------------
+   Small, slow and decorative. Every rule here sits behind prefers-reduced-motion: no-preference. */
+@keyframes mo-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes mo-flow { to { stroke-dashoffset: -14; } }
+@keyframes mo-spin { to { transform: rotate(360deg); } }
+@keyframes mo-breathe { 0%, 100% { opacity: .1; } 50% { opacity: .2; } }
+@keyframes mo-pop { from { opacity: 0; transform: scale(.5) rotate(-30deg); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* case-study cover: dashed links flow, the ring turns, the centre breathes */
+  .read .cs-art svg g[stroke-dasharray] path { animation: mo-flow 1.6s linear infinite; }
+  .read .cs-art .ring { transform-box: fill-box; transform-origin: center; animation: mo-spin 60s linear infinite; }
+  .read .cs-art svg circle[fill="currentColor"] { animation: mo-breathe 5s ease-in-out infinite; }
+  /* the top of a reading page arrives in order: label, title, summary, facts */
+  .read .hero > * { animation: mo-rise .75s cubic-bezier(.2, .8, .2, 1) both; }
+  .read .hero > :nth-child(2) { animation-delay: .06s; } .read .hero > :nth-child(3) { animation-delay: .12s; } .read .hero > :nth-child(4) { animation-delay: .18s; }
+  .read .hero > :nth-child(5) { animation-delay: .24s; } .read .hero > :nth-child(n+6) { animation-delay: .3s; }
+  .eyebrow .lg, .ey .lg { animation: mo-pop .8s .15s cubic-bezier(.3, .9, .3, 1.25) both; }
+  /* the on-this-page list opens smoothly where the browser can animate it */
+  :root { interpolate-size: allow-keywords; }
+  .rt-contents::details-content { block-size: 0; overflow: clip; transition: block-size .3s ease, content-visibility .3s allow-discrete; }
+  .rt-contents[open]::details-content { block-size: auto; }
+}
+/* cards and figures rise into place as they scroll into view (Chrome, Edge, Safari; others simply show them) */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .read .tldr li, .read .hg-next .grid a, .read main figure, .read .byline {
+      animation: mo-rise linear both; animation-timeline: view(); animation-range: entry 0% entry 38%;
+    }
+  }
+}
+
+/* the design-system page colours every link with a rule of its own; keep the bar and panel on the site's colours */
+html body.hg nav.hg-sitenav li a:not(.nv-a):not(.nv-b) { color: #eef1ff; }
+html[data-theme="light"] body.hg nav.hg-sitenav li a:not(.nv-a):not(.nv-b) { color: #25344a; }
+html[data-theme="light"] body.hg nav.hg-sitenav li a[aria-current="page"]:not(.nv-a):not(.nv-b) { color: #0a6178; }
+html body.hg nav.hg-sitenav a.brand { color: inherit; }
+/* the 404 page centres its content in a grid; the bar still spans the top and may not widen the page */
+html[data-bg="notfound"] body { align-content: start; grid-template-rows: auto minmax(0, 1fr); row-gap: 0; }
+html[data-bg="notfound"] body > nav.hg-sitenav { justify-self: stretch; min-width: 0; margin: -32px -16px 0; position: relative; top: 0; }

@@ -1,6 +1,8 @@
 ---
 title: "PAM Framework and Design: What Sits Around the Vault"
 layout: post
+bg: post-framework
+motif: hex
 date: 2026-10-10 10:35:00 +0530
 author: Roshan Trivedi
 series: pam
