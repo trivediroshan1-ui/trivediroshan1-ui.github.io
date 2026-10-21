@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="/assets/theme.css">
     <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261021a">
     <script src="/assets/theme.js"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
@@ -60,6 +61,11 @@
         </ul>
       </section>
 
+      <section id="architecture">
+        <h2>How it works: one request through the gateway</h2>
+        <p class="body-text">Every call to a model goes through one gateway. It checks the register, the model, the data and the tools, masks what the guardrail finds, and writes every decision to a log that is chained so an edited line shows up. Pick a request below and send it. Each one is a real case from the lab, and the step where it stops is where the lab found the problem.</p>
+        <div id="agl-arch"></div>
+      </section>
       <section>
         <h2>What held</h2>
         <p class="body-text">The register, the approvals, the kill switch and the audit trail behaved as designed. That is the less interesting half. I wrote both the controls and the tests, so matching my own guesses proves little.</p>
@@ -112,6 +118,11 @@
       </section>
 
       <section>
+        <h2>Every command and every output</h2>
+        <p class="body-text">The run loop for all five rounds, the commands I ran, what the Mac printed, and what each use case did, case by case. The control map is on the same page.</p>
+        <p class="mcp-cta"><a class="btn btn-primary" href="/ai-governance-lab/run/">See the five rounds</a></p>
+      </section>
+      <section>
         <h2>Honest limits</h2>
         <ul class="approach-list">
           <li>This is not a product review. The filters are mine and deliberately plain, so the numbers describe a plain filter, not any vendor&rsquo;s product.</li>
@@ -138,6 +149,9 @@
       </aside>
     </main>
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script src="/assets/agl-data.js?v=20261021a"></script>
+  <script src="/assets/agl-arch.js?v=20261021a"></script>
+  <script src="/assets/agl-boot-arch.js?v=20261021a"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
