@@ -1,0 +1,204 @@
+/* Reading layer: long-form pages (case studies, the MCP lab write-up, blog posts) read like a book.
+   One serif for running prose (Lora, self-hosted), the sans for anything structural.
+   Loaded last, scoped to body.read so nothing else on the site changes.
+   Colours come from the page's own tokens (--c, --text, --muted, --border); both themes are handled below. */
+
+.read {
+  --r-ink: #ece9f8;
+  --r-soft: #cfcbe2;
+  --r-mute: #a8a4c2;
+  --r-rule: rgba(167, 139, 250, .24);
+  --r-card: rgba(20, 18, 58, .55);
+  --r-accent: var(--c, #a78bfa);
+  --r-serif: "Lora", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --r-sans: "Manrope", "DM Sans", system-ui, sans-serif;
+  --r-display: "DM Sans", "Manrope", system-ui, sans-serif;
+  --r-mono: "JetBrains Mono", ui-monospace, monospace;
+  --measure: 41rem;
+  --r-size: 1.1875rem;
+}
+html[data-theme="light"] .read {
+  --r-ink: #1a1830;
+  --r-soft: #35324d;
+  --r-mute: #55516f;
+  --r-rule: rgba(76, 52, 160, .2);
+  --r-card: rgba(255, 255, 255, .85);
+}
+/* A warm paper tone in the light theme, like a printed page */
+html[data-theme="light"]:has(body.read) { --bg: #faf7f1; --page: #faf7f1; --surface-2: #f1ede3; }
+
+/* Calm the background: no icon wallpaper behind a page people are meant to read */
+body.read::after { display: none; }
+
+/* ---------- Page frame ---------- */
+.read main { max-width: 860px; gap: 3.4rem; counter-reset: ch; }
+/* Posts: the page is full width (so the site bar is too) and each block sits in one centred column */
+.read.post { max-width: none; padding-inline: 0; --measure: 100%; }
+.read.post > :is(.nav, .meta, .tags, .series-line, .prose, .post-cta, .post-more, footer:not(.hg-foot)) {
+  width: min(100%, 44.5rem); margin-inline: auto; padding-inline: 16px; box-sizing: border-box; max-width: none;
+}
+.read.post .prose { padding-inline: 16px; }
+.read .prose { display: block; }
+
+/* ---------- Cover panel (the little illustration, made bigger) ---------- */
+.read .hero { gap: 0; }
+.read .cs-art {
+  width: 100%; max-width: none; height: clamp(150px, 24vw, 220px); margin: 0 0 2rem;
+  display: grid; place-items: center; color: var(--r-accent);
+  border: 1px solid var(--r-rule); border-radius: 20px; overflow: hidden; position: relative;
+  background:
+    radial-gradient(ellipse 60% 120% at 50% 50%, color-mix(in srgb, var(--r-accent) 16%, transparent), transparent 70%),
+    linear-gradient(var(--r-rule) 1px, transparent 1px) 0 0 / 100% 28px,
+    linear-gradient(90deg, var(--r-rule) 1px, transparent 1px) 0 0 / 28px 100%,
+    var(--r-card);
+}
+.read .cs-art svg { width: min(440px, 82%); height: auto; position: relative; }
+.read .hero .eyebrow { margin: 0 0 .8rem; font-size: 12px; letter-spacing: .2em; }
+.read .hero h1, .read.post .prose > h1 {
+  font-family: var(--r-serif); font-weight: 700; letter-spacing: -.02em; line-height: 1.1;
+  font-size: clamp(2.1rem, 5.2vw, 3.45rem); color: var(--r-ink); text-wrap: balance; margin: 0 0 1.1rem;
+}
+.read.post .prose > h1 { font-size: clamp(1.95rem, 4.6vw, 2.8rem); margin: 1.4rem 0 1.4rem; }
+.read .dek {
+  font-family: var(--r-serif); font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.55;
+  color: var(--r-soft); max-width: 36em; margin: 0;
+}
+.read .hero .meta { margin-top: 1rem; }
+.read .mcp-ribbon { margin-top: 1.6rem; }
+
+/* ---------- Facts strip (built by showcase.js; the old meta line stays for no-JS) ---------- */
+.facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 0;
+  margin: 1.8rem 0 0; padding: 0; border-block: 1px solid var(--r-rule);
+}
+.facts:has(> div:nth-child(5)) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.9fr) repeat(3, minmax(0, 1fr)); }
+.facts > div { padding: 1rem 1.1rem 1rem 0; min-width: 0; }
+.facts > div + div { padding-left: 1.1rem; border-left: 1px solid var(--r-rule); }
+.facts dt { font: 600 12px/1.2 var(--r-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--r-mute); margin: 0 0 .4rem; }
+.facts dd { margin: 0; font: 600 .95rem/1.4 var(--r-sans); color: var(--r-ink); overflow-wrap: anywhere; }
+.facts dd small { display: block; font: 500 12.5px/1.4 var(--r-sans); color: var(--r-mute); margin-top: 2px; }
+.hero:has(.facts) .meta { display: none; }
+@media (max-width: 760px) {
+  .facts, .facts:has(> div:nth-child(5)) { grid-template-columns: 1fr 1fr; }
+  .facts > div:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .facts > div:nth-child(n+3) { border-top: 1px solid var(--r-rule); }
+}
+
+/* ---------- Key takeaways (the old "short version", as cards) ---------- */
+.read .tldr { border: 0; background: none; padding: 0; border-radius: 0; }
+.read .tldr h2 {
+  font: 600 12px/1.2 var(--r-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--r-accent);
+  margin: 0 0 1rem; display: flex; align-items: center; gap: .8rem;
+}
+.read .tldr h2::after { content: ""; flex: 1; height: 1px; background: var(--r-rule); }
+.read .tldr ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr)); counter-reset: k; }
+.read .tldr li {
+  counter-increment: k; position: relative; padding: 2.7rem 1.2rem 1.2rem; border: 1px solid var(--r-rule);
+  border-radius: 16px; background: var(--r-card); font: 500 .92rem/1.6 var(--r-sans); color: var(--r-soft);
+}
+.read .tldr li::before {
+  content: counter(k, decimal-leading-zero); position: absolute; left: 1.2rem; top: 1rem;
+  font: 600 12px/1 var(--r-mono); letter-spacing: .14em; color: var(--r-accent);
+}
+.read .tldr li strong { display: block; font: 600 1.06rem/1.4 var(--r-serif); color: var(--r-ink); margin-bottom: .55rem; }
+html[data-theme="light"] .read .tldr li { box-shadow: 0 1px 2px rgba(40, 30, 90, .06); }
+
+/* ---------- Contents list for narrow screens (the rail on the right is for wide ones) ---------- */
+.rt-contents { border: 1px solid var(--r-rule); border-radius: 14px; background: var(--r-card); }
+.rt-contents summary { cursor: pointer; padding: .9rem 1.1rem; font: 600 12px/1.2 var(--r-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--r-ink); min-height: 44px; display: flex; align-items: center; }
+.rt-contents ol { margin: 0; padding: 0 1.1rem 1rem 1.1rem; list-style: none; display: grid; gap: 2px; counter-reset: c; }
+.rt-contents li { counter-increment: c; }
+.rt-contents a { display: flex; gap: .8rem; padding: .45rem 0; color: var(--r-soft); text-decoration: none; font: 500 .95rem/1.4 var(--r-sans); min-height: 36px; align-items: baseline; }
+.rt-contents a::before { content: attr(data-n); flex: 0 0 1.6rem; font: 600 12px/1 var(--r-mono); color: var(--r-accent); }
+.rt-contents a:hover { color: var(--r-ink); }
+@media (min-width: 1180px) { .rt-contents { display: none; } }
+
+/* ---------- Chapters ---------- */
+.read main > section { min-width: 0; animation: none; opacity: 1; transform: none; } /* text should not fade in while you read */
+.read main > section > h2, .read .prose > h2 {
+  font-family: var(--r-serif); font-weight: 600; letter-spacing: -.012em; line-height: 1.2;
+  font-size: clamp(1.65rem, 3.2vw, 2.15rem); color: var(--r-ink); text-wrap: balance;
+  max-width: var(--measure); margin: 0 auto 1.3rem; padding-top: 1.3rem; border-top: 1px solid var(--r-rule);
+}
+.read main > section[id]:not(#sources):not(#tags):not(#references) > h2::before,
+.read main > section:not([id]) > h2::before {
+  counter-increment: ch; content: "Chapter " counter(ch, decimal-leading-zero);
+  display: block; margin-bottom: .7rem; font: 600 12px/1 var(--r-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--r-accent);
+}
+.read main > section#sources > h2::before { content: "Back matter"; display: block; margin-bottom: .7rem; font: 600 12px/1 var(--r-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--r-mute); }
+/* the older post style put a gradient bar before every heading */
+.read.post .prose > h2::before { display: none; }
+.read.post .prose > h2 { border-bottom: 0; font-size: clamp(1.5rem, 3vw, 1.95rem); margin-top: 3.4rem; }
+
+.read main > section > h3, .read .prose > h3 {
+  font-family: var(--r-serif); font-style: italic; font-weight: 600; font-size: 1.28rem; line-height: 1.35; color: var(--r-ink);
+  max-width: var(--measure); margin: 2.1rem auto .6rem;
+}
+
+/* ---------- Prose ---------- */
+.read :is(main > section, .prose) > :is(p.body-text, p:not([class]), ul:not([class]), ul.plain-list, ol:not([class])) {
+  font-family: var(--r-serif); font-size: var(--r-size); line-height: 1.74; color: var(--r-soft);
+  max-width: var(--measure); margin-inline: auto; hyphens: auto; -webkit-hyphens: auto; text-wrap: pretty;
+}
+.read :is(main > section, .prose) > p.body-text + p.body-text,
+.read .prose > p + p { margin-top: 1.05rem; }
+.read :is(main > section, .prose) > :is(ul:not([class]), ul.plain-list, ol:not([class])) { padding-left: 1.4rem; display: block; margin-top: 1rem; }
+.read :is(main > section, .prose) > :is(ul:not([class]), ul.plain-list, ol:not([class])) > li { margin: 0 0 .55rem; padding-left: .3rem; color: var(--r-soft); }
+.read :is(main > section, .prose) > :is(ul, ol) > li::marker { color: var(--r-accent); }
+.read .prose > p, .read .prose > ul, .read .prose > ol { margin-block: 1rem 0; }
+.read :is(p, li) strong, .read .prose strong { color: var(--r-ink); font-weight: 700; }
+.read :is(main > section, .prose) a:not([class]) { color: var(--r-accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, var(--r-accent) 55%, transparent); }
+.read :is(main > section, .prose) a:not([class]):hover { text-decoration-thickness: 2px; }
+.read :is(p, li) code, .read .prose code { font-size: .8em; padding: .12em .4em; border-radius: 5px; background: color-mix(in srgb, var(--r-accent) 10%, transparent); color: var(--r-ink); }
+.read blockquote { margin: 1.8rem auto; max-width: var(--measure); padding: .2rem 0 .2rem 1.4rem; border-left: 3px solid var(--r-accent); background: none; border-radius: 0; font: italic 400 1.28rem/1.55 var(--r-serif); color: var(--r-ink); }
+
+/* Drop cap on the very first paragraph of the first chapter */
+.read main > section:first-of-type > p.body-text:first-of-type::first-letter,
+.read.post .prose > h1 + p::first-letter {
+  float: left; font: 700 3.9em/.8 var(--r-serif); padding: .09em .1em 0 0; color: var(--r-accent);
+}
+
+/* Dense, structural pieces stay in the sans so they scan like a reference table, not like prose */
+.read :is(.steps, .phases, .compare, .tbl, .approach-list, .callout, .note-box, .sources, .tags, .stack) { font-family: var(--r-sans); }
+.read .note-box { font-family: var(--r-serif); font-style: italic; font-size: 1rem; line-height: 1.65; max-width: var(--measure); margin-inline: auto; border-style: solid; border-width: 1px 0; border-radius: 0; border-color: var(--r-rule); padding: 1rem .2rem; background: none; color: var(--r-mute); }
+.read .sources { max-width: var(--measure); margin-inline: auto; font-size: .92rem; line-height: 1.55; }
+.read .sources li { color: var(--r-soft); }
+.read .sources a { color: var(--r-accent); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.read .diagram-card figcaption, .read figure > figcaption { font-family: var(--r-serif); font-style: italic; font-size: .95rem; line-height: 1.6; color: var(--r-mute); }
+.read main > section > :is(figure, .tbl-wrap, .steps, .phases, .compare, .approach-list, .callout, .diagram-card, .watch) { margin-block: 2rem; }
+.read main > section > :is(figure, .tbl-wrap, .steps, .phases, .compare, .approach-list, .callout, .diagram-card, .watch):first-child { margin-top: 0; }
+.read .tags { max-width: var(--measure); margin-inline: auto; }
+
+/* ---------- Floating contents rail ---------- */
+.rt-toc { max-height: calc(100vh - 280px); }
+.rt-toc a { color: var(--r-mute, #93a1bd); }
+.rt-toc a::before { content: attr(data-n); display: inline-block; min-width: 1.7em; font: 600 12px/1 "JetBrains Mono", ui-monospace, monospace; opacity: .8; }
+.rt-toc a:not([data-n])::before { content: none; }
+.read .rt-toc a:hover { color: var(--r-ink); }
+
+/* ---------- About the author (built by showcase.js) ---------- */
+.byline {
+  display: grid; grid-template-columns: auto 1fr; gap: 1.2rem; align-items: center;
+  padding: 1.3rem 1.4rem; border: 1px solid var(--r-rule); border-radius: 18px; background: var(--r-card);
+}
+.byline img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--r-rule); }
+.byline p { margin: 0; font: 500 .92rem/1.6 var(--r-sans); color: var(--r-soft); }
+.byline p b { display: block; font: 700 1.05rem/1.3 var(--r-serif); color: var(--r-ink); margin-bottom: .2rem; }
+.byline p a { color: var(--r-accent); font-weight: 700; text-underline-offset: 3px; }
+@media (max-width: 520px) { .byline { grid-template-columns: 1fr; } }
+
+/* ---------- Phones ---------- */
+@media (max-width: 640px) {
+  .read { --r-size: 1.09rem; }
+  .read main { gap: 2.8rem; }
+  .read .cs-art { height: 140px; border-radius: 16px; margin-bottom: 1.5rem; }
+  .read :is(main > section, .prose) > :is(p.body-text, p:not([class]), ul:not([class]), ul.plain-list, ol:not([class])) { hyphens: manual; }
+}
+@media print {
+  .facts, .rt-contents, .byline { break-inside: avoid; }
+  .read { --r-ink: #000; --r-soft: #111; --r-mute: #333; --r-accent: #333; }
+  .read .cs-art { display: none; }
+}
+
+/* extras for specific pages */
+.read .mcp-key { max-width: var(--measure); margin-inline: auto; }
