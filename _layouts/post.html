@@ -96,16 +96,19 @@
     <script src="/assets/theme.js"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
         <script src="/assets/palette.js?v=20261019f" defer></script>
   </head>
-<body>
+<body class="read post">
   <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/" aria-current="page">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <div class="post-glow" aria-hidden="true"></div>
   <nav class="nav"><a href="/">&larr; roshantrivedi.co.in</a> &middot; <a href="/writing/">all writing</a> &middot; <a href="/case-studies/">case studies</a></nav>
   <div class="meta">{{ page.date | date: "%d %b %Y" }} · {{ page.author }} · {{ content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</div>
   <div class="tags">{% for tag in page.tags %}<span>#{{ tag }}</span>{% endfor %}</div>
   {% if page.series == "pam" %}<p class="series-line">Part {{ page.part }} of 3 in the PAM series, <a href="/writing/pam-series/">see all parts</a></p>{% endif %}
+  <article class="prose">
   {{ content }}
+  </article>
   <aside class="post-cta">
     <strong>Want the deeper dive?</strong>
     <span>Twenty privacy-safe case studies on privileged access, non-human identity and agentic AI governance.</span>

@@ -39,3 +39,9 @@
   src: url(/assets/jetbrains-mono-latin-semibold.woff) format('woff'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 700;
   src: url(/assets/jetbrains-mono-latin-bold.woff) format('woff'); }
+
+/* Lora — book serif for long-form reading (SIL OFL 1.1, subset to Latin, variable weight 400–700) */
+@font-face { font-family: 'Lora'; font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url(/assets/lora-latin-var.woff) format('woff'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-display: swap; font-weight: 400 700;
+  src: url(/assets/lora-latin-italic-var.woff) format('woff'); }
