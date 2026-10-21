@@ -28,3 +28,7 @@
 @media (max-width:560px){.fl-track{grid-template-columns:1fr}.fl-stage{display:grid;grid-template-columns:2rem 1fr auto;column-gap:.6rem;align-items:center}.fl-note{grid-column:2/-1}}
 @media (prefers-reduced-motion:reduce){.fl-stage{transition:none}}
 html[data-theme="light"] .lab-banner .lab-new{color:#0a6150;border-color:rgba(10,97,80,.45)}
+/* Light theme contrast: darker text where the lighter shade fell just under 4.5:1. */
+html[data-theme="light"] .fl-limit strong{color:#8f4208}
+html[data-theme="light"] .fl-state{color:#4a5870}
+html[data-theme="light"] .fl-result .hg-badge.hg-exec{color:#065f46}

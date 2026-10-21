@@ -98,9 +98,3 @@ html[data-theme="light"] .pull .hl { background-image: linear-gradient(100deg, #
 html[data-theme="light"] .help div { background: #fff; }
 html[data-theme="light"] .dl { color: var(--text); }
 @media (max-width: 640px) { .theme-toggle { right: 22px; bottom: 84px; } }
-
-/* Light theme contrast: darker text where the lighter shade fell just under 4.5:1 on its tinted background. */
-html[data-theme="light"] .fl-limit strong { color: #8f4208; }
-html[data-theme="light"] .fl-state { color: #4a5870; }
-html[data-theme="light"] .hg-badge.hg-exec { color: #065f46; }
-html[data-theme="light"] .bk-limits b { color: #864a08; }
