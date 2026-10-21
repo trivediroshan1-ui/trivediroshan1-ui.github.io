@@ -1,6 +1,8 @@
 ---
 title: "PAM as an Identity: What Changes When the Vault Can Talk to Your Governance System"
 layout: post
+bg: post-identity
+motif: nodes
 date: 2026-10-10 13:05:00 +0530
 author: Roshan Trivedi
 series: pam

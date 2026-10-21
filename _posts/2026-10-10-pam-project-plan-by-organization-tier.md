@@ -1,6 +1,8 @@
 ---
 title: "A PAM Project Plan for Tier 1, 2 and 3 Organizations"
 layout: post
+bg: post-plan
+motif: grid
 date: 2026-10-10 13:00:00 +0530
 author: Roshan Trivedi
 series: pam

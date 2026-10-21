@@ -1,6 +1,8 @@
 ---
 title: "When the Attacker Was the AI Itself: A Cybersecurity Breakdown of the OpenAI–Hugging Face Breach"
 layout: post
+bg: post-breach
+motif: rings
 date: 2026-07-25
 author: Roshan Trivedi
 tags: [ai-security, zero-trust, incident-response, ai-governance, agentic-ai]
