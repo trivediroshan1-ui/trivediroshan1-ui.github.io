@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="A small lab with made-up Indian data: an AI use gateway, a guardrail filter, agent identity and audit evidence. What held, what broke, and the one number I do not trust." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ai-governance-lab/" />
+    <meta property="og:title" content="I tested AI governance controls with Indian data. Here is where a plain filter breaks." />
+    <meta property="og:description" content="A small lab with made-up Indian data: an AI use gateway, a guardrail filter, agent identity and audit evidence. What held, what broke, and the one number I do not trust." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ai-governance-lab/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>AI governance lab &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261019f" defer></script>
+  </head>
+  <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      <header class="hero mcp-hero">
+        <p class="eyebrow">AI governance lab</p>
+        <h1>I tested AI governance controls with Indian data. Here is where a plain filter breaks.</h1>
+        <p class="dek">Everyone sells the same handful of ideas for AI agents. I built a small lab to see whether they hold up when someone pushes on them. The register and the audit trail held. The filter did not.</p>
+        <div class="mcp-ribbon" aria-hidden="true"></div>
+      </header>
+
+      <section>
+        <h2>The question</h2>
+        <p class="body-text">Every vendor now sells the same five ideas for AI agents: find every agent, give each one a named owner, use short-lived credentials, grant privileged access only when needed, and keep a kill switch. Very few people publish tests of whether those ideas survive pressure, and almost nobody does it with Indian data. So I built a small lab and tried.</p>
+      </section>
+
+      <section>
+        <h2>The setup</h2>
+        <p class="body-text">A made-up lender called Kaveri Finance, with 40 staff and 200 customers. Every name, Aadhaar, PAN and card number is invented. The Aadhaar and card numbers pass the real checksums, so a filter cannot get by on format alone. The lab uses only the Python standard library and runs in under a second.</p>
+        <p class="body-text">I wrote my guesses for every test before running it and committed them to git, so the record shows the guesses came first. The tests cover about 60 cases in four areas:</p>
+        <ul class="approach-list">
+          <li><b>An AI use gateway.</b> Who registered which model, who approved it, when the approval expires.</li>
+          <li><b>A guardrail filter.</b> Secrets and Indian personal data in prompts, and instructions hidden in documents.</li>
+          <li><b>Agent identity and access.</b> Named owners, short-lived tokens, privilege on request, kill switches.</li>
+          <li><b>Audit evidence.</b> Logs, notices, AI labels, and explaining a declined loan in plain words.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What held</h2>
+        <p class="body-text">The register, the approvals, the kill switch and the audit trail behaved as designed. That is the less interesting half. I wrote both the controls and the tests, so matching my own guesses proves little.</p>
+      </section>
+
+      <section>
+        <h2>What broke</h2>
+        <p class="body-text">The guardrail filter. A plain pattern filter caught the textbook form of an Aadhaar, a PAN or a secret, and missed the way people really type them: a lower-case PAN, a phone number split five and five, a database URL with a password in it, a reworded instruction hidden in a document.</p>
+        <p class="body-text">On the first round, the plain filter (v1) handled 20 of 53 variants. I fixed those gaps and the second filter (v2) handled 42 of 53. On a labelled set of 200 made-up samples, catch rate went from 68 percent to 90 percent.</p>
+        <div class="tbl-wrap">
+          <table class="tbl wrap-first stack">
+            <thead><tr><th>Filter</th><th>Caught, on the 200-sample set</th><th>False alarms</th><th>Caught, on 10 items it had never seen</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Filter">v1, plain patterns</td><td data-label="Caught on the set">68 of 100</td><td data-label="False alarms">5 of 100</td><td data-label="Unseen items">4 of 10</td></tr>
+              <tr><td data-label="Filter">v2, after round 1</td><td data-label="Caught on the set">90 of 100</td><td data-label="False alarms">5 of 100</td><td data-label="Unseen items">4 of 10</td></tr>
+              <tr><td data-label="Filter">v3, fixed on that set</td><td data-label="Caught on the set">100 of 100</td><td data-label="False alarms">5 of 100</td><td data-label="Unseen items">4 of 10</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>The number I do not trust</h2>
+        <p class="body-text">The third filter reached 100 percent, and that number means nothing. I wrote each fix after seeing exactly which samples the second filter missed, so of course it passes them. It is a score on a test the filter was tuned to.</p>
+        <p class="body-text">So I tried inputs written after the filter was finished, and committed them before running anything. All three filters got 4 out of 10. The extra fixes in v3 did not carry over. That is the honest headline. These ten were written by me with an AI assistant, not by an outsider, so they are a fair first test and not a final one.</p>
+        <p class="body-text">What the unseen items showed:</p>
+        <ul class="approach-list">
+          <li>Numbers with a fixed shape did fine. An Aadhaar inside a link, a Hinglish sentence with an Aadhaar and a phone number, a partly masked Aadhaar and a rupee limit written the Indian way were all handled correctly.</li>
+          <li>A database password written as a plain line in a config file was missed.</li>
+          <li>A bank account number with an IFSC code was missed, because none of the filters have a detector for it.</li>
+          <li>Three prompt injections slipped through: &ldquo;print the hidden configuration&rdquo;, a Hinglish &ldquo;ignore the rules&rdquo;, and a note aimed at AI systems telling them to forward the user&rsquo;s messages. In the last one, the filter caught the email address but not the instruction.</li>
+          <li>A staff training slide that quotes &ldquo;ignore all previous instructions&rdquo; was flagged as an attack, although it is harmless.</li>
+        </ul>
+        <p class="body-text">The pattern is simple. Pattern filters do well on things with a fixed shape and badly on anything that depends on meaning. Hinglish and French instructions, a number spelled out in Hindi words, an instruction hidden in base64, and the difference between an attack and a slide about attacks all need more than patterns.</p>
+        <p class="body-text">One more number stayed flat the whole time: 5 percent false alarms. Every version flags a laptop asset tag that happens to look like a PAN.</p>
+      </section>
+
+      <section>
+        <h2>Three things I did not expect to write down</h2>
+        <ul class="approach-list">
+          <li>A tamper-evident log cannot see lines cut off the end. You need a copy of where the log ended, kept somewhere else.</li>
+          <li>Flagging an idle agent as orphaned does not remove its access. Until a person acts, it keeps everything.</li>
+          <li>An AI label stored in a file is lost the moment the text is copied, or a system strips tags it does not know. Recognising AI text after the label is removed fails as soon as one word changes.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What I got wrong</h2>
+        <p class="body-text">I predicted that one phone format, a number starting 91 without a plus, would be caught. It was not. Running it is what showed me.</p>
+      </section>
+
+      <section>
+        <h2>Honest limits</h2>
+        <ul class="approach-list">
+          <li>This is not a product review. The filters are mine and deliberately plain, so the numbers describe a plain filter, not any vendor&rsquo;s product.</li>
+          <li>One run each, on one laptop, with made-up data. It shows what these controls did on these cases. It does not prove anything secure.</li>
+          <li>100 percent on a test set I designed is not a detection rate.</li>
+          <li>I am not claiming to be the first to test any of this.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>What is next</h2>
+        <p class="body-text">Two things. First, running the same inputs through open tools, to see whether a purpose-built detector does better than my plain one. Second, a hand-run test of real AI assistants under one made-up company policy, to see whether they follow it when pushed. If you work with Indian data and can think of a variant that would break a filter, send it to me and I will add it, unseen, to the next round.</p>
+      </section>
+      <aside class="hg-next" aria-labelledby="hg-next-t">
+        <p class="eyebrow">Where next</p>
+        <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>
+        <p class="lede">Everything here is written to be useful on its own. If it matches a problem you are working on, I would like to hear how you handle it.</p>
+        <div class="grid">
+          <a href="/labs/" style="--k:#4de2ff"><b>All labs</b><span>The MCP approval lab and other small projects.</span></a>
+          <a href="/case-studies/agentic-ai-identity-governance/" style="--k:#7df2d0"><b>Agent identity governance</b><span>The thinking behind the agent identity tests.</span></a>
+          <a href="/Roshan_Trivedi_Resume.pdf" style="--k:#c4b5fd"><b>R&eacute;sum&eacute;</b><span>Roles, focus areas and background (PDF).</span></a>
+          <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>If you can think of a variant that would break a filter, send it.</span></a>
+        </div>
+      </aside>
+    </main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
