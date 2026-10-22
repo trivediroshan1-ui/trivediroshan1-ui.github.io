@@ -356,3 +356,6 @@ html[data-theme="light"] .signup input { background: #fff; }
   .creds li > a::after { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); }
   .creds small { flex-basis: 100%; padding-left: 30px; }
 }
+
+/* light theme: the pastel card colours are fine for art and borders but too pale for the small label text */
+html[data-theme="light"] .card.has-art .tag { color: color-mix(in srgb, var(--c) 35%, #14203a); }

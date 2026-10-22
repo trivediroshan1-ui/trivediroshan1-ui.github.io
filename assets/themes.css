@@ -93,6 +93,8 @@ html[data-bg="writing"][data-theme="light"] { --tb-a: hsl(var(--h1) 85% 62% / .1
 
 /* The pages paint their own background colour in a few places; the theme sits behind everything */
 html[data-bg] body { background-color: transparent !important; }
+/* The exam paper is a light, print-style document with dark text and its own white page: keep its page white in both themes. */
+html[data-bg="exams"] body { background-color: #fff !important; }
 html[data-bg] body::before { display: none; }
 html[data-bg]::before {
   content: ""; position: fixed; inset: -18%; z-index: -4; pointer-events: none;
