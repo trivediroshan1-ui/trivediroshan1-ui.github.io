@@ -24,6 +24,12 @@
       paint(btn);
     });
     paint(btn);
-    document.body.appendChild(btn);
+    // October 2026: the switch sits in the header bar (after search, before Résumé) instead of floating
+    // over the page. Pages without a header bar keep the floating button.
+    var bar = document.querySelector("nav.hg-sitenav");
+    var homeRes = document.querySelector("header.top .wrap > .btn-res");
+    if (bar) { btn.classList.add("in-bar"); bar.appendChild(btn); }
+    else if (homeRes) { btn.classList.add("in-bar"); homeRes.parentNode.insertBefore(btn, homeRes); }
+    else document.body.appendChild(btn);
   });
 })();

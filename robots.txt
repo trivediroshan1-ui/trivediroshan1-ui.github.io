@@ -1,3 +1,5 @@
-User-agent: *
-Allow: /
+# Crawling rules for roshantrivedi.co.in.
+# Cloudflare adds its managed "User-agent: *" group (content signals and AI-training opt-outs) above this file,
+# so this file deliberately has no second "User-agent: *" group. Search engines are allowed; see /llms.txt for a
+# plain-text guide to the site.
 Sitemap: https://roshantrivedi.co.in/sitemap.xml
