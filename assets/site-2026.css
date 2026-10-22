@@ -133,3 +133,13 @@ html .post-more a small { font-size: 12px; }
 .hg-flow li b, .fl-stage b, ol li > b { font-size: max(12px, 1em); }
 html .brand small, html .fb small, html .crow .nm small, html .q small, html .hero small { font-size: max(12px, .76rem); }
 html .pipe li b { font-size: 12px; }
+
+/* Case studies: one small hand-drawn doodle in the short-version box */
+.tldr { position: relative; }
+.tldr .doodle { position: absolute; top: -46px; right: 2px; width: 72px; height: 72px; margin: 0; color: var(--hg-accent, #4de2ff); opacity: .9; transform: rotate(4deg); pointer-events: none; }
+html[data-theme="light"] .tldr .doodle { color: #0a6178; opacity: .9; }
+@media (max-width: 520px) { .tldr .doodle { width: 52px; height: 52px; top: -40px; } }
+@media (prefers-reduced-motion: no-preference) {
+  .tldr .doodle { transition: transform .5s cubic-bezier(.3,1.4,.5,1); }
+  .tldr:hover .doodle { transform: rotate(-3deg) scale(1.06); }
+}
