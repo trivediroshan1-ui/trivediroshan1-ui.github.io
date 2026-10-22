@@ -43,7 +43,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["who is roshan", "who are you", "who is he", "roshan", "bio", "trivedi", "background", "what does he do", "what do you do", "his job", "his role", "job title"],
     answer:
-      "Roshan Trivedi is a Credential Management Platform Owner & PAM Product Leader based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern. Recently he wrote a free book, Who Approved That?, about keeping a person in the loop when AI agents use real tools (see /book/).",
+      "Roshan Trivedi is a Credential Management Platform Owner based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern. Recently he wrote a free book, Who Approved That?, about keeping a person in the loop when AI agents use real tools (see /book/).",
   },
   {
     id: "expertise",
