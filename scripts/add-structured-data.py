@@ -29,7 +29,7 @@ CREDS = [  # current credentials only; lapsed ones stay on the résumé page, no
 PERSON = {
     "@type": "Person", "@id": PERSON_ID, "name": "Roshan Trivedi", "url": SITE + "/",
     "image": SITE + "/assets/roshan-trivedi-520.webp",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader",
+    "jobTitle": "Credential Management Platform Owner",
     "description": "Identity security product leader working on privileged access, Zero Standing Privilege, non-human identity and human approval for AI agents.",
     "address": {"@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN"},
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "Asansol Engineering College"},

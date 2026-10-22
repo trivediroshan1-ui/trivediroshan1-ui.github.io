@@ -35,7 +35,7 @@ Rules:
 
 KNOWLEDGE:
 ### About Roshan Trivedi (/)
-Roshan Trivedi is a Credential Management Platform Owner & PAM Product Leader based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: "Identity is the control plane." He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern.
+Roshan Trivedi is a Credential Management Platform Owner based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: "Identity is the control plane." He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern.
 
 ### Areas of expertise (/)
 Core focus areas: Credential Management Platform ownership, PAM (Privileged Access Management) product leadership, Zero Standing Privilege, Non-Human Identity (NHI) management, IAM governance and audit/control mapping, plus using AI/agentic tooling responsibly as a security co-worker. Current work spans credential-management platform ownership, PAM product leadership, IAM control evaluation, roadmaps, architecture decisions, proof-of-concept leadership, migrations and audit mapping — plus independent research on non-human identity, MCP and agentic-AI security.
