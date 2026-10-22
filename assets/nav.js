@@ -69,7 +69,7 @@
           ["/writing/pam-project-plan-by-organization-tier/", "Part 2: Project plan by tier", "calendar"],
           ["/writing/pam-as-an-identity/", "Part 3: PAM as an identity", "idcard"]] },
         { title: "Analysis", k: "gov", items: [
-          ["/writing/openai-huggingface-breach-cybersecurity-analysis/", "The OpenAI and Hugging Face breach", "warn"],
+          ["/writing/openai-huggingface-breach-cybersecurity-analysis/", "The Hugging Face intrusion, as an identity incident", "warn"],
           ["/feed.xml", "Subscribe by RSS", "arrow"]] }
       ],
       all: ["/writing/", "All writing"]

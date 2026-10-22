@@ -131,6 +131,8 @@ html[data-bg="home"] { --tb-veil: .0; }
     out.append("""
 /* The pages paint their own background colour in a few places; the theme sits behind everything */
 html[data-bg] body { background-color: transparent !important; }
+/* The exam paper is a light, print-style document with dark text and its own white page: keep its page white in both themes. */
+html[data-bg="exams"] body { background-color: #fff !important; }
 html[data-bg] body::before { display: none; }
 html[data-bg]::before {
   content: ""; position: fixed; inset: -18%; z-index: -4; pointer-events: none;
@@ -168,7 +170,7 @@ html[data-bg] body::after {
 """)
     (ROOT / "assets" / "themes.css").write_text("\n".join(out))
 
-VER = "20261022b"
+VER = "20261022c"
 LINK = f'<link rel="stylesheet" href="/assets/themes.css?v={VER}">\n    <link rel="stylesheet" href="/assets/site-2026.css?v={VER}">'
 
 def apply(path, name):
