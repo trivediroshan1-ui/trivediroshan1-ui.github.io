@@ -55,8 +55,17 @@ header.top .brand { white-space: nowrap; }
   .theme-toggle.in-bar { width: 36px !important; height: 36px !important; min-width: 36px; }
   nav.hg-sitenav > .theme-toggle.in-bar { margin-left: .15rem; }
   /* the link list scrolls sideways on small phones; fade its right edge so that is visible */
+  /* tighter links so every item fits at 375px without scrolling */
+  html nav.hg-sitenav { gap: 0; flex-wrap: wrap; row-gap: 0; }
+  html nav.hg-sitenav ul { order: 3; flex: 1 0 100%; width: 100%; -webkit-mask-image: none; mask-image: none; padding-right: 0; overflow-x: auto; }
+  html nav.hg-sitenav > .theme-toggle.in-bar { margin-left: auto; }
+  html nav.hg-sitenav ul { gap: 0; }
+  html nav.hg-sitenav li a { padding-inline: .42rem; font-size: .86rem; }
+  html nav.hg-sitenav .rt-sbtn { padding-inline: 8px; min-width: 36px; }
   nav.hg-sitenav ul { -webkit-mask-image: linear-gradient(90deg, #000 84%, transparent); mask-image: linear-gradient(90deg, #000 84%, transparent); padding-right: 18px; }
 }
+
+@media (max-width: 400px) { html nav.hg-sitenav li a { padding-inline: .3rem; font-size: .82rem; } }
 
 /* ---------- 4. Touch targets ---------- */
 .hg-foot a, footer.foot a { min-height: 44px; display: inline-flex; align-items: center; }
@@ -106,3 +115,15 @@ html[data-bg="home"].past-hero body::after { opacity: 1; }
   .theme-toggle.in-bar { transition: none; }
   html[data-bg="home"]:root::after, html[data-bg="home"]:root body::after { transition: none; }
 }
+
+/* ---------- 5. Review fixes (22 Oct) ---------- */
+/* Search button: readable on light pages */
+html[data-theme="light"] .rt-sbtn { color: #25344a; border-color: rgba(76, 52, 160, .4); opacity: 1; }
+html[data-theme="light"] .rt-sbtn kbd { color: #3b4a63; border-color: rgba(76, 52, 160, .35); }
+/* Chat button: a visible keyboard focus ring (the base rule removes the outline) */
+html .sc-launcher:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #0a6178, 0 16px 40px rgba(0, 0, 0, .45); }
+html[data-theme="light"] .sc-launcher:focus-visible { outline-color: #0b1220; box-shadow: 0 0 0 6px #4de2ff, 0 16px 40px rgba(0, 0, 0, .3); }
+/* Tap targets: small text links get a 44px-tall hit area without changing how they look */
+.hg-tabs a.lab { display: inline-flex; align-items: center; min-height: 44px; }
+body > .nav a, .wrap > .nav a, .nav:not(.hg-sitenav) > a { display: inline-flex; align-items: center; min-height: 44px; }
+html .post-more a small { font-size: 12px; }
