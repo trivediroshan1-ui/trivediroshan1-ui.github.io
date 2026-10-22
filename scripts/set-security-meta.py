@@ -9,7 +9,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 POLICY = ("default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; "
           "script-src 'self' https://static.cloudflareinsights.com; "
           "connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; "
-          "object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests")
+          "object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests")
 TAGS = (f'<meta http-equiv="Content-Security-Policy" content="{POLICY}">\n'
         '    <meta name="referrer" content="strict-origin-when-cross-origin">')
 n = 0

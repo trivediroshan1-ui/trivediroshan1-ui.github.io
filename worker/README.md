@@ -122,6 +122,11 @@ each record's cloud icon so it's **Proxied** (orange), not **DNS only**
 which is what makes a Transform Rule possible — this step alone changes
 nothing else about how the site behaves.
 
+> **Check this (October 2026 audit).** The live site was found sending `permission-policy: Permission-Policy`:
+> the header *name* was typed without the "s" and the *value* field held the header name. Browsers ignore both.
+> In the rule, the header name must be exactly `Permissions-Policy` and the value must be the policy string in the
+> table below. Also set the CSP `form-action` to allow `https://buttondown.com`, or the newsletter form will be blocked.
+
 ### 3. Add a Modify Response Header Transform Rule
 
 **Rules** → **Transform Rules** → **Modify Response Header** → **Create
@@ -137,7 +142,7 @@ the repo root so the two never drift:
 | `X-Content-Type-Options` | `nosniff` |
 | `X-Frame-Options` | `DENY` |
 | `Referrer-Policy` | `strict-origin-when-cross-origin` |
-| `Permissions-Policy` | `geolocation=(), microphone=(), camera=(), interest-cohort=()` |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()` |
 | `Cross-Origin-Opener-Policy` | `same-origin` |
 | `Content-Security-Policy` | *(the full `Content-Security-Policy` line from `_headers` — long, so copy/paste it rather than retyping)* |
 

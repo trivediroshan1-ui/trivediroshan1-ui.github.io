@@ -1,7 +1,7 @@
 /* Site search: press Ctrl+K (or Cmd+K, or /) or use the search button in the menu.
    Plain JavaScript, no libraries. The list comes from /assets/palette-data.js (scripts/build-palette.py). */
 (function () {
-  var V = "20261019f", data = null, dlg, input, list, status, opener, active = -1, shown = [];
+  var V = "20261022b", data = null, dlg, input, list, status, opener, active = -1, shown = [];
   var css = ".rt-sbtn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;border:1px solid rgba(167,139,250,.35);background:transparent;color:inherit;font:600 14px/1 'DM Sans',system-ui,sans-serif;cursor:pointer;opacity:.9}" +
     ".rt-sbtn:hover{opacity:1;border-color:#a78bfa;background:rgba(124,58,237,.14)}.rt-sbtn svg{width:16px;height:16px}.rt-sbtn kbd{font:600 11px/1 'JetBrains Mono',monospace;padding:3px 5px;border-radius:5px;border:1px solid rgba(167,139,250,.35);opacity:.8}" +
     "@media (max-width:760px){.rt-sbtn kbd,.rt-sbtn .lbl{display:none}.rt-sbtn{width:40px;padding:0;justify-content:center;border-color:transparent}}.hg-sitenav li.srch{display:flex;align-items:center}@media (max-width:440px){.hg-sitenav li a{padding:0 .24rem}.rt-sbtn{width:30px}.rt-sbtn svg{width:17px;height:17px}}" +
