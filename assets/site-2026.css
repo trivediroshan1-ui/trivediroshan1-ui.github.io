@@ -143,3 +143,8 @@ html[data-theme="light"] .tldr .doodle { color: #0a6178; opacity: .9; }
   .tldr .doodle { transition: transform .5s cubic-bezier(.3,1.4,.5,1); }
   .tldr:hover .doodle { transform: rotate(-3deg) scale(1.06); }
 }
+
+/* Credential tiles: designed images at the top of each card */
+.cred { padding: 12px 14px 14px; gap: 6px; }
+.cred .cred-img { width: 100%; height: auto; aspect-ratio: 280 / 150; border-radius: 10px; margin-bottom: 4px; display: block; }
+.cred.is-expired .cred-img { filter: saturate(.7); }
