@@ -79,7 +79,7 @@
     var rawQuery = usSpelling(query.toLowerCase());
     if (qTokens.length === 0) return [];
 
-    var scored = window.SITE_QA.map(function (entry) {
+    var scored = (window.SITE_QA || []).map(function (entry) {
       return { entry: entry, score: scoreEntry(entry, qTokens, rawQuery) };
     });
 
@@ -129,7 +129,7 @@
     INDEX_WAITERS.push(cb);
     if (INDEX_STATE === "loading") return;
     INDEX_STATE = "loading";
-    fetch("/assets/chatbot-index.json?v=20261018b")
+    fetch("/assets/chatbot-index.json?v=20261022b")
       .then(function (res) { if (!res.ok) throw new Error("status " + res.status); return res.json(); })
       .then(function (raw) { buildIndex(raw); INDEX_STATE = "ready"; })
       .catch(function () { INDEX_STATE = "failed"; })
@@ -276,8 +276,21 @@
     );
   }
 
+  /* The hand-written answers (chatbot-data.js, about 47 KB) load the first time the panel opens,
+     not on every page view. Pages no longer include that script tag. */
+  var DATA_STATE = window.SITE_QA ? "ready" : "idle", DATA_WAITERS = [];
+  function loadData(cb) {
+    if (DATA_STATE === "ready") { cb(); return; }
+    DATA_WAITERS.push(cb);
+    if (DATA_STATE === "loading") return;
+    DATA_STATE = "loading";
+    var s = document.createElement("script");
+    s.src = "/assets/chatbot-data.js?v=20261022b";
+    s.onload = s.onerror = function () { DATA_STATE = "ready"; var w = DATA_WAITERS; DATA_WAITERS = []; w.forEach(function (f) { f(); }); };
+    document.head.appendChild(s);
+  }
+
   function init() {
-    if (!window.SITE_QA || !window.SITE_QA.length) return;
     if (document.getElementById("site-chatbot-root")) return;
 
     var root = el("div", "");
@@ -439,14 +452,17 @@
       suggestionsEl.innerHTML = "";
       history.push({ role: "user", content: text });
 
-      if (AI_ENDPOINT) {
-        askAI(text);
-      } else {
-        answerLocally();
-      }
+      loadData(function () {
+        if (AI_ENDPOINT) {
+          askAI(text);
+        } else {
+          answerLocally();
+        }
+      });
     }
 
     function openPanel() {
+      loadData(function () {});
       loadIndex(function () {});
       panel.style.display = "flex";
       launcher.classList.add("sc-launcher-open");

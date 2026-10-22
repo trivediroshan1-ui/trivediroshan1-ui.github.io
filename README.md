@@ -99,3 +99,13 @@ To keep the first paint fast on phones, the home page's four stylesheets are inl
 Shared colours, type, spacing and components live in `assets/tokens.css` (prefix `hg-`) and are documented, with measured contrast, at `/design-system/`. The idea: colour says who acts (cyan policy gate, violet a person, green verified execution, amber audit or unknown, rose refused). After editing the home page's stylesheets, run `python3 scripts/inline-home-css.py`.
 
 The slim top bar and the "Where next" band on inner pages are added by `python3 scripts/add-sitebar.py` (safe to re-run; styles in `assets/sitebar.css`).
+
+## October 2026 audit changes (what to know when editing)
+
+- `assets/site-2026.css` is loaded last on every page (linked by `scripts/set-page-themes.py`). It holds the shared heading font, the theme switch in the header, 44px footer targets, credential badges and the newsletter form styles.
+- Page themes now share the brand's violet and cyan glows; each page keeps its own motif and accent. Edit the table in `scripts/set-page-themes.py`, not `assets/themes.css`.
+- `scripts/add-structured-data.py` writes one `id="ld-site"` JSON-LD block per page (breadcrumbs, Person, WebSite, Book, ProfilePage and so on). Re-run it after adding a page.
+- `scripts/build-sitemap.py` rebuilds `sitemap.xml` with real `lastmod` dates. Run it after any content change.
+- `assets/chatbot-data.js` now loads only when someone opens the chat. Don't add it back as a `<script>` tag.
+- The newsletter form is hidden until you replace `YOUR-BUTTONDOWN-USERNAME` in `index.html` and `_layouts/post.html` with your Buttondown username.
+- Run order after edits: `set-page-themes.py`, `add-structured-data.py`, `set-security-meta.py`, `inline-home-css.py`, `build-palette.py`, `build-chat-index.py`, `build-sitemap.py`.
