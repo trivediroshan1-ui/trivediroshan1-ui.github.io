@@ -170,7 +170,7 @@ html[data-bg] body::after {
 """)
     (ROOT / "assets" / "themes.css").write_text("\n".join(out))
 
-VER = "20261022l"
+VER = "20261022m"
 LINK = f'<link rel="stylesheet" href="/assets/themes.css?v={VER}">\n    <link rel="stylesheet" href="/assets/site-2026.css?v={VER}">'
 
 def apply(path, name):
