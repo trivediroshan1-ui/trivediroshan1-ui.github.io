@@ -127,3 +127,9 @@ html[data-theme="light"] .sc-launcher:focus-visible { outline-color: #0b1220; bo
 .hg-tabs a.lab { display: inline-flex; align-items: center; min-height: 44px; }
 body > .nav a, .wrap > .nav a, .nav:not(.hg-sitenav) > a { display: inline-flex; align-items: center; min-height: 44px; }
 html .post-more a small { font-size: 12px; }
+/* Minimum text size: 12px */
+.hg-tabs a.lab { font-size: 12px; }
+.st.ok, .st.exp { font-size: 12px; }
+.hg-flow li b, .fl-stage b, ol li > b { font-size: max(12px, 1em); }
+html .brand small, html .fb small, html .crow .nm small, html .q small, html .hero small { font-size: max(12px, .76rem); }
+html .pipe li b { font-size: 12px; }
