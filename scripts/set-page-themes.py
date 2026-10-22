@@ -63,6 +63,14 @@ THEMES = {
     "cs-ai-agent-credential-sharing":  (185, 260, 160, "circuit",  0.9,  0, -1, 160),
     "cs-shadow-ai-discovery-gap":      (200, 275, 350, "rings",    1.3,  1,  1, 170),
 }
+# Brand alignment (October 2026). Every page now shares the site's violet + cyan glow pair, so the site reads as one
+# brand. Each page keeps its own character through its motif, its drift and its third (accent) glow. Pages whose
+# first glow used to be warm (orange, red) keep that warmth as the accent instead.
+def _brand(h1, h2, h3):
+    warm = h1 < 60 or h1 > 330
+    return (255 + h1 % 25, 185 + h2 % 15, h1 if warm else h3)
+THEMES = {k: _brand(*v[:3]) + tuple(v[3:]) for k, v in THEMES.items()}
+
 MOTIF_SIZE = {"hex": (249.415, 288), "cubes": (249.415, 288)}
 MOTIFS = ["grid", "dots", "waves", "topo", "circuit", "hex", "cubes", "rings", "nodes", "keys", "diag", "chevrons", "ledger"]
 
@@ -160,15 +168,15 @@ html[data-bg] body::after {
 """)
     (ROOT / "assets" / "themes.css").write_text("\n".join(out))
 
-VER = "20261022a"
-LINK = f'<link rel="stylesheet" href="/assets/themes.css?v={VER}">'
+VER = "20261022b"
+LINK = f'<link rel="stylesheet" href="/assets/themes.css?v={VER}">\n    <link rel="stylesheet" href="/assets/site-2026.css?v={VER}">'
 
 def apply(path, name):
     p = ROOT / path
     h = p.read_text()
     m_ = THEMES[name][3]
     h2 = re.sub(r'<html lang="en"[^>]*>', f'<html lang="en" data-bg="{name}" data-m="{m_}">', h, count=1)
-    h2 = re.sub(r'\s*<link rel="stylesheet" href="/assets/themes\.css[^>]*>', "", h2)
+    h2 = re.sub(r'\s*<link rel="stylesheet" href="/assets/(themes|site-2026)\.css[^>]*>', "", h2)
     # last stylesheet in <head>, so it wins; inline <style> on the home page comes earlier in the file
     h2 = h2.replace("</head>", f"    {LINK}\n  </head>", 1)
     if h2 != h:
@@ -183,7 +191,7 @@ if __name__ == "__main__":
     lay = ROOT / "_layouts" / "post.html"
     h = lay.read_text()
     h = re.sub(r'<html lang="en"[^>]*>', '<html lang="en" data-bg="{{ page.bg | default: \'post\' }}" data-m="{{ page.motif | default: \'ledger\' }}">', h, count=1)
-    h = re.sub(r'\s*<link rel="stylesheet" href="/assets/themes\.css[^>]*>', "", h)
+    h = re.sub(r'\s*<link rel="stylesheet" href="/assets/(themes|site-2026)\.css[^>]*>', "", h)
     h = h.replace("</head>", f"    {LINK}\n  </head>", 1)
     lay.write_text(h)
     POSTS = {"2026-07-25-openai-huggingface-breach-cybersecurity-analysis.md": ("post-breach", "rings"),

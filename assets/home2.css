@@ -234,3 +234,125 @@ html[data-theme="light"] .card .art { color: color-mix(in srgb, var(--c, #0a6178
   @keyframes ringspin { to { transform: rotate(360deg); } }
   @keyframes hubpulse { 50% { opacity: .55; } }
 }
+
+/* ===================== October 2026 audit fixes (home) ===================== */
+.hero .role { text-wrap: balance; max-width: 34ch; }
+.hero .intro { text-wrap: pretty; }
+
+/* -- Hero story: the seven steps light up in order, pause at PERSON, "Approve once" is pressed,
+      then TOOL and RECORD complete and the decision is stamped. Runs once, about 3.8 s.
+      With reduced motion the finished state shows straight away. -- */
+.decide .r { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(101, 229, 173, 0.4); font-family: var(--mono); font-size: 12px; color: var(--green); }
+.decide .r .tick { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: rgba(101, 229, 173, 0.18); font-size: 11px; }
+html[data-theme="light"] .decide .r { color: #0b6b45; border-top-color: rgba(15, 122, 80, 0.35); }
+@keyframes rt-step { 0% { opacity: 0.16; transform: translate3d(0, 10px, 0); filter: saturate(0.2); } 55% { opacity: 1; filter: brightness(1.55) saturate(1.2); } 100% { opacity: 1; transform: none; filter: none; } }
+@keyframes rt-press { 0%, 100% { transform: none; box-shadow: none; } 40% { transform: scale(0.92); box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.28); } }
+@keyframes rt-stamp { from { opacity: 0; transform: translate3d(0, 6px, 0); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .tiles li, .tiles li.p { animation: rt-step 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .tiles li:nth-child(1) { animation-delay: 0.15s; }
+  .tiles li:nth-child(2) { animation-delay: 0.45s; }
+  .tiles li.p { animation: rt-step 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s both, person-glow 1.2s ease-in-out 1.25s 1; }
+  .decide { animation: card-in 0.45s ease-out 1.15s both; }
+  .decide .b span:first-child { animation: rt-press 0.45s ease-out 1.95s both; }
+  .tiles li:nth-child(4) { animation-delay: 2.3s; }
+  .tiles li:nth-child(5) { animation-delay: 2.55s; }
+  .tiles li:nth-child(6) { animation-delay: 2.8s; }
+  .tiles li:nth-child(7) { animation-delay: 3.05s; }
+  .decide .r { animation: rt-stamp 0.4s ease-out 3.35s both; }
+}
+
+/* -- The hero graphic on laptops, tablets and phones: never clipped, and on phones the decision card and the
+      portrait follow the tiles in normal flow instead of sitting on top of them -- */
+@media (max-width: 1280px) and (min-width: 1081px) {
+  .tiles { transform: rotateX(56deg) rotateZ(-42deg) scale(0.8); left: calc(22% - 100px); }
+}
+@media (max-width: 1080px) and (min-width: 761px) {
+  .path { height: 540px; }
+  .tiles { top: 56px; left: 50%; margin-left: -260px; }
+  .decide { top: 300px; }
+}
+@media (max-width: 760px) {
+  .path { height: auto; padding-top: var(--tiles-h, 250px); display: flex; flex-direction: column; gap: 14px; max-width: 520px; }
+  .tiles { top: 28px; left: 50%; margin-left: var(--tiles-x, -215px); transform: rotateX(56deg) rotateZ(-42deg) scale(0.72); transform-origin: 50% 0; }
+  .decide { position: relative; inset: auto; width: auto; max-width: 330px; align-self: flex-end; padding: 14px 16px; }
+  .decide .b span { white-space: nowrap; }
+  .me { position: relative; inset: auto; align-self: flex-start; }
+}
+@media (max-width: 420px) {
+  .path { --tiles-h: 228px; --tiles-x: -230px; }
+  .tiles { transform: rotateX(56deg) rotateZ(-42deg) scale(0.64); }
+}
+
+/* -- Book band -- */
+.book-band { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: center; padding: clamp(22px, 4vw, 44px); border-radius: 28px; border: 1px solid var(--line2); background: radial-gradient(520px 320px at 0% 0%, rgba(88, 230, 246, 0.16), transparent 70%), radial-gradient(520px 360px at 100% 100%, rgba(124, 58, 237, 0.24), transparent 70%), var(--card); }
+.bb-cover { display: block; perspective: 900px; }
+.bb-cover img { display: block; width: 100%; height: auto; border-radius: 4px 8px 8px 4px; transform: rotateY(-14deg) rotateX(3deg); transform-origin: left center; box-shadow: -2px 0 0 rgba(255, 255, 255, 0.08) inset, 18px 24px 40px rgba(0, 0, 0, 0.55), 2px 2px 0 #1b1640; transition: transform 0.4s ease; }
+.bb-cover:hover img { transform: rotateY(-6deg) rotateX(1deg); }
+.bb-text h2 { font-size: clamp(2rem, 4.2vw, 3rem); line-height: 1.02; margin: 0 0 12px; }
+.bb-dek { color: var(--muted); font-size: 1.05rem; max-width: 60ch; margin: 0; }
+.bb-facts { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.bb-facts li { border-left: 2px solid var(--line2); padding-left: 12px; }
+.bb-facts b { display: block; font-family: var(--display); font-size: 1.7rem; line-height: 1.1; }
+.bb-facts span { font-size: 13px; color: var(--subtle); }
+.bb-text .acts { margin-top: 24px; }
+.bb-text .btn small { font-weight: 600; opacity: 0.75; margin-left: 8px; font-size: 12.5px; }
+.bb-note { margin: 12px 0 0; font-size: 13px; color: var(--subtle); }
+@media (max-width: 960px) { .bb-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .book-band { grid-template-columns: 1fr; text-align: left; }
+  .bb-cover { width: min(52vw, 220px); }
+}
+@media (prefers-reduced-motion: reduce) { .bb-cover img, .bb-cover:hover img { transition: none; } }
+
+/* -- Case-study cards: each one carries its own accent -- */
+.card.has-art { --c: #4de2ff; }
+.card.has-art .art { color: var(--c); }
+.card.has-art .tag { color: var(--c); }
+a.card.has-art:hover { border-color: color-mix(in srgb, var(--c) 70%, transparent); box-shadow: 0 18px 40px -18px color-mix(in srgb, var(--c) 55%, transparent); }
+
+/* -- Recommendations and credentials -- */
+.quotes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.q { margin: 0; display: flex; flex-direction: column; gap: 16px; padding: 22px; border-radius: var(--r); border: 1px solid var(--line); background: var(--card); position: relative; }
+.q::before { content: "\201C"; position: absolute; top: 6px; right: 16px; font-family: Georgia, serif; font-size: 64px; line-height: 1; color: var(--violet); opacity: 0.35; }
+.q blockquote { margin: 0; }
+.q blockquote p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink); }
+.q figcaption { margin-top: auto; display: grid; gap: 2px; font-size: 13px; color: var(--subtle); border-top: 1px solid var(--line); padding-top: 12px; }
+.q figcaption b { color: var(--ink); font-family: var(--display); font-size: 14.5px; }
+.q time { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; }
+.creds { margin-top: 22px; padding: 20px 22px; border-radius: var(--r); border: 1px dashed var(--line2); display: grid; gap: 12px; }
+.creds .ey { margin: 0; }
+.creds ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.creds li > a, .creds li > span { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 14px 6px 10px; border-radius: 999px; border: 1px solid var(--line2); background: rgba(124, 58, 237, 0.1); text-decoration: none; font-size: 14px; }
+.creds li > a::before, .creds li > span::before { content: ""; width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 12%, transparent 13%), linear-gradient(135deg, #58e6f6, #a78bfa); }
+.creds li > a::after { content: "\2197"; font-size: 12px; color: var(--violet); }
+.creds li > a:hover { border-color: var(--violet); background: rgba(124, 58, 237, 0.18); }
+.creds b { font-weight: 800; }
+.creds small { color: var(--subtle); font-size: 12px; }
+.creds .more { justify-self: start; }
+@media (max-width: 1080px) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .quotes { grid-template-columns: 1fr; } }
+
+/* -- Newsletter signup (hidden until a real Buttondown username replaces the placeholder in index.html) -- */
+.contact .signup { grid-column: 1 / -1; display: grid; gap: 8px; padding-top: 22px; border-top: 1px solid var(--line); }
+.signup[action*="YOUR-BUTTONDOWN-USERNAME"] { display: none; }
+.signup label { font-family: var(--display); font-weight: 700; font-size: 1.05rem; }
+.signup .row { display: flex; gap: 10px; flex-wrap: wrap; }
+.signup input { flex: 1 1 240px; min-height: 48px; border-radius: 999px; border: 1px solid var(--line2); background: rgba(5, 6, 26, 0.5); color: var(--ink); padding: 0 18px; font: inherit; }
+html[data-theme="light"] .signup input { background: #fff; }
+.signup input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.signup button { min-height: 48px; padding: 0 24px; border: 0; border-radius: 999px; background: var(--grad); color: var(--on-grad); font: 800 15px/1 var(--body); cursor: pointer; }
+.signup small { color: var(--subtle); font-size: 12.5px; }
+
+
+/* -- Phones: recommendations become a swipeable row, credential pills fill the width -- */
+@media (max-width: 640px) {
+  .quotes { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 86%; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 0 16px 6px; scroll-padding-inline: 16px; scrollbar-width: thin; }
+  .q { scroll-snap-align: start; }
+  .creds { padding: 16px; }
+  .creds ul { display: grid; }
+  .creds li > a, .creds li > span { width: 100%; box-sizing: border-box; border-radius: 16px; flex-wrap: wrap; row-gap: 0; }
+  .creds li > a { position: relative; padding-right: 36px; }
+  .creds li > a::after { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); }
+  .creds small { flex-basis: 100%; padding-left: 30px; }
+}

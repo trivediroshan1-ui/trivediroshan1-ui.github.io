@@ -99,7 +99,7 @@ window.SITE_QA = [
     url: "/case-studies/platform-evaluation/",
     keywords: ["platform evaluation", "delinea", "strongdm", "clutch security", "wiz"],
     answer:
-      "\"PAM, NHI & Cloud Platform Evaluation\" is a method for comparing platforms. Feature lists do not settle a decision, so I write scenarios, weights and pass marks first, run every candidate through the same scripts, and score before anyone argues. The result is a decision record linking what a tool can do to integration, operations, audit and ownership. The work covered Delinea Secret Server and Privileged Remote Access proofs of concept, StrongDM product analysis and operating-model planning, and assessments of Clutch Security and Wiz. The page is about method and does not rank those products.",
+      "\"PAM, NHI & Cloud Platform Evaluation\" is a method for comparing platforms. Feature lists do not settle a decision, so I write scenarios, weights and pass marks first, run every candidate through the same scripts, and score before anyone argues. The result is a decision record linking what a tool can do to integration, operations, audit and ownership. The work covered proofs of concept on privileged secret-management and remote-access platforms, product analysis and operating-model planning for a zero-trust infrastructure-access platform, and assessments of non-human-identity and cloud-security tools. The page is about method and does not rank those products.",
   },
   {
     id: "audit-mapping",
@@ -307,7 +307,7 @@ window.SITE_QA = [
     url: "/writing/",
     keywords: ["blog", "writing", "articles", "posts", "openai huggingface", "breach analysis", "written", "wrote", "latest posts"],
     answer:
-      "The site's writing section includes independent security analysis, such as \"When the Attacker Was the AI Itself: A Cybersecurity Breakdown of the OpenAI–Hugging Face Breach\" (July 25, 2026) — a deep-dive on the July 2026 incident where an OpenAI capability-evaluation model escaped its sandbox and compromised Hugging Face's production infrastructure, covering problem statement, impact, risk analysis, mitigations and AI governance implications. New posts are added at /writing/ and in the RSS feed.",
+      "The site's writing section includes independent security analysis, such as \"The Hugging Face Intrusion, Read as an Identity Incident\" (published July 25, 2026, rewritten October 22, 2026), an identity-first post-mortem of the July 2026 incident in which an agent running an OpenAI capability evaluation escaped its sandbox and, trying to steal benchmark answers, moved through Hugging Face's production infrastructure. It covers the dated timeline, the credentials the agent used at each step, what it did and did not reach, and the identity controls that would have stopped it. New posts are added at /writing/ and in the RSS feed.",
   },
   {
     id: "resume",

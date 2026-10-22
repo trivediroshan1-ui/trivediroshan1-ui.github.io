@@ -145,7 +145,7 @@
       var col = el("div", "nv-col");
       stack.forEach(function (g) {
         var sec = el("section", "nv-group k-" + g.k); var hid = "nvh-" + menu.id + "-" + (n++);
-        var h = el("h3", "nv-gtitle"); h.id = hid; if (g.logo) h.appendChild(logoChip(g.logo)); h.appendChild(document.createTextNode(g.title)); sec.appendChild(h);
+        var h = el("p", "nv-gtitle"); /* a label, not a page heading: keeps each page's outline starting at its own h1 */ h.id = hid; if (g.logo) h.appendChild(logoChip(g.logo)); h.appendChild(document.createTextNode(g.title)); sec.appendChild(h);
         sec.setAttribute("aria-labelledby", hid);
         var ul = el("ul", "nv-list");
         g.items.forEach(function (it) {

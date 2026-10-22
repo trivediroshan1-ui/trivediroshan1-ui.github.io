@@ -3,6 +3,7 @@ title: "PAM as an Identity: What Changes When the Vault Can Talk to Your Governa
 layout: post
 bg: post-identity
 motif: nodes
+seo_title: "PAM as an Identity: Vault Meets Governance"
 date: 2026-10-10 13:05:00 +0530
 author: Roshan Trivedi
 series: pam
@@ -12,7 +13,7 @@ diagrams: true
 share_title: "PAM as an Identity"
 share_label: "Article · Privileged access"
 share_accent: green
-description: "Why a privileged account should be managed as an identity with an owner and a lifecycle, what you have to build inside PAM when there is no IGA, and how the plan changes when PAM is linked to one."
+description: "Why a privileged account should be managed as an identity with an owner and a lifecycle, and how the plan changes when PAM is linked to IGA."
 ---
 
 # PAM as an Identity: What Changes When the Vault Can Talk to Your Governance System
