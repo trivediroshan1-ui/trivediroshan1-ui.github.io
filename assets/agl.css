@@ -187,3 +187,55 @@ ol.ev-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns
 @media (max-width:560px){.agl .try-table{min-width:420px}.agl .try-table th,.agl .try-table td{padding:7px 9px}}
 .agl .try-pane[hidden]{display:none}
 .agl .try-scroll .try-table{width:100%;display:table}
+
+/* Case explorer */
+.agl .agl-pill.note{background:var(--a-panel2);color:var(--a-muted);border:1px solid var(--a-line)}
+.agl .cx-bar{display:grid;gap:10px}
+.agl .cx-chips{display:flex;flex-wrap:wrap;gap:8px}
+.agl .cx-row2{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.agl .cx-search{flex:1 1 260px;width:auto;margin-top:0}
+.agl .cx-tools{display:flex;gap:8px;flex-wrap:wrap}
+.agl .cx-count{margin:0}
+.agl .cx-list{display:grid;gap:10px}
+.agl .cx-card{border:1px solid var(--a-line);border-radius:12px;background:var(--a-panel);min-width:0}
+.agl .cx-card[hidden]{display:none}
+.agl .cx-card.open{border-color:var(--a-accent)}
+.agl .cx-h3{margin:0;font-size:inherit}
+.agl .cx-head{appearance:none;width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:10px 12px;align-items:center;text-align:left;background:transparent;border:0;color:var(--a-ink);font:inherit;padding:14px 16px;cursor:pointer;border-radius:12px}
+.agl .cx-head:focus-visible{outline:2px solid var(--a-accent);outline-offset:2px}
+.agl .cx-id{font:600 13px/1 var(--a-fm);color:var(--a-accent);min-width:3ch}
+.agl .cx-title{font:600 14.5px/1.35 var(--a-fb);min-width:0}
+.agl .cx-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.agl .cx-chev{color:var(--a-muted);transition:transform .2s}
+.agl .cx-card.open .cx-chev{transform:rotate(180deg)}
+.agl .cx-panel{padding:0 16px 18px}
+.agl .cx-body{display:grid;gap:12px;border-top:1px solid var(--a-line);padding-top:14px}
+.agl .cx-body h4{margin:0;font:500 12px/1.2 var(--a-fm);letter-spacing:.06em;text-transform:uppercase;color:var(--a-muted)}
+.agl .cx-what{margin:0;font-size:15px}
+.agl .cx-flowhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.agl .cx-play{padding:7px 12px}
+.agl .cx-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.agl .cx-step{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--a-line);border-left-width:4px;border-radius:10px;padding:10px 12px;background:var(--a-panel2);transition:opacity .3s,transform .3s}
+.agl .cx-step.cx-ok{border-left-color:var(--a-ok)}
+.agl .cx-step.cx-stop{border-left-color:var(--a-bad)}
+.agl .cx-step.cx-miss{border-left-color:var(--a-warn)}
+.agl .cx-step.cx-note{border-left-color:var(--a-line)}
+.agl .cx-step.cx-hide{opacity:0;transform:translateY(6px)}
+.agl .cx-n{font:600 12px/24px var(--a-fm);color:var(--a-muted);text-align:center;border:1px solid var(--a-line);border-radius:50%;width:24px;height:24px}
+.agl .cx-st{min-width:0;font-size:14px}
+.agl .cx-tag{font:600 11px/1 var(--a-fm);letter-spacing:.05em;text-transform:uppercase;padding:3px 7px;border-radius:999px;margin-right:4px;white-space:nowrap;display:inline-block}
+.agl .cx-tag.ok{background:var(--a-ok-soft);color:var(--a-ok)}
+.agl .cx-tag.bad{background:var(--a-bad-soft);color:var(--a-bad)}
+.agl .cx-tag.warn{background:var(--a-warn-soft);color:var(--a-warn)}
+.agl .cx-tag.note{background:var(--a-panel);color:var(--a-muted);border:1px solid var(--a-line)}
+.agl .cx-result,.agl .cx-why,.agl .cx-box{border:1px solid var(--a-line);border-radius:10px;padding:12px 14px;background:var(--a-panel2);font-size:14px}
+.agl .cx-box{display:grid;gap:8px;justify-items:start}
+.agl .cx-box p{margin:0}
+.agl .cx-result{background:var(--a-accent-soft)}
+.agl .cx-h{margin-top:6px}
+.agl .cx-code{display:block;margin-top:4px;font:400 12px/1.5 var(--a-fm);color:var(--a-muted);word-break:break-word;white-space:pre-wrap}
+.agl .cx-ctl{margin:0;padding-left:20px;font-size:14px}
+.agl .cx-body p.agl-hint{margin:0}
+.agl .cx-body a{color:var(--a-accent)}
+@media (max-width:560px){.agl .cx-head{grid-template-columns:auto minmax(0,1fr) auto}.agl .cx-badges{grid-column:2 / 4;justify-content:flex-start}}
+@media (prefers-reduced-motion:reduce){.agl .cx-step,.agl .cx-chev{transition:none}}
