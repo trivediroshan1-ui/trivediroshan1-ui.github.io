@@ -55,6 +55,7 @@
         { title: "AI governance lab", k: "ai", items: [
           ["/ai-governance-lab/", "Overview: what held, what broke", "shield"],
           ["/ai-governance-lab/try/", "Try it yourself", "flask"],
+          ["/ai-governance-lab/cases/", "Every use case, one by one", "list"],
           ["/ai-governance-lab/evidence/", "The assistant test", "check"],
           ["/ai-governance-lab/run/", "Every command and output", "list"],
           ["/ai-governance-lab/transcripts/", "Full chat and terminal output", "doc"],
