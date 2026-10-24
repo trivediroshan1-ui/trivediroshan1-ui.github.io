@@ -1,0 +1,26 @@
+/* "New" banner with a hand-drawn doodle, for the AI governance lab */
+.newlab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;margin:0 0 18px;padding:18px 20px;border:2px dashed var(--accent,#4de2ff);border-radius:16px;background:var(--surface,#0b1220);color:var(--text,#f1f5f9);text-decoration:none;position:relative;transition:transform .2s,border-color .2s}
+.newlab:hover{transform:translateY(-2px);border-style:solid}
+.newlab:focus-visible{outline:3px solid var(--accent,#4de2ff);outline-offset:3px}
+.newlab .doodle{width:96px;height:96px;color:var(--accent,#4de2ff);flex:none}
+.newlab .doodle .ink{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.newlab .doodle .fill{fill:color-mix(in srgb,var(--safe,#7df2d0) 22%,transparent);stroke:none}
+.newlab .doodle .spark{fill:none;stroke:var(--warn,#f7c873);stroke-width:3;stroke-linecap:round;transform-origin:center;transform-box:fill-box;animation:nl-twinkle 2.4s ease-in-out infinite}
+.newlab .doodle .spark.b{animation-delay:1.2s}
+.newlab .doodle .tick{stroke:var(--safe,#7df2d0)}
+.newlab .t{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.newlab h3{margin:0;font:700 22px/1.2 var(--display,system-ui,sans-serif);color:var(--text,#f1f5f9)}
+.newlab p{margin:6px 0 8px;color:var(--muted,#93a1bd);font-size:15px}
+.newlab .go{font-weight:600;color:var(--accent,#4de2ff)}
+.newpill{display:inline-block;font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;transform:rotate(-3deg);animation:nl-blink 1.2s steps(2,start) infinite}
+@keyframes nl-blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes nl-twinkle{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1.15);opacity:1}}
+html[data-theme="light"] .newlab{background:#fff;border-color:#0a7285;color:#0f172a}
+html[data-theme="light"] .newlab h3{color:#0f172a}
+html[data-theme="light"] .newlab p{color:#52617a}
+html[data-theme="light"] .newlab .go,html[data-theme="light"] .newlab .doodle{color:#0a7285}
+html[data-theme="light"] .newlab .doodle .spark{stroke:#8a5208}
+html[data-theme="light"] .newlab .doodle .tick{stroke:#0b7a5b}
+html[data-theme="light"] .newpill{background:#f2b84b}
+@media (max-width:560px){.newlab{grid-template-columns:1fr;justify-items:start}.newlab .doodle{width:72px;height:72px}.newlab h3{font-size:20px}}
+@media (prefers-reduced-motion:reduce){.newpill,.newlab .doodle .spark{animation:none}.newlab{transition:none}}
