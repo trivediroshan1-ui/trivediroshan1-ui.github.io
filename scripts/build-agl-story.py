@@ -1,0 +1,96 @@
+#!/usr/bin/env python3
+"""Builds ai-governance-lab/story/index.html from the diagrams page shell."""
+import re, pathlib
+root = pathlib.Path(__file__).resolve().parent.parent
+src = (root/"ai-governance-lab/diagrams/index.html").read_text()
+head, rest = src.split('<main id="main">', 1)
+tail = rest.split('</main>', 1)[1]
+T = "Why I built the AI governance lab"
+D = "From years of mapping controls for auditors to testing AI controls on a private laptop: the story behind the AI governance lab, in plain words."
+head = re.sub(r'<meta name="description" content=".*?" />', f'<meta name="description" content="{D}" />', head)
+head = head.replace("AI governance lab: architecture diagrams", T).replace('/ai-governance-lab/diagrams/', '/ai-governance-lab/story/')
+head = re.sub(r'<meta property="og:description" content=".*?" />', f'<meta property="og:description" content="{D}" />', head)
+head = re.sub(r'<title>.*?</title>', '<title>Why I built the lab &middot; AI governance lab</title>', head)
+head = head.replace('agl.css?v=20261024f">', 'agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/story.css?v=20261024a">')
+body = '''<main id="main">
+      <header class="hero mcp-hero">
+        <p class="eyebrow">AI governance lab</p>
+        <h1>Why I built this lab</h1>
+        <p class="dek">I spent years mapping access controls for auditors. When AI agents arrived with the same promises, I wanted to see whether the controls really hold, so I tested them.</p>
+        <div class="mcp-ribbon" aria-hidden="true"></div>
+      </header>
+      <div class="agl story">
+      <section>
+        <p class="kick">My story</p>
+        <p class="lead">For years, my job was to map controls. On finance, healthcare and information security projects, I took the controls a PAM or access-management product offers and mapped them to the client&rsquo;s IAM policy. External auditors then checked that policy against standards such as NIST, PCI DSS, HIPAA or ISO 27001.</p>
+        <p>Every time, one question stayed with me.</p>
+        <blockquote class="st-quote">Does the control really do what the policy says, or does the mapping only look right on paper?</blockquote>
+      </section>
+
+      <section aria-labelledby="path">
+        <h2 id="path">From mapping sheets to a test bench</h2>
+        <ol class="st-path">
+          <li><h3>Mapping controls</h3><p>Vendor controls matched to policy, then to audit standards, for finance, healthcare and security firms.</p></li>
+          <li><h3>The AI promise</h3><p>Agents will map policies, AI will discover and automate identities, a central team will set each agent&rsquo;s access.</p></li>
+          <li class="gap"><h3>The gap</h3><p>No clear use cases, no named policy per agent, no certifier, no answer for an agent that decides on its own.</p></li>
+          <li class="now"><h3>The lab</h3><p>A private test on made-up data. Expected results written first, then 59 cases run.</p></li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>What I kept hearing, and what I never heard</h2>
+        <p>Then the AI era started. I heard that AI hooks would help, that agents would map policies, that AI would automate identity, and that a central governance team would decide how much access each agent should get. I also heard that agents would call PAM and identity APIs while staying inside the firm&rsquo;s compliance rules.</p>
+        <p>What I did not hear was the detail:</p>
+        <ul class="st-q">
+          <li>Which use cases are we talking about?</li>
+          <li>Which policy is each agent bound to?</li>
+          <li>How does the governance part line up with an actual control?</li>
+          <li>Who is the certifier for an agent&rsquo;s decision?</li>
+          <li>If an agent goes off script and decides on its own, what stops it, and what proves it?</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Why &ldquo;read access&rdquo; is not a small thing</h2>
+        <p>These are everyday situations. None of them needs an attacker.</p>
+        <div class="st-grid">
+          <div class="st-card"><span class="tag">Bank</span><h3>The support bot</h3><p>A bot with &ldquo;read access&rdquo; can see PAN, Aadhaar and transactions. If it repeats them in a chat, or sends them to an outside model, nobody was hacked. It did what it was allowed to do.</p></div>
+          <div class="st-card"><span class="tag">Corporate</span><h3>The helpful assistant</h3><p>An assistant that reads mail and shared drives can surface salary or legal files to someone who was never meant to see them.</p></div>
+          <div class="st-card"><span class="tag">Tools and apps</span><h3>The one-time Allow</h3><p>A plugin is approved once and then reads the whole workspace, every day, with the same rights as the person who clicked.</p></div>
+          <div class="st-card"><span class="tag">Bots and agents</span><h3>The shared token</h3><p>A bot on a shared or long-lived token looks exactly like a real employee in the log. After a mistake, nobody can tell who did what.</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>So I built the test</h2>
+        <p>I did not want to build anything before I understood the ground. I read the NIST and ISO material, and how IGA and PAM vendors describe the identity life cycle: accounts linked to a person, non-human identities and agents. Then I built a test on my own laptop.</p>
+        <p>The company is made up: Kaveri Finance, a small lender. The Aadhaar, PAN and card numbers are invented, but they pass the real checksums, so the tests behave like real data. I wrote the expected result of every case and saved it in git before running anything.</p>
+        <div class="st-stats">
+          <div class="st-stat"><b>59</b><span>cases across gateway, filter, agent identity and audit log</span></div>
+          <div class="st-stat bad"><b>20 / 42 / 45</b><span>of 53 attack variants caught by filter v1, v2, v3</span></div>
+          <div class="st-stat bad"><b>4 of 10</b><span>unseen items caught by all three filters</span></div>
+          <div class="st-stat ok"><b>9 of 9</b><span>requests where a real assistant followed one written policy</span></div>
+        </div>
+        <div class="st-held">
+          <div class="h"><strong>What held</strong>Access register, approvals, expiry, kill switches, short-lived agent tokens and the tamper-evident log.</div>
+          <div class="b"><strong>What broke</strong>A plain text filter. Hinglish, numbers in Hindi words, split messages and quoted attacks got through.</div>
+        </div>
+        <p class="st-note" style="margin-top:12px">This is a small test, on one laptop, with made-up data. The 100% filter score on 200 samples is not a result I trust, because I tuned the filter on those samples.</p>
+      </section>
+
+      <section>
+        <h2>What I take back to my old audit questions</h2>
+        <p>A control that looks right in a mapping sheet still has to be tested against the attack it is meant to stop. For AI agents, that means a named policy, its own short-lived identity, a human approval where it matters, and a log that shows who approved, not only that it ran.</p>
+        <div class="st-cta">
+          <a class="p" href="/ai-governance-lab/">Open the lab</a>
+          <a href="/ai-governance-lab/cases/">Every use case, one by one</a>
+          <a href="/assets/ai-governance-lab-book.pdf">Free book (PDF)</a>
+        </div>
+        <p class="st-note" style="margin-top:14px">If you work in IAM, PAM, risk or audit and see a weak test, please tell me. I would rather learn it from you than from an incident.</p>
+      </section>
+      </div>
+    </main>'''
+out = head + body + tail
+out = out.replace("diagrams/", "diagrams/")
+(root/"ai-governance-lab/story/index.html").write_text(out)
+print(len(out))

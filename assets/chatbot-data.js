@@ -473,6 +473,14 @@ window.SITE_QA = [
       "The case explorer lists all 59 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
+    id: "ai-governance-lab-story",
+    title: "AI governance lab: why I built it",
+    url: "/ai-governance-lab/story/",
+    keywords: ["why did you build", "story", "why this lab", "motivation", "background", "how did the idea come", "control mapping", "auditor"],
+    answer:
+      "For years I mapped access controls from PAM and IAM products to client policies that auditors checked against standards like NIST, PCI DSS, HIPAA and ISO 27001. I always wondered whether a control really does what the policy says. When AI agents arrived with the same promises but no clear use cases, policies or certifier, I read the NIST and ISO material and built a private test on made-up data to find out what holds and what breaks.",
+  },
+  {
     id: "ai-governance-lab-diagrams",
     title: "AI governance lab: architecture diagrams",
     url: "/ai-governance-lab/diagrams/",
