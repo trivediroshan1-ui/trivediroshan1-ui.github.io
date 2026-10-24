@@ -567,4 +567,39 @@ remote:
 To https://github.com/trivediroshan1-ui/ai-governance-lab.git
  * [new branch]      mac-run-nine-checks -> mac-run-nine-checks
 branch 'mac-run-nine-checks' set up to track 'origin/mac-run-nine-checks'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab && git fetch origin && git checkout round-twelve && python3 run.py --round 12 && python3 mutations_r12.py && git checkout -b mac-run-twelve && git add results/round-12 && git commit -m "Round twelve: run on a Mac" && git push -u origin mac-run-twelve
+remote: Enumerating objects: 28, done.
+remote: Counting objects: 100% (25/25), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 18 (delta 10), reused 17 (delta 9), pack-reused 0 (from 0)
+Unpacking objects: 100% (18/18), 9.38 KiB | 309.00 KiB/s, done.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * [new branch]      round-twelve    -> origin/round-twelve
+ * [new branch]      stronger-checks -> origin/stronger-checks
+branch 'round-twelve' set up to track 'origin/round-twelve'.
+Switched to a new branch 'round-twelve'
+round 12: 7 cases in 0.0 s -> results/round-12/20261024-233034-v3.json
+  as expected: 7
+6 of 6 switched-off controls are noticed by their case
+Switched to a new branch 'mac-run-twelve'
+[mac-run-twelve c84f353] Round twelve: run on a Mac
+ 4 files changed, 202 insertions(+)
+ create mode 100644 results/round-12/20261024-233034-v3.json
+ create mode 100644 results/round-12/20261024-233034-v3.md
+ create mode 100644 results/round-12/20261024-233035-mutations.json
+ create mode 100644 results/round-12/20261024-233035-mutations.md
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 3.01 KiB | 3.01 MiB/s, done.
+Total 7 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'mac-run-twelve' on GitHub by visiting:
+remote:      https://github.com/trivediroshan1-ui/ai-governance-lab/pull/new/mac-run-twelve
+remote: 
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+ * [new branch]      mac-run-twelve -> mac-run-twelve
+branch 'mac-run-twelve' set up to track 'origin/mac-run-twelve'.
 Roshans-MacBook-Air:ai-governance-lab roshan$ 

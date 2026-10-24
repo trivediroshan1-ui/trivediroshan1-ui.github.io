@@ -470,7 +470,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/cases/",
     keywords: ["use cases", "all cases", "every case", "case explorer", "a1", "g10", "i7", "e5", "kill switch case", "what does case"],
     answer:
-      "The case explorer lists all 151 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
+      "The case explorer lists all 158 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
     id: "ai-governance-lab-round-five",
@@ -503,6 +503,14 @@ window.SITE_QA = [
     keywords: ["round eight", "round 8", "bypass", "agent bypasses the api", "kill switch", "kill switch policy", "leaked token", "reconciliation", "whitelist", "greylist", "blacklist", "allow list", "watch list", "block list", "mover", "leaver", "sponsor leaves", "evidence", "chain of custody", "offence", "police", "assistive technology", "physically challenged", "accessibility", "helper", "delegate", "sensitive data", "audit log tampering"],
     answer:
       "Round eight asks what happens if an agent goes round the gateway, for example with a leaked token. It tests three layers. Make it hard: the identity API accepts a credential only from the caller it was lent to, it expires in minutes, and the agent's runtime has no network route to the API. Notice: every change in the identity system's own log must match a decision the gateway signed, and a change with no decision is a bypass. Answer: the policy switches off the agent it can trace, cancels its waiting approvals and revokes its credentials and the leaked token, evidence is copied and hashed first, and a named person decides whether to roll back. It also covers allow, watch and block lists by account state (a leaver's account touched, a mover asking for new access too soon), a sponsor who leaves, a recorded helper for people who use assistive technology (a code, never medical detail), a signal that reaches a person with evidence and no verdict from an agent, sensitive data the agent cannot request, and a tampered audit log. 12 cases (B1 to B12) were guessed before the code and all came out as guessed; switching off 21 controls one at a time made the matching case fail in all 21. Limits: the API, vault, network and log are small models I wrote, no real agent tries to get round the wall, and the legal and offence questions need counsel.",
+  },
+  {
+    id: "ai-governance-lab-approvals",
+    title: "AI governance lab: round twelve, approvals (self-approval, edits, stale and split votes)",
+    url: "/ai-governance-lab/#approvals",
+    keywords: ["round twelve", "round 12", "approvals", "approval", "four eyes", "self approval", "approve own request", "batch approve", "stale approval", "approval expiry", "approver leaves", "deny wins", "collusion", "approval fingerprint", "edit after approval"],
+    answer:
+      "Round twelve has 7 cases (F1 to F7) on approvals, guessed and hashed before any code. A person should not approve their own request, so the approver must be someone other than the requester (F1). An approval tied only to a request number still runs after the request is edited; tie it to a fingerprint of the content and any edit voids it (F2). A one-click batch approval can carry a high-risk item through, so high-risk items must be approved one by one (F3). An approval three days old should lapse, for example after 24 hours (F4). If the approver leaves, the waiting requests should move to a current approver (F5). With 'any one approval is enough' a request can run even though a second approver said no, so a no should win (F6). F7 is a limit, not a control: when two people agree to approve for each other, every rule is satisfied and the lab cannot see it. In the run, the seven first-run results matched my guesses, and the control-off checks noticed all six controls being removed. It was run in the sandbox and again on my MacBook Air. The models are small, I wrote both the guesses and the code, and no AI model was tested. All data is made up.",
   },
   {
     id: "ai-governance-lab-delegation",
@@ -546,15 +554,15 @@ window.SITE_QA = [
   },
   {
     id: "ai-governance-lab-addendum-pdf",
-    title: "AI governance lab: addendum PDF, rounds five to eleven",
+    title: "AI governance lab: addendum PDF, rounds five to twelve",
     url: "/assets/ai-governance-lab-addendum.pdf",
-    keywords: ["addendum", "addendum pdf", "rounds five to eleven", "rounds five to ten", "rounds five to nine", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "92 cases", "80 cases", "68 cases", "controls table"],
+    keywords: ["addendum", "addendum pdf", "rounds five to twelve", "rounds five to eleven", "rounds five to ten", "rounds five to nine", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "92 cases", "80 cases", "68 cases", "controls table"],
     answer:
-      "The addendum is a free 65-page PDF (7 by 10 inches) for rounds five to eleven, dated 25 Oct 2026. It has 92 cases (14 in round five, 18 in six, 12 in seven, 12 in eight, 12 in nine, 12 in ten, 12 in eleven) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, an assistant-answers-from-documents round, an identity-edge-cases round, an agents-and-keys round, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
+      "The addendum is a free 69-page PDF (7 by 10 inches) for rounds five to twelve, dated 25 Oct 2026. It has 99 cases (14 in round five, 18 in six, 12 in seven, 12 in eight, 12 in nine, 12 in ten, 12 in eleven, 7 in twelve) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, an assistant-answers-from-documents round, an identity-edge-cases round, an agents-and-keys round, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
   },
   {
     id: "ai-governance-lab-real-output",
-    title: "AI governance lab: real run output for rounds five to eleven",
+    title: "AI governance lab: real run output for rounds five to twelve",
     url: "/ai-governance-lab/run/#real-output",
     keywords: ["real output", "run output", "results file", "raw results", "control off", "mutation", "run page", "evidence of run", "sandbox run"],
     answer:
@@ -566,7 +574,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/mac/",
     keywords: ["mac record", "mac commands", "commands i ran", "what i ran on mac", "mac output", "mac data", "sha-256 mac files", "terminal sessions", "mistakes", "macbook air"],
     answer:
-      "The Mac record page lists every command I typed on my MacBook Air in three sessions (24 Oct twice, 25 Oct once), what each one printed, and all 33 Mac result files with a SHA-256 each. Rounds five to eleven match the sandbox on cases and on controls noticed. The page also lists my mistakes: a broken held-out file pushed three times, a placeholder Track P record pushed and removed, and round eleven failing on the Mac until I removed a package it needed. The three terminal sessions are on it unedited.",
+      "The Mac record page lists every command I typed on my MacBook Air in three sessions (24 Oct twice, 25 Oct once), what each one printed, and all 37 Mac result files with a SHA-256 each. Rounds five to eleven match the sandbox on cases and on controls noticed. The page also lists my mistakes: a broken held-out file pushed three times, a placeholder Track P record pushed and removed, and round eleven failing on the Mac until I removed a package it needed. The three terminal sessions are on it unedited.",
   },
   {
     id: "ai-governance-lab-where-to-start",
