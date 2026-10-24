@@ -1,6 +1,9 @@
 ---
 title: "A PAM Project Plan for Tier 1, 2 and 3 Organizations"
 layout: post
+bg: post-plan
+motif: grid
+seo_title: "PAM Project Plan by Organization Tier"
 date: 2026-10-10 13:00:00 +0530
 author: Roshan Trivedi
 series: pam
@@ -10,7 +13,7 @@ diagrams: true
 share_title: "A PAM Project Plan for Tier 1, 2 and 3 Organizations"
 share_label: "Article · Privileged access"
 share_accent: green
-description: "How I size a privileged access management project from readiness gates and capacity inputs, and turn that into a 90, 180 or 365 day plan with phases, exit criteria and deferrals."
+description: "How I size a privileged access management project from readiness gates and capacity, and turn it into a 90, 180 or 365 day plan."
 ---
 
 # A PAM Project Plan for Tier 1, 2 and 3 Organizations

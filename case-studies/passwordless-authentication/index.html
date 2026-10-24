@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="cs-passwordless-authentication" data-m="topo">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -20,9 +20,9 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-passwordless-authentication.png" />
     <title>Passwordless Authentication Rollout · Roshan Trivedi</title>
 
-    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -38,7 +38,7 @@
     "@type": "Person",
     "name": "Roshan Trivedi",
     "url": "https://roshantrivedi.co.in/",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader"
+    "jobTitle": "Credential Management Platform Owner"
   },
   "publisher": {
     "@type": "Person",
@@ -58,12 +58,18 @@
     </script>
         <link rel="stylesheet" href="/assets/casestudy.css?v=20261019d">
       <link rel="stylesheet" href="/assets/theme.css">
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261019f" defer></script>
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Passwordless Authentication Rollout", "item": "https://roshantrivedi.co.in/case-studies/passwordless-authentication/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
-  <body style="--c:#c4b5fd">
+  <body class="read" style="--c:#c4b5fd">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/" aria-current="page">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main">
@@ -74,10 +80,11 @@
         <p class="eyebrow">Authentication &middot; Case study</p>
         <h1>Passwordless Authentication Rollout</h1>
         <p class="dek">How to move a workforce from passwords and weak MFA to phishing-resistant sign-in in risk order, and how to solve recovery, legacy apps and break-glass access on the way.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+        <p class="meta">Credential Management Platform Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
       <div class="tldr">
+        <svg class="doodle" viewBox="0 0 96 96" width="88" height="88" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M30 80 q-12 -20 0 -44 q18 -22 40 -2"/><path d="M40 78 q-8 -16 2 -32 q10 -12 22 -4"/><path d="M52 74 q-3 -14 4 -22"/><path d="M62 30 q12 6 14 22"/><path d="M70 16 l4 -6 M80 24 l6 -4"/></svg>
         <h2>The short version</h2>
         <ul>
           <li>Move people to phishing-resistant sign-in in risk order: privileged users first, then people who reach high-risk apps, then everyone else. One company-wide date puts the heaviest support load on the day you can least afford it.</li>
@@ -264,7 +271,7 @@
       </section>
 
       <section id="guardrails">
-        <h2>Guardrails that keep it honest</h2>
+        <h2>Rules that keep passkeys safe to roll out</h2>
         <div class="tbl-wrap"><table class="tbl wrap-first stack">
           <thead><tr><th>Guardrail</th><th>What it stops</th><th>How you check it</th></tr></thead>
           <tbody>
@@ -293,7 +300,7 @@
       </section>
 
       <section id="audit">
-        <h2>Audit: the questions, and the evidence</h2>
+        <h2>What an auditor will ask about passkeys</h2>
         <div class="tbl-wrap"><table class="tbl wrap-first stack">
           <thead><tr><th>Question</th><th>Where the answer comes from</th></tr></thead>
           <tbody>
@@ -319,7 +326,7 @@
       </section>
 
       <section id="governance">
-        <h2>Governance: who owns what</h2>
+        <h2>Who owns the rollout</h2>
         <div class="tbl-wrap"><table class="tbl wrap-first stack">
           <thead><tr><th>Role</th><th>Owns</th></tr></thead>
           <tbody>
@@ -338,7 +345,7 @@
       </section>
 
       <section id="tradeoffs">
-        <h2>What tends to go wrong</h2>
+        <h2>Where passwordless rollouts usually stumble</h2>
         <ul class="plain-list">
           <li><strong>Recovery becomes the weak door.</strong> Teams harden sign-in and leave password reset or phone verification in place. Attackers go to whichever door is easier.</li>
           <li><strong>Enforcing too early.</strong> A strict policy that was never run in report-only mode catches the shared mailbox, the service desk tool or the executive assistant&rsquo;s old laptop.</li>
@@ -349,7 +356,7 @@
       </section>
 
       <section id="lessons">
-        <h2>What I have learned to do differently</h2>
+        <h2>Habits I now keep</h2>
         <p class="body-text">These are habits I keep, not a checklist from any one project.</p>
         <ul class="plain-list">
           <li><strong>Start from the data, then talk to the owners.</strong> I inventory methods and devices first, and then walk the list with the people who own each group. The order comes from that conversation, with the score as an input.</li>
@@ -401,9 +408,9 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
-      <script defer src="/assets/casestudy.js?v=20261002"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
+      <script defer src="/assets/casestudy.js?v=20261021b"></script>
+      <script defer src="/assets/showcase.js?v=20261021b"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

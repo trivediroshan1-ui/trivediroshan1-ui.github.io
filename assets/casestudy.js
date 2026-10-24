@@ -4,7 +4,7 @@
   var main = document.querySelector("main");
   if (!main) return;
   var heads = Array.prototype.slice.call(main.querySelectorAll("h2")).filter(function (h) {
-    return !h.closest("footer") && h.textContent.trim().length > 0;
+    return !h.closest("footer") && !h.closest(".tldr") && !h.closest(".hg-next") && h.textContent.trim().length > 0;
   });
 
   // Reading time, added to the existing meta line
@@ -40,11 +40,15 @@
   title.textContent = "On this page";
   var list = document.createElement("ol");
   var links = {};
+  var chapter = 0;
   heads.forEach(function (h) {
     var li = document.createElement("li");
     var a = document.createElement("a");
     a.href = "#" + h.dataset.tocTarget;
     a.textContent = h.textContent.trim();
+    // Chapter numbers match the "Chapter 01" labels the reading stylesheet draws; Sources is back matter
+    var sec = h.closest("main > section");
+    if (sec && sec.id !== "sources" && sec.id !== "references") { chapter += 1; a.dataset.n = (chapter < 10 ? "0" : "") + chapter; }
     li.appendChild(a);
     list.appendChild(li);
     links[h.dataset.tocTarget] = a;

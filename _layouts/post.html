@@ -1,15 +1,15 @@
 ---
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="{{ page.bg | default: 'post' }}" data-m="{{ page.motif | default: 'ledger' }}">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#05061a">
     <meta name="robots" content="index,follow,max-image-preview:large">
-    <title>{{ page.title }} — Roshan Trivedi</title>
+    <title>{{ page.seo_title | default: page.title }} — Roshan Trivedi</title>
     <meta name="description" content="{{ page.description | escape }}">
         <link rel="alternate" type="application/rss+xml" title="Roshan Trivedi — Writing" href="/feed.xml" />
     <link rel="canonical" href="https://roshantrivedi.co.in{{ page.url }}">
@@ -22,6 +22,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="article:published_time" content="{{ page.date | date: '%Y-%m-%d' }}">
+    {% if page.last_modified_at %}<meta property="article:modified_time" content="{{ page.last_modified_at | date: '%Y-%m-%d' }}">{% endif %}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{{ share_image }}">
     <script type="application/ld+json">
@@ -31,6 +32,7 @@
       "headline": {{ page.title | jsonify }},
       "description": {{ page.description | jsonify }},
       "datePublished": "{{ page.date | date: '%Y-%m-%d' }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | date: '%Y-%m-%d' }}",
       "author": { "@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/" },
       "publisher": { "@type": "Person", "name": "Roshan Trivedi" },
       "mainEntityOfPage": "https://roshantrivedi.co.in{{ page.url }}",
@@ -38,7 +40,8 @@
       "keywords": {{ page.tags | join: ", " | jsonify }}
     }
     </script>
-    <link rel="stylesheet" href="/assets/fonts.css">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://roshantrivedi.co.in/"},{"@type":"ListItem","position":2,"name":"Writing","item":"https://roshantrivedi.co.in/writing/"},{"@type":"ListItem","position":3,"name":{{ page.title | jsonify }},"item":"https://roshantrivedi.co.in{{ page.url }}"}]}</script>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <style>
       :root {
         --bg: #05061a; --surface: #0b1220; --surface-2: #101a2c; --border: #1f2a40; --text: #f1f5f9; --muted: #93a1bd; --accent: #a78bfa;
@@ -93,24 +96,36 @@
       <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
     {% if page.diagrams %}<link rel="stylesheet" href="/assets/diagram.css">{% endif %}
       <link rel="stylesheet" href="/assets/theme.css">
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261019f" defer></script>
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
-<body>
+<body class="read post">
   <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/" aria-current="page">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <div class="post-glow" aria-hidden="true"></div>
   <nav class="nav"><a href="/">&larr; roshantrivedi.co.in</a> &middot; <a href="/writing/">all writing</a> &middot; <a href="/case-studies/">case studies</a></nav>
-  <div class="meta">{{ page.date | date: "%d %b %Y" }} · {{ page.author }} · {{ content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</div>
+  <div class="meta"><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%d %b %Y" }}</time>{% if page.last_modified_at %} · Updated <time datetime="{{ page.last_modified_at | date: '%Y-%m-%d' }}">{{ page.last_modified_at | date: "%d %b %Y" }}</time>{% endif %} · {{ page.author }} · {{ content | strip_html | split: " " | size | divided_by: 220 | plus: 1 }} min read</div>
   <div class="tags">{% for tag in page.tags %}<span>#{{ tag }}</span>{% endfor %}</div>
   {% if page.series == "pam" %}<p class="series-line">Part {{ page.part }} of 3 in the PAM series, <a href="/writing/pam-series/">see all parts</a></p>{% endif %}
+  <article class="prose">
   {{ content }}
+  </article>
   <aside class="post-cta">
     <strong>Want the deeper dive?</strong>
     <span>Twenty privacy-safe case studies on privileged access, non-human identity and agentic AI governance.</span>
     <a href="/case-studies/">Browse the case studies &rarr;</a>
     <a href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/" rel="noopener">I post new articles on LinkedIn first. Follow along &rarr;</a>
+    <form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/YOUR-BUTTONDOWN-USERNAME" method="post" target="_blank">
+      <label for="bd-email">Or get new write-ups by email</label>
+      <div class="row"><input type="email" name="email" id="bd-email" autocomplete="email" placeholder="you@company.com" required><button type="submit">Subscribe</button></div>
+      <small>One or two emails a month. Unsubscribe any time. Sent with Buttondown.</small>
+    </form>
   </aside>
   {% if page.previous or page.next %}<nav class="post-more" aria-label="More writing">
     {% if page.previous %}<a class="prev" href="{{ page.previous.url }}"><small>&larr; Older</small><span>{{ page.previous.title }}</span></a>{% endif %}
@@ -121,8 +136,7 @@
     <span><a href="/writing/">More writing</a> &middot; <a href="/case-studies/">Case studies</a></span>
   </footer>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
     {% if page.diagrams %}<script src="/assets/diagram.js" defer></script>{% endif %}
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->

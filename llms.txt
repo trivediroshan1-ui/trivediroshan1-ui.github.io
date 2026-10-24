@@ -1,0 +1,24 @@
+# Roshan Trivedi
+
+> Personal site of Roshan Trivedi, an identity security product leader in Bengaluru, India. He works on privileged access management (PAM), credential and secrets management, Zero Standing Privilege, non-human identity, and keeping a person in the loop when AI agents use real tools. All case studies are written without employer, client or other confidential data.
+
+## Start here
+- [About](https://roshantrivedi.co.in/about/): background, how he works, where he can help
+- [Résumé](https://roshantrivedi.co.in/resume/): roles, certifications with status and verification links
+- [Case studies](https://roshantrivedi.co.in/case-studies/): 20 privacy-safe case studies on privileged access, NHI, governance and agentic AI
+
+## Research and labs
+- [Who Approved That? (free book)](https://roshantrivedi.co.in/book/): 138 pages on human approval for AI agent tool calls, 210 scripted checks
+- [HumanGate MCP lab](https://roshantrivedi.co.in/mcp-lab-case-study/): an approval gateway for MCP tool calls and what held under testing
+- [Securing India's National Exams](https://roshantrivedi.co.in/secure-india-exams/): a Zero Trust reference architecture for exam security
+- [Credential tiering self-check](https://roshantrivedi.co.in/tools/tier-check/)
+
+## Writing
+- [The Hugging Face intrusion, read as an identity incident](https://roshantrivedi.co.in/writing/openai-huggingface-breach-cybersecurity-analysis/)
+- [PAM framework and design](https://roshantrivedi.co.in/writing/pam-framework-and-design/)
+- [A PAM project plan by organisation tier](https://roshantrivedi.co.in/writing/pam-project-plan-by-organization-tier/)
+- [PAM as an identity](https://roshantrivedi.co.in/writing/pam-as-an-identity/)
+
+## Contact
+- [LinkedIn](https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/)
+- [GitHub](https://github.com/trivediroshan1-ui)

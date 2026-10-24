@@ -43,7 +43,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["who is roshan", "who are you", "who is he", "roshan", "bio", "trivedi", "background", "what does he do", "what do you do", "his job", "his role", "job title"],
     answer:
-      "Roshan Trivedi is a Credential Management Platform Owner & PAM Product Leader based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern. Recently he wrote a free book, Who Approved That?, about keeping a person in the loop when AI agents use real tools (see /book/).",
+      "Roshan Trivedi is a Credential Management Platform Owner based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern. Recently he wrote a free book, Who Approved That?, about keeping a person in the loop when AI agents use real tools (see /book/).",
   },
   {
     id: "expertise",
@@ -99,7 +99,7 @@ window.SITE_QA = [
     url: "/case-studies/platform-evaluation/",
     keywords: ["platform evaluation", "delinea", "strongdm", "clutch security", "wiz"],
     answer:
-      "\"PAM, NHI & Cloud Platform Evaluation\" is a method for comparing platforms. Feature lists do not settle a decision, so I write scenarios, weights and pass marks first, run every candidate through the same scripts, and score before anyone argues. The result is a decision record linking what a tool can do to integration, operations, audit and ownership. The work covered Delinea Secret Server and Privileged Remote Access proofs of concept, StrongDM product analysis and operating-model planning, and assessments of Clutch Security and Wiz. The page is about method and does not rank those products.",
+      "\"PAM, NHI & Cloud Platform Evaluation\" is a method for comparing platforms. Feature lists do not settle a decision, so I write scenarios, weights and pass marks first, run every candidate through the same scripts, and score before anyone argues. The result is a decision record linking what a tool can do to integration, operations, audit and ownership. The work covered proofs of concept on privileged secret-management and remote-access platforms, product analysis and operating-model planning for a zero-trust infrastructure-access platform, and assessments of non-human-identity and cloud-security tools. The page is about method and does not rank those products.",
   },
   {
     id: "audit-mapping",
@@ -227,7 +227,7 @@ window.SITE_QA = [
     url: "/mcp-human-approval-gateway/",
     keywords: ["mcp human approval gateway", "mcp lab", "mcp", "interactive lab", "human approval gateway", "agentic ai lab", "approval gateway", "ai agent approval"],
     answer:
-      "The MCP lab is a hands-on demo you can run in the browser at /mcp-human-approval-gateway/. An AI agent asks to use a tool, a deterministic policy engine decides (not an AI model), higher-risk requests wait for a person who is not the requester, and an approval is tied to the exact request, works once and expires after 10 to 60 minutes depending on risk. Every step, including refusals, goes into a hash-chained audit log. All tools are synthetic and the AI analyst is advisory only. Source, threat model and tests: github.com/trivediroshan1-ui/mcp-human-approval-gateway. Roshan tested it with 210 automated tests and a 76-case runner: 72 behaved as expected, 1 differed, 3 are for information. The write-ups are the case study (/mcp-lab-case-study/), 81 documented use cases (/mcp-lab-use-cases/), the results page (/mcp-lab-results/) and a 43-page PDF report. This shows what this gateway did on these cases; it does not prove it secure.",
+      "The MCP lab is a hands-on demo you can run in the browser at /mcp-human-approval-gateway/. An AI agent asks to use a tool, a deterministic policy engine decides (not an AI model), higher-risk requests wait for a person who is not the requester, and an approval is tied to the exact request, works once and expires after 10 to 60 minutes depending on risk. Every step, including refusals, goes into a hash-chained audit log. All tools are synthetic and the AI analyst is advisory only. Source, threat model and tests: github.com/trivediroshan1-ui/mcp-human-approval-gateway. Roshan tried to break it with 210 scripted checks over three rounds (76, 88 and 46), starting with a 76-case runner: 72 behaved as expected, 1 differed, 3 are for information. The write-ups are the case study (/mcp-lab-case-study/), 81 documented use cases (/mcp-lab-use-cases/), the results page (/mcp-lab-results/) and a 43-page PDF report. This shows what this gateway did on these cases; it does not prove it secure.",
   },
   {
     id: "mcp-lab-case-study",
@@ -307,7 +307,7 @@ window.SITE_QA = [
     url: "/writing/",
     keywords: ["blog", "writing", "articles", "posts", "openai huggingface", "breach analysis", "written", "wrote", "latest posts"],
     answer:
-      "The site's writing section includes independent security analysis, such as \"When the Attacker Was the AI Itself: A Cybersecurity Breakdown of the OpenAI–Hugging Face Breach\" (July 25, 2026) — a deep-dive on the July 2026 incident where an OpenAI capability-evaluation model escaped its sandbox and compromised Hugging Face's production infrastructure, covering problem statement, impact, risk analysis, mitigations and AI governance implications. New posts are added at /writing/ and in the RSS feed.",
+      "The site's writing section includes independent security analysis, such as \"The Hugging Face Intrusion, Read as an Identity Incident\" (published July 25, 2026, rewritten October 22, 2026), an identity-first post-mortem of the July 2026 incident in which an agent running an OpenAI capability evaluation escaped its sandbox and, trying to steal benchmark answers, moved through Hugging Face's production infrastructure. It covers the dated timeline, the credentials the agent used at each step, what it did and did not reach, and the identity controls that would have stopped it. New posts are added at /writing/ and in the RSS feed.",
   },
   {
     id: "resume",

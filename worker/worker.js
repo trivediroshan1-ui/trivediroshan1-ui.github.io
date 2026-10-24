@@ -35,7 +35,7 @@ Rules:
 
 KNOWLEDGE:
 ### About Roshan Trivedi (/)
-Roshan Trivedi is a Credential Management Platform Owner & PAM Product Leader based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: "Identity is the control plane." He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern.
+Roshan Trivedi is a Credential Management Platform Owner based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: "Identity is the control plane." He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern.
 
 ### Areas of expertise (/)
 Core focus areas: Credential Management Platform ownership, PAM (Privileged Access Management) product leadership, Zero Standing Privilege, Non-Human Identity (NHI) management, IAM governance and audit/control mapping, plus using AI/agentic tooling responsibly as a security co-worker. Current work spans credential-management platform ownership, PAM product leadership, IAM control evaluation, roadmaps, architecture decisions, proof-of-concept leadership, migrations and audit mapping — plus independent research on non-human identity, MCP and agentic-AI security.
@@ -50,10 +50,10 @@ The site has a portfolio of privacy-safe case studies (employer names, client de
 "PAM Modernization & Zero Standing Privilege" — evolving privileged access from persistent entitlement toward verified, time-bound access. Developed a capability view spanning vaulting, rotation, session governance and just-in-time authorization; evaluated Zero Standing Privilege patterns against user journeys and integration constraints. Outcome: a modernization direction treating privileged access as a governed product journey, not just a vault deployment.
 
 ### Case study: Privileged Access Migration Planning (/case-studies/migration-planning/)
-"Privileged Access Migration Planning" — leading the analysis to move privileged capabilities safely between platforms. Led ERPM PAM tool analysis and capability mapping for the target-state decision; structured migration waves around dependency, risk, access criticality and rollback readiness. Outcome: a risk-aware migration approach that made hidden dependencies visible before implementation.
+"Privileged Access Migration Planning" — leading the analysis to move privileged capabilities safely between platforms. Led legacy PAM tool analysis and capability mapping for the target-state decision; structured migration waves around dependency, risk, access criticality and rollback readiness. Outcome: a risk-aware migration approach that made hidden dependencies visible before implementation.
 
 ### Case study: PAM, NHI & Cloud Platform Evaluation (/case-studies/platform-evaluation/)
-"PAM, NHI & Cloud Platform Evaluation" — comparing platforms through use-case fit, controls and operating-model readiness. Completed Delinea Secret Server and PRA proof-of-concept work, led StrongDM product analysis and operating-model planning, alongside structured assessments of Clutch Security and Wiz. Outcome: decision-ready analysis connecting technical capability to governance, integration and product ownership.
+"PAM, NHI & Cloud Platform Evaluation" — comparing platforms through use-case fit, controls and operating-model readiness. Completed proof-of-concept work on privileged secret-management and remote-access platforms, led product analysis and operating-model planning for a zero-trust infrastructure-access platform, alongside structured assessments of non-human-identity and cloud-security tools. Outcome: decision-ready analysis connecting technical capability to governance, integration and product ownership.
 
 ### Case study: IAM Audit & Control-Mapping Framework (/case-studies/audit-mapping/)
 "IAM Audit & Control-Mapping Framework" — translating control intent into platform responsibility, implementation evidence and sustainable ownership. Evaluated IAM control intent against platform capabilities and mapped control objectives to owners, evidence types and review considerations. Outcome: improved traceability between IAM design decisions and the evidence needed to demonstrate control effectiveness.
@@ -104,7 +104,7 @@ The site has a portfolio of privacy-safe case studies (employer names, client de
 The "MCP Human Approval Gateway" is a concept Roshan references in his case studies — deterministic policy, human approval, time-bound authorization and guarded AI-agent execution, the same human-in-the-loop approval pattern used in the Agentic AI Identity Governance case study. An interactive lab demonstrating it isn't published on the site yet.
 
 ### Writing / blog (/writing/)
-The site's writing section includes independent security analysis, such as "When the Attacker Was the AI Itself: A Cybersecurity Breakdown of the OpenAI–Hugging Face Breach" (July 25, 2026) — a deep-dive on the July 2026 incident where an OpenAI capability-evaluation model escaped its sandbox and compromised Hugging Face's production infrastructure, covering problem statement, impact, risk analysis, mitigations and AI governance implications.
+The site's writing section includes independent security analysis, such as "The Hugging Face Intrusion, Read as an Identity Incident" (published July 25, 2026, rewritten October 22, 2026), an identity-first post-mortem of the July 2026 incident in which an agent running an OpenAI capability evaluation escaped its sandbox and, trying to steal benchmark answers, moved through Hugging Face's production infrastructure. It covers the dated timeline, the credentials the agent used at each step, what it did and did not reach, and the identity controls that would have stopped it.
 
 ### Resume / CV (/Roshan_Trivedi_Resume.pdf)
 Roshan's current resume is linked from the homepage as a PDF (Roshan_Trivedi_Resume.pdf). Note: every case study on the site is intentionally anonymized and excludes employer, client and internal operational data — the résumé is the deliberate exception, including full employment history for verification.
@@ -180,6 +180,14 @@ export default {
       });
     }
 
+    // Small bodies only: a real question plus a short history is well under 8 KB.
+    if (Number(request.headers.get("Content-Length") || 0) > 8192) {
+      return new Response(JSON.stringify({ error: "Request too large" }), {
+        status: 413,
+        headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
+      });
+    }
+
     let body;
     try {
       body = await request.json();
@@ -224,8 +232,9 @@ export default {
       });
 
       if (!resp.ok) {
-        const errText = await resp.text();
-        return new Response(JSON.stringify({ error: "Upstream error", detail: errText.slice(0, 300) }), {
+        // Keep the upstream error in the Worker's own logs, not in the visitor's response.
+        console.error("Upstream error", resp.status, (await resp.text()).slice(0, 300));
+        return new Response(JSON.stringify({ error: "The assistant is unavailable right now. Please try again later." }), {
           status: 502,
           headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
         });
@@ -238,7 +247,8 @@ export default {
         headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
       });
     } catch (e) {
-      return new Response(JSON.stringify({ error: "Worker error", detail: String(e).slice(0, 300) }), {
+      console.error("Worker error", String(e).slice(0, 300));
+      return new Response(JSON.stringify({ error: "The assistant is unavailable right now. Please try again later." }), {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders(origin) },
       });
