@@ -5,16 +5,19 @@ import glob, html, os, re, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LAB = sys.argv[1] if len(sys.argv) > 1 else "/home/claude/ai-governance-lab"
 PAGE = os.path.join(ROOT, "ai-governance-lab/run/index.html")
-ROUNDS = [(6, "Round six: the agent only sends instructions", "T1 to T18"), (7, "Round seven: how an identity starts", "H1 to H12"), (8, "Round eight: when an agent goes round the gateway", "B1 to B12")]
+ROUNDS = [(6, "Round six: the agent only sends instructions", "T1 to T18"), (7, "Round seven: how an identity starts", "H1 to H12"), (8, "Round eight: when an agent goes round the gateway", "B1 to B12"), (9, "Round nine: an assistant that answers from documents", "Q1 to Q12")]
 def newest(r, pat):
     fs = sorted(glob.glob(f"{LAB}/results/round-{r}/*{pat}.md")); return fs[-1]
 def block(path, label):
     t = open(path, encoding="utf-8").read().strip()
     return f'<details class="rout"><summary>{html.escape(label)} <span>{html.escape(os.path.basename(path))}</span></summary><pre tabindex="0">{html.escape(t)}</pre></details>'
-out = ['<!--runout-->', '<section id="real-output"><h2>Rounds six to eight: the real output</h2>',
-       '<p class="body-text">Rounds six to eight ran later, in a Linux sandbox rather than on the MacBook, with Python 3.11, like the 24 Oct audit round. These are the files the run wrote, unedited. The first is the result of every case against my written guess. The second is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>']
+out = ['<!--runout-->', '<section id="real-output"><h2>Rounds six to nine: the real output</h2>',
+       '<p class="body-text">Rounds six to nine ran later, in a Linux sandbox rather than on the MacBook, with Python 3.11, like the 24 Oct audit round. These are the files the run wrote, unedited. The first is the result of every case against my written guess. The second is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>']
 for r, title, ids in ROUNDS:
     out.append(f'<h3>{title} ({ids})</h3>')
+    if r == 9:
+        first = sorted(glob.glob(f"{LAB}/results/round-9/*-v3.md"))[0]
+        out.append(block(first, "First run: 11 of 12 (Q8 was a fault in my masking code, fixed afterwards)"))
     out.append(block(newest(r, "-v3"), "All cases against my guesses"))
     out.append(block(newest(r, "-mutations"), "Controls switched off, one at a time"))
 out.append('<p class="body-text">The guesses themselves, with their SHA-256 hashes, are in the lab repository under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>.</p></section><!--/runout-->')

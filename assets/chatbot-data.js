@@ -505,6 +505,14 @@ window.SITE_QA = [
       "Round eight asks what happens if an agent goes round the gateway, for example with a leaked token. It tests three layers. Make it hard: the identity API accepts a credential only from the caller it was lent to, it expires in minutes, and the agent's runtime has no network route to the API. Notice: every change in the identity system's own log must match a decision the gateway signed, and a change with no decision is a bypass. Answer: the policy switches off the agent it can trace, cancels its waiting approvals and revokes its credentials and the leaked token, evidence is copied and hashed first, and a named person decides whether to roll back. It also covers allow, watch and block lists by account state (a leaver's account touched, a mover asking for new access too soon), a sponsor who leaves, a recorded helper for people who use assistive technology (a code, never medical detail), a signal that reaches a person with evidence and no verdict from an agent, sensitive data the agent cannot request, and a tampered audit log. 12 cases (B1 to B12) were guessed before the code and all came out as guessed; switching off 21 controls one at a time made the matching case fail in all 21. Limits: the API, vault, network and log are small models I wrote, no real agent tries to get round the wall, and the legal and offence questions need counsel.",
   },
   {
+    id: "ai-governance-lab-rag",
+    title: "AI governance lab: round nine, an assistant that answers from documents (RAG)",
+    url: "/ai-governance-lab/#rag",
+    keywords: ["round nine", "round 9", "rag", "retrieval augmented generation", "retrieval-augmented", "document assistant", "enterprise search", "copilot", "vector", "embeddings", "answer cache", "citations", "prompt injection", "erasure", "right to erasure", "masking", "permission aware"],
+    answer:
+      "Round nine asks where the permission is checked when a company assistant answers from your documents, and what still leaks. I wrote 12 cases (Q1 to Q12) before the code and tested a small model of it. What leaks: no permission check (Q1), a 'do not reveal' sentence in the prompt (Q2), a permission copy that has gone stale after someone moves team (Q4), a shared answer cache (Q6), source titles of files you may not see (Q7), a trace that stores chunk text (Q11), an assistant that uses its own broad identity (Q12) and a deleted document that is still in the index until it is rebuilt (Q9). What holds: filtering by the person's live permissions before retrieval (Q3), masking Aadhaar and PAN before indexing (Q8), and the gateway refusing an action that a document tells the assistant to take (Q5). Q10 is a limit: two documents you may read can combine into something you may not know, and no permission check stops that. The first run gave 11 of 12 as I guessed: Q8 was a fault in my masking code, which I fixed (not the guess) and kept both result files. 12 of 12 control-off checks were noticed, though some are weak. Limits: keyword search, not a vector database; the model is a stand-in; Linux sandbox run, Mac run still to come.",
+  },
+  {
     id: "ai-governance-lab-story",
     title: "AI governance lab: why I built it",
     url: "/ai-governance-lab/story/",
@@ -522,19 +530,19 @@ window.SITE_QA = [
   },
   {
     id: "ai-governance-lab-addendum-pdf",
-    title: "AI governance lab: addendum PDF, rounds five to eight",
+    title: "AI governance lab: addendum PDF, rounds five to nine",
     url: "/assets/ai-governance-lab-addendum.pdf",
-    keywords: ["addendum", "addendum pdf", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "56 cases", "controls table"],
+    keywords: ["addendum", "addendum pdf", "rounds five to nine", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "68 cases", "controls table"],
     answer:
-      "The addendum is a free 42-page PDF (7 by 10 inches) for rounds five to eight, dated 25 Oct 2026. It has 56 cases (14 in round five, 18 in six, 12 in seven, 12 in eight) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
+      "The addendum is a free 49-page PDF (7 by 10 inches) for rounds five to nine, dated 25 Oct 2026. It has 68 cases (14 in round five, 18 in six, 12 in seven, 12 in eight, 12 in nine) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, an assistant-answers-from-documents round, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
   },
   {
     id: "ai-governance-lab-real-output",
-    title: "AI governance lab: real run output for rounds six to eight",
+    title: "AI governance lab: real run output for rounds six to nine",
     url: "/ai-governance-lab/run/#real-output",
     keywords: ["real output", "run output", "results file", "raw results", "control off", "mutation", "run page", "evidence of run", "sandbox run"],
     answer:
-      "The run page now shows the unedited result files for rounds six, seven and eight: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. These rounds, and the 24 Oct audit round with 14 extra cases, ran in a Linux sandbox with Python 3.11, not on my MacBook. Rounds one to four ran on the MacBook with Python 3.9.6, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
+      "The run page now shows the unedited result files for rounds six to nine: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. These rounds, and the 24 Oct audit round with 14 extra cases, ran in a Linux sandbox with Python 3.11, not on my MacBook. Rounds one to four ran on the MacBook with Python 3.9.6, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
   },
   {
     id: "ai-governance-lab-where-to-start",
@@ -542,7 +550,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/",
     keywords: ["where to start", "what to read first", "order to read", "how to read", "guide to the lab", "overview", "start here", "quick tour"],
     answer:
-      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 67-page book and the 42-page addendum for rounds five to eight. The last part of each says what the lab does not cover.",
+      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 67-page book and the 49-page addendum for rounds five to nine. The last part of each says what the lab does not cover.",
   },
   {
     id: "ai-governance-lab-risks",
