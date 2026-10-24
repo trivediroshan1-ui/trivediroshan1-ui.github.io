@@ -40,7 +40,7 @@ for r, title in ROUNDS:
     if r == 11:
         out.append(sandbox(11, "v3", "In the sandbox, first run: 11 of 12 (D11 was a fault in my test, fixed afterwards)", first=True))
     out += [sandbox(r, "v3", "In the sandbox: all cases against my guesses"), sandbox(r, "mutations", "In the sandbox: controls switched off, one at a time")]
-out.append('<p class="body-text">The Mac files are also on the lab repository, on the branches <code>mac-run</code> (rounds five to nine) and <code>mac-run-ten</code> (round ten) and <code>mac-run-eleven</code> (round eleven). The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>.</p></section><!--/runout-->')
+out.append('<p class="body-text">The Mac files are also on the lab repository, on the branches <code>mac-run</code> (rounds five to nine) and <code>mac-run-ten</code> (round ten) and <code>mac-run-eleven</code> (round eleven). The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>. Every command I typed, with its output and a SHA-256 for each Mac file, is on <a href="/ai-governance-lab/mac/">the Mac record</a>.</p></section><!--/runout-->')
 block = "\n      ".join(x for x in out if x)
 s = open(PAGE, encoding="utf-8").read()
 s = re.sub(r"\n?\s*<!--runout-->.*?<!--/runout-->", "", s, flags=re.S)
