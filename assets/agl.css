@@ -239,3 +239,12 @@ ol.ev-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns
 .agl .cx-body a{color:var(--a-accent)}
 @media (max-width:560px){.agl .cx-head{grid-template-columns:auto minmax(0,1fr) auto}.agl .cx-badges{grid-column:2 / 4;justify-content:flex-start}}
 @media (prefers-reduced-motion:reduce){.agl .cx-step,.agl .cx-chev{transition:none}}
+
+/* Architecture diagrams: the SVGs take the site's own colours when inline */
+.agl .dg{--d-bg:transparent;--d-ink:var(--a-ink);--d-mut:var(--a-muted);--d-line:var(--a-line);--d-panel:var(--a-panel2);--d-acc:var(--a-accent);--d-accs:var(--a-accent-soft);--d-ok:var(--a-ok);--d-oks:var(--a-ok-soft);--d-bad:var(--a-bad);--d-bads:var(--a-bad-soft);--d-warn:var(--a-warn);--d-warns:var(--a-warn-soft);display:block;width:100%;min-width:540px;max-width:640px;height:auto;margin:0 auto}
+.agl .dg-fig{margin:0;border:1px solid var(--a-line);border-radius:12px;background:var(--a-panel);padding:16px;min-width:0}
+.agl .dg-wrap{min-width:0;overflow-x:auto}
+.agl .dg-fig figcaption{margin-top:10px;font-size:13px;color:var(--a-muted)}
+.agl .dg-fig figcaption a{color:var(--a-accent)}
+.agl.dg-page{display:grid;gap:28px}
+.agl.dg-page>section{min-width:0}.agl.dg-page{grid-template-columns:minmax(0,1fr)}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="dg" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-agent-t agl-agent-d" width="640" height="640" preserveAspectRatio="xMidYMin meet"><title id="agl-agent-t">How an agent gets and uses access</title><desc id="agl-agent-d">A person sponsors an agent. The agent gets a token that lasts 15 minutes and only the scopes it was registered with. A privileged action needs a short grant from someone else. One kill switch revokes everything.</desc><style>
+.dg{background:var(--d-bg,#ffffff);--d-ink:#0f172a;--d-mut:#52617a;--d-line:#b7c3d4;--d-panel:#f1f5fa;--d-acc:#0a7285;--d-accs:rgba(10,114,133,.12);--d-ok:#0b7a5b;--d-oks:rgba(11,122,91,.12);--d-bad:#c0264a;--d-bads:rgba(192,38,74,.12);--d-warn:#8a5208;--d-warns:rgba(138,82,8,.14);font-family:var(--a-fb,system-ui,-apple-system,"Segoe UI",sans-serif)}
+@media (prefers-color-scheme:dark){.dg{background:var(--d-bg,#0b1220);--d-ink:#f1f5f9;--d-mut:#93a1bd;--d-line:#2c3a55;--d-panel:#101a2c;--d-acc:#4de2ff;--d-accs:rgba(77,226,255,.12);--d-ok:#7df2d0;--d-oks:rgba(125,242,208,.12);--d-bad:#ff7a93;--d-bads:rgba(255,122,147,.14);--d-warn:#f7c873;--d-warns:rgba(247,200,115,.14)}}
+.dg text{fill:var(--d-ink)}
+.dg .dg-t{font-weight:700;font-size:14px}
+.dg .dg-s{font-size:12px;fill:var(--d-mut)}
+.dg .dg-n{font:600 11px/1 var(--a-fm,ui-monospace,Menlo,monospace);fill:var(--d-mut)}
+.dg .dg-h{font-weight:700;font-size:15px}
+.dg .dg-node{fill:var(--d-panel);stroke:var(--d-line);stroke-width:1.5}
+.dg .dg-acc{stroke:var(--d-acc);fill:var(--d-accs)}
+.dg .dg-okb{stroke:var(--d-ok);fill:var(--d-oks)}
+.dg .dg-badb{stroke:var(--d-bad);fill:var(--d-bads)}
+.dg .dg-warnb{stroke:var(--d-warn);fill:var(--d-warns)}
+.dg .dg-ln{stroke:var(--d-line);stroke-width:2;fill:none}
+.dg .dg-dash{stroke-dasharray:5 5}
+.dg .dg-ar{fill:var(--d-line)}
+.dg .dg-lbl{font-size:12px;font-weight:600}
+.dg .dg-good{fill:var(--d-ok)}.dg .dg-bd{fill:var(--d-bad)}.dg .dg-wn{fill:var(--d-warn)}
+.dg text.dg-good,.dg text.dg-bd,.dg text.dg-wn{font-size:12px;font-weight:700}
+.dg text.dg-good{fill:var(--d-ok)}.dg text.dg-bd{fill:var(--d-bad)}.dg text.dg-wn{fill:var(--d-warn)}
+.dg .dg-pkt{offset-rotate:0deg;opacity:0}
+@media (prefers-reduced-motion:reduce){.dg *{animation:none!important}.dg .dg-pkt{opacity:0}.dg .dg-badge{opacity:1!important}}
+@keyframes agl-agent-p1{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}92%{offset-distance:100%;opacity:1}96%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-agent-p1{offset-path:path('M 480 82 L 480 130 L 480 192 L 480 240 L 400 302 L 400 350 L 150 350 L 150 372');animation:agl-agent-p1 9s linear infinite}
+@keyframes agl-agent-p2{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}92%{offset-distance:100%;opacity:1}96%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-agent-p2{offset-path:path('M 480 82 L 480 130 L 480 192 L 480 240 L 560 302 L 560 350 L 505 350 L 505 372');animation:agl-agent-p2 9s linear infinite}</style>
+<rect class="dg-node " x="20" y="20" width="280" height="62" rx="10"/>
+<text class="dg-t" x="34" y="42">A human sponsor</text>
+<text class="dg-s" x="34" y="61">Named, active, answers for the agent.</text>
+<rect class="dg-node " x="340" y="20" width="280" height="62" rx="10"/>
+<text class="dg-t" x="354" y="42">The agent</text>
+<text class="dg-s" x="354" y="61">Registered with its own identity.</text>
+<path class="dg-ln" d="M 300 51 L 336 51"/>
+<polygon class="dg-ar" points="330,46 330,56 338,51"/>
+<text class="dg-s" x="318" y="44" text-anchor="middle" >registers</text>
+<path class="dg-ln" d="M 480 82 L 480 130"/>
+<polygon class="dg-ar" points="475,121 485,121 480,129"/>
+<text class="dg-s" x="490" y="110" text-anchor="start" >asks for a token</text>
+<rect class="dg-node dg-acc" x="340" y="130" width="280" height="62" rx="10"/>
+<text class="dg-t" x="354" y="152">Token service</text>
+<text class="dg-s" x="354" y="171">15-minute token. Only the agent&#x27;s scopes.</text>
+<path class="dg-ln" d="M 480 192 L 480 240"/>
+<polygon class="dg-ar" points="475,231 485,231 480,239"/>
+<text class="dg-s" x="490" y="222" text-anchor="start" >short-lived token</text>
+<rect class="dg-node " x="340" y="240" width="280" height="62" rx="10"/>
+<text class="dg-t" x="354" y="262">A tool or data store</text>
+<text class="dg-s" x="354" y="281">Checks the scope on every call.</text>
+<path class="dg-ln" d="M 400 302 L 400 350 L 150 350 L 150 372"/>
+<polygon class="dg-ar" points="145,363 155,363 150,371"/>
+<text class="dg-lbl dg-good" x="275" y="342" text-anchor="middle" >crm.read: in scope</text>
+<path class="dg-ln" d="M 560 302 L 560 350 L 505 350 L 505 372"/>
+<polygon class="dg-ar" points="500,363 510,363 505,371"/>
+<text class="dg-lbl dg-bd" x="585" y="342" text-anchor="middle" >vault.read</text>
+<rect class="dg-node dg-okb" x="20" y="372" width="260" height="54" rx="10"/>
+<text class="dg-t" x="34" y="394">Allowed</text>
+<text class="dg-s" x="34" y="413">The call is logged.</text>
+<rect class="dg-node dg-badb" x="380" y="372" width="240" height="54" rx="10"/>
+<text class="dg-t" x="394" y="394">Denied</text>
+<text class="dg-s" x="394" y="413">Scope not granted. Logged.</text>
+<rect class="dg-node dg-warnb" x="20" y="466" width="300" height="80" rx="10"/>
+<text class="dg-t" x="34" y="488">Privileged action</text>
+<text class="dg-s" x="34" y="512" text-anchor="start" >Needs a 30-minute grant from someone other than</text>
+<text class="dg-s" x="34" y="530" text-anchor="start" >the sponsor. The session is recorded.</text>
+<rect class="dg-node dg-badb" x="340" y="466" width="280" height="80" rx="10"/>
+<text class="dg-t" x="354" y="488">Kill switch</text>
+<text class="dg-s" x="354" y="512" text-anchor="start" >One call stops the agent and every</text>
+<text class="dg-s" x="354" y="530" text-anchor="start" >token it holds.</text>
+<text class="dg-s" x="320" y="580" text-anchor="middle" >A sponsor who leaves disables the agent. Idle agents are flagged.</text>
+<circle id="agl-agent-p1" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
+<circle id="agl-agent-p2" class="dg-pkt dg-bd" r="7" cx="0" cy="0"/>
+</svg>
