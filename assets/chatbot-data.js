@@ -473,6 +473,14 @@ window.SITE_QA = [
       "The case explorer lists all 59 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
+    id: "ai-governance-lab-round-five",
+    title: "AI governance lab: round five and the framework map",
+    url: "/ai-governance-lab/#round5",
+    keywords: ["round five", "round 5", "vendor read access", "read access on your domain", "oauth consent", "permission aware search", "retrieval", "mover", "access review", "toxic combination", "iso 27001", "nist 800-53", "pci dss", "hipaa", "framework map"],
+    answer:
+      "Round five added 14 cases on 24 Oct 2026 after I audited the lab. They cover vendor AI apps asking for read access on a whole domain (held until narrowed, owned and time-limited), a search that ignores file permissions (it leaks) versus one that checks them, a stale permission copy after someone moves team, an agent whose sponsor moves, an access review of agents, a toxic combination (HR read plus send email), tokens made for one service, a person who leaves while an agent acts for them, step-up sign-in for privileged approvals, personal data in the log, and a log line with an earlier date (the hash chain accepts it). All 14 matched my guesses, but I wrote both the guesses and the code. The lab page also maps the controls to ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA.",
+  },
+  {
     id: "ai-governance-lab-story",
     title: "AI governance lab: why I built it",
     url: "/ai-governance-lab/story/",
