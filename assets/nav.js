@@ -54,6 +54,7 @@
           ["/mcp-lab-portal/", "Portal: 161 case cards", "search"]] },
         { title: "AI governance lab", k: "ai", items: [
           ["/ai-governance-lab/", "Overview: what held, what broke", "shield"],
+          ["/ai-governance-lab/story/", "Why I built this lab", "doc"],
           ["/ai-governance-lab/try/", "Try it yourself", "flask"],
           ["/ai-governance-lab/cases/", "Every use case, one by one", "list"],
           ["/ai-governance-lab/diagrams/", "Architecture diagrams", "shield"],
