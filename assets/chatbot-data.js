@@ -470,7 +470,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/cases/",
     keywords: ["use cases", "all cases", "every case", "case explorer", "a1", "g10", "i7", "e5", "kill switch case", "what does case"],
     answer:
-      "The case explorer lists all 91 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
+      "The case explorer lists all 103 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
     id: "ai-governance-lab-round-five",
@@ -487,6 +487,14 @@ window.SITE_QA = [
     keywords: ["round six", "round 6", "agent api", "scim", "rest api", "identity lifecycle", "joiner mover leaver", "vault", "hashicorp vault", "delinea", "credential checkout", "executor", "gateway", "agents send instructions", "agent never holds the credential"],
     answer:
       "Round six tests a pattern where an agent does not act on identities itself. It sends a fixed-shape request to a gateway outside the agent, which checks identity, policy, rate and approval and signs a decision. A separate executor, with its own identity, borrows a short-lived credential from a vault, calls the identity API and gives the credential back, so the agent never holds it. 18 cases (T1 to T18) were guessed before the code and all came out as guessed; switching off 12 controls one at a time made the matching case fail in all 12. Limits: the vault and API are small models I wrote, not HashiCorp Vault, Delinea or a SCIM product, the AI model itself is not tested, a wrong-but-allowed request (T15) passes every check, and T18 is an anti-pattern shown by construction.",
+  },
+  {
+    id: "ai-governance-lab-hr-lifecycle",
+    title: "AI governance lab: round seven, from HR to the directory",
+    url: "/ai-governance-lab/#hr-lifecycle",
+    keywords: ["round seven", "round 7", "hr approval", "hire event", "pre-hire", "onboarding", "joiner", "entra", "active directory", "mfa", "sso", "birthright access", "talent acquisition", "bu hr", "background verification", "vendor onboarding", "reconciliation", "consent", "data collected"],
+    answer:
+      "Round seven starts where an identity really starts: in HR. Talent acquisition HR and BU HR (two different people) approve, background verification must be clear, and only then does a hire event exist. That event is the only trigger. It carries only the minimum (name, email, team, job code, manager, start date); PAN, Aadhaar and bank details stay in HR. The AI agent prepares and proposes, and the gateway refuses a create request that no approved event backs. The account is created through an API, stays off until the start date, then turns on with only the access for the job code. MFA enrolment and the signed acceptable-use policy come on day one. Extra access the agent proposes from peers waits for the manager, and toxic combinations are refused. An auditor reconciles HR against the directory and flags accounts with no HR record. 12 cases (H1 to H12), all as guessed; the HR system, identity tool and directory are small models I wrote, not Workday, SailPoint or Entra.",
   },
   {
     id: "ai-governance-lab-story",
