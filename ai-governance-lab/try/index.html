@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Run the AI governance lab in your browser: three plain filters on your own made-up text, all 53 variants, a 200-sample score, and the assistant test for your own assistant." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ai-governance-lab/try/" />
+    <meta property="og:title" content="AI governance lab: try it yourself" />
+    <meta property="og:description" content="Run the AI governance lab in your browser: three plain filters on your own made-up text, all 53 variants, a 200-sample score, and the assistant test for your own assistant." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ai-governance-lab/try/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>Try the AI governance lab &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261024d">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261019f" defer></script>
+  </head>
+  <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      <header class="hero mcp-hero">
+        <p class="eyebrow">AI governance lab</p>
+        <h1>Try it yourself</h1>
+        <p class="dek">Run the same plain filters I tested, on your own made-up text, in your browser. Then test your own assistant against the same nine requests I used.</p>
+        <div class="mcp-ribbon" aria-hidden="true"></div>
+      </header>
+      <section><p class="body-text">This page is the hands-on part of <a href="/ai-governance-lab/">the write-up</a>. The three filters are ported from the Python lab, and I checked the port against the original on more than 2,000 texts: the masked output, the findings and the injection flag were identical every time. Nothing you type leaves your device. If you find a text that fools a filter, I would like to know.</p></section>
+      <div id="agl-try"></div>
+      <section style="margin-top:22px"><h2>What to expect</h2>
+        <ul class="approach-list">
+          <li>The filters are deliberately plain: regular expressions, the Aadhaar and card checksums, and a short list of injection phrases. They are not a product.</li>
+          <li>Every number on this page is made up and generated in your browser. The numbers follow real formats on purpose, so a filter cannot tell them from real ones.</li>
+          <li>v3 was written to fix what v2 missed on the lab&rsquo;s own samples, so its high scores here are not a detection rate.</li>
+          <li>The assistant test covers one policy and nine requests. A pass is a data point, not a guarantee.</li>
+        </ul>
+      </section>
+      <aside class="hg-next" aria-labelledby="hg-next-t">
+        <p class="eyebrow">Where next</p>
+        <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>
+        <p class="lede">Everything here is written to be useful on its own. If it matches a problem you are working on, I would like to hear how you handle it.</p>
+        <div class="grid">
+          <a href="/ai-governance-lab/" style="--k:#4de2ff"><b>The write-up</b><span>What held, what broke and the number I do not trust.</span></a>
+          <a href="/labs/" style="--k:#c4b5fd"><b>All labs</b><span>The MCP approval lab and other small projects.</span></a>
+          <a href="/case-studies/agentic-ai-identity-governance/" style="--k:#7df2d0"><b>Agent identity governance</b><span>The thinking behind the agent identity tests.</span></a>
+          <a href="/Roshan_Trivedi_Resume.pdf" style="--k:#c4b5fd"><b>R&eacute;sum&eacute;</b><span>Roles, focus areas and background (PDF).</span></a>
+          <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>If you can think of a variant that would break a filter, send it.</span></a>
+        </div>
+      </aside>
+    </main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script src="/assets/agl-try-filters.js?v=20261024d"></script>
+  <script src="/assets/agl-try.js?v=20261024d"></script>
+  <script src="/assets/agl-boot-try.js?v=20261024d"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
