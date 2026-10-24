@@ -36,3 +36,10 @@ html[data-theme="light"] .newpill{background:#f2b84b}
 @keyframes nl-draw{0%{stroke-dashoffset:60}35%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:60}}
 html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 55%,#fdf3dc)}
 @media (prefers-reduced-motion:reduce){.newlab .doodle .eye,.newlab .doodle .shield,.newlab .doodle .tick{animation:none;stroke-dasharray:none}}
+
+.newlab .links{display:flex;flex-wrap:wrap;gap:6px 22px}
+.newlab .stretch::after{content:"";position:absolute;inset:0;border-radius:16px}
+.newlab .book{position:relative;z-index:2;text-decoration:underline;text-underline-offset:3px}
+.newlab .book::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--warn,#f7c873);margin-right:7px;animation:nl-blink 1.2s steps(2,start) infinite}
+.newlab .go{text-decoration:none}
+@media (prefers-reduced-motion:reduce){.newlab .book::before{animation:none}}

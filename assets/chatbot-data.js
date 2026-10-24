@@ -488,4 +488,12 @@ window.SITE_QA = [
     answer:
       "The lab is needed because AI tools are already in workplaces before they are approved, people paste customer details and passwords into prompts, agents are given access and forgotten, and there is often no trustworthy record afterwards. The risks I list: the lab can flatter itself because I wrote the controls and tests; a fitted score looks like a result; made-up data is cleaner than real data; a gateway only governs what goes through it; false alarms cost trust; the audit log can become the leak; flagging an idle agent is not removing its access; and meaning is still a human job. It is for security and identity teams, risk and compliance people and engineers who run a gateway or agent platform. It is not a product review and not legal advice.",
   },
+  {
+    id: "ai-governance-lab-book",
+    title: "AI governance lab book: Does AI Governance Hold?",
+    url: "/ai-governance-lab/#book",
+    keywords: ["book", "pdf", "download", "lab book", "does ai governance hold", "free book", "ebook", "read offline"],
+    answer:
+      "\"Does AI Governance Hold?\" is a free 67-page PDF (7 by 10 inches) that puts the whole AI governance lab in one place: a preface on why I built it, all 59 lab cases with their steps and results, the held-out tests, the Presidio comparison, the real-assistant test, the risks, twelve questions to ask before giving any AI tool access (for example when a vendor says it needs read access to your domain), the control map to ISO 42001, NIST AI RMF, the EU AI Act and Indian guidance, and a glossary. It is free to read and share with credit. All data in it is made up.",
+  },
 ];
