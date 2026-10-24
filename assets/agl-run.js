@@ -87,7 +87,7 @@ function mountRun(root){
     adv(); timer=setInterval(adv, reduce?1800:2400); label();
   }
   function renderTerm(){
-    body.replaceChildren(); tname.textContent="Terminal on the MacBook · round "+round;
+    body.replaceChildren(); tname.textContent="Terminal · round "+round;
     D.term[round].forEach(function(b){
       var blk=el("div","blk"); blk.dataset.step=b.step;
       b.lines.forEach(function(line){

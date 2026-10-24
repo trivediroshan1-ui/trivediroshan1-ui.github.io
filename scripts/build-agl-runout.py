@@ -12,7 +12,7 @@ def block(path, label):
     t = open(path, encoding="utf-8").read().strip()
     return f'<details class="rout"><summary>{html.escape(label)} <span>{html.escape(os.path.basename(path))}</span></summary><pre tabindex="0">{html.escape(t)}</pre></details>'
 out = ['<!--runout-->', '<section id="real-output"><h2>Rounds six to eight: the real output</h2>',
-       '<p class="body-text">Rounds six to eight ran later, in a Linux sandbox rather than on the MacBook, with Python 3.11. These are the files the run wrote, unedited. The first is the result of every case against my written guess. The second is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>']
+       '<p class="body-text">Rounds six to eight ran later, in a Linux sandbox rather than on the MacBook, with Python 3.11, like the 24 Oct audit round. These are the files the run wrote, unedited. The first is the result of every case against my written guess. The second is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>']
 for r, title, ids in ROUNDS:
     out.append(f'<h3>{title} ({ids})</h3>')
     out.append(block(newest(r, "-v3"), "All cases against my guesses"))
