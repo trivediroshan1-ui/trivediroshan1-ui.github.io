@@ -10,28 +10,32 @@ ROUNDS = [(5, "The 24 Oct audit round: 14 extra cases"), (6, "Round six: the age
           (7, "Round seven: how an identity starts (H1 to H12)"), (8, "Round eight: when an agent goes round the gateway (B1 to B12)"),
           (9, "Round nine: an assistant that answers from documents (Q1 to Q12)"),
           (10, "Round ten: credentials, sessions and identity edge cases (C1 to C12)"),
-          (11, "Round eleven: delegation, keys and organisations (D1 to D12)")]
+          (11, "Round eleven: delegation, keys and organisations (D1 to D12)"),
+          (12, "Round twelve: approvals (F1 to F7)")]
 
 def details(label, name, text):
     return f'<details class="rout"><summary>{html.escape(label)} <span>{html.escape(name)}</span></summary><pre tabindex="0">{html.escape(text.strip())}</pre></details>'
 
-def sandbox(r, kind, label, first=False):
+def sandbox(r, kind, label, first=False, stamp=None, skip=None):
     fs = sorted(glob.glob(f"{LAB}/results/round-{r}/*-{kind}.md"))
+    if stamp: fs = [f for f in fs if stamp in f]
+    if skip: fs = [f for f in fs if skip not in f]
     if not fs: return ""
     f = fs[0] if first else fs[-1]
     return details(label, os.path.basename(f), open(f, encoding="utf-8").read())
 
 def mac(r, kind, label):
-    br = {10: "origin/mac-run-ten", 11: "origin/mac-run-eleven"}.get(r, "origin/mac-run")
+    br = {10: "origin/mac-run-ten", 11: "origin/mac-run-eleven", 12: "origin/mac-run-twelve"}.get(r, "origin/mac-run")
     names = subprocess.run(["git", "-C", LAB, "ls-tree", "-r", "--name-only", br, f"results/round-{r}/"], capture_output=True, text=True).stdout.split()
-    names = [n for n in names if ("/20261024-2228" in n if r == 10 else "/20261024-2248" in n)] if r in (10, 11) else names     # the Mac files only
+    flt = {10: "/20261024-2228", 11: "/20261024-2248", 12: "/20261024-2330"}.get(r)
+    names = [n for n in names if flt in n] if flt else names     # the Mac files only
     names = sorted(n for n in names if n.endswith(f"-{kind}.md"))
     if not names: return ""
     t = subprocess.run(["git", "-C", LAB, "show", f"{br}:{names[-1]}"], capture_output=True, text=True).stdout
     return details(label, os.path.basename(names[-1]), t)
 
-out = ['<!--runout-->', '<section id="real-output"><h2>Rounds five to eleven: the real output, on a Mac and in a sandbox</h2>',
-       '<p class="body-text">The 24 Oct audit round and rounds six to eleven were first run in a Linux sandbox (Python 3.11). On 25 Oct I ran all of them again on my MacBook Air (Darwin, Python 3.9.6). The verdicts are the same on both machines. Below, each round shows the Mac files first and the sandbox files after them, unedited. In each pair, one file is every case against my written guess, and the other is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>']
+out = ['<!--runout-->', '<section id="real-output"><h2>Rounds five to twelve: the real output, on a Mac and in a sandbox</h2>',
+       '<p class="body-text">The 24 Oct audit round and rounds six to twelve were first run in a Linux sandbox (Python 3.11). On 25 Oct I ran all of them again on my MacBook Air (Darwin, Python 3.9.6). The verdicts are the same on both machines. Below, each round shows the Mac files first and the sandbox files after them, unedited. In each pair, one file is every case against my written guess, and the other is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>']
 for r, title in ROUNDS:
     out.append(f"<h3>{html.escape(title)}</h3>")
     out += [mac(r, "v3", "On my Mac: all cases against my guesses"), mac(r, "mutations", "On my Mac: controls switched off, one at a time")]
@@ -39,8 +43,13 @@ for r, title in ROUNDS:
         out.append(sandbox(9, "v3", "In the sandbox, first run: 11 of 12 (Q8 was a fault in my masking code, fixed afterwards)", first=True))
     if r == 11:
         out.append(sandbox(11, "v3", "In the sandbox, first run: 11 of 12 (D11 was a fault in my test, fixed afterwards)", first=True))
-    out += [sandbox(r, "v3", "In the sandbox: all cases against my guesses"), sandbox(r, "mutations", "In the sandbox: controls switched off, one at a time")]
-out.append('<p class="body-text">The Mac files are also on the lab repository, on the branches <code>mac-run</code> (rounds five to nine) and <code>mac-run-ten</code> (round ten) and <code>mac-run-eleven</code> (round eleven). The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>. Every command I typed, with its output and a SHA-256 for each Mac file, is on <a href="/ai-governance-lab/mac/">the Mac record</a>.</p></section><!--/runout-->')
+    out += [sandbox(r, "v3", "In the sandbox: all cases against my guesses"), sandbox(r, "mutations", "In the sandbox: controls switched off, one at a time", skip="231226" if r == 9 else None)]
+    if r == 9:
+        out.append(sandbox(9, "mutations", "In the sandbox: three stronger control-off checks added later (14 of 15 noticed)", stamp="231226"))
+        names9 = [n for n in subprocess.run(["git", "-C", LAB, "ls-tree", "-r", "--name-only", "origin/mac-run-nine-checks", "results/round-9/"], capture_output=True, text=True).stdout.split() if "/20261024-2324" in n and n.endswith("-mutations.md")]
+        if names9:
+            out.append(details("On my Mac: the same three stronger checks (14 of 15 noticed)", os.path.basename(names9[-1]), subprocess.run(["git", "-C", LAB, "show", f"origin/mac-run-nine-checks:{names9[-1]}"], capture_output=True, text=True).stdout))
+out.append('<p class="body-text">The Mac files are also on the lab repository, on the branches <code>mac-run</code> (rounds five to nine) and <code>mac-run-ten</code> (round ten) and <code>mac-run-eleven</code> (round eleven) and <code>mac-run-twelve</code> (round twelve), plus <code>mac-run-nine-checks</code> (the three stronger round-nine checks). The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>. Every command I typed, with its output and a SHA-256 for each Mac file, is on <a href="/ai-governance-lab/mac/">the Mac record</a>.</p></section><!--/runout-->')
 block = "\n      ".join(x for x in out if x)
 s = open(PAGE, encoding="utf-8").read()
 s = re.sub(r"\n?\s*<!--runout-->.*?<!--/runout-->", "", s, flags=re.S)
