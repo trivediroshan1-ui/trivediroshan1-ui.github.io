@@ -1,0 +1,449 @@
+Last login: Sun Oct 25 03:33:47 on console
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Roshans-MacBook-Air:~ roshan$ 
+  [Restored 25-Oct-2026 at 3:40:56 AM]
+Last login: Sun Oct 25 03:36:06 on ttys000
+date: illegal time format
+usage: date [-jnRu] [-r seconds|file] [-v[+|-]val[ymwdHMS]]
+            [-I[date | hours | minutes | seconds]]
+            [-f fmt date | [[[mm]dd]HH]MM[[cc]yy][.ss]] [+format]
+-bash: Saving: command not found
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+Roshans-MacBook-Air:~ roshan$ cd ~/path/to/ai-governance-lab
+-bash: cd: /Users/roshan/path/to/ai-governance-lab: No such file or directory
+Roshans-MacBook-Air:~ roshan$ git status
+fatal: not a git repository (or any of the parent directories): .git
+Roshans-MacBook-Air:~ roshan$ clear
+
+
+Roshans-MacBook-Air:~ roshan$ find ~ -maxdepth 4 -type d -name "ai-governance-lab*" 2>/dev/null
+/Users/roshan/ai-governance-lab
+/Users/roshan/ai-governance-lab-work
+/Users/roshan/ai-governance-lab-work/ai-governance-lab
+Roshans-MacBook-Air:~ roshan$   cd "/Users/roshan/Documents/ai-governance-lab"
+-bash: cd: /Users/roshan/Documents/ai-governance-lab: No such file or directory
+Roshans-MacBook-Air:~ roshan$   cd "/Users/roshan/Documents/ai-governance-lab"
+-bash: cd: /Users/roshan/Documents/ai-governance-lab: No such file or directory
+Roshans-MacBook-Air:~ roshan$ cd "/Users/roshan/Documents/ai-governance-lab"
+-bash: cd: /Users/roshan/Documents/ai-governance-lab: No such file or directory
+Roshans-MacBook-Air:~ roshan$ git status
+fatal: not a git repository (or any of the parent directories): .git
+Roshans-MacBook-Air:~ roshan$   find ~ -maxdepth 5 -name "run.py" 2>/dev/null
+/Users/roshan/ai-governance-lab/run.py
+/Users/roshan/ai-governance-lab-work/ai-governance-lab/run.py
+Roshans-MacBook-Air:~ roshan$ for d in /Users/roshan/ai-governance-lab /Users/roshan/ai-governance-lab-work /Users/roshan/ai-governance-lab-work/ai-governance-lab; do echo "== $d"; ls "$d" | head -12; git -C "$d" log --oneline -1 2>&1 | head -1; git -C "$d" remote -v 2>&1 | head -1; done
+== /Users/roshan/ai-governance-lab
+LICENSE
+README.md
+adapters
+cases
+compare.py
+data
+docs
+first-run.txt
+heldout.py
+lab
+rates.py
+results
+efe55b9 Remove incomplete Track P re-run record (placeholder notes)
+origin	https://github.com/trivediroshan1-ui/ai-governance-lab.git (fetch)
+== /Users/roshan/ai-governance-lab-work
+ai-governance-lab
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+== /Users/roshan/ai-governance-lab-work/ai-governance-lab
+LICENSE
+README.md
+adapters
+cases
+compare.py
+data
+docs
+first-run.txt
+heldout.py
+lab
+rates.py
+results
+c31f364 Held-out results: v1, v2, v3 each 4 of 10
+origin	https://github.com/trivediroshan1-ui/ai-governance-lab.git (fetch)
+Roshans-MacBook-Air:~ roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 --version
+Python 3.9.6
+Roshans-MacBook-Air:ai-governance-lab roshan$ git fetch origin
+remote: Enumerating objects: 129, done.
+remote: Counting objects: 100% (129/129), done.
+remote: Compressing objects: 100% (67/67), done.
+remote: Total 121 (delta 86), reused 87 (delta 54), pack-reused 0 (from 0)
+Receiving objects: 100% (121/121), 82.43 KiB | 1.11 MiB/s, done.
+Resolving deltas: 100% (86/86), completed with 8 local objects.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+   efe55b9..cb5f3b8  main        -> origin/main
+ * [new branch]      round-eight -> origin/round-eight
+ * [new branch]      round-nine  -> origin/round-nine
+ * [new branch]      round-six   -> origin/round-six
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout main
+Already on 'main'
+Your branch is behind 'origin/main' by 11 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+Roshans-MacBook-Air:ai-governance-lab roshan$ git pull origin main
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * branch            main       -> FETCH_HEAD
+Updating efe55b9..cb5f3b8
+Fast-forward
+ cases/round-5.json                             |  20 ++
+ cases/round-6.json                             |  24 ++
+ cases/round-7.json                             |  18 +
+ cases/round-8.json                             |  90 +++++
+ docs/agent-to-api.md                           |  34 ++
+ lab/actions.py                                 | 450 +++++++++++++++++++++++++
+ lab/bypass.py                                  | 281 +++++++++++++++
+ lab/cases_r5.py                                | 247 ++++++++++++++
+ lab/cases_r6.py                                | 265 +++++++++++++++
+ lab/cases_r7.py                                | 266 +++++++++++++++
+ lab/cases_r8.py                                | 285 ++++++++++++++++
+ lab/consent.py                                 |  74 ++++
+ lab/identity.py                                |  75 ++++-
+ lab/lifecycle.py                               | 262 ++++++++++++++
+ lab/retrieval.py                               |  38 +++
+ mutations_r6.py                                |  92 +++++
+ mutations_r7.py                                |  78 +++++
+ mutations_r8.py                                |  82 +++++
+ results/round-2/compare-20261024-110316.md     |  60 ++++
+ results/round-5/20261024-181005-v3.json        | 275 +++++++++++++++
+ results/round-5/20261024-181005-v3.md          |  41 +++
+ results/round-5/20261024-181016-v3.json        | 280 +++++++++++++++
+ results/round-5/20261024-181016-v3.md          |  41 +++
+ results/round-6/20261024-190146-mutations.json |  98 ++++++
+ results/round-6/20261024-190146-mutations.md   |  18 +
+ results/round-6/20261024-190153-v3.json        | 360 ++++++++++++++++++++
+ results/round-6/20261024-190153-v3.md          |  30 ++
+ results/round-6/20261024-191616-mutations.json |  98 ++++++
+ results/round-6/20261024-191616-mutations.md   |  18 +
+ results/round-6/20261024-191616-v3.json        | 360 ++++++++++++++++++++
+ results/round-6/20261024-191616-v3.md          |  30 ++
+ results/round-6/20261024-193905-v3.json        | 360 ++++++++++++++++++++
+ results/round-6/20261024-193905-v3.md          |  30 ++
+ results/round-7/20261024-191602-mutations.json | 114 +++++++
+ results/round-7/20261024-191602-mutations.md   |  20 ++
+ results/round-7/20261024-191612-mutations.json | 114 +++++++
+ results/round-7/20261024-191612-mutations.md   |  20 ++
+ results/round-7/20261024-191616-v3.json        | 249 ++++++++++++++
+ results/round-7/20261024-191616-v3.md          |  24 ++
+ results/round-7/20261024-193905-v3.json        | 249 ++++++++++++++
+ results/round-7/20261024-193905-v3.md          |  24 ++
+ results/round-8/20261024-193905-v3.json        | 235 +++++++++++++
+ results/round-8/20261024-193905-v3.md          |  24 ++
+ results/round-8/20261024-193938-mutations.json | 170 ++++++++++
+ results/round-8/20261024-193938-mutations.md   |  27 ++
+ run.py                                         |   2 +-
+ 46 files changed, 6047 insertions(+), 5 deletions(-)
+ create mode 100644 cases/round-5.json
+ create mode 100644 cases/round-6.json
+ create mode 100644 cases/round-7.json
+ create mode 100644 cases/round-8.json
+ create mode 100644 docs/agent-to-api.md
+ create mode 100644 lab/actions.py
+ create mode 100644 lab/bypass.py
+ create mode 100644 lab/cases_r5.py
+ create mode 100644 lab/cases_r6.py
+ create mode 100644 lab/cases_r7.py
+ create mode 100644 lab/cases_r8.py
+ create mode 100644 lab/consent.py
+ create mode 100644 lab/lifecycle.py
+ create mode 100644 lab/retrieval.py
+ create mode 100644 mutations_r6.py
+ create mode 100644 mutations_r7.py
+ create mode 100644 mutations_r8.py
+ create mode 100644 results/round-2/compare-20261024-110316.md
+ create mode 100644 results/round-5/20261024-181005-v3.json
+ create mode 100644 results/round-5/20261024-181005-v3.md
+ create mode 100644 results/round-5/20261024-181016-v3.json
+ create mode 100644 results/round-5/20261024-181016-v3.md
+ create mode 100644 results/round-6/20261024-190146-mutations.json
+ create mode 100644 results/round-6/20261024-190146-mutations.md
+ create mode 100644 results/round-6/20261024-190153-v3.json
+ create mode 100644 results/round-6/20261024-190153-v3.md
+ create mode 100644 results/round-6/20261024-191616-mutations.json
+ create mode 100644 results/round-6/20261024-191616-mutations.md
+ create mode 100644 results/round-6/20261024-191616-v3.json
+ create mode 100644 results/round-6/20261024-191616-v3.md
+ create mode 100644 results/round-6/20261024-193905-v3.json
+ create mode 100644 results/round-6/20261024-193905-v3.md
+ create mode 100644 results/round-7/20261024-191602-mutations.json
+ create mode 100644 results/round-7/20261024-191602-mutations.md
+ create mode 100644 results/round-7/20261024-191612-mutations.json
+ create mode 100644 results/round-7/20261024-191612-mutations.md
+ create mode 100644 results/round-7/20261024-191616-v3.json
+ create mode 100644 results/round-7/20261024-191616-v3.md
+ create mode 100644 results/round-7/20261024-193905-v3.json
+ create mode 100644 results/round-7/20261024-193905-v3.md
+ create mode 100644 results/round-8/20261024-193905-v3.json
+ create mode 100644 results/round-8/20261024-193905-v3.md
+ create mode 100644 results/round-8/20261024-193938-mutations.json
+ create mode 100644 results/round-8/20261024-193938-mutations.md
+Roshans-MacBook-Air:ai-governance-lab roshan$ git log --oneline -3
+cb5f3b8 (HEAD -> main, origin/main, origin/HEAD) Merge pull request #2 from trivediroshan1-ui/round-eight
+8f187f8 (origin/round-eight) Round eight: bypass, response, lists, helpers, evidence (lab/bypass.py, cases B1-B12); 12 of 12 as expected, 21 of 21 control-off checks noticed; rounds 6 and 7 re-run
+bdd8fb1 Round eight guesses: 12 bypass cases B1-B12, written before any code (25 Oct 2026 01:07 IST)
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ ( python3 run.py --round 5; python3 run.py --round 6; python3 run.py --round 7; python3 run.py --round 8; python3 mutations_r6.py; python3 mutations_r7.py; python3 mutations_r8.py ) 2>&1 | tee ~/mac-run-output.txt
+round 5: 14 cases in 0.31 s -> results/round-5/20261024-221440-v3.json
+  as expected: 14
+round 6: 18 cases in 0.42 s -> results/round-6/20261024-221441-v3.json
+  as expected: 18
+round 7: 12 cases in 0.27 s -> results/round-7/20261024-221441-v3.json
+  as expected: 12
+round 8: 12 cases in 0.27 s -> results/round-8/20261024-221442-v3.json
+  as expected: 12
+12 of 12 cases notice when their control is switched off
+14 of 14 switched-off controls are noticed by their case
+21 of 21 switched-off controls are noticed by their case
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout round-nine
+branch 'round-nine' set up to track 'origin/round-nine'.
+Switched to a new branch 'round-nine'
+Roshans-MacBook-Air:ai-governance-lab roshan$ ( python3 run.py --round 9; python3 mutations_r9.py ) 2>&1 | tee -a ~/mac-run-output.txt
+for r in 5 6 7 8 9; do for k in v3 mutations; do f=$(ls -t results/round-$r/*-$k.md 2>/dev/null | head -1); [ -n "$f" ] && { echo "######## $f"; cat "$f"; }; done; done > ~/mac-results.md
+git checkout main
+round 9: 12 cases in 0.43 s -> results/round-9/20261024-221534-v3.json
+  as expected: 12
+12 of 12 switched-off controls are noticed by their case
+Roshans-MacBook-Air:ai-governance-lab roshan$ for r in 5 6 7 8 9; do for k in v3 mutations; do f=$(ls -t results/round-$r/*-$k.md 2>/dev/null | head -1); [ -n "$f" ] && { echo "######## $f"; cat "$f"; }; done; done > ~/mac-results.md
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	results/round-5/20261024-221440-v3.json
+	results/round-5/20261024-221440-v3.md
+	results/round-6/20261024-221441-v3.json
+	results/round-6/20261024-221441-v3.md
+	results/round-6/20261024-221442-mutations.json
+	results/round-6/20261024-221442-mutations.md
+	results/round-7/20261024-221441-v3.json
+	results/round-7/20261024-221441-v3.md
+	results/round-7/20261024-221443-mutations.json
+	results/round-7/20261024-221443-mutations.md
+	results/round-8/20261024-221442-v3.json
+	results/round-8/20261024-221442-v3.md
+	results/round-8/20261024-221450-mutations.json
+	results/round-8/20261024-221450-mutations.md
+	results/round-9/
+
+nothing added to commit but untracked files present (use "git add" to track)
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout -b mac-run
+Switched to a new branch 'mac-run'
+Roshans-MacBook-Air:ai-governance-lab roshan$ git add results
+Roshans-MacBook-Air:ai-governance-lab roshan$ git commit -m "Mac run: rounds 5 to 9 on Darwin, Python 3.9.6 (25 Oct 2026)"
+[mac-run 9573968] Mac run: rounds 5 to 9 on Darwin, Python 3.9.6 (25 Oct 2026)
+ 18 files changed, 2007 insertions(+)
+ create mode 100644 results/round-5/20261024-221440-v3.json
+ create mode 100644 results/round-5/20261024-221440-v3.md
+ create mode 100644 results/round-6/20261024-221441-v3.json
+ create mode 100644 results/round-6/20261024-221441-v3.md
+ create mode 100644 results/round-6/20261024-221442-mutations.json
+ create mode 100644 results/round-6/20261024-221442-mutations.md
+ create mode 100644 results/round-7/20261024-221441-v3.json
+ create mode 100644 results/round-7/20261024-221441-v3.md
+ create mode 100644 results/round-7/20261024-221443-mutations.json
+ create mode 100644 results/round-7/20261024-221443-mutations.md
+ create mode 100644 results/round-8/20261024-221442-v3.json
+ create mode 100644 results/round-8/20261024-221442-v3.md
+ create mode 100644 results/round-8/20261024-221450-mutations.json
+ create mode 100644 results/round-8/20261024-221450-mutations.md
+ create mode 100644 results/round-9/20261024-221534-v3.json
+ create mode 100644 results/round-9/20261024-221534-v3.md
+ create mode 100644 results/round-9/20261024-221539-mutations.json
+ create mode 100644 results/round-9/20261024-221539-mutations.md
+Roshans-MacBook-Air:ai-governance-lab roshan$ git push origin mac-run
+Enumerating objects: 29, done.
+Counting objects: 100% (29/29), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (23/23), done.
+Writing objects: 100% (23/23), 21.52 KiB | 4.30 MiB/s, done.
+Total 23 (delta 6), reused 1 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (6/6), completed with 4 local objects.
+remote: 
+remote: Create a pull request for 'mac-run' on GitHub by visiting:
+remote:      https://github.com/trivediroshan1-ui/ai-governance-lab/pull/new/mac-run
+remote: 
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+ * [new branch]      mac-run -> mac-run
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ git fetch origin
+remote: Enumerating objects: 24, done.
+remote: Counting objects: 100% (24/24), done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 19 (delta 11), reused 19 (delta 11), pack-reused 0 (from 0)
+Unpacking objects: 100% (19/19), 13.73 KiB | 562.00 KiB/s, done.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * [new branch]      round-ten  -> origin/round-ten
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout round-ten
+branch 'round-ten' set up to track 'origin/round-ten'.
+Switched to a new branch 'round-ten'
+Roshans-MacBook-Air:ai-governance-lab roshan$ git pull origin round-ten
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * branch            round-ten  -> FETCH_HEAD
+Already up to date.
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 run.py --round 10
+round 10: 12 cases in 0.33 s -> results/round-10/20261024-222813-v3.json
+  as expected: 12
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 mutations_r10.py
+12 of 12 switched-off controls are noticed by their case
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout -b mac-run-ten
+Switched to a new branch 'mac-run-ten'
+Roshans-MacBook-Air:ai-governance-lab roshan$ git add results/round-10
+Roshans-MacBook-Air:ai-governance-lab roshan$ git commit -m "Round ten: run on a Mac"
+[mac-run-ten 3241e0c] Round ten: run on a Mac
+ 4 files changed, 337 insertions(+)
+ create mode 100644 results/round-10/20261024-222813-v3.json
+ create mode 100644 results/round-10/20261024-222813-v3.md
+ create mode 100644 results/round-10/20261024-222825-mutations.json
+ create mode 100644 results/round-10/20261024-222825-mutations.md
+Roshans-MacBook-Air:ai-governance-lab roshan$ git push -u origin mac-run-ten
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 4.17 KiB | 2.08 MiB/s, done.
+Total 7 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'mac-run-ten' on GitHub by visiting:
+remote:      https://github.com/trivediroshan1-ui/ai-governance-lab/pull/new/mac-run-ten
+remote: 
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+ * [new branch]      mac-run-ten -> mac-run-ten
+branch 'mac-run-ten' set up to track 'origin/mac-run-ten'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ git fetch origin
+remote: Enumerating objects: 26, done.
+remote: Counting objects: 100% (26/26), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 21 (delta 14), reused 21 (delta 14), pack-reused 0 (from 0)
+Unpacking objects: 100% (21/21), 14.21 KiB | 309.00 KiB/s, done.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * [new branch]      round-eleven -> origin/round-eleven
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout round-eleven
+branch 'round-eleven' set up to track 'origin/round-eleven'.
+Switched to a new branch 'round-eleven'
+Roshans-MacBook-Air:ai-governance-lab roshan$ git pull origin round-eleven
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * branch            round-eleven -> FETCH_HEAD
+Already up to date.
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 run.py --round 11
+Traceback (most recent call last):
+  File "/Users/roshan/ai-governance-lab/run.py", line 114, in <module>
+    sys.exit(main())
+  File "/Users/roshan/ai-governance-lab/run.py", line 52, in main
+    CASES2 = importlib.import_module(f"lab.cases_r{args.round}").CASES
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 986, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 680, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/roshan/ai-governance-lab/lab/cases_r11.py", line 8, in <module>
+    from .delegation import (AgentBus, Delegation, DelegationError, Executor, MergedDirectory, PanIndex, ProofResource,
+  File "/Users/roshan/ai-governance-lab/lab/delegation.py", line 11, in <module>
+    from cryptography.exceptions import InvalidSignature
+ModuleNotFoundError: No module named 'cryptography'
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 mutations_r11.py
+Traceback (most recent call last):
+  File "/Users/roshan/ai-governance-lab/mutations_r11.py", line 71, in <module>
+    sys.exit(main())
+  File "/Users/roshan/ai-governance-lab/mutations_r11.py", line 48, in main
+    normal = run_case(ROOT, cid)
+  File "/Users/roshan/ai-governance-lab/mutations_r11.py", line 33, in run_case
+    return json.loads(out.stdout.strip().splitlines()[-1])
+IndexError: list index out of range
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout -b mac-run-eleven
+Switched to a new branch 'mac-run-eleven'
+Roshans-MacBook-Air:ai-governance-lab roshan$ git add results/round-11
+Roshans-MacBook-Air:ai-governance-lab roshan$ git commit -m "Round eleven: run on a Mac"
+On branch mac-run-eleven
+nothing to commit, working tree clean
+Roshans-MacBook-Air:ai-governance-lab roshan$ git push -u origin mac-run-eleven
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Create a pull request for 'mac-run-eleven' on GitHub by visiting:
+remote:      https://github.com/trivediroshan1-ui/ai-governance-lab/pull/new/mac-run-eleven
+remote: 
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+ * [new branch]      mac-run-eleven -> mac-run-eleven
+branch 'mac-run-eleven' set up to track 'origin/mac-run-eleven'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout round-eleven
+Switched to branch 'round-eleven'
+Your branch is up to date with 'origin/round-eleven'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ git pull origin round-eleven
+remote: Enumerating objects: 19, done.
+remote: Counting objects: 100% (19/19), done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 14 (delta 9), reused 14 (delta 9), pack-reused 0 (from 0)
+Unpacking objects: 100% (14/14), 6.67 KiB | 325.00 KiB/s, done.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * branch            round-eleven -> FETCH_HEAD
+   df01d79..f54adf3  round-eleven -> origin/round-eleven
+Updating df01d79..f54adf3
+Fast-forward
+ lab/delegation.py                                  |  26 +++--
+ lab/ed25519.py                                     | 114 +++++++++++++++++++++
+ ...1024-224209-v3.json => 20261024-224451-v3.json} |   6 +-
+ ...20261024-224209-v3.md => 20261024-224451-v3.md} |   2 +-
+ ...tations.json => 20261024-224453-mutations.json} |   0
+ ...0-mutations.md => 20261024-224453-mutations.md} |   2 +-
+ 6 files changed, 135 insertions(+), 15 deletions(-)
+ create mode 100644 lab/ed25519.py
+ rename results/round-11/{20261024-224209-v3.json => 20261024-224451-v3.json} (99%)
+ rename results/round-11/{20261024-224209-v3.md => 20261024-224451-v3.md} (96%)
+ rename results/round-11/{20261024-224210-mutations.json => 20261024-224453-mutations.json} (100%)
+ rename results/round-11/{20261024-224210-mutations.md => 20261024-224453-mutations.md} (95%)
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 run.py --round 11
+round 11: 12 cases in 0.6 s -> results/round-11/20261024-224810-v3.json
+  as expected: 12
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 mutations_r11.py
+11 of 11 switched-off controls are noticed by their case
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout mac-run-eleven
+Switched to branch 'mac-run-eleven'
+Your branch is up to date with 'origin/mac-run-eleven'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ git add results/round-11
+Roshans-MacBook-Air:ai-governance-lab roshan$ git commit -m "Round eleven: run on a Mac"
+[mac-run-eleven 046d74e] Round eleven: run on a Mac
+ 4 files changed, 343 insertions(+)
+ create mode 100644 results/round-11/20261024-224810-v3.json
+ create mode 100644 results/round-11/20261024-224810-v3.md
+ create mode 100644 results/round-11/20261024-224820-mutations.json
+ create mode 100644 results/round-11/20261024-224820-mutations.md
+Roshans-MacBook-Air:ai-governance-lab roshan$ git push origin mac-run-eleven
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (7/7), 4.18 KiB | 4.18 MiB/s, done.
+Total 7 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 3 local objects.
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+   df01d79..046d74e  mac-run-eleven -> mac-run-eleven
+Roshans-MacBook-Air:ai-governance-lab roshan$ 

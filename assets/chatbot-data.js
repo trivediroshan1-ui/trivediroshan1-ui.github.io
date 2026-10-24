@@ -561,6 +561,14 @@ window.SITE_QA = [
       "The run page now shows the unedited result files for the audit round and rounds six to eleven: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. The 24 Oct audit round and rounds six to eleven first ran in a Linux sandbox with Python 3.11, and on 25 Oct I ran them all again on my MacBook Air (Darwin, Python 3.9.6) with the same verdicts. Rounds one to four ran on the MacBook originally, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform; the Mac files are on the run page and on the lab's mac-run branch. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
   },
   {
+    id: "ai-governance-lab-mac-record",
+    title: "AI governance lab: the Mac record (commands, outputs, data)",
+    url: "/ai-governance-lab/mac/",
+    keywords: ["mac record", "mac commands", "commands i ran", "what i ran on mac", "mac output", "mac data", "sha-256 mac files", "terminal sessions", "mistakes", "macbook air"],
+    answer:
+      "The Mac record page lists every command I typed on my MacBook Air in three sessions (24 Oct twice, 25 Oct once), what each one printed, and all 31 Mac result files with a SHA-256 each. Rounds five to eleven match the sandbox on cases and on controls noticed. The page also lists my mistakes: a broken held-out file pushed three times, a placeholder Track P record pushed and removed, and round eleven failing on the Mac until I removed a package it needed. The three terminal sessions are on it unedited.",
+  },
+  {
     id: "ai-governance-lab-where-to-start",
     title: "AI governance lab: where to start and in what order to read it",
     url: "/ai-governance-lab/",
