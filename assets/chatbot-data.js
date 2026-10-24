@@ -478,7 +478,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/story/",
     keywords: ["why did you build", "story", "why this lab", "motivation", "background", "how did the idea come", "control mapping", "auditor"],
     answer:
-      "For years I mapped access controls from PAM and IAM products to client policies that auditors checked against standards like NIST, PCI DSS, HIPAA and ISO 27001. I always wondered whether a control really does what the policy says. When AI agents arrived with the same promises but no clear use cases, policies or certifier, I read the NIST and ISO material and built a private test on made-up data to find out what holds and what breaks. The story page also has a 63-second animated video with tappable chapters.",
+      "For years I mapped access controls from PAM and IAM products to client policies that auditors checked against standards like NIST, PCI DSS, HIPAA and ISO 27001. I always wondered whether a control really does what the policy says. When AI agents arrived with the same promises but no clear use cases, policies or certifier, I read the NIST and ISO material and built a private test on made-up data to find out what holds and what breaks. The story page also has a 78-second animated video with tappable chapters.",
   },
   {
     id: "ai-governance-lab-diagrams",

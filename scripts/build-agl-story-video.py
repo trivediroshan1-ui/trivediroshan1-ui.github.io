@@ -4,7 +4,8 @@ Frames are drawn by a time function (no real-time recording), then joined with f
 import os, sys, http.server, socketserver, threading, functools, subprocess, shutil
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "assets/share/agl-story.mp4")
-FPS, DUR, PORT = 24, 63, 8771
+FPS, DUR, PORT = 24, 78, 8771
+OFF = 15  # the architecture scene is inserted at 49 to 64
 CSS = """
 @font-face{font-family:'DM Sans';font-weight:400;src:url(/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2) format('woff2')}
 @font-face{font-family:'DM Sans';font-weight:500;src:url(/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2) format('woff2')}
@@ -38,6 +39,12 @@ p{font-size:36px;line-height:1.35;color:#c4cfe6}
 .ar{color:#4de2ff;font-size:48px;font-weight:800;text-align:center}
 .pk{position:absolute;width:26px;height:26px;border-radius:50%;background:#4de2ff;box-shadow:0 0 22px #4de2ff;opacity:0}
 .chip{display:inline-block;border:2px solid #4de2ff;border-radius:999px;padding:8px 20px;font-size:26px;font-weight:700;color:#4de2ff;margin-right:10px}
+.sg{border:3px solid var(--c,#4de2ff);border-radius:18px;background:rgba(255,255,255,.04);padding:0 24px;height:90px;display:flex;flex-direction:column;justify-content:center;font-size:32px;font-weight:700;color:#fff}
+.sg small{font-size:22px;font-weight:500;color:#a9b6d3;margin-top:2px}
+.lg{border:2px dashed #8b5cf6;border-radius:14px;height:70px;padding:0 16px;display:flex;flex-direction:column;justify-content:center;font:600 21px/1.25 'DM Sans',monospace;color:#c9b8ff;background:rgba(139,92,246,.08)}
+.lg small{font:500 17px/1.2 ui-monospace,Menlo,monospace;color:#8b7bd0}
+.stop{font-weight:800;font-size:34px;color:#ff7a93;border:3px solid #ff7a93;border-radius:14px;padding:6px 18px;background:rgba(255,122,147,.12)}
+.mv{position:absolute;left:34px;width:26px;height:26px;border-radius:50%;opacity:0}
 .url{font-weight:800;font-size:60px;color:#4de2ff;line-height:1.1}
 """
 # (id, html, absolute left/top/width in px via style, in, out)
@@ -93,7 +100,36 @@ els += [A("<h2>So I read first, then built a test</h2>", 130, 41.2, S6o),
         A("<div class='box' style='--c:#f7c873'>Kaveri Finance, made up<small>40 staff · 200 customers · invented Aadhaar, PAN, cards</small></div>", 690, 44.4, S6o),
         A("<div class='ar'>↓</div>", 850, 45.6, S6o),
         A("<div class='box' style='--c:#34d399'>59 cases on a private laptop<small>expected results written down first</small></div>", 940, 46.2, S6o)]
-# S7
+
+# ARCH scene (49 to 64): one request through the gateway, with the audit log growing beside it
+_AA = A
+AO = 49.0
+stages = [("Caller", "person, bot or agent", "#4de2ff"), ("Register", "known tool? named owner?", "#4de2ff"),
+          ("Model and paperwork", "approved for this data?", "#8b5cf6"), ("Guardrail scan", "filter v1, v2, v3", "#f7c873"),
+          ("Data and region rules", "personal data, allowed region", "#8b5cf6"), ("Model", "answers the request", "#34d399"),
+          ("Response screen", "scan what comes back", "#f7c873")]
+els_arch = [_AA("<h2>A request through the gateway</h2>", 120, AO + 0.2, AO + 15)]
+els_arch.append(_AA("<p style='font-size:28px'>Drawn from the lab’s own gateway. Every step writes a line to the log.</p>", 250, AO + 1.0, AO + 15))
+tops = [330 + i*118 for i in range(7)]
+for i, (n, d, c) in enumerate(stages):
+    t = AO + 1.2 + i*0.7
+    els_arch.append(_AA(f"<div class='sg' style='--c:{c}'>{n}<small>{d}</small></div>", tops[i], t, AO + 15, left=70, width=560))
+    els_arch.append(_AA(f"<div class='lg'>log {i+1} · {n.lower()}<small>hash a3f{i}…  prev {'0000' if i==0 else 'a3f'+str(i-1)+'…'}</small></div>", tops[i]+10, t + 0.5, AO + 15, left=680, width=330))
+# a good request and a bad request (red) travel down; red stops at the guardrail
+cy = [t + 45 - 13 for t in tops]
+def keys(ts, ys): return ";".join(f"{a}:{b}" for a, b in zip(ts, ys))
+good_t = [AO+6.2, AO+7.0, AO+7.8, AO+8.6, AO+9.4, AO+10.2, AO+11.0]
+good = keys([AO+5.6]+good_t, [cy[0]-40]+cy)
+bad = keys([AO+8.0, AO+8.9, AO+9.8, AO+10.7], [cy[0]-40, cy[1], cy[2], cy[3]])
+els_arch.append(_AA("<div class='stop'>STOP</div>", tops[3]+18, AO + 11.0, AO + 15, left=470, width=150))
+els_arch.append(_AA("<p style='font-size:28px'>Cyan passes. Red carries a secret and stops at the scan.</p>", 1160, AO + 12.0, AO + 15))
+els += els_arch
+mv = (f"<div class='mv' data-k='{good}' data-in='{AO+5.6}' data-out='{AO+15}' style='background:#4de2ff;box-shadow:0 0 22px #4de2ff'></div>"
+      f"<div class='mv' data-k='{bad}' data-in='{AO+8.0}' data-out='{AO+11.4}' style='background:#ff7a93;box-shadow:0 0 22px #ff7a93'></div>")
+
+# S7 and S8 come after the architecture scene, so shift them
+_A = A
+A = lambda *a, **k: _A(a[0], a[1], a[2]+OFF, a[3]+OFF, *a[4:], **k)
 S7o = 57.0
 stats = [("59", "cases run", "#4de2ff"), ("20 · 42 · 45", "of 53 attack variants, filters v1 v2 v3", "#ff7a93"), ("4 of 10", "unseen items caught by all three", "#ff7a93"), ("9 of 9", "requests a real assistant kept to policy", "#7df2d0")]
 els += [A("<h2>What I found</h2>", 130, 49.2, S7o)]
@@ -109,12 +145,12 @@ els += [A("<h2>Everything is free and public</h2>", 250, 57.2, DUR),
         A("<div class='url'>roshantrivedi.co.in<br>/ai-governance-lab</div>", 700, 59.0, DUR),
         A("<p>If you work in IAM, PAM or audit, tell me where my tests are weak.</p>", 960, 60.6, DUR)]
 # packets for S2: travel down the arrows
-pk = ("<div class='pk' data-in='6.6' data-out='%s' data-y0='440' data-y1='575' style='left:60px'></div>"
-      "<div class='pk' data-in='7.6' data-out='%s' data-y0='640' data-y1='765' style='left:60px'></div>") % (S2o, S2o)
+pk = ("<div class='pk' data-in='6.6' data-out='%s' data-y0='505' data-y1='560' style='left:60px'></div>"
+      "<div class='pk' data-in='7.6' data-out='%s' data-y0='695' data-y1='750' style='left:60px'></div>") % (S2o, S2o)
 
 HTML = f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS}</style></head><body>
 <div class='bar'></div><div class='glow'></div><div class='eye'>My story · AI governance lab</div>
-{''.join(els)}{pk}
+{''.join(els)}{pk}{mv}
 <div class='foot'><b>roshantrivedi.co.in/ai-governance-lab</b><span>Made-up data only</span></div><div class='prog' id='prog'></div>
 <script>
 function ease(x){{return x<0?0:x>1?1:1-Math.pow(1-x,3)}}
@@ -127,6 +163,12 @@ window.render=function(t){{
   var i=+e.dataset.in,o=+e.dataset.out,p=((t-i)%1.4)/1.4;
   if(t<i||t>=o){{e.style.opacity=0;return}}
   e.style.opacity=1; e.style.top=(+e.dataset.y0+(+e.dataset.y1-+e.dataset.y0)*p)+'px'; e.style.left='532px';
+ }});
+ document.querySelectorAll('.mv').forEach(function(e){{
+  var i=+e.dataset.in,o=+e.dataset.out; if(t<i||t>=o){{e.style.opacity=0;return}}
+  var k=e.dataset.k.split(';').map(function(x){{var q=x.split(':');return [+q[0],+q[1]]}}), y=k[0][1];
+  if(t<=k[0][0])y=k[0][1]; else if(t>=k[k.length-1][0])y=k[k.length-1][1]; else for(var j=0;j<k.length-1;j++){{ if(t>=k[j][0]&&t<k[j+1][0]){{ y=k[j][1]+(k[j+1][1]-k[j][1])*(t-k[j][0])/(k[j+1][0]-k[j][0]); break; }} }}
+  var f=Math.min(1,(t-i)/0.4); e.style.opacity=f; e.style.top=y+'px';
  }});
  document.getElementById('prog').style.width=(1062*t/{DUR})+'px';
 }};
