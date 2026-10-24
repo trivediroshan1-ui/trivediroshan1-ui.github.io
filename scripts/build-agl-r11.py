@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""Writes assets/agl-r11.js: the 12 cases added in round ten (delegation, keys and organisations), with results, a plain-words
+walk-through and seven new controls. Reads the lab's results files. Run: python3 scripts/build-agl-r11.py"""
+import json, glob
+LAB = "/home/claude/ai-governance-lab"
+res = json.load(open(sorted(glob.glob(f"{LAB}/results/round-11/*-v3.json"))[-1]))
+first = json.load(open(sorted(glob.glob(f"{LAB}/results/round-11/*-v3.json"))[0]))
+mut = json.load(open(sorted(glob.glob(f"{LAB}/results/round-11/*-mutations.json"))[-1]))
+rows = {r["id"]: r for r in res["results"]}
+T = {
+"D1": dict(what="Agent A hands a job to agent B using its own token. Asked with B inheriting everything A had, and with B's token cut down to what B is registered for and what the task needs.",
+  steps=[["note","A may read and write customer records. B is registered only to read them and to send reports. The task needs only reading."],
+         ["miss","If B simply inherits A's token, B can write customer records, which nobody ever approved for B."],
+         ["ok","If B's token is cut down to what B is registered for and what the task needs, B can read and nothing more."]],
+  result="Inherits everything; narrowing holds.", why="This is the confused deputy: a less trusted agent borrows a more trusted agent's power. A hand-off should only ever give less."),
+"D2": dict(what="A chain of four agents each hands work to the next. Asked with no limit on depth, and with a limit of two hops.",
+  steps=[["note","Each agent is allowed to pass the job on."],
+         ["miss","With no limit, the fourth agent acts and nobody can say how it got there."],
+         ["stop","With a limit of two hops, the third hand-off is refused."]],
+  result="No limit: four hops. Limit of two: stops at two.", why="Every hop is another place to be fooled. A short, fixed chain is easier to understand, log and review."),
+"D3": dict(what="The same chain acts on a customer record. The log keeps either only the last agent, or the whole chain back to the person who started it.",
+  steps=[["note","Four agents are in the chain. The last one reads record C0042."],
+         ["miss","A log that keeps only the last agent names an agent nobody has heard of."],
+         ["ok","A log that keeps the person and every hop shows who started it and how it got there."]],
+  result="Last-hop log: person unknown. Chain log: person and four agents named.", why="When something goes wrong, the first question is who started it. The log has to carry that answer from the start of the chain to the end."),
+"D4": dict(what="The person who started a chain leaves while the last agent in it still holds a live token. Asked without and with a rule that cutting the start cuts everything handed on from it.",
+  steps=[["note","A person starts a job. It passes through three agents. Then the person leaves."],
+         ["miss","Without the rule, the last agent keeps working on the strength of a person who is gone."],
+         ["stop","With the rule, the last agent checks the one it came from, and the one before that, and is refused."]],
+  result="Survives without the cascade; stops with it.", why="Handed-on authority has to die with the authority it came from. Otherwise a departure only cuts the first link."),
+"D5": dict(what="A token is tied to a real public key (Ed25519). A thief captures one signed request and sends it again later, without and with a one-time number and a short time window in the proof.",
+  steps=[["note","The owner signs a request. A thief copies the whole request, including the signature."],
+         ["ok","A thief who only has the token and makes up a signature is refused either way."],
+         ["miss","If the proof has no one-time number, the copied request is accepted a second time."],
+         ["stop","With a one-time number and a 60-second window, the copy is refused."]],
+  result="Replay accepted without a one-time number; refused with it.", why="Tying a token to a key stops a copied token. It does not stop a copied request unless each request can be used only once."),
+"D6": dict(what="The gateway signs its decisions. The executor is then compromised. Asked with a shared secret held by both, and with a public-key signature where the executor holds only the public half.",
+  steps=[["note","An attacker takes over the executor and reads everything it holds."],
+         ["miss","With a shared secret, that includes the key that signs decisions, so the attacker can sign any decision."],
+         ["stop","With a public-key signature, the executor holds only the half that checks, so a decision the attacker signs is refused."],
+         ["ok","The gateway's real decisions are still accepted."]],
+  result="Shared secret: forged. Public key: refused.", why="Whoever can check a signature should not be able to make one. This is why round eight said real systems need public keys here."),
+"D7": dict(what="The gateway itself is compromised and signs a decision to delete a user. Asked with the executor accepting the gateway's signature alone, and with a second signature from an approver required for high-risk actions.",
+  steps=[["note","The attacker controls the gateway and can sign what it likes."],
+         ["miss","The executor accepts the gateway's signature alone and deletes the user."],
+         ["stop","If deletion also needs a signature from an approver whose key the gateway does not hold, the executor refuses."],
+         ["ok","With a real second signature, it goes through."]],
+  result="Gateway alone accepted; second signature holds.", why="One signing point is one point of failure. For the actions that hurt most, ask for a second, separate key."),
+"D8": dict(what="The gateway's signing key is rotated after a scare. A decision signed with the old key arrives afterwards. Asked with no key identifier and no retirement time, and with both.",
+  steps=[["note","The old key was retired two days ago. An attacker has a copy of it."],
+         ["miss","If the executor just tries every key it has ever known, the old key still works."],
+         ["stop","If each decision names its key and each key has a retirement time, the executor refuses the old one."]],
+  result="Old key accepted without a window; refused with one.", why="Rotating a key does nothing if the old one is still trusted. Retire it where it is checked."),
+"D9": dict(what="Two companies merge and their directories are joined. Both have a staff ID 'S001'. Asked with raw IDs and with IDs prefixed by their company.",
+  steps=[["note","At Kaveri, S001 can approve payments. At Nilgiri, S001 is a support person."],
+         ["miss","With raw IDs, the joined directory gives Nilgiri's S001 the payment approval."],
+         ["ok","With a company prefix, the two stay separate."]],
+  result="Raw IDs collide; the prefix holds.", why="An ID is only unique inside the system that made it. Joining systems needs a namespace before it needs anything else."),
+"D10": dict(what="A signed message from one agent to another is captured and sent again an hour later, without and with a one-time number and an expiry on each message.",
+  steps=[["note","Agent AG1 sends a signed message asking for a report."],
+         ["miss","Without a one-time number and an expiry, the same message is accepted again an hour later."],
+         ["stop","With both, the second copy is refused."]],
+  result="Replay accepted without the checks; refused with them.", why="A signature proves who wrote a message, not when. Every message needs a way to be used once."),
+"D11": dict(what="Documents hold PAN numbers as well as Aadhaar. The masking step runs when documents are indexed. PAN is written in capitals, in lower case and with a space in the middle, and a person searches for each.",
+  steps=[["note","Three documents hold three different made-up PANs, each written a different way."],
+         ["miss","A mask that only knows capitals leaves the lower-case and the spaced numbers searchable."],
+         ["ok","A mask that allows lower case and a space masks all three."]],
+  result="Capitals-only mask: two of three leak. Wider mask: none.", why="Round nine only tested Aadhaar. A mask is only as good as the ways of writing a number it knows about. (My first test of this case was flawed: it searched for one number three ways. I fixed the test, not my guess.)"),
+"D12": dict(what="Two agents are each fine on their own: one may export customer records, the other may send email. A chain from the first to the second moves customer records out. Every per-agent check passes.",
+  steps=[["note","An agent with both powers is refused at registration. That rule works."],
+         ["note","So the two powers are given to two agents."],
+         ["miss","A valid, signed hand-off passes the data from one to the other, and the second sends it."]],
+  result="Not caught. This is a limit.", why="Checks on single agents do not see what a chain of them can do together. That needs a view of the whole flow, and a person's judgement."),
+}
+cases = [{"id": r["id"], "track": r["track"], "title": r["title"], "expected": r["expected"], "actual": r["actual"], "verdict": r["verdict"],
+          "expected_in_words": r["expected_in_words"]} for r in rows.values()]
+assert set(T) == set(rows), set(T) ^ set(rows)
+controls = [
+ ("C51", "A hand-off from one agent to another gives less, never more: the next agent's token is cut down to what it is registered for and what the task needs, and chains have a depth limit",
+  ["D1","D2"], "A.5.15, A.8.2", "AC-6, AC-3", "7.2.1, 7.2.2", "164.312(a)(1)", ""),
+ ("C52", "The log names the person who started a chain and every hop, and cutting the start cuts everything handed on from it",
+  ["D3","D4"], "A.8.15, A.5.18", "AU-3, AC-2, AC-12", "10.2.1, 8.2.6", "164.312(b), 164.308(a)(3)(ii)(C)", ""),
+ ("C53", "A signed request or message can be used only once: it carries a one-time number and a short window",
+  ["D5","D10"], "A.8.5, A.8.24", "SC-23, SC-8", "", "164.312(d)", ""),
+ ("C54", "The gateway signs with a private key and the executor checks with the public half; each key has an identifier and a retirement time",
+  ["D6","D8"], "A.8.24, A.5.17", "SC-12, SC-13, IA-5", "3.6.1, 3.7.4", "164.312(c)(1)", ""),
+ ("C55", "High-risk actions need a second signature from an approver whose key the gateway does not hold",
+  ["D7"], "A.5.3, A.8.2", "AC-5, AC-6", "7.2.1", "164.308(a)(4)(i)", ""),
+ ("C56", "When directories are merged, every ID carries its company as a prefix",
+  ["D9"], "A.5.16, A.5.18", "IA-4, AC-2", "8.2.1", "164.312(a)(2)(i)", ""),
+ ("C57", "Personal numbers are masked after normalising case and spacing, for every type the company holds (Aadhaar and PAN)",
+  ["D11"], "A.5.34, A.8.11", "SI-12, SC-28", "3.4.1, 3.5.1", "164.502(b)", "DPDP Act (minimisation, purpose)"),
+]
+noticed = sum(1 for m in mut if m["case_notices"])
+out = {"when": "25 Oct 2026", "round": 11, "run": res["meta"]["run_at_utc"], "cases_sha256": res["meta"]["cases_sha256"], "counts": res["meta"]["counts"],
+       "first_run": {"as_expected": first["meta"]["counts"].get("as expected", 0), "total": len(first["results"])},
+       "mutations": {"noticed": noticed, "total": len(mut)},
+       "cases": cases, "text": T,
+       "controls": [{"id": a, "control": b, "cases": c, "iso27001": d, "nist80053": e, "pci": f, "hipaa": g, "india": h} for a,b,c,d,e,f,g,h in controls]}
+open("assets/agl-r11.js", "w").write("/* Round eleven: 12 cases added on 25 Oct 2026 (delegation, keys and organisations). Made-up data only. Generated by scripts/build-agl-r11.py */\nwindow.AGL_R11 = " + json.dumps(out, ensure_ascii=False, indent=1) + ";\n")
+print(len(cases), "cases", len(controls), "controls", noticed, "of", len(mut), "noticed")
