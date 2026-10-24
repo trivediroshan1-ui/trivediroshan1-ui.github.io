@@ -446,4 +446,125 @@ Total 7 (delta 4), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (4/4), completed with 3 local objects.
 To https://github.com/trivediroshan1-ui/ai-governance-lab.git
    df01d79..046d74e  mac-run-eleven -> mac-run-eleven
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab && git checkout main && git pull origin main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd /Users/roshan/ai-governance-lab
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout main && git pull origin main
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+remote: Enumerating objects: 48, done.
+remote: Counting objects: 100% (48/48), done.
+remote: Compressing objects: 100% (33/33), done.
+remote: Total 43 (delta 23), reused 24 (delta 10), pack-reused 0 (from 0)
+Unpacking objects: 100% (43/43), 38.32 KiB | 912.00 KiB/s, done.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * branch            main       -> FETCH_HEAD
+   cb5f3b8..b98cb8b  main       -> origin/main
+Updating cb5f3b8..b98cb8b
+Fast-forward
+ cases/round-10.json                             |  90 ++++++++++
+ cases/round-11.json                             |  90 ++++++++++
+ cases/round-9.json                              |  90 ++++++++++
+ lab/cases_r10.py                                | 172 ++++++++++++++++++
+ lab/cases_r11.py                                | 191 ++++++++++++++++++++
+ lab/cases_r9.py                                 | 145 +++++++++++++++
+ lab/delegation.py                               | 199 +++++++++++++++++++++
+ lab/ed25519.py                                  | 114 ++++++++++++
+ lab/rag.py                                      |  94 ++++++++++
+ lab/sessions.py                                 | 226 ++++++++++++++++++++++++
+ mutations_r10.py                                |  72 ++++++++
+ mutations_r11.py                                |  71 ++++++++
+ mutations_r9.py                                 |  76 ++++++++
+ results/round-10/20261024-222511-v3.json        | 197 +++++++++++++++++++++
+ results/round-10/20261024-222511-v3.md          |  24 +++
+ results/round-10/20261024-222512-mutations.json |  98 ++++++++++
+ results/round-10/20261024-222512-mutations.md   |  18 ++
+ results/round-11/20261024-224132-v3.json        | 213 ++++++++++++++++++++++
+ results/round-11/20261024-224132-v3.md          |  24 +++
+ results/round-11/20261024-224451-v3.json        | 212 ++++++++++++++++++++++
+ results/round-11/20261024-224451-v3.md          |  24 +++
+ results/round-11/20261024-224453-mutations.json |  90 ++++++++++
+ results/round-11/20261024-224453-mutations.md   |  17 ++
+ results/round-9/20261024-205720-v3.json         | 178 +++++++++++++++++++
+ results/round-9/20261024-205720-v3.md           |  24 +++
+ results/round-9/20261024-205730-v3.json         | 177 +++++++++++++++++++
+ results/round-9/20261024-205730-v3.md           |  24 +++
+ results/round-9/20261024-205757-mutations.json  |  98 ++++++++++
+ results/round-9/20261024-205757-mutations.md    |  18 ++
+ results/round-9/20261024-205808-v3.json         | 177 +++++++++++++++++++
+ results/round-9/20261024-205808-v3.md           |  24 +++
+ results/round-9/20261024-205809-mutations.json  |  98 ++++++++++
+ results/round-9/20261024-205809-mutations.md    |  18 ++
+ results/round-9/20261024-231226-mutations.json  | 122 +++++++++++++
+ results/round-9/20261024-231226-mutations.md    |  21 +++
+ run.py                                          |   2 +-
+ 36 files changed, 3527 insertions(+), 1 deletion(-)
+ create mode 100644 cases/round-10.json
+ create mode 100644 cases/round-11.json
+ create mode 100644 cases/round-9.json
+ create mode 100644 lab/cases_r10.py
+ create mode 100644 lab/cases_r11.py
+ create mode 100644 lab/cases_r9.py
+ create mode 100644 lab/delegation.py
+ create mode 100644 lab/ed25519.py
+ create mode 100644 lab/rag.py
+ create mode 100644 lab/sessions.py
+ create mode 100644 mutations_r10.py
+ create mode 100644 mutations_r11.py
+ create mode 100644 mutations_r9.py
+ create mode 100644 results/round-10/20261024-222511-v3.json
+ create mode 100644 results/round-10/20261024-222511-v3.md
+ create mode 100644 results/round-10/20261024-222512-mutations.json
+ create mode 100644 results/round-10/20261024-222512-mutations.md
+ create mode 100644 results/round-11/20261024-224132-v3.json
+ create mode 100644 results/round-11/20261024-224132-v3.md
+ create mode 100644 results/round-11/20261024-224451-v3.json
+ create mode 100644 results/round-11/20261024-224451-v3.md
+ create mode 100644 results/round-11/20261024-224453-mutations.json
+ create mode 100644 results/round-11/20261024-224453-mutations.md
+ create mode 100644 results/round-9/20261024-205720-v3.json
+ create mode 100644 results/round-9/20261024-205720-v3.md
+ create mode 100644 results/round-9/20261024-205730-v3.json
+ create mode 100644 results/round-9/20261024-205730-v3.md
+ create mode 100644 results/round-9/20261024-205757-mutations.json
+ create mode 100644 results/round-9/20261024-205757-mutations.md
+ create mode 100644 results/round-9/20261024-205808-v3.json
+ create mode 100644 results/round-9/20261024-205808-v3.md
+ create mode 100644 results/round-9/20261024-205809-mutations.json
+ create mode 100644 results/round-9/20261024-205809-mutations.md
+ create mode 100644 results/round-9/20261024-231226-mutations.json
+ create mode 100644 results/round-9/20261024-231226-mutations.md
+Roshans-MacBook-Air:ai-governance-lab roshan$ python3 mutations_r9.py
+14 of 15 switched-off controls are noticed by their case
+  not noticed: Q5 the gateway lets an unlisted action through and skips the shape check (a second layer, the executor, is still in place)
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout -b mac-run-nine-checks
+Switched to a new branch 'mac-run-nine-checks'
+Roshans-MacBook-Air:ai-governance-lab roshan$ 
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout -b mac-run-nine-checks
+fatal: a branch named 'mac-run-nine-checks' already exists
+Roshans-MacBook-Air:ai-governance-lab roshan$ git add results/round-9
+Roshans-MacBook-Air:ai-governance-lab roshan$ git commit -m "Round nine stronger checks: Mac run"
+[mac-run-nine-checks 25caf8e] Round nine stronger checks: Mac run
+ 2 files changed, 143 insertions(+)
+ create mode 100644 results/round-9/20261024-232407-mutations.json
+ create mode 100644 results/round-9/20261024-232407-mutations.md
+Roshans-MacBook-Air:ai-governance-lab roshan$ git push -u origin mac-run-nine-checks
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 1.23 KiB | 1.23 MiB/s, done.
+Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote: 
+remote: Create a pull request for 'mac-run-nine-checks' on GitHub by visiting:
+remote:      https://github.com/trivediroshan1-ui/ai-governance-lab/pull/new/mac-run-nine-checks
+remote: 
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+ * [new branch]      mac-run-nine-checks -> mac-run-nine-checks
+branch 'mac-run-nine-checks' set up to track 'origin/mac-run-nine-checks'.
 Roshans-MacBook-Air:ai-governance-lab roshan$ 

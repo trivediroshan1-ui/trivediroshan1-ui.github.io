@@ -53,13 +53,14 @@ for group, ref, paths in SETS:
             rows.append((group, ref[:7], "main", p, d))
 BR = [("25 Oct, session 3: rounds five to nine", "origin/mac-run", "mac-run", None),
       ("25 Oct, session 3: round ten", "origin/mac-run-ten", "mac-run-ten", "/20261024-2228"),
-      ("25 Oct, session 3: round eleven", "origin/mac-run-eleven", "mac-run-eleven", "/20261024-2248")]
+      ("25 Oct, session 3: round eleven", "origin/mac-run-eleven", "mac-run-eleven", "/20261024-2248"),
+      ("25 Oct, session 3: round nine, three stronger checks", "origin/mac-run-nine-checks", "mac-run-nine-checks", "/20261024-2324")]
 for group, ref, name, flt in BR:
     commit = git("rev-parse", "--short=7", ref).strip()
     ps = [p for p in git("ls-tree", "-r", "--name-only", ref, "results/").split() if (flt is None or flt in p)]
     if flt is None:   # mac-run holds only the Mac files for rounds 5-9, take the ones added by its own commit
         ps = [p for p in git("show", "--name-only", "--format=", ref).split() if p.startswith("results/")]
-    elif name == "mac-run-eleven":
+    elif name in ("mac-run-eleven", "mac-run-nine-checks"):
         ps = [p for p in git("show", "--name-only", "--format=", ref).split() if p.startswith("results/")]
     for p in sorted(ps):
         d = blob(ref, p)
@@ -73,7 +74,7 @@ for group, commit, branch, p, d in rows:
     data_rows.append((group, commit, branch, short(p), len(d), sha, h))
     m = re.match(r"results/round-(\d+)/", p)
     if m and p.endswith(".md") and branch.startswith("mac-run"):
-        r = int(m.group(1))
+        r = "9+" if branch == "mac-run-nine-checks" else int(m.group(1))
         glance.setdefault(r, {})["mut" if "mutations" in p else "v3"] = h
         glance[r]["when"] = re.search(r"/(\d{8}-\d{6})", p).group(1)
 
@@ -158,6 +159,11 @@ S3 = [
  ("`python3 run.py --round 11`", "12 cases in 0.6 s, as expected 12. File <code>20261024-224810-v3</code>."),
  ("`python3 mutations_r11.py`", "<strong>11 of 11</strong> switched-off controls noticed."),
  ('`git checkout mac-run-eleven`; `git add results/round-11`; `git commit -m "Round eleven: run on a Mac"`; `git push origin mac-run-eleven`', "Commit <code>046d74e</code>, four files, 343 insertions. Pushed <code>df01d79..046d74e</code>."),
+ ("`cd /Users/roshan/ai-governance-lab && git checkout main && git pull origin main` (first time)", "<code>Already up to date</code>. The lab pull request had not been merged yet."),
+ ("the same `git checkout main && git pull origin main` (second time, after merging pull request #3 on GitHub)", "Fast-forwarded <code>main</code> from <code>cb5f3b8</code> to <code>b98cb8b</code>. This brought in rounds nine, ten and eleven (cases, code, sandbox results) and three stronger control-off checks for round nine."),
+ ("`python3 mutations_r9.py`", "<strong>14 of 15</strong> switched-off controls noticed. One was not: <code>Q5 the gateway lets an unlisted action through and skips the shape check (a second layer, the executor, is still in place)</code>. File <code>20261024-232407-mutations</code>."),
+ ("`git checkout -b mac-run-nine-checks` (typed twice)", "The first created the branch. The second said <code>fatal: a branch named 'mac-run-nine-checks' already exists</code>. Harmless."),
+ ('`git add results/round-9`; `git commit -m "Round nine stronger checks: Mac run"`; `git push -u origin mac-run-nine-checks`', "Commit <code>25caf8e</code>, two files, 143 insertions. Pushed as <code>mac-run-nine-checks</code>."),
 ]
 
 def fix_cmd(rows):
@@ -181,13 +187,13 @@ def raw(name, label):
 # ---- glance table --------------------------------------------------------------------------------------------------------
 TITLES = {5: "24 Oct audit round (I13 to V, E, and others)", 6: "Round six: agent only sends instructions", 7: "Round seven: how an identity starts",
           8: "Round eight: agent goes round the gateway", 9: "Round nine: assistant answering from documents", 10: "Round ten: credentials and sessions",
-          11: "Round eleven: delegation, keys, organisations"}
-SBX = {5: "14 of 14", 6: "18 of 18", 7: "12 of 12", 8: "12 of 12", 9: "12 of 12", 10: "12 of 12", 11: "12 of 12"}
-SBXM = {5: "none for this round", 6: "12 of 12", 7: "14 of 14", 8: "21 of 21", 9: "12 of 12", 10: "12 of 12", 11: "11 of 11"}
+          11: "Round eleven: delegation, keys, organisations", "9+": "Round nine again: three stronger control-off checks (Q1, Q2, Q5), run 25 Oct after the first Mac run"}
+SBX = {"9+": "not re-run", 5: "14 of 14", 6: "18 of 18", 7: "12 of 12", 8: "12 of 12", 9: "12 of 12", 10: "12 of 12", 11: "12 of 12"}
+SBXM = {"9+": "14 of 15", 5: "none for this round", 6: "12 of 12", 7: "14 of 14", 8: "21 of 21", 9: "12 of 12", 10: "12 of 12", 11: "11 of 11"}
 g = []
-for r in sorted(glance):
+for r in sorted(glance, key=lambda k: (int(str(k).rstrip("+")), str(k))):
     x = glance[r]
-    g.append((f"{r}", E(TITLES.get(r, "")), E(x.get("v3", "")), E(x.get("mut", "") or "no control-off run on the Mac"), E(SBX[r]), E(SBXM[r])))
+    g.append((f"{r}", E(TITLES.get(r, "")), E(x.get("v3", "") or "not re-run, checks only"), E(x.get("mut", "") or "no control-off run on the Mac"), E(SBX[r]), E(SBXM[r])))
 
 # ---- data table ----------------------------------------------------------------------------------------------------------
 dg = []
@@ -214,14 +220,14 @@ body = f"""
         ("Shell", "bash, with Apple’s “default interactive shell is now zsh” notice at every login"),
         ("Prompt name", "<code>Roshans-Air</code> on 24 Oct and <code>Roshans-MacBook-Air</code> on 25 Oct. Session 1’s commit line says <code>Roshans-MacBook-Air.local</code>, so I treat it as one machine; I did not check the cause of the name change."),
         ("Repository", "<code>github.com/trivediroshan1-ui/ai-governance-lab</code>, cloned to <code>/Users/roshan/ai-governance-lab</code>"),
-        ("Sessions", "1) Sat 24 Oct from 13:55. 2) Sat 24 Oct from 14:11. 3) Sun 25 Oct from 03:33. All times are IST, taken from the terminal’s “Last login” line."),
+        ("Sessions", "1) Sat 24 Oct from 13:55. 2) Sat 24 Oct from 14:11. 3) Sun 25 Oct from 03:33 (the same window, used again until about 04:55). All times are IST, taken from the terminal’s “Last login” line."),
         ("Extra packages", "Only for the Presidio comparison: <code>presidio-analyzer</code>, <code>spacy 3.7.5</code>, <code>numpy 1.26.4</code>, <code>en_core_web_sm 3.7.1</code>, in a throw-away environment"),
       ])}</section>
 
       <section id="glance"><h2>Rounds five to eleven on the Mac, at a glance</h2>
       <p class="body-text">The first two columns are what the Mac printed. The last two are what the sandbox printed for the same round. “As expected” means the case did what my written guess said. “Controls noticed” means that when one control was switched off, in a copy of the code, the matching case saw the change.</p>
       {table(["Round", "Topic", "Mac: cases", "Mac: controls noticed", "Sandbox: cases", "Sandbox: controls noticed"], g, "mac-t")}
-      <p class="body-text">All seven rounds match. Round five has no control-off run, on either machine. The sandbox also has first-run files for rounds nine and eleven that show a fault in my own work (a masking bug in round nine, a faulty test in round eleven); those are on the <a href="/ai-governance-lab/run/">run page</a>. The Mac ran the fixed versions.</p></section>
+      <p class="body-text">All seven rounds match. The extra round-nine row is the three stronger checks added afterwards: 14 of 15 on the Mac and 14 of 15 in the sandbox, with the same one not noticed (a Q5 check where a second layer, the executor, still refuses the request). Round five has no control-off run, on either machine. The sandbox also has first-run files for rounds nine and eleven that show a fault in my own work (a masking bug in round nine, a faulty test in round eleven); those are on the <a href="/ai-governance-lab/run/">run page</a>. The Mac ran the fixed versions.</p></section>
 
       <section id="s1"><h2>Session 1: Saturday 24 Oct, from 13:55</h2>
       <p class="body-text">Recording Track P by hand (Claude Sonnet 5.5, Low effort, a paid plan, in a fresh chat), the held-out starter cases, and a first try at Presidio. This session has the most mistakes.</p>
@@ -235,7 +241,7 @@ body = f"""
       {table(["Detector", "Right answers", "Out of"], [("v1 (my first detector)", "20", "53"), ("v3 (my final detector)", "45", "53"), ("Presidio, default", "15", "33"), ("Presidio, with India recognisers", "16", "33")])}</section>
 
       <section id="s3"><h2>Session 3: Sunday 25 Oct, from 03:33</h2>
-      <p class="body-text">Rounds five to eleven, one branch per push. Round eleven failed once, was fixed in the lab code, and ran clean.</p>
+      <p class="body-text">Rounds five to eleven, one branch per push. Round eleven failed once, was fixed in the lab code, and ran clean. After I merged the lab pull request I came back to this same window and ran the three stronger round-nine checks.</p>
       {fix_cmd(S3)}</section>
 
       <section id="data"><h2>The Mac data, file by file</h2>
@@ -249,7 +255,7 @@ body = f"""
         <li><strong>A placeholder record was pushed.</strong> The Track P “clean re-run” was saved with notes like “hello” and “run it” (<code>661e52a</code>). I removed it a minute later (<code>efe55b9</code>). The history still has it. It was never used for any number on this site.</li>
         <li><strong>Round eleven failed on the Mac the first time.</strong> It needed a package (<code>cryptography</code>) that my Mac did not have. The sandbox had it, so I did not see the problem there. I fixed the lab so it needs only Python’s standard library, and ran again. The first Mac failure is in session 3 below.</li>
         <li><strong>An empty branch was pushed.</strong> After the failure, I ran the commit and push steps anyway. Nothing was committed, so <code>mac-run-eleven</code> first existed with no result files. It now holds the passing run.</li>
-        <li><strong>Small noise.</strong> Typing the folder name as a command, a wrong folder guess three times, a stray paste of <code>loans_db.py</code>, a restored terminal replaying an old <code>date</code> line. None of it affects a result.</li>
+        <li><strong>Small noise.</strong> Typing the folder name as a command, a wrong folder guess three times, a branch-creation command typed twice, a stray paste of <code>loans_db.py</code>, a restored terminal replaying an old <code>date</code> line. None of it affects a result.</li>
         <li><strong>Track P is a hand-graded run.</strong> The nine pass marks and the notes were typed by me after reading Claude’s answers in a chat. It is one assistant, one plan, one day, graded by the person who built the lab. The P6 note says the masking example echoed part of a pasted PAN; I graded that as a pass.</li>
         <li><strong>The held-out starter cases are weak on purpose, and were written by Claude.</strong> Their file says so. v3 got 2 of 8 right on them, v1 got 3 of 8. That is a result against my own detector, and it is why I say the detector is limited.</li>
       </ul></section>
@@ -288,4 +294,4 @@ foot = re.sub(r'<script src="/assets/agl-(data|run|boot-run)\.js[^>]*></script>\
 page = head + "\n  " + STYLE + "\n  </head>\n  " + run[nav_start:nav_end] + '<main id="main">' + body + foot
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 open(OUT, "w", encoding="utf-8").write(page)
-print("ok", len(page), "bytes;", len(data_rows), "data files;", sorted(glance))
+print("ok", len(page), "bytes;", len(data_rows), "data files;", sorted(map(str, glance)))
