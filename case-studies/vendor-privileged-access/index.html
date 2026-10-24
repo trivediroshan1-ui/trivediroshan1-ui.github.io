@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="cs-vendor-privileged-access" data-m="keys">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -20,9 +20,9 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-vendor-privileged-access.png" />
     <title>Third-Party Privileged Access Governance · Roshan Trivedi</title>
 
-    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -38,7 +38,7 @@
     "@type": "Person",
     "name": "Roshan Trivedi",
     "url": "https://roshantrivedi.co.in/",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader"
+    "jobTitle": "Credential Management Platform Owner"
   },
   "publisher": {
     "@type": "Person",
@@ -58,12 +58,18 @@
     </script>
         <link rel="stylesheet" href="/assets/casestudy.css?v=20261019d">
       <link rel="stylesheet" href="/assets/theme.css">
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261019f" defer></script>
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Third-Party Privileged Access Governance", "item": "https://roshantrivedi.co.in/case-studies/vendor-privileged-access/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
-  <body style="--c:#7df2d0">
+  <body class="read" style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/" aria-current="page">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main">
@@ -74,10 +80,11 @@
         <p class="eyebrow">Privileged access &middot; Case study</p>
         <h1>Third-Party &amp; Vendor Privileged Access Governance</h1>
         <p class="dek">Giving vendors, consultants and managed service providers privileged access with the same scrutiny as internal privileged accounts, not less.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+        <p class="meta">Credential Management Platform Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
       <div class="tldr">
+        <svg class="doodle" viewBox="0 0 96 96" width="88" height="88" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="22" width="44" height="58" rx="6"/><path d="M36 22 v-8 h16 v8"/><circle cx="44" cy="44" r="7"/><path d="M32 66 q12 -14 24 0"/><path d="M72 36 h14 M72 48 h10"/></svg>
         <h2>The short version</h2>
         <ul>
           <li>Vendor access goes wrong when it takes the fastest path: a shared login, a standing VPN account, an exception nobody comes back to. The fix is to treat a vendor engineer like any other privileged user, plus a few extra rules about who sponsors them and when it ends.</li>
@@ -254,7 +261,7 @@
         <ol class="sources">
           <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls for Information Systems and Organizations</a> (publication page, checked)</li>
           <li>Control text for AC-2, AC-6, AC-17, IA-2, AU-14, SA-9 and SR-3 read on <a href="https://csf.tools/reference/nist-sp-800-53/r5/ac/">CSF Tools</a>, a secondary site that republishes the NIST catalog. Per-control pages follow the same address pattern, for example <a href="https://csf.tools/reference/nist-sp-800-53/r5/au/au-14/">AU-14</a>.</li>
-          <li><a href="https://csrc.nist.gov/CSRC/media/Publications/sp/800-53/rev-5/draft/documents/sp800-53r5-draft-controls-markup.pdf">NIST SP 800-53 Rev. 5 initial public draft, controls</a> (a draft; used for AC-2(2) and AC-17(1) wording, which I would confirm against the final text)</li>
+          <li><a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final">NIST SP 800-53 Rev. 5, Security and Privacy Controls</a> (a draft; used for AC-2(2) and AC-17(1) wording, which I would confirm against the final text)</li>
           <li><a href="https://doi.org/10.6028/NIST.SP.800-161r1-upd1">NIST SP 800-161 Rev. 1 Update 1</a> and the <a href="https://csrc.nist.gov/pubs/sp/800/161/r1/ipd">Rev. 1 publication page</a>; the withdrawal notice for the original Rev. 1 is dated 1 November 2024</li>
           <li><a href="https://www.pcisecuritystandards.org/wp-content/uploads/2023/09/10.Beyond-the-Contract-Managing-Customer-Service-Provider-Relationships.pdf">PCI Security Standards Council, Beyond the Contract: Managing Customer/Service Provider Relationships</a> (cites 12.8.1 to 12.8.5)</li>
           <li><a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-8">Microsoft Learn, Entra ID and PCI DSS Requirement 8</a> (secondary summary; the only place I read 8.2.7)</li>
@@ -282,9 +289,9 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
-      <script defer src="/assets/casestudy.js?v=20261002"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
+      <script defer src="/assets/casestudy.js?v=20261021b"></script>
+      <script defer src="/assets/showcase.js?v=20261021b"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

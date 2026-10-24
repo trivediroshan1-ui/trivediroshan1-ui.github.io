@@ -18,6 +18,8 @@ LINKS = [
 STATIC = {"book/index.html", "mcp-lab-portal/index.html", "secure-india-exams/index.html", "tools/tier-check/index.html"}  # these keep their own sticky section bar
 CSS = '<link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">'
 JS = '<script src="/assets/palette.js?v=20261019f" defer></script>'
+NAVCSS = '<link rel="stylesheet" href="/assets/nav.css?v=20261022a">'
+NAVJS = '<script src="/assets/nav.js?v=20261022a" defer></script>'
 
 def nav(url, static):
     items = ""
@@ -55,9 +57,13 @@ for p in sorted(ROOT.rglob("*.html")):
     h2 = re.sub(r'<link rel="stylesheet" href="/assets/sitebar\.css[^"]*">', CSS, h2)
     if CSS not in h2:
         h2 = h2.replace("</head>", "    " + CSS + "\n  </head>", 1)
+    # mega menus (dropdowns). Plain links still work without the script.
+    h2 = re.sub(r'\s*<link rel="stylesheet" href="/assets/nav\.css[^"]*">', "", h2)
+    h2 = re.sub(r'\s*<script src="/assets/nav\.js[^"]*" defer></script>', "", h2)
+    h2 = h2.replace("</head>", "    " + NAVCSS + "\n  </head>", 1)
     # site search (Ctrl+K)
     h2 = re.sub(r'\s*<script src="/assets/palette\.js[^"]*" defer></script>', "", h2)
-    h2 = h2.replace("</head>", "    " + JS + "\n  </head>", 1)
+    h2 = h2.replace("</head>", "    " + JS + "\n    " + NAVJS + "\n  </head>", 1)
     # old links that pointed at the home page's flow demo now go to the labs page
     h2 = h2.replace('href="/#mcp-flow"', 'href="/labs/#mcp-flow"')
     if h2 != h:

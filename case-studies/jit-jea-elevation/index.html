@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="cs-jit-jea-elevation" data-m="waves">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -20,8 +20,8 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-jit-jea-elevation.png" />
     <title>Just-in-Time & Just-Enough-Access Elevation · Roshan Trivedi</title>
 
-    <link rel="stylesheet" href="/assets/fonts.css">
-    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -37,7 +37,7 @@
     "@type": "Person",
     "name": "Roshan Trivedi",
     "url": "https://roshantrivedi.co.in/",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader"
+    "jobTitle": "Credential Management Platform Owner"
   },
   "publisher": {
     "@type": "Person",
@@ -58,12 +58,18 @@
       <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
       <link rel="stylesheet" href="/assets/casestudy.css?v=20261019d">
       <link rel="stylesheet" href="/assets/theme.css">
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261019f" defer></script>
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Just-in-Time & Just-Enough-Access Elevation", "item": "https://roshantrivedi.co.in/case-studies/jit-jea-elevation/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
-  <body style="--c:#7df2d0">
+  <body class="read" style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/" aria-current="page">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main">
@@ -74,10 +80,11 @@
         <p class="eyebrow">Privileged access &middot; Case study</p>
         <h1>Just-in-Time &amp; Just-Enough-Access Elevation</h1>
         <p class="dek">Replacing standing administrative access with time-boxed, scope-limited elevation that closes automatically.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+        <p class="meta">Credential Management Platform Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
       <div class="tldr">
+        <svg class="doodle" viewBox="0 0 96 96" width="88" height="88" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M26 12 H66 M26 84 H66"/><path d="M30 12 q0 30 18 36 q-18 6 -18 36 M62 12 q0 30 -18 36 q18 6 18 36"/><path d="M40 72 q8 -8 16 0"/><path d="M76 20 l8 -6 M78 32 h10"/></svg>
         <h2>The short version</h2>
         <ul>
           <li>Admin rights granted as standing role membership outlive the task that justified them. Audits then depend on people remembering to take access back.</li>
@@ -380,9 +387,9 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
-      <script defer src="/assets/casestudy.js?v=20261002"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
+      <script defer src="/assets/casestudy.js?v=20261021b"></script>
+      <script defer src="/assets/showcase.js?v=20261021b"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

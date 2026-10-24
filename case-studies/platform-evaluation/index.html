@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="cs-platform-evaluation" data-m="diag">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -20,9 +20,9 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-platform-evaluation.png" />
     <title>PAM, NHI & Cloud Platform Evaluation · Roshan Trivedi</title>
 
-    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -38,14 +38,14 @@
     "@type": "Person",
     "name": "Roshan Trivedi",
     "url": "https://roshantrivedi.co.in/",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader"
+    "jobTitle": "Credential Management Platform Owner"
   },
   "publisher": {
     "@type": "Person",
     "name": "Roshan Trivedi"
   },
   "datePublished": "2026-07-27",
-  "dateModified": "2026-10-01",
+  "dateModified": "2026-10-22",
   "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/platform-evaluation/",
   "image": "https://roshantrivedi.co.in/assets/og-case-platform-evaluation.png",
   "articleSection": "Product evaluation",
@@ -58,12 +58,18 @@
     </script>
       <link rel="stylesheet" href="/assets/casestudy.css?v=20261019d">
       <link rel="stylesheet" href="/assets/theme.css">
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261019f" defer></script>
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "PAM, NHI & Cloud Platform Evaluation", "item": "https://roshantrivedi.co.in/case-studies/platform-evaluation/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
-  <body style="--c:#c4b5fd">
+  <body class="read" style="--c:#c4b5fd">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/" aria-current="page">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main">
@@ -74,10 +80,11 @@
         <p class="eyebrow">Product evaluation &middot; Case study</p>
         <h1>PAM, NHI &amp; Cloud Platform Evaluation</h1>
         <p class="dek">How I compare privileged access, non-human identity and cloud security platforms: written scenarios, the same test for every tool, and a decision someone can audit later.</p>
-        <p class="meta">Evaluation and PoC lead &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+        <p class="meta">Evaluation and PoC lead &middot; <span class="reviewed">Last reviewed 22 Oct 2026</span></p>
       </header>
 
       <div class="tldr">
+        <svg class="doodle" viewBox="0 0 96 96" width="88" height="88" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M48 14 V80 M30 80 H66"/><path d="M16 30 H80"/><path d="M16 30 l-8 22 h24 z M80 30 l-8 22 h24 z"/></svg>
         <h2>The short version</h2>
         <ul>
           <li>Feature lists do not settle a platform decision. A scenario that one tool handles and another only half handles does.</li>
@@ -107,8 +114,8 @@
         <h2>What this covered</h2>
         <ul class="plain-list">
           <li>Scenario-led assessments built around identity types, trust boundaries and lifecycle responsibilities.</li>
-          <li>Proof-of-concept work on Delinea Secret Server and Privileged Remote Access, focused on practical use cases.</li>
-          <li>Product analysis and operating-model planning for StrongDM, alongside structured assessments of Clutch Security and Wiz.</li>
+          <li>Proof-of-concept work on privileged secret-management and remote-access platforms, focused on practical use cases.</li>
+          <li>Product analysis and operating-model planning for a zero-trust infrastructure-access platform, alongside structured assessments of non-human-identity and cloud-security tools.</li>
         </ul>
         <p class="body-text">This page is about the method. It does not compare or rank those products, and nothing here is a statement about what any of them can or cannot do. For that, read the vendor&rsquo;s own documentation and run your own scenarios.</p>
       </section>
@@ -283,9 +290,9 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
-      <script defer src="/assets/casestudy.js?v=20261002"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
+      <script defer src="/assets/casestudy.js?v=20261021b"></script>
+      <script defer src="/assets/showcase.js?v=20261021b"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

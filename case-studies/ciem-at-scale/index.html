@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="cs-ciem-at-scale" data-m="cubes">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -10,7 +10,7 @@
     <meta name="description" content="A privacy-safe case study on finding the toxic entitlement combinations that individual cloud IAM rules miss." />
     <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/ciem-at-scale/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Cloud Entitlement Management (CIEM) at Scale · Roshan Trivedi" />
+    <meta property="og:title" content="Cloud Entitlement Management (CIEM) at Scale" />
     <meta property="og:description" content="A public-safe case study on cloud entitlement management, including an AI-advisory pass over the entitlement graph for toxic combinations." />
     <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/ciem-at-scale/" />
     <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-case-ciem-at-scale.png" />
@@ -18,11 +18,11 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ciem-at-scale.png" />
-    <title>Cloud Entitlement Management (CIEM) at Scale · Roshan Trivedi</title>
+    <title>Cloud Entitlements (CIEM) at Scale &middot; Roshan Trivedi</title>
 
-    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -38,7 +38,7 @@
     "@type": "Person",
     "name": "Roshan Trivedi",
     "url": "https://roshantrivedi.co.in/",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader"
+    "jobTitle": "Credential Management Platform Owner"
   },
   "publisher": {
     "@type": "Person",
@@ -58,12 +58,18 @@
     </script>
         <link rel="stylesheet" href="/assets/casestudy.css?v=20261019d">
       <link rel="stylesheet" href="/assets/theme.css">
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261019f" defer></script>
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Cloud Entitlement Management (CIEM) at Scale", "item": "https://roshantrivedi.co.in/case-studies/ciem-at-scale/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
-  <body style="--c:#c4b5fd">
+  <body class="read" style="--c:#c4b5fd">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/" aria-current="page">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main">
@@ -74,10 +80,11 @@
         <p class="eyebrow">Cloud identity &middot; Case study</p>
         <h1>Cloud Entitlement Management (CIEM) at Scale</h1>
         <p class="dek">How to find the toxic entitlement combinations that individual cloud IAM rules miss, cut excess access from what people and workloads actually use, and keep it from growing back.</p>
-        <p class="meta">Credential Management Platform Owner &amp; PAM Product Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+        <p class="meta">Credential Management Platform Owner &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
       </header>
 
       <div class="tldr">
+        <svg class="doodle" viewBox="0 0 96 96" width="88" height="88" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 62 q-14 -2 -12 -16 q2 -12 16 -10 q4 -16 22 -14 q16 2 18 18 q16 0 14 16 q-2 8 -12 6 z"/><path d="M32 48 q16 -14 32 0 q-16 14 -32 0 z"/><circle cx="48" cy="48" r="4"/></svg>
         <h2>The short version</h2>
         <ul>
           <li>Cloud identities hold far more access than they use. That gap is the main thing a cloud entitlement program works on, and each cloud already records the usage data needed to measure it.</li>
@@ -281,8 +288,8 @@
           <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-create-unused.html">AWS: Create an IAM Access Analyzer unused access analyzer</a> (tracking period, scope)</li>
           <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html">AWS: IAM Access Analyzer policy generation</a> (CloudTrail, up to 90 days, limits)</li>
           <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_last-accessed.html">AWS: Refine permissions using last accessed information</a></li>
-          <li><a href="https://docs.amazonaws.cn/en_us/IAM/latest/UserGuide/access-analyzer-custom-policy-checks.html">AWS: IAM Access Analyzer custom policy checks</a> (read on the AWS China documentation site)</li>
-          <li><a href="https://docs.aws.amazon.com/wellarchitected/2024-06-27/framework/sec_permissions_define_guardrails.html">AWS Well-Architected: SEC03-BP05 Define permission guardrails for your organization</a></li>
+          <li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-custom-policy-checks.html">AWS: IAM Access Analyzer custom policy checks</a> (read on the AWS China documentation site)</li>
+          <li><a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/sec_permissions_define_guardrails.html">AWS Well-Architected: SEC03-BP05 Define permission guardrails for your organization</a></li>
           <li><a href="https://docs.aws.amazon.com/securityhub/latest/userguide/cis-aws-foundations-benchmark.html">AWS Security Hub: CIS AWS Foundations Benchmark</a> (secondary source for CIS recommendation titles)</li>
           <li><a href="https://learn.microsoft.com/en-us/entra/id-governance/deploy-access-reviews">Microsoft: Plan a Microsoft Entra access reviews deployment</a></li>
           <li><a href="https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review">Microsoft: Create an access review of Azure resource and Microsoft Entra roles in PIM</a></li>
@@ -314,9 +321,9 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
-      <script defer src="/assets/casestudy.js?v=20261002"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
+      <script defer src="/assets/casestudy.js?v=20261021b"></script>
+      <script defer src="/assets/showcase.js?v=20261021b"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

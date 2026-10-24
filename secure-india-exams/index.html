@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bg="exams" data-m="ledger">
 <head>
   <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Roshan Trivedi, CIAM">
+  <meta name="author" content="Roshan Trivedi">
   <meta name="description" content="A zero-trust reference architecture to prevent exam paper leaks, protect merit, and rebuild public trust in India's national examination system.">
-  <meta name="keywords" content="India exam security, NEET, JEE, zero trust, cybersecurity, paper leak prevention, NTA, CERT-In, Roshan Trivedi">
   <link rel="canonical" href="https://roshantrivedi.co.in/secure-india-exams/">
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="article">
@@ -25,7 +24,7 @@
   <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-post-page-secure-india-exams.png">
   <!-- Favicon: India tricolor drawn as inline SVG -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='20' y='0' fill='%23FF9933'/%3E%3Crect width='60' height='20' y='20' fill='%23ffffff'/%3E%3Crect width='60' height='20' y='40' fill='%23138808'/%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%23000080' stroke-width='1.5'/%3E%3Ccircle cx='30' cy='30' r='1.5' fill='%23000080'/%3E%3C/svg%3E">
-  <title>Securing India's National Exams | Roshan Trivedi, CIAM</title>
+  <title>Securing India's National Exams | Roshan Trivedi</title>
   <style>
     :root {
       --navy:#1a237e; --navy-mid:#283593; --navy-light:#3949ab;
@@ -133,7 +132,7 @@
     /* RACI */
     .raci-r{background:#2e7d32;color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
     .raci-a{background:var(--navy);color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
-    .raci-c{background:var(--amber);color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
+    .raci-c{background:var(--amber);color:#1c1300;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
     .raci-i{background:var(--grey-600);color:#fff;display:inline-block;padding:2px 8px;border-radius:4px;font-weight:700;font-size:.78rem}
 
     /* FLOW */
@@ -225,7 +224,7 @@
     "@type": "Person",
     "name": "Roshan Trivedi",
     "url": "https://roshantrivedi.co.in/",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader"
+    "jobTitle": "Credential Management Platform Owner"
   },
   "publisher": {
     "@type": "Person",
@@ -239,7 +238,12 @@
     </script>
       <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
       <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
-      <script src="/assets/palette.js?v=20261019f" defer></script>
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Securing India's National Exams — Zero Trust Architecture", "item": "https://roshantrivedi.co.in/secure-india-exams/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -277,7 +281,7 @@
   <h1>Securing India's National Examinations</h1>
   <p>A zero-trust reference architecture to <strong>prevent paper leaks</strong>, protect merit, and rebuild public trust — covering every stage from AI-assisted paper creation to post-exam destruction.</p>
   <div class="hero-meta">
-    Prepared by <strong>Roshan Trivedi, CIAM</strong> &nbsp;·&nbsp; PAM Product Owner | Identity &amp; Access Management &nbsp;·&nbsp; 24 July 2026<br>
+    Prepared by <strong>Roshan Trivedi</strong> &nbsp;·&nbsp; Credential Management Platform Owner | Identity &amp; Access Management &nbsp;·&nbsp; 24 July 2026<br>
     Version 2.0 &nbsp;·&nbsp; Classification: Public — Policy Discussion
   </div>
   <nav class="hero-toc">
@@ -301,7 +305,7 @@
   <div class="stat"><div class="stat-num">5,000+</div><div class="stat-label">Exam centers</div></div>
   <div class="stat"><div class="stat-num">90+</div><div class="stat-label">Exams annually</div></div>
   <div class="stat"><div class="stat-num">4</div><div class="stat-label">Security pillars</div></div>
-  <div class="stat"><div class="stat-num">₹79</div><div class="stat-label">Cost per candidate / year</div></div>
+  <div class="stat"><div class="stat-num">~₹790</div><div class="stat-label">Cost per candidate / year (build phase)</div></div>
   <div class="stat"><div class="stat-num">0</div><div class="stat-label">Target paper leaks</div></div>
 </div>
 
@@ -315,8 +319,8 @@
       होते हैं। प्रश्नपत्र लीक की बार-बार होने वाली घटनाएँ यह दर्शाती हैं कि केवल प्रक्रियागत उपाय परीक्षा की अखंडता की
       रक्षा नहीं कर सकते। यह प्रस्ताव एक <strong>ज़ीरो ट्रस्ट (Zero Trust)</strong> सुरक्षा वास्तुकला प्रस्तुत करता है —
       जिसमें बायोमेट्रिक पहचान, प्रश्नपत्रों का एन्क्रिप्शन, कृत्रिम बुद्धिमत्ता (AI) आधारित निगरानी, तथा सभी केंद्रों की
-      भौतिक सुरक्षा सम्मिलित है। तीन वर्षों की कुल लागत <strong>₹1,419 करोड़</strong> है — प्रति अभ्यर्थी प्रति वर्ष केवल
-      <strong>₹79</strong> — जो एक भी परीक्षा रद्द होने से बचाने पर ही अपनी लागत वसूल कर लेती है।
+      भौतिक सुरक्षा सम्मिलित है। तीन वर्षों की कुल लागत <strong>₹1,419 करोड़</strong> है — प्रति अभ्यर्थी प्रति वर्ष लगभग
+      <strong>₹790</strong> (निर्माण चरण में) — जो NEET-स्तर की एक से दो परीक्षाएँ रद्द होने से बचाने पर अपनी लागत वसूल कर लेती है।
     </p>
   </div>
 </section>
@@ -332,17 +336,18 @@
 
     <div class="tbl-wrap">
       <table>
-        <thead><tr><th>Examination</th><th>Candidates (2024)</th><th>Centers</th><th>Stakes</th></tr></thead>
+        <thead><tr><th>Examination</th><th>Registered candidates (2024)</th><th>Centres / cities</th><th>Stakes</th></tr></thead>
         <tbody>
-          <tr><td>NEET-UG</td><td>24.06 lakh</td><td>~4,750</td><td>Only gateway to MBBS/BDS in India</td></tr>
-          <tr><td>JEE Main</td><td>11.68 lakh</td><td>500+</td><td>Gateway to IITs, NITs, IIITs</td></tr>
-          <tr><td>CUET-UG</td><td>13.48 lakh</td><td>313 cities</td><td>Central university admissions</td></tr>
-          <tr><td>UGC-NET</td><td>9+ lakh</td><td>300+</td><td>Lectureship &amp; PhD eligibility</td></tr>
-          <tr><td>UPSC CSE</td><td>~13 lakh</td><td>72</td><td>IAS, IPS, IFS civil services</td></tr>
+          <tr><td>NEET-UG</td><td>24.06 lakh</td><td>~4,750 centres</td><td>Only gateway to MBBS/BDS in India</td></tr>
+          <tr><td>JEE Main</td><td>14.76 lakh <small>(unique, both sessions)</small></td><td>500+ centres</td><td>Gateway to IITs, NITs, IIITs</td></tr>
+          <tr><td>CUET-UG</td><td>13.48 lakh</td><td>380 cities <small>(26 outside India)</small></td><td>Central university admissions</td></tr>
+          <tr><td>UGC-NET <small>(June 2024, cancelled)</small></td><td>11.21 lakh</td><td>1,205 centres, 317 cities</td><td>Lectureship &amp; PhD eligibility</td></tr>
+          <tr><td>UPSC CSE</td><td>~13.4 lakh <small>(applied, unofficial)</small></td><td>80 centres</td><td>IAS, IPS, IFS civil services</td></tr>
           <tr><td>SSC / Banking / Railways</td><td>5+ crore</td><td>Thousands</td><td>Government employment</td></tr>
         </tbody>
       </table>
     </div>
+    <p style="font-size:.82rem;color:var(--grey-600);margin:10px 0 0;line-height:1.6">Sources: NTA press releases for NEET-UG, JEE Main (14,76,557 unique registrations across both 2024 sessions) and CUET-UG (380 exam cities); UGC statement on the June 2024 UGC-NET (11,21,225 registered, 1,205 centres in 317 cities; cancelled on 19 June 2024 after integrity concerns); UPSC CSE 2024 prelims held in 80 centres. The UPSC applicant figure is a widely reported estimate, not an official UPSC number. Figures corrected on 22 October 2026.</p>
 
     <h3 class="sub-head">Root Causes of Leaks</h3>
     <div class="grid-2">
@@ -355,7 +360,7 @@
     </div>
 
     <div class="callout callout-amber mt-6">
-      <strong>The NEET 2024 controversy</strong> affected 24 lakh candidates, triggered a Supreme Court intervention, and cost an estimated <strong>₹700–1,250 crore</strong> in direct and indirect costs. The full 3-year security program costs ₹1,419 crore — it pays for itself by preventing a single cancellation.
+      <strong>The NEET 2024 controversy</strong> affected 24 lakh candidates, triggered a Supreme Court intervention, and cost an estimated <strong>₹700–1,250 crore</strong> in direct and indirect costs. The full 3-year security program costs ₹1,419 crore, so it pays for itself once it prevents one to two NEET-scale cancellations (₹1,419 crore ÷ ₹700–1,250 crore ≈ 1.1–2), before counting the costs that can&rsquo;t be quantified.
     </div>
 
     <h3 class="sub-head">Cost of Inaction</h3>
@@ -369,7 +374,7 @@
           <tr><td>Legal &amp; judicial process</td><td>50–100</td><td>SC hearings, RTI responses, investigations</td></tr>
           <tr><td>Mental health &amp; societal impact</td><td>Unquantified</td><td>Erosion of meritocracy narrative</td></tr>
           <tr><td><strong>Total (single NEET-scale event)</strong></td><td><strong>700–1,250+</strong></td><td>Conservative estimate</td></tr>
-          <tr><td><strong>3-year security program</strong></td><td><strong>1,419</strong></td><td>This proposal — breaks even on one prevented event</td></tr>
+          <tr><td><strong>3-year security program</strong></td><td><strong>1,419</strong></td><td>This proposal: breaks even after about 1.1&ndash;2 prevented events</td></tr>
         </tbody>
       </table>
     </div>
@@ -942,7 +947,7 @@
       </table>
     </div>
     <div class="callout callout-teal">
-      <strong>₹79 per candidate per year</strong> — less than 5% addition to the current exam fee. Annual operating cost from Year 4: ₹210 crore. Break-even: one prevented NEET-scale cancellation.
+      <strong>About ₹790 per candidate per year</strong> during the 3-year build (₹1,419 crore ÷ 3 years ÷ ~60 lakh candidates). Annual operating cost from Year 4: ₹210 crore, about ₹350 per candidate. Break-even: one to two prevented NEET-scale cancellations.
     </div>
 
     <h3 class="sub-head">Key Performance Indicators</h3>
@@ -1239,8 +1244,8 @@
       <div>
         <h4>Document</h4>
         <p>
-          Author: <strong style="color:rgba(255,255,255,.85)">Roshan Trivedi, CIAM</strong><br>
-          PAM Product Owner | Identity &amp; Access Management<br>
+          Author: <strong style="color:rgba(255,255,255,.85)">Roshan Trivedi</strong><br>
+          Credential Management Platform Owner | Identity &amp; Access Management<br>
           Version 2.0 &nbsp;·&nbsp; 24 July 2026<br>
           Classification: Public — Policy Discussion
         </p>
@@ -1256,6 +1261,7 @@
         </div>
         <div class="footer-social" style="margin-top:12px">
           <a class="social-pill" href="Securing_India_Exams_Master.pdf" style="background:var(--teal);color:#fff" download>⬇ Full PDF (30 pages)</a>
+          <p style="flex-basis:100%;font-size:.8rem;margin:8px 0 0;opacity:.85">PDF corrected on 22 Oct 2026: JEE Main 2024 registrations, CUET, UGC-NET and UPSC figures, cost per candidate (about ₹790 a year in the build phase) and break-even (one to two prevented NEET-scale cancellations).</p>
         </div>
         <p style="margin-top:12px;font-size:.82rem">
           Read online:<br>
@@ -1264,7 +1270,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      © 2026 Roshan Trivedi, CIAM. All rights reserved. Original work — no reproduction without written permission, except for government policy review or academic discussion.<br>
+      © 2026 Roshan Trivedi. All rights reserved. Original work — no reproduction without written permission, except for government policy review or academic discussion.<br>
       <span style="opacity:.7">Read the full document online at <a href="https://roshantrivedi.co.in/secure-india-exams/" style="color:rgba(255,255,255,.6)">roshantrivedi.co.in</a></span>
     </div>
   </div>
@@ -1272,7 +1278,6 @@
 
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
 </body>
 </html>

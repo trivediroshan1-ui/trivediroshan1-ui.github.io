@@ -16,11 +16,11 @@
 @font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 700;
   src: url(/assets/dm-sans-latin-700-normal-DvUfVpUG.woff2) format('woff2'), url(/assets/dm-sans-latin-700-normal-CUSSCpQX.woff) format('woff'); }
 @font-face { font-family: 'DM Sans'; font-style: normal; font-display: swap; font-weight: 800;
-  src: url(/assets/dm-sans-latin-800-normal.woff) format('woff'); }
+  src: url(/assets/dm-sans-latin-800-normal.woff2) format('woff2'), url(/assets/dm-sans-latin-800-normal.woff) format('woff'); }
 
 /* Manrope — body text */
 @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 400;
-  src: url(/assets/manrope-latin-400-normal.woff) format('woff'); }
+  src: url(/assets/manrope-latin-400-normal.woff2) format('woff2'), url(/assets/manrope-latin-400-normal.woff) format('woff'); }
 @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 500;
   src: url(/assets/manrope-latin-500-normal-BYYD-dBL.woff2) format('woff2'), url(/assets/manrope-latin-500-normal-DMZssgOp.woff) format('woff'); }
 @font-face { font-family: 'Manrope'; font-style: normal; font-display: swap; font-weight: 600;
@@ -32,10 +32,16 @@
 
 /* JetBrains Mono — labels, tags, code */
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 400;
-  src: url(/assets/jetbrains-mono-latin-regular.woff) format('woff'); }
+  src: url(/assets/jetbrains-mono-latin-regular.woff2) format('woff2'), url(/assets/jetbrains-mono-latin-regular.woff) format('woff'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 500;
-  src: url(/assets/jetbrains-mono-latin-medium.woff) format('woff'); }
+  src: url(/assets/jetbrains-mono-latin-medium.woff2) format('woff2'), url(/assets/jetbrains-mono-latin-medium.woff) format('woff'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 600;
-  src: url(/assets/jetbrains-mono-latin-semibold.woff) format('woff'); }
+  src: url(/assets/jetbrains-mono-latin-semibold.woff2) format('woff2'), url(/assets/jetbrains-mono-latin-semibold.woff) format('woff'); }
 @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 700;
-  src: url(/assets/jetbrains-mono-latin-bold.woff) format('woff'); }
+  src: url(/assets/jetbrains-mono-latin-bold.woff2) format('woff2'), url(/assets/jetbrains-mono-latin-bold.woff) format('woff'); }
+
+/* Lora — book serif for long-form body text (headings use DM Sans site-wide) (SIL OFL 1.1, subset to Latin, variable weight 400–700) */
+@font-face { font-family: 'Lora'; font-style: normal; font-display: swap; font-weight: 400 700;
+  src: url(/assets/lora-latin-var.woff2) format('woff2'), url(/assets/lora-latin-var.woff) format('woff'); }
+@font-face { font-family: 'Lora'; font-style: italic; font-display: swap; font-weight: 400 700;
+  src: url(/assets/lora-latin-italic-var.woff2) format('woff2'), url(/assets/lora-latin-italic-var.woff) format('woff'); }

@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bg="cs-audit-mapping" data-m="ledger">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -20,9 +20,9 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-audit-mapping.png" />
     <title>IAM Audit & Control-Mapping Framework · Roshan Trivedi</title>
 
-    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
       <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -38,7 +38,7 @@
     "@type": "Person",
     "name": "Roshan Trivedi",
     "url": "https://roshantrivedi.co.in/",
-    "jobTitle": "Credential Management Platform Owner and PAM Product Leader"
+    "jobTitle": "Credential Management Platform Owner"
   },
   "publisher": {
     "@type": "Person",
@@ -58,12 +58,18 @@
     </script>
       <link rel="stylesheet" href="/assets/casestudy.css?v=20261019d">
       <link rel="stylesheet" href="/assets/theme.css">
-    <script src="/assets/theme.js"></script>
+    <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261019f" defer></script>
+    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261022m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "IAM Audit & Control-Mapping Framework", "item": "https://roshantrivedi.co.in/case-studies/audit-mapping/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261022m">
   </head>
-  <body style="--c:#f7c873">
+  <body class="read" style="--c:#f7c873">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/" aria-current="page">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main">
@@ -78,6 +84,7 @@
       </header>
 
       <div class="tldr">
+        <svg class="doodle" viewBox="0 0 96 96" width="88" height="88" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14 L58 12 L60 70 L12 72 Z"/><path d="M22 28 h28 M22 40 h24 M22 52 h20"/><circle cx="66" cy="58" r="14"/><path d="M76 68 l14 14"/></svg>
         <h2>The short version</h2>
         <ul>
           <li>Audit wording and platform settings describe the same risk in different languages. The gap between them is where evidence goes missing and ownership gets vague.</li>
@@ -330,7 +337,7 @@
           <li><a href="https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf">NIST Cybersecurity Framework 2.0</a></li>
           <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022</a>. The standard is paid, so I did not read it directly. Clause 9.1 and the Annex A names come from secondary summaries (<a href="https://27kay.com/blog/iso-27001-clause-9-1-monitoring-measurement/">27kay</a>, <a href="https://iseoblue.com/iso-27001/annex-a/iso-27001-controls-list/">iseoblue</a>, <a href="https://www.urmconsulting.com/blog/iso-27001-2022-a-5-organisational-controls-access-management">URM</a>).</li>
           <li><a href="https://cas.docs.cisecurity.org/en/latest/source/Controls5/">CIS Controls Assessment Specification, Control 5</a>, <a href="https://cas.docs.cisecurity.org/en/latest/source/Controls6/">Control 6</a> and <a href="https://cas.docs.cisecurity.org/en/latest/source/Controls8/">Control 8</a>, published by the Center for Internet Security. These are v8 and v8.1 wording.</li>
-          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0, PCI Security Standards Council</a>. The standard needs a download agreement, so requirement wording was read through Microsoft Learn, a secondary source: <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-10">Requirement 10</a> and <a href="https://learn.microsoft.com/th-th/entra/standards/pci-requirement-7">Requirement 7</a>.</li>
+          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0, PCI Security Standards Council</a>. The standard needs a download agreement, so requirement wording was read through Microsoft Learn, a secondary source: <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-10">Requirement 10</a> and <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-7">Requirement 7</a>.</li>
           <li><a href="https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022">AICPA 2017 Trust Services Criteria (with revised points of focus, 2022)</a>. The criteria text was read in a third-party <a href="https://gccertification.com/wp-content/uploads/2024/06/AICPA-TSP-Section-100-Trust-Services-Criteria-2022.pdf">hosted copy of TSP Section 100</a>, a secondary source.</li>
         </ol>
         <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data, and the worked example is illustrative. Control numbers and wording are as published in the sources above. Where a source is secondary, check the standard itself before you cite it in an audit.</p>
@@ -354,9 +361,9 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
-    <script src="/assets/chatbot-data.js?v=20261018b"></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261018b"></script>
-      <script defer src="/assets/casestudy.js?v=20261002"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261022b"></script>
+      <script defer src="/assets/casestudy.js?v=20261021b"></script>
+      <script defer src="/assets/showcase.js?v=20261021b"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>

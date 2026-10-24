@@ -1,6 +1,9 @@
 ---
 title: "PAM Framework and Design: What Sits Around the Vault"
 layout: post
+bg: post-framework
+motif: hex
+seo_title: "PAM Framework and Design: Around the Vault"
 date: 2026-10-10 10:35:00 +0530
 author: Roshan Trivedi
 series: pam
@@ -9,7 +12,7 @@ tags: [pam, iam, privileged-access, architecture, zero-trust, help-desk]
 share_title: "PAM Framework and Design: What Sits Around the Vault"
 share_label: "Article · Privileged access"
 share_accent: green
-description: "A layered reference framework for privileged access management that covers discovery, tiering, SSO and MFA, authorization, vaulting, machine identities, help desk, monitoring, governance and resilience, with the design trade-offs I weigh."
+description: "A layered reference framework for privileged access management, from discovery and tiering to vaulting, machine identities, monitoring and governance."
 diagrams: true
 ---
 
