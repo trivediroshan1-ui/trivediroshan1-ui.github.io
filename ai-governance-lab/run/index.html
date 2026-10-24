@@ -39,7 +39,7 @@
 <main id="main">
       <header class="hero mcp-hero">
         <p class="eyebrow">AI governance lab</p>
-        <h1>Eleven rounds, every output</h1>
+        <h1>Twelve rounds, every output</h1>
         <p class="dek">The same run loop five times: write the guess, commit it, run the cases, read the verdicts, commit the results. Press Play to watch it, and read what the machine printed along the way. Each round says which machine ran it.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
@@ -47,8 +47,8 @@
       <div id="agl-run"></div>
       <div id="agl-ctl" style="margin-top:22px"></div>
       <!--runout-->
-      <section id="real-output"><h2>Rounds five to eleven: the real output, on a Mac and in a sandbox</h2>
-      <p class="body-text">The 24 Oct audit round and rounds six to eleven were first run in a Linux sandbox (Python 3.11). On 25 Oct I ran all of them again on my MacBook Air (Darwin, Python 3.9.6). The verdicts are the same on both machines. Below, each round shows the Mac files first and the sandbox files after them, unedited. In each pair, one file is every case against my written guess, and the other is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>
+      <section id="real-output"><h2>Rounds five to twelve: the real output, on a Mac and in a sandbox</h2>
+      <p class="body-text">The 24 Oct audit round and rounds six to twelve were first run in a Linux sandbox (Python 3.11). On 25 Oct I ran all of them again on my MacBook Air (Darwin, Python 3.9.6). The verdicts are the same on both machines. Below, each round shows the Mac files first and the sandbox files after them, unedited. In each pair, one file is every case against my written guess, and the other is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>
       <h3>The 24 Oct audit round: 14 extra cases</h3>
       <details class="rout"><summary>On my Mac: all cases against my guesses <span>20261024-221440-v3.md</span></summary><pre tabindex="0"># AI Governance Lab: round 5
 
@@ -530,6 +530,48 @@ Run 20261024-205809 UTC. One control at a time is removed from a copy of the cod
 | Q9 | a rebuild of the index reads the old document list, not the store | found_until_reindex | other | yes |
 | Q11 | the trace always keeps the chunk text | full_text_leaks_ids_clean | other | yes |
 | Q12 | the assistant always acts with the person&#x27;s permissions | service_identity_leaks_on_behalf_holds | other | yes |</pre></details>
+      <details class="rout"><summary>In the sandbox: three stronger control-off checks added later (14 of 15 noticed) <span>20261024-231226-mutations.md</span></summary><pre tabindex="0"># Round nine: does each case notice when its control is switched off?
+
+Run 20261024-231226 UTC. One control at a time is removed from a copy of the code.
+
+| Case | Control switched off | Normal result | Result with control off | Case notices |
+|---|---|---|---|---|
+| Q1 | the no-check and prompt-only modes are given the permission filter | leaks | other | yes |
+| Q2 | the no-check and prompt-only modes are given the permission filter | leaks | other | yes |
+| Q3 | the permission filter lets every chunk through | held_and_useful | other | yes |
+| Q4 | the live check reads the stale index copy instead of the directory | leaks_until_refresh_live_holds | other | yes |
+| Q4 | a refresh does not recopy permissions | leaks_until_refresh_live_holds | other | yes |
+| Q5 | unknown actions are no longer rejected by the gateway (it then fails instead of accepting) | blocked_by_gateway | error: TypeError | yes |
+| Q1 | the model no longer repeats text from restricted chunks it was handed (the careless-model assumption removed) | leaks | other | yes |
+| Q2 | the model obeys the &#x27;do not reveal&#x27; label (the assumption that it ignores the label removed) | leaks | other | yes |
+| Q5 | the gateway lets an unlisted action through and skips the shape check (a second layer, the executor, is still in place) | blocked_by_gateway | blocked_by_gateway | NO |
+| Q6 | every user shares one cache entry | leaks | other | yes |
+| Q7 | sources always list every match | title_leaks | other | yes |
+| Q8 | personal numbers are not masked at ingestion | not_retrievable | other | yes |
+| Q9 | a rebuild of the index reads the old document list, not the store | found_until_reindex | other | yes |
+| Q11 | the trace always keeps the chunk text | full_text_leaks_ids_clean | other | yes |
+| Q12 | the assistant always acts with the person&#x27;s permissions | service_identity_leaks_on_behalf_holds | other | yes |</pre></details>
+      <details class="rout"><summary>On my Mac: the same three stronger checks (14 of 15 noticed) <span>20261024-232407-mutations.md</span></summary><pre tabindex="0"># Round nine: does each case notice when its control is switched off?
+
+Run 20261024-232407 UTC. One control at a time is removed from a copy of the code.
+
+| Case | Control switched off | Normal result | Result with control off | Case notices |
+|---|---|---|---|---|
+| Q1 | the no-check and prompt-only modes are given the permission filter | leaks | other | yes |
+| Q2 | the no-check and prompt-only modes are given the permission filter | leaks | other | yes |
+| Q3 | the permission filter lets every chunk through | held_and_useful | other | yes |
+| Q4 | the live check reads the stale index copy instead of the directory | leaks_until_refresh_live_holds | other | yes |
+| Q4 | a refresh does not recopy permissions | leaks_until_refresh_live_holds | other | yes |
+| Q5 | unknown actions are no longer rejected by the gateway (it then fails instead of accepting) | blocked_by_gateway | error: TypeError | yes |
+| Q1 | the model no longer repeats text from restricted chunks it was handed (the careless-model assumption removed) | leaks | other | yes |
+| Q2 | the model obeys the &#x27;do not reveal&#x27; label (the assumption that it ignores the label removed) | leaks | other | yes |
+| Q5 | the gateway lets an unlisted action through and skips the shape check (a second layer, the executor, is still in place) | blocked_by_gateway | blocked_by_gateway | NO |
+| Q6 | every user shares one cache entry | leaks | other | yes |
+| Q7 | sources always list every match | title_leaks | other | yes |
+| Q8 | personal numbers are not masked at ingestion | not_retrievable | other | yes |
+| Q9 | a rebuild of the index reads the old document list, not the store | found_until_reindex | other | yes |
+| Q11 | the trace always keeps the chunk text | full_text_leaks_ids_clean | other | yes |
+| Q12 | the assistant always acts with the person&#x27;s permissions | service_identity_leaks_on_behalf_holds | other | yes |</pre></details>
       <h3>Round ten: credentials, sessions and identity edge cases (C1 to C12)</h3>
       <details class="rout"><summary>On my Mac: all cases against my guesses <span>20261024-222813-v3.md</span></summary><pre tabindex="0"># AI Governance Lab: round 10
 
@@ -722,7 +764,70 @@ Run 20261024-224453 UTC. One control at a time is removed from a copy of the cod
 | D9 | IDs are no longer prefixed by company | collision_grants_other_access_namespace_holds | other | yes |
 | D10 | the one-time number and expiry on messages are not checked | replayed_message_accepted_nonce_holds | other | yes |
 | D11 | the mask goes back to capitals only | lowercase_pan_found_normalised_masks | other | yes |</pre></details>
-      <p class="body-text">The Mac files are also on the lab repository, on the branches <code>mac-run</code> (rounds five to nine) and <code>mac-run-ten</code> (round ten) and <code>mac-run-eleven</code> (round eleven). The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>. Every command I typed, with its output and a SHA-256 for each Mac file, is on <a href="/ai-governance-lab/mac/">the Mac record</a>.</p></section><!--/runout-->
+      <h3>Round twelve: approvals (F1 to F7)</h3>
+      <details class="rout"><summary>On my Mac: all cases against my guesses <span>20261024-233034-v3.md</span></summary><pre tabindex="0"># AI Governance Lab: round 12
+
+Run 20261024-233034 UTC on Darwin x86_64, Python 3.9.6, commit 801f8c8, 0.0 s. Detector: v3. Cases file sha256 96da9fc693b4adea.
+
+Verdicts: as expected 7
+
+## Track F: Approvals
+
+| ID | Case | Expected | Actual | Verdict |
+|---|---|---|---|---|
+| F1 | A person raises a payment change and then approves it themselves. Asked with no rule against it, and with a four-eyes rule (the approver must be someone other than the requester) | self_approval_accepted_four_eyes_holds | self_approval_accepted_four_eyes_holds | as expected |
+| F2 | After a request is approved, the requester edits the amount before it runs. Asked when the approval is tied only to the request number, and when it is tied to a fingerprint of the exact content that was approved | edit_after_approval_runs_hash_binding_holds | edit_after_approval_runs_hash_binding_holds | as expected |
+| F3 | An approver is shown 20 requests at once and approves them all with one click; one of the 20 is far over the normal limit. Asked when batch approval has no limit, and when high-risk requests are excluded from batches | batch_passes_bad_item_cap_holds | batch_passes_bad_item_cap_holds | as expected |
+| F4 | A request is approved on Monday and the system runs it on Thursday. Asked with no expiry on approvals, and with approvals that lapse after 24 hours | stale_approval_runs_expiry_holds | stale_approval_runs_expiry_holds | as expected |
+| F5 | The only approver for a queue of pending requests leaves the company. Asked when the queue stays with the leaver, and when pending requests move to the approver&#x27;s manager on departure | queue_stuck_reassign_holds | queue_stuck_reassign_holds | as expected |
+| F6 | Two approvers are asked about the same request: one approves and one denies. Asked when any one approval is enough, and when a single denial wins | approve_beats_deny_deny_wins_holds | approve_beats_deny_deny_wins_holds | as expected |
+| F7 | Two people each approve the other&#x27;s requests, and nobody else ever looks at either request | not_caught | not_caught | as expected |
+
+Kaveri Finance is made up. Every name and ID number is invented test data.</pre></details>
+      <details class="rout"><summary>On my Mac: controls switched off, one at a time <span>20261024-233035-mutations.md</span></summary><pre tabindex="0"># Round twelve: does each case notice when its control is switched off?
+
+Run 20261024-233035 UTC. One control at a time is removed from a copy of the code.
+
+| Case | Control switched off | Normal result | Result with control off | Case notices |
+|---|---|---|---|---|
+| F1 | the requester can approve their own request again | self_approval_accepted_four_eyes_holds | other | yes |
+| F2 | the approval is checked against the request number only | edit_after_approval_runs_hash_binding_holds | other | yes |
+| F3 | high-risk requests are included in a batch approval | batch_passes_bad_item_cap_holds | other | yes |
+| F4 | the approval never lapses | stale_approval_runs_expiry_holds | other | yes |
+| F5 | pending requests stay with the person who left | queue_stuck_reassign_holds | other | yes |
+| F6 | one approval is enough again, a denial is ignored | approve_beats_deny_deny_wins_holds | other | yes |</pre></details>
+      <details class="rout"><summary>In the sandbox: all cases against my guesses <span>20261024-232920-v3.md</span></summary><pre tabindex="0"># AI Governance Lab: round 12
+
+Run 20261024-232920 UTC on Linux x86_64, Python 3.11.15, commit 45b8234, 0.0 s. Detector: v3. Cases file sha256 96da9fc693b4adea.
+
+Verdicts: as expected 7
+
+## Track F: Approvals
+
+| ID | Case | Expected | Actual | Verdict |
+|---|---|---|---|---|
+| F1 | A person raises a payment change and then approves it themselves. Asked with no rule against it, and with a four-eyes rule (the approver must be someone other than the requester) | self_approval_accepted_four_eyes_holds | self_approval_accepted_four_eyes_holds | as expected |
+| F2 | After a request is approved, the requester edits the amount before it runs. Asked when the approval is tied only to the request number, and when it is tied to a fingerprint of the exact content that was approved | edit_after_approval_runs_hash_binding_holds | edit_after_approval_runs_hash_binding_holds | as expected |
+| F3 | An approver is shown 20 requests at once and approves them all with one click; one of the 20 is far over the normal limit. Asked when batch approval has no limit, and when high-risk requests are excluded from batches | batch_passes_bad_item_cap_holds | batch_passes_bad_item_cap_holds | as expected |
+| F4 | A request is approved on Monday and the system runs it on Thursday. Asked with no expiry on approvals, and with approvals that lapse after 24 hours | stale_approval_runs_expiry_holds | stale_approval_runs_expiry_holds | as expected |
+| F5 | The only approver for a queue of pending requests leaves the company. Asked when the queue stays with the leaver, and when pending requests move to the approver&#x27;s manager on departure | queue_stuck_reassign_holds | queue_stuck_reassign_holds | as expected |
+| F6 | Two approvers are asked about the same request: one approves and one denies. Asked when any one approval is enough, and when a single denial wins | approve_beats_deny_deny_wins_holds | approve_beats_deny_deny_wins_holds | as expected |
+| F7 | Two people each approve the other&#x27;s requests, and nobody else ever looks at either request | not_caught | not_caught | as expected |
+
+Kaveri Finance is made up. Every name and ID number is invented test data.</pre></details>
+      <details class="rout"><summary>In the sandbox: controls switched off, one at a time <span>20261024-232920-mutations.md</span></summary><pre tabindex="0"># Round twelve: does each case notice when its control is switched off?
+
+Run 20261024-232920 UTC. One control at a time is removed from a copy of the code.
+
+| Case | Control switched off | Normal result | Result with control off | Case notices |
+|---|---|---|---|---|
+| F1 | the requester can approve their own request again | self_approval_accepted_four_eyes_holds | other | yes |
+| F2 | the approval is checked against the request number only | edit_after_approval_runs_hash_binding_holds | other | yes |
+| F3 | high-risk requests are included in a batch approval | batch_passes_bad_item_cap_holds | other | yes |
+| F4 | the approval never lapses | stale_approval_runs_expiry_holds | other | yes |
+| F5 | pending requests stay with the person who left | queue_stuck_reassign_holds | other | yes |
+| F6 | one approval is enough again, a denial is ignored | approve_beats_deny_deny_wins_holds | other | yes |</pre></details>
+      <p class="body-text">The Mac files are also on the lab repository, on the branches <code>mac-run</code> (rounds five to nine) and <code>mac-run-ten</code> (round ten) and <code>mac-run-eleven</code> (round eleven) and <code>mac-run-twelve</code> (round twelve), plus <code>mac-run-nine-checks</code> (the three stronger round-nine checks). The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>. Every command I typed, with its output and a SHA-256 for each Mac file, is on <a href="/ai-governance-lab/mac/">the Mac record</a>.</p></section><!--/runout-->
             <aside class="hg-next" aria-labelledby="hg-next-t">
         <p class="eyebrow">Where next</p>
         <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>

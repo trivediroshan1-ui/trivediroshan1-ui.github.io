@@ -11,8 +11,8 @@ assert sha == R11["cases_sha256"], (sha, R11["cases_sha256"])
 e = html.escape
 def words(s): return e(str(s).replace("_", " "))
 
-LANES = [("bu", "The person asking"), ("iga", "Permissions and gateway"), ("dir", "Document store and index"),
-         ("ai", "The assistant"), ("aud", "Logs and audit"), ("hr", "Privacy and data protection")]
+LANES = [("bu", "The person who starts the job"), ("ai", "Agents"), ("iga", "Signing and keys"),
+         ("dir", "Directory and index"), ("aud", "Logs and audit"), ("hr", "HR and departures")]
 STEPS = [
  ("bu", "A person starts a job for an agent", "The person, with the agent's token",
   "The job is tied to the person who started it. The token the agent holds says who that is, and it is recorded at every step that follows.",
@@ -101,7 +101,7 @@ block = f'''<!-- r11:start -->
             <tbody>{ctl_rows}</tbody>
           </table>
         </div>
-        <p class="body-text">Every case has a step-by-step page in the <a href="/ai-governance-lab/cases/#Q1">case explorer</a> (track Q). This round is in the addendum PDF (rounds five to ten), not in the book.</p>
+        <p class="body-text">Every case has a step-by-step page in the <a href="/ai-governance-lab/cases/#D1">case explorer</a> (track D). This round is in the addendum PDF (rounds five to twelve), not in the book.</p>
       </section>
 <!-- r11:end -->
 
