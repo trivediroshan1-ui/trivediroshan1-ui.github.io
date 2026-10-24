@@ -93,7 +93,7 @@ block = f'''<!-- r7:start -->
           <li>HR, the identity governance tool and the directory are small models I wrote. They are not Workday, SailPoint, Entra or Active Directory, and real tools will differ.</li>
           <li>The &ldquo;learning from peers&rdquo; is a plain majority count, not a trained model. The AI model itself is not tested.</li>
           <li>I wrote the guesses and the code, so &ldquo;as expected&rdquo; shows the rules do what I intended, not that I thought of every case.</li>
-          <li>Not tested: background-check vendors, rehires and name changes, contractors who come through a staffing agency, movers and leavers triggered from HR, and real approval screens used by real people.</li>
+          <li>Not tested in this round: background-check vendors, movers and leavers triggered from HR, and real approval screens used by real people. Rehires, name changes and agency contractors are in round ten.</li>
           <li>The mapping below, and the legal comments above, are my own reading and not legal advice.</li>
         </ul>
         <h3>Where the four new controls sit</h3>
