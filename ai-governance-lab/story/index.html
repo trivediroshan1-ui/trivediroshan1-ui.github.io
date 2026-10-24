@@ -46,10 +46,13 @@
       </header>
       <div class="agl story">
       <section>
-        <p class="kick">My story</p>
-        <p class="lead">For years, my job was to map controls. On finance, healthcare and information security projects, I took the controls a PAM or access-management product offers and mapped them to the client&rsquo;s IAM policy. External auditors then checked that policy against standards such as NIST, PCI DSS, HIPAA or ISO 27001.</p>
-        <p>Every time, one question stayed with me.</p>
-        <blockquote class="st-quote">Does the control really do what the policy says, or does the mapping only look right on paper?</blockquote>
+        <p class="kick">My story, in my words</p>
+        <p class="lead">I used to do control mapping for PAM tools against IAM policies, created internally and verified by external auditors against standards like NIST, PCI, HIPAA and ISO 27001, depending on the project: finance, healthcare or an information security firm.</p>
+        <p>One question was always at the back of my mind.</p>
+        <blockquote class="st-quote">Are we serious about these controls we map from the vendor, and do they really adhere to the organisation&rsquo;s policy? It still fascinates me.</blockquote>
+        <p>Then the AI era started. I kept hearing that AI hooks will help, that agents will map policies, that AI identification will automate identity, and that a Centre of Excellence for AI governance will sit at the top and decide what level of permission each agent should get. Later I heard that AI agents will use PAM or identity APIs to stay within governance and meet compliance.</p>
+        <p>But I never heard what the use cases are, what policies we are trying to manage, how the governance factor is aligned, or who the certifier is. And what if an AI agent goes vague and makes its own decisions?</p>
+        <p>That is when my mind started building towards this AI governance test on my private laptop. Before that, I read white papers from NIST, ISO and the IGA and PAM vendors on how they manage, discover and automate the identity life cycle, accounts linked to an identity, non-human identities and agents, so that I had the knowledge before I built anything.</p>
       </section>
 
       <section aria-labelledby="path">
@@ -63,9 +66,7 @@
       </section>
 
       <section>
-        <h2>What I kept hearing, and what I never heard</h2>
-        <p>Then the AI era started. I heard that AI hooks would help, that agents would map policies, that AI would automate identity, and that a central governance team would decide how much access each agent should get. I also heard that agents would call PAM and identity APIs while staying inside the firm&rsquo;s compliance rules.</p>
-        <p>What I did not hear was the detail:</p>
+        <h2>The questions nobody answered</h2>
         <ul class="st-q">
           <li>Which use cases are we talking about?</li>
           <li>Which policy is each agent bound to?</li>
@@ -88,7 +89,6 @@
 
       <section>
         <h2>So I built the test</h2>
-        <p>I did not want to build anything before I understood the ground. I read the NIST and ISO material, and how IGA and PAM vendors describe the identity life cycle: accounts linked to a person, non-human identities and agents. Then I built a test on my own laptop.</p>
         <p>The company is made up: Kaveri Finance, a small lender. The Aadhaar, PAN and card numbers are invented, but they pass the real checksums, so the tests behave like real data. I wrote the expected result of every case and saved it in git before running anything.</p>
         <div class="st-stats">
           <div class="st-stat"><b>59</b><span>cases across gateway, filter, agent identity and audit log</span></div>
