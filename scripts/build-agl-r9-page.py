@@ -87,7 +87,7 @@ block = f'''<!-- r9:start -->
           <li>Q10 is a limit, not a fix: two documents a person may read can combine into something they may not know, and no permission check stops that.</li>
           <li>Q5 relies on the gateway from the earlier rounds. There is no real mail system.</li>
           <li>I wrote the guesses and the code, so &ldquo;as expected&rdquo; shows the rules do what I intended, not that I thought of every case.</li>
-          <li>This round ran in a Linux sandbox with Python 3.11. A run on a Mac is still to come.</li>
+          <li>This round first ran in a Linux sandbox with Python 3.11. I then ran it on my MacBook Air (Python 3.9.6) with the same verdicts: 12 of 12 as guessed and 12 of 12 control-off checks noticed. Both sets of files are on the run page.</li>
           <li>The mapping below is my own reading, not legal advice and not a certification.</li>
         </ul>
         <h3>Where the six new controls sit</h3>
