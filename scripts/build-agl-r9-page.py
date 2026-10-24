@@ -97,7 +97,7 @@ block = f'''<!-- r9:start -->
             <tbody>{ctl_rows}</tbody>
           </table>
         </div>
-        <p class="body-text">Every case has a step-by-step page in the <a href="/ai-governance-lab/cases/#Q1">case explorer</a> (track Q). This round is not in the book or the addendum PDF yet.</p>
+        <p class="body-text">Every case has a step-by-step page in the <a href="/ai-governance-lab/cases/#Q1">case explorer</a> (track Q). This round is in the addendum PDF (rounds five to ten), not in the book.</p>
       </section>
 <!-- r9:end -->
 

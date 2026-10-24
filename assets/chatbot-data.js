@@ -470,7 +470,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/cases/",
     keywords: ["use cases", "all cases", "every case", "case explorer", "a1", "g10", "i7", "e5", "kill switch case", "what does case"],
     answer:
-      "The case explorer lists all 115 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
+      "The case explorer lists all 139 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
     id: "ai-governance-lab-round-five",
@@ -505,6 +505,14 @@ window.SITE_QA = [
       "Round eight asks what happens if an agent goes round the gateway, for example with a leaked token. It tests three layers. Make it hard: the identity API accepts a credential only from the caller it was lent to, it expires in minutes, and the agent's runtime has no network route to the API. Notice: every change in the identity system's own log must match a decision the gateway signed, and a change with no decision is a bypass. Answer: the policy switches off the agent it can trace, cancels its waiting approvals and revokes its credentials and the leaked token, evidence is copied and hashed first, and a named person decides whether to roll back. It also covers allow, watch and block lists by account state (a leaver's account touched, a mover asking for new access too soon), a sponsor who leaves, a recorded helper for people who use assistive technology (a code, never medical detail), a signal that reaches a person with evidence and no verdict from an agent, sensitive data the agent cannot request, and a tampered audit log. 12 cases (B1 to B12) were guessed before the code and all came out as guessed; switching off 21 controls one at a time made the matching case fail in all 21. Limits: the API, vault, network and log are small models I wrote, no real agent tries to get round the wall, and the legal and offence questions need counsel.",
   },
   {
+    id: "ai-governance-lab-credentials",
+    title: "AI governance lab: round ten, credentials, sessions and identity edge cases",
+    url: "/ai-governance-lab/#credentials",
+    keywords: ["round ten", "round 10", "token binding", "bound token", "dpop", "stolen token", "bearer token", "revoke signal", "caep", "shared signals", "session revocation", "scim put patch", "rehire", "name change", "surname", "contractor", "staffing agency", "break glass", "break-glass", "erasure", "right to erasure", "hash chain", "clock skew", "clock drift", "time sync"],
+    answer:
+      "Round ten covers the identity edge cases from my open list, with 12 cases (C1 to C12) that I guessed before writing code. A copied bearer token works for a thief, but a token tied to the caller's key is refused (C1); if the thief has the key too, nothing in the lab stops them (C2, a limit). A terminated person's token keeps working until it expires unless a signed revoke signal cuts it (C3, C4), and a late 'restored' message must not undo a newer 'revoked' (C5). A sync that sends a whole record can switch a disabled account back on, while a PATCH of the changed field does not (C6, assuming the server defaults active to true). A rehire should get a fresh account, not the old access back (C7); match accounts on a staff ID, not a name (C8); contractors from an agency need an end date (C9); break-glass use needs an alert and a new password at check-in (C10); erasing a name by editing a hash-chained log breaks the chain, while a pseudonym store holds (C11); and a slow clock accepts an expired token unless the app checks its clock (C12). All 12 came out as guessed on the first run, and 12 of 12 control-off checks noticed. It ran in a sandbox and on my Mac. These are small models I wrote, with a shared secret standing in for a public key; no real tenant or AI model is tested.",
+  },
+  {
     id: "ai-governance-lab-rag",
     title: "AI governance lab: round nine, an assistant that answers from documents (RAG)",
     url: "/ai-governance-lab/#rag",
@@ -530,19 +538,19 @@ window.SITE_QA = [
   },
   {
     id: "ai-governance-lab-addendum-pdf",
-    title: "AI governance lab: addendum PDF, rounds five to nine",
+    title: "AI governance lab: addendum PDF, rounds five to ten",
     url: "/assets/ai-governance-lab-addendum.pdf",
-    keywords: ["addendum", "addendum pdf", "rounds five to nine", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "68 cases", "controls table"],
+    keywords: ["addendum", "addendum pdf", "rounds five to ten", "rounds five to nine", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "80 cases", "68 cases", "controls table"],
     answer:
-      "The addendum is a free 50-page PDF (7 by 10 inches) for rounds five to nine, dated 25 Oct 2026. It has 68 cases (14 in round five, 18 in six, 12 in seven, 12 in eight, 12 in nine) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, an assistant-answers-from-documents round, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
+      "The addendum is a free 57-page PDF (7 by 10 inches) for rounds five to ten, dated 25 Oct 2026. It has 80 cases (14 in round five, 18 in six, 12 in seven, 12 in eight, 12 in nine, 12 in ten) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, an assistant-answers-from-documents round, an identity-edge-cases round, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
   },
   {
     id: "ai-governance-lab-real-output",
-    title: "AI governance lab: real run output for rounds six to nine",
+    title: "AI governance lab: real run output for rounds five to ten",
     url: "/ai-governance-lab/run/#real-output",
     keywords: ["real output", "run output", "results file", "raw results", "control off", "mutation", "run page", "evidence of run", "sandbox run"],
     answer:
-      "The run page now shows the unedited result files for rounds six to nine: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. The 24 Oct audit round and rounds six to nine first ran in a Linux sandbox with Python 3.11, and on 25 Oct I ran them all again on my MacBook Air (Darwin, Python 3.9.6) with the same verdicts. Rounds one to four ran on the MacBook originally, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform; the Mac files are on the run page and on the lab's mac-run branch. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
+      "The run page now shows the unedited result files for the audit round and rounds six to ten: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. The 24 Oct audit round and rounds six to ten first ran in a Linux sandbox with Python 3.11, and on 25 Oct I ran them all again on my MacBook Air (Darwin, Python 3.9.6) with the same verdicts. Rounds one to four ran on the MacBook originally, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform; the Mac files are on the run page and on the lab's mac-run branch. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
   },
   {
     id: "ai-governance-lab-where-to-start",
@@ -550,7 +558,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/",
     keywords: ["where to start", "what to read first", "order to read", "how to read", "guide to the lab", "overview", "start here", "quick tour"],
     answer:
-      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 67-page book and the 50-page addendum for rounds five to nine. The last part of each says what the lab does not cover.",
+      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 67-page book and the 57-page addendum for rounds five to ten. The last part of each says what the lab does not cover.",
   },
   {
     id: "ai-governance-lab-risks",

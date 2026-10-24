@@ -39,16 +39,16 @@
 <main id="main">
       <header class="hero mcp-hero">
         <p class="eyebrow">AI governance lab</p>
-        <h1>Eight rounds, every output</h1>
+        <h1>Ten rounds, every output</h1>
         <p class="dek">The same run loop five times: write the guess, commit it, run the cases, read the verdicts, commit the results. Press Play to watch it, and read what the machine printed along the way. Each round says which machine ran it.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
-      <section><p class="body-text">This is the working record behind <a href="/ai-governance-lab/">the write-up</a>. Rounds one to four ran on one MacBook Air with Python 3.9.6 (the result files say Darwin). The later work, from the 24 Oct audit onwards (the 14 extra cases and rounds six to nine), first ran in a Linux sandbox with Python 3.11, and I then ran all of it again on the same MacBook Air with the same verdicts (the result files say which machine). The two held-out lists and the Track P walkthrough do not record the machine in their files. All of it uses made-up data about an invented lender. The expected result for every case was committed to git before the run.</p></section>
+      <section><p class="body-text">This is the working record behind <a href="/ai-governance-lab/">the write-up</a>. Rounds one to four ran on one MacBook Air with Python 3.9.6 (the result files say Darwin). The later work, from the 24 Oct audit onwards (the 14 extra cases and rounds six to ten), first ran in a Linux sandbox with Python 3.11, and I then ran all of it again on the same MacBook Air with the same verdicts (the result files say which machine). The two held-out lists and the Track P walkthrough do not record the machine in their files. All of it uses made-up data about an invented lender. The expected result for every case was committed to git before the run.</p></section>
       <div id="agl-run"></div>
       <div id="agl-ctl" style="margin-top:22px"></div>
       <!--runout-->
-      <section id="real-output"><h2>Rounds five to nine: the real output, on a Mac and in a sandbox</h2>
-      <p class="body-text">The 24 Oct audit round and rounds six to nine were first run in a Linux sandbox (Python 3.11). On 25 Oct I ran all of them again on my MacBook Air (Darwin, Python 3.9.6). The verdicts are the same on both machines. Below, each round shows the Mac files first and the sandbox files after them, unedited. In each pair, one file is every case against my written guess, and the other is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>
+      <section id="real-output"><h2>Rounds five to ten: the real output, on a Mac and in a sandbox</h2>
+      <p class="body-text">The 24 Oct audit round and rounds six to ten were first run in a Linux sandbox (Python 3.11). On 25 Oct I ran all of them again on my MacBook Air (Darwin, Python 3.9.6). The verdicts are the same on both machines. Below, each round shows the Mac files first and the sandbox files after them, unedited. In each pair, one file is every case against my written guess, and the other is the control-off run: one control switched off at a time, in a copy of the code, to see whether the matching case noticed. Every name and ID number is made-up test data about an invented lender.</p>
       <h3>The 24 Oct audit round: 14 extra cases</h3>
       <details class="rout"><summary>On my Mac: all cases against my guesses <span>20261024-221440-v3.md</span></summary><pre tabindex="0"># AI Governance Lab: round 5
 
@@ -530,7 +530,92 @@ Run 20261024-205809 UTC. One control at a time is removed from a copy of the cod
 | Q9 | a rebuild of the index reads the old document list, not the store | found_until_reindex | other | yes |
 | Q11 | the trace always keeps the chunk text | full_text_leaks_ids_clean | other | yes |
 | Q12 | the assistant always acts with the person&#x27;s permissions | service_identity_leaks_on_behalf_holds | other | yes |</pre></details>
-      <p class="body-text">The Mac files are also on the lab repository, on the branch <code>mac-run</code>. The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>.</p></section><!--/runout-->
+      <h3>Round ten: credentials, sessions and identity edge cases (C1 to C12)</h3>
+      <details class="rout"><summary>On my Mac: all cases against my guesses <span>20261024-222813-v3.md</span></summary><pre tabindex="0"># AI Governance Lab: round 10
+
+Run 20261024-222813 UTC on Darwin x86_64, Python 3.9.6, commit 09c6563, 0.33 s. Detector: v3. Cases file sha256 ad73f73f85b0a85d.
+
+Verdicts: as expected 12
+
+## Track C: Credentials, sessions and identity edge cases
+
+| ID | Case | Expected | Actual | Verdict |
+|---|---|---|---|---|
+| C1 | Bearer token copied from a log file and replayed from another machine. Asked with a plain bearer token and with a token tied to the caller&#x27;s own key | replayed_bound_refused | replayed_bound_refused | as expected |
+| C2 | Same, but the thief has taken the caller&#x27;s key as well as the token (the whole host is compromised) | not_caught | not_caught | as expected |
+| C3 | A person is terminated while their session token has 50 minutes left. Asked with expiry only, and with a revoke signal sent to the app straight away | works_until_expiry_signal_cuts | works_until_expiry_signal_cuts | as expected |
+| C4 | A revoke signal arrives that is not signed, then one that is signed by the identity provider | unsigned_ignored_signed_accepted | unsigned_ignored_signed_accepted | as expected |
+| C5 | Signals arrive out of order: &#x27;access restored&#x27; (older) reaches the app after &#x27;access revoked&#x27; (newer) | naive_reinstates_ordered_holds | naive_reinstates_ordered_holds | as expected |
+| C6 | The nightly HR sync replaces a disabled user with a full-record PUT that leaves out the &#x27;active&#x27; field, versus a PATCH of only the fields that changed | put_reactivates_patch_holds | put_reactivates_patch_holds | as expected |
+| C7 | A person who left comes back after 40 days with the same staff ID. The old account is restored, versus a fresh joiner flow | old_access_returns_fresh_holds | old_access_returns_fresh_holds | as expected |
+| C8 | A person changes surname. Accounts are matched by name, versus by an unchanging ID | duplicate_by_name_holds_by_id | duplicate_by_name_holds_by_id | as expected |
+| C9 | A contractor from a staffing agency is on the system. The contract ends in the agency&#x27;s records, which HR never sees. Asked with no end date, and with a required end date of at most 90 days | stays_active_hard_stop_holds | stays_active_hard_stop_holds | as expected |
+| C10 | A break-glass account is used at 2 am. Asked with no alert and no password change afterwards, and with an alert within a minute and a new password at check-in | unnoticed_vs_alerted_and_rotated | unnoticed_vs_alerted_and_rotated | as expected |
+| C11 | A person asks for their name to be erased from the audit log. Editing the line, versus keeping the name in a separate store under a pseudonym and deleting that | edit_breaks_chain_pseudonym_holds | edit_breaks_chain_pseudonym_holds | as expected |
+| C12 | An app&#x27;s clock runs 15 minutes slow and it is shown a token that expired 10 minutes ago. Asked without and with a check that refuses to decide when the clock is off | slow_clock_accepts_drift_check_refuses | slow_clock_accepts_drift_check_refuses | as expected |
+
+Kaveri Finance is made up. Every name and ID number is invented test data.</pre></details>
+      <details class="rout"><summary>On my Mac: controls switched off, one at a time <span>20261024-222825-mutations.md</span></summary><pre tabindex="0"># Round ten: does each case notice when its control is switched off?
+
+Run 20261024-222825 UTC. One control at a time is removed from a copy of the code.
+
+| Case | Control switched off | Normal result | Result with control off | Case notices |
+|---|---|---|---|---|
+| C1 | the check of the caller&#x27;s key proof is skipped | replayed_bound_refused | other | yes |
+| C3 | the app throws away revoke signals | works_until_expiry_signal_cuts | other | yes |
+| C4 | the app does not check who signed a signal | unsigned_ignored_signed_accepted | other | yes |
+| C5 | the app stops comparing event times | naive_reinstates_ordered_holds | other | yes |
+| C6 | the field-by-field update is replaced by a whole-record replace | put_reactivates_patch_holds | other | yes |
+| C7 | the fresh-joiner flow restores the old account | old_access_returns_fresh_holds | other | yes |
+| C8 | matching by ID falls back to matching by name | duplicate_by_name_holds_by_id | other | yes |
+| C9 | the required end date is ignored | stays_active_hard_stop_holds | other | yes |
+| C10 | break-glass use sends no alert | unnoticed_vs_alerted_and_rotated | other | yes |
+| C10 | the break-glass password is not changed at check-in | unnoticed_vs_alerted_and_rotated | other | yes |
+| C11 | the log keeps names inline instead of a pseudonym | edit_breaks_chain_pseudonym_holds | other | yes |
+| C12 | the app does not check its own clock | slow_clock_accepts_drift_check_refuses | other | yes |</pre></details>
+      <details class="rout"><summary>In the sandbox: all cases against my guesses <span>20261024-222511-v3.md</span></summary><pre tabindex="0"># AI Governance Lab: round 10
+
+Run 20261024-222511 UTC on Linux x86_64, Python 3.11.15, commit c0374d0, 0.1 s. Detector: v3. Cases file sha256 ad73f73f85b0a85d.
+
+Verdicts: as expected 12
+
+## Track C: Credentials, sessions and identity edge cases
+
+| ID | Case | Expected | Actual | Verdict |
+|---|---|---|---|---|
+| C1 | Bearer token copied from a log file and replayed from another machine. Asked with a plain bearer token and with a token tied to the caller&#x27;s own key | replayed_bound_refused | replayed_bound_refused | as expected |
+| C2 | Same, but the thief has taken the caller&#x27;s key as well as the token (the whole host is compromised) | not_caught | not_caught | as expected |
+| C3 | A person is terminated while their session token has 50 minutes left. Asked with expiry only, and with a revoke signal sent to the app straight away | works_until_expiry_signal_cuts | works_until_expiry_signal_cuts | as expected |
+| C4 | A revoke signal arrives that is not signed, then one that is signed by the identity provider | unsigned_ignored_signed_accepted | unsigned_ignored_signed_accepted | as expected |
+| C5 | Signals arrive out of order: &#x27;access restored&#x27; (older) reaches the app after &#x27;access revoked&#x27; (newer) | naive_reinstates_ordered_holds | naive_reinstates_ordered_holds | as expected |
+| C6 | The nightly HR sync replaces a disabled user with a full-record PUT that leaves out the &#x27;active&#x27; field, versus a PATCH of only the fields that changed | put_reactivates_patch_holds | put_reactivates_patch_holds | as expected |
+| C7 | A person who left comes back after 40 days with the same staff ID. The old account is restored, versus a fresh joiner flow | old_access_returns_fresh_holds | old_access_returns_fresh_holds | as expected |
+| C8 | A person changes surname. Accounts are matched by name, versus by an unchanging ID | duplicate_by_name_holds_by_id | duplicate_by_name_holds_by_id | as expected |
+| C9 | A contractor from a staffing agency is on the system. The contract ends in the agency&#x27;s records, which HR never sees. Asked with no end date, and with a required end date of at most 90 days | stays_active_hard_stop_holds | stays_active_hard_stop_holds | as expected |
+| C10 | A break-glass account is used at 2 am. Asked with no alert and no password change afterwards, and with an alert within a minute and a new password at check-in | unnoticed_vs_alerted_and_rotated | unnoticed_vs_alerted_and_rotated | as expected |
+| C11 | A person asks for their name to be erased from the audit log. Editing the line, versus keeping the name in a separate store under a pseudonym and deleting that | edit_breaks_chain_pseudonym_holds | edit_breaks_chain_pseudonym_holds | as expected |
+| C12 | An app&#x27;s clock runs 15 minutes slow and it is shown a token that expired 10 minutes ago. Asked without and with a check that refuses to decide when the clock is off | slow_clock_accepts_drift_check_refuses | slow_clock_accepts_drift_check_refuses | as expected |
+
+Kaveri Finance is made up. Every name and ID number is invented test data.</pre></details>
+      <details class="rout"><summary>In the sandbox: controls switched off, one at a time <span>20261024-222512-mutations.md</span></summary><pre tabindex="0"># Round ten: does each case notice when its control is switched off?
+
+Run 20261024-222512 UTC. One control at a time is removed from a copy of the code.
+
+| Case | Control switched off | Normal result | Result with control off | Case notices |
+|---|---|---|---|---|
+| C1 | the check of the caller&#x27;s key proof is skipped | replayed_bound_refused | other | yes |
+| C3 | the app throws away revoke signals | works_until_expiry_signal_cuts | other | yes |
+| C4 | the app does not check who signed a signal | unsigned_ignored_signed_accepted | other | yes |
+| C5 | the app stops comparing event times | naive_reinstates_ordered_holds | other | yes |
+| C6 | the field-by-field update is replaced by a whole-record replace | put_reactivates_patch_holds | other | yes |
+| C7 | the fresh-joiner flow restores the old account | old_access_returns_fresh_holds | other | yes |
+| C8 | matching by ID falls back to matching by name | duplicate_by_name_holds_by_id | other | yes |
+| C9 | the required end date is ignored | stays_active_hard_stop_holds | other | yes |
+| C10 | break-glass use sends no alert | unnoticed_vs_alerted_and_rotated | other | yes |
+| C10 | the break-glass password is not changed at check-in | unnoticed_vs_alerted_and_rotated | other | yes |
+| C11 | the log keeps names inline instead of a pseudonym | edit_breaks_chain_pseudonym_holds | other | yes |
+| C12 | the app does not check its own clock | slow_clock_accepts_drift_check_refuses | other | yes |</pre></details>
+      <p class="body-text">The Mac files are also on the lab repository, on the branches <code>mac-run</code> (rounds five to nine) and <code>mac-run-ten</code> (round ten). The guesses, with their SHA-256 hashes, are under <code>cases/</code>. The step-by-step version of each case is in the <a href="/ai-governance-lab/cases/">case explorer</a>.</p></section><!--/runout-->
             <aside class="hg-next" aria-labelledby="hg-next-t">
         <p class="eyebrow">Where next</p>
         <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>

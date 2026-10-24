@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+"""Writes assets/agl-r10.js: the 12 cases added in round ten (credential, session and identity edge cases), with results, a plain-words
+walk-through and eight new controls. Reads the lab's results files. Run: python3 scripts/build-agl-r10.py"""
+import json, glob
+LAB = "/home/claude/ai-governance-lab"
+res = json.load(open(sorted(glob.glob(f"{LAB}/results/round-10/*-v3.json"))[-1]))
+mut = json.load(open(sorted(glob.glob(f"{LAB}/results/round-10/*-mutations.json"))[-1]))
+rows = {r["id"]: r for r in res["results"]}
+T = {
+"C1": dict(what="A token is copied from a log file and replayed from another machine. Asked with a plain bearer token and with a token tied to the caller's own key.",
+  steps=[["note","A person's session token ends up in a log or a screenshot. Someone else picks it up."],
+         ["miss","With a plain token, the app accepts it. Whoever holds the token is the person."],
+         ["stop","With a token tied to the caller's key, the app asks for proof of the key with each request. The thief has no key, so the call is refused."],
+         ["ok","The real owner, who has the key, is still let in."]],
+  result="Plain token replayed; key-tied token refused.", why="A bearer token is like cash: whoever holds it can spend it. Tying it to a key held by the caller means a copied token alone is not enough."),
+"C2": dict(what="The same, but the thief has taken the caller's key as well as the token, because the whole machine was compromised.",
+  steps=[["note","The attacker is now on the owner's machine and can read both the token and the key."],
+         ["miss","The app accepts the call. The proof is correct, because it was made with the real key."]],
+  result="Accepted. This is a limit.", why="A token tied to a key protects against copying the token. It does nothing once the key is taken too. For that you need keys that cannot be exported (a hardware or OS-protected key), short lives and a way to notice odd use."),
+"C3": dict(what="A person is terminated while their session token has 50 minutes left. Asked with expiry only, and with a revoke signal sent to the app straight away.",
+  steps=[["note","The token is valid for an hour. Ten minutes in, the person is terminated and HR updates the directory."],
+         ["miss","The app checks the token on its own, without calling the identity provider, and sees a valid token. Access continues until it expires."],
+         ["stop","When the identity provider also sends a revoke signal, the app refuses the next call at once."]],
+  result="Works until expiry unless a signal arrives.", why="Offline token checks are fast, but they cannot know about a firing. Short tokens and a push signal from the identity provider close the gap."),
+"C4": dict(what="A revoke signal arrives that is not signed, then one that is signed by the identity provider.",
+  steps=[["note","Anyone who knows the app's address could send a message that says 'revoke this person'."],
+         ["stop","The unsigned message is refused and the person is still let in."],
+         ["ok","The signed message is accepted and the person is cut off."]],
+  result="Unsigned ignored; signed accepted.", why="A revoke signal is a powerful message. If anyone can send one, it becomes a way to lock out people you do not like. Check who signed it."),
+"C5": dict(what="Signals arrive out of order: 'access restored' (older) reaches the app after 'access revoked' (newer).",
+  steps=[["note","Networks do not deliver messages in order. The newer 'revoked' arrives first and the older 'restored' arrives second."],
+         ["miss","An app that trusts the last message to arrive switches access back on."],
+         ["ok","An app that compares the time on each event ignores the older one and stays revoked."]],
+  result="Last-to-arrive wins: reinstated. Ordered by event time: holds.", why="A late message must not undo a newer decision. Every signal needs a time or a sequence number, and the app must compare them."),
+"C6": dict(what="The nightly HR sync replaces a disabled user with a full-record PUT that leaves out the 'active' field, versus a PATCH of only the field that changed.",
+  steps=[["note","The account was disabled yesterday. Today HR changes the person's job title and syncs it."],
+         ["miss","With a full-record replace, the field 'active' is missing, so the server falls back to its default of true. The account is switched back on."],
+         ["ok","With a PATCH of only the title, 'active' is untouched and the account stays disabled."]],
+  result="PUT reactivates; PATCH holds.", why="Sync jobs that rewrite whole records can undo decisions made elsewhere. This assumes a server that defaults 'active' to true, as many do; check yours."),
+"C7": dict(what="A person who left comes back after 40 days with the same staff ID. The old account is restored, versus a fresh joiner flow.",
+  steps=[["note","The person was in Collections, with write access to collections and view access to payments. They return to a Support job."],
+         ["miss","Restoring the old account brings all of that access back."],
+         ["ok","A fresh account starts from the Support baseline only: view access to support."]],
+  result="Old access returns; the fresh flow holds.", why="A rehire is a new joiner who happens to have a history. Start from the new job's baseline and let the person ask for more."),
+"C8": dict(what="A person changes surname. Accounts are matched by name, versus by an ID that never changes.",
+  steps=[["note","Meera Rao becomes Meera Iyer. HR sends the update with the same staff ID."],
+         ["miss","Matched by name, the directory finds no 'Meera Iyer', makes a second account, and leaves the first active."],
+         ["ok","Matched by ID, it updates the one account."]],
+  result="Two active accounts by name; one by ID.", why="Names change, emails change, IDs should not. A duplicate account is a standing access nobody is watching."),
+"C9": dict(what="A contractor from a staffing agency is on the system. The contract ends in the agency's records, which HR never sees. Asked with no end date, and with a required end date of at most 90 days.",
+  steps=[["note","The agency ends the contract on its side. Nobody tells the company's HR."],
+         ["miss","With no end date, the account is still active 120 days later."],
+         ["stop","With a required end date, the account is disabled on the day. Someone has to confirm it again to keep it."]],
+  result="Stays active with no end date; the required end date holds.", why="You cannot rely on being told. For people whose employer is someone else, the account must expire on its own."),
+"C10": dict(what="A break-glass account is used at 2 am. Asked with no alert and no password change afterwards, and with an alert within a minute and a new password at check-in.",
+  steps=[["note","Someone uses the emergency account to fix an outage."],
+         ["miss","With no controls, nobody is told, and the same password stays valid afterwards."],
+         ["ok","With controls, a person is alerted, and when the account is checked back in the password is changed, so the old one no longer works."]],
+  result="Unnoticed and unchanged, versus alerted and rotated.", why="A break-glass account is meant to be rare and loud. If its use is silent and its password never changes, it is a standing back door."),
+"C11": dict(what="A person asks for their name to be erased from the audit log. Editing the line, versus keeping names in a separate store under a pseudonym and deleting that.",
+  steps=[["note","Each log line carries the hash of the line before it, so changing any line breaks the chain."],
+         ["miss","Editing the name inside the line breaks the chain from that point on. The log can no longer prove it is intact."],
+         ["ok","If the log holds only a pseudonym and the real name sits in a separate store, deleting the name there erases it, and the chain still checks."]],
+  result="Editing breaks the chain; the pseudonym store holds.", why="Tamper-evident logs and the right to erasure pull in opposite directions. Keep personal data out of the chain from the start. The lab does not test whether a pseudonym plus other fields could still identify someone."),
+"C12": dict(what="An app's clock runs 15 minutes slow and it is shown a token that expired 10 minutes ago. Asked without and with a check that refuses to decide when its own clock is off.",
+  steps=[["note","The token lasted 5 minutes. It expired 10 minutes ago by the real time."],
+         ["miss","The slow app thinks it is still inside the token's life and accepts it."],
+         ["stop","An app that compares its clock to a trusted reference, and refuses to decide when they differ too much, says no."]],
+  result="Slow clock accepts; the drift check refuses.", why="Every expiry check is only as good as the clock behind it. Keep clocks in sync and fail closed when they are not."),
+}
+cases = [{"id": r["id"], "track": r["track"], "title": r["title"], "expected": r["expected"], "actual": r["actual"], "verdict": r["verdict"],
+          "expected_in_words": r["expected_in_words"]} for r in rows.values()]
+assert set(T) == set(rows), set(T) ^ set(rows)
+controls = [
+ ("C43", "Tokens are short-lived and tied to a key held by the caller, so a copied token is not enough",
+  ["C1","C2"], "A.5.17, A.8.5", "IA-5, SC-23", "8.3.1, 8.6.2", "164.312(d)", ""),
+ ("C44", "The identity provider pushes signed revoke signals, and each app orders them by event time and cuts the session at once",
+  ["C3","C4","C5"], "A.5.18, A.8.5", "AC-2, AC-12, SC-23", "8.2.6", "164.308(a)(3)(ii)(C)", ""),
+ ("C45", "Sync jobs change only the fields that changed, and accounts are matched by an ID that never changes",
+  ["C6","C8"], "A.5.16, A.8.2", "AC-2, IA-4", "8.2.1", "164.312(a)(2)(i)", ""),
+ ("C46", "A rehire gets a fresh account and the new job's baseline, not the old account back",
+  ["C7"], "A.5.18, A.5.15", "AC-2, AC-6", "7.2.1, 7.2.4", "164.308(a)(4)(ii)(B)", ""),
+ ("C47", "Accounts for people employed by someone else must have an end date, and expire on their own",
+  ["C9"], "A.5.18, A.5.19", "AC-2(2), PS-7", "8.2.6, 8.2.7", "164.308(a)(3)(ii)(C)", ""),
+ ("C48", "Break-glass use sends an alert at once, and the password is changed at check-in",
+  ["C10"], "A.5.15, A.8.2, A.8.15", "AC-2(7), AU-6, IA-5", "7.2.5, 8.6.3", "164.312(a)(2)(ii)", ""),
+ ("C49", "Personal data is kept out of the tamper-evident log: the log holds a pseudonym, and the name sits in a store that can be erased",
+  ["C11"], "A.5.34, A.8.15", "AU-9, SI-12", "10.3.2", "164.312(b)", "DPDP Act (erasure; ask counsel for the current section)"),
+ ("C50", "Every system that checks expiry keeps its clock in sync and refuses to decide when its clock is off",
+  ["C12"], "A.8.17", "AU-8", "10.6.1", "164.312(b)", ""),
+]
+noticed = sum(1 for m in mut if m["case_notices"])
+out = {"when": "25 Oct 2026", "round": 10, "run": res["meta"]["run_at_utc"], "cases_sha256": res["meta"]["cases_sha256"], "counts": res["meta"]["counts"],
+       "mutations": {"noticed": noticed, "total": len(mut)},
+       "cases": cases, "text": T,
+       "controls": [{"id": a, "control": b, "cases": c, "iso27001": d, "nist80053": e, "pci": f, "hipaa": g, "india": h} for a,b,c,d,e,f,g,h in controls]}
+open("assets/agl-r10.js", "w").write("/* Round ten: 12 cases added on 25 Oct 2026 (credential, session and identity edge cases). Made-up data only. Generated by scripts/build-agl-r10.py */\nwindow.AGL_R10 = " + json.dumps(out, ensure_ascii=False, indent=1) + ";\n")
+print(len(cases), "cases", len(controls), "controls", noticed, "of", len(mut), "noticed")
