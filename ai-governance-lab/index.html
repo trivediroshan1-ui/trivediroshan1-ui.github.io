@@ -207,6 +207,7 @@
       <section id="round5">
         <h2>Round five: gaps I found in my own audit</h2>
         <p class="body-text">After the first posts were drafted I audited the lab from an identity-governance view and found things I had not tested. The biggest was the sentence vendors use: &ldquo;our AI only needs read access on your domain&rdquo;. I wrote the expected results for 14 new cases first and committed them in the lab repository at 23:38 on 24 Oct 2026, then wrote the code and ran them. All 14 came out as I guessed. That says the controls I added do what I built them to do. It does not say they are enough, because I wrote both the guess and the code.</p>
+        <p class="body-text">To check that I did not change the guesses afterwards, the SHA-256 of the guesses file (<code>cases/round-5.json</code>) is <code style="word-break:break-all">c35063c59bc05f49165d5312d8782aaeb88e03d57851d3f356e8dd0193927d05</code>. The results file records the same value.</p>
         <p class="body-text">One case, I13, crashed on the first run because my test did not let any time pass before the new token was issued. I fixed the test, not the lab, and kept both result files.</p>
         <div class="tbl-wrap">
           <table class="tbl wrap-first stack">
@@ -274,6 +275,7 @@
           <li>This is not a product review. The filters are mine and deliberately plain, so the numbers describe a plain filter, not any vendor&rsquo;s product.</li>
           <li>One run each, on one laptop, with made-up data. The assistant test is one assistant, with the policy pasted into the chat. The nine cases were run once; P5 and P1 were later repeated in new chats and passed again, and the 30-turn test was run once. It shows what these controls did on these cases. It does not prove anything secure.</li>
           <li>100 percent on a test set I designed is not a detection rate.</li>
+          <li>The samples are small. 4 of 10 unseen items is a result that could sit anywhere from about 17 to 69 percent if repeated. 9 of 9 assistant requests means the true rate is probably above about 70 percent, not that it is 100.</li>
           <li>All tests were run on one personal laptop, with made-up data only. The numbers are random, so one could by chance match a real person's; none came from any real record.</li>
           <li>The 14 round-five cases test small models of the controls: a consent register, a search with a permission list, and an identity service. They do not connect to a real mail system, directory or cloud tenant, and I wrote both the guesses and the code.</li>
           <li>Not tested yet: more than one hop of delegation between agents, real single sign-on and provisioning protocols, binding a token to the caller's key, real-time revocation signals between systems, and erasing one person from a hash-chained log.</li>
