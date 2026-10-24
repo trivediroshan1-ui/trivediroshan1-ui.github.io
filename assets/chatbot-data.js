@@ -534,7 +534,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/run/#real-output",
     keywords: ["real output", "run output", "results file", "raw results", "control off", "mutation", "run page", "evidence of run", "sandbox run"],
     answer:
-      "The run page now shows the unedited result files for rounds six, seven and eight: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. These rounds ran in a Linux sandbox rather than on my MacBook (the earlier rounds ran on the Mac with Python 3.9.6). All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
+      "The run page now shows the unedited result files for rounds six, seven and eight: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. These rounds, and the 24 Oct audit round with 14 extra cases, ran in a Linux sandbox with Python 3.11, not on my MacBook. Rounds one to four ran on the MacBook with Python 3.9.6, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
   },
   {
     id: "ai-governance-lab-where-to-start",
