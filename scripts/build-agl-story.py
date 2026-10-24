@@ -20,16 +20,6 @@ body = '''<main id="main">
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
       <div class="agl story">
-      <section>
-        <p class="kick">My story, in my words</p>
-        <p class="lead">I used to do control mapping for PAM tools against IAM policies, created internally and verified by external auditors against standards like NIST, PCI, HIPAA and ISO 27001, depending on the project: finance, healthcare or an information security firm.</p>
-        <p>One question was always at the back of my mind.</p>
-        <blockquote class="st-quote">Are we serious about these controls we map from the vendor, and do they really adhere to the organisation&rsquo;s policy? It still fascinates me.</blockquote>
-        <p>Then the AI era started. I kept hearing that AI hooks will help, that agents will map policies, that AI identification will automate identity, and that a Centre of Excellence for AI governance will sit at the top and decide what level of permission each agent should get. Later I heard that AI agents will use PAM or identity APIs to stay within governance and meet compliance.</p>
-        <p>But I never heard what the use cases are, what policies we are trying to manage, how the governance factor is aligned, or who the certifier is. And what if an AI agent goes vague and makes its own decisions?</p>
-        <p>That is when my mind started building towards this AI governance test on my private laptop. Before that, I read white papers from NIST, ISO and the IGA and PAM vendors on how they manage, discover and automate the identity life cycle, accounts linked to an identity, non-human identities and agents, so that I had the knowledge before I built anything.</p>
-      </section>
-
       <section aria-labelledby="watch">
         <h2 id="watch">Watch the story <span class="sv-new">New</span></h2>
         <p>The same story as a 63-second animated workflow. It has no sound, so you can watch it anywhere. Tap a chapter to jump.</p>
@@ -43,6 +33,16 @@ body = '''<main id="main">
             <ol class="sv-ch"><li><button type="button" data-t="0" data-d="I wanted to know if AI governance controls really hold, so I tested them on my own laptop."><b>0:00</b><span>Why I built it</span></button></li><li><button type="button" data-t="5" data-d="For years I mapped vendor controls to IAM policy, then to what external auditors check: NIST, PCI, HIPAA, ISO 27001."><b>0:05</b><span>Mapping controls</span></button></li><li><button type="button" data-t="14" data-d="Hooks, agents that map policies, AI that automates identity, a Centre of Excellence setting each agent's access."><b>0:14</b><span>The AI promises</span></button></li><li><button type="button" data-t="23" data-d="Which use cases, which policy, which certifier, and what stops an agent that decides on its own?"><b>0:23</b><span>What I never heard</span></button></li><li><button type="button" data-t="32" data-d="A bank bot, a corporate assistant, a one-time Allow and a shared token: none of them needs an attacker."><b>0:32</b><span>Read access is not small</span></button></li><li><button type="button" data-t="41" data-d="NIST, ISO and vendor papers first. Then a made-up lender, Kaveri Finance, and 59 cases."><b>0:41</b><span>Read first, then build</span></button></li><li><button type="button" data-t="49" data-d="The register, approvals, expiry and the log held. A plain text filter broke, and only 4 of 10 new items were caught."><b>0:49</b><span>What I found</span></button></li><li><button type="button" data-t="57" data-d="The data, every use case, diagrams, a browser lab and a 67-page book. Tell me where my tests are weak."><b>0:57</b><span>Free and public</span></button></li></ol>
           </div>
         </div>
+      </section>
+
+      <section>
+        <p class="kick">My story, in my words</p>
+        <p class="lead">I used to do control mapping for PAM tools against IAM policies, created internally and verified by external auditors against standards like NIST, PCI, HIPAA and ISO 27001, depending on the project: finance, healthcare or an information security firm.</p>
+        <p>One question was always at the back of my mind.</p>
+        <blockquote class="st-quote">Are we serious about these controls we map from the vendor, and do they really adhere to the organisation&rsquo;s policy? It still fascinates me.</blockquote>
+        <p>Then the AI era started. I kept hearing that AI hooks will help, that agents will map policies, that AI identification will automate identity, and that a Centre of Excellence for AI governance will sit at the top and decide what level of permission each agent should get. Later I heard that AI agents will use PAM or identity APIs to stay within governance and meet compliance.</p>
+        <p>But I never heard what the use cases are, what policies we are trying to manage, how the governance factor is aligned, or who the certifier is. And what if an AI agent goes vague and makes its own decisions?</p>
+        <p>That is when my mind started building towards this AI governance test on my private laptop. Before that, I read white papers from NIST, ISO and the IGA and PAM vendors on how they manage, discover and automate the identity life cycle, accounts linked to an identity, non-human identities and agents, so that I had the knowledge before I built anything.</p>
       </section>
 
       <section aria-labelledby="path">
