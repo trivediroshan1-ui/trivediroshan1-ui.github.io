@@ -125,6 +125,32 @@
         <p class="body-text">I ran the three filters again on eight new cases, written by the assistant that built the lab, with made-up data, committed before the run. Score out of 8: v1 got 3, v2 got 2, v3 got 2. All three missed every item that needed catching or flagging: a lower-case PAN with a spaced Aadhaar in a Hinglish sentence, an Aadhaar inside a link, a database password on a plain line, a Hinglish &ldquo;ignore the rules&rdquo;, and a note aimed at AI systems on a web page. The only things they got right were the harmless ones, and v2 and v3 raised a false alarm on a training sentence that quotes an attack. These cases are mine, not an outsider&rsquo;s, and eight is a small number, so treat the direction as the finding. The cases and results are in the <a href="/ai-governance-lab/appendix/#heldout">appendix</a>.</p>
       </section>
 
+      <section id="presidio">
+        <h2>A purpose-built detector, side by side</h2>
+        <p class="body-text">My filters are deliberately plain, so I wanted to know whether an open-source detector built for this job does better. I ran Microsoft&rsquo;s Presidio on the same 53 variants, through a small wrapper I wrote. Presidio only looks for personal data, so it was scored on the 33 variants that are about personal data. Most secrets and all the prompt injections count as &ldquo;not its job&rdquo;, not as misses.</p>
+        <div class="tbl-wrap">
+          <table class="tbl wrap-first stack">
+            <thead><tr><th>Detector</th><th>Right, of the 33 personal-data variants</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Detector">v1, my plain filter</td><td data-label="Right">16 of 33</td></tr>
+              <tr><td data-label="Detector">Presidio, as installed</td><td data-label="Right">15 of 33</td></tr>
+              <tr><td data-label="Detector">Presidio, with its India PAN and Aadhaar recognisers switched on</td><td data-label="Right">16 of 33</td></tr>
+              <tr><td data-label="Detector">v3, fixed on these variants</td><td data-label="Right">28 of 33</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="body-text">What I found:</p>
+        <ul class="approach-list">
+          <li>As installed, Presidio does not look for PAN or Aadhaar at all. Its list of active detectors was phone, email and card. The India detectors exist but have to be switched on.</li>
+          <li>With them on, it caught the PAN variants, including a PAN inside a Hinglish sentence, but it also started flagging a version-and-date string and the laptop asset tag that looks like a PAN. Net gain: one variant.</li>
+          <li>It did well on phone numbers in different formats, including full-width digits, where my plain filter failed.</li>
+          <li>It caught none of the Aadhaar variants in this set, even with its Aadhaar detector on: dots, a space after every digit, Devanagari digits, a number inside a file name.</li>
+          <li>Neither Presidio nor my v3 filter caught an Aadhaar spelled out in Hindi words, or a phone number or cloud key split over two messages.</li>
+          <li>It did leave a training slide that quotes an attack alone, where my filter raises a false alarm.</li>
+        </ul>
+        <p class="body-text">So Presidio, out of the box or with the India detectors on, scored about the same as my plain first filter. It is not that Presidio is weak; it is that Indian formats and messy real-world text are hard for any pattern-based tool. The 28 for v3 is not a fair comparison, because I fixed v3 against exactly these variants. I ran Presidio with a small language model because the large one was too slow to download, which should not matter for pattern-based detectors but is a change from the default. One result I have not explained: it missed the plain email variant although email detection was on. The full tables are on the <a href="/ai-governance-lab/transcripts/#presidio">transcripts page</a>.</p>
+      </section>
+
       <section id="assistant-test">
         <h2>A real assistant, under one made-up policy</h2>
         <p class="body-text">The filter tests were all machine-made. This one was by hand. I wrote a short AI policy for the made-up lender, eight rules, and pasted it as the first message of a fresh chat. Then I pushed on it with nine requests, one at a time, on my own laptop and with made-up data only. The assistant was Claude Sonnet 5.5 at low effort, on a paid plan, on 24 October 2026.</p>
@@ -173,7 +199,7 @@
 
       <section>
         <h2>What is next</h2>
-        <p class="body-text">Running the same inputs through open tools, to see whether a purpose-built detector does better than my plain one. And a second assistant under the same policy, to see whether the nine results repeat. If you work with Indian data and can think of a variant that would break a filter, send it to me and I will add it, unseen, to the next round.</p>
+        <p class="body-text">A second assistant under the same policy, to see whether the nine results repeat. My own held-out cases, written in my words and not by the assistant that built the lab. And, if the Aadhaar result holds up, a closer look at why a detector with an Aadhaar rule catches none of these variants. If you work with Indian data and can think of a variant that would break a filter, send it to me and I will add it, unseen, to the next round.</p>
       </section>
       <aside class="hg-next" aria-labelledby="hg-next-t">
         <p class="eyebrow">Where next</p>
