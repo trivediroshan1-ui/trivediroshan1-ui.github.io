@@ -470,7 +470,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/cases/",
     keywords: ["use cases", "all cases", "every case", "case explorer", "a1", "g10", "i7", "e5", "kill switch case", "what does case"],
     answer:
-      "The case explorer lists all 59 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
+      "The case explorer lists all 91 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
     id: "ai-governance-lab-round-five",
@@ -479,6 +479,14 @@ window.SITE_QA = [
     keywords: ["round five", "round 5", "vendor read access", "read access on your domain", "oauth consent", "permission aware search", "retrieval", "mover", "access review", "toxic combination", "iso 27001", "nist 800-53", "pci dss", "hipaa", "framework map"],
     answer:
       "Round five added 14 cases on 24 Oct 2026 after I audited the lab. They cover vendor AI apps asking for read access on a whole domain (held until narrowed, owned and time-limited), a search that ignores file permissions (it leaks) versus one that checks them, a stale permission copy after someone moves team, an agent whose sponsor moves, an access review of agents, a toxic combination (HR read plus send email), tokens made for one service, a person who leaves while an agent acts for them, step-up sign-in for privileged approvals, personal data in the log, and a log line with an earlier date (the hash chain accepts it). All 14 matched my guesses, but I wrote both the guesses and the code. The lab page also maps the controls to ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a 12-page addendum PDF (/assets/ai-governance-lab-round-five.pdf) has the same content.",
+  },
+  {
+    id: "ai-governance-lab-round-six",
+    title: "AI governance lab: round six, agents that send instructions to an API",
+    url: "/ai-governance-lab/#api-pattern",
+    keywords: ["round six", "round 6", "agent api", "scim", "rest api", "identity lifecycle", "joiner mover leaver", "vault", "hashicorp vault", "delinea", "credential checkout", "executor", "gateway", "agents send instructions", "agent never holds the credential"],
+    answer:
+      "Round six tests a pattern where an agent does not act on identities itself. It sends a fixed-shape request to a gateway outside the agent, which checks identity, policy, rate and approval and signs a decision. A separate executor, with its own identity, borrows a short-lived credential from a vault, calls the identity API and gives the credential back, so the agent never holds it. 18 cases (T1 to T18) were guessed before the code and all came out as guessed; switching off 12 controls one at a time made the matching case fail in all 12. Limits: the vault and API are small models I wrote, not HashiCorp Vault, Delinea or a SCIM product, the AI model itself is not tested, a wrong-but-allowed request (T15) passes every check, and T18 is an anti-pattern shown by construction.",
   },
   {
     id: "ai-governance-lab-story",
