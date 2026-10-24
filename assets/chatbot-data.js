@@ -470,7 +470,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/cases/",
     keywords: ["use cases", "all cases", "every case", "case explorer", "a1", "g10", "i7", "e5", "kill switch case", "what does case"],
     answer:
-      "The case explorer lists all 103 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
+      "The case explorer lists all 115 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
     id: "ai-governance-lab-round-five",
@@ -495,6 +495,14 @@ window.SITE_QA = [
     keywords: ["round seven", "round 7", "hr approval", "hire event", "pre-hire", "onboarding", "joiner", "entra", "active directory", "mfa", "sso", "birthright access", "talent acquisition", "bu hr", "background verification", "vendor onboarding", "reconciliation", "consent", "data collected"],
     answer:
       "Round seven starts where an identity really starts: in HR. Talent acquisition HR and BU HR (two different people) approve, background verification must be clear, and only then does a hire event exist. That event is the only trigger. It carries only the minimum (name, email, team, job code, manager, start date); PAN, Aadhaar and bank details stay in HR. The AI agent prepares and proposes, and the gateway refuses a create request that no approved event backs. The account is created through an API, stays off until the start date, then turns on with only the access for the job code. MFA enrolment and the signed acceptable-use policy come on day one. Extra access the agent proposes from peers waits for the manager, and toxic combinations are refused. An auditor reconciles HR against the directory and flags accounts with no HR record. 12 cases (H1 to H12), all as guessed; the HR system, identity tool and directory are small models I wrote, not Workday, SailPoint or Entra.",
+  },
+  {
+    id: "ai-governance-lab-bypass",
+    title: "AI governance lab: round eight, when an agent goes around the gateway",
+    url: "/ai-governance-lab/#bypass",
+    keywords: ["round eight", "round 8", "bypass", "agent bypasses the api", "kill switch", "kill switch policy", "leaked token", "reconciliation", "whitelist", "greylist", "blacklist", "allow list", "watch list", "block list", "mover", "leaver", "sponsor leaves", "evidence", "chain of custody", "offence", "police", "assistive technology", "physically challenged", "accessibility", "helper", "delegate", "sensitive data", "audit log tampering"],
+    answer:
+      "Round eight asks what happens if an agent goes round the gateway, for example with a leaked token. It tests three layers. Make it hard: the identity API accepts a credential only from the caller it was lent to, it expires in minutes, and the agent's runtime has no network route to the API. Notice: every change in the identity system's own log must match a decision the gateway signed, and a change with no decision is a bypass. Answer: the policy switches off the agent it can trace, cancels its waiting approvals and revokes its credentials and the leaked token, evidence is copied and hashed first, and a named person decides whether to roll back. It also covers allow, watch and block lists by account state (a leaver's account touched, a mover asking for new access too soon), a sponsor who leaves, a recorded helper for people who use assistive technology (a code, never medical detail), a signal that reaches a person with evidence and no verdict from an agent, sensitive data the agent cannot request, and a tampered audit log. 12 cases (B1 to B12) were guessed before the code and all came out as guessed; switching off 21 controls one at a time made the matching case fail in all 21. Limits: the API, vault, network and log are small models I wrote, no real agent tries to get round the wall, and the legal and offence questions need counsel.",
   },
   {
     id: "ai-governance-lab-story",
