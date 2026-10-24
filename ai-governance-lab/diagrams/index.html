@@ -6,10 +6,10 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
-    <meta name="description" content="Animated architecture diagrams for the AI governance lab, as SVG: the request flow, where the filters plug in, agent access, the audit log and the lab as a whole." />
+    <meta name="description" content="Nine animated architecture diagrams for the AI governance lab, as SVG: the request flow, filters, agent access, the audit log, the agent-to-API pattern, HR to directory, bypass response and who owns what." />
     <link rel="canonical" href="https://roshantrivedi.co.in/ai-governance-lab/diagrams/" />
     <meta property="og:title" content="AI governance lab: architecture diagrams" />
-    <meta property="og:description" content="Animated architecture diagrams for the AI governance lab, as SVG: the request flow, where the filters plug in, agent access, the audit log and the lab as a whole." />
+    <meta property="og:description" content="Nine animated architecture diagrams for the AI governance lab, as SVG: the request flow, filters, agent access, the audit log, the agent-to-API pattern, HR to directory, bypass response and who owns what." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/ai-governance-lab/diagrams/" />
     <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
@@ -40,7 +40,7 @@
       <header class="hero mcp-hero">
         <p class="eyebrow">AI governance lab</p>
         <h1>Architecture diagrams</h1>
-        <p class="dek">Five animated diagrams of how the lab works: the request flow, where the filters plug in, how an agent gets access, the tamper-evident log, and the lab as a whole. Each one is an SVG file you can reuse.</p>
+        <p class="dek">Nine animated diagrams of how the lab works, in the order I would explain it: the lab as a whole, the request flow, where the filters plug in, how an agent gets access, the tamper-evident log, then the later rounds: the agent that only proposes, from HR to the directory, how a bypass is noticed and answered, and who owns what. Each one is an SVG file you can reuse.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
       <section><p class="body-text">These are drawn from the lab&rsquo;s own code, not from a vendor diagram. Everything in them is made up: a lender called Kaveri Finance and test data that follows real formats on purpose. For the cases behind each diagram, see <a href="/ai-governance-lab/cases/">every use case, one by one</a>.</p></section>
@@ -66,8 +66,74 @@
 .dg text.dg-good{fill:var(--d-ok)}.dg text.dg-bd{fill:var(--d-bad)}.dg text.dg-wn{fill:var(--d-warn)}
 .dg .dg-pkt{offset-rotate:0deg;opacity:0}
 @media (prefers-reduced-motion:reduce){.dg *{animation:none!important}.dg .dg-pkt{opacity:0}.dg .dg-badge{opacity:1!important}}
-</style>
+.dg-menu{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.dg-menu a{font-size:13px;line-height:1.3;padding:8px 12px;border:1px solid var(--a-line,#2c3a55);border-radius:999px;color:inherit;text-decoration:none}.dg-menu a:hover{border-color:var(--a-accent,#4de2ff)}.dg-menu b{font-family:var(--a-fm,monospace);margin-right:4px;opacity:.7}</style>
+      <nav class="dg-menu" aria-label="Jump to a diagram"><a href="#lab"><b>1</b> The lab as a whole</a><a href="#flow"><b>2</b> One request through the gateway</a><a href="#filters"><b>3</b> Where the filters plug in</a><a href="#agent"><b>4</b> How an agent gets and uses access</a><a href="#audit"><b>5</b> The tamper-evident log</a><a href="#gate"><b>6</b> The agent proposes; a gateway decides; an executor acts</a><a href="#hr"><b>7</b> From HR to the directory</a><a href="#bypass"><b>8</b> How a bypass is noticed and answered</a><a href="#org"><b>9</b> One set of controls, many business units</a></nav>
       <div class="agl dg-page">
+      <section id="lab">
+        <h2>The lab as a whole</h2>
+        <p class="body-text">Four tracks, five rounds, an unseen-items test and a real assistant, and what came out of it.</p>
+        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-lab-t agl-lab-d" width="640" height="640" preserveAspectRatio="xMidYMin meet"><title id="agl-lab-t">The lab as a whole</title><desc id="agl-lab-d">Four tracks of cases, run in rounds on three filters, then tested on unseen items, then on a real assistant. Results go into what held and what broke.</desc><style>@keyframes agl-lab-d{0%{offset-distance:0%;opacity:0}5%{opacity:1}90%{offset-distance:100%;opacity:1}96%{opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-lab-d{offset-path:path('M 60 190 L 580 190');animation:agl-lab-d 10s linear infinite}</style>
+<text class="dg-h" x="20" y="16" text-anchor="start" >Four tracks, 59 cases, all made-up data</text>
+<rect class="dg-node " x="20" y="30" width="140" height="66" rx="10"/>
+<text class="dg-t" x="34" y="52">A  Gateway</text>
+<text class="dg-s" x="34" y="71">16 cases</text>
+<rect class="dg-node " x="170" y="30" width="140" height="66" rx="10"/>
+<text class="dg-t" x="184" y="52">G  Guardrail</text>
+<text class="dg-s" x="184" y="71">17 cases</text>
+<rect class="dg-node " x="320" y="30" width="140" height="66" rx="10"/>
+<text class="dg-t" x="334" y="52">I  Agent identity</text>
+<text class="dg-s" x="334" y="71">12 cases</text>
+<rect class="dg-node " x="470" y="30" width="140" height="66" rx="10"/>
+<text class="dg-t" x="484" y="52">E  Audit</text>
+<text class="dg-s" x="484" y="71">14 cases</text>
+<path class="dg-ln" d="M 320 96 L 320 128"/>
+<polygon class="dg-ar" points="315,119 325,119 320,127"/>
+<text class="dg-h" x="20" y="150" text-anchor="start" >Run in rounds. Guesses written first and committed to git.</text>
+<path class="dg-ln" d="M 60 190 L 580 190"/>
+<circle cx="60" cy="190" r="16" class="dg-node dg-acc"/>
+<text class="dg-t" x="60" y="195" text-anchor="middle" >1</text>
+<text class="dg-s" x="60" y="226" text-anchor="middle" >v1</text>
+<circle cx="190" cy="190" r="16" class="dg-node dg-acc"/>
+<text class="dg-t" x="190" y="195" text-anchor="middle" >2</text>
+<text class="dg-s" x="190" y="226" text-anchor="middle" >v2</text>
+<circle cx="320" cy="190" r="16" class="dg-node dg-acc"/>
+<text class="dg-t" x="320" y="195" text-anchor="middle" >3</text>
+<text class="dg-s" x="320" y="226" text-anchor="middle" >v2</text>
+<circle cx="450" cy="190" r="16" class="dg-node dg-acc"/>
+<text class="dg-t" x="450" y="195" text-anchor="middle" >4</text>
+<text class="dg-s" x="450" y="226" text-anchor="middle" >v3</text>
+<circle cx="580" cy="190" r="16" class="dg-node dg-acc"/>
+<text class="dg-t" x="580" y="195" text-anchor="middle" >5</text>
+<text class="dg-s" x="580" y="226" text-anchor="middle" >unseen</text>
+<circle id="agl-lab-d" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
+<path class="dg-ln" d="M 320 240 L 320 268"/>
+<polygon class="dg-ar" points="315,259 325,259 320,267"/>
+<rect class="dg-node " x="20" y="268" width="290" height="76" rx="10"/>
+<text class="dg-t" x="34" y="290">Then a real assistant</text>
+<text class="dg-s" x="34" y="309">Nine requests under one made-up policy.</text>
+<rect class="dg-node " x="330" y="268" width="290" height="76" rx="10"/>
+<text class="dg-t" x="344" y="290">And a held-out test</text>
+<text class="dg-s" x="344" y="309">Items the filters had never seen.</text>
+<path class="dg-ln" d="M 165 344 L 165 384 L 320 384 L 320 396"/>
+<polygon class="dg-ar" points="315,387 325,387 320,395"/>
+<path class="dg-ln" d="M 475 344 L 475 384 L 320 384"/>
+<rect class="dg-node dg-okb" x="20" y="396" width="290" height="120" rx="10"/>
+<text class="dg-t" x="34" y="418">What held</text>
+<text class="dg-s" x="34" y="440" text-anchor="start" >• The register and approvals</text>
+<text class="dg-s" x="34" y="460" text-anchor="start" >• The audit trail</text>
+<text class="dg-s" x="34" y="480" text-anchor="start" >• Kill switches and tokens</text>
+<text class="dg-s" x="34" y="500" text-anchor="start" >• Checksums with fixed shapes</text>
+<rect class="dg-node dg-badb" x="330" y="396" width="290" height="120" rx="10"/>
+<text class="dg-t" x="344" y="418">What broke</text>
+<text class="dg-s" x="344" y="440" text-anchor="start" >• Anything that depends on meaning</text>
+<text class="dg-s" x="344" y="460" text-anchor="start" >• Hinglish and new wordings</text>
+<text class="dg-s" x="344" y="480" text-anchor="start" >• Data split across messages</text>
+<text class="dg-s" x="344" y="500" text-anchor="start" >• A score on a set I tuned to</text>
+<text class="dg-s" x="320" y="560" text-anchor="middle" >One laptop, made-up data, my own cases. A data point, not a guarantee.</text>
+</svg></div>
+          <figcaption><a href="/assets/diagrams/agl-lab.svg">Open the SVG file</a>. It switches between light and dark by your device setting and stops moving if your device asks for less motion. On a small screen, swipe sideways inside the picture.</figcaption></figure>
+      </section>
       <section id="flow">
         <h2>One request through the gateway</h2>
         <p class="body-text">Eight stages from caller to person. Watch a good request pass, and one with personal data stop at the data and region rules.</p>
@@ -309,70 +375,253 @@
 </svg></div>
           <figcaption><a href="/assets/diagrams/agl-audit.svg">Open the SVG file</a>. It switches between light and dark by your device setting and stops moving if your device asks for less motion. On a small screen, swipe sideways inside the picture.</figcaption></figure>
       </section>
-      <section id="lab">
-        <h2>The lab as a whole</h2>
-        <p class="body-text">Four tracks, five rounds, an unseen-items test and a real assistant, and what came out of it.</p>
-        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-lab-t agl-lab-d" width="640" height="640" preserveAspectRatio="xMidYMin meet"><title id="agl-lab-t">The lab as a whole</title><desc id="agl-lab-d">Four tracks of cases, run in rounds on three filters, then tested on unseen items, then on a real assistant. Results go into what held and what broke.</desc><style>@keyframes agl-lab-d{0%{offset-distance:0%;opacity:0}5%{opacity:1}90%{offset-distance:100%;opacity:1}96%{opacity:0}100%{offset-distance:0%;opacity:0}}
-.dg #agl-lab-d{offset-path:path('M 60 190 L 580 190');animation:agl-lab-d 10s linear infinite}</style>
-<text class="dg-h" x="20" y="16" text-anchor="start" >Four tracks, 59 cases, all made-up data</text>
-<rect class="dg-node " x="20" y="30" width="140" height="66" rx="10"/>
-<text class="dg-t" x="34" y="52">A  Gateway</text>
-<text class="dg-s" x="34" y="71">16 cases</text>
-<rect class="dg-node " x="170" y="30" width="140" height="66" rx="10"/>
-<text class="dg-t" x="184" y="52">G  Guardrail</text>
-<text class="dg-s" x="184" y="71">17 cases</text>
-<rect class="dg-node " x="320" y="30" width="140" height="66" rx="10"/>
-<text class="dg-t" x="334" y="52">I  Agent identity</text>
-<text class="dg-s" x="334" y="71">12 cases</text>
-<rect class="dg-node " x="470" y="30" width="140" height="66" rx="10"/>
-<text class="dg-t" x="484" y="52">E  Audit</text>
-<text class="dg-s" x="484" y="71">14 cases</text>
-<path class="dg-ln" d="M 320 96 L 320 128"/>
-<polygon class="dg-ar" points="315,119 325,119 320,127"/>
-<text class="dg-h" x="20" y="150" text-anchor="start" >Run in rounds. Guesses written first and committed to git.</text>
-<path class="dg-ln" d="M 60 190 L 580 190"/>
-<circle cx="60" cy="190" r="16" class="dg-node dg-acc"/>
-<text class="dg-t" x="60" y="195" text-anchor="middle" >1</text>
-<text class="dg-s" x="60" y="226" text-anchor="middle" >v1</text>
-<circle cx="190" cy="190" r="16" class="dg-node dg-acc"/>
-<text class="dg-t" x="190" y="195" text-anchor="middle" >2</text>
-<text class="dg-s" x="190" y="226" text-anchor="middle" >v2</text>
-<circle cx="320" cy="190" r="16" class="dg-node dg-acc"/>
-<text class="dg-t" x="320" y="195" text-anchor="middle" >3</text>
-<text class="dg-s" x="320" y="226" text-anchor="middle" >v2</text>
-<circle cx="450" cy="190" r="16" class="dg-node dg-acc"/>
-<text class="dg-t" x="450" y="195" text-anchor="middle" >4</text>
-<text class="dg-s" x="450" y="226" text-anchor="middle" >v3</text>
-<circle cx="580" cy="190" r="16" class="dg-node dg-acc"/>
-<text class="dg-t" x="580" y="195" text-anchor="middle" >5</text>
-<text class="dg-s" x="580" y="226" text-anchor="middle" >unseen</text>
-<circle id="agl-lab-d" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
-<path class="dg-ln" d="M 320 240 L 320 268"/>
-<polygon class="dg-ar" points="315,259 325,259 320,267"/>
-<rect class="dg-node " x="20" y="268" width="290" height="76" rx="10"/>
-<text class="dg-t" x="34" y="290">Then a real assistant</text>
-<text class="dg-s" x="34" y="309">Nine requests under one made-up policy.</text>
-<rect class="dg-node " x="330" y="268" width="290" height="76" rx="10"/>
-<text class="dg-t" x="344" y="290">And a held-out test</text>
-<text class="dg-s" x="344" y="309">Items the filters had never seen.</text>
-<path class="dg-ln" d="M 165 344 L 165 384 L 320 384 L 320 396"/>
-<polygon class="dg-ar" points="315,387 325,387 320,395"/>
-<path class="dg-ln" d="M 475 344 L 475 384 L 320 384"/>
-<rect class="dg-node dg-okb" x="20" y="396" width="290" height="120" rx="10"/>
-<text class="dg-t" x="34" y="418">What held</text>
-<text class="dg-s" x="34" y="440" text-anchor="start" >• The register and approvals</text>
-<text class="dg-s" x="34" y="460" text-anchor="start" >• The audit trail</text>
-<text class="dg-s" x="34" y="480" text-anchor="start" >• Kill switches and tokens</text>
-<text class="dg-s" x="34" y="500" text-anchor="start" >• Checksums with fixed shapes</text>
-<rect class="dg-node dg-badb" x="330" y="396" width="290" height="120" rx="10"/>
-<text class="dg-t" x="344" y="418">What broke</text>
-<text class="dg-s" x="344" y="440" text-anchor="start" >• Anything that depends on meaning</text>
-<text class="dg-s" x="344" y="460" text-anchor="start" >• Hinglish and new wordings</text>
-<text class="dg-s" x="344" y="480" text-anchor="start" >• Data split across messages</text>
-<text class="dg-s" x="344" y="500" text-anchor="start" >• A score on a set I tuned to</text>
-<text class="dg-s" x="320" y="560" text-anchor="middle" >One laptop, made-up data, my own cases. A data point, not a guarantee.</text>
+      <section id="gate">
+        <h2>The agent proposes; a gateway decides; an executor acts</h2>
+        <p class="body-text">Rounds six to eight. The agent holds no credential. A leaked token used directly is refused.</p>
+        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 590" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-gate-t agl-gate-d" width="640" height="590" preserveAspectRatio="xMidYMin meet"><title id="agl-gate-t">The agent proposes; a gateway decides; an executor acts</title><desc id="agl-gate-d">An agent sends a fixed-shape request to a gateway. A person approves risky actions. The gateway signs a decision. A separate executor borrows a five-minute credential from a vault and calls the identity API. A leaked token used directly is refused because the API accepts it only from the executor.</desc><style>@keyframes agl-gate-a{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}40%{offset-distance:100%;opacity:1}46%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-gate-a{offset-path:path('M 135 82 L 135 130 L 135 204 L 135 252 L 135 326 L 135 380');animation:agl-gate-a 10s linear infinite}
+@keyframes agl-gate-b{0%{offset-distance:0%;opacity:0}50%{offset-distance:0%;opacity:0}52%{offset-distance:0%;opacity:1}88%{offset-distance:100%;opacity:1}93%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-gate-b{offset-path:path('M 475 82 L 475 100 L 632 100 L 632 417 L 330 417');animation:agl-gate-b 10s linear infinite}
+@keyframes agl-gate-bg{0%,80%{opacity:0}82%,96%{opacity:1}99%,100%{opacity:0}}
+.dg #agl-gate-bg{animation:agl-gate-bg 10s linear infinite}</style>
+<rect class="dg-node " x="20" y="20" width="230" height="62" rx="10"/>
+<text class="dg-t" x="34" y="42">The agent</text>
+<text class="dg-s" x="34" y="61">Proposes. Holds no credential.</text>
+<rect class="dg-node dg-badb" x="330" y="20" width="290" height="62" rx="10"/>
+<text class="dg-t" x="344" y="42">A leaked token</text>
+<text class="dg-s" x="344" y="61">Found in a config file.</text>
+<rect class="dg-node dg-acc" x="20" y="130" width="230" height="74" rx="10"/>
+<text class="dg-t" x="34" y="152">Gateway</text>
+<text class="dg-s" x="34" y="171">Identity, shape, policy, rate.</text>
+<text class="dg-s" x="34" y="188" text-anchor="start" >Signs the decision.</text>
+<rect class="dg-node dg-warnb" x="330" y="130" width="290" height="74" rx="10"/>
+<text class="dg-t" x="344" y="152">A named person</text>
+<text class="dg-s" x="344" y="171">Approves risky actions, such as a</text>
+<text class="dg-s" x="344" y="188" text-anchor="start" >disable. Sees the person and the request.</text>
+<rect class="dg-node " x="20" y="252" width="230" height="74" rx="10"/>
+<text class="dg-t" x="34" y="274">Executor</text>
+<text class="dg-s" x="34" y="293">Ordinary code, its own identity.</text>
+<text class="dg-s" x="34" y="310" text-anchor="start" >Checks the signature.</text>
+<rect class="dg-node dg-okb" x="330" y="252" width="290" height="74" rx="10"/>
+<text class="dg-t" x="344" y="274">Vault</text>
+<text class="dg-s" x="344" y="293">Lends a five-minute credential</text>
+<text class="dg-s" x="344" y="310" text-anchor="start" >to the executor only.</text>
+<rect class="dg-node " x="20" y="380" width="230" height="74" rx="10"/>
+<text class="dg-t" x="34" y="402">Identity API</text>
+<text class="dg-s" x="34" y="421">Create, disable, read.</text>
+<text class="dg-s" x="34" y="438" text-anchor="start" >Accepts it only from the executor.</text>
+<rect class="dg-node " x="20" y="490" width="600" height="56" rx="10"/>
+<text class="dg-t" x="34" y="512">Audit log</text>
+<text class="dg-s" x="34" y="531">Who asked, what was decided, who approved, what the directory recorded. No secrets.</text>
+<path class="dg-ln" d="M 135 82 L 135 130"/>
+<polygon class="dg-ar" points="130,121 140,121 135,129"/>
+<text class="dg-s" x="145" y="110" text-anchor="start" >request, fixed shape</text>
+<path class="dg-ln" d="M 250 167 L 328 167"/>
+<polygon class="dg-ar" points="320,162 320,172 328,167"/>
+<text class="dg-s" x="289" y="158" text-anchor="middle" >risky only</text>
+<path class="dg-ln" d="M 135 204 L 135 252"/>
+<polygon class="dg-ar" points="130,243 140,243 135,251"/>
+<text class="dg-s" x="145" y="232" text-anchor="start" >signed decision</text>
+<path class="dg-ln" d="M 250 289 L 328 289"/>
+<polygon class="dg-ar" points="320,284 320,294 328,289"/>
+<text class="dg-s" x="289" y="280" text-anchor="middle" >asks</text>
+<path class="dg-ln" d="M 135 326 L 135 380"/>
+<polygon class="dg-ar" points="130,371 140,371 135,379"/>
+<text class="dg-s" x="145" y="358" text-anchor="start" >call with the lease</text>
+<path class="dg-ln dg-dash" d="M 475 82 L 475 100 L 632 100 L 632 417 L 252 417"/>
+<polygon class="dg-ar" points="260,412 260,422 252,417"/>
+<text class="dg-s" x="440" y="412" text-anchor="middle" >direct call</text>
+<circle id="agl-gate-a" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
+<circle id="agl-gate-b" class="dg-pkt dg-bd" r="7" cx="0" cy="0"/>
+<text id="agl-gate-bg" class="dg-badge dg-bd" x="330" y="442" opacity="0">Refused: wrong caller. Nothing changes.</text>
 </svg></div>
-          <figcaption><a href="/assets/diagrams/agl-lab.svg">Open the SVG file</a>. It switches between light and dark by your device setting and stops moving if your device asks for less motion. On a small screen, swipe sideways inside the picture.</figcaption></figure>
+          <figcaption><a href="/assets/diagrams/agl-gate.svg">Open the SVG file</a>. It switches between light and dark by your device setting and stops moving if your device asks for less motion. On a small screen, swipe sideways inside the picture.</figcaption></figure>
+      </section>
+      <section id="hr">
+        <h2>From HR to the directory</h2>
+        <p class="body-text">Round seven. An identity starts in HR. Eight steps, and a request with no approved hire event stops at step five.</p>
+        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 762" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-hr-t agl-hr-d" width="640" height="762" preserveAspectRatio="xMidYMin meet"><title id="agl-hr-t">From HR to the directory</title><desc id="agl-hr-d">Eight steps from an accepted offer to a checked account. A request with no approved hire event is refused at step five.</desc><style>@keyframes agl-hr-a{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}76%{offset-distance:100%;opacity:1}90%{offset-distance:100%;opacity:1}94%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-hr-a{offset-path:path('M 22 66 L 22 682');animation:agl-hr-a 11s linear infinite}
+@keyframes agl-hr-b{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}46%{offset-distance:57.1%;opacity:1}86%{offset-distance:57.1%;opacity:1}92%{offset-distance:57.1%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-hr-b{offset-path:path('M 68 66 L 68 682');animation:agl-hr-b 11s linear infinite}
+@keyframes agl-hr-bg{0%,44%{opacity:0}46%,86%{opacity:1}89%,100%{opacity:0}}
+.dg #agl-hr-bg{animation:agl-hr-bg 11s linear infinite}</style>
+<rect class="dg-node " x="96" y="34" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="56">1</text>
+<text class="dg-t" x="134" y="56">Offer accepted</text>
+<text class="dg-s" x="134" y="75">Talent acquisition HR creates the record. HR is the source of truth.</text>
+<path class="dg-ln" d="M 358 98 L 358 122"/>
+<polygon class="dg-ar" points="353,113 363,113 358,121"/>
+<rect class="dg-node " x="96" y="122" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="144">2</text>
+<text class="dg-t" x="134" y="144">Checks and paperwork</text>
+<text class="dg-s" x="134" y="163">Background check, PAN, Aadhaar, bank details. These stay in HR.</text>
+<path class="dg-ln" d="M 358 186 L 358 210"/>
+<polygon class="dg-ar" points="353,201 363,201 358,209"/>
+<rect class="dg-node dg-acc" x="96" y="210" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="232">3</text>
+<text class="dg-t" x="134" y="232">Two HR approvals</text>
+<text class="dg-s" x="134" y="251">Talent acquisition HR and BU HR, two different people. Creates the hire event.</text>
+<path class="dg-ln" d="M 358 274 L 358 298"/>
+<polygon class="dg-ar" points="353,289 363,289 358,297"/>
+<rect class="dg-node " x="96" y="298" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="320">4</text>
+<text class="dg-t" x="134" y="320">Only the minimum goes to identity</text>
+<text class="dg-s" x="134" y="339">Name, email, team, job code, manager, start date.</text>
+<path class="dg-ln" d="M 358 362 L 358 386"/>
+<polygon class="dg-ar" points="353,377 363,377 358,385"/>
+<rect class="dg-node dg-acc" x="96" y="386" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="408">5</text>
+<text class="dg-t" x="134" y="408">The agent proposes, the gateway checks</text>
+<text class="dg-s" x="134" y="427">No approved hire event, no account. The executor acts.</text>
+<path class="dg-ln" d="M 358 450 L 358 474"/>
+<polygon class="dg-ar" points="353,465 363,465 358,473"/>
+<rect class="dg-node " x="96" y="474" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="496">6</text>
+<text class="dg-t" x="134" y="496">Account created, switched off</text>
+<text class="dg-s" x="134" y="515">It stays off until the start date. A withdrawn offer never turns it on.</text>
+<path class="dg-ln" d="M 358 538 L 358 562"/>
+<polygon class="dg-ar" points="353,553 363,553 358,561"/>
+<rect class="dg-node " x="96" y="562" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="584">7</text>
+<text class="dg-t" x="134" y="584">Day one</text>
+<text class="dg-s" x="134" y="603">Access for the job code, MFA enrolment, signed policy, then single sign-on.</text>
+<path class="dg-ln" d="M 358 626 L 358 650"/>
+<polygon class="dg-ar" points="353,641 363,641 358,649"/>
+<rect class="dg-node " x="96" y="650" width="524" height="64" rx="10"/>
+<text class="dg-n" x="110" y="672">8</text>
+<text class="dg-t" x="134" y="672">It keeps being checked</text>
+<text class="dg-s" x="134" y="691">Daily: every account traces to an HR record. Vendor accounts expire.</text>
+<path class="dg-ln dg-dash" d="M 22 66 L 22 682"/>
+<path class="dg-ln dg-dash" d="M 68 66 L 68 682"/>
+<text class="dg-lbl dg-good" x="22" y="20" text-anchor="middle" >event</text>
+<text class="dg-lbl dg-bd" x="68" y="20" text-anchor="middle" >none</text>
+<circle id="agl-hr-a" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
+<circle id="agl-hr-b" class="dg-pkt dg-bd" r="7" cx="0" cy="0"/>
+<text id="agl-hr-bg" class="dg-badge dg-bd" x="372" y="466" opacity="0">No approved hire event: refused here</text>
+</svg></div>
+          <figcaption><a href="/assets/diagrams/agl-hr.svg">Open the SVG file</a>. It switches between light and dark by your device setting and stops moving if your device asks for less motion. On a small screen, swipe sideways inside the picture.</figcaption></figure>
+      </section>
+      <section id="bypass">
+        <h2>How a bypass is noticed and answered</h2>
+        <p class="body-text">Round eight. Compare the identity system&#x27;s log with the signed decisions, act at once, keep the evidence, let a person decide.</p>
+        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-bypass-t agl-bypass-d" width="640" height="600" preserveAspectRatio="xMidYMin meet"><title id="agl-bypass-t">How a bypass is noticed and answered</title><desc id="agl-bypass-d">The identity API&#x27;s own change log is compared with the gateway&#x27;s signed decisions. A matched change is fine. A change with no decision is a bypass alert. The policy switches off the agent it can trace and revokes its credentials, evidence is copied first, and a person decides what to undo.</desc><style>@keyframes agl-bypass-a{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}36%{offset-distance:100%;opacity:1}41%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-bypass-a{offset-path:path('M 190 82 L 190 250');animation:agl-bypass-a 10s linear infinite}
+@keyframes agl-bypass-b{0%{offset-distance:0%;opacity:0}46%{offset-distance:0%;opacity:0}48%{offset-distance:0%;opacity:1}90%{offset-distance:100%;opacity:1}95%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-bypass-b{offset-path:path('M 190 82 L 190 160 L 450 160 L 450 250 L 450 312 L 485 312 L 485 350 L 485 458');animation:agl-bypass-b 10s linear infinite}</style>
+<rect class="dg-node " x="20" y="20" width="270" height="62" rx="10"/>
+<text class="dg-t" x="34" y="42">Identity API change log</text>
+<text class="dg-s" x="34" y="61">Every change, and who called.</text>
+<rect class="dg-node " x="350" y="20" width="270" height="62" rx="10"/>
+<text class="dg-t" x="364" y="42">Gateway decisions</text>
+<text class="dg-s" x="364" y="61">Every change it signed.</text>
+<path class="dg-ln" d="M 190 82 L 190 130"/>
+<polygon class="dg-ar" points="185,121 195,121 190,129"/>
+<path class="dg-ln" d="M 450 82 L 450 130"/>
+<polygon class="dg-ar" points="445,121 455,121 450,129"/>
+<rect class="dg-node dg-acc" x="120" y="130" width="400" height="62" rx="10"/>
+<text class="dg-t" x="134" y="152">Compare, every night or hour</text>
+<text class="dg-s" x="134" y="171">Every change should match a decision.</text>
+<path class="dg-ln" d="M 190 192 L 190 250"/>
+<polygon class="dg-ar" points="185,241 195,241 190,249"/>
+<text class="dg-lbl dg-good" x="200" y="226" text-anchor="start" >has a decision</text>
+<path class="dg-ln" d="M 450 192 L 450 250"/>
+<polygon class="dg-ar" points="445,241 455,241 450,249"/>
+<text class="dg-lbl dg-bd" x="460" y="226" text-anchor="start" >has none</text>
+<rect class="dg-node dg-okb" x="20" y="250" width="270" height="62" rx="10"/>
+<text class="dg-t" x="34" y="272">Matched</text>
+<text class="dg-s" x="34" y="291">Nothing to do. Not flagged.</text>
+<rect class="dg-node dg-badb" x="350" y="250" width="270" height="62" rx="10"/>
+<text class="dg-t" x="364" y="272">A bypass alert</text>
+<text class="dg-s" x="364" y="291">Someone changed it another way.</text>
+<path class="dg-ln" d="M 485 312 L 485 350"/>
+<polygon class="dg-ar" points="480,341 490,341 485,349"/>
+<rect class="dg-node dg-warnb" x="350" y="350" width="270" height="108" rx="10"/>
+<text class="dg-t" x="364" y="372">The policy acts at once</text>
+<text class="dg-s" x="364" y="396" text-anchor="start" >Switches off the agent it can trace</text>
+<text class="dg-s" x="364" y="414" text-anchor="start" >Cancels its waiting approvals</text>
+<text class="dg-s" x="364" y="432" text-anchor="start" >Revokes its leases and the leaked token</text>
+<rect class="dg-node " x="20" y="350" width="310" height="108" rx="10"/>
+<text class="dg-t" x="34" y="372">What it does not catch</text>
+<text class="dg-s" x="34" y="396" text-anchor="start" >A bypass that makes the same change as a real</text>
+<text class="dg-s" x="34" y="414" text-anchor="start" >request at the same moment: only the extra</text>
+<text class="dg-s" x="34" y="432" text-anchor="start" >one is flagged. The change itself stays.</text>
+<path class="dg-ln" d="M 485 458 L 485 480 L 165 480 L 165 500"/>
+<polygon class="dg-ar" points="160,491 170,491 165,499"/>
+<path class="dg-ln" d="M 485 480 L 485 500"/>
+<polygon class="dg-ar" points="480,491 490,491 485,499"/>
+<rect class="dg-node " x="20" y="500" width="290" height="80" rx="10"/>
+<text class="dg-t" x="34" y="522">Evidence first</text>
+<text class="dg-s" x="34" y="546" text-anchor="start" >Copy the logs, hash the copy, record who</text>
+<text class="dg-s" x="34" y="564" text-anchor="start" >copied it and when.</text>
+<rect class="dg-node " x="330" y="500" width="290" height="80" rx="10"/>
+<text class="dg-t" x="344" y="522">A person decides</text>
+<text class="dg-s" x="344" y="546" text-anchor="start" >The sponsor and the head of IAM decide</text>
+<text class="dg-s" x="344" y="564" text-anchor="start" >what to roll back, by a named approver.</text>
+<circle id="agl-bypass-a" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
+<circle id="agl-bypass-b" class="dg-pkt dg-bd" r="7" cx="0" cy="0"/>
+</svg></div>
+          <figcaption><a href="/assets/diagrams/agl-bypass.svg">Open the SVG file</a>. It switches between light and dark by your device setting and stops moving if your device asks for less motion. On a small screen, swipe sideways inside the picture.</figcaption></figure>
+      </section>
+      <section id="org">
+        <h2>One set of controls, many business units</h2>
+        <p class="body-text">Who owns what: the same controls for everyone, local decisions per business unit, policy down and reports up.</p>
+        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-org-t agl-org-d" width="640" height="620" preserveAspectRatio="xMidYMin meet"><title id="agl-org-t">One set of controls, many business units</title><desc id="agl-org-d">Board and executives set the policy. A central team owns the controls that must be identical: gateway, vault, executor, reconciliation, kill switch and evidence. Each business unit decides its own agents, approvers and lists. Policy flows down and reports flow up.</desc><style>@keyframes agl-org-a{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}86%{offset-distance:100%;opacity:1}91%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-org-a{offset-path:path('M 602 76 L 602 430');animation:agl-org-a 10s linear infinite}
+@keyframes agl-org-b{0%{offset-distance:0%;opacity:0}45%{offset-distance:0%;opacity:0}49%{offset-distance:0%;opacity:1}92%{offset-distance:100%;opacity:1}96%{offset-distance:100%;opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-org-b{offset-path:path('M 586 430 L 586 76');animation:agl-org-b 10s linear infinite}</style>
+<rect class="dg-node " x="20" y="20" width="600" height="56" rx="10"/>
+<text class="dg-t" x="34" y="42">Board and executives</text>
+<text class="dg-s" x="34" y="61">Set the risk appetite and the policy. Name who is accountable.</text>
+<rect class="dg-node dg-acc" x="20" y="110" width="600" height="92" rx="10"/>
+<text class="dg-t" x="34" y="132">Central controls: the same for everyone</text>
+<text class="dg-s" x="34" y="156" text-anchor="start" >Gateway, vault, executor, reconciliation, kill switch, evidence.</text>
+<text class="dg-s" x="34" y="176" text-anchor="start" >Owned by the head of IAM and the AI platform owner.</text>
+<rect class="dg-node " x="20" y="250" width="186" height="150" rx="10"/>
+<text class="dg-t" x="34" y="272">Business unit A</text>
+<text class="dg-s" x="34" y="304" text-anchor="start" >Agent sponsors</text>
+<text class="dg-s" x="34" y="326" text-anchor="start" >Approvers</text>
+<text class="dg-s" x="34" y="348" text-anchor="start" >Its own lists</text>
+<text class="dg-s" x="34" y="370" text-anchor="start" >Its own agents</text>
+<rect class="dg-node " x="227" y="250" width="186" height="150" rx="10"/>
+<text class="dg-t" x="241" y="272">Business unit B</text>
+<text class="dg-s" x="241" y="304" text-anchor="start" >Agent sponsors</text>
+<text class="dg-s" x="241" y="326" text-anchor="start" >Approvers</text>
+<text class="dg-s" x="241" y="348" text-anchor="start" >Its own lists</text>
+<text class="dg-s" x="241" y="370" text-anchor="start" >Its own agents</text>
+<rect class="dg-node " x="434" y="250" width="186" height="150" rx="10"/>
+<text class="dg-t" x="448" y="272">Business unit C</text>
+<text class="dg-s" x="448" y="304" text-anchor="start" >Agent sponsors</text>
+<text class="dg-s" x="448" y="326" text-anchor="start" >Approvers</text>
+<text class="dg-s" x="448" y="348" text-anchor="start" >Its own lists</text>
+<text class="dg-s" x="448" y="370" text-anchor="start" >Its own agents</text>
+<rect class="dg-node " x="20" y="430" width="600" height="56" rx="10"/>
+<text class="dg-t" x="34" y="452">Everyone with an account</text>
+<text class="dg-s" x="34" y="471">Employees, contractors, vendors, helpers. Sign the policy, enrol MFA, report oddities.</text>
+<rect class="dg-node dg-warnb" x="20" y="516" width="600" height="56" rx="10"/>
+<text class="dg-t" x="34" y="538">Security operations and audit</text>
+<text class="dg-s" x="34" y="557">Watch across all of it. Reconcile, respond, keep the evidence.</text>
+<path class="dg-ln" d="M 188 202 L 188 250"/>
+<polygon class="dg-ar" points="183,241 193,241 188,249"/>
+<path class="dg-ln" d="M 188 400 L 188 430"/>
+<polygon class="dg-ar" points="183,421 193,421 188,429"/>
+<path class="dg-ln" d="M 395 202 L 395 250"/>
+<polygon class="dg-ar" points="390,241 400,241 395,249"/>
+<path class="dg-ln" d="M 395 400 L 395 430"/>
+<polygon class="dg-ar" points="390,421 400,421 395,429"/>
+<path class="dg-ln" d="M 602 76 L 602 110"/>
+<polygon class="dg-ar" points="597,101 607,101 602,109"/>
+<path class="dg-ln" d="M 602 400 L 602 430"/>
+<polygon class="dg-ar" points="597,421 607,421 602,429"/>
+<path class="dg-ln" d="M 602 202 L 602 250"/>
+<polygon class="dg-ar" points="597,241 607,241 602,249"/>
+<path class="dg-ln" d="M 586 430 L 586 77"/>
+<polygon class="dg-ar" points="581,85 591,85 586,77"/>
+<text class="dg-s" x="320" y="604" text-anchor="middle" >Green: policy flows down. Amber: reports flow up.</text>
+<circle id="agl-org-a" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
+<circle id="agl-org-b" class="dg-pkt dg-wn" r="7" cx="0" cy="0"/>
+</svg></div>
+          <figcaption><a href="/assets/diagrams/agl-org.svg">Open the SVG file</a>. It switches between light and dark by your device setting and stops moving if your device asks for less motion. On a small screen, swipe sideways inside the picture.</figcaption></figure>
       </section>
       </div>
       <aside class="hg-next" aria-labelledby="hg-next-t">
