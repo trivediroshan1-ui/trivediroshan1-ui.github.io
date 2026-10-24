@@ -27,7 +27,7 @@ def page(body, extra=""):
 
 def workflow():
     steps = [("1","Ask","Which common AI governance controls hold up, and where do they fail?","#4de2ff"),
-             ("2","Build","A made-up lender, Kaveri Finance. 40 staff, 200 customers. Aadhaar, PAN and card numbers invented, but they pass the real checksums.","#8b5cf6"),
+             ("2","Build","A made-up lender, Kaveri Finance. 40 staff, 200 customers. Aadhaar, PAN and card numbers invented. Aadhaar and card numbers pass the real checks.","#8b5cf6"),
              ("3","Guess first","Write the expected result for every case. Commit it to git. Then run.","#34d399"),
              ("4","Run 59 cases","Gateway 16 · Guardrail filter 17 · Agent identity 12 · Audit 14.","#f7c873"),
              ("5","Fix and run again","Filter v1 → v2 → v3 scored 20, 42, 45 of 53 variants. On 200 samples: 68%, 90%, 100%.","#4de2ff"),
