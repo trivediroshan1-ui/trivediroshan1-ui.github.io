@@ -78,7 +78,7 @@ block = f'''<!-- r6:start -->
           <li>The AI model behind an agent is not tested. Each case assumes the agent was fooled or wrong and tests the wall around it.</li>
           <li>I wrote the guesses and the code, so &ldquo;as expected&rdquo; shows the rules do what I intended, not that I thought of every attack.</li>
           <li>T15 is a limit: a wrong but allowed request (the wrong person with the same name) passes every check. T18 is an anti-pattern shown by construction, not a finding.</li>
-          <li>Not tested yet: real SCIM calls, real approvals by people, public-key signatures or mutual TLS between gateway and executor, multi-step agent plans, and a compromised gateway or executor.</li>
+          <li>Not tested in this round: real SCIM calls, real approvals by people, and real mutual TLS between gateway and executor. Public-key signing, chains of agents handing work on, and a compromised gateway or executor are modelled in round eleven.</li>
         </ul>
         <h3>Questions I would ask a vendor who sells this</h3>
         <ul class="approach-list">
