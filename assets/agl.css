@@ -114,3 +114,34 @@ html[data-theme="light"] .agl{
 @media (max-width:900px){.agl .agl-stages{grid-template-columns:repeat(2,minmax(0,1fr))}.agl .agl-stage:nth-child(4n):not(:last-child)::after{content:"\2192";right:-12px;top:50%;bottom:auto;left:auto;transform:translate(50%,-50%)}.agl .agl-stage:nth-child(2n):not(:last-child)::after{content:"\21B4";right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%)}.agl .agl-mods{grid-template-columns:repeat(2,minmax(0,1fr))}.agl ol.agl-flow{grid-template-columns:repeat(2,minmax(0,1fr))}.agl .agl-out,.agl .agl-two{grid-template-columns:1fr}}
 @media (max-width:520px){.agl .agl-mods,.agl ol.agl-flow{grid-template-columns:1fr}.agl .agl-stages{grid-template-columns:1fr}.agl .agl-stage:not(:last-child)::after,.agl .agl-stage:nth-child(2n):not(:last-child)::after,.agl .agl-stage:nth-child(4n):not(:last-child)::after{content:"\2193";right:auto;left:50%;top:auto;bottom:-14px;transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.agl .agl-stage,.agl .agl-mod{transition:none}.agl ol.agl-flow li.on .bar{animation:none;width:100%}.agl .ln.new,.agl .agl-chain span.new{animation:none}}
+
+/* write-up pages: evidence, appendix, implement */
+.agl .ev-sum{border:1px solid var(--a-accent);background:var(--a-accent-soft);border-radius:12px;padding:18px 20px;display:grid;gap:8px}
+.agl .ev-sum h2{font-size:18px}.agl .ev-sum ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px}
+.agl .ev-case{border:1px solid var(--a-line);background:var(--a-panel);border-radius:12px;padding:18px;display:grid;gap:12px;min-width:0}
+.agl .ev-case header{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between}
+.agl .ev-case h3{font-size:17px}
+.agl .ev-ask{font:400 13px/1.55 var(--a-fm);background:var(--a-term);color:var(--a-term-ink);border-radius:8px;padding:10px 12px;white-space:pre-wrap;word-break:break-word;margin:0}
+.agl .ev-q{margin:0;border-left:3px solid var(--a-ok);padding:2px 0 2px 12px;font-size:14.5px;color:var(--a-ink)}
+.agl .ev-q cite{display:block;font:400 11.5px/1.4 var(--a-fm);color:var(--a-muted);margin-top:4px;font-style:normal}
+ol.ev-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.agl ol.ev-flow li{position:relative;border:1px solid var(--a-line);border-radius:8px;padding:10px;background:var(--a-panel2);display:grid;gap:4px;align-content:start;font-size:13px;line-height:1.4;min-width:0;animation:evlit 9s infinite}
+.agl ol.ev-flow li b{font:600 12px/1.2 var(--a-fm);color:var(--a-muted);text-transform:uppercase;letter-spacing:.05em}
+.agl ol.ev-flow li:nth-child(2){animation-delay:2.2s}.agl ol.ev-flow li:nth-child(3){animation-delay:4.4s}.agl ol.ev-flow li:nth-child(4){animation-delay:6.6s}
+.agl ol.ev-flow li:not(:last-child)::after{content:"\2192";position:absolute;right:-9px;top:50%;transform:translate(50%,-50%);color:var(--a-muted);font:500 14px/1 var(--a-fm)}
+@keyframes evlit{0%,22%{border-color:var(--a-accent);background:var(--a-accent-soft)}30%,100%{border-color:var(--a-line);background:var(--a-panel2)}}
+.agl .ev-term{background:var(--a-term);color:var(--a-term-ink);border:1px solid var(--a-line);border-radius:10px;padding:12px 14px;font:400 12.5px/1.55 var(--a-fm);overflow:auto;white-space:pre;max-height:420px;margin:0}
+.agl .ev-note{color:var(--a-muted);font-size:13.5px}
+.agl dl.ev-gl{display:grid;gap:0;margin:0}
+.agl dl.ev-gl dt{font:600 15px/1.3 var(--a-fd);margin-top:14px}
+.agl dl.ev-gl dd{margin:3px 0 0;color:var(--a-muted);font-size:14.5px}
+.agl .ev-est{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.agl .ev-est label{display:grid;gap:4px;font-size:13px;color:var(--a-muted)}
+.agl .ev-est input{font:500 15px/1 var(--a-fm);padding:10px;border-radius:8px;border:1px solid var(--a-line);background:var(--a-panel2);color:var(--a-ink);min-width:0;width:100%}
+.agl .ev-res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.agl .ev-res div{border:1px solid var(--a-line);border-radius:10px;padding:12px;background:var(--a-panel2)}
+.agl .ev-res b{display:block;font:700 22px/1.1 var(--a-fm);color:var(--a-accent)}
+.agl .ev-res span{font-size:12.5px;color:var(--a-muted)}
+@media (max-width:760px){ol.ev-flow{grid-template-columns:1fr 1fr}.agl .ev-est,.agl .ev-res{grid-template-columns:1fr}}
+@media (max-width:420px){ol.ev-flow{grid-template-columns:1fr}.agl ol.ev-flow li:not(:last-child)::after{display:none}}
+@media (prefers-reduced-motion:reduce){.agl ol.ev-flow li{animation:none}}
