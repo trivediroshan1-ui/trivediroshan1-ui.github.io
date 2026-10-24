@@ -514,11 +514,35 @@ window.SITE_QA = [
   },
   {
     id: "ai-governance-lab-diagrams",
-    title: "AI governance lab: architecture diagrams",
+    title: "AI governance lab: nine animated architecture diagrams",
     url: "/ai-governance-lab/diagrams/",
-    keywords: ["architecture diagram", "diagrams", "svg", "request flow", "gateway flow", "how it works", "architecture"],
+    keywords: ["architecture diagram", "diagrams", "svg", "request flow", "gateway flow", "how it works", "architecture", "animated diagram", "bypass diagram", "hr diagram", "organisation diagram", "business units", "horizontal", "vertical"],
     answer:
-      "The diagrams page has five animated SVG diagrams: one request through the gateway (caller, register, model and paperwork, guardrail scan, data and region rules, model, response screen, person), where the filters plug in, how an agent gets and uses access, the tamper-evident log, and the lab as a whole. Each can be downloaded as an SVG file.",
+      "The diagrams page has nine animated SVG diagrams with a jump menu: the lab as a whole, one request through the gateway, where the filters plug in, how an agent gets and uses access, the tamper-evident log, the agent proposes and a gateway decides and an executor acts, from HR to the directory, how a bypass is noticed and answered, and one set of controls across many business units. They stop moving if your device asks for less motion, and each can be downloaded as an SVG file.",
+  },
+  {
+    id: "ai-governance-lab-addendum-pdf",
+    title: "AI governance lab: addendum PDF, rounds five to eight",
+    url: "/assets/ai-governance-lab-addendum.pdf",
+    keywords: ["addendum", "addendum pdf", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "56 cases", "controls table"],
+    answer:
+      "The addendum is a free 42-page PDF (7 by 10 inches) for rounds five to eight, dated 25 Oct 2026. It has 56 cases (14 in round five, 18 in six, 12 in seven, 12 in eight) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
+  },
+  {
+    id: "ai-governance-lab-real-output",
+    title: "AI governance lab: real run output for rounds six to eight",
+    url: "/ai-governance-lab/run/#real-output",
+    keywords: ["real output", "run output", "results file", "raw results", "control off", "mutation", "run page", "evidence of run", "sandbox run"],
+    answer:
+      "The run page now shows the unedited result files for rounds six, seven and eight: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. These rounds ran in a Linux sandbox rather than on my MacBook (the earlier rounds ran on the Mac with Python 3.9.6). All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
+  },
+  {
+    id: "ai-governance-lab-where-to-start",
+    title: "AI governance lab: where to start and in what order to read it",
+    url: "/ai-governance-lab/",
+    keywords: ["where to start", "what to read first", "order to read", "how to read", "guide to the lab", "overview", "start here", "quick tour"],
+    answer:
+      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 67-page book and the 42-page addendum for rounds five to eight. The last part of each says what the lab does not cover.",
   },
   {
     id: "ai-governance-lab-risks",
