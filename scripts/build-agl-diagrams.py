@@ -210,23 +210,136 @@ def d_lab():
     d.text(320, 560, "One laptop, made-up data, my own cases. A data point, not a guarantee.", "dg-s", "middle")
     return d
 
+# ---------------------------------------------------------------- 6. the agent sends instructions, a gateway decides, an executor acts
+def d_gate():
+    d = D("agl-gate", "The agent proposes; a gateway decides; an executor acts", "An agent sends a fixed-shape request to a gateway. A person approves risky actions. The gateway signs a decision. A separate executor borrows a five-minute credential from a vault and calls the identity API. A leaked token used directly is refused because the API accepts it only from the executor.", 590)
+    d.node(20, 20, 230, 62, "The agent", "Proposes. Holds no credential.", "")
+    d.node(330, 20, 290, 62, "A leaked token", "Found in a config file.", "dg-badb")
+    d.node(20, 130, 230, 74, "Gateway", "Identity, shape, policy, rate.", "dg-acc")
+    d.text(34, 188, "Signs the decision.", "dg-s")
+    d.node(330, 130, 290, 74, "A named person", "Approves risky actions, such as a", "dg-warnb")
+    d.text(344, 188, "disable. Sees the person and the request.", "dg-s")
+    d.node(20, 252, 230, 74, "Executor", "Ordinary code, its own identity.", "")
+    d.text(34, 310, "Checks the signature.", "dg-s")
+    d.node(330, 252, 290, 74, "Vault", "Lends a five-minute credential", "dg-okb")
+    d.text(344, 310, "to the executor only.", "dg-s")
+    d.node(20, 380, 230, 74, "Identity API", "Create, disable, read.", "")
+    d.text(34, 438, "Accepts it only from the executor.", "dg-s")
+    d.node(20, 490, 600, 56, "Audit log", "Who asked, what was decided, who approved, what the directory recorded. No secrets.", "")
+    d.line("M 135 82 L 135 130", arrow=(135, 129, "d")); d.text(145, 110, "request, fixed shape", "dg-s")
+    d.line("M 250 167 L 328 167", arrow=(328, 167, "r")); d.text(289, 158, "risky only", "dg-s", "middle")
+    d.line("M 135 204 L 135 252", arrow=(135, 251, "d")); d.text(145, 232, "signed decision", "dg-s")
+    d.line("M 250 289 L 328 289", arrow=(328, 289, "r")); d.text(289, 280, "asks", "dg-s", "middle")
+    d.line("M 135 326 L 135 380", arrow=(135, 379, "d")); d.text(145, 358, "call with the lease", "dg-s")
+    d.line("M 475 82 L 475 100 L 632 100 L 632 417 L 252 417", dash=True, arrow=(252, 417, "l"))
+    d.text(440, 412, "direct call", "dg-s", "middle")
+    d.packet("agl-gate-a", "M 135 82 L 135 130 L 135 204 L 135 252 L 135 326 L 135 380", "good", 10, [(0, 0, 0), (4, 0, 1), (40, 100, 1), (46, 100, 0), (100, 0, 0)])
+    d.packet("agl-gate-b", "M 475 82 L 475 100 L 632 100 L 632 417 L 330 417", "bd", 10, [(0, 0, 0), (50, 0, 0), (52, 0, 1), (88, 100, 1), (93, 100, 0), (100, 0, 0)])
+    d.badge("agl-gate-bg", 330, 442, "Refused: wrong caller. Nothing changes.", "bd", 10, 80, 96)
+    return d
+
+# ---------------------------------------------------------------- 7. from HR to the directory
+def d_hr():
+    stages = [("Offer accepted", "Talent acquisition HR creates the record. HR is the source of truth."),
+              ("Checks and paperwork", "Background check, PAN, Aadhaar, bank details. These stay in HR."),
+              ("Two HR approvals", "Talent acquisition HR and BU HR, two different people. Creates the hire event."),
+              ("Only the minimum goes to identity", "Name, email, team, job code, manager, start date."),
+              ("The agent proposes, the gateway checks", "No approved hire event, no account. The executor acts."),
+              ("Account created, switched off", "It stays off until the start date. A withdrawn offer never turns it on."),
+              ("Day one", "Access for the job code, MFA enrolment, signed policy, then single sign-on."),
+              ("It keeps being checked", "Daily: every account traces to an HR record. Vendor accounts expire.")]
+    top, step, bh = 34, 88, 64
+    h = top + len(stages) * step + 24
+    d = D("agl-hr", "From HR to the directory", "Eight steps from an accepted offer to a checked account. A request with no approved hire event is refused at step five.", h)
+    for i, (t, s) in enumerate(stages):
+        y = top + i * step
+        d.node(96, y, 524, bh, t, s, "dg-acc" if i in (2, 4) else "", num=f"{i+1}")
+        if i < len(stages) - 1:
+            d.line(f"M 358 {y+bh} L 358 {y+step}", arrow=(358, y + step - 1, "d"))
+    y0, y1 = top + bh // 2, top + 7 * step + bh // 2
+    d.line(f"M 22 {y0} L 22 {y1}", dash=True); d.line(f"M 68 {y0} L 68 {y1}", dash=True)
+    d.text(22, 20, "event", "dg-lbl dg-good", "middle"); d.text(68, 20, "none", "dg-lbl dg-bd", "middle")
+    stop = (4 * step) / (7 * step)
+    d.packet("agl-hr-a", f"M 22 {y0} L 22 {y1}", "good", 11, keys_go(100, 90))
+    d.packet("agl-hr-b", f"M 68 {y0} L 68 {y1}", "bd", 11, [(0, 0, 0), (4, 0, 1), (46, round(stop*100, 1), 1), (86, round(stop*100, 1), 1), (92, round(stop*100, 1), 0), (100, 0, 0)])
+    d.badge("agl-hr-bg", 372, top + 4 * step + bh + 16, "No approved hire event: refused here", "bd", 11, 44, 86)
+    return d
+
+# ---------------------------------------------------------------- 8. a bypass is noticed, answered and investigated
+def d_bypass():
+    d = D("agl-bypass", "How a bypass is noticed and answered", "The identity API's own change log is compared with the gateway's signed decisions. A matched change is fine. A change with no decision is a bypass alert. The policy switches off the agent it can trace and revokes its credentials, evidence is copied first, and a person decides what to undo.", 600)
+    d.node(20, 20, 270, 62, "Identity API change log", "Every change, and who called.", "")
+    d.node(350, 20, 270, 62, "Gateway decisions", "Every change it signed.", "")
+    d.line("M 190 82 L 190 130", arrow=(190, 129, "d")); d.line("M 450 82 L 450 130", arrow=(450, 129, "d"))
+    d.node(120, 130, 400, 62, "Compare, every night or hour", "Every change should match a decision.", "dg-acc")
+    d.line("M 190 192 L 190 250", arrow=(190, 249, "d")); d.text(200, 226, "has a decision", "dg-lbl dg-good")
+    d.line("M 450 192 L 450 250", arrow=(450, 249, "d")); d.text(460, 226, "has none", "dg-lbl dg-bd")
+    d.node(20, 250, 270, 62, "Matched", "Nothing to do. Not flagged.", "dg-okb")
+    d.node(350, 250, 270, 62, "A bypass alert", "Someone changed it another way.", "dg-badb")
+    d.line("M 485 312 L 485 350", arrow=(485, 349, "d"))
+    d.node(350, 350, 270, 108, "The policy acts at once", None, "dg-warnb")
+    for j, t in enumerate(["Switches off the agent it can trace", "Cancels its waiting approvals", "Revokes its leases and the leaked token"]):
+        d.text(364, 396 + j * 18, t, "dg-s")
+    d.node(20, 350, 310, 108, "What it does not catch", None, "")
+    d.text(34, 396, "A bypass that makes the same change as a real", "dg-s"); d.text(34, 414, "request at the same moment: only the extra", "dg-s"); d.text(34, 432, "one is flagged. The change itself stays.", "dg-s")
+    d.line("M 485 458 L 485 480 L 165 480 L 165 500", arrow=(165, 499, "d")); d.line("M 485 480 L 485 500", arrow=(485, 499, "d"))
+    d.node(20, 500, 290, 80, "Evidence first", None, "")
+    d.text(34, 546, "Copy the logs, hash the copy, record who", "dg-s"); d.text(34, 564, "copied it and when.", "dg-s")
+    d.node(330, 500, 290, 80, "A person decides", None, "")
+    d.text(344, 546, "The sponsor and the head of IAM decide", "dg-s"); d.text(344, 564, "what to roll back, by a named approver.", "dg-s")
+    d.packet("agl-bypass-a", "M 190 82 L 190 250", "good", 10, [(0, 0, 0), (4, 0, 1), (36, 100, 1), (41, 100, 0), (100, 0, 0)])
+    d.packet("agl-bypass-b", "M 190 82 L 190 160 L 450 160 L 450 250 L 450 312 L 485 312 L 485 350 L 485 458", "bd", 10, [(0, 0, 0), (46, 0, 0), (48, 0, 1), (90, 100, 1), (95, 100, 0), (100, 0, 0)])
+    return d
+
+# ---------------------------------------------------------------- 9. who owns what: one set of controls, many business units
+def d_org():
+    d = D("agl-org", "One set of controls, many business units", "Board and executives set the policy. A central team owns the controls that must be identical: gateway, vault, executor, reconciliation, kill switch and evidence. Each business unit decides its own agents, approvers and lists. Policy flows down and reports flow up.", 620)
+    d.node(20, 20, 600, 56, "Board and executives", "Set the risk appetite and the policy. Name who is accountable.", "")
+    d.node(20, 110, 600, 92, "Central controls: the same for everyone", None, "dg-acc")
+    d.text(34, 156, "Gateway, vault, executor, reconciliation, kill switch, evidence.", "dg-s")
+    d.text(34, 176, "Owned by the head of IAM and the AI platform owner.", "dg-s")
+    for i, name in enumerate(["Business unit A", "Business unit B", "Business unit C"]):
+        x = 20 + i * 207
+        d.node(x, 250, 186, 150, name, None, "")
+        for j, t in enumerate(["Agent sponsors", "Approvers", "Its own lists", "Its own agents"]):
+            d.text(x + 14, 304 + j * 22, t, "dg-s")
+    d.node(20, 430, 600, 56, "Everyone with an account", "Employees, contractors, vendors, helpers. Sign the policy, enrol MFA, report oddities.", "")
+    d.node(20, 516, 600, 56, "Security operations and audit", "Watch across all of it. Reconcile, respond, keep the evidence.", "dg-warnb")
+    for i in range(3):
+        x = 20 + i * 207 + 168
+        d.line(f"M {x} 76 L {x} 110" if i == 2 else f"M {x} 202 L {x} 250", arrow=(x, 109, "d") if i == 2 else (x, 249, "d"))
+        d.line(f"M {x} 400 L {x} 430", arrow=(x, 429, "d"))
+    d.line("M 602 202 L 602 250", arrow=(602, 249, "d"))
+    d.line("M 586 430 L 586 77", arrow=(586, 77, "u"))
+    d.text(320, 604, "Green: policy flows down. Amber: reports flow up.", "dg-s", "middle")
+    d.packet("agl-org-a", "M 602 76 L 602 430", "good", 10, [(0, 0, 0), (4, 0, 1), (86, 100, 1), (91, 100, 0), (100, 0, 0)])
+    d.packet("agl-org-b", "M 586 430 L 586 76", "wn", 10, [(0, 0, 0), (45, 0, 0), (49, 0, 1), (92, 100, 1), (96, 100, 0), (100, 0, 0)])
+    return d
+
+
 DIAGS = [
     ("flow", d_flow, "One request through the gateway", "Eight stages from caller to person. Watch a good request pass, and one with personal data stop at the data and region rules."),
     ("filters", d_filters, "Where the filters plug in", "The guardrail scan is one slot. v1, v2, v3 or an outside tool plugs in, and the same tests run on each."),
     ("agent", d_agent, "How an agent gets and uses access", "Sponsor, short-lived token, scope checks, a just-in-time grant for privileged actions, and one kill switch."),
     ("audit", d_audit, "The tamper-evident log", "Each line carries a fingerprint of the one before. Edit one and the chain breaks. Cut lines off the end and you need an anchor."),
     ("lab", d_lab, "The lab as a whole", "Four tracks, five rounds, an unseen-items test and a real assistant, and what came out of it."),
+    ("gate", d_gate, "The agent proposes; a gateway decides; an executor acts", "Rounds six to eight. The agent holds no credential. A leaked token used directly is refused."),
+    ("hr", d_hr, "From HR to the directory", "Round seven. An identity starts in HR. Eight steps, and a request with no approved hire event stops at step five."),
+    ("bypass", d_bypass, "How a bypass is noticed and answered", "Round eight. Compare the identity system's log with the signed decisions, act at once, keep the evidence, let a person decide."),
+    ("org", d_org, "One set of controls, many business units", "Who owns what: the same controls for everyone, local decisions per business unit, policy down and reports up."),
 ]
 
 def main():
     os.makedirs(os.path.join(ROOT, "assets", "diagrams"), exist_ok=True)
     inl = []
-    for key, fn, title, cap in DIAGS:
+    order = ["lab", "flow", "filters", "agent", "audit", "gate", "hr", "bypass", "org"]
+    for key, fn, title, cap in sorted(DIAGS, key=lambda x: order.index(x[0])):
         d = fn()
         open(os.path.join(ROOT, "assets", "diagrams", f"agl-{key}.svg"), "w", encoding="utf-8").write(
             '<?xml version="1.0" encoding="UTF-8"?>\n' + d.svg(inline=False) + "\n")
         inl.append((key, title, cap, d.svg(inline=True)))
     # inline css once
+    menu = '<nav class="dg-menu" aria-label="Jump to a diagram">' + "".join(f'<a href="#{k}"><b>{i+1}</b> {esc(t)}</a>' for i, (k, t, c, v) in enumerate(inl)) + '</nav>'
     sections = []
     for key, title, cap, svg in inl:
         sections.append(f'''      <section id="{key}">
@@ -239,7 +352,7 @@ def main():
     a = tpl.index('<main id="main">'); b = tpl.index('<aside class="hg-next"')
     head = tpl[:a]; tail = tpl[b:]
     head = head.replace("/ai-governance-lab/try/", "/ai-governance-lab/diagrams/")
-    head = re.sub(r'content="Run the AI governance lab in your browser[^"]*"', 'content="Animated architecture diagrams for the AI governance lab, as SVG: the request flow, where the filters plug in, agent access, the audit log and the lab as a whole."', head)
+    head = re.sub(r'content="Run the AI governance lab in your browser[^"]*"', 'content="Nine animated architecture diagrams for the AI governance lab, as SVG: the request flow, filters, agent access, the audit log, the agent-to-API pattern, HR to directory, bypass response and who owns what."', head)
     head = head.replace('content="AI governance lab: try it yourself"', 'content="AI governance lab: architecture diagrams"')
     head = head.replace("<title>Try the AI governance lab &middot; Roshan Trivedi</title>", "<title>Architecture diagrams &middot; AI governance lab</title>")
     head = head.replace("agl.css?v=20261024d", "agl.css?v=20261024f")
@@ -248,11 +361,12 @@ def main():
       <header class="hero mcp-hero">
         <p class="eyebrow">AI governance lab</p>
         <h1>Architecture diagrams</h1>
-        <p class="dek">Five animated diagrams of how the lab works: the request flow, where the filters plug in, how an agent gets access, the tamper-evident log, and the lab as a whole. Each one is an SVG file you can reuse.</p>
+        <p class="dek">Nine animated diagrams of how the lab works, in the order I would explain it: the lab as a whole, the request flow, where the filters plug in, how an agent gets access, the tamper-evident log, then the later rounds: the agent that only proposes, from HR to the directory, how a bypass is noticed and answered, and who owns what. Each one is an SVG file you can reuse.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
       <section><p class="body-text">These are drawn from the lab&rsquo;s own code, not from a vendor diagram. Everything in them is made up: a lender called Kaveri Finance and test data that follows real formats on purpose. For the cases behind each diagram, see <a href="/ai-governance-lab/cases/">every use case, one by one</a>.</p></section>
-      <style>{css}</style>
+      <style>{css}.dg-menu{{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}}.dg-menu a{{font-size:13px;line-height:1.3;padding:8px 12px;border:1px solid var(--a-line,#2c3a55);border-radius:999px;color:inherit;text-decoration:none}}.dg-menu a:hover{{border-color:var(--a-accent,#4de2ff)}}.dg-menu b{{font-family:var(--a-fm,monospace);margin-right:4px;opacity:.7}}</style>
+      {menu}
       <div class="agl dg-page">
 {chr(10).join(sections)}
       </div>
