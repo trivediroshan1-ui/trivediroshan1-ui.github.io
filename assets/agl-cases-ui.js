@@ -4,8 +4,8 @@
   "use strict";
   var D = window.AGL, C = window.AGL_CASES, F = window.AGLF;
   var NAMES = ["v1", "v2", "v3"];
-  var TRACKS = [["all", "All"], ["A", "A  Gateway"], ["G", "G  Guardrail"], ["I", "I  Agent identity"], ["E", "E  Audit"], ["P", "P  Real assistant"]];
-  var TRACK_NAME = { A: "Gateway", G: "Guardrail filter", I: "Agent identity", E: "Audit evidence", P: "Real assistant" };
+  var TRACKS = [["all", "All"], ["A", "A  Gateway"], ["G", "G  Guardrail"], ["I", "I  Agent identity"], ["E", "E  Audit"], ["V", "V  Vendor access"], ["R", "R  Retrieval"], ["P", "P  Real assistant"]];
+  var TRACK_NAME = { A: "Gateway", G: "Guardrail filter", I: "Agent identity", E: "Audit evidence", V: "Vendor and third-party access", R: "Retrieval and document permissions", P: "Real assistant" };
   var ROUND_FILTER = { 1: "v1", 2: "v2", 3: "v2", 4: "v3" };
   var MARK = { ok: ["Works", "ok"], stop: ["Stopped", "bad"], miss: ["Gets through", "warn"], note: ["Step", "note"] };
 
@@ -25,7 +25,14 @@
       byId[c.id].rounds[r] = c;
     });
   });
-  function key(c) { var m = /^([A-Z])(\d+)$/.exec(c.id); return "AGIE".indexOf(m[1]) * 1000 + (+m[2]); }
+  /* round five: 14 cases added on 24 Oct 2026, after the first posts */
+  var R5 = window.AGL_R5 || { cases: [], text: {}, controls: [] };
+  R5.cases.forEach(function (c) {
+    order.push({ id: c.id, track: c.track, title: c.title, rounds: {}, kind: "lab", added: c });
+    C[c.id] = R5.text[c.id];
+  });
+  D.controls = (D.controls || []).concat(R5.controls || []);
+  function key(c) { var m = /^([A-Z])(\d+)$/.exec(c.id); return "AGIEVR".indexOf(m[1]) * 1000 + (+m[2]); }
   order.sort(function (a, b) { return key(a) - key(b); });
   D.trackp.forEach(function (p) { order.push({ id: p[0], track: "P", title: p[1], kind: "assistant", outcome: p[2], note: p[3], rounds: {} }); });
 
@@ -122,6 +129,13 @@
     var rh = el("tr"); ["Round", "What the lab was", "My guess", "What came out", "Result"].forEach(function (h) { rh.appendChild(th(h)); });
     rt.appendChild(el("thead")).appendChild(rh);
     var rb = el("tbody"); rt.appendChild(rb);
+    if (c.added) {
+      var tr5 = el("tr");
+      tr5.appendChild(td("5")); tr5.appendChild(td("Added on 24 Oct 2026, after the first posts"));
+      tr5.appendChild(td(words(c.added.expected))); tr5.appendChild(td(words(c.added.actual)));
+      var v5 = el("td"); v5.appendChild(pill(c.added.verdict === "as expected" ? "as I guessed" : "different from my guess", c.added.verdict === "as expected" ? "ok" : "warn")); tr5.appendChild(v5);
+      rb.appendChild(tr5);
+    }
     [1, 2, 3, 4].forEach(function (r) {
       var row = c.rounds[r]; if (!row) return;
       var tr = el("tr");
@@ -144,7 +158,7 @@
       ctl.forEach(function (x) { var li = el("li"); li.appendChild(el("b", null, x.id + "  ")); li.appendChild(document.createTextNode(x.control)); ul.appendChild(li); });
       body.appendChild(ul);
       var cl = el("p", "agl-hint"); cl.appendChild(document.createTextNode("How each control maps to ISO 42001, NIST AI RMF, the EU AI Act and India's rules is in the controls table on the "));
-      var ca = el("a", null, "run page"); ca.href = "/ai-governance-lab/run/#agl-ctl"; cl.appendChild(ca); cl.appendChild(document.createTextNode("."));
+      var ca = el("a", null, c.added ? "lab page" : "run page"); ca.href = c.added ? "/ai-governance-lab/#frameworks" : "/ai-governance-lab/run/#agl-ctl"; cl.appendChild(ca); cl.appendChild(document.createTextNode("."));
       body.appendChild(cl);
     }
     return body;
@@ -158,7 +172,7 @@
 
     var top = el("section", "agl-panel");
     top.appendChild(el("p", "agl-eyebrow", "All of the use cases"));
-    top.appendChild(el("p", "agl-hint", order.length + " cases: " + (order.length - 9) + " ran in the lab across four tracks, and 9 were run by hand on a real assistant. Open any case to see what I set up, the steps in order, what the filters did with it, how it did in each round and which control it tests. " + gaps + " of the lab cases show something getting through, and those are marked. Everything is made up: a lender called Kaveri Finance and numbers that follow real formats on purpose."));
+    top.appendChild(el("p", "agl-hint", order.length + " cases: " + (order.length - 9 - R5.cases.length) + " ran in the lab across four tracks in the first four rounds, " + R5.cases.length + " were added in round five on 24 Oct 2026 (new tracks V and R, and more in I and E), and 9 were run by hand on a real assistant. Open any case to see what I set up, the steps in order, what the filters did with it, how it did in each round and which control it tests. " + gaps + " of the lab cases show something getting through, and those are marked. Everything is made up: a lender called Kaveri Finance and numbers that follow real formats on purpose."));
     stack.appendChild(top);
 
     var bar = el("div", "cx-bar");
@@ -193,7 +207,7 @@
       var st = el("span", "cx-badges");
       if (c.kind === "assistant") st.appendChild(pill("followed the policy", "ok"));
       else {
-        var last = c.rounds[4] || c.rounds[3] || c.rounds[2] || c.rounds[1];
+        var last = c.added || c.rounds[4] || c.rounds[3] || c.rounds[2] || c.rounds[1];
         st.appendChild(pill(words(last.actual), hasGap(c) ? "warn" : "ok"));
         if (hasGap(c)) st.appendChild(pill("misses shown", "warn"));
       }
