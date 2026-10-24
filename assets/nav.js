@@ -56,6 +56,7 @@
           ["/ai-governance-lab/", "Overview: what held, what broke", "shield"],
           ["/ai-governance-lab/evidence/", "The assistant test", "check"],
           ["/ai-governance-lab/run/", "Every command and output", "list"],
+          ["/ai-governance-lab/transcripts/", "Full chat and terminal output", "doc"],
           ["/ai-governance-lab/appendix/", "Appendix and glossary", "doc"],
           ["/ai-governance-lab/implement/", "Using it, and what it costs", "coin"]] },
         { title: "Read and try", k: "plat", items: [
