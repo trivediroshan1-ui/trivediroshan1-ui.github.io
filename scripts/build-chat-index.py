@@ -16,7 +16,7 @@ HEADS = {"h1", "h2", "h3", "h4"}
 pages = [p for p in ["index.html", "about/index.html", "ai/index.html", "now/index.html", "resume/index.html",
                      "secure-india-exams/index.html", "tools/tier-check/index.html",
                      "book/index.html", "labs/index.html", "mcp-lab-portal/index.html", "mcp-lab-case-study/index.html", "mcp-lab-use-cases/index.html", "mcp-lab-results/index.html", "design-system/index.html",
-                     "ai-governance-lab/index.html", "ai-governance-lab/evidence/index.html", "ai-governance-lab/appendix/index.html", "ai-governance-lab/implement/index.html", "ai-governance-lab/run/index.html", "ai-governance-lab/transcripts/index.html", "ai-governance-lab/try/index.html", "ai-governance-lab/cases/index.html"]]
+                     "ai-governance-lab/index.html", "ai-governance-lab/evidence/index.html", "ai-governance-lab/appendix/index.html", "ai-governance-lab/implement/index.html", "ai-governance-lab/run/index.html", "ai-governance-lab/transcripts/index.html", "ai-governance-lab/try/index.html", "ai-governance-lab/cases/index.html", "ai-governance-lab/diagrams/index.html"]]
 pages += sorted(glob.glob("case-studies/*/index.html"))
 
 def url_of(path):

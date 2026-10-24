@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="/assets/theme.css">
     <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/agl.css?v=20261024b">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261024f">
     <script src="/assets/theme.js"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
@@ -57,6 +57,16 @@
       <section>
         <h2>Scope</h2>
         <p class="body-text">In scope: a made-up lender, a gateway, a filter, agent identity and audit evidence, and one real assistant under one pasted policy. Out of scope: real people&rsquo;s data, product reviews, legal advice and any claim that something is secure. The full list is in the <a href="/ai-governance-lab/appendix/#scope">appendix</a>.</p>
+      </section>
+
+      <section id="why">
+        <h2>Why this is needed</h2>
+        <p class="body-text">AI tools are already in most workplaces, often before anyone has approved them. Three things go wrong in practice. People paste customer details or passwords into a prompt without thinking. Agents are given access and then forgotten, with nobody named as responsible. And when a regulator, an auditor or a customer asks what happened, there is no record that anyone can trust. Controls such as a register, a filter, agent identity and an audit trail are meant to fix those three things. The lab asks whether they actually do.</p>
+      </section>
+
+      <section id="who">
+        <h2>Who this is for</h2>
+        <p class="body-text">It is for people who have to decide, build or check AI controls: security and identity teams, risk and compliance, and the engineers who run a gateway or an agent platform. You do not need to read code. The <a href="/ai-governance-lab/try/">try page</a> and the <a href="/ai-governance-lab/cases/">case explorer</a> work in a browser. It is not for anyone looking for a product recommendation, and it is not legal advice.</p>
       </section>
 
       <section>
@@ -176,6 +186,12 @@
         <p class="body-text">I predicted that one phone format, a number starting 91 without a plus, would be caught. It was not. Running it is what showed me.</p>
       </section>
 
+      <section id="diagrams">
+        <h2>The architecture, as diagrams</h2>
+        <p class="body-text">Five animated diagrams show how the pieces fit: one request through the gateway, where the filters plug in, how an agent gets access, the tamper-evident log, and the lab as a whole. Each is an SVG file you can reuse.</p>
+        <p class="mcp-cta"><a class="btn btn-primary" href="/ai-governance-lab/diagrams/">See the diagrams</a></p>
+      </section>
+
       <section id="try">
         <h2>Run it yourself</h2>
         <p class="body-text">You do not have to take my word for the numbers. The <a href="/ai-governance-lab/try/">try-it page</a> runs the three filters in your browser, on text you type or on the lab&rsquo;s own 53 variants, and prints the same totals I got: 20, 42 and 45. It can also score the filters on 200 fresh made-up samples, and it walks you through the nine assistant requests so you can test your own assistant under the same policy. Nothing leaves your device.</p>
@@ -199,12 +215,28 @@
         <p class="body-text">Where this would sit in a company, and what it costs, is on the <a href="/ai-governance-lab/implement/">next page</a>. Terms are explained in the <a href="/ai-governance-lab/appendix/#glossary">glossary</a>.</p>
       </section>
 
+      <section id="risks">
+        <h2>Risks and what to watch for</h2>
+        <p class="body-text">Two kinds of risk, and they are different. The first is how far you can trust this lab. The second is what can go wrong when you put controls like these into a real organisation.</p>
+        <ul class="approach-list">
+          <li><b>The lab can flatter itself.</b> I wrote the controls and the tests, so passing them proves little. The held-out tests were meant to check that, and they are small.</li>
+          <li><b>A fitted score looks like a result.</b> v3 is 100 percent on the samples it was fixed on and no better than v1 on items it had not seen. Treat any score from a set the author tuned to the same way.</li>
+          <li><b>Made-up data is not real data.</b> Real text is messier than anything I generated, so real filters will miss things I did not think of.</li>
+          <li><b>A gateway only governs what goes through it.</b> If a team calls a model directly, none of this applies. That is why finding unregistered use is a control of its own.</li>
+          <li><b>False alarms cost trust.</b> A filter that blocks harmless text gets switched off or worked around. The lab&rsquo;s own filters raised a false alarm on a laptop asset tag and on a training slide.</li>
+          <li><b>The log can become the leak.</b> An audit log full of prompts holds the very data you are trying to protect, so it needs the same care as the data.</li>
+          <li><b>Flagging is not fixing.</b> An idle agent was flagged and kept all its access. Someone has to act on the flag.</li>
+          <li><b>Meaning is still a human job.</b> Hinglish instructions, numbers spelled out in words and attacks hidden in notes got past plain pattern matching. Put a person in the loop where the stakes are high.</li>
+        </ul>
+      </section>
+
       <section>
         <h2>Honest limits</h2>
         <ul class="approach-list">
           <li>This is not a product review. The filters are mine and deliberately plain, so the numbers describe a plain filter, not any vendor&rsquo;s product.</li>
           <li>One run each, on one laptop, with made-up data. The assistant test is one assistant, with the policy pasted into the chat. The nine cases were run once; P5 and P1 were later repeated in new chats and passed again, and the 30-turn test was run once. It shows what these controls did on these cases. It does not prove anything secure.</li>
           <li>100 percent on a test set I designed is not a detection rate.</li>
+          <li>All tests were run on one personal laptop, with made-up data only.</li>
           <li>I am not claiming to be the first to test any of this.</li>
         </ul>
       </section>
