@@ -11,7 +11,7 @@ head = re.sub(r'<meta name="description" content=".*?" />', f'<meta name="descri
 head = head.replace("AI governance lab: architecture diagrams", T).replace('/ai-governance-lab/diagrams/', '/ai-governance-lab/story/')
 head = re.sub(r'<meta property="og:description" content=".*?" />', f'<meta property="og:description" content="{D}" />', head)
 head = re.sub(r'<title>.*?</title>', '<title>Why I built the lab &middot; AI governance lab</title>', head)
-head = head.replace('agl.css?v=20261024f">', 'agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/story.css?v=20261024b">')
+head = head.replace('agl.css?v=20261024f">', 'agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/story.css?v=20261024c">')
 body = '''<main id="main">
       <header class="hero mcp-hero">
         <p class="eyebrow">AI governance lab</p>
@@ -30,9 +30,21 @@ body = '''<main id="main">
           </div>
           <div>
             <p class="sv-cap" id="sv-cap" aria-live="polite"></p>
-            <ol class="sv-ch"><li><button type="button" data-t="0" data-d="I wanted to know if AI governance controls really hold, so I tested them on my own laptop."><b>0:00</b><span>Why I built it</span></button></li><li><button type="button" data-t="5" data-d="For years I mapped vendor controls to IAM policy, then to what external auditors check: NIST, PCI, HIPAA, ISO 27001."><b>0:05</b><span>Mapping controls</span></button></li><li><button type="button" data-t="14" data-d="Hooks, agents that map policies, AI that automates identity, a Centre of Excellence setting each agent's access."><b>0:14</b><span>The AI promises</span></button></li><li><button type="button" data-t="23" data-d="Which use cases, which policy, which certifier, and what stops an agent that decides on its own?"><b>0:23</b><span>What I never heard</span></button></li><li><button type="button" data-t="32" data-d="A bank bot, a corporate assistant, a one-time Allow and a shared token: none of them needs an attacker."><b>0:32</b><span>Read access is not small</span></button></li><li><button type="button" data-t="41" data-d="NIST, ISO and vendor papers first. Then a made-up lender, Kaveri Finance, and 59 cases."><b>0:41</b><span>Read first, then build</span></button></li><li><button type="button" data-t="49" data-d="One request through the gateway: caller, register, paperwork, guardrail scan, data rules, model and response screen. Every step adds a line to the tamper-evident log. A secret stops at the scan."><b>0:49</b><span>The architecture, animated</span></button></li><li><button type="button" data-t="64" data-d="The register, approvals, expiry and the log held. A plain text filter broke, and only 4 of 10 new items were caught."><b>1:04</b><span>What I found</span></button></li><li><button type="button" data-t="72" data-d="The data, every use case, diagrams, a browser lab and a 67-page book. Tell me where my tests are weak."><b>1:12</b><span>Free and public</span></button></li></ol>
+            <ol class="sv-ch"><li><button type="button" data-t="0" data-d="I wanted to know if AI governance controls really hold, so I tested them on my own laptop."><b>0:00</b><span>Why I built it</span></button></li><li><button type="button" data-t="5" data-d="For years I mapped vendor controls to IAM policy, then to what external auditors check: NIST, PCI, HIPAA, ISO 27001."><b>0:05</b><span>Mapping controls</span></button></li><li><button type="button" data-t="14" data-d="Hooks, agents that map policies, AI that automates identity, a Centre of Excellence setting each agent's access."><b>0:14</b><span>The AI promises</span></button></li><li><button type="button" data-t="23" data-d="Which use cases, which policy, which certifier, and what stops an agent that decides on its own?"><b>0:23</b><span>What I never heard</span></button></li><li><button type="button" data-t="32" data-d="A bank bot, a corporate assistant, a one-time Allow and a shared token: none of them needs an attacker."><b>0:32</b><span>Read access is not small</span></button></li><li><button type="button" data-t="41" data-d="NIST, ISO and vendor papers first. Then a made-up lender, Kaveri Finance, and 59 cases."><b>0:41</b><span>Read first, then build</span></button></li><li><button type="button" data-t="49" data-d="One request through the gateway: register, paperwork, guardrail scan, data and region rules, model, response screen. Each request ends in one decision line in the tamper-evident log. Personal data sent to a use not approved for it is blocked."><b>0:49</b><span>The architecture, animated</span></button></li><li><button type="button" data-t="64" data-d="The register, approvals, expiry and the log held. A plain text filter broke, and only 4 of 10 new items were caught."><b>1:04</b><span>What I found</span></button></li><li><button type="button" data-t="72" data-d="The data, every use case, diagrams, a browser lab and a 67-page book. Tell me where my tests are weak."><b>1:12</b><span>Free and public</span></button></li></ol>
           </div>
         </div>
+        <details class="sv-tr"><summary>Read the video as text</summary>
+          <ol>
+            <li>I mapped vendor controls to IAM policy for years, and external auditors checked that policy against NIST, PCI, HIPAA and ISO 27001. One question stayed: do the controls really follow the policy?</li>
+            <li>Then the AI era: hooks, agents that map policies, AI that automates identity, a Centre of Excellence that sets each agent&rsquo;s access.</li>
+            <li>What I never heard: which use cases, which policy, which certifier, and what stops an agent that decides on its own.</li>
+            <li>&ldquo;Read access&rdquo; is not small: a bank bot, a corporate assistant, a one-time Allow, a shared token.</li>
+            <li>So I read NIST, ISO and vendor papers, then built a test: a made-up lender, Kaveri Finance, and 59 cases.</li>
+            <li>One request through the gateway. A public question is allowed and logged. A request with an Aadhaar number for a use not approved for personal data is blocked and logged. Each request ends in one decision line, chained to the one before.</li>
+            <li>What I found: 59 cases; filters caught 20, 42 and 45 of 53 variants; 4 of 10 unseen items; the assistant followed policy in 9 of 9 requests.</li>
+            <li>Everything is free at roshantrivedi.co.in/ai-governance-lab.</li>
+          </ol>
+        </details>
       </section>
 
       <section>
@@ -79,7 +91,7 @@ body = '''<main id="main">
 
       <section>
         <h2>So I built the test</h2>
-        <p>The company is made up: Kaveri Finance, a small lender. The Aadhaar, PAN and card numbers are invented, but they pass the real checksums, so the tests behave like real data. I wrote the expected result of every case and saved it in git before running anything.</p>
+        <p>The company is made up: Kaveri Finance, a small lender. The Aadhaar, PAN and card numbers are invented. Aadhaar numbers pass the real Verhoeff check and card numbers pass the Luhn check. PAN has no public checksum, so the PANs only follow the real format. That way the tests behave like real data. I wrote the expected result of every case and saved it in git before running anything.</p>
         <div class="st-stats">
           <div class="st-stat"><b>59</b><span>cases across gateway, filter, agent identity and audit log</span></div>
           <div class="st-stat bad"><b>20 / 42 / 45</b><span>of 53 attack variants caught by filter v1, v2, v3</span></div>
@@ -105,6 +117,7 @@ body = '''<main id="main">
       </section>
       </div>
     </main>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Why I built an AI governance lab: my story as an animated workflow","description":"A 78-second silent animated workflow: from mapping controls for auditors to testing AI governance controls on made-up Indian data, including one request through the gateway.","thumbnailUrl":"https://roshantrivedi.co.in/assets/share/agl-story-poster.jpg","contentUrl":"https://roshantrivedi.co.in/assets/share/agl-story.mp4","uploadDate":"2026-10-24","duration":"PT1M18S","author":{"@type":"Person","name":"Roshan Trivedi"}}</script>
     <script defer src="/assets/story-video.js?v=20261024a"></script>'''
 out = head + body + tail
 out = out.replace("diagrams/", "diagrams/")

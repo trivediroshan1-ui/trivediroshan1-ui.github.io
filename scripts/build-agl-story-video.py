@@ -101,31 +101,32 @@ els += [A("<h2>So I read first, then built a test</h2>", 130, 41.2, S6o),
         A("<div class='ar'>↓</div>", 850, 45.6, S6o),
         A("<div class='box' style='--c:#34d399'>59 cases on a private laptop<small>expected results written down first</small></div>", 940, 46.2, S6o)]
 
-# ARCH scene (49 to 64): one request through the gateway, with the audit log growing beside it
+# ARCH scene (49 to 64): one request through the gateway. One decision line is written per request.
 _AA = A
 AO = 49.0
-stages = [("Caller", "person, bot or agent", "#4de2ff"), ("Register", "known tool? named owner?", "#4de2ff"),
-          ("Model and paperwork", "approved for this data?", "#8b5cf6"), ("Guardrail scan", "filter v1, v2, v3", "#f7c873"),
-          ("Data and region rules", "personal data, allowed region", "#8b5cf6"), ("Model", "answers the request", "#34d399"),
+stages = [("Caller", "person, bot or agent", "#4de2ff"), ("Register and approval", "listed use, named owner, approved", "#4de2ff"),
+          ("Model and paperwork", "approved model, version, AI bill of materials", "#8b5cf6"), ("Guardrail scan", "finds secrets and personal data", "#f7c873"),
+          ("Data and region rules", "is this data allowed here?", "#8b5cf6"), ("Model", "answers the request", "#34d399"),
           ("Response screen", "scan what comes back", "#f7c873")]
 els_arch = [_AA("<h2>A request through the gateway</h2>", 120, AO + 0.2, AO + 15)]
-els_arch.append(_AA("<p style='font-size:28px'>Drawn from the lab’s own gateway. Every step writes a line to the log.</p>", 250, AO + 1.0, AO + 15))
+els_arch.append(_AA("<p style='font-size:28px'>From the lab’s own gateway. One decision line per request.</p>", 250, AO + 1.0, AO + 15))
 tops = [330 + i*118 for i in range(7)]
 for i, (n, d, c) in enumerate(stages):
     t = AO + 1.2 + i*0.7
     els_arch.append(_AA(f"<div class='sg' style='--c:{c}'>{n}<small>{d}</small></div>", tops[i], t, AO + 15, left=70, width=560))
-    els_arch.append(_AA(f"<div class='lg'>log {i+1} · {n.lower()}<small>hash a3f{i}…  prev {'0000' if i==0 else 'a3f'+str(i-1)+'…'}</small></div>", tops[i]+10, t + 0.5, AO + 15, left=680, width=330))
-# a good request and a bad request (red) travel down; red stops at the guardrail
+# the log: two decision lines, each chained to the one before
+els_arch.append(_AA("<div class='lg' style='border-color:#34d399;color:#7df2d0;background:rgba(52,211,153,.08)'>#41 allowed<small>within the register · hash 9c1e… prev 5b20…</small></div>", tops[5]+10, AO + 8.8, AO + 15, left=680, width=330))
+els_arch.append(_AA("<div class='lg' style='border-color:#ff7a93;color:#ff9db0;background:rgba(255,122,147,.08)'>#42 blocked<small>data not allowed · hash e7a4… prev 9c1e…</small></div>", tops[4]+10, AO + 11.6, AO + 15, left=680, width=330))
+els_arch.append(_AA("<div style='font:700 22px DM Sans;letter-spacing:.14em;color:#c9b8ff'>DECISION LOG</div>", 296, AO + 8.2, AO + 15, left=680, width=330))
 cy = [t + 45 - 13 for t in tops]
 def keys(ts, ys): return ";".join(f"{a}:{b}" for a, b in zip(ts, ys))
-good_t = [AO+6.2, AO+7.0, AO+7.8, AO+8.6, AO+9.4, AO+10.2, AO+11.0]
-good = keys([AO+5.6]+good_t, [cy[0]-40]+cy)
-bad = keys([AO+8.0, AO+8.9, AO+9.8, AO+10.7], [cy[0]-40, cy[1], cy[2], cy[3]])
-els_arch.append(_AA("<div class='stop'>STOP</div>", tops[3]+18, AO + 11.0, AO + 15, left=470, width=150))
-els_arch.append(_AA("<p style='font-size:28px'>Cyan passes. Red carries a secret and stops at the scan.</p>", 1160, AO + 12.0, AO + 15))
+good = keys([AO+5.0, AO+5.6, AO+6.3, AO+7.0, AO+7.7, AO+8.4, AO+9.1], [cy[0]-40]+cy[:6])
+bad = keys([AO+8.4, AO+9.2, AO+10.0, AO+10.8, AO+11.6], [cy[0]-40, cy[1], cy[2], cy[3], cy[4]])
+els_arch.append(_AA("<div class='stop'>STOP</div>", tops[4]+18, AO + 11.6, AO + 15, left=470, width=150))
+els_arch.append(_AA("<p style='font-size:27px'>Cyan: public question, allowed. Red: an Aadhaar number sent to a use not approved for personal data, blocked. A secret alone is masked, not blocked.</p>", 1160, AO + 11.0, AO + 15))
 els += els_arch
-mv = (f"<div class='mv' data-k='{good}' data-in='{AO+5.6}' data-out='{AO+15}' style='background:#4de2ff;box-shadow:0 0 22px #4de2ff'></div>"
-      f"<div class='mv' data-k='{bad}' data-in='{AO+8.0}' data-out='{AO+11.4}' style='background:#ff7a93;box-shadow:0 0 22px #ff7a93'></div>")
+mv = (f"<div class='mv' data-k='{good}' data-in='{AO+5.0}' data-out='{AO+9.6}' style='background:#4de2ff;box-shadow:0 0 22px #4de2ff'></div>"
+      f"<div class='mv' data-k='{bad}' data-in='{AO+8.4}' data-out='{AO+15}' style='background:#ff7a93;box-shadow:0 0 22px #ff7a93'></div>")
 
 # S7 and S8 come after the architecture scene, so shift them
 _A = A

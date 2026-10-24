@@ -62,3 +62,6 @@
 @keyframes nl-pulse{50%{opacity:.45}}
 @media (max-width:760px){.sv{grid-template-columns:minmax(0,1fr)}.sv-frame{max-width:420px;margin:0 auto}}
 @media (prefers-reduced-motion:reduce){.sv-cap.in,.sv-new{animation:none}}
+.sv-tr{margin-top:14px;font-size:.95rem;color:var(--a-muted)}
+.sv-tr summary{cursor:pointer;color:var(--a-accent);font-weight:700}
+.sv-tr ol{margin:10px 0 0;padding-left:1.2rem;display:grid;gap:6px;line-height:1.55}
