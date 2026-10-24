@@ -113,11 +113,11 @@ function mountRun(root){
       }); tbl.append(tbd);
       tracks.forEach(function(k){lg.append(el("span",null,k+" = "+TRACK[k]))});
     } else {
-      cn.textContent="Ten unseen items scored on all three filters, then the nine Track P cases that are still to run.";
+      cn.textContent="Ten unseen items scored on all three filters, then the nine Track P cases, run by hand on one assistant.";
       ["ID","Should be","Item","Result on v1, v2 and v3"].forEach(function(h){hr.append(el("th",null,h))}); th.append(hr); tbl.append(th);
       var tbd2=el("tbody");
       D.held.forEach(function(h){var tr=el("tr"), id=el("td","id"); id.append(el("span","tk","G"),document.createTextNode(h[0])); tr.append(id,el("td","mono",h[1]==="catch"?"caught":h[1]==="flag"?"flagged":"left alone"),el("td",null,h[2])); var v=el("td"); v.append(pill(h[4])); tr.append(v); tbd2.append(tr)});
-      D.trackp.forEach(function(p){var tr=el("tr"), id=el("td","id"); id.append(el("span","tk","P"),document.createTextNode(p[0])); tr.append(id,el("td","mono","follows the policy"),el("td",null,p[1])); var v=el("td"); v.append(pill("not run yet")); tr.append(v); tbd2.append(tr)});
+      D.trackp.forEach(function(p){var tr=el("tr"), id=el("td","id"); id.append(el("span","tk","P"),document.createTextNode(p[0])); tr.append(id,el("td","mono","follows the policy"),el("td",null,p[1])); var v=el("td"); v.append(pill(p[2]||"not run yet")); if(p[3]){v.append(el("div","agl-hint",p[3]))} tr.append(v); tbd2.append(tr)});
       tbl.append(tbd2);
       lg.append(el("span",null,"G = Guardrail filter"),el("span",null,"P = Real assistants, run by hand under a made-up policy"));
     }
