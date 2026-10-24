@@ -4,8 +4,8 @@
   "use strict";
   var D = window.AGL, C = window.AGL_CASES, F = window.AGLF;
   var NAMES = ["v1", "v2", "v3"];
-  var TRACKS = [["all", "All"], ["A", "A  Gateway"], ["G", "G  Guardrail"], ["I", "I  Agent identity"], ["E", "E  Audit"], ["V", "V  Vendor access"], ["R", "R  Retrieval"], ["T", "T  Agent to API"], ["H", "H  HR lifecycle"], ["B", "B  Bypass and evidence"], ["P", "P  Real assistant"]];
-  var TRACK_NAME = { A: "Gateway", G: "Guardrail filter", I: "Agent identity", E: "Audit evidence", V: "Vendor and third-party access", R: "Retrieval and document permissions", T: "Agent instructions to an identity API", H: "HR-driven identity lifecycle", B: "Bypass, response, lists and evidence", P: "Real assistant" };
+  var TRACKS = [["all", "All"], ["A", "A  Gateway"], ["G", "G  Guardrail"], ["I", "I  Agent identity"], ["E", "E  Audit"], ["V", "V  Vendor access"], ["R", "R  Retrieval"], ["T", "T  Agent to API"], ["H", "H  HR lifecycle"], ["B", "B  Bypass and evidence"], ["Q", "Q  Answers from documents"], ["P", "P  Real assistant"]];
+  var TRACK_NAME = { A: "Gateway", G: "Guardrail filter", I: "Agent identity", E: "Audit evidence", V: "Vendor and third-party access", R: "Retrieval and document permissions", T: "Agent instructions to an identity API", H: "HR-driven identity lifecycle", B: "Bypass, response, lists and evidence", Q: "Retrieval-augmented answers (an assistant that answers from documents)", P: "Real assistant" };
   var ROUND_FILTER = { 1: "v1", 2: "v2", 3: "v2", 4: "v3" };
   var MARK = { ok: ["Works", "ok"], stop: ["Stopped", "bad"], miss: ["Gets through", "warn"], note: ["Step", "note"] };
 
@@ -48,8 +48,13 @@
     order.push({ id: c.id, track: c.track, title: c.title, rounds: {}, kind: "lab", added: c, addedRound: 8, addedWhen: "25 Oct 2026" });
     C[c.id] = R8.text[c.id];
   });
-  D.controls = (D.controls || []).concat(R5.controls || [], R6.controls || [], R7.controls || [], R8.controls || []);
-  function key(c) { var m = /^([A-Z])(\d+)$/.exec(c.id); return "AGIEVRTH".indexOf(m[1]) * 1000 + (+m[2]); }
+  var R9 = window.AGL_R9 || { cases: [], text: {}, controls: [] };
+  R9.cases.forEach(function (c) {
+    order.push({ id: c.id, track: c.track, title: c.title, rounds: {}, kind: "lab", added: c, addedRound: 9, addedWhen: "25 Oct 2026" });
+    C[c.id] = R9.text[c.id];
+  });
+  D.controls = (D.controls || []).concat(R5.controls || [], R6.controls || [], R7.controls || [], R8.controls || [], R9.controls || []);
+  function key(c) { var m = /^([A-Z])(\d+)$/.exec(c.id); return "AGIEVRTHBQ".indexOf(m[1]) * 1000 + (+m[2]); }
   order.sort(function (a, b) { return key(a) - key(b); });
   D.trackp.forEach(function (p) { order.push({ id: p[0], track: "P", title: p[1], kind: "assistant", outcome: p[2], note: p[3], rounds: {} }); });
 
@@ -189,7 +194,7 @@
 
     var top = el("section", "agl-panel");
     top.appendChild(el("p", "agl-eyebrow", "All of the use cases"));
-    top.appendChild(el("p", "agl-hint", order.length + " cases: " + (order.length - 9 - R5.cases.length - R6.cases.length - R7.cases.length - R8.cases.length) + " ran in the lab across four tracks in the first four rounds, " + R5.cases.length + " were added in round five on 24 Oct 2026 (new tracks V and R, and more in I and E), " + R6.cases.length + " were added in round six on 25 Oct 2026 (new track T: agents that send instructions to an identity API), " + R7.cases.length + " were added in round seven on 25 Oct 2026 (new track H: the HR side of onboarding), " + R8.cases.length + " were added in round eight on 25 Oct 2026 (new track B: when an agent goes around the gateway), and 9 were run by hand on a real assistant. Open any case to see what I set up, the steps in order, what the filters did with it, how it did in each round and which control it tests. " + gaps + " of the lab cases show something getting through, and those are marked. Everything is made up: a lender called Kaveri Finance and numbers that follow real formats on purpose."));
+    top.appendChild(el("p", "agl-hint", order.length + " cases: " + (order.length - 9 - R5.cases.length - R6.cases.length - R7.cases.length - R8.cases.length - R9.cases.length) + " ran in the lab across four tracks in the first four rounds, " + R5.cases.length + " were added in round five on 24 Oct 2026 (new tracks V and R, and more in I and E), " + R6.cases.length + " were added in round six on 25 Oct 2026 (new track T: agents that send instructions to an identity API), " + R7.cases.length + " were added in round seven on 25 Oct 2026 (new track H: the HR side of onboarding), " + R8.cases.length + " were added in round eight on 25 Oct 2026 (new track B: when an agent goes around the gateway), " + R9.cases.length + " were added in round nine on 25 Oct 2026 (new track Q: an assistant that answers from documents), and 9 were run by hand on a real assistant. Open any case to see what I set up, the steps in order, what the filters did with it, how it did in each round and which control it tests. " + gaps + " of the lab cases show something getting through, and those are marked. Everything is made up: a lender called Kaveri Finance and numbers that follow real formats on purpose."));
     stack.appendChild(top);
 
     var bar = el("div", "cx-bar");
