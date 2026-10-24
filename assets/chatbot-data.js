@@ -574,7 +574,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/",
     keywords: ["where to start", "what to read first", "order to read", "how to read", "guide to the lab", "overview", "start here", "quick tour"],
     answer:
-      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 67-page book and the 65-page addendum for rounds five to eleven. The last part of each says what the lab does not cover.",
+      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 69-page book and the 65-page addendum for rounds five to eleven. The last part of each says what the lab does not cover.",
   },
   {
     id: "ai-governance-lab-risks",
@@ -590,6 +590,6 @@ window.SITE_QA = [
     url: "/ai-governance-lab/#book",
     keywords: ["book", "pdf", "download", "lab book", "does ai governance hold", "free book", "ebook", "read offline"],
     answer:
-      "\"Does AI Governance Hold?\" is a free 67-page PDF (7 by 10 inches) that puts the whole AI governance lab in one place: a preface on why I built it, all 59 lab cases with their steps and results, the held-out tests, the Presidio comparison, the real-assistant test, the risks, twelve questions to ask before giving any AI tool access (for example when a vendor says it needs read access to your domain), the control map to ISO 42001, NIST AI RMF, the EU AI Act and Indian guidance, and a glossary. It is free to read and share with credit. All data in it is made up.",
+      "\"Does AI Governance Hold?\" is a free 69-page PDF (7 by 10 inches) that puts the whole AI governance lab in one place: a preface on why I built it, all 59 lab cases with their steps and results, the held-out tests, the Presidio comparison, the real-assistant test, the risks, twelve questions to ask before giving any AI tool access (for example when a vendor says it needs read access to your domain), the control map to ISO 42001, NIST AI RMF, the EU AI Act and Indian guidance, and a glossary. It is free to read and share with credit. All data in it is made up.",
   },
 ];
