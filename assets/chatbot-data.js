@@ -566,7 +566,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/mac/",
     keywords: ["mac record", "mac commands", "commands i ran", "what i ran on mac", "mac output", "mac data", "sha-256 mac files", "terminal sessions", "mistakes", "macbook air"],
     answer:
-      "The Mac record page lists every command I typed on my MacBook Air in three sessions (24 Oct twice, 25 Oct once), what each one printed, and all 31 Mac result files with a SHA-256 each. Rounds five to eleven match the sandbox on cases and on controls noticed. The page also lists my mistakes: a broken held-out file pushed three times, a placeholder Track P record pushed and removed, and round eleven failing on the Mac until I removed a package it needed. The three terminal sessions are on it unedited.",
+      "The Mac record page lists every command I typed on my MacBook Air in three sessions (24 Oct twice, 25 Oct once), what each one printed, and all 33 Mac result files with a SHA-256 each. Rounds five to eleven match the sandbox on cases and on controls noticed. The page also lists my mistakes: a broken held-out file pushed three times, a placeholder Track P record pushed and removed, and round eleven failing on the Mac until I removed a package it needed. The three terminal sessions are on it unedited.",
   },
   {
     id: "ai-governance-lab-where-to-start",
