@@ -192,12 +192,21 @@
     "Who is Roshan?",
     "What case studies are here?",
     "What is the MCP lab?",
-    "Tell me about Secure India Exams",
+    "What did the AI governance lab find?",
   ];
 
   // Page-aware suggestions: shown instead of the defaults when the visitor
   // opens the widget from a page this section matches (checked in order).
   var PAGE_SUGGESTIONS = [
+    {
+      test: /^\/ai-governance-lab\/?/,
+      suggestions: [
+        "What did the AI governance lab find?",
+        "Why do you not trust the 100 percent?",
+        "How do I run it myself?",
+        "Which controls held up?",
+      ],
+    },
     {
       test: /^\/secure-india-exams\/?/,
       suggestions: [
@@ -285,7 +294,7 @@
     if (DATA_STATE === "loading") return;
     DATA_STATE = "loading";
     var s = document.createElement("script");
-    s.src = "/assets/chatbot-data.js?v=20261022b";
+    s.src = "/assets/chatbot-data.js?v=20261024a";
     s.onload = s.onerror = function () { DATA_STATE = "ready"; var w = DATA_WAITERS; DATA_WAITERS = []; w.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
   }
@@ -378,7 +387,7 @@
       if (greeted) return;
       greeted = true;
       addMessage(
-        "Hi, ask me anything about this site: the case studies, the MCP lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch. I answer from the text on the site, so I quote it rather than make anything up.",
+        "Hi, ask me anything about this site: the case studies, the MCP lab, the AI governance lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch. I answer from the text on the site, so I quote it rather than make anything up.",
         "bot"
       );
       renderSuggestions();

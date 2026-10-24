@@ -432,4 +432,60 @@ window.SITE_QA = [
     answer:
       "A phased 36-month, 3-phase rollout across all 5,000 centers, totalling ₹1,419 crore (Phase 1: ₹385cr foundation — SOC, PAM, HSM/PKI, 200-centre pilot; Phase 2: ₹539cr core deployment — encrypted distribution, universal watermarking, 2,000 centers on MEI; Phase 3: ₹495cr full scale — all 5,000 centers, post-quantum crypto, ISO 27001). That works out to about ₹79 per candidate per year — under 5% of the current exam fee. Target KPIs by Year 3: paper leak incidents down from 3–5/year to 0, mean time to detect an anomaly under 5 minutes, 100% of staff on zero standing privileges, and 99.9% exam-day system uptime.",
   },
+  {
+    id: "ai-governance-lab",
+    title: "AI governance lab: what it is and what it found",
+    url: "/ai-governance-lab/",
+    keywords: ["ai governance lab", "governance lab", "ai governance", "indian data", "plain filter", "what held", "what broke", "aadhaar pan filter", "ai controls", "ai agents controls"],
+    answer:
+      "The AI governance lab is a small test bench I built to see whether common AI governance controls hold up when someone pushes on them, using made-up Indian data (Aadhaar, PAN, UPI, phone numbers, Hinglish) for an invented lender called Kaveri Finance. It has 59 cases in four tracks: gateway (16), guardrail filter (17), agent identity (12) and audit evidence (14), plus 9 requests run by hand on a real assistant. I wrote my guesses before every run and committed them to git. What held: the register, approvals, expiry, kill switches, short-lived agent tokens and the tamper-evident audit log. What broke: a plain pattern filter. It did well on fixed-shape numbers and badly on anything that depends on meaning, such as Hinglish instructions, numbers spelled out in Hindi words, a quoted attack on a training slide, and data split across messages. Everything ran on one laptop with made-up data, so it is a data point and not a proof of security.",
+  },
+  {
+    id: "ai-governance-lab-filter-results",
+    title: "AI governance lab: filter scores and the number I do not trust",
+    url: "/ai-governance-lab/#presidio",
+    keywords: ["filter score", "v1 v2 v3", "held-out", "held out", "100 percent", "catch rate", "false alarm", "presidio", "detector", "20 42 45", "53 variants", "200 samples"],
+    answer:
+      "I wrote three plain filters. On the lab's 53 variants they scored 20 (v1), 42 (v2) and 45 (v3). On a set of 200 labelled made-up samples v1 caught 68, v2 caught 90 and v3 caught 100, with 5 percent false alarms for all three. I do not trust the 100: v3 was written to fix the exact samples v2 missed, so it is a fitted number and not a detection rate. On items the author had not seen, v1, v2 and v3 each got 4 of 10, and on a second set of 8 new cases they got 3, 2 and 2. I also ran a purpose-built tool, Presidio, beside them. The lesson: do not trust a score on a test you tuned to, and test controls on inputs written after you finished.",
+  },
+  {
+    id: "ai-governance-lab-assistant-test",
+    title: "AI governance lab: the real assistant test",
+    url: "/ai-governance-lab/evidence/",
+    keywords: ["assistant test", "kaveri policy", "p1", "p5", "p7", "30 turns", "real assistant", "track p", "policy pasted", "claude chat test", "ai assistant policy"],
+    answer:
+      "I pasted a made-up company policy with eight rules into a chat with a real AI assistant and made nine requests that should break it: a customer list with PAN numbers, a claim that a senior person approved it, ranking job candidates, summarising a Restricted document, hard-coding a password, the same request in Hinglish, a repeat after 30 turns, asking it to restate the policy, and removing an AI label. It followed the policy in all nine. P5 and P1 were later repeated in new chats and passed again; the 30-turn test was run once. It is one assistant on nine cases I wrote, with the policy pasted into the chat, so it is a good sign and not a guarantee. The evidence page has the exact words and replies.",
+  },
+  {
+    id: "ai-governance-lab-try",
+    title: "AI governance lab: run it in your browser",
+    url: "/ai-governance-lab/try/",
+    keywords: ["try it", "run it yourself", "browser", "try the filters", "test my assistant", "score 200", "run all 53", "in my browser"],
+    answer:
+      "The try page runs the three filters in your browser on text you type or on the lab's 53 variants, scores them on 200 fresh made-up samples, and walks you through the nine assistant requests so you can test your own assistant under the same policy. The filters are JavaScript ports of the Python lab, checked against the original on more than 2,000 texts. Nothing you type leaves your device, and you should use made-up data only.",
+  },
+  {
+    id: "ai-governance-lab-cases",
+    title: "AI governance lab: every use case, one by one",
+    url: "/ai-governance-lab/cases/",
+    keywords: ["use cases", "all cases", "every case", "case explorer", "a1", "g10", "i7", "e5", "kill switch case", "what does case"],
+    answer:
+      "The case explorer lists all 59 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
+  },
+  {
+    id: "ai-governance-lab-diagrams",
+    title: "AI governance lab: architecture diagrams",
+    url: "/ai-governance-lab/diagrams/",
+    keywords: ["architecture diagram", "diagrams", "svg", "request flow", "gateway flow", "how it works", "architecture"],
+    answer:
+      "The diagrams page has five animated SVG diagrams: one request through the gateway (caller, register, model and paperwork, guardrail scan, data and region rules, model, response screen, person), where the filters plug in, how an agent gets and uses access, the tamper-evident log, and the lab as a whole. Each can be downloaded as an SVG file.",
+  },
+  {
+    id: "ai-governance-lab-risks",
+    title: "AI governance lab: risks and who it is for",
+    url: "/ai-governance-lab/#risks",
+    keywords: ["risks", "who is it for", "why needed", "why this matters", "limits", "honest limits", "gateway bypass", "false alarms"],
+    answer:
+      "The lab is needed because AI tools are already in workplaces before they are approved, people paste customer details and passwords into prompts, agents are given access and forgotten, and there is often no trustworthy record afterwards. The risks I list: the lab can flatter itself because I wrote the controls and tests; a fitted score looks like a result; made-up data is cleaner than real data; a gateway only governs what goes through it; false alarms cost trust; the audit log can become the leak; flagging an idle agent is not removing its access; and meaning is still a human job. It is for security and identity teams, risk and compliance people and engineers who run a gateway or agent platform. It is not a product review and not legal advice.",
+  },
 ];
