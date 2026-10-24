@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Where the AI governance lab controls would sit in an organisation, the benefits, the lab cost, and a cost calculator with editable values." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ai-governance-lab/implement/" />
+    <meta property="og:title" content="Where this would sit in an organisation, and what it costs" />
+    <meta property="og:description" content="Where the AI governance lab controls would sit in an organisation, the benefits, the lab cost, and a cost calculator with editable values." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ai-governance-lab/implement/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>AI governance lab: using it in an organisation &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261024b">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261019f" defer></script>
+  </head>
+  <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+<header class="hero mcp-hero"><p class="eyebrow">AI governance lab</p><h1>Where this would sit in an organisation, and what it costs</h1><p class="dek">Where the gateway fits, what it could give you, what the lab itself cost, and a calculator for your own numbers.</p><div class="mcp-ribbon" aria-hidden="true"></div></header>
+<div class="agl"><div class="ev-sum"><h2>In short</h2><ul><li>The controls in the lab sit in one place: a gateway that every AI call passes through, backed by a register of approved uses.</li><li>The lab cost no licences. It is Python&rsquo;s standard library on a personal laptop.</li><li>Your cost depends on how many AI uses you have and how much review you want. The estimator below does the sums with your numbers.</li></ul></div><section><h2>Where it sits</h2><p class="body-text">Every call from a person, an app or an agent goes to the gateway first, never straight to a model. This is the same place where identity and access controls already live, which is why it fits an identity or privileged-access team well.</p><ol class="ev-flow" aria-label="Where the gateway sits"><li><b>1 Caller</b><span>A person, an app or an AI agent, with a named owner</span></li><li><b>2 Gateway</b><span>Checks the register, the model, the data and the tools</span></li><li><b>3 Model</b><span>Only an approved model, with masked input</span></li><li><b>4 Log</b><span>Every decision written to a tamper-evident log</span></li></ol><p class="body-text">Around it: the register is owned by a named person or team; short-lived credentials and kill switches are handled by the identity platform; the log goes to whoever does audit or security monitoring.</p></section>
+<section><h2>Where I implemented it</h2><p class="body-text">Only in the lab. It runs on a personal laptop against made-up data, and no real company, model or account is connected. The &ldquo;models&rdquo; are entries in a catalogue and nothing is sent anywhere. Moving it into a real organisation is a separate piece of work.</p></section>
+<section><h2>What an organisation could get from it</h2><ul class="approach-list"><li>A single answer to &ldquo;which AI is being used here, by whom, on what data&rdquo;.</li><li>Unregistered use becomes visible instead of silent.</li><li>A named owner for each AI use and each agent, so an owner leaving does not leave an agent running unseen.</li><li>Evidence for audits and for customer questions: what was asked, what was blocked, and why.</li><li>A clear result when you test your own filters: where they hold, and where they do not, before an incident shows you.</li></ul><p class="body-text">These are the things the lab&rsquo;s tests exercised. I have not measured savings or risk reduction in a real organisation, so I am not putting a number on them.</p></section>
+<section><h2>What it cost to build the lab</h2><ul class="approach-list"><li>Software licences: none. It uses the Python standard library.</li><li>Hardware: one personal laptop. A full round runs in under a second.</li><li>Hosting: the write-up is static pages on a free host.</li><li>My time. I have not tracked it carefully enough to quote an honest figure.</li></ul></section>
+<section><h2>Work out your own cost</h2><p class="body-text">The numbers below are <b>example values to replace with your own</b>. They are not a quote, a benchmark or a typical figure for any organisation. The sum is simple: (uses &times; hours per use + build hours) &times; hourly rate gives the one-off cost, and review hours &times; rate + licences gives the yearly run cost.</p><div class="ev-est"><label>AI uses to register<input id="uses" type="number" min="0" value="20"></label><label>Hours to review and register each use<input id="hrsUse" type="number" min="0" value="4"></label><label>Hours to set up the gateway and log<input id="build" type="number" min="0" value="200"></label><label>Cost per hour (₹)<input id="rate" type="number" min="0" value="1500"></label><label>Yearly licences or hosting (₹)<input id="lic" type="number" min="0" value="0"></label><label>Review hours per year<input id="review" type="number" min="0" value="120"></label></div><div class="ev-res"><div><b id="rSetup">-</b><span>one-off setup</span></div><div><b id="rRun">-</b><span>per year to run</span></div><div><b id="rFirst">-</b><span>first year in total</span></div></div><p class="ev-note" style="margin-top:10px">Nothing you type here leaves your browser.</p></section>
+<section><h2>Before you try this at work</h2><ul class="approach-list"><li>Use your employer&rsquo;s data and tools only with their approval. The lab uses made-up data on purpose.</li><li>Treat the filter results as a warning that pattern filters are not enough for meaning-based risks, not as a verdict on any product.</li><li>Any mapping to a law or standard in the lab is my reading, not legal advice.</li></ul></section>
+</div>
+</main>
+<footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script src="/assets/agl-cost.js?v=20261024a"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
