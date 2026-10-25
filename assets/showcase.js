@@ -89,7 +89,7 @@
     var img = new Image(); img.src = "/assets/roshan-trivedi-520.webp"; img.alt = ""; img.width = 72; img.height = 72; img.loading = "lazy";
     var p = el("p");
     p.innerHTML = "<b>Written by Roshan Trivedi</b>I work on privileged access, credentials and, lately, how a person stays in control when an AI agent acts. These pages are my own notes, written to be useful on their own. " +
-      '<a href="/about/">More about me</a> &middot; <a href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/" rel="noopener">LinkedIn</a>';
+      '<a href="/about/">More about me</a> &middot; <a href="https://www.linkedin.com/in/roshan-trivedi-ciam/" rel="noopener">LinkedIn</a>';
     by.appendChild(img); by.appendChild(p);
     slot.parentNode.insertBefore(by, slot);
   }

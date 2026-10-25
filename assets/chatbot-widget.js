@@ -291,7 +291,7 @@
     return (
       '<div class="sc-actions">' +
       '<a class="sc-action" href="mailto:trivedi.roshan1@gmail.com">Email</a>' +
-      '<a class="sc-action" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/" target="_blank" rel="noopener">LinkedIn</a>' +
+      '<a class="sc-action" href="https://www.linkedin.com/in/roshan-trivedi-ciam/" target="_blank" rel="noopener">LinkedIn</a>' +
       '<a class="sc-action" href="/resume/">R\u00e9sum\u00e9</a>' +
       "</div>"
     );

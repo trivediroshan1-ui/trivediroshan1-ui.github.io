@@ -355,7 +355,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["contact", "email", "linkedin", "reach", "get in touch", "hire", "connect"],
     answer:
-      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi-ciam-49413a54) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
+      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi-ciam) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
   },
   {
     id: "site-purpose",
