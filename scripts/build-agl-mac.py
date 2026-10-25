@@ -55,10 +55,11 @@ BR = [("25 Oct, session 3: rounds five to nine", "origin/mac-run", "mac-run", No
       ("25 Oct, session 3: round ten", "origin/mac-run-ten", "mac-run-ten", "/20261024-2228"),
       ("25 Oct, session 3: round eleven", "origin/mac-run-eleven", "mac-run-eleven", "/20261024-2248"),
       ("25 Oct, session 3: round nine, three stronger checks", "origin/mac-run-nine-checks", "mac-run-nine-checks", "/20261024-2324"),
-      ("25 Oct, session 3: round twelve", "origin/mac-run-twelve", "mac-run-twelve", "/20261024-2330")]
+      ("25 Oct, session 3: round twelve", "origin/mac-run-twelve", "mac-run-twelve", "/20261024-2330"),
+      ("25 Oct, session 3: round thirteen (real embedding model)", "origin/mac-run-thirteen", "mac-run-thirteen", ("/20261024-2353", "/20261024-2356", "/20261024-2359", "/20261025-0001"))]
 for group, ref, name, flt in BR:
     commit = git("rev-parse", "--short=7", ref).strip()
-    ps = [p for p in git("ls-tree", "-r", "--name-only", ref, "results/").split() if (flt is None or flt in p)]
+    ps = [p for p in git("ls-tree", "-r", "--name-only", ref, "results/").split() if (flt is None or any(f in p for f in ((flt,) if isinstance(flt, str) else flt)))]
     if flt is None:   # mac-run holds only the Mac files for rounds 5-9, take the ones added by its own commit
         ps = [p for p in git("show", "--name-only", "--format=", ref).split() if p.startswith("results/")]
     elif name in ("mac-run-eleven", "mac-run-nine-checks"):
@@ -167,6 +168,17 @@ S3 = [
  ('`git add results/round-9`; `git commit -m "Round nine stronger checks: Mac run"`; `git push -u origin mac-run-nine-checks`', "Commit <code>25caf8e</code>, two files, 143 insertions. Pushed as <code>mac-run-nine-checks</code>."),
 
  ("`cd /Users/roshan/ai-governance-lab && git fetch origin && git checkout round-twelve && python3 run.py --round 12 && python3 mutations_r12.py && git checkout -b mac-run-twelve && git add results/round-12 && git commit -m \"Round twelve: run on a Mac\" && git push -u origin mac-run-twelve` (one line, joined with `&&`)", "Fetched the new branches <code>round-twelve</code> and <code>stronger-checks</code>. Round 12: 7 cases in 0.0 s, <strong>as expected 7</strong> (file <code>20261024-233034-v3</code>). Control-off: <strong>6 of 6</strong> noticed (file <code>20261024-233035-mutations</code>). Commit <code>c84f353</code>, four files, 202 insertions, pushed as <code>mac-run-twelve</code>."),
+
+ ("`pip3 install sentence-transformers`", "Installed <code>sentence-transformers 5.1.2</code> and what it needs: <code>torch 2.2.2</code>, <code>transformers 4.57.6</code> and <code>numpy 2.0.2</code>. Pip warned that several scripts were not on my PATH. I did not notice yet that this put NumPy 2 next to a torch built for NumPy 1."),
+ ("`cd ~/ai-governance-lab && git fetch && git checkout round-thirteen`", "Fetched the new branch <code>round-thirteen</code>."),
+ ("`AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 run.py --round 13`", "A warning that a module compiled with NumPy 1.x cannot run in NumPy 2.0.2, then the model files downloaded (about 91 MB). Then <code>round 13: 6 cases in 215.04 s</code> and <strong>not run: 6</strong>. Every case had failed (<code>RuntimeError: Numpy is not available</code>). The 215 s was because my code reloaded the model for every case. File <code>20261024-235333-v3</code>. This is a setup failure, not a result."),
+ ("`AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 mutations_r13.py`", "It printed <strong>5 of 5</strong> switched-off controls noticed. <strong>That number is not valid.</strong> Every case errored with and without the control, and my checker counted an error as noticing the change. File <code>20261024-235645-mutations</code> shows <code>error: RuntimeError</code> in every row."),
+ ('`git checkout -b mac-run-thirteen`; `git add results/round-13`; `git commit -m "Round thirteen: run on a Mac with a real embedding model"`; `git push -u origin mac-run-thirteen`', "Commit <code>3c9cb03</code>, four files, 169 insertions, pushed as <code>mac-run-thirteen</code>. These files record the failure. I kept them."),
+ ('`pip3 install "numpy<2"`', "Replaced NumPy 2.0.2 with <code>1.26.4</code>."),
+ ("`cd ~/ai-governance-lab && git checkout round-thirteen && git pull origin round-thirteen`", "Fast-forwarded <code>6470dfa..4193637</code>: the model is now loaded once per run, and the control-off check can no longer count an error as noticing."),
+ ("`AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 run.py --round 13` (second time)", "<code>round 13: 6 cases in 43.28 s</code>, <strong>as expected 6</strong>, with the real model. File <code>20261024-235928-v3</code>."),
+ ("`AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 mutations_r13.py` (second time)", "<strong>5 of 5</strong> switched-off controls noticed, this time with normal results matching my guesses. File <code>20261025-000134-mutations</code>."),
+ ('`git checkout mac-run-thirteen && git merge round-thirteen -m "Merge fixes" && git add results/round-13 && git commit -m "Round thirteen: corrected Mac run (NumPy below 2)" && git push` (one line)', "Merged the two fixes into the branch, then commit <code>948e6a6</code>, four files, 183 insertions. Pushed <code>3c9cb03..948e6a6</code>."),
 ]
 
 def fix_cmd(rows):
@@ -190,9 +202,9 @@ def raw(name, label):
 # ---- glance table --------------------------------------------------------------------------------------------------------
 TITLES = {5: "24 Oct audit round (I13 to V, E, and others)", 6: "Round six: agent only sends instructions", 7: "Round seven: how an identity starts",
           8: "Round eight: agent goes round the gateway", 9: "Round nine: assistant answering from documents", 10: "Round ten: credentials and sessions",
-          11: "Round eleven: delegation, keys, organisations", 12: "Round twelve: approvals", "9+": "Round nine again: three stronger control-off checks (Q1, Q2, Q5), run 25 Oct after the first Mac run"}
-SBX = {12: "7 of 7", "9+": "not re-run", 5: "14 of 14", 6: "18 of 18", 7: "12 of 12", 8: "12 of 12", 9: "12 of 12", 10: "12 of 12", 11: "12 of 12"}
-SBXM = {12: "6 of 6", "9+": "14 of 15", 5: "none for this round", 6: "12 of 12", 7: "14 of 14", 8: "21 of 21", 9: "12 of 12", 10: "12 of 12", 11: "11 of 11"}
+          11: "Round eleven: delegation, keys, organisations", 12: "Round twelve: approvals", 13: "Round thirteen: finding documents by meaning (real embedding model on the Mac)", "9+": "Round nine again: three stronger control-off checks (Q1, Q2, Q5), run 25 Oct after the first Mac run"}
+SBX = {13: "6 of 6 (toy stand-in for the model)", 12: "7 of 7", "9+": "not re-run", 5: "14 of 14", 6: "18 of 18", 7: "12 of 12", 8: "12 of 12", 9: "12 of 12", 10: "12 of 12", 11: "12 of 12"}
+SBXM = {13: "5 of 5 (toy stand-in)", 12: "6 of 6", "9+": "14 of 15", 5: "none for this round", 6: "12 of 12", 7: "14 of 14", 8: "21 of 21", 9: "12 of 12", 10: "12 of 12", 11: "11 of 11"}
 g = []
 for r in sorted(glance, key=lambda k: (int(str(k).rstrip("+")), str(k))):
     x = glance[r]
@@ -227,10 +239,10 @@ body = f"""
         ("Extra packages", "Only for the Presidio comparison: <code>presidio-analyzer</code>, <code>spacy 3.7.5</code>, <code>numpy 1.26.4</code>, <code>en_core_web_sm 3.7.1</code>, in a throw-away environment"),
       ])}</section>
 
-      <section id="glance"><h2>Rounds five to twelve on the Mac, at a glance</h2>
+      <section id="glance"><h2>Rounds five to thirteen on the Mac, at a glance</h2>
       <p class="body-text">The first two columns are what the Mac printed. The last two are what the sandbox printed for the same round. “As expected” means the case did what my written guess said. “Controls noticed” means that when one control was switched off, in a copy of the code, the matching case saw the change.</p>
       {table(["Round", "Topic", "Mac: cases", "Mac: controls noticed", "Sandbox: cases", "Sandbox: controls noticed"], g, "mac-t")}
-      <p class="body-text">All eight rounds match. The extra round-nine row is the three stronger checks added afterwards: 14 of 15 on the Mac and 14 of 15 in the sandbox, with the same one not noticed (a Q5 check where a second layer, the executor, still refuses the request). Round five has no control-off run, on either machine. The sandbox also has first-run files for rounds nine and eleven that show a fault in my own work (a masking bug in round nine, a faulty test in round eleven); those are on the <a href="/ai-governance-lab/run/">run page</a>. The Mac ran the fixed versions.</p></section>
+      <p class="body-text">All nine rounds match. Round thirteen is shown with its corrected run; the Mac used a real embedding model and the sandbox a toy stand-in, so the sandbox column proves only that the code works. The first Mac attempt at round thirteen failed and is explained below. The extra round-nine row is the three stronger checks added afterwards: 14 of 15 on the Mac and 14 of 15 in the sandbox, with the same one not noticed (a Q5 check where a second layer, the executor, still refuses the request). Round five has no control-off run, on either machine. The sandbox also has first-run files for rounds nine and eleven that show a fault in my own work (a masking bug in round nine, a faulty test in round eleven); those are on the <a href="/ai-governance-lab/run/">run page</a>. The Mac ran the fixed versions.</p></section>
 
       <section id="s1"><h2>Session 1: Saturday 24 Oct, from 13:55</h2>
       <p class="body-text">Recording Track P by hand (Claude Sonnet 5.5, Low effort, a paid plan, in a fresh chat), the held-out starter cases, and a first try at Presidio. This session has the most mistakes.</p>
@@ -244,7 +256,7 @@ body = f"""
       {table(["Detector", "Right answers", "Out of"], [("v1 (my first detector)", "20", "53"), ("v3 (my final detector)", "45", "53"), ("Presidio, default", "15", "33"), ("Presidio, with India recognisers", "16", "33")])}</section>
 
       <section id="s3"><h2>Session 3: Sunday 25 Oct, from 03:33</h2>
-      <p class="body-text">Rounds five to twelve, one branch per push. Round eleven failed once, was fixed in the lab code, and ran clean. After I merged the lab pull request I came back to this same window and ran the three stronger round-nine checks and then round twelve.</p>
+      <p class="body-text">Rounds five to thirteen, one branch per push. Round eleven failed once, was fixed in the lab code, and ran clean. After I merged the lab pull request I came back to this same window and ran the three stronger round-nine checks then round twelve, and finally round thirteen with a real embedding model.</p>
       {fix_cmd(S3)}</section>
 
       <section id="data"><h2>The Mac data, file by file</h2>
@@ -257,6 +269,7 @@ body = f"""
         <li><strong>A broken file was pushed three times.</strong> I edited the held-out cases by hand and left stray lines after the closing braces. I pushed that (<code>b078a90</code>), then a half-fix (<code>439ef31</code>), before rewriting the file (<code>1f1af47</code>). The repository history shows all three.</li>
         <li><strong>A placeholder record was pushed.</strong> The Track P “clean re-run” was saved with notes like “hello” and “run it” (<code>661e52a</code>). I removed it a minute later (<code>efe55b9</code>). The history still has it. It was never used for any number on this site.</li>
         <li><strong>Round eleven failed on the Mac the first time.</strong> It needed a package (<code>cryptography</code>) that my Mac did not have. The sandbox had it, so I did not see the problem there. I fixed the lab so it needs only Python’s standard library, and ran again. The first Mac failure is in session 3 below.</li>
+        <li><strong>Round thirteen failed on the Mac the first time, and my checker said it passed.</strong> Installing the embedding package put NumPy 2 next to a torch built for NumPy 1, so every case errored (“Numpy is not available”). The run file says <code>not run: 6</code>. The control-off check printed “5 of 5 noticed”, which is wrong: every case had failed both with and without the control, and my checker counted an error as noticing the change. I fixed the checker (an error never counts, and an invalid run is announced), loaded the model once instead of once per case (215 s became 43 s), pinned NumPy below 2, and ran again. Both sets of files are on the branch and in the table below, and the commands are in session 3.</li>
         <li><strong>An empty branch was pushed.</strong> After the failure, I ran the commit and push steps anyway. Nothing was committed, so <code>mac-run-eleven</code> first existed with no result files. It now holds the passing run.</li>
         <li><strong>Small noise.</strong> Typing the folder name as a command, a wrong folder guess three times, a branch-creation command typed twice, a stray paste of <code>loans_db.py</code>, a restored terminal replaying an old <code>date</code> line. None of it affects a result.</li>
         <li><strong>Track P is a hand-graded run.</strong> The nine pass marks and the notes were typed by me after reading Claude’s answers in a chat. It is one assistant, one plan, one day, graded by the person who built the lab. The P6 note says the masking example echoed part of a pasted PAN; I graded that as a pass.</li>

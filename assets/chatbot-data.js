@@ -470,7 +470,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/cases/",
     keywords: ["use cases", "all cases", "every case", "case explorer", "a1", "g10", "i7", "e5", "kill switch case", "what does case"],
     answer:
-      "The case explorer lists all 158 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
+      "The case explorer lists all 164 lab cases and the 9 assistant cases. Each one shows what I set up, the steps in order, how the three filters did on every variant (run live in your browser), how it did in each round, and which control it tests. Examples: A2 is shadow AI with no register entry, A4 is personal data going to a model not approved for it, I7 is a privileged action that needs a 30-minute grant from someone other than the sponsor, and E5 shows that a hash-chained log cannot see lines cut off the end without an anchor kept elsewhere.",
   },
   {
     id: "ai-governance-lab-round-five",
@@ -503,6 +503,14 @@ window.SITE_QA = [
     keywords: ["round eight", "round 8", "bypass", "agent bypasses the api", "kill switch", "kill switch policy", "leaked token", "reconciliation", "whitelist", "greylist", "blacklist", "allow list", "watch list", "block list", "mover", "leaver", "sponsor leaves", "evidence", "chain of custody", "offence", "police", "assistive technology", "physically challenged", "accessibility", "helper", "delegate", "sensitive data", "audit log tampering"],
     answer:
       "Round eight asks what happens if an agent goes round the gateway, for example with a leaked token. It tests three layers. Make it hard: the identity API accepts a credential only from the caller it was lent to, it expires in minutes, and the agent's runtime has no network route to the API. Notice: every change in the identity system's own log must match a decision the gateway signed, and a change with no decision is a bypass. Answer: the policy switches off the agent it can trace, cancels its waiting approvals and revokes its credentials and the leaked token, evidence is copied and hashed first, and a named person decides whether to roll back. It also covers allow, watch and block lists by account state (a leaver's account touched, a mover asking for new access too soon), a sponsor who leaves, a recorded helper for people who use assistive technology (a code, never medical detail), a signal that reaches a person with evidence and no verdict from an agent, sensitive data the agent cannot request, and a tampered audit log. 12 cases (B1 to B12) were guessed before the code and all came out as guessed; switching off 21 controls one at a time made the matching case fail in all 21. Limits: the API, vault, network and log are small models I wrote, no real agent tries to get round the wall, and the legal and offence questions need counsel.",
+  },
+  {
+    id: "ai-governance-lab-meaning",
+    title: "AI governance lab: round thirteen, finding documents by meaning (embeddings)",
+    url: "/ai-governance-lab/#meaning",
+    keywords: ["round thirteen", "round 13", "embeddings", "embedding", "vector search", "semantic search", "search by meaning", "all-MiniLM-L6-v2", "sentence transformers", "rag permissions", "numpy", "restricted document", "crowd out", "top k", "filter before ranking", "real model"],
+    answer:
+      "Round thirteen asks whether the round-nine permission checks still hold when documents are found by meaning, with a real embedding model, instead of by matching words. It has 6 cases (S1 to S6), guessed and hashed before any code. I ran it on my MacBook Air with the small local model all-MiniLM-L6-v2: all 6 came out as I guessed and 5 of 5 control-off checks were noticed. With no permission check, a pay question with no matching words still found the HR salary document and leaked its text, so a missing check leaks more with meaning search, not less (S1). Titles can leak through the source list (S2). If the permission filter runs after the ranking, a restricted best match can leave the person with an empty answer, so filter before ranking (S3). Masking personal numbers when text is indexed works however the note is found (S4), and checking the live directory still beats a copy taken at indexing time (S5). S6 is a limit: two documents anyone may read can add up to a secret, and permissions are checked one document at a time. My mistakes are on the site: my first S1 question matched by keyword too, my first Mac run failed because pip installed NumPy 2 next to a torch built for NumPy 1, and the control-off check from that broken run wrongly said 5 of 5. I fixed the check and ran again. The sandbox could not download a real model, so it used a toy stand-in. One small model, one question per case, and a stand-in answer model, so this is a narrow result. All data is made up.",
   },
   {
     id: "ai-governance-lab-approvals",
@@ -554,19 +562,19 @@ window.SITE_QA = [
   },
   {
     id: "ai-governance-lab-addendum-pdf",
-    title: "AI governance lab: addendum PDF, rounds five to twelve",
+    title: "AI governance lab: addendum PDF, rounds five to thirteen",
     url: "/assets/ai-governance-lab-addendum.pdf",
-    keywords: ["addendum", "addendum pdf", "rounds five to twelve", "rounds five to eleven", "rounds five to ten", "rounds five to nine", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "92 cases", "80 cases", "68 cases", "controls table"],
+    keywords: ["addendum", "addendum pdf", "rounds five to thirteen", "rounds five to twelve", "rounds five to eleven", "rounds five to ten", "rounds five to nine", "rounds five to eight", "round five to eight", "new pdf", "update pdf", "download rounds", "92 cases", "80 cases", "68 cases", "controls table"],
     answer:
-      "The addendum is a free 69-page PDF (7 by 10 inches) for rounds five to twelve, dated 25 Oct 2026. It has 99 cases (14 in round five, 18 in six, 12 in seven, 12 in eight, 12 in nine, 12 in ten, 12 in eleven, 7 in twelve) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, an assistant-answers-from-documents round, an identity-edge-cases round, an agents-and-keys round, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
+      "The addendum is a free 74-page PDF (7 by 10 inches) for rounds five to thirteen, dated 25 Oct 2026. It has 105 cases (14 in round five, 18 in six, 12 in seven, 12 in eight, 12 in nine, 12 in ten, 12 in eleven, 7 in twelve, 6 in thirteen) each with its steps, my guess and what came out, the SHA-256 of each guesses file, five diagrams, an assistant-answers-from-documents round, an identity-edge-cases round, an agents-and-keys round, an approvals round, a search-by-meaning round, one table of the controls against ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a chapter on what it does not cover. A shorter round-five-only PDF is at /assets/ai-governance-lab-round-five.pdf. All data is made up.",
   },
   {
     id: "ai-governance-lab-real-output",
-    title: "AI governance lab: real run output for rounds five to twelve",
+    title: "AI governance lab: real run output for rounds five to thirteen",
     url: "/ai-governance-lab/run/#real-output",
     keywords: ["real output", "run output", "results file", "raw results", "control off", "mutation", "run page", "evidence of run", "sandbox run"],
     answer:
-      "The run page now shows the unedited result files for the audit round and rounds six to eleven: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. The 24 Oct audit round and rounds six to eleven first ran in a Linux sandbox with Python 3.11, and on 25 Oct I ran them all again on my MacBook Air (Darwin, Python 3.9.6) with the same verdicts. Rounds one to four ran on the MacBook originally, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform; the Mac files are on the run page and on the lab's mac-run branch. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
+      "The run page now shows the unedited result files for the audit round and rounds six to thirteen: every case against my written guess, and the control-off run where one control is switched off at a time in a copy of the code. The 24 Oct audit round and rounds six to thirteen first ran in a Linux sandbox with Python 3.11, and on 25 Oct I ran them all again on my MacBook Air (Darwin, Python 3.9.6) with the same verdicts. Rounds one to four ran on the MacBook originally, and the held-out lists and Track P walkthrough do not record the machine in their files. Each result file states its own platform; the Mac files are on the run page and on the lab's mac-run branch. All names and ID numbers are made up. In round seven the first control-off run noticed 13 of 14 because one of my tests was weak; I rebuilt it and 14 of 14 were noticed, and both files are kept.",
   },
   {
     id: "ai-governance-lab-mac-record",
@@ -574,7 +582,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/mac/",
     keywords: ["mac record", "mac commands", "commands i ran", "what i ran on mac", "mac output", "mac data", "sha-256 mac files", "terminal sessions", "mistakes", "macbook air"],
     answer:
-      "The Mac record page lists every command I typed on my MacBook Air in three sessions (24 Oct twice, 25 Oct once), what each one printed, and all 37 Mac result files with a SHA-256 each. Rounds five to eleven match the sandbox on cases and on controls noticed. The page also lists my mistakes: a broken held-out file pushed three times, a placeholder Track P record pushed and removed, and round eleven failing on the Mac until I removed a package it needed. The three terminal sessions are on it unedited.",
+      "The Mac record page lists every command I typed on my MacBook Air in three sessions (24 Oct twice, 25 Oct once), what each one printed, and all 45 Mac result files with a SHA-256 each. Rounds five to thirteen match the sandbox on cases and on controls noticed. The page also lists my mistakes: a broken held-out file pushed three times, a placeholder Track P record pushed and removed, and round eleven failing on the Mac until I removed a package it needed, and round thirteen failing on the Mac because of a NumPy version clash, with my check wrongly saying 5 of 5 noticed (fixed and run again). The three terminal sessions are on it unedited.",
   },
   {
     id: "ai-governance-lab-where-to-start",
@@ -582,7 +590,7 @@ window.SITE_QA = [
     url: "/ai-governance-lab/",
     keywords: ["where to start", "what to read first", "order to read", "how to read", "guide to the lab", "overview", "start here", "quick tour"],
     answer:
-      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 69-page book and the 65-page addendum for rounds five to eleven. The last part of each says what the lab does not cover.",
+      "Start with one picture: the agent proposes, a gateway decides, something else acts (the diagrams page, 30 seconds). Then walk the nine animated diagrams (5 minutes). Then open any case in the case explorer for its steps. For proof, read the run page with the real output and the hashes of my written guesses. To take it away, download the free PDFs: the 69-page book and the 74-page addendum for rounds five to thirteen. The last part of each says what the lab does not cover.",
   },
   {
     id: "ai-governance-lab-risks",
