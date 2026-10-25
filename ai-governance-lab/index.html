@@ -93,6 +93,13 @@
         <p class="body-text">Vendor claims are easy to find and hard to check. A test I write and then pass proves very little, so I changed the method: write the guess first, commit it, run the test, then fix and run again. The most useful rows are the ones where the result differed from the guess. When a number looked too good, I tested it on inputs written after the fix. The full method is in the <a href="/ai-governance-lab/appendix/#files">appendix</a>.</p>
       </section>
 
+      <!-- archvid:start -->
+      <section id="architecture-video">
+        <h2>The whole architecture, in motion</h2>
+        <p class="body-text">One picture of the lab, then each part on its own: the gateway, going round the gateway, noticing it, answering it, an identity starting in HR, an assistant that answers from documents, and agents handing work on. Every step has a caption. No sound.</p>
+        <figure class="rvid" style="margin:18px 0;max-width:420px"><video controls playsinline preload="none" poster="/assets/share/agl-master-architecture.png" style="width:100%;height:auto;border-radius:12px;background:#05061a"><source src="/assets/share/agl-architecture.mp4" type="video/mp4"></video><figcaption class="body-text" style="font-size:.9em">2 minutes. <a href="/assets/share/agl-architecture.mp4">Download the full MP4</a> (7.0 MB), <a href="/assets/share/agl-architecture-60s.mp4">the 1-minute cut</a> (2.7 MB), or <a href="/assets/share/agl-master-architecture.png">the master picture</a>.</figcaption></figure>
+      </section>
+      <!-- archvid:end -->
       <section id="architecture">
         <h2>How it works: one request through the gateway</h2>
         <p class="body-text">Every call to a model goes through one gateway. It checks the register, the model, the data and the tools, masks what the guardrail finds, and writes every decision to a log that is chained so an edited line shows up. Pick a request below and send it. Each one is a real case from the lab, and the step where it stops is where the lab found the problem.</p>
