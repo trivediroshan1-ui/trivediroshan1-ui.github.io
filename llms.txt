@@ -20,7 +20,7 @@
 - [PAM as an identity](https://roshantrivedi.co.in/writing/pam-as-an-identity/)
 
 ## Contact
-- [LinkedIn](https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/)
+- [LinkedIn](https://www.linkedin.com/in/roshan-trivedi-ciam/)
 - [GitHub](https://github.com/trivediroshan1-ui)
 
 ## Flagship: AI Governance Lab
