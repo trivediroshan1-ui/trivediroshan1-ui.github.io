@@ -602,4 +602,309 @@ remote:
 To https://github.com/trivediroshan1-ui/ai-governance-lab.git
  * [new branch]      mac-run-twelve -> mac-run-twelve
 branch 'mac-run-twelve' set up to track 'origin/mac-run-twelve'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ pip3 install sentence-transformers
+Defaulting to user installation because normal site-packages is not writeable
+Collecting sentence-transformers
+  Downloading sentence_transformers-5.1.2-py3-none-any.whl (488 kB)
+     |████████████████████████████████| 488 kB 3.8 MB/s 
+Collecting huggingface-hub>=0.20.0
+  Downloading huggingface_hub-1.8.0-py3-none-any.whl (625 kB)
+     |████████████████████████████████| 625 kB 16.4 MB/s 
+Collecting tqdm
+  Downloading tqdm-4.70.1-py3-none-any.whl (80 kB)
+     |████████████████████████████████| 80 kB 5.9 MB/s 
+Collecting torch>=1.11.0
+  Downloading torch-2.2.2-cp39-none-macosx_10_9_x86_64.whl (150.8 MB)
+     |████████████████████████████████| 150.8 MB 67 kB/s 
+Collecting Pillow
+  Downloading pillow-11.3.0-cp39-cp39-macosx_10_10_x86_64.whl (5.3 MB)
+     |████████████████████████████████| 5.3 MB 11.2 MB/s 
+Collecting scipy
+  Downloading scipy-1.13.1-cp39-cp39-macosx_10_9_x86_64.whl (39.4 MB)
+     |████████████████████████████████| 39.4 MB 6.2 MB/s 
+Collecting scikit-learn
+  Downloading scikit_learn-1.6.1-cp39-cp39-macosx_10_9_x86_64.whl (12.1 MB)
+     |████████████████████████████████| 12.1 MB 21.1 MB/s 
+Collecting transformers<5.0.0,>=4.41.0
+  Downloading transformers-4.57.6-py3-none-any.whl (12.0 MB)
+     |████████████████████████████████| 12.0 MB 15.5 MB/s 
+Collecting typing_extensions>=4.5.0
+  Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Collecting typer
+  Downloading typer-0.23.2-py3-none-any.whl (56 kB)
+     |████████████████████████████████| 56 kB 3.8 MB/s 
+Collecting pyyaml>=5.1
+  Using cached pyyaml-6.0.3-cp39-cp39-macosx_10_13_x86_64.whl (184 kB)
+Collecting fsspec>=2023.5.0
+  Downloading fsspec-2025.10.0-py3-none-any.whl (200 kB)
+     |████████████████████████████████| 200 kB 17.7 MB/s 
+Collecting hf-xet<2.0.0,>=1.4.2
+  Downloading hf_xet-1.7.0-cp38-abi3-macosx_10_12_x86_64.whl (3.8 MB)
+     |████████████████████████████████| 3.8 MB 18.3 MB/s 
+Collecting filelock>=3.10.0
+  Downloading filelock-3.19.1-py3-none-any.whl (15 kB)
+Collecting httpx<1,>=0.23.0
+  Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+     |████████████████████████████████| 73 kB 2.3 MB/s 
+Collecting packaging>=20.9
+  Using cached packaging-26.3-py3-none-any.whl (129 kB)
+Collecting certifi
+  Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+     |████████████████████████████████| 135 kB 21.5 MB/s 
+Collecting anyio
+  Downloading anyio-4.12.1-py3-none-any.whl (113 kB)
+     |████████████████████████████████| 113 kB 12.6 MB/s 
+Collecting idna
+  Downloading idna-3.20-py3-none-any.whl (69 kB)
+     |████████████████████████████████| 69 kB 5.2 MB/s 
+Collecting httpcore==1.*
+  Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+     |████████████████████████████████| 78 kB 5.7 MB/s 
+Collecting h11>=0.16
+  Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting sympy
+  Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+     |████████████████████████████████| 6.3 MB 14.9 MB/s 
+Collecting networkx
+  Downloading networkx-3.2.1-py3-none-any.whl (1.6 MB)
+     |████████████████████████████████| 1.6 MB 19.1 MB/s 
+Collecting jinja2
+  Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+     |████████████████████████████████| 134 kB 22.7 MB/s 
+Collecting tokenizers<=0.23.0,>=0.22.0
+  Downloading tokenizers-0.22.2-cp39-abi3-macosx_10_12_x86_64.whl (3.1 MB)
+     |████████████████████████████████| 3.1 MB 16.7 MB/s 
+Collecting requests
+  Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+     |████████████████████████████████| 64 kB 2.9 MB/s 
+Collecting regex!=2019.12.17
+  Downloading regex-2026.1.15-cp39-cp39-macosx_10_9_x86_64.whl (290 kB)
+     |████████████████████████████████| 290 kB 15.6 MB/s 
+Collecting safetensors>=0.4.3
+  Downloading safetensors-0.7.0-cp38-abi3-macosx_10_12_x86_64.whl (467 kB)
+     |████████████████████████████████| 467 kB 14.7 MB/s 
+Collecting numpy>=1.17
+  Using cached numpy-2.0.2-cp39-cp39-macosx_10_9_x86_64.whl (21.2 MB)
+Collecting huggingface-hub>=0.20.0
+  Downloading huggingface_hub-0.36.2-py3-none-any.whl (566 kB)
+     |████████████████████████████████| 566 kB 15.2 MB/s 
+Collecting exceptiongroup>=1.0.2
+  Downloading exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+Collecting MarkupSafe>=2.0
+  Downloading markupsafe-3.0.4-cp39-cp39-macosx_10_9_x86_64.whl (11 kB)
+Collecting charset_normalizer<4,>=2
+  Downloading charset_normalizer-3.5.2-cp39-cp39-macosx_10_9_universal2.whl (374 kB)
+     |████████████████████████████████| 374 kB 15.6 MB/s 
+Collecting urllib3<3,>=1.21.1
+  Downloading urllib3-2.6.3-py3-none-any.whl (131 kB)
+     |████████████████████████████████| 131 kB 22.6 MB/s 
+Collecting threadpoolctl>=3.1.0
+  Downloading threadpoolctl-3.7.0-py3-none-any.whl (26 kB)
+Collecting joblib>=1.2.0
+  Downloading joblib-1.5.3-py3-none-any.whl (309 kB)
+     |████████████████████████████████| 309 kB 30.3 MB/s 
+Collecting mpmath<1.4,>=1.1.0
+  Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+     |████████████████████████████████| 536 kB 16.8 MB/s 
+Collecting annotated-doc>=0.0.2
+  Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Collecting click>=8.0.0
+  Downloading click-8.1.8-py3-none-any.whl (98 kB)
+     |████████████████████████████████| 98 kB 3.3 MB/s 
+Collecting shellingham>=1.3.0
+  Downloading shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Collecting rich>=12.3.0
+  Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+     |████████████████████████████████| 310 kB 16.6 MB/s 
+Collecting pygments<3.0.0,>=2.13.0
+  Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+     |████████████████████████████████| 1.3 MB 15.9 MB/s 
+Collecting markdown-it-py>=2.2.0
+  Downloading markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+     |████████████████████████████████| 87 kB 5.0 MB/s 
+Collecting mdurl~=0.1
+  Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Installing collected packages: urllib3, idna, charset-normalizer, certifi, typing-extensions, tqdm, requests, pyyaml, packaging, hf-xet, fsspec, filelock, numpy, mpmath, MarkupSafe, huggingface-hub, tokenizers, threadpoolctl, sympy, scipy, safetensors, regex, networkx, joblib, jinja2, transformers, torch, scikit-learn, Pillow, sentence-transformers
+  WARNING: The script idna is installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script normalizer is installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script tqdm is installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts f2py and numpy-config are installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts hf, huggingface-cli and tiny-agents are installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script isympy is installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts transformers and transformers-cli are installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts convert-caffe2-to-onnx, convert-onnx-to-caffe2 and torchrun are installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed MarkupSafe-3.0.4 Pillow-11.3.0 certifi-2026.10.23 charset-normalizer-3.5.2 filelock-3.19.1 fsspec-2025.10.0 hf-xet-1.7.0 huggingface-hub-0.36.2 idna-3.20 jinja2-3.1.6 joblib-1.5.3 mpmath-1.3.0 networkx-3.2.1 numpy-2.0.2 packaging-26.3 pyyaml-6.0.3 regex-2026.1.15 requests-2.32.5 safetensors-0.7.0 scikit-learn-1.6.1 scipy-1.13.1 sentence-transformers-5.1.2 sympy-1.14.0 threadpoolctl-3.7.0 tokenizers-0.22.2 torch-2.2.2 tqdm-4.70.1 transformers-4.57.6 typing-extensions-4.16.0 urllib3-2.6.3
+WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+You should consider upgrading via the '/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip' command.
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd ~/ai-governance-lab && git fetch && git checkout round-thirteen
+remote: Enumerating objects: 41, done.
+remote: Counting objects: 100% (41/41), done.
+remote: Compressing objects: 100% (21/21), done.
+remote: Total 35 (delta 20), reused 27 (delta 14), pack-reused 0 (from 0)
+Unpacking objects: 100% (35/35), 18.47 KiB | 402.00 KiB/s, done.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+   b98cb8b..200bfa4  main           -> origin/main
+ * [new branch]      round-thirteen -> origin/round-thirteen
+branch 'round-thirteen' set up to track 'origin/round-thirteen'.
+Switched to a new branch 'round-thirteen'
+Roshans-MacBook-Air:ai-governance-lab roshan$ AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 run.py --round 13
+/Users/roshan/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.0.2 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/Users/roshan/ai-governance-lab/run.py", line 114, in <module>
+    sys.exit(main())
+  File "/Users/roshan/ai-governance-lab/run.py", line 69, in main
+    actual, details = fn(detector) if detector else fn()
+  File "/Users/roshan/ai-governance-lab/lab/cases_r13.py", line 34, in s1
+    _, none = _rag(perm="none")
+  File "/Users/roshan/ai-governance-lab/lab/cases_r13.py", line 24, in _rag
+    return w, Rag(w.staff, retriever="embed", **kw)
+  File "/Users/roshan/ai-governance-lab/lab/rag.py", line 38, in __init__
+    self.embedder = embedder or (get_embedder() if retriever == "embed" else None)
+  File "/Users/roshan/ai-governance-lab/lab/embed.py", line 54, in get_embedder
+    return LocalEmbedder(spec[3:])
+  File "/Users/roshan/ai-governance-lab/lab/embed.py", line 41, in __init__
+    from sentence_transformers import SentenceTransformer   # needs the package and the model files on this machine
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/sentence_transformers/__init__.py", line 10, in <module>
+    from sentence_transformers.backend import (
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/sentence_transformers/backend/__init__.py", line 3, in <module>
+    from .load import load_onnx_model, load_openvino_model
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/sentence_transformers/backend/load.py", line 7, in <module>
+    from transformers.configuration_utils import PretrainedConfig
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/transformers/__init__.py", line 27, in <module>
+    from . import dependency_versions_check
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/transformers/utils/__init__.py", line 24, in <module>
+    from .auto_docstring import (
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/transformers/utils/auto_docstring.py", line 30, in <module>
+    from .generic import ModelOutput
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/transformers/utils/generic.py", line 51, in <module>
+    import torch
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/torch/__init__.py", line 1477, in <module>
+    from .functional import *  # noqa: F403
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/Users/roshan/Library/Python/3.9/lib/python/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/Users/roshan/Library/Python/3.9/lib/python/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+modules.json: 100%|█████████████████████████████████████████████████████████████████| 349/349 [00:00<00:00, 12.9kB/s]
+config_sentence_transformers.json: 100%|████████████████████████████████████████████| 116/116 [00:00<00:00, 40.5kB/s]
+README.md: 10.5kB [00:00, 8.30MB/s]
+sentence_bert_config.json: 100%|██████████████████████████████████████████████████| 53.0/53.0 [00:00<00:00, 11.6kB/s]
+config.json: 100%|███████████████████████████████████████████████████████████████████| 612/612 [00:00<00:00, 137kB/s]
+model.safetensors: 100%|████████████████████████████████████████████████████████| 90.9M/90.9M [00:05<00:00, 15.2MB/s]
+tokenizer_config.json: 100%|████████████████████████████████████████████████████████| 350/350 [00:00<00:00, 21.8kB/s]
+vocab.txt: 232kB [00:00, 12.1MB/s]
+tokenizer.json: 466kB [00:00, 13.9MB/s]
+special_tokens_map.json: 100%|██████████████████████████████████████████████████████| 112/112 [00:00<00:00, 24.9kB/s]
+config.json: 100%|██████████████████████████████████████████████████████████████████| 190/190 [00:00<00:00, 42.3kB/s]
+round 13: 6 cases in 215.04 s -> results/round-13/20261024-235333-v3.json
+  not run: 6
+Roshans-MacBook-Air:ai-governance-lab roshan$ AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 mutations_r13.py
+5 of 5 switched-off controls are noticed by their case
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout -b mac-run-thirteen && git add results/round-13 && git commit -m "Round thirteen: run on a Mac with a real embedding model" && git push -u origin mac-run-thirteen
+Switched to a new branch 'mac-run-thirteen'
+[mac-run-thirteen 3c9cb03] Round thirteen: run on a Mac with a real embedding model
+ 4 files changed, 169 insertions(+)
+ create mode 100644 results/round-13/20261024-235333-v3.json
+ create mode 100644 results/round-13/20261024-235333-v3.md
+ create mode 100644 results/round-13/20261024-235645-mutations.json
+ create mode 100644 results/round-13/20261024-235645-mutations.md
+Enumerating objects: 33, done.
+Counting objects: 100% (33/33), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (27/27), done.
+Writing objects: 100% (27/27), 11.96 KiB | 1.99 MiB/s, done.
+Total 27 (delta 18), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (18/18), completed with 6 local objects.
+remote: 
+remote: Create a pull request for 'mac-run-thirteen' on GitHub by visiting:
+remote:      https://github.com/trivediroshan1-ui/ai-governance-lab/pull/new/mac-run-thirteen
+remote: 
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+ * [new branch]      mac-run-thirteen -> mac-run-thirteen
+branch 'mac-run-thirteen' set up to track 'origin/mac-run-thirteen'.
+Roshans-MacBook-Air:ai-governance-lab roshan$ pip3 install "numpy<2"
+Defaulting to user installation because normal site-packages is not writeable
+Collecting numpy<2
+  Downloading numpy-1.26.4-cp39-cp39-macosx_10_9_x86_64.whl (20.6 MB)
+     |████████████████████████████████| 20.6 MB 3.6 MB/s 
+Installing collected packages: numpy
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.0.2
+    Uninstalling numpy-2.0.2:
+      Successfully uninstalled numpy-2.0.2
+  WARNING: The script f2py is installed in '/Users/roshan/Library/Python/3.9/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed numpy-1.26.4
+WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
+You should consider upgrading via the '/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip' command.
+Roshans-MacBook-Air:ai-governance-lab roshan$ cd ~/ai-governance-lab && git checkout round-thirteen && git pull origin round-thirteen
+Switched to branch 'round-thirteen'
+Your branch is up to date with 'origin/round-thirteen'.
+remote: Enumerating objects: 11, done.
+remote: Counting objects: 100% (11/11), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 7 (delta 6), reused 5 (delta 4), pack-reused 0 (from 0)
+Unpacking objects: 100% (7/7), 1.49 KiB | 191.00 KiB/s, done.
+From https://github.com/trivediroshan1-ui/ai-governance-lab
+ * branch            round-thirteen -> FETCH_HEAD
+   6470dfa..4193637  round-thirteen -> origin/round-thirteen
+Updating 6470dfa..4193637
+Fast-forward
+ lab/embed.py     | 10 ++++++++++
+ mutations_r13.py |  6 +++++-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+Roshans-MacBook-Air:ai-governance-lab roshan$ AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 run.py --round 13
+/Users/roshan/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+round 13: 6 cases in 43.28 s -> results/round-13/20261024-235928-v3.json
+  as expected: 6
+Roshans-MacBook-Air:ai-governance-lab roshan$ AGL_EMBEDDER=st:all-MiniLM-L6-v2 python3 mutations_r13.py
+5 of 5 switched-off controls are noticed by their case
+Roshans-MacBook-Air:ai-governance-lab roshan$ git checkout mac-run-thirteen && git merge round-thirteen -m "Merge fixes" && git add results/round-13 && git commit -m "Round thirteen: corrected Mac run (NumPy below 2)" && git push
+Switched to branch 'mac-run-thirteen'
+Your branch is up to date with 'origin/mac-run-thirteen'.
+Merge made by the 'ort' strategy.
+ lab/embed.py     | 10 ++++++++++
+ mutations_r13.py |  6 +++++-
+ 2 files changed, 15 insertions(+), 1 deletion(-)
+[mac-run-thirteen 948e6a6] Round thirteen: corrected Mac run (NumPy below 2)
+ 4 files changed, 183 insertions(+)
+ create mode 100644 results/round-13/20261024-235928-v3.json
+ create mode 100644 results/round-13/20261024-235928-v3.md
+ create mode 100644 results/round-13/20261025-000134-mutations.json
+ create mode 100644 results/round-13/20261025-000134-mutations.md
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (10/10), 3.65 KiB | 1.82 MiB/s, done.
+Total 10 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 3 local objects.
+To https://github.com/trivediroshan1-ui/ai-governance-lab.git
+   3c9cb03..948e6a6  mac-run-thirteen -> mac-run-thirteen
 Roshans-MacBook-Air:ai-governance-lab roshan$ 

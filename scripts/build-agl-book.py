@@ -252,8 +252,8 @@ ch.append(chap(14, "Run it yourself", f'''
 <p>A second assistant under the same policy, to see whether the nine results repeat. My own held-out cases, written in my words and not by the assistant that built the lab. And, if the Aadhaar result holds up, a closer look at why a detector with an Aadhaar rule catches none of these variants. If you work with Indian data and can think of a variant that would break a filter, send it to me and I will add it, unseen, to the next round.</p>
 '''))
 
-ch.append(chap(15, "After this book: rounds five to twelve", f'''
-<p>This book covers the first four rounds, finished on 24 October 2026. I kept going. By 25 October the lab had eight more rounds and 158 cases in all. Those rounds are not written up chapter by chapter here. They are in a free 69-page addendum, and every case is on the website. This chapter says what they are and what to keep in mind.</p>
+ch.append(chap(15, "After this book: rounds five to thirteen", f'''
+<p>This book covers the first four rounds, finished on 24 October 2026. I kept going. By 25 October the lab had nine more rounds and 164 cases in all. Those rounds are not written up chapter by chapter here. They are in a free 74-page addendum, and every case is on the website. This chapter says what they are and what to keep in mind.</p>
 <table class="plain"><thead><tr><th>Round</th><th>What it tests</th><th>Cases</th><th>Controls switched off and noticed</th></tr></thead><tbody>
 <tr><td>5</td><td>The 24 Oct audit round: more cases on agent identity, audit evidence and vendors</td><td>14</td><td>none run</td></tr>
 <tr><td>6</td><td>An agent that only sends instructions, and a gateway that decides</td><td>18</td><td>12 of 12</td></tr>
@@ -262,21 +262,22 @@ ch.append(chap(15, "After this book: rounds five to twelve", f'''
 <tr><td>9</td><td>An assistant that answers from documents</td><td>12</td><td>12 of 12</td></tr>
 <tr><td>10</td><td>Credentials, sessions and identity edge cases</td><td>12</td><td>12 of 12</td></tr>
 <tr><td>11</td><td>Delegation between agents, keys and merged organisations</td><td>12</td><td>11 of 11</td></tr>
-<tr><td>12</td><td>Approvals: self-approval, edits, batches, stale and split votes</td><td>7</td><td>6 of 6</td></tr></tbody></table>
-<p>Five to twelve make 99 cases. The method is the same as in this book: I write each guess down, hash it and commit it before any code, then run. A &ldquo;control switched off&rdquo; run removes one control at a time in a copy of the code and checks that the matching case notices.</p>
+<tr><td>12</td><td>Approvals: self-approval, edits, batches, stale and split votes</td><td>7</td><td>6 of 6</td></tr>
+<tr><td>13</td><td>Finding documents by meaning, with a real embedding model</td><td>6</td><td>5 of 5</td></tr></tbody></table>
+<p>Five to thirteen make 105 cases. The method is the same as in this book: I write each guess down, hash it and commit it before any code, then run. A &ldquo;control switched off&rdquo; run removes one control at a time in a copy of the code and checks that the matching case notices.</p>
 <h3>Three things the later rounds showed</h3>
 {ul(["<b>Round nine.</b> An assistant that answers from documents leaked restricted text when it had no permission check, and a &ldquo;do not reveal&rdquo; sentence in the prompt did not stop it. Checking live permissions before retrieval held, and the answers were still useful. Two documents that are each fine to read can combine into a restricted fact. The lab does not catch that, and says so.",
-"<b>Round ten.</b> All twelve cases came out as I guessed on the first run. That is a sign my guesses were too easy, not a sign the controls are strong.",
+"<b>Round ten.</b> All twelve cases came out as I guessed on the first run. That suggests my guesses were too easy, not that the controls are strong.",
 "<b>Round eleven.</b> When one agent hands work to another, the second one inherited everything the first had unless the token was cut down. A shared secret let a compromised executor forge proofs, and a public key did not. Two agents that are each fine alone can still move data between them. The lab does not catch that either.",
-"<b>Round twelve.</b> An approval tied only to a request number still ran after the request was edited; tied to a fingerprint of the content, the edit voided it. A one-click batch carried a high-risk item through until such items had to be approved one by one. Two people who agree to approve for each other satisfy every rule, and the lab cannot see it."])}
+"<b>Round twelve.</b> An approval tied only to a request number still ran after the request was edited; tied to a fingerprint of the content, the edit voided it. A one-click batch carried a high-risk item through until such items had to be approved one by one. Two people who agree to approve for each other satisfy every rule, and the lab cannot see it.",
+"<b>Round thirteen.</b> Found by meaning, a restricted document leaks even when no word matches, unless permissions are checked first. My first Mac run failed and my own check wrongly said 5 of 5; I fixed it."])}
 <h3>What the later rounds do not show</h3>
 {ul(["They use small models written for the lab. No real identity provider, tenant or production system was tested.",
 "I wrote both the guesses and the code. A person who did not build the lab should write some of the cases.",
-"Round nine uses keyword matching, not embeddings. Round eleven uses my own plain-Python Ed25519, which is for tests only.",
+"Rounds nine to twelve use keyword matching; round thirteen uses one small embedding model. Round eleven uses my own plain-Python Ed25519, which is for tests only.",
 "Some first runs were wrong, and the faults were mine. Both the first-run and final result files are kept."])}
 <h3>Run on a second machine</h3>
-<p>Rounds five to twelve were also run on my MacBook Air (Darwin, Python 3.9.6). The verdicts match the sandbox in every round. The commands, the output and a SHA-256 for each result file are on the website, together with my mistakes: {SITE}/mac/</p>
-<p>The addendum PDF and the run page with the full output are linked from {SITE}/.</p>
+<p>Rounds five to thirteen were also run on my MacBook Air, with the same verdicts. The commands, the output, a SHA-256 for each file and my mistakes are at {SITE}/mac/.</p>
 '''))
 
 # appendices
@@ -340,7 +341,7 @@ PREFACE = '''
 
 ABOUT = f'''
 <p><b>{e(TITLE)}</b><br>{e(SUB)}</p>
-<p>Edition 1.1, 25 October 2026 (adds chapter 15, rounds five to twelve). Written by Roshan Trivedi. Free to read and share; please credit the author.</p>
+<p>Edition 1.1, 25 October 2026 (adds chapter 15, rounds five to thirteen). Written by Roshan Trivedi. Free to read and share; please credit the author.</p>
 <p>All people, companies, numbers and data in this book are made up. The lender, Kaveri Finance, does not exist. Aadhaar, PAN and card numbers are invented, although they pass the real format checks on purpose.</p>
 <p>This is not a product review and not legal advice. The filters tested are the author&rsquo;s own and deliberately plain. Any mapping to a law or standard is the author&rsquo;s reading. Nothing here is a claim that any system is secure.</p>
 <p>The lab, its cases and its results are described at {SITE}/. This book was generated from the same data as the web pages, so the numbers match.</p>
