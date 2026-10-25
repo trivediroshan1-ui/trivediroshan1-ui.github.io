@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Every mistake I found in my own AI governance lab, the date I found it and what changed. Includes the 25 Oct 2026 re-count of rounds 6, 7 and 9." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ai-governance-lab/what-i-got-wrong/" />
+    <meta property="og:title" content="What I got wrong in the AI governance lab" />
+    <meta property="og:description" content="Every mistake I found in my own AI governance lab, the date I found it and what changed. Includes the 25 Oct 2026 re-count of rounds 6, 7 and 9." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ai-governance-lab/what-i-got-wrong/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>What I got wrong · Roshan Trivedi (PAM, IAM, AI governance)</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261025a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261019f" defer></script>
+  </head>
+  <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      <header class="hero mcp-hero">
+        <p class="eyebrow">AI governance lab</p>
+        <h1>What I got wrong</h1>
+        <p class="dek">Every mistake I found in my own lab, with the date and what changed. The wrong files stay in the repository, so you can check both.</p>
+        <div class="mcp-ribbon" aria-hidden="true"></div>
+      </header>
+      <div class="agl story">
+      <section aria-labelledby="recount">
+        <h2 id="recount">25 Oct 2026: a crash counted as noticing (rounds 6 to 12)</h2>
+        <p class="body-text">For every control, I switch it off in a copy of the code and check whether a case notices. Round 13 brought in a stricter rule: a case notices only if it passes normally <em>and</em> then gives a different result that is not an error. Rounds 6 to 12 still used the older rule, where a crash also counted as noticing.</p>
+        <p class="body-text">An automated review comment on an old pull request pointed at it. I applied the round 13 rule to rounds 6 to 12 and ran them again on my MacBook Air.</p>
+        <div class="table-wrap" style="overflow-x:auto"><table>
+          <thead><tr><th>Round</th><th>Published</th><th>Strict rule, 25 Oct</th><th>Not noticed</th></tr></thead>
+          <tbody>
+          <tr><td>6</td><td>12 of 12</td><td><strong>11 of 12</strong></td><td>T5: the agent's own sponsor may approve</td></tr>
+          <tr><td>7</td><td>14 of 14</td><td><strong>12 of 14</strong></td><td>H4: the same person may give both approvals; H8: the signed policy is not required</td></tr>
+          <tr><td>8</td><td>21 of 21</td><td>21 of 21</td><td>none</td></tr>
+          <tr><td>9</td><td>12 of 12</td><td><strong>13 of 15</strong> (15 includes three stronger checks added later)</td><td>Q5, twice: the gateway check for unknown actions is switched off</td></tr>
+          <tr><td>10</td><td>12 of 12</td><td>12 of 12</td><td>none</td></tr>
+          <tr><td>11</td><td>11 of 11</td><td>11 of 11</td><td>none</td></tr>
+          <tr><td>12</td><td>6 of 6</td><td>6 of 6</td><td>none</td></tr>
+          </tbody></table></div>
+        <h3>What it means</h3>
+        <ul class="body-text">
+          <li><strong>T5, H4 and H8 are weak tests.</strong> With the control off, the case crashed instead of showing the bad approval going through. A crash shows the code broke, not that the check caught the problem. I will rewrite these three so the failure is visible.</li>
+          <li><strong>Q5 is a second layer, not a broken test.</strong> With the gateway check off, the executor still blocks the unknown action, so no case sees a change. That is defence in depth. It also means Q5 cannot show that the gateway check matters on its own.</li>
+          <li><strong>What did not change:</strong> rounds 8, 10, 11 and 12, every "as guessed" result, and every guesses hash.</li>
+        </ul>
+        <p class="body-text">The books, the PDF of rounds five to thirteen and the round videos were made before this re-count and show the older numbers. The <a href="/ai-governance-lab/mac/">Mac record</a> shows what the Mac printed at the time and is not edited. The change and the new result files are in <a href="https://github.com/trivediroshan1-ui/ai-governance-lab/pull/15">pull request 15</a>.</p>
+      </section>
+      <section aria-labelledby="checker">
+        <h2 id="checker">Round 13: my checker said "5 of 5 noticed" while every case had errored</h2>
+        <p class="body-text">It counted an error as noticing a change. I fixed it so an error never counts, and kept the wrong file. This is the rule that, on 25 Oct, I found I had not applied to rounds 6 to 12.</p>
+      </section>
+      <section aria-labelledby="filter">
+        <h2 id="filter">Rounds 1 to 4: the 100% filter score was tuned</h2>
+        <p class="body-text">Three versions of a plain text filter caught 20, 42 and 45 of 53 attack variants. On 10 items written after the fix, it caught 4. The 100% on the 200-sample set only showed that I had tuned it to that set.</p>
+      </section>
+      <section aria-labelledby="firstruns">
+        <h2 id="firstruns">First runs that did not match, and why</h2>
+        <ul class="body-text">
+          <li>Round 5: one test crashed on the first run. My test, fixed.</li>
+          <li>Round 7: first run 13 of 14 control-off checks. One weak test, rebuilt.</li>
+          <li>Round 9: first run 11 of 12 as guessed. A bug in my masking, fixed.</li>
+          <li>Round 11: first run 11 of 12 as guessed. My own test, fixed.</li>
+          <li>Mac runs broke on package versions (numpy 2 with the torch build I used).</li>
+        </ul>
+      </section>
+      <section aria-labelledby="easy">
+        <h2 id="easy">Guesses that may be too easy</h2>
+        <p class="body-text">I wrote both the guesses and the code. When a round comes out exactly as I guessed, I read that as a warning that my guesses were easy, not as good news about the controls. If you see a weak test, <a href="https://github.com/trivediroshan1-ui/ai-governance-lab/issues/new/choose">propose a case</a>.</p>
+        <p class="body-text"><small>All data is made up. Nothing here relates to any employer or real company.</small></p>
+      </section>
+      </div>
+    </main>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"What I got wrong in the AI governance lab","datePublished":"2026-10-25","dateModified":"2026-10-25","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"url":"https://roshantrivedi.co.in/ai-governance-lab/what-i-got-wrong/","isPartOf":{"@type":"WebPage","url":"https://roshantrivedi.co.in/ai-governance-lab/"},"license":"https://creativecommons.org/licenses/by/4.0/"}</script>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script defer src="/assets/chatbot-widget.js?v=20261024a"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
