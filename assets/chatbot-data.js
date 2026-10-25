@@ -312,10 +312,42 @@ window.SITE_QA = [
   {
     id: "resume",
     title: "Resume / CV",
-    url: "/Roshan_Trivedi_Resume.pdf",
+    url: "/resume/",
     keywords: ["resume", "cv", "curriculum vitae", "download resume", "employment history"],
     answer:
-      "Roshan's current resume is linked from the homepage as a PDF (Roshan_Trivedi_Resume.pdf). Note: every case study on the site is intentionally anonymized and excludes employer, client and internal operational data — the résumé is the deliberate exception, including full employment history for verification.",
+      "Roshan's résumé is on its own page (/resume/), with every role, date and certification, and a PDF download. Note: every case study on the site is intentionally anonymized and excludes employer, client and internal operational data — the résumé is the deliberate exception, including full employment history for verification.",
+  },
+  {
+    id: "experience-roles",
+    title: "Years of experience and roles",
+    url: "/resume/",
+    keywords: ["years and roles", "years of experience", "how many years", "how much experience", "work history", "career history", "previous roles", "previous companies", "employers", "seniority", "led teams", "managed teams", "people leadership"],
+    answer:
+      "Roshan has 14+ years in identity and security across India, the UK and Australia. His current role is Credential Management Platform Owner. Before that: Principal Engineer at Optiv, Specialist Manager at Deloitte in Sydney, Manager – Senior Architect at EY, Manager at Deloitte, Assistant Manager at KPMG Global Services (including a three-month CyberArk assignment in Birmingham, UK), Senior Consultant at KPMG, and earlier roles at Reliance Communications, Accenture and Wipro. He has led delivery teams since 2017. The résumé page lists every role with dates.",
+  },
+  {
+    id: "certifications",
+    title: "Certifications",
+    url: "/resume/#certifications",
+    keywords: ["certifications", "certification", "certified", "certs", "badges", "qualifications", "cyberark certification", "sailpoint certification", "cde-cpc", "cde-pam"],
+    answer:
+      "Current certifications, as of October 2026: SailPoint Identity Security Leader (June 2025); CyberArk Certified Delivery Engineer, CPC (valid to April 2027); CyberArk Certified Delivery Engineer, PAM (valid to February 2027); CyberArk Defender, Endpoint Privilege Manager (February 2024); CyberArk Sentry, PAM (February 2023); CyberArk Defender, PAM (February 2023). The résumé page links each one to the issuer's own record and also lists the expired ones.",
+  },
+  {
+    id: "start-here",
+    title: "Where to start",
+    url: "/#start-here",
+    keywords: ["best pages", "best case studies", "best work", "strongest work", "where should i start", "what should i read first", "top pages", "short version", "for recruiters", "hiring manager"],
+    answer:
+      "Three pages show the work fastest. The résumé (/resume/) has roles, dates and certifications. The AI Governance Lab (/ai-governance-lab/) has 13 rounds and 164 cases on made-up data, with every guess hashed before the code runs. Non-human identity at scale (/case-studies/non-human-identity-at-scale/) is an independent guide to owning, rotating and retiring machine credentials. For privileged-access depth, add Credential tiering and the PAM market, and Break-glass access.",
+  },
+  {
+    id: "what-i-got-wrong",
+    title: "AI governance lab: what I got wrong (the re-count)",
+    url: "/ai-governance-lab/what-i-got-wrong/",
+    keywords: ["what i got wrong", "what did you get wrong", "mistakes", "re-count", "recount", "corrections", "strict rule", "weak tests"],
+    answer:
+      "On 25 October 2026 Roshan found that his own rounds 6 to 12 had been counted with a looser rule than the one the lab describes: a crash counted as a case noticing its control. Under the strict rule, rounds 6, 7 and 9 dropped (11 of 12, 12 of 14 and 13 of 15). The page keeps the original numbers, the corrected ones and the weak tests, which are open as issues on GitHub.",
   },
   {
     id: "contact",
@@ -323,7 +355,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["contact", "email", "linkedin", "reach", "get in touch", "hire", "connect"],
     answer:
-      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
+      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi-ciam) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
   },
   {
     id: "site-purpose",

@@ -50,7 +50,7 @@ items += [
     {"t": "Download my résumé (PDF)", "u": "/Roshan_Trivedi_Resume.pdf", "g": "Action", "d": "", "k": "resume cv download"},
     {"t": "Download the book (PDF)", "u": "/assets/who-approved-that-book.pdf", "g": "Action", "d": "Who Approved That? 138 pages, free", "k": "book download pdf mcp"},
     {"t": "Email me", "u": "mailto:trivedi.roshan1@gmail.com", "g": "Action", "d": "trivedi.roshan1@gmail.com", "k": "contact mail hello"},
-    {"t": "LinkedIn", "u": "https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/", "g": "Action", "d": "", "k": "contact profile"},
+    {"t": "LinkedIn", "u": "https://www.linkedin.com/in/roshan-trivedi-ciam/", "g": "Action", "d": "", "k": "contact profile"},
     {"t": "GitHub", "u": "https://github.com/trivediroshan1-ui", "g": "Action", "d": "", "k": "code repositories"},
 ]
 out = ROOT / "assets" / "palette-data.js"

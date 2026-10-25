@@ -97,7 +97,10 @@
     sso: ["single", "sign-on"], ai: ["artificial", "intelligence"], agent: ["agents", "agentic"], agents: ["agent", "agentic"],
     vault: ["vaulting", "secrets"], secret: ["secrets", "credential"], password: ["credential", "passwordless"],
     breakglass: ["break-glass", "emergency"], "break-glass": ["emergency"], audit: ["auditor", "evidence"],
-    hire: ["role", "leadership"], experience: ["years", "career"], exams: ["exam", "nta"], nta: ["exam", "national"]
+    hire: ["role", "leadership"], experience: ["years", "career"], exams: ["exam", "nta"], nta: ["exam", "national"],
+    privileged: ["pam"], "non-human": ["nhi"], machine: ["nhi", "non-human"], standing: ["zsp"], "just-in-time": ["jit"],
+    secrets: ["vault", "credential"], certification: ["certified", "cyberark", "sailpoint"], certifications: ["certified", "cyberark", "sailpoint"],
+    recruiter: ["resume", "role"], roles: ["experience", "career"], years: ["experience", "career"]
   };
   function stem(w) {
     w = w.replace(/'s$/, "");
@@ -199,6 +202,15 @@
   // opens the widget from a page this section matches (checked in order).
   var PAGE_SUGGESTIONS = [
     {
+      test: /^\/(resume\/?)?$/,
+      suggestions: [
+        "Years and roles",
+        "Certifications",
+        "Where should I start?",
+        "How do I contact him?",
+      ],
+    },
+    {
       test: /^\/ai-governance-lab\/?/,
       suggestions: [
         "What did the AI governance lab find?",
@@ -252,7 +264,7 @@
   }
 
   // Entries where it's worth offering one-tap contact actions alongside the answer.
-  var CONTACT_ENTRY_IDS = { contact: true, resume: true };
+  var CONTACT_ENTRY_IDS = { contact: true, resume: true, "experience-roles": true, "start-here": true };
 
   function el(tag, cls, html) {
     var e = document.createElement(tag);
@@ -279,8 +291,8 @@
     return (
       '<div class="sc-actions">' +
       '<a class="sc-action" href="mailto:trivedi.roshan1@gmail.com">Email</a>' +
-      '<a class="sc-action" href="https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/" target="_blank" rel="noopener">LinkedIn</a>' +
-      '<a class="sc-action" href="/Roshan_Trivedi_Resume.pdf" target="_blank" rel="noopener">Resume</a>' +
+      '<a class="sc-action" href="https://www.linkedin.com/in/roshan-trivedi-ciam/" target="_blank" rel="noopener">LinkedIn</a>' +
+      '<a class="sc-action" href="/resume/">R\u00e9sum\u00e9</a>' +
       "</div>"
     );
   }
@@ -294,7 +306,7 @@
     if (DATA_STATE === "loading") return;
     DATA_STATE = "loading";
     var s = document.createElement("script");
-    s.src = "/assets/chatbot-data.js?v=20261025i";
+    s.src = "/assets/chatbot-data.js?v=20261025k";
     s.onload = s.onerror = function () { DATA_STATE = "ready"; var w = DATA_WAITERS; DATA_WAITERS = []; w.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
   }
