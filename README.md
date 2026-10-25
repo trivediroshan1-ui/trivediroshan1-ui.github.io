@@ -63,7 +63,7 @@ Watch the green checkmark under **Deployments → github-pages** on the repo's m
 
 ## Contact
 
-- LinkedIn: [linkedin.com/in/roshan-trivedi-ciam-49413a54](https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/)
+- LinkedIn: [linkedin.com/in/roshan-trivedi-ciam](https://www.linkedin.com/in/roshan-trivedi-ciam/)
 - Email: trivedi.roshan1@gmail.com
 
 ## Newer pages and assets
