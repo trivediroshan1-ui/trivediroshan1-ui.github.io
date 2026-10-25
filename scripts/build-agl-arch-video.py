@@ -15,18 +15,52 @@ CSS += """
 .n span{display:block;font-size:25px;line-height:1.22;color:#b4c0da}
 .n.red{background:#1c0f1c}.n.green{background:#0c1c1b}
 .cap{position:absolute;left:70px;right:60px;top:1040px;height:150px;border-left:8px solid #4de2ff;background:rgba(77,226,255,.07);border-radius:14px;padding:18px 26px;font-size:35px;line-height:1.28;font-weight:700;color:#fff;opacity:0;display:flex;align-items:center}
+.n.sm{padding:12px 16px}.n.sm b{font-size:27px;margin-bottom:4px}.n.sm span{font-size:21px;line-height:1.2}
+.bd{position:absolute;right:-12px;top:-16px;display:flex;gap:4px}.bd i{font-style:normal;width:40px;height:40px;border-radius:50%;background:#4de2ff;color:#05061a;font:800 24px DM Sans;display:flex;align-items:center;justify-content:center;border:3px solid #05061a}
 .chip2{position:absolute;right:60px;top:60px;font-weight:700;font-size:22px;letter-spacing:.14em;color:#c9b8ff}
 svg.ln{position:absolute;left:0;top:0;width:1080px;height:1350px}
 .dot{z-index:1;position:absolute;width:26px;height:26px;border-radius:50%;opacity:0;margin:-13px 0 0 -13px}
 .bigurl{position:absolute;left:70px;right:60px;font-weight:800;font-size:64px;line-height:1.1;color:#4de2ff}
 """
 COLS, ROWS = [60, 400, 740], [270, 530, 790]
-def N(i, c, r, title, sub, color, t, kind="", pulse=()):
-    return dict(id=i, x=COLS[c], y=ROWS[r], title=title, sub=sub, color=color, t=t, kind=kind, pulse=list(pulse))
+def N(i, c, r, title, sub, color, t, kind="", pulse=(), bd="", small=False):
+    d = dict(id=i, x=0 if small else COLS[c], y=0 if small else ROWS[r], title=title, sub=sub, color=color, t=t, kind=kind, pulse=list(pulse), bd=bd)
+    if small: d.update(x=MC[c], y=MR[r], w=290, h=150, kind=(kind+" sm").strip())
+    return d
+MC, MR = [60, 395, 730], [265, 440, 615, 790]
 CY, PU, GR, RE, AM = "#4de2ff", "#8b5cf6", "#34d399", "#ff7a93", "#f7c873"
 scenes = []
-def S(title, sub, dur, nodes, edges, packets, caps, extra=None):
-    scenes.append(dict(title=title, sub=sub, dur=dur, nodes=nodes, edges=edges, packets=packets, caps=caps, extra=extra or []))
+def S(title, sub, dur, nodes, edges, packets, caps, extra=None, chip=None):
+    scenes.append(dict(title=title, sub=sub, dur=dur, chip=chip, nodes=nodes, edges=edges, packets=packets, caps=caps, extra=extra or []))
+
+def master(dur, intro):
+    k = (lambda t: t) if intro else (lambda t: .3 + t * .12)
+    M = lambda *a, **kw: N(*a, small=True, **kw)
+    nodes = [M("ag",0,0,"AI agents","Hand work to each other","#4de2ff",k(2.0),bd="7"),
+             M("gw",1,0,"Gateway","Checks, then signs a decision","#8b5cf6",k(1.0),bd="1"),
+             M("api",2,0,"Identity API","Where the change lands","#34d399",k(4.0),bd="1"),
+             M("hr",0,1,"HR record","Where an identity starts","#4de2ff",k(9.6),bd="5"),
+             M("sg",1,1,"Second approver","Separate person, separate key","#f7c873",k(11.6),bd="7"),
+             M("ex",2,1,"Executor and vault","Five-minute credential","#34d399",k(3.0),bd="1"),
+             M("dm",0,2,"Directory check","Does it match HR?","#34d399",k(10.2),bd="5"),
+             M("dl",1,2,"Decision log","Every decision, chained","#f7c873",k(5.0),bd="1"),
+             M("il",2,2,"Identity system log","Every change it recorded","#f7c873",k(6.4),bd="3"),
+             M("da",0,3,"Document assistant","Permissions checked first","#34d399",k(13.2),bd="6"),
+             M("cp",1,3,"Daily comparison","Change with no decision?","#4de2ff",k(7.0),bd="3"),
+             M("sw",2,3,"Switch off, keep evidence","A person decides the undo","#ff7a93",k(8.2),bd="4")]
+    edges = [("ag","gw",k(1.6)),("gw","ex",k(3.0)),("ex","api",k(4.0)),("gw","sg",k(11.8)),("sg","dl",k(5.2)),("ex","il",k(6.4)),
+             ("il","cp",k(7.2)),("dl","cp",k(7.2)),("cp","sw",k(8.4)),("hr","dm",k(10.2))]
+    packets = [dict(path=["ag","gw","ex","api"],t0=k(2.0),t1=k(5.0),color="#4de2ff")] if intro else []
+    caps = ([(.3,2.2,"One picture of the whole lab. The numbers match the seven diagrams that follow."),
+             (2.2,5.8,"1. The agent only proposes. The gateway signs a decision. The executor makes the call. Every decision is logged."),
+             (5.8,9.4,"2, 3, 4. If the agent goes around the gateway: make it hard, notice it, and answer it."),
+             (9.4,13.0,"5. An identity starts in HR, and the directory is checked against it."),
+             (13.0,16.0,"6. An assistant that answers from documents checks permissions first."),
+             (16.0,19.4,"7. Agents hand work on, and risky actions need a second approver.")] if intro else
+            [(.2,5.4,"Every box was tested with the expected result written first, then with the control switched off.")])
+    return dict(title="The whole architecture" if intro else "All of it together", sub="One picture of the lab" if intro else "Tested one control at a time", dur=dur, nodes=nodes, edges=edges, packets=packets, caps=caps, extra=[], chip="Master" if intro else "Recap")
+
+scenes.append(master(21, True))
 # 1 the gateway
 S("The agent only proposes", "How a request reaches the identity system", 15,
   [N("ag",0,0,"AI agent","Fixed-shape request. No password or token",CY,.4,pulse=[.6]),
@@ -132,7 +166,8 @@ S("Agents handing work to agents", "And a second person for risky actions", 14,
    (3.6,6.8,"Deleting a user is not decided by one signing point. It needs a second person."),
    (6.8,10.4,"A separate approver with a separate key. The proof is a public-key signature, so a compromised executor cannot forge it."),
    (10.4,13.6,"If the approver leaves, their waiting requests move to the manager.")])
-DUR_END = 6
+scenes.append(master(6.5, False))
+DUR_END = 5
 total = sum(s["dur"] for s in scenes) + DUR_END
 t0 = 0
 for s in scenes:
@@ -153,14 +188,14 @@ HTML = f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS}</style>
 var D={json.dumps(data)};
 function ease(x){{return x<0?0:x>1?1:1-Math.pow(1-x,3)}}
 var W=280,H=200, stage=document.getElementById('stage'), ln=document.getElementById('ln');
-function box(n){{return {{x:n.x,y:n.y,cx:n.x+W/2,cy:n.y+H/2}}}}
+function box(n){{var w=n.w||W,h=n.h||H;return {{x:n.x,y:n.y,w:w,h:h,cx:n.x+w/2,cy:n.y+h/2}}}}
 function clip(a,b){{ // point on a's border toward b
- var dx=b.cx-a.cx,dy=b.cy-a.cy,sx=dx?(W/2+3)/Math.abs(dx):1e9,sy=dy?(H/2+3)/Math.abs(dy):1e9,s=Math.min(sx,sy);return [a.cx+dx*s,a.cy+dy*s];}}
+ var dx=b.cx-a.cx,dy=b.cy-a.cy,sx=dx?(a.w/2+3)/Math.abs(dx):1e9,sy=dy?(a.h/2+3)/Math.abs(dy):1e9,s=Math.min(sx,sy);return [a.cx+dx*s,a.cy+dy*s];}}
 D.scenes.forEach(function(s,si){{
  s.byId={{}};
  s.nodes.forEach(function(n){{
-  var e=document.createElement('div'); e.className='n '+n.kind; e.style.setProperty('--c',n.color); e.style.left=n.x+'px'; e.style.top=n.y+'px';
-  e.innerHTML='<b>'+n.title+'</b><span>'+n.sub+'</span>'; stage.appendChild(e); n.el=e; s.byId[n.id]=n;
+  var e=document.createElement('div'); e.className='n '+n.kind; e.style.setProperty('--c',n.color); e.style.left=n.x+'px'; e.style.top=n.y+'px'; if(n.w){{e.style.width=n.w+'px';e.style.height=n.h+'px';}}
+  e.innerHTML='<b>'+n.title+'</b><span>'+n.sub+'</span>'+(n.bd?'<div class="bd"><i>'+n.bd+'</i></div>':''); stage.appendChild(e); n.el=e; s.byId[n.id]=n;
  }});
  s.edgeEls=s.edges.map(function(ed){{
   var a=box(s.byId[ed[0]]),b=box(s.byId[ed[1]]),p=clip(a,b),q=clip(b,a);
@@ -195,7 +230,7 @@ window.render=function(t){{
  // titles
  var ti=document.getElementById('ti'),su=document.getElementById('su'),ch=document.getElementById('ch');
  if(si>=0){{var s=D.scenes[si],lt=t-s.t0,f=Math.min(ease(lt/0.4),1-ease((lt-(s.dur-0.45))/0.4));
-  ti.textContent=s.title; su.textContent=s.sub; ch.textContent=(si+1)+' / '+D.scenes.length; ti.style.opacity=f; su.style.opacity=f; ch.style.opacity=1;
+  ti.textContent=s.title; su.textContent=s.sub; ch.textContent=s.chip?s.chip:(si)+' / 7'; ti.style.opacity=f; su.style.opacity=f; ch.style.opacity=1;
   var cp=null; s.caps.forEach(function(c){{ if(lt>=c[0]&&lt<c[1]) cp=c; }});
   if(cp){{cap.textContent=cp[2];cap.style.opacity=Math.min(ease((lt-cp[0])/0.35),1-ease((lt-(cp[1]-0.3))/0.3),f);}} else cap.style.opacity=0;
  }} else {{ ti.style.opacity=0;su.style.opacity=0;ch.style.opacity=0;cap.style.opacity=0; }}
