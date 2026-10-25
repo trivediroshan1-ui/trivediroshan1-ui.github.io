@@ -34,7 +34,7 @@ PERSON = {
     "address": {"@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN"},
     "alumniOf": {"@type": "CollegeOrUniversity", "name": "Asansol Engineering College"},
     "knowsLanguage": ["en", "hi"],
-    "sameAs": ["https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/", "https://github.com/trivediroshan1-ui"],
+    "sameAs": ["https://www.linkedin.com/in/roshan-trivedi-ciam/", "https://github.com/trivediroshan1-ui"],
     "knowsAbout": ["Identity and Access Management", "Privileged Access Management", "Credential Management",
                    "Zero Standing Privilege", "Non-Human Identity", "IAM Audit and Control Mapping",
                    "Model Context Protocol", "Agentic AI"],
