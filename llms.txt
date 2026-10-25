@@ -22,3 +22,14 @@
 ## Contact
 - [LinkedIn](https://www.linkedin.com/in/roshan-trivedi-ciam-49413a54/)
 - [GitHub](https://github.com/trivediroshan1-ui)
+
+## Flagship: AI Governance Lab
+- [AI Governance Lab](https://roshantrivedi.co.in/ai-governance-lab/): 13 rounds and 164 cases testing whether AI governance controls hold, on made-up data; every guess hashed before the code.
+- [All 164 cases](https://roshantrivedi.co.in/ai-governance-lab/cases/): each case with the guess, the result and what it shows.
+- [Mac record](https://roshantrivedi.co.in/ai-governance-lab/mac/): every command run on a MacBook Air, with output.
+- [What I got wrong](https://roshantrivedi.co.in/ai-governance-lab/what-i-got-wrong/): dated corrections, including the 25 Oct 2026 re-count of rounds 6, 7 and 9.
+- [Does AI Governance Hold? (book, 69 pages)](https://roshantrivedi.co.in/assets/ai-governance-lab-book.pdf)
+- [Who Approved That? (book, 138 pages)](https://roshantrivedi.co.in/book/)
+- [Rounds five to thirteen (PDF, 74 pages)](https://roshantrivedi.co.in/assets/ai-governance-lab-addendum.pdf)
+- [Code (MIT)](https://github.com/trivediroshan1-ui/ai-governance-lab): run it in a browser with GitHub Codespaces.
+Stated limits: small models, made-up data, no real tenant, and the author wrote both the guesses and the code. Personal project; not employer work.
