@@ -11,7 +11,7 @@ for n, (sid, name) in SEC.items():
     mp4 = f"assets/share/agl-round-{n}.mp4"
     if not os.path.exists(os.path.join(ROOT, mp4)): continue
     mb = os.path.getsize(os.path.join(ROOT, mp4)) / 1e6
-    block = (f'<!-- rv{n}:start -->\n        <figure class="rv" style="margin:18px 0;max-width:420px">'
+    block = (f'<!-- rv{n}:start -->\n        <figure class="rvid" style="margin:18px 0;max-width:420px">'
              f'<video controls playsinline preload="none" poster="/assets/share/agl-round-{n}-poster.jpg" style="width:100%;height:auto;border-radius:12px;background:#05061a">'
              f'<source src="/{mp4}" type="video/mp4"></video>'
              f'<figcaption class="body-text" style="font-size:.9em">Round {n} as a short video, no sound: {name}. <a href="/{mp4}">Download the MP4</a> ({mb:.1f} MB).</figcaption></figure>\n        <!-- rv{n}:end -->')
