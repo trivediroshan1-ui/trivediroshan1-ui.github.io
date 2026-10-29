@@ -1,4 +1,4 @@
-name: Link and number check
+name: Link, number and secret check
 
 on:
   pull_request:
@@ -17,3 +17,5 @@ jobs:
         run: python3 scripts/check-links.py
       - name: Lab numbers agree with data/stats.json
         run: python3 scripts/check-numbers.py
+      - name: No key-shaped secrets in tracked files
+        run: python3 scripts/check-secrets.py
