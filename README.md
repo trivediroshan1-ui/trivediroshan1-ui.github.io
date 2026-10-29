@@ -109,3 +109,7 @@ The slim top bar and the "Where next" band on inner pages are added by `python3 
 - `assets/chatbot-data.js` now loads only when someone opens the chat. Don't add it back as a `<script>` tag.
 - The newsletter form posts to Buttondown (username `trivedi`) in `index.html` and `_layouts/post.html`. The CSS still hides any form whose action contains `YOUR-BUTTONDOWN-USERNAME`, so a placeholder keeps it hidden.
 - Run order after edits: `set-page-themes.py`, `add-structured-data.py`, `set-security-meta.py`, `inline-home-css.py`, `build-palette.py`, `build-chat-index.py`, `build-sitemap.py`.
+
+## Newsletter
+
+Lab updates and new rounds: [buttondown.com/trivedi](https://buttondown.com/trivedi). You can also subscribe from the home page.
