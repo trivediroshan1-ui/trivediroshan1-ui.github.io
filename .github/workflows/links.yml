@@ -1,4 +1,4 @@
-name: Link check
+name: Link and number check
 
 on:
   pull_request:
@@ -15,3 +15,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Internal links point at real files
         run: python3 scripts/check-links.py
+      - name: Lab numbers agree with data/stats.json
+        run: python3 scripts/check-numbers.py
