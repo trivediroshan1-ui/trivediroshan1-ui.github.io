@@ -248,3 +248,13 @@ ol.ev-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns
 .agl .dg-fig figcaption a{color:var(--a-accent)}
 .agl.dg-page{display:grid;gap:28px}
 .agl.dg-page>section{min-width:0}.agl.dg-page{grid-template-columns:minmax(0,1fr)}
+
+/* Start-here box and on-this-page list (lab front page) */
+.agl-start,.agl-toc{margin:1.2em 0;padding:16px 18px;border:1px solid var(--a-line,#1f2a40);border-radius:14px;background:rgba(77,226,255,.06)}
+.agl-start h2,.agl-toc h2{margin:0 0 8px;font-size:1.05rem;line-height:1.25}
+.agl-start ol{margin:0;padding-left:1.3em;display:grid;gap:6px}
+.agl-toc ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.agl-toc a{display:inline-block;min-height:44px;line-height:44px;padding:0 14px;border:1px solid var(--a-line,#1f2a40);border-radius:999px;text-decoration:none}
+.agl-toc a:hover,.agl-toc a:focus-visible{border-color:currentColor}
+main section[id]{scroll-margin-top:80px}
+html[data-theme="light"] .agl-start,html[data-theme="light"] .agl-toc{background:#f1f8fb;border-color:#c5d3e0}

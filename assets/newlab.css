@@ -43,3 +43,6 @@ html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 
 .newlab .book::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--warn,#f7c873);margin-right:7px;animation:nl-blink 1.2s steps(2,start) infinite}
 .newlab .go{text-decoration:none}
 @media (prefers-reduced-motion:reduce){.newlab .book::before{animation:none}}
+
+/* Phones: keep the lab card short so the page headline is visible without scrolling */
+@media (max-width:560px){.newlab{grid-template-columns:minmax(0,1fr);padding:12px 14px}.newlab .doodle{display:none}.newlab p{display:none}.newlab h3{font-size:18px}.newlab .links{display:flex;flex-direction:column;gap:6px}}
