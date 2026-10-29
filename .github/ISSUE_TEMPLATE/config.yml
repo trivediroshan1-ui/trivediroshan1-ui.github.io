@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Propose a lab test case
+    url: https://github.com/trivediroshan1-ui/ai-governance-lab/issues/new/choose
+    about: New test cases go to the lab repository.
+  - name: Report a security problem privately
+    url: https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/security/advisories/new
+    about: Please do not open a public issue for a real secret or vulnerability.
