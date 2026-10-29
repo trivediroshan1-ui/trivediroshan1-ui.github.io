@@ -1,0 +1,21 @@
+name: Mistake on the site
+description: A wrong fact, number, link or typo on a page or in a book.
+labels: ["site"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page address
+      placeholder: https://roshantrivedi.co.in/...
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong, and what should it say?
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source or evidence, if you have one
