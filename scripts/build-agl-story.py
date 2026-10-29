@@ -63,7 +63,7 @@ body = '''<main id="main">
           <li><h3>Mapping controls</h3><p>Vendor controls matched to policy, then to audit standards, for finance, healthcare and security firms.</p></li>
           <li><h3>The AI promise</h3><p>Agents will map policies, AI will discover and automate identities, a central team will set each agent&rsquo;s access.</p></li>
           <li class="gap"><h3>The gap</h3><p>No clear use cases, no named policy per agent, no certifier, no answer for an agent that decides on its own.</p></li>
-          <li class="now"><h3>The lab</h3><p>A private test on made-up data. Expected results written first, then 59 cases run.</p></li>
+          <li class="now"><h3>The lab</h3><p>A private test on made-up data. Expected results written first. The first four rounds were 59 cases; the lab is now 13 rounds and 164 cases.</p></li>
         </ol>
       </section>
 

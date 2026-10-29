@@ -184,7 +184,7 @@ def d_audit():
 def d_lab():
     d = D("agl-lab", "The lab as a whole", "Four tracks of cases, run in rounds on three filters, then tested on unseen items, then on a real assistant. Results go into what held and what broke.", 640)
     tr = [("A", "Gateway", "16 cases"), ("G", "Guardrail", "17 cases"), ("I", "Agent identity", "12 cases"), ("E", "Audit", "14 cases")]
-    d.text(20, 16, "Four tracks, 59 cases, all made-up data", "dg-h")
+    d.text(20, 16, "Four tracks, first 59 cases, all made-up data", "dg-h")
     for i, (a, b, c) in enumerate(tr):
         x = 20 + i * 150
         d.node(x, 30, 140, 66, f"{a}  {b}", c, "")
@@ -371,7 +371,7 @@ def main():
 {chr(10).join(sections)}
       </div>
       '''
-    tail = tail.replace('<a href="/ai-governance-lab/" style="--k:#4de2ff">', '<a href="/ai-governance-lab/cases/" style="--k:#7df2d0"><b>Every use case</b><span>The 59 cases behind these diagrams.</span></a>\n          <a href="/ai-governance-lab/" style="--k:#4de2ff">', 1)
+    tail = tail.replace('<a href="/ai-governance-lab/" style="--k:#4de2ff">', '<a href="/ai-governance-lab/cases/" style="--k:#7df2d0"><b>Every use case</b><span>The first 59 cases behind these diagrams (all 164 are listed).</span></a>\n          <a href="/ai-governance-lab/" style="--k:#4de2ff">', 1)
     out = head + main_html + tail
     out = re.sub(r'  <script src="/assets/agl-try-filters.js[^\n]*\n  <script src="/assets/agl-try.js[^\n]*\n  <script src="/assets/agl-boot-try.js[^\n]*\n', "", out)
     os.makedirs(os.path.join(ROOT, "ai-governance-lab", "diagrams"), exist_ok=True)
