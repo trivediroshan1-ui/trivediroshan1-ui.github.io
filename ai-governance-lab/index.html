@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="/assets/theme.css">
     <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/agl.css?v=20261025a">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
     <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261025a">
     <script src="/assets/theme.js"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
@@ -51,6 +51,30 @@
         <li>I built a small lab with made-up Indian data to test whether common AI governance controls hold up under pressure.</li>
         <li>The register, the approvals, the kill switch and the audit trail held. A plain pattern filter did not: it scored 100 percent on the cases it was tuned on and missed most things it had not seen.</li>
         <li>A real AI assistant, given a short made-up company policy, followed it in all nine tests I tried. That is one assistant, one run.</li></ul></div></div>
+
+      <!-- toc:start -->
+      <aside class="agl-start" aria-labelledby="agl-start-h">
+        <h2 id="agl-start-h">Start here, in 60 seconds</h2>
+        <ol>
+          <li><a href="#architecture-video">Watch the 2-minute architecture video</a> (silent, captioned on screen)</li>
+          <li><a href="#book">Read the free book</a> (69 pages) or <a href="/ai-governance-lab/cases/">browse all 164 cases</a></li>
+          <li><a href="/ai-governance-lab/mac/">See every command I ran on my Mac</a>, with its output</li>
+        </ol>
+      </aside>
+      <nav class="agl-toc" aria-label="On this page">
+        <h2>On this page</h2>
+        <ul>
+          <li><a href="#why">Why</a></li>
+          <li><a href="#architecture">How it works</a></li>
+          <li><a href="#held">What held</a></li>
+          <li><a href="#broke">What broke</a></li>
+          <li><a href="#wrong">What I got wrong</a></li>
+          <li><a href="#round5">Rounds 5 to 13</a></li>
+          <li><a href="#frameworks">ISO, NIST, PCI, HIPAA</a></li>
+          <li><a href="#book">Free book</a></li>
+        </ul>
+      </nav>
+      <!-- toc:end -->
 
       <figure class="agl-method-fig" style="margin:1.5em 0;border:1px solid #1f2a40;border-radius:14px;overflow:hidden;background:#05061a"><img src="/assets/share/lab-method.svg" width="1200" height="400" loading="lazy" style="display:block;width:100%;height:auto" alt="How every case is tested: write the guess before the code, hash and commit it, run the cases, switch one control off in a copy, check whether a case notices (it must pass normally, then give a different result that is not an error), and keep every file."><figcaption style="padding:.6em 1em;font-size:.85em;color:#a9b6d3">How every case is tested. The animation stops if your device asks for reduced motion.</figcaption></figure>
 
@@ -109,12 +133,12 @@
         <p class="body-text">Every call to a model goes through one gateway. It checks the register, the model, the data and the tools, masks what the guardrail finds, and writes every decision to a log that is chained so an edited line shows up. Pick a request below and send it. Each one is a real case from the lab, and the step where it stops is where the lab found the problem.</p>
         <div id="agl-arch"></div>
       </section>
-      <section>
+      <section id="held">
         <h2>What held</h2>
         <p class="body-text">The register, the approvals, the kill switch and the audit trail behaved as designed. That is the less interesting half. I wrote both the controls and the tests, so matching my own guesses proves little.</p>
       </section>
 
-      <section>
+      <section id="broke">
         <h2>What broke</h2>
         <p class="body-text">The guardrail filter. A plain pattern filter caught the textbook form of an Aadhaar, a PAN or a secret, and missed the way people really type them: a lower-case PAN, a phone number split five and five, a database URL with a password in it, a reworded instruction hidden in a document.</p>
         <p class="body-text">On the first round, the plain filter (v1) handled 20 of 53 variants. I fixed those gaps and the second filter (v2) handled 42 of 53. On a labelled set of 200 made-up samples, catch rate went from 68 percent to 90 percent.</p>
@@ -194,7 +218,7 @@
         </ul>
       </section>
 
-      <section>
+      <section id="wrong">
         <h2>What I got wrong</h2>
         <p class="body-text">I predicted that one phone format, a number starting 91 without a plus, would be caught. It was not. Running it is what showed me.</p>
       </section>
