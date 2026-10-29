@@ -107,5 +107,5 @@ The slim top bar and the "Where next" band on inner pages are added by `python3 
 - `scripts/add-structured-data.py` writes one `id="ld-site"` JSON-LD block per page (breadcrumbs, Person, WebSite, Book, ProfilePage and so on). Re-run it after adding a page.
 - `scripts/build-sitemap.py` rebuilds `sitemap.xml` with real `lastmod` dates. Run it after any content change.
 - `assets/chatbot-data.js` now loads only when someone opens the chat. Don't add it back as a `<script>` tag.
-- The newsletter form is hidden until you replace `YOUR-BUTTONDOWN-USERNAME` in `index.html` and `_layouts/post.html` with your Buttondown username.
+- The newsletter form posts to Buttondown (username `trivedi`) in `index.html` and `_layouts/post.html`. The CSS still hides any form whose action contains `YOUR-BUTTONDOWN-USERNAME`, so a placeholder keeps it hidden.
 - Run order after edits: `set-page-themes.py`, `add-structured-data.py`, `set-security-meta.py`, `inline-home-css.py`, `build-palette.py`, `build-chat-index.py`, `build-sitemap.py`.
