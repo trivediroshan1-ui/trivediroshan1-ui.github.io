@@ -1,0 +1,32 @@
+{
+  "_note": "Single source for the numbers quoted across the site. scripts/check-numbers.py fails if a page quotes a different number without a legacy label. Update here first, then the pages.",
+  "as_of": "2026-10-25",
+  "ai_governance_lab": {
+    "rounds": 13,
+    "cases": 164,
+    "cases_rounds_1_to_4": 59,
+    "cases_rounds_5_to_13": 105,
+    "book_pages": 69,
+    "addendum_pages": 74,
+    "hand_run_requests_track_p": 9
+  },
+  "who_approved_that_book": {
+    "pages": 138,
+    "print_interior_pages": 136
+  },
+  "mcp_lab": {
+    "cases": 161,
+    "report_pages": 122,
+    "round_one_cases": 76,
+    "round_one_first_run_cases": 71
+  },
+  "legacy_context_words": [
+    "first four rounds",
+    "rounds 1 to 4",
+    "first 59",
+    "first four",
+    "made at round 5",
+    "Written at round 5",
+    "from the first four rounds"
+  ]
+}
