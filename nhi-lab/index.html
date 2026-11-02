@@ -358,9 +358,9 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
     <p>I did not test any commercial product. This is how I read the categories, from public sources I link below. Check each vendor's own documentation for what a product does today.</p>
     <div class="tools">
       <div><h3>PAM vaults and brokers</h3><p>CyberArk, Delinea, BeyondTrust and others. Strong at vaulting and rotating privileged and service-account passwords, session recording and just-in-time access. In my cases this is the territory of rotation, JIT windows, recording and break-glass.</p></div>
-      <div><h3>IGA</h3><p>SailPoint, Saviynt and others. Built for owners, certification campaigns and joiner-mover-leaver. In my cases this is ownership, retirement and sponsor reviews.</p></div>
+      <div><h3>IGA</h3><p>SailPoint, Saviynt and others. Built for owners, certification campaigns and joiner-mover-leaver. In my cases this is ownership, retirement and sponsor reviews. Some IGA vendors now sell machine-identity products too: SailPoint's documentation lists one called Entro (<a href="https://documentation.sailpoint.com/entro/help/getting-started/about-entro.html" rel="noopener">SailPoint docs</a>). I have not read its description.</p></div>
       <div><h3>Secrets managers</h3><p>HashiCorp Vault and the cloud secret managers. Store and issue secrets, often short-lived. In my cases this is short token lifetimes and per-job credentials.</p></div>
-      <div><h3>NHI-focused and cloud-risk platforms</h3><p>Clutch, Wiz and similar. Newer products aimed at finding machine identities and their relationships across cloud, CI and SaaS. In my cases this is discovery and the OAuth and CI paths.</p></div>
+      <div><h3>NHI-focused and cloud-risk platforms</h3><p>Clutch, Wiz and similar. Newer products aimed at finding machine identities and their relationships across cloud, CI and SaaS. In my cases this is discovery and the OAuth and CI paths. Wiz describes a Non-Human Identities dashboard (<a href="https://wiz.io/blog/non-human-identities-dashboard" rel="noopener">Wiz blog, February 2024</a>) that finds service accounts, flags privileged ones and shows attack paths. Clutch describes its platform as visibility, lifecycle management, posture, detection and response (<a href="https://www.okta.com/integrations/clutch-security/" rel="noopener">Okta integration page</a>, a vendor claim).</p></div>
     </div>
     <h3>What the sources say</h3>
     <ul class="srcs">
@@ -414,6 +414,7 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-round-17.md">Round 17, shadow AI (4 cases)</a></td><td><code>4e6dfc1a80b2fa1e0a0da0a129882e87fdd3be931b5dddafd018d92c05dc8b7c</code></td></tr>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-gap-cases.md">Gap cases (3 cases)</a></td><td><code>7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d</code></td></tr>
     </tbody></table>
+    <p><strong>Read it offline:</strong> <a href="/nhi-lab/nhi-lab-book.pdf">the lab as a 12-page PDF book</a> (about 90 KB), or <a href="/assets/share/nhi-lab.mp4">the 54-second silent video</a> (1.3 MB).</p>
     <p><a href="/nhi-lab/evidence/cases.py">cases.py</a> · <a href="/nhi-lab/evidence/run.py">run.py</a> · <a href="/nhi-lab/evidence/RESULTS.md">RESULTS.md</a> · <a href="/nhi-lab/evidence/results.json">results.json</a>. Run it with <code>python3 run.py</code>. It needs only Python 3 and checks the guess hashes first.</p>
     <p>Related: <a href="/ai-governance-lab/">the AI governance lab</a> (13 rounds, 164 cases) and <a href="/labs/">all labs</a>.</p>
   </section>
