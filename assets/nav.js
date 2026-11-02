@@ -63,6 +63,15 @@
           ["/ai-governance-lab/transcripts/", "Full chat and terminal output", "doc"],
           ["/ai-governance-lab/appendix/", "Appendix and glossary", "doc"],
           ["/ai-governance-lab/implement/", "Using it, and what it costs", "coin"]] },
+        { title: "Non-human identity lab", k: "pam", items: [
+          ["/nhi-lab/", "Overview: 46 cases, 4 wrong guesses", "shield"],
+          ["/nhi-lab/framework/", "The 7 step framework", "layers"],
+          ["/nhi-lab/market/", "Market in 2026", "scale"],
+          ["/nhi-lab/method/", "What we did, step by step", "list"],
+          ["/nhi-lab/audit/", "Audit data, CSV and JSON", "check"],
+          ["/nhi-lab/roadmap/", "Roadmap", "calendar"],
+          ["/nhi-lab/explainer/", "One minute explainer", "spark"],
+          ["/nhi-lab/nhi-lab-book.pdf", "The book. 65 pages", "book"]] },
         { title: "Read and try", k: "plat", items: [
           ["/book/", "All the free books", "book"],
           ["/tools/tier-check/", "Credential tier self-check", "pyramid"],
@@ -170,7 +179,7 @@
     var cols = el("div", "nv-cols"); var n = 0;
     // governance + platform share a column on the Work menu so the columns stay even
     var groups = menu.groups, merged = [];
-    if (menu.id === "work") merged = [[groups[0]], [groups[1]], [groups[2], groups[3]]]; else groups.forEach(function (g) { merged.push([g]); });
+    if (menu.id === "work" || menu.id === "labs") merged = [[groups[0]], [groups[1]], [groups[2], groups[3]]]; else groups.forEach(function (g) { merged.push([g]); });
     merged.forEach(function (stack) {
       var col = el("div", "nv-col");
       stack.forEach(function (g) {
