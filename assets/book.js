@@ -27,8 +27,18 @@
 
 (function () {
   var sel = document.getElementById("bookpick"); if (!sel) return;
-  sel.addEventListener("change", function () {
+  function apply() {
     var cards = document.querySelectorAll("#booklist [data-book]");
     Array.prototype.forEach.call(cards, function (c) { c.hidden = sel.value !== "all" && c.getAttribute("data-book") !== sel.value; });
-  });
+  }
+  sel.addEventListener("change", apply);
+  // A link like /book/#nhi (from the Book menu) opens the library on that book.
+  function fromHash() {
+    var h = (location.hash || "").replace("#", ""), ok = false;
+    Array.prototype.forEach.call(sel.options, function (o) { if (o.value === h && h !== "all") ok = true; });
+    if (!ok) return;
+    sel.value = h; apply();
+    var lib = document.getElementById("library"); if (lib && lib.scrollIntoView) lib.scrollIntoView();
+  }
+  window.addEventListener("hashchange", fromHash); fromHash();
 })();
