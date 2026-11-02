@@ -103,11 +103,18 @@ head = re.sub(r'<meta property="og:url"[^>]*>', '<meta property="og:url" content
 head = re.sub(r'<title>.*?</title>', '<title>Non-human identity lab &middot; Roshan Trivedi</title>', head)
 head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', head, flags=re.S)
 ld = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 27 cases","description":"27 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>'
-head = head.replace('</head>', '  <link rel="stylesheet" href="/assets/blinks.css?v=20261102b">\n  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102a">\n  ' + ld + '\n</head>')
+head = head.replace('</head>', '  <link rel="stylesheet" href="/assets/blinks.css?v=20261102b">\n  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102b">\n  ' + ld + '\n</head>')
 nav = re.search(r'<nav class="hg-sitenav".*?</nav>', open('ai-governance-lab/index.html').read(), re.S).group(0)
 foot = re.search(r'<footer class="hg-foot">.*?</footer>', open('ai-governance-lab/index.html').read(), re.S).group(0)
 
 body = open('scripts/nhi-lab-body.html').read()
+R2 = json.load(open('nhi-lab/evidence/results-stretch.json'))['rows']
+r2 = ''
+for r in R2:
+    wrong = bool(r['mismatch_without'] or r['mismatch_with'])
+    nz = ', '.join(f"{k.replace('_',' ')}: " + ('yes' if v else 'NO') for k, v in r['noticed'].items())
+    r2 += f"<tr><th scope=\"row\">{E(r['id'])} {E(r['title'])}</th><td>{'wrong' if wrong else 'matched'}</td><td>{E(nz)}</td></tr>"
+body = body.replace('{{ROUND2}}', r2)
 body = body.replace('{{CHIPS}}', chips).replace('{{CASES}}', '\n'.join(cards)).replace('{{METHOD}}', method_svg()).replace('{{LIFE}}', life_svg())
 page = head + '  <body style="--c:#7df2d0">\n    <a class="skip" href="#main">Skip to content</a>\n    ' + nav + '\n' + body + '\n    ' + foot + '\n  <script src="/assets/nhi-lab.js?v=20261102a" defer></script>\n  </body>\n</html>\n'
 open('nhi-lab/index.html', 'w').write(page)

@@ -66,3 +66,5 @@
 html[data-theme="light"] .nhi .toc{background:var(--page,#f5f7fb)}
 html[data-theme="light"] .nflow .tx{fill:#0f172a}
 @media (max-width:700px){.nhi .toc{position:static}}
+
+#round2 th[scope=row]{text-align:left;font-weight:600}#round2 td{vertical-align:top}
