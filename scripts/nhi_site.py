@@ -3,7 +3,7 @@ import html, re, os, textwrap
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 E = html.escape
-CSS_V = '20261102c'
+CSS_V = '20261102d'
 BASE = 'https://roshantrivedi.co.in'
 
 SUBNAV = [

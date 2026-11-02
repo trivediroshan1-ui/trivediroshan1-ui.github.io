@@ -33,9 +33,9 @@
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
         <script src="/assets/palette.js?v=20261019f" defer></script>
-  <link rel="stylesheet" href="/assets/blinks.css?v=20261102c">
-  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102c">
-  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102c">
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 46 cases","description":"46 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>
 </head>
     <body style="--c:#7df2d0">
@@ -48,6 +48,15 @@
     <h1>I tested 46 non-human identity cases. My guesses were wrong in four places.</h1>
     <p class="dek">Service accounts, API keys, CI tokens, break-glass accounts and AI tools with their own logins. Made-up data, guesses committed before the code, and every control switched off once to see if anything noticed.</p>
     <p class="stats" aria-label="Summary numbers"><span><b>46</b> cases</span><span><b>42</b> guesses matched</span><span><b>4</b> guesses wrong</span><span><b>8</b> cases with a control nothing noticed</span></p>
+    <figure class="hero-vid">
+      <video controls playsinline preload="none" poster="/assets/share/nhi-lab-motion-poster.jpg" width="1920" height="1080" aria-label="A 60-second silent video: how the lab runs, how it is built, and what the data says"><source src="/assets/share/nhi-lab-motion.mp4" type="video/mp4">Your browser cannot play this video. The same content is written out below.</video>
+      <figcaption>60 seconds, no sound, captions on screen: the lab, the architecture and the data. <a href="/assets/share/nhi-lab-motion.mp4" download>Download the MP4</a> (2.6 MB).</figcaption>
+      <details class="hero-vid-tx"><summary>Read the video as text</summary>
+        <p><strong>The lab.</strong> Each guess is written first, hashed with SHA-256 and committed before any code. Then the code is written, each case is run with the control off and on, and each control is switched off alone to see whether any check notices. The 46 cases sit in four guess files, each with its own hash. A small script, verify.py, re-checks the four hashes.</p>
+        <p><strong>The architecture.</strong> The guess files and the results go through one shared data module. The lab pages, the audit data (CSV and JSON) and the 65-page book are built from it. A 7-step framework holds every case at exactly one step: Find 4, Own 6, Limit 10, Store and issue 7, Rotate and expire 9, Watch 3, Retire and respond 7.</p>
+        <p><strong>The data.</strong> 46 cases (27 in the first run, 19 in the second). 42 guesses matched and 4 were wrong. 70 controls were switched off one at a time. In 8 cases a control went unnoticed, and 12 cases carry a recorded limit. Against the OWASP Non-Human Identities Top 10, 8 of 10 are covered directly, NHI4 partly and NHI8 weakly.</p>
+      </details>
+    </figure>
   </header>
 
   <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">One email when I publish a new lab or case study.</span></span><span class="go">Subscribe &rarr;</span></a>
