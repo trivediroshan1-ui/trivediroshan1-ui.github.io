@@ -146,7 +146,7 @@ S += [Paragraph('About this book', h1),
       Paragraph('Problem statement', h2),
       Paragraph('Most companies have many more machine identities than people. Control mapping sheets say a control exists. They rarely show where it stops. Reports from 2026 describe breaches that began with a forgotten token, a leaked secret or an AI app that an employee linked with broad access. Nobody checks whether the usual controls would have held, and people seldom publish their own wrong guesses.', body),
       Paragraph('Scope', h2),
-      Paragraph('<b>In scope:</b> 27 cases in six areas: discovering identities, giving them owners and retiring them, credentials and rotation, the front door and trust, privileged access, and shadow AI. Plus three cases from a search for gaps.<br/><b>Out of scope:</b> any commercial product, real vaults or directories, real cloud tenants, real AI models, cost, and Indian regulation (RBI, CERT-In, data protection). I make no compliance claim.<br/><b>Not yet run:</b> 13 stretch cases and 6 chain tests. Their guesses are written and wait for commit.', body),
+      Paragraph('<b>In scope:</b> 27 cases in six areas: discovering identities, giving them owners and retiring them, credentials and rotation, the front door and trust, privileged access, and shadow AI. Plus three cases from a search for gaps.<br/><b>Out of scope:</b> any commercial product, real vaults or directories, real cloud tenants, real AI models, cost, and Indian regulation (RBI, CERT-In, data protection). I make no compliance claim.<br/><b>Second run:</b> 13 stretch cases and 6 chain tests, with their guesses committed first (page 20). The headline numbers in this book are the first 27 cases.', body),
       Paragraph('All people, companies, numbers and data are made up. The company, Kaveri Finance, does not exist. Every secret in the tests is fake. This is not a product review and not legal advice. A pass shows the model did what I wrote it to do.', small),
       PageBreak(),
       Paragraph('Contents', h1)]
@@ -248,7 +248,7 @@ for x in ['Checks that a sign-off is true. Owner attestations, break-glass justi
 S += [Paragraph('In this lab', h2)]
 for x in ['It is a model, not a real environment. Real vaults, directories and CI systems will behave differently.',
           'I wrote both the guesses and the code. An outside reader writing guesses first would be a stronger test.',
-          '13 stretch cases and the round of chain tests are not run yet. Their guesses are written and waiting to be committed.',
+          'The 13 stretch cases and 6 chain tests ran in a second run. 21 queued cases and the Stage 2 testing are not run.',
           'AWS, Azure and Google Cloud each have their own key and role habits. These cases are generic.',
           'Indian rules (RBI, CERT-In, data protection) are not checked. I make no compliance claim.',
           'No cost data.']:
@@ -303,12 +303,21 @@ S += [Table([[Paragraph(f'<b>{a}</b>', cell), Paragraph(b, cell)] for a, b in GL
       Paragraph('Website: roshantrivedi.co.in<br/>Newsletter: buttondown.com/trivedi<br/>Other labs: AI governance lab (13 rounds, 164 cases) and the MCP lab.', body),
       Paragraph('If you think a case is wrong, tell me. I will add it and keep the original.', small)]
 
+
+S += [PageBreak(), Paragraph('Second run: 13 stretch cases and 6 chain tests', h1),
+      Paragraph('These ran after the first 27, with the same method. The guesses were committed first (commit 78d7e3e). The chain tests are rule models: I decided which control stops which link, so the results follow from my rules and are weak evidence.', body),
+      Paragraph('<b>Three guesses were wrong.</b> I wrote that 9 identities with two or three names each would give 51 entries. That is impossible: it gives 43. After merging I expected 30 and got 29, because stripping trailing digits merged two real accounts into one. For the forgotten service account chain I guessed the secret scan on tickets was the most useful single control. In my rules the owner check stops it earliest, but only for accounts created after the rule. For an account that already exists the scan is the one that works.', body),
+      Paragraph('<b>My first run of the matching case was wrong because of my own test data.</b> I had given 21 identities the same owner, so they merged into 11. I fixed the data and kept the first output.', body),
+      Paragraph('<b>Controls that hid each other.</b> In the help-desk reset case, strong proof and the notice with a delay each stopped both attacker resets alone, so switching either off showed nothing. Rotating AI-service keys every 90 days changed nothing once the scan revoked the keys it could see.', body),
+      Paragraph('<b>Limits.</b> A password copied during a checkout and used from another tool is not seen. If the real person approves the reset notice, the account is lost with both controls on. An extension of an automation is accepted on any written reason.', body)]
+
 S += [PageBreak(), Paragraph('Evidence you can check', h1),
       Paragraph('The guess files, the code and the results are public at roshantrivedi.co.in/nhi-lab/. The SHA-256 hash of each guess file was recorded when I committed it, before the code existed.', body)]
 hs = [['Guess file', 'SHA-256'],
       ['Rounds 14 and 15 (20 cases)', 'f06f355eb80c151cb237ca4ef0c09dad9bc995fe5d395dca03f8756b0c69c784'],
       ['Round 17, shadow AI (4 cases)', '4e6dfc1a80b2fa1e0a0da0a129882e87fdd3be931b5dddafd018d92c05dc8b7c'],
-      ['Gap cases (3 cases)', '7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d']]
+      ['Gap cases (3 cases)', '7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d'],
+      ['Stretch and chain tests (19 cases)', '40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed']]
 ht = Table([[Paragraph(a, cell), Paragraph(f'<font name="M" size="6.4">{b}</font>', cell)] for a, b in hs], colWidths=[50*mm, W-36*mm-50*mm])
 ht.setStyle(TableStyle([('BACKGROUND', (0,0), (-1,0), SOFT), ('LINEBELOW', (0,0), (-1,-1), .4, colors.HexColor('#d7deee')), ('VALIGN', (0,0), (-1,-1), 'MIDDLE')]))
 S += [ht, Spacer(1, 5*mm),

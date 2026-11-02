@@ -1,0 +1,517 @@
+{
+ "run_at": "2026-11-02T15:43:01",
+ "rows": [
+  {
+   "id": "N-R14-07",
+   "title": "One identity, three names",
+   "chain": false,
+   "without": {
+    "count": 43,
+    "split_findings": true,
+    "wrong_merges": 0
+   },
+   "with_": {
+    "count": 29,
+    "split_findings": false,
+    "wrong_merges": 1
+   },
+   "mismatch_without": {
+    "count": [
+     51,
+     43
+    ]
+   },
+   "mismatch_with": {
+    "count": [
+     30,
+     29
+    ]
+   },
+   "noticed": {
+    "owner_match": true,
+    "normalise_name": true
+   },
+   "limit": "my arithmetic was wrong: 9 identities with 2 or 3 names each cannot give 51 entries; and stripping trailing digits merged two real accounts",
+   "extras": []
+  },
+  {
+   "id": "N-R14-19",
+   "title": "Scoring: rank so the top gets fixed first",
+   "chain": false,
+   "without": {
+    "tie": true,
+    "first": null,
+    "listed_first": "prod-payments"
+   },
+   "with_": {
+    "tie": false,
+    "first": "prod-payments",
+    "listed_first": "prod-payments"
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "reach_in_score": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-20",
+   "title": "Close only when the old secret is dead",
+   "chain": false,
+   "without": {
+    "closed": 5,
+    "open": 0,
+    "old_live": 2
+   },
+   "with_": {
+    "closed": 3,
+    "open": 2
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "verify_old_dead": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-21",
+   "title": "Agents share a team credential",
+   "chain": false,
+   "without": {
+    "log_names_agent": false,
+    "revoke_hits": 4
+   },
+   "with_": {
+    "log_names_agent": true,
+    "revoke_hits": 1
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "key_per_agent": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-22",
+   "title": "A person logs in with a service account",
+   "chain": false,
+   "without": {
+    "direct_allowed": true,
+    "accountable": null
+   },
+   "with_": {
+    "direct_allowed": false,
+    "accountable": "asha"
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "block_interactive": true,
+    "checkout_names_person": true
+   },
+   "limit": {
+    "copied_password_used_elsewhere_seen": false,
+    "note": "a password copied during a checkout and used from another tool is not seen by the control"
+   },
+   "extras": []
+  },
+  {
+   "id": "P-R15-10",
+   "title": "Phishing-resistant MFA for admins",
+   "chain": false,
+   "without": {
+    "bad_through": 6,
+    "genuine_ok": 4
+   },
+   "with_": {
+    "bad_through": 0,
+    "genuine_ok": 4
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "passkey": true,
+    "no_sms_fallback": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-15",
+   "title": "The vault, its backups and who can read them",
+   "chain": false,
+   "without": {
+    "nonbackup_reads_ok": 5,
+    "alerts": 0
+   },
+   "with_": {
+    "nonbackup_reads_ok": 0,
+    "alerts": 5
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "same_rules": true,
+    "alert_nonbackup": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-16",
+   "title": "Help desk reset path",
+   "chain": false,
+   "without": {
+    "attacker_resets_ok": 2
+   },
+   "with_": {
+    "attacker_resets_ok": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "strong_proof": false,
+    "notice_and_delay": false
+   },
+   "limit": {
+    "person_approves_the_notice_account_lost": true,
+    "note": "if the real person is also tricked into approving the notice, the account is lost with both controls on"
+   },
+   "extras": []
+  },
+  {
+   "id": "P-R15-19",
+   "title": "A vendor is needed at 2 a.m.",
+   "chain": false,
+   "without": {
+    "active_after_3h": true,
+    "recorded": false
+   },
+   "with_": {
+    "active_after_3h": false,
+    "recorded": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "approve_and_record": true,
+    "auto_expiry": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-25",
+   "title": "Mass rotation after a breach",
+   "chain": false,
+   "without": {
+    "outages": 12,
+    "unrotated": 0
+   },
+   "with_": {
+    "outages": 0,
+    "unrotated": 2
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "consumer_first": true,
+    "dry_run": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "S-R17-02",
+   "title": "AI tool inherits the full permissions of the person",
+   "chain": false,
+   "without": {
+    "readable": 40,
+    "writable": 40
+   },
+   "with_": {
+    "readable": 1,
+    "writable": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "scope_read_one": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "S-R17-06",
+   "title": "AI-service keys leak into repositories",
+   "chain": false,
+   "without": {
+    "revoked_on_find": 0,
+    "valid": 6
+   },
+   "with_": {
+    "revoked_on_find": 5,
+    "valid": 1
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "scan_revoke": true,
+    "rotate_90d": false
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "S-R17-10",
+   "title": "Scheduled automations outlive the test window",
+   "chain": false,
+   "without": {
+    "disabled": 0,
+    "running": 5
+   },
+   "with_": {
+    "disabled": 4,
+    "running": 1
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "end_date_at_creation": true,
+    "sweep": true
+   },
+   "limit": {
+    "extension_reason_checked": false,
+    "note": "an extension is accepted on any written reason"
+   },
+   "extras": []
+  },
+  {
+   "id": "C-R16-C01",
+   "title": "The forgotten service account",
+   "chain": true,
+   "without": {
+    "stopped_at": null,
+    "reached_end": true,
+    "detected_at": null
+   },
+   "with_": {
+    "stopped_at": 1,
+    "reached_end": false,
+    "detected_at": null,
+    "alone_stopped_at": {
+     "owner_required": 1,
+     "secret_scan_tickets": 2,
+     "rotation": 4
+    },
+    "best_alone": "owner_required",
+    "short_lived_alone_stops": false,
+    "sponsor_review_alone_leaves_window": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {
+    "best_alone": [
+     "secret_scan_tickets",
+     "owner_required"
+    ]
+   },
+   "noticed": {
+    "owner_required": true,
+    "secret_scan_tickets": false,
+    "rotation": false
+   },
+   "limit": null,
+   "extras": [
+    {
+     "label": "account already exists (legacy), owner rule cannot apply",
+     "got": {
+      "stopped_at": 2,
+      "reached_end": false,
+      "detected_at": null
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "C-R16-C02",
+   "title": "The token in the repository",
+   "chain": true,
+   "without": {
+    "stopped_at": null,
+    "reached_end": true,
+    "detected_at": null
+   },
+   "with_": {
+    "stopped_at": 1,
+    "reached_end": false,
+    "detected_at": null,
+    "alone_stopped_at": {
+     "commit_block": 1,
+     "short_lived": 4,
+     "revoke_on_find": null
+    },
+    "best_alone": "commit_block",
+    "short_lived_alone_stops": true,
+    "sponsor_review_alone_leaves_window": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "commit_block": true,
+    "short_lived": false,
+    "revoke_on_find": false
+   },
+   "limit": null,
+   "extras": [
+    {
+     "label": "the finder is faster than the token lifetime (12 hours)",
+     "got": {
+      "stopped_at": null,
+      "reached_end": true,
+      "detected_at": null
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "C-R16-C04",
+   "title": "The contractor who never left",
+   "chain": true,
+   "without": {
+    "stopped_at": null,
+    "reached_end": true,
+    "detected_at": null
+   },
+   "with_": {
+    "stopped_at": 3,
+    "reached_end": false,
+    "detected_at": null,
+    "alone_stopped_at": {
+     "end_date_expiry": 3,
+     "sponsor_review": null
+    },
+    "best_alone": "end_date_expiry",
+    "short_lived_alone_stops": false,
+    "sponsor_review_alone_leaves_window": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "end_date_expiry": true,
+    "sponsor_review": false
+   },
+   "limit": null,
+   "extras": [
+    {
+     "label": "attack 120 days after contract end, sponsor review runs at 90",
+     "got": {
+      "stopped_at": 3,
+      "reached_end": false,
+      "detected_at": null
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "C-R16-C05",
+   "title": "The break-glass password everyone knows",
+   "chain": true,
+   "without": {
+    "stopped_at": null,
+    "reached_end": true,
+    "detected_at": null
+   },
+   "with_": {
+    "stopped_at": 3,
+    "reached_end": false,
+    "detected_at": 4,
+    "alone_stopped_at": {
+     "alert_every_use": null,
+     "rotate_on_return": 3
+    },
+    "best_alone": "rotate_on_return",
+    "short_lived_alone_stops": false,
+    "sponsor_review_alone_leaves_window": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "alert_every_use": true,
+    "rotate_on_return": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "C-R16-C06",
+   "title": "Approval fatigue",
+   "chain": true,
+   "without": {
+    "stopped_at": null,
+    "reached_end": true,
+    "detected_at": null
+   },
+   "with_": {
+    "stopped_at": 4,
+    "reached_end": false,
+    "detected_at": 3,
+    "alone_stopped_at": {
+     "batch_limits": null,
+     "risk_shown_first": null,
+     "second_approver_high_risk": 4
+    },
+    "best_alone": "second_approver_high_risk",
+    "short_lived_alone_stops": false,
+    "sponsor_review_alone_leaves_window": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "batch_limits": false,
+    "risk_shown_first": true,
+    "second_approver_high_risk": true
+   },
+   "limit": "the rule model says risk-first display only flags the request. Whether a tired approver acts on the flag is human behaviour, which this model does not test",
+   "extras": []
+  },
+  {
+   "id": "C-R16-C17",
+   "title": "The old door",
+   "chain": true,
+   "without": {
+    "stopped_at": null,
+    "reached_end": true,
+    "detected_at": null
+   },
+   "with_": {
+    "stopped_at": 2,
+    "reached_end": false,
+    "detected_at": 4,
+    "alone_stopped_at": {
+     "block_direct_login": 2,
+     "checkin_alert": null
+    },
+    "best_alone": "block_direct_login",
+    "short_lived_alone_stops": false,
+    "sponsor_review_alone_leaves_window": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "block_direct_login": true,
+    "checkin_alert": true
+   },
+   "limit": null,
+   "extras": []
+  }
+ ]
+}
