@@ -1,0 +1,134 @@
+<main id="main" class="nhi">
+  <header class="hero mcp-hero">
+    <p class="eyebrow">Non-human identity lab</p>
+    <h1>I tested 27 non-human identity cases. My guesses were wrong in two places.</h1>
+    <p class="dek">Service accounts, API keys, CI tokens, break-glass accounts and AI tools with their own logins. Made-up data, guesses committed before the code, and every control switched off once to see if anything noticed.</p>
+    <p class="stats" aria-label="Summary numbers"><span><b>27</b> cases</span><span><b>25</b> guesses matched</span><span><b>2</b> guesses wrong</span><span><b>2</b> controls masked by another</span></p>
+  </header>
+
+  <nav class="toc" aria-label="On this page"><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 27 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+
+  <section id="what" aria-labelledby="what-h">
+    <h2 id="what-h">What I did, why, and how</h2>
+    <div class="trio">
+      <div><h3>What</h3><p>I ran 27 cases about machine identities: finding them, giving them owners, rotating their secrets, controlling privileged access and catching AI tools that quietly hold credentials. 24 were my must-run cases. 3 more came from a search for gaps, based on 2026 incident reports.</p></div>
+      <div><h3>Why</h3><p>Most companies have many more machine identities than people, and mapping sheets say a control exists without showing it holds. I wanted to see where a control stops, and to keep my own wrong guesses on the page.</p></div>
+      <div><h3>How</h3><p>Before any code, I wrote what I expected and committed the files. Then I wrote small models of each control and ran every case with the control off and on. Then I switched each control off by itself to see whether the result changed.</p></div>
+    </div>
+    <figure>{{METHOD}}<figcaption>The method. The commit in step 3 is what makes the guesses honest: they cannot change after the result is known.</figcaption></figure>
+    <p class="note">One limit up front: I wrote both the guesses and the code, and every case is a small in-memory model, not a real vault, directory or cloud. A match proves little. The misses and the limits are the useful part.</p>
+  </section>
+
+  <section id="workflow" aria-labelledby="wf-h">
+    <h2 id="wf-h">The life of a machine identity</h2>
+    <p>Every case sits on one stage of this loop. The pulse is a new identity moving through it. The number under each stage is how many of the 27 cases test it.</p>
+    <figure>{{LIFE}}<figcaption>Discover, own, credential, control, privileged access, retire. Retiring what is unused feeds the next discovery scan.</figcaption></figure>
+  </section>
+
+  <section id="found" aria-labelledby="found-h">
+    <h2 id="found-h">What I found</h2>
+    <ul class="finds">
+      <li><b>The secret scan missed two of eight fake secrets, not one.</b> It caught six. The two it missed were a secret split across two lines and a base64-encoded one. I had guessed one miss.</li>
+      <li><b>Two controls showed no effect on their own, because another control already stopped the attack.</b> A 10-minute token lifetime changed nothing once the token was bound to the runner and revoked at job end. A vendor-breach revoke changed nothing once an app allowlist refused the grant. I guessed every control would show up. That is layering, and it also means a one-at-a-time switch-off can say "nothing happened" for a control that matters in a different scenario.</li>
+      <li><b>Several controls stopped where I expected.</b> A made-up ticket number passed the break-glass review because nothing checks it against the ticket system. A false justification for break-glass use was accepted. A bound CI token still worked from inside the runner. An allowlisted app that is later breached works until someone revokes it. A false retirement sign-off left one identity active. A consumer missing from the list still broke after rotation.</li>
+    </ul>
+    <p class="note">All 24 must cases and 3 gap cases ran on a Mac with identical output. Where a check passed here, it only means the model did what I wrote it to do.</p>
+  </section>
+
+  <section id="lab" aria-labelledby="lab-h">
+    <h2 id="lab-h">Try it: a small lab in your browser</h2>
+    <p>Pick a scenario, switch controls on and off, and watch what happens. These run in your browser with made-up data and send nothing anywhere.</p>
+    <div class="lab" data-lab>
+      <div class="lab-pick" role="tablist" aria-label="Scenarios">
+        <button type="button" role="tab" data-s="oauth" aria-selected="true">Vendor breached (OAuth)</button>
+        <button type="button" role="tab" data-s="runner" aria-selected="false">CI runner token stolen</button>
+        <button type="button" role="tab" data-s="envvars" aria-selected="false">Secrets in env variables</button>
+        <button type="button" role="tab" data-s="extend" aria-selected="false">Access window extensions</button>
+        <button type="button" role="tab" data-s="scan" aria-selected="false">Secret scan on your text</button>
+      </div>
+      <div class="lab-panel">
+        <p class="lab-story" data-story></p>
+        <div class="lab-controls" data-controls></div>
+        <div class="lab-input" data-input hidden><label for="scan-text">Paste made-up text. Never paste a real secret.</label><textarea id="scan-text" rows="4" spellcheck="false">aws_access_key_id = AKIAABCDEFGHIJKLMNOP
+SECRET_A = "sk-live-x9Y8z7W6v5U4"
+SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
+        <div class="lab-result" data-result aria-live="polite"></div>
+        <p class="lab-lesson" data-lesson></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="cases" aria-labelledby="cases-h">
+    <h2 id="cases-h">All 27 cases, with the workflow</h2>
+    <p>Each card shows one case. The red lane is what happens without the control, the green lane is what happens with it. Tags show whether my guess matched and whether switching the control off alone changed the result.</p>
+    <div class="chips" role="group" aria-label="Filter cases">{{CHIPS}}</div>
+    <div class="cases">
+{{CASES}}
+    </div>
+  </section>
+
+  <section id="market" aria-labelledby="mk-h">
+    <h2 id="mk-h">Where the market is</h2>
+    <p>I did not test any commercial product. This is how I read the categories, from public sources I link below. Check each vendor's own documentation for what a product does today.</p>
+    <div class="tools">
+      <div><h3>PAM vaults and brokers</h3><p>CyberArk, Delinea, BeyondTrust and others. Strong at vaulting and rotating privileged and service-account passwords, session recording and just-in-time access. In my cases this is the territory of rotation, JIT windows, recording and break-glass.</p></div>
+      <div><h3>IGA</h3><p>SailPoint, Saviynt and others. Built for owners, certification campaigns and joiner-mover-leaver. In my cases this is ownership, retirement and sponsor reviews.</p></div>
+      <div><h3>Secrets managers</h3><p>HashiCorp Vault and the cloud secret managers. Store and issue secrets, often short-lived. In my cases this is short token lifetimes and per-job credentials.</p></div>
+      <div><h3>NHI-focused and cloud-risk platforms</h3><p>Clutch, Wiz and similar. Newer products aimed at finding machine identities and their relationships across cloud, CI and SaaS. In my cases this is discovery and the OAuth and CI paths.</p></div>
+    </div>
+    <h3>What the sources say</h3>
+    <ul class="srcs">
+      <li>OWASP publishes a Top 10 for non-human identities (2025), with ten named risks including improper offboarding and human use of non-human identities. <a href="https://owasp.org/www-project-non-human-identities-top-10/2025/table-of-contents/">OWASP NHI Top 10</a></li>
+      <li>OWASP's agentic applications list for 2026 covers identity and privilege abuse, code execution, memory poisoning and inter-agent communication. <a href="https://goteleport.com/blog/owasp-top-10-agentic-applications">Summary by Teleport</a> (I read this summary, so check the OWASP original before quoting)</li>
+      <li>Tuhin Banerjee argues on the CSA blog (23 April 2026) that inventory-first discovery is losing ground to ephemeral identities, and that ownership and fast revocation are the neglected parts. It is an opinion piece built on named incidents, with no survey data. <a href="https://cloudsecurityalliance.org/blog/2026/04/23/we-are-fixing-the-wrong-problem-in-non-human-identity-security">CSA blog</a></li>
+      <li>Vercel confirmed unauthorized access in April 2026. Reports say it began with a third-party AI app that an employee had linked with broad permissions. Attribution and some details are unverified. <a href="https://strapi.io/blog/vercel-security-breach-april-2026">Summary by Strapi</a></li>
+      <li>GitGuardian's 2026 report (vendor research, 2025 data) counts 28,649,024 new secrets on public GitHub, 1,275,105 of them AI-service secrets, and 24,008 unique secrets in MCP configuration files. Quote with the name.</li>
+      <li>NIST's NCCoE published a concept paper on software and AI agent identity and authorization on 5 February 2026. It is a concept paper only.</li>
+    </ul>
+  </section>
+
+  <section id="missing" aria-labelledby="miss-h">
+    <h2 id="miss-h">What is missing</h2>
+    <h3>In the market, as I see it (my view)</h3>
+    <ul>
+      <li>Checks that a sign-off is true. Owner attestations, break-glass justifications and ticket numbers are accepted as text in my models, and I suspect many real workflows are the same.</li>
+      <li>Speed of revocation across companies. When a vendor is breached, the clock starts at their notice, not your inventory.</li>
+      <li>Ephemeral identities that live for minutes. An inventory taken weekly cannot see them.</li>
+      <li>One place that shows the agent, the person who set it up and the permissions it inherited.</li>
+    </ul>
+    <h3>In this lab</h3>
+    <ul>
+      <li>It is a model, not a real environment. Real vaults, directories and CI systems will behave differently.</li>
+      <li>I wrote both the guesses and the code. An outside reader writing guesses first would be a stronger test.</li>
+      <li>13 stretch cases and the round of chain tests are not run yet.</li>
+      <li>AWS, Azure and Google Cloud each have their own key and role habits. These cases are generic.</li>
+      <li>Indian rules (RBI, CERT-In, data protection) are not checked. I make no compliance claim.</li>
+      <li>No cost data.</li>
+    </ul>
+  </section>
+
+  <section id="help" aria-labelledby="help-h">
+    <h2 id="help-h">How this helps, and what to do with it</h2>
+    <p>I do this work in identity and privileged access, and I publish the tests with the mistakes so readers can see how I think. If you run security or identity at a company, here are five questions this lab turns into:</p>
+    <ol>
+      <li>Can you list every service account across the directory, the cloud and CI, and does each one have a named owner?</li>
+      <li>When a vendor you connected is breached, how many minutes until you can revoke their access?</li>
+      <li>Which of your sign-offs, such as attestations, justifications and ticket numbers, is checked by anything other than a person reading it?</li>
+      <li>Are secrets hidden by pattern only, and what is the secret that no pattern matches?</li>
+      <li>If you switch one control off, does anything tell you? If not, is another control covering it, or nothing?</li>
+    </ol>
+    <p>If you think a case is wrong or can think of a variant that breaks a control, <a href="/#contact">tell me</a>. I will add it and keep the original on the page.</p>
+  </section>
+
+  <section id="evidence" aria-labelledby="ev-h">
+    <h2 id="ev-h">Evidence you can check</h2>
+    <p>The guess files and the SHA-256 hash of each, the code, and the results are all public. The hash of each guess file was recorded when I committed it, before the code existed.</p>
+    <table class="hashes"><thead><tr><th>Guess file</th><th>SHA-256</th></tr></thead><tbody>
+      <tr><td><a href="/nhi-lab/evidence/guesses/guesses-round-14-15.md">Rounds 14 and 15 (20 cases)</a></td><td><code>f06f355eb80c151cb237ca4ef0c09dad9bc995fe5d395dca03f8756b0c69c784</code></td></tr>
+      <tr><td><a href="/nhi-lab/evidence/guesses/guesses-round-17.md">Round 17, shadow AI (4 cases)</a></td><td><code>4e6dfc1a80b2fa1e0a0da0a129882e87fdd3be931b5dddafd018d92c05dc8b7c</code></td></tr>
+      <tr><td><a href="/nhi-lab/evidence/guesses/guesses-gap-cases.md">Gap cases (3 cases)</a></td><td><code>7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d</code></td></tr>
+    </tbody></table>
+    <p><a href="/nhi-lab/evidence/cases.py">cases.py</a> · <a href="/nhi-lab/evidence/run.py">run.py</a> · <a href="/nhi-lab/evidence/RESULTS.md">RESULTS.md</a> · <a href="/nhi-lab/evidence/results.json">results.json</a>. Run it with <code>python3 run.py</code>. It needs only Python 3 and checks the guess hashes first.</p>
+    <p>Related: <a href="/ai-governance-lab/">the AI governance lab</a> (13 rounds, 164 cases) and <a href="/labs/">all labs</a>.</p>
+  </section>
+</main>
