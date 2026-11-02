@@ -22,6 +22,7 @@
 - [NHI lab in 60 seconds (silent video: the lab, the architecture, the data)](https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4)
 
 ## Writing
+- [I tested 46 non-human identity cases. My guesses were wrong in four.](https://roshantrivedi.co.in/writing/non-human-identity-lab-46-cases/)
 - [The Hugging Face intrusion, read as an identity incident](https://roshantrivedi.co.in/writing/openai-huggingface-breach-cybersecurity-analysis/)
 - [PAM framework and design](https://roshantrivedi.co.in/writing/pam-framework-and-design/)
 - [A PAM project plan by organisation tier](https://roshantrivedi.co.in/writing/pam-project-plan-by-organization-tier/)
