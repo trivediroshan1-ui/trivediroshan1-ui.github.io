@@ -126,7 +126,7 @@ def build():
     <ul>
       <li>The <a href="/nhi-lab/framework/">framework</a> turns these ideas into seven steps.</li>
       <li>The <a href="/nhi-lab/audit/">audit data</a> has all 46 cases and a script that checks the hashes.</li>
-      <li>The same story as a <a href="/assets/share/nhi-lab.mp4">54-second silent video</a> (1.3 MB), for sharing.</li>
+      <li>The same story as a <a href="/assets/share/nhi-lab.mp4">54-second silent video</a> (1.5 MB), for sharing.</li>
     </ul>
     <div class="nnote"><b>Rights and originality</b>All shapes are drawn for this page. There is no audio, no third-party artwork, no logo and no real company data. The numbers come from the lab's made-up data.</div>
   </section>
