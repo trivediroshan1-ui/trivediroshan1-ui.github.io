@@ -6,9 +6,9 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
-    <meta name="description" content="27 non-human identity cases on made-up data. Guesses written and hashed before the code, every control switched off once. Animated workflows, a lab you can run in the browser, and what the market still misses." />
+    <meta name="description" content="46 non-human identity cases on made-up data. Guesses written and hashed before the code, every control switched off once. A framework, a dated market view, downloadable audit data and animated workflows." />
     <link rel="canonical" href="https://roshantrivedi.co.in/nhi-lab/" />
-    <meta property="og:title" content="I tested 27 non-human identity cases. My guesses were wrong in two places." />
+    <meta property="og:title" content="I tested 46 non-human identity cases. My guesses were wrong in four places." />
     <meta property="og:description" content="Service accounts, tokens, break-glass and shadow AI, tested on made-up data with the guesses committed first." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/nhi-lab/" />
@@ -33,29 +33,43 @@
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
         <script src="/assets/palette.js?v=20261019f" defer></script>
-  <link rel="stylesheet" href="/assets/blinks.css?v=20261102b">
-  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102a">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 27 cases","description":"27 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102c">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102c">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102c">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 46 cases","description":"46 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>
 </head>
     <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main" class="nhi">
+  <nav class="nsub" aria-label="Non-human identity lab sections"><a href="/nhi-lab/" aria-current="page">Overview</a><a href="/nhi-lab/framework/">Framework</a><a href="/nhi-lab/market/">Market</a><a href="/nhi-lab/method/">What we did</a><a href="/nhi-lab/audit/">Audit data</a><a href="/nhi-lab/roadmap/">Roadmap</a><a href="/nhi-lab/explainer/">Explainer</a><a href="/nhi-lab/nhi-lab-book.pdf">Book (PDF)</a><a href="/book/">All books</a></nav>
   <header class="hero mcp-hero">
     <p class="eyebrow">Non-human identity lab</p>
-    <h1>I tested 27 non-human identity cases. My guesses were wrong in two places.</h1>
+    <h1>I tested 46 non-human identity cases. My guesses were wrong in four places.</h1>
     <p class="dek">Service accounts, API keys, CI tokens, break-glass accounts and AI tools with their own logins. Made-up data, guesses committed before the code, and every control switched off once to see if anything noticed.</p>
-    <p class="stats" aria-label="Summary numbers"><span><b>27</b> cases</span><span><b>25</b> guesses matched</span><span><b>2</b> guesses wrong</span><span><b>2</b> controls masked by another</span></p>
+    <p class="stats" aria-label="Summary numbers"><span><b>46</b> cases</span><span><b>42</b> guesses matched</span><span><b>4</b> guesses wrong</span><span><b>8</b> cases with a control nothing noticed</span></p>
   </header>
 
-  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">New issue: I tested 27 machine identity cases.</span></span><span class="go">Subscribe &rarr;</span></a>
+  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">One email when I publish a new lab or case study.</span></span><span class="go">Subscribe &rarr;</span></a>
 
-  <nav class="toc" aria-label="On this page"><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 27 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+  <nav class="toc" aria-label="On this page"><a href="#more">Go deeper</a><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 46 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+
+    <section id="more" aria-labelledby="more-h">
+    <h2 id="more-h">Go deeper</h2>
+    <div class="ngrid">
+      <a class="ncard" href="/nhi-lab/framework/" style="text-decoration:none"><h3>Framework</h3><p>Seven steps from finding an identity to retiring it, with a decision table, leak response and metrics.</p></a>
+      <a class="ncard" href="/nhi-lab/market/" style="text-decoration:none"><h3>Market, 2026</h3><p>Four deals, Microsoft's agent identity, a NIST project. Dated and sourced, with trust labels.</p></a>
+      <a class="ncard" href="/nhi-lab/method/" style="text-decoration:none"><h3>What we did</h3><p>The full procedure, the dates, and every mistake I made.</p></a>
+      <a class="ncard" href="/nhi-lab/audit/" style="text-decoration:none"><h3>Audit data</h3><p>All 46 cases in one table, a CSV and JSON download, and a script that checks the hashes.</p></a>
+      <a class="ncard" href="/nhi-lab/roadmap/" style="text-decoration:none"><h3>Roadmap</h3><p>What is done, what I am checking, what comes next, with no invented dates.</p></a>
+      <a class="ncard" href="/nhi-lab/explainer/" style="text-decoration:none"><h3>Explainer</h3><p>A one-minute animation. Pausable, with a transcript.</p></a>
+    </div>
+  </section>
 
   <section id="what" aria-labelledby="what-h">
     <h2 id="what-h">What I did, why, and how</h2>
     <div class="trio">
-      <div><h3>What</h3><p>I ran 27 cases about machine identities: finding them, giving them owners, rotating their secrets, controlling privileged access and catching AI tools that quietly hold credentials. 24 were my must-run cases. 3 more came from a search for gaps, based on 2026 incident reports.</p></div>
+      <div><h3>What</h3><p>I ran 46 cases about machine identities in two runs: finding them, giving them owners, rotating their secrets, controlling privileged access and catching AI tools that quietly hold credentials. The first run had 27 cases: 24 must-run cases and 3 from a search for gaps, based on 2026 incident reports. The second run added 13 stretch cases and 6 chain tests.</p></div>
       <div><h3>Why</h3><p>Most companies have many more machine identities than people, and mapping sheets say a control exists without showing it holds. I wanted to see where a control stops, and to keep my own wrong guesses on the page.</p></div>
       <div><h3>How</h3><p>Before any code, I wrote what I expected and committed the files. Then I wrote small models of each control and ran every case with the control off and on. Then I switched each control off by itself to see whether the result changed.</p></div>
     </div>
@@ -65,13 +79,14 @@
 
   <section id="workflow" aria-labelledby="wf-h">
     <h2 id="wf-h">The life of a machine identity</h2>
-    <p>Every case sits on one stage of this loop. The pulse is a new identity moving through it. The number under each stage is how many of the 27 cases test it.</p>
+    <p>Every case sits on one stage of this loop. The pulse is a new identity moving through it. The number under each stage is how many of the 27 first-run cases test it. The framework page places all 46 cases on seven steps.</p>
     <figure><svg class="nflow wide" viewBox="0 0 900 190" role="img" aria-label="The life of a non-human identity: discover, own, credential, control, privileged access, retire. A pulse travels along the loop."><rect x="8" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="73" y="80" text-anchor="middle">Discover</text><text class="tx sm" x="73" y="100" text-anchor="middle">Find every identity</text><text class="tx sm" x="73" y="122" text-anchor="middle">4 cases</text><path class="ln" d="M 138 93 L 156 93"/><rect x="156" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="221" y="80" text-anchor="middle">Own</text><text class="tx sm" x="221" y="100" text-anchor="middle">A named person</text><text class="tx sm" x="221" y="122" text-anchor="middle">2 cases</text><path class="ln" d="M 286 93 L 304 93"/><rect x="304" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="369" y="80" text-anchor="middle">Credential</text><text class="tx sm" x="369" y="100" text-anchor="middle">Rotate, expire, scope</text><text class="tx sm" x="369" y="122" text-anchor="middle">7 cases</text><path class="ln" d="M 434 93 L 452 93"/><rect x="452" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="517" y="80" text-anchor="middle">Control</text><text class="tx sm" x="517" y="100" text-anchor="middle">Front door and trust</text><text class="tx sm" x="517" y="122" text-anchor="middle">3 cases</text><path class="ln" d="M 582 93 L 600 93"/><rect x="600" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="665" y="80" text-anchor="middle">Privileged</text><text class="tx sm" x="665" y="100" text-anchor="middle">JIT, recording, break-glass</text><text class="tx sm" x="665" y="122" text-anchor="middle">10 cases</text><path class="ln" d="M 730 93 L 748 93"/><rect x="748" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="813" y="80" text-anchor="middle">Retire</text><text class="tx sm" x="813" y="100" text-anchor="middle">Remove what is unused</text><text class="tx sm" x="813" y="122" text-anchor="middle">1 cases</text><path class="ln dash" d="M 818 140 L 818 175 L 73 175 L 73 140"/><text class="tx sm" x="450" y="170" text-anchor="middle">retire feeds the next discovery scan</text><circle class="ndot good" r="7" style="offset-path:path('M 20 93 L 880 93');animation-duration:12s"/></svg><figcaption>Discover, own, credential, control, privileged access, retire. Retiring what is unused feeds the next discovery scan.</figcaption></figure>
   </section>
 
   <section id="found" aria-labelledby="found-h">
     <h2 id="found-h">What I found</h2>
     <ul class="finds">
+      <li><b>Across both runs, 42 of 46 guesses matched and 4 were wrong.</b> In 8 cases a control sat there and nothing noticed when I switched it off. Alerts reported three chain attacks that a different control stopped. The <a href="/nhi-lab/audit/">audit data</a> lists every case, and the <a href="/nhi-lab/method/">method page</a> lists every mistake. The findings below are from the first run.</li>
       <li><b>The secret scan missed two of eight fake secrets, not one.</b> It caught six. The two it missed were a secret split across two lines and a base64-encoded one. I had guessed one miss.</li>
       <li><b>Two controls showed no effect on their own, because another control already stopped the attack.</b> A 10-minute token lifetime changed nothing once the token was bound to the runner and revoked at job end. A vendor-breach revoke changed nothing once an app allowlist refused the grant. I guessed every control would show up. That is layering, and it also means a one-at-a-time switch-off can say "nothing happened" for a control that matters in a different scenario.</li>
       <li><b>Several controls stopped where I expected.</b> A made-up ticket number passed the break-glass review because nothing checks it against the ticket system. A false justification for break-glass use was accepted. A bound CI token still worked from inside the runner. An allowlisted app that is later breached works until someone revokes it. A false retirement sign-off left one identity active. A consumer missing from the list still broke after rotation.</li>
@@ -103,9 +118,9 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
   </section>
 
   <section id="cases" aria-labelledby="cases-h">
-    <h2 id="cases-h">All 27 cases, with the workflow</h2>
-    <p>Each card shows one case. The red lane is what happens without the control, the green lane is what happens with it. Tags show whether my guess matched and whether switching the control off alone changed the result.</p>
-    <div class="chips" role="group" aria-label="Filter cases"><button class="chip on" data-f="all" type="button">All 27</button><button class="chip" data-f="discover" type="button">Discover</button><button class="chip" data-f="own" type="button">Own and retire</button><button class="chip" data-f="credential" type="button">Credentials</button><button class="chip" data-f="control" type="button">Front door and trust</button><button class="chip" data-f="privileged" type="button">Privileged access</button><button class="chip" data-f="shadow" type="button">Shadow AI</button><button class="chip" data-f="gap" type="button">Gap cases from 2026 incidents</button></div>
+    <h2 id="cases-h">All 46 cases, with the workflow</h2>
+    <p>Each card shows one case. The red lane is what happens without the control, the green lane is what happens with it. Tags show whether my guess matched and whether switching the control off alone changed the result.. 27 cases are the first run and 19 carry a "second run" tag (see the second-run section above). The chain cards are rule models, so they are weaker evidence.</p>
+    <div class="chips" role="group" aria-label="Filter cases"><button class="chip on" data-f="all" type="button">All 46</button><button class="chip" data-f="discover" type="button">Discover</button><button class="chip" data-f="own" type="button">Own and retire</button><button class="chip" data-f="credential" type="button">Credentials</button><button class="chip" data-f="control" type="button">Front door and trust</button><button class="chip" data-f="privileged" type="button">Privileged access</button><button class="chip" data-f="shadow" type="button">Shadow AI</button><button class="chip" data-f="gap" type="button">Gap cases from 2026 incidents</button><button class="chip" data-f="chain" type="button">Chain tests</button></div>
     <div class="cases">
 <article class="case" data-g="discover" id="n-r14-01"><header><h3>N-R14-01 <span>Three places hold service accounts</span></h3><p class="ntags"><span class="pill grp" style="--k:#4de2ff">Discover</span><span class="pill ok">guess matched</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-01: Three places hold service accounts. Without the control: Directory-only scan finds 12 of 27. With the control: All three sources merged: 27 of 27, each with its source.">
 <rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#4de2ff"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Three places hold</tspan><tspan x="84" y="81">service accounts</tspan></text>
@@ -350,7 +365,195 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
 <rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Both replays work</tspan></text>
 <rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Both replays refused</tspan></text>
 </svg></article>
+<article class="case" data-g="discover" id="n-r14-07"><header><h3>N-R14-07 <span>One account, three names</span></h3><p class="ntags"><span class="pill grp" style="--k:#4de2ff">Discover</span><span class="pill bad">guess wrong</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-07: One account, three names. Without the control: 43 entries for 30 identities, findings split. With the control: Merged on owner plus name: 29, one wrong merge.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#4de2ff"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">One account,</tspan><tspan x="84" y="81">three names</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">43 entries for 30 identities,</tspan><tspan x="376" y="63">findings split</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Merged on owner plus name: 29, one</tspan><tspan x="376" y="149">wrong merge</tspan></text>
+</svg></article>
+<article class="case" data-g="credential" id="n-r14-19"><header><h3>N-R14-19 <span>Two identities, same age score</span></h3><p class="ntags"><span class="pill grp" style="--k:#c4b5fd">Credentials</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-19: Two identities, same age score. Without the control: Tie, the test tool can be fixed first. With the control: Reach in the score: production ranks first.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#c4b5fd"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Two identities,</tspan><tspan x="84" y="81">same age score</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Tie, the test tool can be fixed</tspan><tspan x="376" y="63">first</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Reach in the score: production ranks</tspan><tspan x="376" y="149">first</tspan></text>
+</svg></article>
+<article class="case" data-g="credential" id="n-r14-20"><header><h3>N-R14-20 <span>Rotation ticket, old secret still accepted</span></h3><p class="ntags"><span class="pill grp" style="--k:#c4b5fd">Credentials</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-20: Rotation ticket, old secret still accepted. Without the control: All 5 close, 2 old secrets live. With the control: 3 close, 2 stay open until the old secret is dead.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#c4b5fd"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Rotation ticket,</tspan><tspan x="84" y="81">old secret still</tspan><tspan x="84" y="96">accepted</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">All 5 close, 2 old secrets live</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">3 close, 2 stay open until the old</tspan><tspan x="376" y="149">secret is dead</tspan></text>
+</svg></article>
+<article class="case" data-g="own" id="n-r14-21"><header><h3>N-R14-21 <span>4 agents share one team key</span></h3><p class="ntags"><span class="pill grp" style="--k:#7df2d0">Own and retire</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-21: 4 agents share one team key. Without the control: Log says &quot;team key&quot;, revoke hits all 4. With the control: One key per agent: log names it, revoke hits 1.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#7df2d0"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">4 agents share</tspan><tspan x="84" y="81">one team key</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Log says &quot;team key&quot;, revoke hits all</tspan><tspan x="376" y="63">4</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">One key per agent: log names it,</tspan><tspan x="376" y="149">revoke hits 1</tspan></text>
+</svg></article>
+<article class="case" data-g="control" id="n-r14-22"><header><h3>N-R14-22 <span>Engineer signs in as a service account</span></h3><p class="ntags"><span class="pill grp" style="--k:#f7c873">Front door and trust</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-22: Engineer signs in as a service account. Without the control: Logged under the account, nobody accountable. With the control: Direct sign-in refused, checkout names the person.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#f7c873"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Engineer signs in</tspan><tspan x="84" y="81">as a service</tspan><tspan x="84" y="96">account</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Logged under the account, nobody</tspan><tspan x="376" y="63">accountable</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Direct sign-in refused, checkout</tspan><tspan x="376" y="149">names the person</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-10"><header><h3>P-R15-10 <span>Push fatigue and SIM-swap against admins</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-10: Push fatigue and SIM-swap against admins. Without the control: 6 bad sign-ins get through. With the control: Passkey, no SMS fallback: 0 get through.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Push fatigue and</tspan><tspan x="84" y="81">SIM-swap against</tspan><tspan x="84" y="96">admins</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">6 bad sign-ins get through</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Passkey, no SMS fallback: 0 get</tspan><tspan x="376" y="149">through</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-15"><header><h3>P-R15-15 <span>Vault backup on a weaker share</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-15: Vault backup on a weaker share. Without the control: 5 non-backup reads succeed. With the control: Same rules and an alert: 5 refused, 5 alerts.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Vault backup on a</tspan><tspan x="84" y="81">weaker share</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">5 non-backup reads succeed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Same rules and an alert: 5 refused,</tspan><tspan x="376" y="149">5 alerts</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-16"><header><h3>P-R15-16 <span>Attacker calls the help desk for a reset</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-16: Attacker calls the help desk for a reset. Without the control: Both attacker resets succeed. With the control: Proof, or notice with a delay: both stopped.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Attacker calls</tspan><tspan x="84" y="81">the help desk for</tspan><tspan x="84" y="96">a reset</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Both attacker resets succeed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Proof, or notice with a delay: both</tspan><tspan x="376" y="149">stopped</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-19"><header><h3>P-R15-19 <span>Vendor needed at 2 a.m.</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-19: Vendor needed at 2 a.m.. Without the control: Shared password, stays on, no record. With the control: Approved, recorded, closes at 2 hours.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Vendor needed at</tspan><tspan x="84" y="81">2 a.m.</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Shared password, stays on, no record</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Approved, recorded, closes at 2</tspan><tspan x="376" y="149">hours</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-25"><header><h3>P-R15-25 <span>Rotate 200 secrets after a breach</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-25: Rotate 200 secrets after a breach. Without the control: 12 outages. With the control: Consumers first and a dry run: 0 outages, 2 left unrotated.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Rotate 200</tspan><tspan x="84" y="81">secrets after a</tspan><tspan x="84" y="96">breach</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">12 outages</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Consumers first and a dry run: 0</tspan><tspan x="376" y="149">outages, 2 left unrotated</tspan></text>
+</svg></article>
+<article class="case" data-g="shadow" id="s-r17-02"><header><h3>S-R17-02 <span>AI tool needs one folder, inherits 40</span></h3><p class="ntags"><span class="pill grp" style="--k:#8b5cf6">Shadow AI</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="S-R17-02: AI tool needs one folder, inherits 40. Without the control: Can write to all 40. With the control: Read on one folder, 0 writable.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#8b5cf6"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">AI tool needs one</tspan><tspan x="84" y="81">folder, inherits</tspan><tspan x="84" y="96">40</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Can write to all 40</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Read on one folder, 0 writable</tspan></text>
+</svg></article>
+<article class="case" data-g="shadow" id="s-r17-06"><header><h3>S-R17-06 <span>AI-service keys in 6 repositories</span></h3><p class="ntags"><span class="pill grp" style="--k:#8b5cf6">Shadow AI</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="S-R17-06: AI-service keys in 6 repositories. Without the control: All 6 stay valid. With the control: 5 revoked on find, 1 odd prefix missed.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#8b5cf6"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">AI-service keys</tspan><tspan x="84" y="81">in 6 repositories</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">All 6 stay valid</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">5 revoked on find, 1 odd prefix</tspan><tspan x="376" y="149">missed</tspan></text>
+</svg></article>
+<article class="case" data-g="shadow" id="s-r17-10"><header><h3>S-R17-10 <span>5 automations outlive a test</span></h3><p class="ntags"><span class="pill grp" style="--k:#8b5cf6">Shadow AI</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="S-R17-10: 5 automations outlive a test. Without the control: All 5 still run. With the control: 4 disabled, 1 extended on any written reason.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#8b5cf6"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">5 automations</tspan><tspan x="84" y="81">outlive a test</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">All 5 still run</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">4 disabled, 1 extended on any</tspan><tspan x="376" y="149">written reason</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c01"><header><h3>C-R16-C01 <span>No owner, password in a ticket, export shared</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill bad">guess wrong</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C01: No owner, password in a ticket, export shared. Without the control: Attacker signs in from a new network. With the control: Stopped at link 1; for an old account the ticket scan stops it at link 2.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">No owner,</tspan><tspan x="84" y="81">password in a</tspan><tspan x="84" y="96">ticket, export</tspan><tspan x="84" y="111">shared</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Attacker signs in from a new network</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Stopped at link 1; for an old</tspan><tspan x="376" y="149">account the ticket scan stops it at</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c02"><header><h3>C-R16-C02 <span>Token committed, repo cloned, found 7 days later</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C02: Token committed, repo cloned, found 7 days later. Without the control: Attacker calls the cloud API. With the control: Commit block stops at link 1; a 1-day token alone also stops it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Token committed,</tspan><tspan x="84" y="81">repo cloned,</tspan><tspan x="84" y="96">found 7 days</tspan><tspan x="84" y="111">later</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Attacker calls the cloud API</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Commit block stops at link 1; a</tspan><tspan x="376" y="149">1-day token alone also stops it</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c04"><header><h3>C-R16-C04 <span>Contractor with no end date</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C04: Contractor with no end date. Without the control: Phished credential gives production access. With the control: Expiry stops at link 3; sponsor review alone does not at 30 days.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Contractor with</tspan><tspan x="84" y="81">no end date</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Phished credential gives production</tspan><tspan x="376" y="63">access</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Expiry stops at link 3; sponsor</tspan><tspan x="376" y="149">review alone does not at 30 days</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c05"><header><h3>C-R16-C05 <span>Break-glass password pasted in chat</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C05: Break-glass password pasted in chat. Without the control: Reused with no emergency, unnoticed. With the control: Rotate on return stops it; the alert only reports it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Break-glass</tspan><tspan x="84" y="81">password pasted</tspan><tspan x="84" y="96">in chat</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Reused with no emergency, unnoticed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Rotate on return stops it; the alert</tspan><tspan x="376" y="149">only reports it</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c06"><header><h3>C-R16-C06 <span>Many approvals, one hostile among them</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C06: Many approvals, one hostile among them. Without the control: The hostile change is approved. With the control: A second approver stops it; showing the risk only flags it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Many approvals,</tspan><tspan x="84" y="81">one hostile among</tspan><tspan x="84" y="96">them</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">The hostile change is approved</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">A second approver stops it; showing</tspan><tspan x="376" y="149">the risk only flags it</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c17"><header><h3>C-R16-C17 <span>Vault in place, direct login still works</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C17: Vault in place, direct login still works. Without the control: Vault and recording bypassed. With the control: Blocking direct login stops it; the alert only reports it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Vault in place,</tspan><tspan x="84" y="81">direct login</tspan><tspan x="84" y="96">still works</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Vault and recording bypassed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Blocking direct login stops it; the</tspan><tspan x="376" y="149">alert only reports it</tspan></text>
+</svg></article>
     </div>
+  </section>
+
+  <section id="round2" aria-labelledby="r2-h">
+    <h2 id="r2-h">Second run: 13 stretch cases and 6 chain tests</h2>
+    <p>These ran after the first 27, with the same method. The guesses were committed first (commit <code>78d7e3e</code>, hash below). The code and results are in commit <code>05235fe</code> on my Mac, and the output matched line for line. The headline numbers above are still the first 27.</p>
+    <ul>
+      <li><strong>Three guesses were wrong.</strong> I wrote that 9 identities with two or three names each would give 51 entries. That is impossible: it gives 43. After merging I expected 30 and got 29, because stripping trailing digits from names merged two real accounts into one. And for the forgotten service account chain, I guessed the secret scan on tickets was the most useful single control. In my rules the owner check stops it earliest, but only for accounts created after the rule. For an account that already exists the scan is the one that works.</li>
+      <li><strong>My first run of the matching case was wrong because of my own test data.</strong> I had given 21 identities the same owner, so they merged into 11. I fixed the data and kept the first output in <code>RESULTS-stretch-first-run.md</code>.</li>
+      <li><strong>Controls that hid each other.</strong> In the help-desk reset case, strong proof and the notice with a delay each stopped both attacker resets alone. Switched off one at a time, neither showed any effect. Rotating AI-service keys every 90 days changed nothing once the scan revoked the keys it could see.</li>
+      <li><strong>Limits.</strong> A password copied during a checkout and used from another tool is not seen. If the real person approves the reset notice, the account is lost with both controls on. An extension of an automation is accepted on any written reason.</li>
+    </ul>
+    <p class="note"><strong>The chain tests are weak evidence.</strong> They are rule models: I decided which control stops which link, so the results follow from my rules. Whether a tired approver acts on a risk flag is human behaviour, which they do not test.</p>
+    <div class="tbl-wrap"><table>
+      <caption>Second run, one row per case</caption>
+      <thead><tr><th scope="col">Case</th><th scope="col">My guess</th><th scope="col">Switching it off alone changed the result?</th></tr></thead>
+      <tbody><tr><th scope="row">N-R14-07 One identity, three names</th><td>wrong</td><td>owner match: yes, normalise name: yes</td></tr><tr><th scope="row">N-R14-19 Scoring: rank so the top gets fixed first</th><td>matched</td><td>reach in score: yes</td></tr><tr><th scope="row">N-R14-20 Close only when the old secret is dead</th><td>matched</td><td>verify old dead: yes</td></tr><tr><th scope="row">N-R14-21 Agents share a team credential</th><td>matched</td><td>key per agent: yes</td></tr><tr><th scope="row">N-R14-22 A person logs in with a service account</th><td>matched</td><td>block interactive: yes, checkout names person: yes</td></tr><tr><th scope="row">P-R15-10 Phishing-resistant MFA for admins</th><td>matched</td><td>passkey: yes, no sms fallback: yes</td></tr><tr><th scope="row">P-R15-15 The vault, its backups and who can read them</th><td>matched</td><td>same rules: yes, alert nonbackup: yes</td></tr><tr><th scope="row">P-R15-16 Help desk reset path</th><td>matched</td><td>strong proof: NO, notice and delay: NO</td></tr><tr><th scope="row">P-R15-19 A vendor is needed at 2 a.m.</th><td>matched</td><td>approve and record: yes, auto expiry: yes</td></tr><tr><th scope="row">P-R15-25 Mass rotation after a breach</th><td>matched</td><td>consumer first: yes, dry run: yes</td></tr><tr><th scope="row">S-R17-02 AI tool inherits the full permissions of the person</th><td>matched</td><td>scope read one: yes</td></tr><tr><th scope="row">S-R17-06 AI-service keys leak into repositories</th><td>matched</td><td>scan revoke: yes, rotate 90d: NO</td></tr><tr><th scope="row">S-R17-10 Scheduled automations outlive the test window</th><td>matched</td><td>end date at creation: yes, sweep: yes</td></tr><tr><th scope="row">C-R16-C01 The forgotten service account</th><td>wrong</td><td>owner required: yes, secret scan tickets: NO, rotation: NO</td></tr><tr><th scope="row">C-R16-C02 The token in the repository</th><td>matched</td><td>commit block: yes, short lived: NO, revoke on find: NO</td></tr><tr><th scope="row">C-R16-C04 The contractor who never left</th><td>matched</td><td>end date expiry: yes, sponsor review: NO</td></tr><tr><th scope="row">C-R16-C05 The break-glass password everyone knows</th><td>matched</td><td>alert every use: yes, rotate on return: yes</td></tr><tr><th scope="row">C-R16-C06 Approval fatigue</th><td>matched</td><td>batch limits: NO, risk shown first: yes, second approver high risk: yes</td></tr><tr><th scope="row">C-R16-C17 The old door</th><td>matched</td><td>block direct login: yes, checkin alert: yes</td></tr></tbody>
+    </table></div>
   </section>
 
   <section id="market" aria-labelledby="mk-h">
@@ -358,9 +561,9 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
     <p>I did not test any commercial product. This is how I read the categories, from public sources I link below. Check each vendor's own documentation for what a product does today.</p>
     <div class="tools">
       <div><h3>PAM vaults and brokers</h3><p>CyberArk, Delinea, BeyondTrust and others. Strong at vaulting and rotating privileged and service-account passwords, session recording and just-in-time access. In my cases this is the territory of rotation, JIT windows, recording and break-glass.</p></div>
-      <div><h3>IGA</h3><p>SailPoint, Saviynt and others. Built for owners, certification campaigns and joiner-mover-leaver. In my cases this is ownership, retirement and sponsor reviews.</p></div>
+      <div><h3>IGA</h3><p>SailPoint, Saviynt and others. Built for owners, certification campaigns and joiner-mover-leaver. In my cases this is ownership, retirement and sponsor reviews. Some IGA vendors now sell machine-identity products too: SailPoint's documentation lists one called Entro (<a href="https://documentation.sailpoint.com/entro/help/getting-started/about-entro.html" rel="noopener">SailPoint docs</a>). I have not read its description.</p></div>
       <div><h3>Secrets managers</h3><p>HashiCorp Vault and the cloud secret managers. Store and issue secrets, often short-lived. In my cases this is short token lifetimes and per-job credentials.</p></div>
-      <div><h3>NHI-focused and cloud-risk platforms</h3><p>Clutch, Wiz and similar. Newer products aimed at finding machine identities and their relationships across cloud, CI and SaaS. In my cases this is discovery and the OAuth and CI paths.</p></div>
+      <div><h3>NHI-focused and cloud-risk platforms</h3><p>Clutch, Wiz and similar. Newer products aimed at finding machine identities and their relationships across cloud, CI and SaaS. In my cases this is discovery and the OAuth and CI paths. Wiz describes a Non-Human Identities dashboard (<a href="https://wiz.io/blog/non-human-identities-dashboard" rel="noopener">Wiz blog, February 2024</a>) that finds service accounts, flags privileged ones and shows attack paths. Clutch describes its platform as visibility, lifecycle management, posture, detection and response (<a href="https://www.okta.com/integrations/clutch-security/" rel="noopener">Okta integration page</a>, a vendor claim).</p></div>
     </div>
     <h3>What the sources say</h3>
     <ul class="srcs">
@@ -386,7 +589,7 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
     <ul>
       <li>It is a model, not a real environment. Real vaults, directories and CI systems will behave differently.</li>
       <li>I wrote both the guesses and the code. An outside reader writing guesses first would be a stronger test.</li>
-      <li>13 stretch cases and the round of chain tests are not run yet.</li>
+      <li>The 13 stretch cases and 6 chain tests ran in a second run (above). 21 queued cases and the Stage 2 testing are not run.</li>
       <li>AWS, Azure and Google Cloud each have their own key and role habits. These cases are generic.</li>
       <li>Indian rules (RBI, CERT-In, data protection) are not checked. I make no compliance claim.</li>
       <li>No cost data.</li>
@@ -413,8 +616,10 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-round-14-15.md">Rounds 14 and 15 (20 cases)</a></td><td><code>f06f355eb80c151cb237ca4ef0c09dad9bc995fe5d395dca03f8756b0c69c784</code></td></tr>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-round-17.md">Round 17, shadow AI (4 cases)</a></td><td><code>4e6dfc1a80b2fa1e0a0da0a129882e87fdd3be931b5dddafd018d92c05dc8b7c</code></td></tr>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-gap-cases.md">Gap cases (3 cases)</a></td><td><code>7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d</code></td></tr>
+      <tr><td><a href="/nhi-lab/evidence/guesses/guesses-stretch-and-chains.md">Stretch cases and chain tests (19 cases)</a></td><td><code>40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed</code></td></tr>
     </tbody></table>
-    <p><a href="/nhi-lab/evidence/cases.py">cases.py</a> · <a href="/nhi-lab/evidence/run.py">run.py</a> · <a href="/nhi-lab/evidence/RESULTS.md">RESULTS.md</a> · <a href="/nhi-lab/evidence/results.json">results.json</a>. Run it with <code>python3 run.py</code>. It needs only Python 3 and checks the guess hashes first.</p>
+    <p><strong>Read it offline:</strong> <a href="/nhi-lab/nhi-lab-book.pdf">the lab as a 65-page PDF book</a> (edition 2, about 0.4 MB, a workflow diagram for every case), or <a href="/assets/share/nhi-lab.mp4">the 54-second silent video</a> (1.3 MB).</p>
+    <p><a href="/nhi-lab/evidence/cases.py">cases.py</a> · <a href="/nhi-lab/evidence/run.py">run.py</a> · <a href="/nhi-lab/evidence/RESULTS.md">RESULTS.md</a> · <a href="/nhi-lab/evidence/results.json">results.json</a> · second run: <a href="/nhi-lab/evidence/cases2.py">cases2.py</a> · <a href="/nhi-lab/evidence/run2.py">run2.py</a> · <a href="/nhi-lab/evidence/RESULTS-stretch.md">RESULTS-stretch.md</a> · <a href="/nhi-lab/evidence/results-stretch.json">results-stretch.json</a>. Run it with <code>python3 run.py</code>. It needs only Python 3 and checks the guess hashes first.</p>
     <p>Related: <a href="/ai-governance-lab/">the AI governance lab</a> (13 rounds, 164 cases) and <a href="/labs/">all labs</a>.</p>
   </section>
 </main>

@@ -12,9 +12,10 @@ import json, pathlib, re, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 S = json.loads((ROOT / "data" / "stats.json").read_text())
 lab, book, mcp = S["ai_governance_lab"], S["who_approved_that_book"], S["mcp_lab"]
+nhi = S.get("nhi_lab", {"cases": 0, "book_pages": 0})
 legacy = [w.lower() for w in S["legacy_context_words"]]
-good_cases = {lab["cases"], lab["cases_rounds_1_to_4"], lab["cases_rounds_5_to_13"], mcp["cases"], mcp["round_one_cases"], mcp["round_one_first_run_cases"]}
-good_pages = {lab["book_pages"], lab["addendum_pages"], book["pages"], book["print_interior_pages"], mcp["report_pages"]}
+good_cases = {lab["cases"], lab["cases_rounds_1_to_4"], lab["cases_rounds_5_to_13"], mcp["cases"], mcp["round_one_cases"], mcp["round_one_first_run_cases"], nhi["cases"]}
+good_pages = {nhi["book_pages"], lab["book_pages"], lab["addendum_pages"], book["pages"], book["print_interior_pages"], mcp["report_pages"]}
 good_rounds = {lab["rounds"]}
 SKIP_DIRS = {".git", "node_modules", "worker", "_posts"}
 # Dated or recorded text that is true as written: a video transcript and the correction log.

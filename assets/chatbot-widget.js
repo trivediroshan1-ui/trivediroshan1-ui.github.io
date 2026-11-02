@@ -211,6 +211,15 @@
       ],
     },
     {
+      test: /^\/nhi-lab\/?/,
+      suggestions: [
+        "What did the NHI lab find?",
+        "What is the NHI framework?",
+        "Who bought whom in 2026?",
+        "Where is the audit data?",
+      ],
+    },
+    {
       test: /^\/ai-governance-lab\/?/,
       suggestions: [
         "What did the AI governance lab find?",
