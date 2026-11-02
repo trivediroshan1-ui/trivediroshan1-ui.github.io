@@ -4,6 +4,7 @@ url: "https://roshantrivedi.co.in"
 permalink: /writing/:title/
 markdown: kramdown
 future: true
+timezone: Asia/Kolkata
 include:
   - .well-known
 exclude:
