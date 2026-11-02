@@ -47,6 +47,55 @@ class Band(Flowable):
         c = self.canv; c.setFillColor(self.c); c.roundRect(0, 0, self.w, self.h, 3, 0, 1)
         c.setFillColor(INK); c.setFont('SB', 9); c.drawString(4*mm, self.h/2 - 3, self.t)
 
+
+def tri(c, pts):
+    p = c.beginPath(); p.moveTo(pts[0], pts[1]); p.lineTo(pts[2], pts[3]); p.lineTo(pts[4], pts[5]); p.close(); c.drawPath(p, fill=1, stroke=0)
+
+class Lifecycle(Flowable):
+    """Loop of six stages with the number of cases on each."""
+    def __init__(self, counts): super().__init__(); self.counts = counts
+    def wrap(self, aw, ah): self.w = aw; self.h = 62*mm; return aw, self.h
+    def draw(self):
+        c = self.canv; names = list(GROUPS)[:6]; n = len(names); bw, bh = 26*mm, 16*mm
+        gap = (self.w - n*bw) / (n-1)
+        for i, g in enumerate(names):
+            x = i*(bw+gap); y = 36*mm
+            c.setFillColor(colors.HexColor(GROUPS[g][1])); c.roundRect(x, y, bw, bh, 3*mm, 0, 1)
+            c.setFillColor(INK); c.setFont('SB', 7)
+            for k, line in enumerate(GROUPS[g][0].replace(' and ', ' & ').split(' ', 1) if len(GROUPS[g][0]) > 11 else [GROUPS[g][0]]):
+                c.drawCentredString(x+bw/2, y+bh-6*mm-k*3.2*mm + (3*mm if len(GROUPS[g][0]) <= 11 else 0), line)
+            c.setFont('SB', 9); c.drawCentredString(x+bw/2, y+2*mm, f"{self.counts.get(g,0)} case" + ('' if self.counts.get(g,0)==1 else 's'))
+            if i < n-1:
+                c.setStrokeColor(MUTED); c.setLineWidth(1); c.line(x+bw+1*mm, y+bh/2, x+bw+gap-1*mm, y+bh/2)
+                c.setFillColor(MUTED); tri(c, [x+bw+gap-1*mm, y+bh/2, x+bw+gap-3*mm, y+bh/2+1.3*mm, x+bw+gap-3*mm, y+bh/2-1.3*mm])
+        # return arrow under the row: retire feeds the next discovery
+        c.setStrokeColor(colors.HexColor('#7df2d0')); c.setLineWidth(1.4)
+        x0 = 0 + bw/2; x1 = (n-1)*(bw+gap) + bw/2
+        c.line(x1, 36*mm, x1, 28*mm); c.line(x1, 28*mm, x0, 28*mm); c.line(x0, 28*mm, x0, 36*mm)
+        c.setFillColor(colors.HexColor('#1f9d74')); tri(c, [x0, 36*mm, x0-1.4*mm, 33.5*mm, x0+1.4*mm, 33.5*mm])
+        c.setFont('S', 8); c.setFillColor(MUTED)
+        c.drawCentredString(self.w/2, 22*mm, 'What you retire is gone from the next discovery scan. The loop closes.')
+        c.drawCentredString(self.w/2, 14*mm, 'The 3 gap cases (OAuth, environment variables, CI runner) sit across several stages.')
+
+class CaseFlow(Flowable):
+    """One case: a trigger splits into a red lane (without the control) and a green lane (with it)."""
+    def wrap(self, aw, ah): self.w = aw; return aw, 52*mm
+    def draw(self):
+        c = self.canv; w = self.w
+        def box(x, y, bw, bh, fill, txt, tc=INK):
+            c.setFillColor(fill); c.roundRect(x, y, bw, bh, 2.5*mm, 0, 1); c.setFillColor(tc); c.setFont('SB', 8)
+            for k, t in enumerate(txt): c.drawCentredString(x+bw/2, y+bh/2+1.2*mm - k*4.4*mm, t)
+        box(0, 18*mm, 34*mm, 18*mm, SOFT, ['Trigger', '(the event)'])
+        box(60*mm, 34*mm, 40*mm, 13*mm, colors.HexColor('#fdecef'), ['Without control', 'it goes through'])
+        box(60*mm, 5*mm, 40*mm, 13*mm, colors.HexColor('#e8f6f1'), ['With control', 'it is stopped'])
+        box(w-48*mm, 34*mm, 48*mm, 13*mm, colors.HexColor('#f8c9d2'), ['Harm happens', 'nobody notices'])
+        box(w-48*mm, 5*mm, 48*mm, 13*mm, colors.HexColor('#b8e6d6'), ['Refused, logged', 'owner told'])
+        c.setLineWidth(1.2)
+        for (a, b, col) in [((34*mm, 31*mm), (60*mm, 40*mm), RED), ((34*mm, 23*mm), (60*mm, 11*mm), GREEN), ((100*mm, 40*mm), (w-48*mm, 40*mm), RED), ((100*mm, 11*mm), (w-48*mm, 11*mm), GREEN)]:
+            c.setStrokeColor(col); c.line(a[0], a[1], b[0], b[1])
+        c.setFont('S', 7.5); c.setFillColor(MUTED)
+        c.drawString(0, 0, 'Then I switch the control off alone. If nothing notices, another control was already doing the job.')
+
 def page_bg(canv, doc):
     canv.saveState(); canv.setFillColor(colors.white); canv.rect(0, 0, W, H, 0, 1)
     canv.setFillColor(CYAN); canv.rect(0, H-4*mm, W, 4*mm, 0, 1)
@@ -89,6 +138,22 @@ S += [Spacer(1, 62*mm),
       Paragraph('Roshan Trivedi  |  November 2026<br/>roshantrivedi.co.in/nhi-lab/',
                 st('c3', fontName='SB', fontSize=10, textColor=colors.HexColor('#8fa3d4'), leading=15)),
       NextPageTemplate('page'), PageBreak()]
+
+S += [Paragraph('About this book', h1),
+      Paragraph('<b>Title.</b> I tested 27 machine identity cases. My guesses were wrong in two places.<br/><b>Edition.</b> 1.0, 2 November 2026. Free to read and share; please credit the author.<br/><b>Author.</b> Roshan Trivedi, identity and privileged access, Bengaluru. roshantrivedi.co.in', body),
+      Paragraph('Description', h2),
+      Paragraph('A short lab notebook. It takes 27 situations in which a machine identity (a service account, an API key, a CI token, a break-glass account, an AI tool with its own login) can go wrong. For each one it records what I expected, what a small model of the control did with the control off and on, and whether anything noticed when I switched the control off by itself.', body),
+      Paragraph('Problem statement', h2),
+      Paragraph('Most companies have many more machine identities than people. Control mapping sheets say a control exists. They rarely show where it stops. Reports from 2026 describe breaches that began with a forgotten token, a leaked secret or an AI app that an employee linked with broad access. Nobody checks whether the usual controls would have held, and people seldom publish their own wrong guesses.', body),
+      Paragraph('Scope', h2),
+      Paragraph('<b>In scope:</b> 27 cases in six areas: discovering identities, giving them owners and retiring them, credentials and rotation, the front door and trust, privileged access, and shadow AI. Plus three cases from a search for gaps.<br/><b>Out of scope:</b> any commercial product, real vaults or directories, real cloud tenants, real AI models, cost, and Indian regulation (RBI, CERT-In, data protection). I make no compliance claim.<br/><b>Not yet run:</b> 13 stretch cases and 6 chain tests. Their guesses are written and wait for commit.', body),
+      Paragraph('All people, companies, numbers and data are made up. The company, Kaveri Finance, does not exist. Every secret in the tests is fake. This is not a product review and not legal advice. A pass shows the model did what I wrote it to do.', small),
+      PageBreak(),
+      Paragraph('Contents', h1)]
+for a, b in [('1', 'At a glance'), ('2', 'The method and the workflow'), ('3', 'All 27 cases'), ('4', 'Where the market is'), ('5', 'What is missing, and what to ask'), ('6', 'Evidence you can check'),
+             ('A', 'Appendix A: case index'), ('B', 'Appendix B: how to re-run the lab'), ('C', 'Appendix C: sources'), ('D', 'Glossary'), ('E', 'About the author')]:
+    S += [Paragraph(f'<b>{a}</b>&nbsp;&nbsp;&nbsp;{b}', st('toc', fontSize=11, leading=19, spaceAfter=0))]
+S += [PageBreak()]
 # ---------- summary
 S += [Paragraph('At a glance', h1)]
 stats = [('27', 'cases', CYAN), ('25', 'guesses matched', GREEN), ('2', 'guesses wrong', RED), ('2', 'controls masked', AMBER)]
@@ -128,7 +193,9 @@ gt = Table([cells[i:i+3] for i in range(0, 6, 3)] + [cells[6:]] if False else [[
 sty = [('VALIGN', (0,0), (-1,-1), 'MIDDLE'), ('BOX', (0,0), (-1,-1), 1.5, colors.white), ('INNERGRID', (0,0), (-1,-1), 1.5, colors.white)]
 for i, g in enumerate(GROUPS):
     r_, c_ = divmod(i, 4); sty.append(('BACKGROUND', (c_, r_), (c_, r_), colors.HexColor(GROUPS[g][1])))
-gt.setStyle(TableStyle(sty)); S += [gt, PageBreak()]
+gt.setStyle(TableStyle(sty)); S += [gt, Spacer(1, 5*mm), Lifecycle(cnt), PageBreak(),
+      Paragraph('The workflow of one case', h1),
+      Paragraph('Every one of the 27 cases follows the same path. A trigger happens. Without the control it goes through. With the control it is stopped. Then the control is switched off by itself to see whether anything notices.', body), Spacer(1, 3*mm), CaseFlow(), PageBreak()]
 
 # ---------- cases
 S += [Paragraph('All 27 cases', h1),
@@ -194,6 +261,48 @@ for i, x in enumerate(['Can you list every service account across the directory,
           'Are secrets hidden by pattern only, and what is the secret that no pattern matches?',
           'If you switch one control off, does anything tell you? If not, is another control covering it, or nothing?'], 1):
     S += [Paragraph(f'<b>{i}.</b>&nbsp; {x}', body)]
+
+S += [PageBreak(), Paragraph('Appendix A: case index', h1),
+      Paragraph('Guess result: M means my guess matched, W means it was wrong.', small)]
+rows = [['ID', 'Case', 'Group', 'Guess']]
+for r in R:
+    g = T[r['id']][0]; rows.append([r['id'], Paragraph(r['title'], cell), GROUPS[g][0], 'W' if r['id'] in WRONG else 'M'])
+it = Table(rows, colWidths=[24*mm, 80*mm, 52*mm, 14*mm], repeatRows=1)
+it.setStyle(TableStyle([('FONT', (0,0), (-1,-1), 'S', 8), ('FONT', (0,0), (-1,0), 'SB', 8), ('BACKGROUND', (0,0), (-1,0), SOFT),
+                        ('LINEBELOW', (0,0), (-1,-1), .3, colors.HexColor('#d7deee')), ('VALIGN', (0,0), (-1,-1), 'MIDDLE')]))
+S += [it, PageBreak(),
+      Paragraph('Appendix B: how to re-run the lab', h1),
+      Paragraph('You need Python 3 and nothing else. The lab files are at roshantrivedi.co.in/nhi-lab/evidence/.', body),
+      Paragraph('1. Download <font name="M">cases.py</font>, <font name="M">run.py</font> and the three guess files into one folder.<br/>2. Run <font name="M">python3 run.py</font>.<br/>3. The runner first checks the SHA-256 of each guess file against the hash recorded at commit time, and stops if one differs.<br/>4. It runs each case without and with the control, then switches each control off alone, and writes <font name="M">RESULTS.md</font> and <font name="M">results.json</font>.', body),
+      Paragraph('Every secret in the cases is made up. Never paste a real secret into any test.', small),
+      Paragraph('Appendix C: sources', h1),
+      Paragraph('<b>OWASP Non-Human Identities Top 10 (2025).</b> Ten named risks, including improper offboarding and human use of non-human identities.<br/><b>OWASP Top 10 for Agentic Applications (2026).</b> I read a summary by Teleport; check the OWASP original before quoting.<br/><b>Tuhin Banerjee, Cloud Security Alliance blog, 23 April 2026.</b> An opinion piece built on named incidents.<br/><b>Vercel security incident, April 2026.</b> Read through a summary by Strapi; attribution and some details are unverified.<br/><b>GitGuardian State of Secrets Sprawl 2026.</b> Vendor research, 2025 data.<br/><b>NIST NCCoE concept paper on software and AI agent identity and authorization, 5 February 2026.</b> A concept paper only.<br/><b>Wiz blog, Non-Human Identities dashboard, February 2024; Clutch Security via Okta integrations page; SailPoint Entro documentation.</b> Vendor descriptions, not tested.', body),
+      PageBreak(), Paragraph('Glossary', h1)]
+GL = [('Non-human identity (NHI)', 'An account or credential used by software, not a person: a service account, API key, token, certificate or bot.'),
+      ('Service account', 'A directory or cloud account that an application uses to sign in.'),
+      ('Secret', 'A password, key or token that proves identity. Anyone who holds it can act as the identity.'),
+      ('Rotation', 'Replacing a secret with a new one on a schedule or after a leak.'),
+      ('Refresh token', 'A long-lived token that lets an app get new short-lived access without asking the person again.'),
+      ('OAuth grant', 'The permission a person gives an app to act on their behalf.'),
+      ('Allowlist', 'A list of apps or actions that are permitted. Anything not on it is refused.'),
+      ('Revoke', 'End a credential or grant so it no longer works.'),
+      ('Break-glass account', 'A powerful emergency account kept for incidents. Its use should be rare and always noticed.'),
+      ('PAM', 'Privileged access management: control, time-limiting and recording of powerful access.'),
+      ('IGA', 'Identity governance and administration: owners, reviews, and joining, moving and leaving.'),
+      ('JIT access', 'Just-in-time access: given for a short window and removed after.'),
+      ('CI/CD', 'The automated build and deploy pipeline, whose jobs hold credentials.'),
+      ('Control-off check', 'Switching one control off alone to see whether anything notices. If nothing does, another control was covering it, or the control did nothing.'),
+      ('Masked control', 'A control whose effect is hidden because another control already stopped the attack.'),
+      ('SHA-256', 'A fingerprint of a file. If the file changes, the fingerprint changes. It proves the guesses were not edited later.'),
+      ('Shadow AI', 'AI tools and agents that people connect to work systems without the company knowing.')]
+S += [Table([[Paragraph(f'<b>{a}</b>', cell), Paragraph(b, cell)] for a, b in GL], colWidths=[42*mm, W-36*mm-42*mm],
+            style=TableStyle([('VALIGN', (0,0), (-1,-1), 'TOP'), ('LINEBELOW', (0,0), (-1,-1), .3, colors.HexColor('#d7deee')),
+                              ('TOPPADDING', (0,0), (-1,-1), 4), ('BOTTOMPADDING', (0,0), (-1,-1), 4)])), PageBreak(),
+      Paragraph('About the author', h1),
+      Paragraph('Roshan Trivedi works in identity and privileged access security in Bengaluru, India. He writes and tests work on AI governance, MCP security, non-human identity and privileged access, and publishes the tests with the mistakes.', body),
+      Paragraph('Website: roshantrivedi.co.in<br/>Newsletter: buttondown.com/trivedi<br/>Other labs: AI governance lab (13 rounds, 164 cases) and the MCP lab.', body),
+      Paragraph('If you think a case is wrong, tell me. I will add it and keep the original.', small)]
+
 S += [PageBreak(), Paragraph('Evidence you can check', h1),
       Paragraph('The guess files, the code and the results are public at roshantrivedi.co.in/nhi-lab/. The SHA-256 hash of each guess file was recorded when I committed it, before the code existed.', body)]
 hs = [['Guess file', 'SHA-256'],

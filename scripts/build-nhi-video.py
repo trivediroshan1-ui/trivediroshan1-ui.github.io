@@ -85,7 +85,7 @@ for i, q in enumerate(["A made-up ticket number passed the break-glass review", 
 els.append(A("<p>Nothing checks that the sign-off is true.</p>", 920, 44.5, S5o))
 # S6 48-54
 els += [A("<h2>Free and public</h2>", 250, 48.2, DUR),
-        A("<p>27 cases with animated workflows, a lab you can run in your browser, and a 12-page PDF book.</p>", 400, 48.8, DUR),
+        A("<p>27 cases with animated workflows, a lab you can run in your browser, and a 20-page PDF book.</p>", 400, 48.8, DUR),
         A("<div class='url'>roshantrivedi.co.in<br>/nhi-lab</div>", 700, 49.6, DUR),
         A("<p>Think a case is wrong? Tell me. I will add it.</p>", 960, 51.0, DUR)]
 HTML = f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS}</style></head><body>

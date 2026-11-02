@@ -25,7 +25,7 @@
 <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-post-page-book.png">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/portal.css?v=20261019e">
-<link rel="stylesheet" href="/assets/book.css?v=20261019e">
+<link rel="stylesheet" href="/assets/book.css?v=20261102a">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -115,6 +115,26 @@
   </div>
 </section>
 
+<section class="s" id="library">
+  <div class="wrap">
+    <div class="sh"><p class="eyebrow">The library</p><h2>All the books</h2>
+      <p>Three free books, one for each lab. Pick one from the list, or leave it on all.</p></div>
+    <p class="bk-pick"><label for="bookpick">Show </label><select id="bookpick" aria-controls="booklist">
+      <option value="all">All three books</option><option value="approve">Who Approved That? (MCP lab)</option>
+      <option value="agl">Does AI Governance Hold? (AI governance lab)</option><option value="nhi">Machine identity lab (NHI)</option></select></p>
+    <div class="dl" id="booklist">
+      <article class="card" data-book="approve" style="--k:var(--vi)"><span class="tag" style="color:var(--vi)">MCP lab &middot; 138 pages</span><h3>Who Approved That?</h3><p>A human approval step in front of AI agent tool calls: 210 checks, 81 use cases, three rounds.</p><span class="meta">PDF &middot; 4.5 MB</span>
+        <div class="row"><a class="btn sm pri" href="/assets/who-approved-that-book.pdf">Download PDF</a><a class="btn sm" href="#get">Print files</a></div></article>
+      <article class="card" data-book="agl" style="--k:var(--cy)"><span class="tag">AI governance lab &middot; 69 pages</span><h3>Does AI Governance Hold?</h3><p>Testing AI controls with made-up Indian data, thirteen rounds, 164 cases, and what broke. Has a preface, glossary and appendices.</p><span class="meta">PDF &middot; 0.8 MB</span>
+        <div class="hash">SHA-256 83347e263e9b37fb169064080784e90d8373f7124d825d6241106c873eec9c22</div>
+        <div class="row"><a class="btn sm pri" href="/assets/ai-governance-lab-book.pdf">Download PDF</a><a class="btn sm" href="/ai-governance-lab/">Open the lab</a></div></article>
+      <article class="card" data-book="nhi" style="--k:var(--em)"><span class="tag" style="color:var(--em)">NHI lab &middot; 20 pages</span><h3>I tested 27 machine identity cases</h3><p>Service accounts, API keys, CI tokens, break-glass and AI tools, with my wrong guesses. Has the problem statement, scope, workflow, appendices, glossary and author page.</p><span class="meta">PDF &middot; 0.1 MB</span>
+        <div class="hash">SHA-256 d7f365160061cbf84f860a1df5ee02881e27ebf8c07c3337a8c8fae04545f5cf</div>
+        <div class="row"><a class="btn sm pri" href="/nhi-lab/nhi-lab-book.pdf">Download PDF</a><a class="btn sm" href="/nhi-lab/">Open the lab</a></div></article>
+    </div>
+  </div>
+</section>
+
 <section class="s" id="get">
   <div class="wrap">
     <div class="sh"><p class="eyebrow">Free to read, share and print</p><h2>Get the book</h2>
@@ -169,7 +189,7 @@
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-<script src="/assets/book.js?v=20261018b" defer></script>
+<script src="/assets/book.js?v=20261102a" defer></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
