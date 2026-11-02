@@ -28,5 +28,11 @@
     "made at round 5",
     "Written at round 5",
     "from the first four rounds"
-  ]
+  ],
+  "nhi_lab": {
+    "cases_first_run": 27,
+    "cases_second_run": 19,
+    "cases": 46,
+    "book_pages": 21
+  }
 }
