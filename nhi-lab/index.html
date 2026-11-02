@@ -355,7 +355,7 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
 
   <section id="round2" aria-labelledby="r2-h">
     <h2 id="r2-h">Second run: 13 stretch cases and 6 chain tests</h2>
-    <p>These ran after the first 27, with the same method. The guesses were committed first (commit <code>78d7e3e</code>, hash below). The headline numbers above are still the first 27.</p>
+    <p>These ran after the first 27, with the same method. The guesses were committed first (commit <code>78d7e3e</code>, hash below). The code and results are in commit <code>05235fe</code> on my Mac, and the output matched line for line. The headline numbers above are still the first 27.</p>
     <ul>
       <li><strong>Three guesses were wrong.</strong> I wrote that 9 identities with two or three names each would give 51 entries. That is impossible: it gives 43. After merging I expected 30 and got 29, because stripping trailing digits from names merged two real accounts into one. And for the forgotten service account chain, I guessed the secret scan on tickets was the most useful single control. In my rules the owner check stops it earliest, but only for accounts created after the rule. For an account that already exists the scan is the one that works.</li>
       <li><strong>My first run of the matching case was wrong because of my own test data.</strong> I had given 21 identities the same owner, so they merged into 11. I fixed the data and kept the first output in <code>RESULTS-stretch-first-run.md</code>.</li>
