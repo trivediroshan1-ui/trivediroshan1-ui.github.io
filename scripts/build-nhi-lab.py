@@ -72,6 +72,7 @@ head = re.sub(r'<link rel="canonical"[^>]*>', '<link rel="canonical" href="https
 head = re.sub(r'<meta property="og:title"[^>]*>', '<meta property="og:title" content="I tested 46 non-human identity cases. My guesses were wrong in four places." />', head)
 head = re.sub(r'<meta property="og:description"[^>]*>', '<meta property="og:description" content="Service accounts, tokens, break-glass and shadow AI, tested on made-up data with the guesses committed first." />', head)
 head = re.sub(r'<meta property="og:url"[^>]*>', '<meta property="og:url" content="https://roshantrivedi.co.in/nhi-lab/" />', head)
+head = re.sub(r'(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")', r'\g<1>https://roshantrivedi.co.in/assets/share/og-nhi-lab.png\g<2>', head)
 head = re.sub(r'<title>.*?</title>', '<title>Non-human identity lab &middot; Roshan Trivedi</title>', head)
 head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', head, flags=re.S)
 ld = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 46 cases","description":"46 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>'
