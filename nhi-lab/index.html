@@ -6,9 +6,9 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
-    <meta name="description" content="27 non-human identity cases on made-up data. Guesses written and hashed before the code, every control switched off once. Animated workflows, a lab you can run in the browser, and what the market still misses." />
+    <meta name="description" content="46 non-human identity cases on made-up data. Guesses written and hashed before the code, every control switched off once. A framework, a dated market view, downloadable audit data and animated workflows." />
     <link rel="canonical" href="https://roshantrivedi.co.in/nhi-lab/" />
-    <meta property="og:title" content="I tested 27 non-human identity cases. My guesses were wrong in two places." />
+    <meta property="og:title" content="I tested 46 non-human identity cases. My guesses were wrong in four places." />
     <meta property="og:description" content="Service accounts, tokens, break-glass and shadow AI, tested on made-up data with the guesses committed first." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/nhi-lab/" />
@@ -33,29 +33,43 @@
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
         <script src="/assets/palette.js?v=20261019f" defer></script>
-  <link rel="stylesheet" href="/assets/blinks.css?v=20261102b">
-  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102b">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 27 cases","description":"27 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102c">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102c">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102c">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 46 cases","description":"46 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>
 </head>
     <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main" class="nhi">
+  <nav class="nsub" aria-label="Non-human identity lab sections"><a href="/nhi-lab/" aria-current="page">Overview</a><a href="/nhi-lab/framework/">Framework</a><a href="/nhi-lab/market/">Market</a><a href="/nhi-lab/method/">What we did</a><a href="/nhi-lab/audit/">Audit data</a><a href="/nhi-lab/roadmap/">Roadmap</a><a href="/nhi-lab/explainer/">Explainer</a><a href="/nhi-lab/nhi-lab-book.pdf">Book (PDF)</a><a href="/book/">All books</a></nav>
   <header class="hero mcp-hero">
     <p class="eyebrow">Non-human identity lab</p>
-    <h1>I tested 27 non-human identity cases. My guesses were wrong in two places.</h1>
+    <h1>I tested 46 non-human identity cases. My guesses were wrong in four places.</h1>
     <p class="dek">Service accounts, API keys, CI tokens, break-glass accounts and AI tools with their own logins. Made-up data, guesses committed before the code, and every control switched off once to see if anything noticed.</p>
-    <p class="stats" aria-label="Summary numbers"><span><b>27</b> cases</span><span><b>25</b> guesses matched</span><span><b>2</b> guesses wrong</span><span><b>2</b> controls masked by another</span></p>
+    <p class="stats" aria-label="Summary numbers"><span><b>46</b> cases</span><span><b>42</b> guesses matched</span><span><b>4</b> guesses wrong</span><span><b>8</b> cases with a control nothing noticed</span></p>
   </header>
 
-  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">New issue: I tested 27 machine identity cases.</span></span><span class="go">Subscribe &rarr;</span></a>
+  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">One email when I publish a new lab or case study.</span></span><span class="go">Subscribe &rarr;</span></a>
 
-  <nav class="toc" aria-label="On this page"><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 46 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+  <nav class="toc" aria-label="On this page"><a href="#more">Go deeper</a><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 46 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+
+    <section id="more" aria-labelledby="more-h">
+    <h2 id="more-h">Go deeper</h2>
+    <div class="ngrid">
+      <a class="ncard" href="/nhi-lab/framework/" style="text-decoration:none"><h3>Framework</h3><p>Seven steps from finding an identity to retiring it, with a decision table, leak response and metrics.</p></a>
+      <a class="ncard" href="/nhi-lab/market/" style="text-decoration:none"><h3>Market, 2026</h3><p>Four deals, Microsoft's agent identity, a NIST project. Dated and sourced, with trust labels.</p></a>
+      <a class="ncard" href="/nhi-lab/method/" style="text-decoration:none"><h3>What we did</h3><p>The full procedure, the dates, and every mistake I made.</p></a>
+      <a class="ncard" href="/nhi-lab/audit/" style="text-decoration:none"><h3>Audit data</h3><p>All 46 cases in one table, a CSV and JSON download, and a script that checks the hashes.</p></a>
+      <a class="ncard" href="/nhi-lab/roadmap/" style="text-decoration:none"><h3>Roadmap</h3><p>What is done, what I am checking, what comes next, with no invented dates.</p></a>
+      <a class="ncard" href="/nhi-lab/explainer/" style="text-decoration:none"><h3>Explainer</h3><p>A one-minute animation. Pausable, with a transcript.</p></a>
+    </div>
+  </section>
 
   <section id="what" aria-labelledby="what-h">
     <h2 id="what-h">What I did, why, and how</h2>
     <div class="trio">
-      <div><h3>What</h3><p>I ran 27 cases about machine identities: finding them, giving them owners, rotating their secrets, controlling privileged access and catching AI tools that quietly hold credentials. 24 were my must-run cases. 3 more came from a search for gaps, based on 2026 incident reports.</p></div>
+      <div><h3>What</h3><p>I ran 46 cases about machine identities in two runs: finding them, giving them owners, rotating their secrets, controlling privileged access and catching AI tools that quietly hold credentials. The first run had 27 cases: 24 must-run cases and 3 from a search for gaps, based on 2026 incident reports. The second run added 13 stretch cases and 6 chain tests.</p></div>
       <div><h3>Why</h3><p>Most companies have many more machine identities than people, and mapping sheets say a control exists without showing it holds. I wanted to see where a control stops, and to keep my own wrong guesses on the page.</p></div>
       <div><h3>How</h3><p>Before any code, I wrote what I expected and committed the files. Then I wrote small models of each control and ran every case with the control off and on. Then I switched each control off by itself to see whether the result changed.</p></div>
     </div>
@@ -65,13 +79,14 @@
 
   <section id="workflow" aria-labelledby="wf-h">
     <h2 id="wf-h">The life of a machine identity</h2>
-    <p>Every case sits on one stage of this loop. The pulse is a new identity moving through it. The number under each stage is how many of the 27 cases test it.</p>
+    <p>Every case sits on one stage of this loop. The pulse is a new identity moving through it. The number under each stage is how many of the 27 first-run cases test it. The framework page places all 46 cases on seven steps.</p>
     <figure><svg class="nflow wide" viewBox="0 0 900 190" role="img" aria-label="The life of a non-human identity: discover, own, credential, control, privileged access, retire. A pulse travels along the loop."><rect x="8" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="73" y="80" text-anchor="middle">Discover</text><text class="tx sm" x="73" y="100" text-anchor="middle">Find every identity</text><text class="tx sm" x="73" y="122" text-anchor="middle">4 cases</text><path class="ln" d="M 138 93 L 156 93"/><rect x="156" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="221" y="80" text-anchor="middle">Own</text><text class="tx sm" x="221" y="100" text-anchor="middle">A named person</text><text class="tx sm" x="221" y="122" text-anchor="middle">2 cases</text><path class="ln" d="M 286 93 L 304 93"/><rect x="304" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="369" y="80" text-anchor="middle">Credential</text><text class="tx sm" x="369" y="100" text-anchor="middle">Rotate, expire, scope</text><text class="tx sm" x="369" y="122" text-anchor="middle">7 cases</text><path class="ln" d="M 434 93 L 452 93"/><rect x="452" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="517" y="80" text-anchor="middle">Control</text><text class="tx sm" x="517" y="100" text-anchor="middle">Front door and trust</text><text class="tx sm" x="517" y="122" text-anchor="middle">3 cases</text><path class="ln" d="M 582 93 L 600 93"/><rect x="600" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="665" y="80" text-anchor="middle">Privileged</text><text class="tx sm" x="665" y="100" text-anchor="middle">JIT, recording, break-glass</text><text class="tx sm" x="665" y="122" text-anchor="middle">10 cases</text><path class="ln" d="M 730 93 L 748 93"/><rect x="748" y="50" width="130" height="86" rx="14" class="nd" style="stroke:#7df2d0"/><text class="tx b" x="813" y="80" text-anchor="middle">Retire</text><text class="tx sm" x="813" y="100" text-anchor="middle">Remove what is unused</text><text class="tx sm" x="813" y="122" text-anchor="middle">1 cases</text><path class="ln dash" d="M 818 140 L 818 175 L 73 175 L 73 140"/><text class="tx sm" x="450" y="170" text-anchor="middle">retire feeds the next discovery scan</text><circle class="ndot good" r="7" style="offset-path:path('M 20 93 L 880 93');animation-duration:12s"/></svg><figcaption>Discover, own, credential, control, privileged access, retire. Retiring what is unused feeds the next discovery scan.</figcaption></figure>
   </section>
 
   <section id="found" aria-labelledby="found-h">
     <h2 id="found-h">What I found</h2>
     <ul class="finds">
+      <li><b>Across both runs, 42 of 46 guesses matched and 4 were wrong.</b> In 8 cases a control sat there and nothing noticed when I switched it off. Alerts reported three chain attacks that a different control stopped. The <a href="/nhi-lab/audit/">audit data</a> lists every case, and the <a href="/nhi-lab/method/">method page</a> lists every mistake. The findings below are from the first run.</li>
       <li><b>The secret scan missed two of eight fake secrets, not one.</b> It caught six. The two it missed were a secret split across two lines and a base64-encoded one. I had guessed one miss.</li>
       <li><b>Two controls showed no effect on their own, because another control already stopped the attack.</b> A 10-minute token lifetime changed nothing once the token was bound to the runner and revoked at job end. A vendor-breach revoke changed nothing once an app allowlist refused the grant. I guessed every control would show up. That is layering, and it also means a one-at-a-time switch-off can say "nothing happened" for a control that matters in a different scenario.</li>
       <li><b>Several controls stopped where I expected.</b> A made-up ticket number passed the break-glass review because nothing checks it against the ticket system. A false justification for break-glass use was accepted. A bound CI token still worked from inside the runner. An allowlisted app that is later breached works until someone revokes it. A false retirement sign-off left one identity active. A consumer missing from the list still broke after rotation.</li>
@@ -603,7 +618,7 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-gap-cases.md">Gap cases (3 cases)</a></td><td><code>7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d</code></td></tr>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-stretch-and-chains.md">Stretch cases and chain tests (19 cases)</a></td><td><code>40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed</code></td></tr>
     </tbody></table>
-    <p><strong>Read it offline:</strong> <a href="/nhi-lab/nhi-lab-book.pdf">the lab as a 21-page PDF book</a> (21 pages, about 110 KB), or <a href="/assets/share/nhi-lab.mp4">the 54-second silent video</a> (1.3 MB).</p>
+    <p><strong>Read it offline:</strong> <a href="/nhi-lab/nhi-lab-book.pdf">the lab as a 65-page PDF book</a> (edition 2, about 0.4 MB, a workflow diagram for every case), or <a href="/assets/share/nhi-lab.mp4">the 54-second silent video</a> (1.3 MB).</p>
     <p><a href="/nhi-lab/evidence/cases.py">cases.py</a> · <a href="/nhi-lab/evidence/run.py">run.py</a> · <a href="/nhi-lab/evidence/RESULTS.md">RESULTS.md</a> · <a href="/nhi-lab/evidence/results.json">results.json</a> · second run: <a href="/nhi-lab/evidence/cases2.py">cases2.py</a> · <a href="/nhi-lab/evidence/run2.py">run2.py</a> · <a href="/nhi-lab/evidence/RESULTS-stretch.md">RESULTS-stretch.md</a> · <a href="/nhi-lab/evidence/results-stretch.json">results-stretch.json</a>. Run it with <code>python3 run.py</code>. It needs only Python 3 and checks the guess hashes first.</p>
     <p>Related: <a href="/ai-governance-lab/">the AI governance lab</a> (13 rounds, 164 cases) and <a href="/labs/">all labs</a>.</p>
   </section>
