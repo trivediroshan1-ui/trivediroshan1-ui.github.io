@@ -24,3 +24,11 @@
   var cl = $("#copyLink");
   if (cl) cl.addEventListener("click", function () { copy("https://roshantrivedi.co.in/book/", "Link copied"); });
 })();
+
+(function () {
+  var sel = document.getElementById("bookpick"); if (!sel) return;
+  sel.addEventListener("change", function () {
+    var cards = document.querySelectorAll("#booklist [data-book]");
+    Array.prototype.forEach.call(cards, function (c) { c.hidden = sel.value !== "all" && c.getAttribute("data-book") !== sel.value; });
+  });
+})();

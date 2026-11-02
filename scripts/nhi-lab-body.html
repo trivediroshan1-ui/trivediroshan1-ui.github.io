@@ -1,19 +1,32 @@
 <main id="main" class="nhi">
+  {{SUBNAV}}
   <header class="hero mcp-hero">
     <p class="eyebrow">Non-human identity lab</p>
-    <h1>I tested 27 non-human identity cases. My guesses were wrong in two places.</h1>
+    <h1>I tested 46 non-human identity cases. My guesses were wrong in four places.</h1>
     <p class="dek">Service accounts, API keys, CI tokens, break-glass accounts and AI tools with their own logins. Made-up data, guesses committed before the code, and every control switched off once to see if anything noticed.</p>
-    <p class="stats" aria-label="Summary numbers"><span><b>27</b> cases</span><span><b>25</b> guesses matched</span><span><b>2</b> guesses wrong</span><span><b>2</b> controls masked by another</span></p>
+    <p class="stats" aria-label="Summary numbers"><span><b>46</b> cases</span><span><b>42</b> guesses matched</span><span><b>4</b> guesses wrong</span><span><b>8</b> cases with a control nothing noticed</span></p>
   </header>
 
-  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">New issue: I tested 27 machine identity cases.</span></span><span class="go">Subscribe &rarr;</span></a>
+  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">One email when I publish a new lab or case study.</span></span><span class="go">Subscribe &rarr;</span></a>
 
-  <nav class="toc" aria-label="On this page"><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 27 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+  <nav class="toc" aria-label="On this page"><a href="#more">Go deeper</a><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 46 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+
+    <section id="more" aria-labelledby="more-h">
+    <h2 id="more-h">Go deeper</h2>
+    <div class="ngrid">
+      <a class="ncard" href="/nhi-lab/framework/" style="text-decoration:none"><h3>Framework</h3><p>Seven steps from finding an identity to retiring it, with a decision table, leak response and metrics.</p></a>
+      <a class="ncard" href="/nhi-lab/market/" style="text-decoration:none"><h3>Market, 2026</h3><p>Four deals, Microsoft's agent identity, a NIST project. Dated and sourced, with trust labels.</p></a>
+      <a class="ncard" href="/nhi-lab/method/" style="text-decoration:none"><h3>What we did</h3><p>The full procedure, the dates, and every mistake I made.</p></a>
+      <a class="ncard" href="/nhi-lab/audit/" style="text-decoration:none"><h3>Audit data</h3><p>All 46 cases in one table, a CSV and JSON download, and a script that checks the hashes.</p></a>
+      <a class="ncard" href="/nhi-lab/roadmap/" style="text-decoration:none"><h3>Roadmap</h3><p>What is done, what I am checking, what comes next, with no invented dates.</p></a>
+      <a class="ncard" href="/nhi-lab/explainer/" style="text-decoration:none"><h3>Explainer</h3><p>A one-minute animation. Pausable, with a transcript.</p></a>
+    </div>
+  </section>
 
   <section id="what" aria-labelledby="what-h">
     <h2 id="what-h">What I did, why, and how</h2>
     <div class="trio">
-      <div><h3>What</h3><p>I ran 27 cases about machine identities: finding them, giving them owners, rotating their secrets, controlling privileged access and catching AI tools that quietly hold credentials. 24 were my must-run cases. 3 more came from a search for gaps, based on 2026 incident reports.</p></div>
+      <div><h3>What</h3><p>I ran 46 cases about machine identities in two runs: finding them, giving them owners, rotating their secrets, controlling privileged access and catching AI tools that quietly hold credentials. The first run had 27 cases: 24 must-run cases and 3 from a search for gaps, based on 2026 incident reports. The second run added 13 stretch cases and 6 chain tests.</p></div>
       <div><h3>Why</h3><p>Most companies have many more machine identities than people, and mapping sheets say a control exists without showing it holds. I wanted to see where a control stops, and to keep my own wrong guesses on the page.</p></div>
       <div><h3>How</h3><p>Before any code, I wrote what I expected and committed the files. Then I wrote small models of each control and ran every case with the control off and on. Then I switched each control off by itself to see whether the result changed.</p></div>
     </div>
@@ -23,13 +36,14 @@
 
   <section id="workflow" aria-labelledby="wf-h">
     <h2 id="wf-h">The life of a machine identity</h2>
-    <p>Every case sits on one stage of this loop. The pulse is a new identity moving through it. The number under each stage is how many of the 27 cases test it.</p>
+    <p>Every case sits on one stage of this loop. The pulse is a new identity moving through it. The number under each stage is how many of the 27 first-run cases test it. The framework page places all 46 cases on seven steps.</p>
     <figure>{{LIFE}}<figcaption>Discover, own, credential, control, privileged access, retire. Retiring what is unused feeds the next discovery scan.</figcaption></figure>
   </section>
 
   <section id="found" aria-labelledby="found-h">
     <h2 id="found-h">What I found</h2>
     <ul class="finds">
+      <li><b>Across both runs, 42 of 46 guesses matched and 4 were wrong.</b> In 8 cases a control sat there and nothing noticed when I switched it off. Alerts reported three chain attacks that a different control stopped. The <a href="/nhi-lab/audit/">audit data</a> lists every case, and the <a href="/nhi-lab/method/">method page</a> lists every mistake. The findings below are from the first run.</li>
       <li><b>The secret scan missed two of eight fake secrets, not one.</b> It caught six. The two it missed were a secret split across two lines and a base64-encoded one. I had guessed one miss.</li>
       <li><b>Two controls showed no effect on their own, because another control already stopped the attack.</b> A 10-minute token lifetime changed nothing once the token was bound to the runner and revoked at job end. A vendor-breach revoke changed nothing once an app allowlist refused the grant. I guessed every control would show up. That is layering, and it also means a one-at-a-time switch-off can say "nothing happened" for a control that matters in a different scenario.</li>
       <li><b>Several controls stopped where I expected.</b> A made-up ticket number passed the break-glass review because nothing checks it against the ticket system. A false justification for break-glass use was accepted. A bound CI token still worked from inside the runner. An allowlisted app that is later breached works until someone revokes it. A false retirement sign-off left one identity active. A consumer missing from the list still broke after rotation.</li>
@@ -61,12 +75,29 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
   </section>
 
   <section id="cases" aria-labelledby="cases-h">
-    <h2 id="cases-h">All 27 cases, with the workflow</h2>
-    <p>Each card shows one case. The red lane is what happens without the control, the green lane is what happens with it. Tags show whether my guess matched and whether switching the control off alone changed the result.</p>
+    <h2 id="cases-h">All 46 cases, with the workflow</h2>
+    <p>Each card shows one case. The red lane is what happens without the control, the green lane is what happens with it. Tags show whether my guess matched and whether switching the control off alone changed the result.. 27 cases are the first run and 19 carry a "second run" tag (see the second-run section above). The chain cards are rule models, so they are weaker evidence.</p>
     <div class="chips" role="group" aria-label="Filter cases">{{CHIPS}}</div>
     <div class="cases">
 {{CASES}}
     </div>
+  </section>
+
+  <section id="round2" aria-labelledby="r2-h">
+    <h2 id="r2-h">Second run: 13 stretch cases and 6 chain tests</h2>
+    <p>These ran after the first 27, with the same method. The guesses were committed first (commit <code>78d7e3e</code>, hash below). The code and results are in commit <code>05235fe</code> on my Mac, and the output matched line for line. The headline numbers above are still the first 27.</p>
+    <ul>
+      <li><strong>Three guesses were wrong.</strong> I wrote that 9 identities with two or three names each would give 51 entries. That is impossible: it gives 43. After merging I expected 30 and got 29, because stripping trailing digits from names merged two real accounts into one. And for the forgotten service account chain, I guessed the secret scan on tickets was the most useful single control. In my rules the owner check stops it earliest, but only for accounts created after the rule. For an account that already exists the scan is the one that works.</li>
+      <li><strong>My first run of the matching case was wrong because of my own test data.</strong> I had given 21 identities the same owner, so they merged into 11. I fixed the data and kept the first output in <code>RESULTS-stretch-first-run.md</code>.</li>
+      <li><strong>Controls that hid each other.</strong> In the help-desk reset case, strong proof and the notice with a delay each stopped both attacker resets alone. Switched off one at a time, neither showed any effect. Rotating AI-service keys every 90 days changed nothing once the scan revoked the keys it could see.</li>
+      <li><strong>Limits.</strong> A password copied during a checkout and used from another tool is not seen. If the real person approves the reset notice, the account is lost with both controls on. An extension of an automation is accepted on any written reason.</li>
+    </ul>
+    <p class="note"><strong>The chain tests are weak evidence.</strong> They are rule models: I decided which control stops which link, so the results follow from my rules. Whether a tired approver acts on a risk flag is human behaviour, which they do not test.</p>
+    <div class="tbl-wrap"><table>
+      <caption>Second run, one row per case</caption>
+      <thead><tr><th scope="col">Case</th><th scope="col">My guess</th><th scope="col">Switching it off alone changed the result?</th></tr></thead>
+      <tbody>{{ROUND2}}</tbody>
+    </table></div>
   </section>
 
   <section id="market" aria-labelledby="mk-h">
@@ -74,9 +105,9 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
     <p>I did not test any commercial product. This is how I read the categories, from public sources I link below. Check each vendor's own documentation for what a product does today.</p>
     <div class="tools">
       <div><h3>PAM vaults and brokers</h3><p>CyberArk, Delinea, BeyondTrust and others. Strong at vaulting and rotating privileged and service-account passwords, session recording and just-in-time access. In my cases this is the territory of rotation, JIT windows, recording and break-glass.</p></div>
-      <div><h3>IGA</h3><p>SailPoint, Saviynt and others. Built for owners, certification campaigns and joiner-mover-leaver. In my cases this is ownership, retirement and sponsor reviews.</p></div>
+      <div><h3>IGA</h3><p>SailPoint, Saviynt and others. Built for owners, certification campaigns and joiner-mover-leaver. In my cases this is ownership, retirement and sponsor reviews. Some IGA vendors now sell machine-identity products too: SailPoint's documentation lists one called Entro (<a href="https://documentation.sailpoint.com/entro/help/getting-started/about-entro.html" rel="noopener">SailPoint docs</a>). I have not read its description.</p></div>
       <div><h3>Secrets managers</h3><p>HashiCorp Vault and the cloud secret managers. Store and issue secrets, often short-lived. In my cases this is short token lifetimes and per-job credentials.</p></div>
-      <div><h3>NHI-focused and cloud-risk platforms</h3><p>Clutch, Wiz and similar. Newer products aimed at finding machine identities and their relationships across cloud, CI and SaaS. In my cases this is discovery and the OAuth and CI paths.</p></div>
+      <div><h3>NHI-focused and cloud-risk platforms</h3><p>Clutch, Wiz and similar. Newer products aimed at finding machine identities and their relationships across cloud, CI and SaaS. In my cases this is discovery and the OAuth and CI paths. Wiz describes a Non-Human Identities dashboard (<a href="https://wiz.io/blog/non-human-identities-dashboard" rel="noopener">Wiz blog, February 2024</a>) that finds service accounts, flags privileged ones and shows attack paths. Clutch describes its platform as visibility, lifecycle management, posture, detection and response (<a href="https://www.okta.com/integrations/clutch-security/" rel="noopener">Okta integration page</a>, a vendor claim).</p></div>
     </div>
     <h3>What the sources say</h3>
     <ul class="srcs">
@@ -102,7 +133,7 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
     <ul>
       <li>It is a model, not a real environment. Real vaults, directories and CI systems will behave differently.</li>
       <li>I wrote both the guesses and the code. An outside reader writing guesses first would be a stronger test.</li>
-      <li>13 stretch cases and the round of chain tests are not run yet.</li>
+      <li>The 13 stretch cases and 6 chain tests ran in a second run (above). 21 queued cases and the Stage 2 testing are not run.</li>
       <li>AWS, Azure and Google Cloud each have their own key and role habits. These cases are generic.</li>
       <li>Indian rules (RBI, CERT-In, data protection) are not checked. I make no compliance claim.</li>
       <li>No cost data.</li>
@@ -129,8 +160,10 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-round-14-15.md">Rounds 14 and 15 (20 cases)</a></td><td><code>f06f355eb80c151cb237ca4ef0c09dad9bc995fe5d395dca03f8756b0c69c784</code></td></tr>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-round-17.md">Round 17, shadow AI (4 cases)</a></td><td><code>4e6dfc1a80b2fa1e0a0da0a129882e87fdd3be931b5dddafd018d92c05dc8b7c</code></td></tr>
       <tr><td><a href="/nhi-lab/evidence/guesses/guesses-gap-cases.md">Gap cases (3 cases)</a></td><td><code>7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d</code></td></tr>
+      <tr><td><a href="/nhi-lab/evidence/guesses/guesses-stretch-and-chains.md">Stretch cases and chain tests (19 cases)</a></td><td><code>40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed</code></td></tr>
     </tbody></table>
-    <p><a href="/nhi-lab/evidence/cases.py">cases.py</a> · <a href="/nhi-lab/evidence/run.py">run.py</a> · <a href="/nhi-lab/evidence/RESULTS.md">RESULTS.md</a> · <a href="/nhi-lab/evidence/results.json">results.json</a>. Run it with <code>python3 run.py</code>. It needs only Python 3 and checks the guess hashes first.</p>
+    <p><strong>Read it offline:</strong> <a href="/nhi-lab/nhi-lab-book.pdf">the lab as a 65-page PDF book</a> (edition 2, about 0.4 MB, a workflow diagram for every case), or <a href="/assets/share/nhi-lab.mp4">the 54-second silent video</a> (1.3 MB).</p>
+    <p><a href="/nhi-lab/evidence/cases.py">cases.py</a> · <a href="/nhi-lab/evidence/run.py">run.py</a> · <a href="/nhi-lab/evidence/RESULTS.md">RESULTS.md</a> · <a href="/nhi-lab/evidence/results.json">results.json</a> · second run: <a href="/nhi-lab/evidence/cases2.py">cases2.py</a> · <a href="/nhi-lab/evidence/run2.py">run2.py</a> · <a href="/nhi-lab/evidence/RESULTS-stretch.md">RESULTS-stretch.md</a> · <a href="/nhi-lab/evidence/results-stretch.json">results-stretch.json</a>. Run it with <code>python3 run.py</code>. It needs only Python 3 and checks the guess hashes first.</p>
     <p>Related: <a href="/ai-governance-lab/">the AI governance lab</a> (13 rounds, 164 cases) and <a href="/labs/">all labs</a>.</p>
   </section>
 </main>
