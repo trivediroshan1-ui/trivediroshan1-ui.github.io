@@ -132,7 +132,7 @@
     INDEX_WAITERS.push(cb);
     if (INDEX_STATE === "loading") return;
     INDEX_STATE = "loading";
-    fetch("/assets/chatbot-index.json?v=20261025i")
+    fetch("/assets/chatbot-index.json?v=20261102a")
       .then(function (res) { if (!res.ok) throw new Error("status " + res.status); return res.json(); })
       .then(function (raw) { buildIndex(raw); INDEX_STATE = "ready"; })
       .catch(function () { INDEX_STATE = "failed"; })
@@ -194,13 +194,22 @@
   var DEFAULT_SUGGESTIONS = [
     "Who is Roshan?",
     "What case studies are here?",
-    "What is the MCP lab?",
+    "Which free books are there?",
     "What did the AI governance lab find?",
   ];
 
   // Page-aware suggestions: shown instead of the defaults when the visitor
   // opens the widget from a page this section matches (checked in order).
   var PAGE_SUGGESTIONS = [
+    {
+      test: /^\/book\/?/,
+      suggestions: [
+        "Which books are there?",
+        "Which book should I read first?",
+        "What is in the NHI book?",
+        "Is there a printed edition?",
+      ],
+    },
     {
       test: /^\/(resume\/?)?$/,
       suggestions: [
@@ -315,7 +324,7 @@
     if (DATA_STATE === "loading") return;
     DATA_STATE = "loading";
     var s = document.createElement("script");
-    s.src = "/assets/chatbot-data.js?v=20261025k";
+    s.src = "/assets/chatbot-data.js?v=20261102b";
     s.onload = s.onerror = function () { DATA_STATE = "ready"; var w = DATA_WAITERS; DATA_WAITERS = []; w.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
   }
