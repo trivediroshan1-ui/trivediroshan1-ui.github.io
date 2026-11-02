@@ -1,0 +1,586 @@
+{
+ "run_at": "2026-11-02T14:27:11",
+ "rows": [
+  {
+   "id": "N-R14-01",
+   "title": "Inventory misses a source",
+   "without": {
+    "found": 12,
+    "total": 27
+   },
+   "with_": {
+    "found": 27,
+    "total": 27,
+    "has_source": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "merge_sources": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-03",
+   "title": "Long-lived CI variable read by another job",
+   "without": {
+    "other_job_reads": true,
+    "log": "pipeline"
+   },
+   "with_": {
+    "other_job_reads": false,
+    "log": "job-B"
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "per_job_scope": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-04",
+   "title": "Certificate with no owner expires",
+   "without": {
+    "warnings": 0,
+    "outage": true,
+    "check_disabled": true
+   },
+   "with_": {
+    "warnings": 2,
+    "outage": false,
+    "check_disabled": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "owner_required": true,
+    "expiry_alert": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-05",
+   "title": "Old OAuth grant, vendor breached",
+   "without": {
+    "replay_reads_mail": true
+   },
+   "with_": {
+    "replay_reads_mail": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "consent_expiry_90d": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-09",
+   "title": "Identity with no owner",
+   "without": {
+    "active_day31": true,
+    "paused_day31": false
+   },
+   "with_": {
+    "active_day31": false,
+    "paused_day31": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "owner_or_pause": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-11",
+   "title": "Application retired, identities remain",
+   "without": {
+    "active_after_90d": 3
+   },
+   "with_": {
+    "active_after_90d": 0,
+    "ticket": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "retire_attestation": true
+   },
+   "limit": {
+    "attested_all_disabled": true,
+    "still_active": 1,
+    "note": "attestation signed against an incomplete list"
+   },
+   "extras": []
+  },
+  {
+   "id": "N-R14-14",
+   "title": "Rotation fails silently",
+   "without": {
+    "alert_day": null,
+    "days_stale": 60
+   },
+   "with_": {
+    "alert_day": 1,
+    "score_rises_weekly": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "failure_alert": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-15",
+   "title": "Rotate before consumer is updated",
+   "without": {
+    "app_fails": true
+   },
+   "with_": {
+    "app_fails": false,
+    "old_secret_dead": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "consumer_first": true
+   },
+   "limit": {
+    "app_fails": false,
+    "missed_consumer_fails": true,
+    "missed": [
+     "report-job"
+    ]
+   },
+   "extras": []
+  },
+  {
+   "id": "N-R14-17",
+   "title": "Loose federation trust",
+   "without": {
+    "gets_role": true
+   },
+   "with_": {
+    "gets_role": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "bind_to_workload": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-18",
+   "title": "Front door for new identities",
+   "without": {
+    "created": true,
+    "active": true
+   },
+   "with_": {
+    "created": false,
+    "reason_given": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "require_owner_scope_expiry": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-02",
+   "title": "Just-in-time window",
+   "without": {
+    "access_after_work": true
+   },
+   "with_": {
+    "access_after_work": false,
+    "credential_rotated": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "jit_window": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-03",
+   "title": "Work runs past the window",
+   "without": {
+    "open_hours": 10
+   },
+   "with_": {
+    "extensions_granted": 1,
+    "second_needs_person": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "one_extension_then_approval": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-05",
+   "title": "Standing admin group membership",
+   "without": {
+    "members": 40
+   },
+   "with_": {
+    "members": 8,
+    "removed": 32
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "timebox_and_prune": true
+   },
+   "limit": {
+    "remaining": 8,
+    "broader_than_needed": 2
+   },
+   "extras": []
+  },
+  {
+   "id": "P-R15-07",
+   "title": "Direct login still open",
+   "without": {
+    "login_works": true,
+    "recorded": false
+   },
+   "with_": {
+    "login_works": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "network_block": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-08",
+   "title": "Recording gap on one target",
+   "without": {
+    "gap_known": false
+   },
+   "with_": {
+    "gap_known": true,
+    "target10_blocked": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "coverage_check_block": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-09",
+   "title": "Two approvers for Tier 0",
+   "without": {
+    "runs_with_one": true
+   },
+   "with_": {
+    "runs_with_one": false,
+    "same_person_twice_refused": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "two_approvers": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-11",
+   "title": "Break-glass used at 2 a.m.",
+   "without": {
+    "alert": false,
+    "rotated": false
+   },
+   "with_": {
+    "alert": true,
+    "rotated": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "alert_justify_rotate": true
+   },
+   "limit": {
+    "closed": true,
+    "note": "the text is not checked for truth"
+   },
+   "extras": []
+  },
+  {
+   "id": "P-R15-13",
+   "title": "Break-glass becomes a side door",
+   "without": {
+    "flagged": 0
+   },
+   "with_": {
+    "flagged": 2
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "monthly_report_flag": true
+   },
+   "limit": {
+    "missed_fake_tickets": 2,
+    "note": "a ticket number is not checked against the ticket system"
+   },
+   "extras": []
+  },
+  {
+   "id": "P-R15-17",
+   "title": "Vendor session",
+   "without": {
+    "recorded": false,
+    "open_at_5h": true
+   },
+   "with_": {
+    "recorded": true,
+    "open_at_5h": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "broker_record_expire": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "P-R15-18",
+   "title": "Vendor person leaves the vendor",
+   "without": {
+    "active_day120": true
+   },
+   "with_": {
+    "disabled_by_day": 30
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "sponsor_review_30d": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "S-R17-01",
+   "title": "Personal OAuth grant to an AI tool",
+   "without": {
+    "grant_works_after_leaver": true,
+    "grant_flagged": false
+   },
+   "with_": {
+    "grant_found": true,
+    "grant_revoked": true,
+    "ownerless_new_refused": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "revoke_on_leave": true,
+    "grant_scan": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "S-R17-03",
+   "title": "Agent runs under a person's account",
+   "without": {
+    "can_tell_human_from_agent": false
+   },
+   "with_": {
+    "attributed_to_agent": true,
+    "human_history_clean": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "agent_identity": true,
+    "log_tag": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "S-R17-04",
+   "title": "Ghost credential",
+   "without": {
+    "key_valid_after_end": true
+   },
+   "with_": {
+    "creation_refused": true,
+    "expired_disabled": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "owner_end_date_required": true,
+    "weekly_sweep": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "S-R17-05",
+   "title": "Secrets in AI-assisted code and config",
+   "without": {
+    "reached_repo": 8
+   },
+   "with_": {
+    "blocked_most": true,
+    "misses": 2,
+    "missed": [
+     "split_two_lines",
+     "base64"
+    ]
+   },
+   "mismatch_without": {},
+   "mismatch_with": {
+    "misses": [
+     1,
+     2
+    ]
+   },
+   "noticed": {
+    "secret_scan": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-23",
+   "title": "Vendor breached, OAuth refresh token still valid",
+   "without": {
+    "grant_accepted": true,
+    "replay_min30": true,
+    "replay_min90": true
+   },
+   "with_": {
+    "grant_accepted": false,
+    "replay_min30": false,
+    "replay_min90": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "tenant_allowlist": true,
+    "breach_revoke": false
+   },
+   "limit": {
+    "listed_app_breached": {
+     "grant_accepted": true,
+     "replay_min30": true,
+     "replay_min90": true
+    },
+    "note": "an allowlisted app that is breached still works until revoked"
+   },
+   "extras": [
+    {
+     "label": "revoke only (app already granted)",
+     "mismatch": {},
+     "got": {
+      "grant_accepted": true,
+      "replay_min30": true,
+      "replay_min90": false
+     }
+    },
+    {
+     "label": "revoke off, allowlist off",
+     "mismatch": {},
+     "got": {
+      "grant_accepted": true,
+      "replay_min30": true,
+      "replay_min90": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "N-R14-24",
+   "title": "Secrets in env variables not marked sensitive",
+   "without": {
+    "hidden_secrets": 2,
+    "readable_secrets": 2,
+    "nonsecrets_hidden": 0,
+    "readable_secret_names": [
+     "DEPLOY_TOKEN",
+     "CFG_BLOB"
+    ]
+   },
+   "with_": {
+    "hidden_secrets": 3,
+    "readable_secrets": 1,
+    "nonsecrets_hidden": 0,
+    "readable_secret_names": [
+     "CFG_BLOB"
+    ]
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "pattern_marking": true
+   },
+   "limit": null,
+   "extras": []
+  },
+  {
+   "id": "N-R14-25",
+   "title": "Credential stolen from a CI runner, replayed",
+   "without": {
+    "replay_min3": true,
+    "replay_min8": true
+   },
+   "with_": {
+    "replay_min3": false,
+    "replay_min8": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "short_ttl": false,
+    "bind_and_revoke": true
+   },
+   "limit": {
+    "replay_from_inside_runner_min3": true,
+    "note": "bound token still works from inside the runner during the job"
+   },
+   "extras": [
+    {
+     "label": "10-minute lifetime only",
+     "mismatch": {},
+     "got": {
+      "replay_min3": true,
+      "replay_min8": true
+     }
+    }
+   ]
+  }
+ ]
+}
