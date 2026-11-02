@@ -16,7 +16,11 @@ PATTERNS = {
 }
 ALLOWED = {"AKIAIOSFODNN7EXAMPLE"}  # AWS's documented example key
 # Deliberately fake inputs for the "try the filters" demo on the lab page.
-ALLOWED_FILES = {"assets/agl-try-filters.js"}
+ALLOWED_FILES = {
+    "assets/agl-try-filters.js",
+    # The non-human identity lab: made-up fake secrets that the lab's secret scan is tested against.
+    "nhi-lab/evidence/cases.py", "nhi-lab/index.html", "scripts/nhi-lab-body.html",
+}
 SKIP_EXT = (".png", ".webp", ".jpg", ".jpeg", ".gif", ".pdf", ".woff2", ".ico", ".mp4")
 
 files = subprocess.run(["git", "ls-files"], capture_output=True, text=True, check=True).stdout.split("\n")
