@@ -50,7 +50,7 @@
 
   <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">New issue: I tested 27 machine identity cases.</span></span><span class="go">Subscribe &rarr;</span></a>
 
-  <nav class="toc" aria-label="On this page"><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 27 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
+  <nav class="toc" aria-label="On this page"><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 46 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
 
   <section id="what" aria-labelledby="what-h">
     <h2 id="what-h">What I did, why, and how</h2>
@@ -103,9 +103,9 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
   </section>
 
   <section id="cases" aria-labelledby="cases-h">
-    <h2 id="cases-h">All 27 cases, with the workflow</h2>
-    <p>Each card shows one case. The red lane is what happens without the control, the green lane is what happens with it. Tags show whether my guess matched and whether switching the control off alone changed the result.</p>
-    <div class="chips" role="group" aria-label="Filter cases"><button class="chip on" data-f="all" type="button">All 27</button><button class="chip" data-f="discover" type="button">Discover</button><button class="chip" data-f="own" type="button">Own and retire</button><button class="chip" data-f="credential" type="button">Credentials</button><button class="chip" data-f="control" type="button">Front door and trust</button><button class="chip" data-f="privileged" type="button">Privileged access</button><button class="chip" data-f="shadow" type="button">Shadow AI</button><button class="chip" data-f="gap" type="button">Gap cases from 2026 incidents</button></div>
+    <h2 id="cases-h">All 46 cases, with the workflow</h2>
+    <p>Each card shows one case. The red lane is what happens without the control, the green lane is what happens with it. Tags show whether my guess matched and whether switching the control off alone changed the result.. 27 cases are the first run and 19 carry a "second run" tag (see the second-run section above). The chain cards are rule models, so they are weaker evidence.</p>
+    <div class="chips" role="group" aria-label="Filter cases"><button class="chip on" data-f="all" type="button">All 46</button><button class="chip" data-f="discover" type="button">Discover</button><button class="chip" data-f="own" type="button">Own and retire</button><button class="chip" data-f="credential" type="button">Credentials</button><button class="chip" data-f="control" type="button">Front door and trust</button><button class="chip" data-f="privileged" type="button">Privileged access</button><button class="chip" data-f="shadow" type="button">Shadow AI</button><button class="chip" data-f="gap" type="button">Gap cases from 2026 incidents</button><button class="chip" data-f="chain" type="button">Chain tests</button></div>
     <div class="cases">
 <article class="case" data-g="discover" id="n-r14-01"><header><h3>N-R14-01 <span>Three places hold service accounts</span></h3><p class="ntags"><span class="pill grp" style="--k:#4de2ff">Discover</span><span class="pill ok">guess matched</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-01: Three places hold service accounts. Without the control: Directory-only scan finds 12 of 27. With the control: All three sources merged: 27 of 27, each with its source.">
 <rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#4de2ff"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Three places hold</tspan><tspan x="84" y="81">service accounts</tspan></text>
@@ -349,6 +349,177 @@ SECRET_B = "t3S2r1Q0p9O8"</textarea></div>
 <circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
 <rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Both replays work</tspan></text>
 <rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Both replays refused</tspan></text>
+</svg></article>
+<article class="case" data-g="discover" id="n-r14-07"><header><h3>N-R14-07 <span>One account, three names</span></h3><p class="ntags"><span class="pill grp" style="--k:#4de2ff">Discover</span><span class="pill bad">guess wrong</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-07: One account, three names. Without the control: 43 entries for 30 identities, findings split. With the control: Merged on owner plus name: 29, one wrong merge.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#4de2ff"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">One account,</tspan><tspan x="84" y="81">three names</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">43 entries for 30 identities,</tspan><tspan x="376" y="63">findings split</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Merged on owner plus name: 29, one</tspan><tspan x="376" y="149">wrong merge</tspan></text>
+</svg></article>
+<article class="case" data-g="credential" id="n-r14-19"><header><h3>N-R14-19 <span>Two identities, same age score</span></h3><p class="ntags"><span class="pill grp" style="--k:#c4b5fd">Credentials</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-19: Two identities, same age score. Without the control: Tie, the test tool can be fixed first. With the control: Reach in the score: production ranks first.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#c4b5fd"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Two identities,</tspan><tspan x="84" y="81">same age score</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Tie, the test tool can be fixed</tspan><tspan x="376" y="63">first</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Reach in the score: production ranks</tspan><tspan x="376" y="149">first</tspan></text>
+</svg></article>
+<article class="case" data-g="credential" id="n-r14-20"><header><h3>N-R14-20 <span>Rotation ticket, old secret still accepted</span></h3><p class="ntags"><span class="pill grp" style="--k:#c4b5fd">Credentials</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-20: Rotation ticket, old secret still accepted. Without the control: All 5 close, 2 old secrets live. With the control: 3 close, 2 stay open until the old secret is dead.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#c4b5fd"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Rotation ticket,</tspan><tspan x="84" y="81">old secret still</tspan><tspan x="84" y="96">accepted</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">All 5 close, 2 old secrets live</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">3 close, 2 stay open until the old</tspan><tspan x="376" y="149">secret is dead</tspan></text>
+</svg></article>
+<article class="case" data-g="own" id="n-r14-21"><header><h3>N-R14-21 <span>4 agents share one team key</span></h3><p class="ntags"><span class="pill grp" style="--k:#7df2d0">Own and retire</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-21: 4 agents share one team key. Without the control: Log says &quot;team key&quot;, revoke hits all 4. With the control: One key per agent: log names it, revoke hits 1.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#7df2d0"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">4 agents share</tspan><tspan x="84" y="81">one team key</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Log says &quot;team key&quot;, revoke hits all</tspan><tspan x="376" y="63">4</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">One key per agent: log names it,</tspan><tspan x="376" y="149">revoke hits 1</tspan></text>
+</svg></article>
+<article class="case" data-g="control" id="n-r14-22"><header><h3>N-R14-22 <span>Engineer signs in as a service account</span></h3><p class="ntags"><span class="pill grp" style="--k:#f7c873">Front door and trust</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="N-R14-22: Engineer signs in as a service account. Without the control: Logged under the account, nobody accountable. With the control: Direct sign-in refused, checkout names the person.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#f7c873"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Engineer signs in</tspan><tspan x="84" y="81">as a service</tspan><tspan x="84" y="96">account</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Logged under the account, nobody</tspan><tspan x="376" y="63">accountable</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Direct sign-in refused, checkout</tspan><tspan x="376" y="149">names the person</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-10"><header><h3>P-R15-10 <span>Push fatigue and SIM-swap against admins</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-10: Push fatigue and SIM-swap against admins. Without the control: 6 bad sign-ins get through. With the control: Passkey, no SMS fallback: 0 get through.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Push fatigue and</tspan><tspan x="84" y="81">SIM-swap against</tspan><tspan x="84" y="96">admins</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">6 bad sign-ins get through</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Passkey, no SMS fallback: 0 get</tspan><tspan x="376" y="149">through</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-15"><header><h3>P-R15-15 <span>Vault backup on a weaker share</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-15: Vault backup on a weaker share. Without the control: 5 non-backup reads succeed. With the control: Same rules and an alert: 5 refused, 5 alerts.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Vault backup on a</tspan><tspan x="84" y="81">weaker share</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">5 non-backup reads succeed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Same rules and an alert: 5 refused,</tspan><tspan x="376" y="149">5 alerts</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-16"><header><h3>P-R15-16 <span>Attacker calls the help desk for a reset</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-16: Attacker calls the help desk for a reset. Without the control: Both attacker resets succeed. With the control: Proof, or notice with a delay: both stopped.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Attacker calls</tspan><tspan x="84" y="81">the help desk for</tspan><tspan x="84" y="96">a reset</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Both attacker resets succeed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Proof, or notice with a delay: both</tspan><tspan x="376" y="149">stopped</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-19"><header><h3>P-R15-19 <span>Vendor needed at 2 a.m.</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-19: Vendor needed at 2 a.m.. Without the control: Shared password, stays on, no record. With the control: Approved, recorded, closes at 2 hours.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Vendor needed at</tspan><tspan x="84" y="81">2 a.m.</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Shared password, stays on, no record</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Approved, recorded, closes at 2</tspan><tspan x="376" y="149">hours</tspan></text>
+</svg></article>
+<article class="case" data-g="privileged" id="p-r15-25"><header><h3>P-R15-25 <span>Rotate 200 secrets after a breach</span></h3><p class="ntags"><span class="pill grp" style="--k:#ff8fa3">Privileged access</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="P-R15-25: Rotate 200 secrets after a breach. Without the control: 12 outages. With the control: Consumers first and a dry run: 0 outages, 2 left unrotated.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#ff8fa3"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Rotate 200</tspan><tspan x="84" y="81">secrets after a</tspan><tspan x="84" y="96">breach</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">12 outages</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Consumers first and a dry run: 0</tspan><tspan x="376" y="149">outages, 2 left unrotated</tspan></text>
+</svg></article>
+<article class="case" data-g="shadow" id="s-r17-02"><header><h3>S-R17-02 <span>AI tool needs one folder, inherits 40</span></h3><p class="ntags"><span class="pill grp" style="--k:#8b5cf6">Shadow AI</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="S-R17-02: AI tool needs one folder, inherits 40. Without the control: Can write to all 40. With the control: Read on one folder, 0 writable.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#8b5cf6"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">AI tool needs one</tspan><tspan x="84" y="81">folder, inherits</tspan><tspan x="84" y="96">40</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Can write to all 40</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Read on one folder, 0 writable</tspan></text>
+</svg></article>
+<article class="case" data-g="shadow" id="s-r17-06"><header><h3>S-R17-06 <span>AI-service keys in 6 repositories</span></h3><p class="ntags"><span class="pill grp" style="--k:#8b5cf6">Shadow AI</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="S-R17-06: AI-service keys in 6 repositories. Without the control: All 6 stay valid. With the control: 5 revoked on find, 1 odd prefix missed.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#8b5cf6"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">AI-service keys</tspan><tspan x="84" y="81">in 6 repositories</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">All 6 stay valid</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">5 revoked on find, 1 odd prefix</tspan><tspan x="376" y="149">missed</tspan></text>
+</svg></article>
+<article class="case" data-g="shadow" id="s-r17-10"><header><h3>S-R17-10 <span>5 automations outlive a test</span></h3><p class="ntags"><span class="pill grp" style="--k:#8b5cf6">Shadow AI</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="S-R17-10: 5 automations outlive a test. Without the control: All 5 still run. With the control: 4 disabled, 1 extended on any written reason.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#8b5cf6"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">5 automations</tspan><tspan x="84" y="81">outlive a test</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">All 5 still run</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">4 disabled, 1 extended on any</tspan><tspan x="376" y="149">written reason</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c01"><header><h3>C-R16-C01 <span>No owner, password in a ticket, export shared</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill bad">guess wrong</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C01: No owner, password in a ticket, export shared. Without the control: Attacker signs in from a new network. With the control: Stopped at link 1; for an old account the ticket scan stops it at link 2.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">No owner,</tspan><tspan x="84" y="81">password in a</tspan><tspan x="84" y="96">ticket, export</tspan><tspan x="84" y="111">shared</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Attacker signs in from a new network</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Stopped at link 1; for an old</tspan><tspan x="376" y="149">account the ticket scan stops it at</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c02"><header><h3>C-R16-C02 <span>Token committed, repo cloned, found 7 days later</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C02: Token committed, repo cloned, found 7 days later. Without the control: Attacker calls the cloud API. With the control: Commit block stops at link 1; a 1-day token alone also stops it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Token committed,</tspan><tspan x="84" y="81">repo cloned,</tspan><tspan x="84" y="96">found 7 days</tspan><tspan x="84" y="111">later</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Attacker calls the cloud API</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Commit block stops at link 1; a</tspan><tspan x="376" y="149">1-day token alone also stops it</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c04"><header><h3>C-R16-C04 <span>Contractor with no end date</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C04: Contractor with no end date. Without the control: Phished credential gives production access. With the control: Expiry stops at link 3; sponsor review alone does not at 30 days.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Contractor with</tspan><tspan x="84" y="81">no end date</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Phished credential gives production</tspan><tspan x="376" y="63">access</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Expiry stops at link 3; sponsor</tspan><tspan x="376" y="149">review alone does not at 30 days</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c05"><header><h3>C-R16-C05 <span>Break-glass password pasted in chat</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C05: Break-glass password pasted in chat. Without the control: Reused with no emergency, unnoticed. With the control: Rotate on return stops it; the alert only reports it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Break-glass</tspan><tspan x="84" y="81">password pasted</tspan><tspan x="84" y="96">in chat</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Reused with no emergency, unnoticed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Rotate on return stops it; the alert</tspan><tspan x="376" y="149">only reports it</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c06"><header><h3>C-R16-C06 <span>Many approvals, one hostile among them</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill warn">control masked by another</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C06: Many approvals, one hostile among them. Without the control: The hostile change is approved. With the control: A second approver stops it; showing the risk only flags it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Many approvals,</tspan><tspan x="84" y="81">one hostile among</tspan><tspan x="84" y="96">them</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">The hostile change is approved</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">A second approver stops it; showing</tspan><tspan x="376" y="149">the risk only flags it</tspan></text>
+</svg></article>
+<article class="case" data-g="chain" id="c-r16-c17"><header><h3>C-R16-C17 <span>Vault in place, direct login still works</span></h3><p class="ntags"><span class="pill grp" style="--k:#fbbf24">Chain tests</span><span class="pill ok">guess matched</span><span class="pill grp" style="--k:#94a3b8">second run</span></p></header><svg class="nflow" viewBox="0 0 700 170" role="img" aria-label="C-R16-C17: Vault in place, direct login still works. Without the control: Vault and recording bypassed. With the control: Blocking direct login stops it; the alert only reports it.">
+<rect x="4" y="40" width="160" height="90" rx="10" class="nd" style="stroke:#fbbf24"/><text class="tx" x="84" y="66" text-anchor="middle"><tspan x="84" y="66">Vault in place,</tspan><tspan x="84" y="81">direct login</tspan><tspan x="84" y="96">still works</tspan></text>
+<path class="ln bad" d="M 164 85 L 190 42 L 360 42"/><path class="ln good" d="M 164 85 L 190 128 L 360 128"/>
+<rect x="225" y="108" width="84" height="40" rx="8" class="shield"/><text class="tx sm" x="267" y="133" text-anchor="middle">control</text>
+<circle class="ndot bad" r="6" style="offset-path:path('M 164 85 L 190 42 L 360 42')"/>
+<circle class="ndot good" r="6" style="offset-path:path('M 164 85 L 190 128 L 360 128')"/>
+<rect x="364" y="8" width="332" height="68" rx="10" class="out bad"/><text class="tx" x="376" y="26"><tspan class="lbl" x="376" y="26">WITHOUT</tspan><tspan x="376" y="46">Vault and recording bypassed</tspan></text>
+<rect x="364" y="94" width="332" height="68" rx="10" class="out good"/><text class="tx" x="376" y="112"><tspan class="lbl" x="376" y="112">WITH</tspan><tspan x="376" y="132">Blocking direct login stops it; the</tspan><tspan x="376" y="149">alert only reports it</tspan></text>
 </svg></article>
     </div>
   </section>

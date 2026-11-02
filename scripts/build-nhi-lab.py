@@ -40,6 +40,30 @@ GROUPS = {
  'control':('Front door and trust','#f7c873'),'privileged':('Privileged access','#ff8fa3'),
  'shadow':('Shadow AI','#8b5cf6'),'gap':('Gap cases from 2026 incidents','#34d399')}
 
+
+T2 = {
+'N-R14-07': ('discover','One account, three names','43 entries for 30 identities, findings split','Merged on owner plus name: 29, one wrong merge'),
+'N-R14-19': ('credential','Two identities, same age score','Tie, the test tool can be fixed first','Reach in the score: production ranks first'),
+'N-R14-20': ('credential','Rotation ticket, old secret still accepted','All 5 close, 2 old secrets live','3 close, 2 stay open until the old secret is dead'),
+'N-R14-21': ('own','4 agents share one team key','Log says "team key", revoke hits all 4','One key per agent: log names it, revoke hits 1'),
+'N-R14-22': ('control','Engineer signs in as a service account','Logged under the account, nobody accountable','Direct sign-in refused, checkout names the person'),
+'P-R15-10': ('privileged','Push fatigue and SIM-swap against admins','6 bad sign-ins get through','Passkey, no SMS fallback: 0 get through'),
+'P-R15-15': ('privileged','Vault backup on a weaker share','5 non-backup reads succeed','Same rules and an alert: 5 refused, 5 alerts'),
+'P-R15-16': ('privileged','Attacker calls the help desk for a reset','Both attacker resets succeed','Proof, or notice with a delay: both stopped'),
+'P-R15-19': ('privileged','Vendor needed at 2 a.m.','Shared password, stays on, no record','Approved, recorded, closes at 2 hours'),
+'P-R15-25': ('privileged','Rotate 200 secrets after a breach','12 outages','Consumers first and a dry run: 0 outages, 2 left unrotated'),
+'S-R17-02': ('shadow','AI tool needs one folder, inherits 40','Can write to all 40','Read on one folder, 0 writable'),
+'S-R17-06': ('shadow','AI-service keys in 6 repositories','All 6 stay valid','5 revoked on find, 1 odd prefix missed'),
+'S-R17-10': ('shadow','5 automations outlive a test','All 5 still run','4 disabled, 1 extended on any written reason'),
+'C-R16-C01': ('chain','No owner, password in a ticket, export shared','Attacker signs in from a new network','Stopped at link 1; for an old account the ticket scan stops it at link 2'),
+'C-R16-C02': ('chain','Token committed, repo cloned, found 7 days later','Attacker calls the cloud API','Commit block stops at link 1; a 1-day token alone also stops it'),
+'C-R16-C04': ('chain','Contractor with no end date','Phished credential gives production access','Expiry stops at link 3; sponsor review alone does not at 30 days'),
+'C-R16-C05': ('chain','Break-glass password pasted in chat','Reused with no emergency, unnoticed','Rotate on return stops it; the alert only reports it'),
+'C-R16-C06': ('chain','Many approvals, one hostile among them','The hostile change is approved','A second approver stops it; showing the risk only flags it'),
+'C-R16-C17': ('chain','Vault in place, direct login still works','Vault and recording bypassed','Blocking direct login stops it; the alert only reports it'),
+}
+GROUPS['chain'] = ('Chain tests', '#fbbf24')
+
 def wrap(s, n):
     return textwrap.wrap(s, n) or ['']
 def tspans(lines, x, y, dy=15):
@@ -80,16 +104,19 @@ def life_svg():
 
 rows = {r['id']: r for r in R}
 cards = []
-for cid, (g, trig, wo, wi) in T.items():
-    r = rows[cid]
+R2ROWS = {r['id']: r for r in json.load(open('nhi-lab/evidence/results-stretch.json'))['rows']}
+for cid, (g, trig, wo, wi) in list(T.items()) + list(T2.items()):
+    second = cid in T2
+    r = R2ROWS[cid] if second else rows[cid]
     wrong = bool(r['mismatch_without'] or r['mismatch_with'])
     masked = [k for k, v in r['noticed'].items() if not v]
     tags = []
     tags.append('<span class="pill bad">guess wrong</span>' if wrong or (cid == 'N-R14-25') else '<span class="pill ok">guess matched</span>')
     if masked: tags.append('<span class="pill warn">control masked by another</span>')
+    if second: tags.append('<span class="pill grp" style="--k:#94a3b8">second run</span>')
     cards.append(f'''<article class="case" data-g="{g}" id="{cid.lower()}"><header><h3>{cid} <span>{E(trig)}</span></h3><p class="ntags"><span class="pill grp" style="--k:{GROUPS[g][1]}">{GROUPS[g][0]}</span>{''.join(tags)}</p></header>{case_svg(cid, trig, wo, wi, GROUPS[g][1])}</article>''')
 
-chips = '<button class="chip on" data-f="all" type="button">All 27</button>' + ''.join(
+chips = '<button class="chip on" data-f="all" type="button">All 46</button>' + ''.join(
     f'<button class="chip" data-f="{k}" type="button">{v[0]}</button>' for k, v in GROUPS.items())
 
 head = open('ai-governance-lab/index.html').read().split('<body')[0]
