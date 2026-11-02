@@ -37,6 +37,7 @@ def shell(path, title, desc, og_title, body, js=None, ld=None, published='2026-1
     head = re.sub(r'<meta property="og:title"[^>]*>', f'<meta property="og:title" content="{E(og_title, True)}" />', head)
     head = re.sub(r'<meta property="og:description"[^>]*>', f'<meta property="og:description" content="{E(desc, True)}" />', head)
     head = re.sub(r'<meta property="og:url"[^>]*>', f'<meta property="og:url" content="{url}" />', head)
+    head = re.sub(r'(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")', r'\g<1>https://roshantrivedi.co.in/assets/share/og-nhi-lab.png\g<2>', head)
     head = re.sub(r'<title>.*?</title>', f'<title>{E(title)} &middot; Roshan Trivedi</title>', head, flags=re.S)
     head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', head, flags=re.S)
     extra = (f'  <link rel="stylesheet" href="/assets/blinks.css?v={CSS_V}">\n'

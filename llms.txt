@@ -19,6 +19,7 @@
 - [NHI lab audit data](https://roshantrivedi.co.in/nhi-lab/audit/): all 46 cases as a table, CSV and JSON, with a hash check script
 - [NHI lab roadmap](https://roshantrivedi.co.in/nhi-lab/roadmap/) and [explainer](https://roshantrivedi.co.in/nhi-lab/explainer/)
 - [Machine identities, tested in public (book, 65 pages)](https://roshantrivedi.co.in/nhi-lab/nhi-lab-book.pdf)
+- [NHI lab in 60 seconds (silent video: the lab, the architecture, the data)](https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4)
 
 ## Writing
 - [The Hugging Face intrusion, read as an identity incident](https://roshantrivedi.co.in/writing/openai-huggingface-breach-cybersecurity-analysis/)
