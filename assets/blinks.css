@@ -1,0 +1,44 @@
+/* Three animated "blink" cards on the home page: MCP, AI governance, non-human identity. */
+.blinks-top{padding:14px 0 0}
+.blinks-top .wrap{width:min(1120px,100% - 32px);margin-inline:auto}
+.blinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none}
+.bl{--k:var(--accent,#4de2ff);position:relative;display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:start;padding:16px;border:1.5px solid color-mix(in srgb,var(--k) 55%,transparent);border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--k) 12%,var(--surface,#0b1220)),var(--surface,#0b1220) 60%);transition:transform .2s,border-color .2s}
+.bl:hover,.bl:focus-within{transform:translateY(-3px);border-color:var(--k)}
+.bl.mcp{--k:#c4b5fd}.bl.gov{--k:#4de2ff}.bl.nhi{--k:#7df2d0}
+.bl svg{width:64px;height:64px;color:var(--k)}
+.bl .ink{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.bl .fillc{fill:color-mix(in srgb,var(--k) 20%,transparent);stroke:none}
+.bl h3{margin:0;font:700 18px/1.25 var(--display,system-ui,sans-serif);color:var(--text,#f1f5f9)}
+.bl p{margin:6px 0 10px;font-size:14px;line-height:1.45;color:var(--muted,#93a1bd)}
+.bl .kick{display:flex;align-items:center;gap:8px;margin:0 0 4px;font:700 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.09em;text-transform:uppercase;color:var(--k)}
+.bl .kick i{width:8px;height:8px;border-radius:50%;background:var(--k);animation:bl-blink 1.2s steps(2,start) infinite}
+.bl .newp{padding:3px 7px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;font-size:10px}
+.bl .acts{display:flex;flex-wrap:wrap;gap:4px 16px}
+.bl .acts a{font-weight:600;font-size:14px;color:var(--k);text-decoration:none;padding:4px 0}
+.bl .acts a:hover,.bl .acts a:focus-visible{text-decoration:underline;text-underline-offset:3px}
+.bl .acts a.lab::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--warn,#f7c873);margin-right:7px;animation:bl-blink 1.2s steps(2,start) infinite}
+/* MCP: a gate bar slides across the request path, then the tick draws */
+.bl .gate{animation:bl-gate 3.6s ease-in-out infinite;transform-box:fill-box}
+.bl .gtick{stroke-dasharray:40;animation:bl-draw 3.6s ease-in-out infinite}
+.bl .pkt{animation:bl-pkt 3.6s linear infinite}
+/* AI governance: the shield glows and its eyes blink */
+.bl .shield{animation:bl-glow 2.4s ease-in-out infinite}
+.bl .eye{fill:currentColor;transform-origin:center;transform-box:fill-box;animation:bl-eye 3.2s infinite}
+/* NHI: a key pulses with a ring, the eye of the robot blinks */
+.bl .ring{fill:none;stroke:currentColor;stroke-width:2;transform-origin:center;transform-box:fill-box;animation:bl-ring 2.4s ease-out infinite}
+.bl .ring.b{animation-delay:1.2s}
+@keyframes bl-blink{0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes bl-gate{0%,20%{transform:translateY(0)}45%,75%{transform:translateY(-14px)}100%{transform:translateY(0)}}
+@keyframes bl-draw{0%,30%{stroke-dashoffset:40}55%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:40}}
+@keyframes bl-pkt{0%{transform:translateX(0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translateX(30px);opacity:0}}
+@keyframes bl-glow{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 6px var(--k))}}
+@keyframes bl-eye{0%,44%,52%,100%{transform:scaleY(1)}48%{transform:scaleY(.08)}}
+@keyframes bl-ring{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+@media (prefers-reduced-motion:reduce){.bl,.bl *{animation:none!important;transition:none!important}.bl .gtick{stroke-dasharray:none}}
+html[data-theme="light"] .bl{background:linear-gradient(135deg,#f0f7fa,#fff 60%);color:#0f172a}
+html[data-theme="light"] .bl h3{color:#0f172a}
+html[data-theme="light"] .bl p{color:#52617a}
+html[data-theme="light"] .bl.mcp{--k:#6d4fd1}html[data-theme="light"] .bl.gov{--k:#0a7285}html[data-theme="light"] .bl.nhi{--k:#0b7a5b}
+@media (max-width:900px){.blinks{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:8px;-webkit-overflow-scrolling:touch}.bl{flex:0 0 84%;scroll-snap-align:start}}
+@media (max-width:560px){.bl{grid-template-columns:44px minmax(0,1fr);gap:10px;padding:12px}.bl svg{width:44px;height:44px}.bl h3{font-size:16px}.bl p{display:none}}
+.bl>div{display:flex;flex-direction:column;min-width:0;height:100%}.bl .acts{margin-top:auto}
