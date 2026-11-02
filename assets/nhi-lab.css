@@ -68,3 +68,10 @@ html[data-theme="light"] .nflow .tx{fill:#0f172a}
 @media (max-width:700px){.nhi .toc{position:static}}
 
 #round2 th[scope=row]{text-align:left;font-weight:600}#round2 td{vertical-align:top}
+
+.nhi .hero-vid{margin:26px 0 0;max-width:960px}
+.nhi .hero-vid video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:14px;border:1px solid var(--border,#1f2a40);background:#05061a}
+.nhi .hero-vid figcaption{margin-top:10px;font-size:.92rem;color:var(--muted,#93a1bd)}
+.nhi .hero-vid-tx{margin-top:8px;font-size:.95rem;color:var(--muted,#93a1bd)}
+.nhi .hero-vid-tx summary{cursor:pointer;color:var(--accent,#4de2ff)}
+.nhi .hero-vid-tx p{margin:.6em 0}
