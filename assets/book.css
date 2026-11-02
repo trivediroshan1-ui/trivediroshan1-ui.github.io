@@ -24,3 +24,6 @@
 }
 /* Light theme contrast */
 html[data-theme="light"] .bk-limits b{color:#864a08}
+
+.bk-pick{display:flex;gap:.6rem;align-items:center;margin:0 0 1.2rem}.bk-pick select{flex:1;min-width:0;font:inherit;padding:.5rem .8rem;border-radius:10px;border:1px solid currentColor;background:transparent;color:inherit;max-width:100%}
+#booklist [hidden]{display:none}
