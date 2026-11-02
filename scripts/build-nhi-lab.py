@@ -75,7 +75,7 @@ head = re.sub(r'<meta property="og:url"[^>]*>', '<meta property="og:url" content
 head = re.sub(r'<title>.*?</title>', '<title>Non-human identity lab &middot; Roshan Trivedi</title>', head)
 head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', head, flags=re.S)
 ld = '<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Non-human identity lab: 46 cases","description":"46 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}</script>'
-head = head.replace('</head>', '  <link rel="stylesheet" href="/assets/blinks.css?v=20261102c">\n  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102c">\n  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102c">\n  ' + ld + '\n</head>')
+head = head.replace('</head>', '  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">\n  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102d">\n  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">\n  ' + ld + '\n</head>')
 nav = re.search(r'<nav class="hg-sitenav".*?</nav>', open('ai-governance-lab/index.html').read(), re.S).group(0)
 foot = re.search(r'<footer class="hg-foot">.*?</footer>', open('ai-governance-lab/index.html').read(), re.S).group(0)
 
