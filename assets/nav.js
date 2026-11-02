@@ -64,12 +64,31 @@
           ["/ai-governance-lab/appendix/", "Appendix and glossary", "doc"],
           ["/ai-governance-lab/implement/", "Using it, and what it costs", "coin"]] },
         { title: "Read and try", k: "plat", items: [
-          ["/book/", "The book: Who Approved That?", "book"],
+          ["/book/", "All the free books", "book"],
           ["/tools/tier-check/", "Credential tier self-check", "pyramid"],
           ["/secure-india-exams/", "Securing India's national exams", "india"],
           ["/design-system/", "The design system", "palette"]] }
       ],
       all: ["/labs/", "See all labs and projects"]
+    },
+    "/book/": {
+      id: "book", title: "Book",
+      feature: { kicker: "Free to read", title: "Three free books, one for each lab", text: "Each one is a PDF you can read on a phone. Pick a book below, or open the library to see them side by side.", href: "/book/#library", cta: "Open the library", icons: ["book", "doc", "book"] },
+      groups: [
+        { title: "The books", k: "ai", items: [
+          ["/book/#approve", "Who Approved That? MCP lab, 138 pages", "book"],
+          ["/book/#agl", "Does AI Governance Hold? 69 pages", "book"],
+          ["/book/#nhi", "Machine identities, tested in public. 65 pages", "book"]] },
+        { title: "Reports and papers", k: "gov", items: [
+          ["/assets/ai-governance-lab-addendum.pdf", "AI governance addendum, rounds 5 to 13. 74 pages", "doc"],
+          ["/assets/humangate-mcp-lab-final-report.pdf", "HumanGate MCP lab final report. 122 pages", "doc"],
+          ["/secure-india-exams/", "Securing India's national exams. 30 pages", "india"]] },
+        { title: "Read it on the web", k: "plat", items: [
+          ["/mcp-lab-portal/", "MCP lab portal, 161 case cards", "flask"],
+          ["/ai-governance-lab/", "AI governance lab", "shield"],
+          ["/nhi-lab/", "Non-human identity lab", "shield"]] }
+      ],
+      all: ["/book/", "All books, with checksums"]
     },
     "/writing/": {
       id: "writing", title: "Writing",
