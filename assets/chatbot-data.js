@@ -339,7 +339,7 @@ window.SITE_QA = [
     url: "/#start-here",
     keywords: ["best pages", "best case studies", "best work", "strongest work", "where should i start", "what should i read first", "top pages", "short version", "for recruiters", "hiring manager"],
     answer:
-      "Three pages show the work fastest. The résumé (/resume/) has roles, dates and certifications. The AI Governance Lab (/ai-governance-lab/) has 13 rounds and 164 cases on made-up data, with every guess hashed before the code runs. Non-human identity at scale (/case-studies/non-human-identity-at-scale/) is an independent guide to owning, rotating and retiring machine credentials. For privileged-access depth, add Credential tiering and the PAM market, and Break-glass access.",
+      "Three pages show the work fastest. The résumé (/resume/) has roles, dates and certifications. The AI Governance Lab (/ai-governance-lab/) has 13 rounds and 164 cases on made-up data, with every guess hashed before the code runs, and the non-human identity lab (/nhi-lab/) has 46 cases with a framework, a dated market view and downloadable audit data. Non-human identity at scale (/case-studies/non-human-identity-at-scale/) is an independent guide to owning, rotating and retiring machine credentials. For privileged-access depth, add Credential tiering and the PAM market, and Break-glass access.",
   },
   {
     id: "what-i-got-wrong",
@@ -639,5 +639,69 @@ window.SITE_QA = [
     keywords: ["book", "pdf", "download", "lab book", "does ai governance hold", "free book", "ebook", "read offline"],
     answer:
       "\"Does AI Governance Hold?\" is a free 69-page PDF (7 by 10 inches) that puts the whole AI governance lab in one place: a preface on why I built it, all 59 lab cases with their steps and results, the held-out tests, the Presidio comparison, the real-assistant test, the risks, twelve questions to ask before giving any AI tool access (for example when a vendor says it needs read access to your domain), the control map to ISO 42001, NIST AI RMF, the EU AI Act and Indian guidance, and a glossary. It is free to read and share with credit. All data in it is made up.",
+  },
+  {
+    id: "nhi-lab",
+    title: "Non-human identity lab: what it is and what it found",
+    url: "/nhi-lab/",
+    keywords: ["nhi lab", "non-human identity lab", "machine identity lab", "machine identities", "service accounts", "46 cases", "nhi cases", "break-glass test", "shadow ai credentials", "kaveri finance nhi"],
+    answer:
+      "The non-human identity lab tests 46 cases about machine identities on made-up data: service accounts, API keys, CI tokens, certificates, break-glass accounts, vendor access and AI tools that hold their own logins. A first run of 27 cases and a second run of 19 (13 stretch cases and 6 chain tests). I wrote my guesses first, hashed the guess files and committed them before writing any code, then ran each case without and with the control, then switched each control off alone to see if anything noticed. 42 guesses matched and 4 were wrong. In 8 cases there was a control that no check noticed, because another control covered it or it did not matter. The models are small and run in memory, and I wrote both the guesses and the code, so a match shows my reasoning is consistent and does not prove a product behaves that way. The page has 46 animated case cards and a lab you can run in the browser.",
+  },
+  {
+    id: "nhi-lab-framework",
+    title: "NHI lab framework: seven steps for machine identities",
+    url: "/nhi-lab/framework/",
+    keywords: ["nhi framework", "non-human identity framework", "machine identity lifecycle", "nhi lifecycle", "secrets lifecycle", "staged retirement", "leak response", "owner for every credential", "decision matrix", "nhi metrics", "inventory fields"],
+    answer:
+      "The framework has seven steps: find every identity, give each a named owner, purpose and end date, limit it with least privilege and a front door, store and issue secrets in an approved place, rotate and expire with consumers updated first and the old value proven dead, watch use, and retire in stages or respond to a leak. It includes the inventory fields, the gaps to flag (no owner, no purpose, no expiry, idle too long, broad permissions, secret outside the approved store), a decision table, standards for new credentials, metrics, a leak-response flow and a staged-retirement flow (monitor, disable with rollback, hold, delete). Disabling needs the owner's approval, and deleting or revoking cannot be undone, so it waits for a hold period. Thresholds and targets are left for the reader to set. It is a draft method tested only on made-up data, and it maps the lab cases to the OWASP Non-Human Identities Top 10, where insecure authentication and environment isolation are thinly covered.",
+  },
+  {
+    id: "nhi-lab-market",
+    title: "NHI market 2026: deals, agent identity and standards",
+    url: "/nhi-lab/market/",
+    keywords: ["nhi market", "non-human identity market", "acquisition", "acquisitions 2026", "cyberark palo alto", "palo alto cyberark", "sailpoint entro", "cisco astrix", "delinea strongdm", "entra agent id", "agent identity", "salesloft drift", "owasp nhi top 10", "nist agent identity", "nccoe", "market gaps"],
+    answer:
+      "Four acquisitions closed in 2026: Palo Alto Networks completed CyberArk on 11 February (US$45.00 cash plus 2.2005 Palo Alto shares per CyberArk share, per its release), Delinea completed StrongDM on 5 March, SailPoint completed Entro Security on 29 June (terms not disclosed), and Cisco completed Astrix Security on 29 June (about US$400 million is reported, not confirmed). Microsoft's documentation describes Entra Agent ID, where an agent identity is a special service principal with no credentials of its own, created from a blueprint and with a human sponsor. NIST's NCCoE published an agent identity concept paper on 5 February 2026 and heard from more than 600 commenters. Google's threat intelligence group reported the Salesloft Drift OAuth token theft in August 2025. Every fact on the page has a date, a source and a label for how far I trust it, and it records two places where sources disagree. I tested no product, and I did not read licensed analyst reports.",
+  },
+  {
+    id: "nhi-lab-method",
+    title: "NHI lab: what we did and how",
+    url: "/nhi-lab/method/",
+    keywords: ["nhi lab method", "how the lab was run", "guesses first", "hash the guesses", "sha-256 guess", "what we did", "control off", "switch control off", "chain tests", "lab mistakes", "what went wrong"],
+    answer:
+      "Each case is run the same way: write the guess (what I expect without the control and with it), hash the guess file with SHA-256, commit it, and only then write a small in-memory model of the control. Then run the case with the control off and on, switch each control off alone to see if any check notices, write down the limit, and run it again on a second machine. The Mac output matched the sandbox for both runs. The page lists the mistakes: four wrong guesses (a scan that missed 2 secrets instead of 1, a short token lifetime that changed nothing because another control already blocked the replay, my own arithmetic in an identity-merge case, and a chain test where the owner rule mattered more than the ticket scan), plus bad test data on a first run and a harness slip, both fixed and recorded.",
+  },
+  {
+    id: "nhi-lab-audit",
+    title: "NHI lab audit data: 46 cases, downloads and hash check",
+    url: "/nhi-lab/audit/",
+    keywords: ["audit data", "nhi audit", "lab audit", "download csv", "json download", "verify hashes", "verify.py", "chain of custody", "wrong guesses", "controls nothing noticed", "commit hashes"],
+    answer:
+      "The audit page lists all 46 cases in one filterable table, with a CSV and a JSON download. It shows 42 guesses matched and 4 wrong, 8 cases with a control no check noticed, and 12 cases with a recorded limit. It records the four guess-file hashes and the Mac commits (78d7e3e for the second-run guesses and 05235fe for its code and results). A small script, verify.py, recomputes the four guess hashes on your own machine; it printed '4 of 4 guess files match' when I ran it. A re-run of both runs gave the same results apart from the time stamp. The page says plainly what it cannot tell you: it is not independent, and a hash proves a file did not change after the commit, not when I wrote it.",
+  },
+  {
+    id: "nhi-lab-roadmap",
+    title: "NHI lab roadmap",
+    url: "/nhi-lab/roadmap/",
+    keywords: ["nhi roadmap", "lab roadmap", "what next", "next cases", "queued cases", "future work", "owasp nhi4 nhi8", "outside reader guesses"],
+    answer:
+      "The roadmap has four lanes. Done, with dates: the catalogue and test plan (31 October), the 27-case first run, the 19-case second run, the lab page, book and video, and the new pages (all 2 November 2026). Now: my review of the new pages, and accessibility and speed checks. Next: two cases for thin OWASP coverage (insecure authentication and environment isolation), the Stage 2 documents as pages, the OWASP agentic gaps ASI05 to ASI07 in the catalogue, ATT&CK campaign C0064 and a vendor-wording check. Later: the 21 queued cases, an outside reader writing guesses first, cloud-specific variants, an Indian rules check without a compliance claim, cost data and a quarterly re-check of the market page. I have put no dates on future items.",
+  },
+  {
+    id: "nhi-lab-explainer",
+    title: "NHI lab animated explainer",
+    url: "/nhi-lab/explainer/",
+    keywords: ["explainer", "animation", "animated explainer", "machine identities in a minute", "nhi video", "transcript", "pause animation"],
+    answer:
+      "The explainer is a one-minute animation in six scenes: there are more machine identities than people, many have no owner, new identities should meet a front door that refuses them without an owner, scope and end date, secrets should be changed in order (application first, then the secret, then check the old one is dead), each control should be switched off once to see if anything notices, and a summary of the 46 cases. It has no sound, can be paused, stepped or replayed, respects reduced-motion settings and has a full transcript on the page. There is also a 54-second silent video for sharing.",
+  },
+  {
+    id: "nhi-lab-book",
+    title: "NHI lab book",
+    url: "/nhi-lab/nhi-lab-book.pdf",
+    keywords: ["nhi book", "nhi lab book", "machine identity book", "free book nhi", "pdf nhi", "all books", "books list"],
+    answer:
+      "The NHI lab book (edition 2, 65 pages) is a free PDF about the 46-case lab, with a problem statement, scope, the method, the framework, a workflow diagram for every case, results, the market view, what is missing, a roadmap, appendices with the guess hashes and the audit table, a glossary and an author page. The Book page lists it beside the other books, with a picker so you can jump to one.",
   },
 ];
