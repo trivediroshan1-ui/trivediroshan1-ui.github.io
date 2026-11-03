@@ -36,3 +36,9 @@ html[data-bg="home"]::after { display: none !important; }
 
 /* The lab cards now sit under the hero instead of above it. */
 .blinks-top { padding-top: 8px; }
+
+/* Recruiters' first question, answered in the hero (the roles listed on /talk/). */
+.hero .open-to { display: flex; align-items: baseline; gap: 10px; margin: 16px 0 0; max-width: 600px; font-size: 14.5px; line-height: 1.5; color: var(--muted); }
+.hero .open-to i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(101, 229, 173, 0.18); transform: translateY(-1px); }
+.hero .open-to a { color: var(--violet); white-space: nowrap; }
+.hero .acts { margin-top: 18px; }

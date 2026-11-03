@@ -89,7 +89,6 @@
     REF = cap(q.get('ref'));
     if (q.get('which')) form.elements.which.value = cap(q.get('which'));
   } catch (e) {}
-  form.hidden = false;
   form.closest('.cmp').classList.add('cmp-on');
   render();
 })();
