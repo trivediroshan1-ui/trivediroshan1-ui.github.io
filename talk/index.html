@@ -47,6 +47,46 @@
         <h1>Talk to me about identity, access and AI agents.</h1>
         <p class="dek">I read every message. LinkedIn is the fastest way to reach me.</p>
       </header>
+      <section class="cmp" aria-labelledby="cmp-t">
+        <h2 id="cmp-t">Write your first message</h2>
+        <p class="cmp-lede">Pick why you are writing and fill in what you know. You get a message you can send on LinkedIn or by email, with what I need to reply properly.</p>
+        <div class="cmp-direct">
+          <a class="cmp-btn cmp-1" href="https://www.linkedin.com/in/roshan-trivedi-ciam/">Message me on LinkedIn</a>
+          <a class="cmp-btn cmp-2" href="mailto:trivedi.roshan1@gmail.com">Email me</a>
+        </div>
+        <form class="cmp-form" id="cmp" hidden novalidate>
+          <fieldset class="cmp-why">
+            <legend>I am writing about</legend>
+            <label><input type="radio" name="why" value="role" checked> A role</label>
+            <label><input type="radio" name="why" value="problem"> A PAM or credential problem</label>
+            <label><input type="radio" name="why" value="feedback"> A lab or a book</label>
+          </fieldset>
+          <div class="cmp-fields" data-for="role">
+            <label>Role title<input name="role" autocomplete="organization-title" placeholder="Head of IAM"></label>
+            <label>Team or company<input name="team" autocomplete="organization" placeholder="Identity security, Acme"></label>
+            <label>Location<input name="where" placeholder="Bengaluru, hybrid"></label>
+          </div>
+          <div class="cmp-fields" data-for="problem" hidden>
+            <label class="wide">What are you trying to fix?<textarea name="fix" rows="3" placeholder="Service account passwords never rotate and nobody owns them"></textarea></label>
+            <label>Platforms involved (optional)<input name="tools" placeholder="CyberArk, HashiCorp Vault"></label>
+          </div>
+          <div class="cmp-fields" data-for="feedback" hidden>
+            <label>Which lab or book?<input name="which" placeholder="Who Approved That?"></label>
+            <label class="wide">What looks wrong or missing?<textarea name="gap" rows="3" placeholder="Round 9 does not test a revoked token"></textarea></label>
+          </div>
+          <label class="cmp-name">Your name (optional)<input name="name" autocomplete="name"></label>
+          <div class="cmp-out">
+            <p class="cmp-k" id="cmp-k">Your message</p>
+            <pre id="cmp-msg" aria-labelledby="cmp-k" aria-live="polite"></pre>
+          </div>
+          <div class="cmp-acts">
+            <button type="button" class="cmp-btn cmp-1" id="cmp-li">Copy and open LinkedIn</button>
+            <a class="cmp-btn cmp-2" id="cmp-mail" href="mailto:trivedi.roshan1@gmail.com">Send by email</a>
+            <span class="cmp-done" id="cmp-done" role="status"></span>
+          </div>
+          <p class="cmp-note">Nothing you type leaves this page until you send it yourself. Please leave out anything confidential.</p>
+        </form>
+      </section>
       <figure style="margin:0 0 28px">
         <a href="/assets/roshan-trivedi-work-summary.png"><img src="/assets/roshan-trivedi-work-summary.webp" width="1400" height="945" loading="lazy" style="width:100%;height:auto;border-radius:14px" alt="One-page summary of Roshan Trivedi's work: what he does, key focus areas, how he works, what the AI Governance Lab found (13 rounds, 164 cases), and his values."></a>
         <figcaption class="body-text" style="font-size:.9em;opacity:.8">My work on one page. Select the image for the full size.</figcaption>
@@ -75,6 +115,8 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/talk/">Talk to me</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
     <script defer src="/assets/chatbot-widget.js?v=20261102b"></script>
+    <link rel="stylesheet" href="/assets/talk-compose.css?v=20261104a">
+    <script defer src="/assets/talk-compose.js?v=20261104a"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
 </html>
