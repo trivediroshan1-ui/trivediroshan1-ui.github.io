@@ -1,0 +1,38 @@
+/* Home page "What brings you here?" switcher. Without JavaScript all three paths show, one after another. */
+#start-here .steps { list-style: none; padding: 0; margin: 0; counter-reset: none; }
+#start-here .steps > li { display: flex; }
+#start-here .steps > li > .card { flex: 1; }
+.who-h { font-size: 18px; margin: 28px 0 14px; }
+.who-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin: 22px 0 0; }
+.who-cta span { color: var(--muted, #a9b6d3); font-size: 14px; }
+
+.who { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; padding: 6px; border: 1px solid var(--line2, rgba(167,139,250,.35)); border-radius: 999px; width: fit-content; max-width: 100%; }
+.who[hidden] { display: none; }
+.who button {
+  font: inherit; font-weight: 700; font-size: 15px; cursor: pointer;
+  min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 0;
+  background: transparent; color: var(--ink, #e8eefc);
+  transition: background-color .2s ease, color .2s ease;
+}
+.who button:hover { background: rgba(167, 139, 250, 0.14); }
+.who button[aria-selected="true"] { background: #58e6f6; color: #05061a; }
+.who button:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+html[data-theme="light"] .who button[aria-selected="true"] { background: #0a7f93; color: #fff; }
+
+/* Once the script runs: show one path at a time, without repeating the heading the tab already names. */
+.who-on .who-p[hidden] { display: none; }
+.who-on .who-h { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.who-on .who-p:not([hidden]) .steps > li { animation: who-in .35s ease both; }
+.who-on .who-p:not([hidden]) .steps > li:nth-child(2) { animation-delay: .06s; }
+.who-on .who-p:not([hidden]) .steps > li:nth-child(3) { animation-delay: .12s; }
+@keyframes who-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 720px) {
+  .who { border-radius: 18px; width: 100%; flex-direction: column; }
+  .who button { text-align: left; border-radius: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .who button { transition: none; }
+  .who-on .who-p:not([hidden]) .steps > li { animation: none; }
+}
+html.motion-off .who-on .who-p:not([hidden]) .steps > li { animation: none; }
