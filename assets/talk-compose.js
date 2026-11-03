@@ -22,6 +22,7 @@
       p.push(['. Location: ', false], f('where', 'location'),
         ['.\n\nWould you be open to a conversation about it?', false]);
     } else if (w === 'problem') {
+      if (REF) p.push(['I read your case study "' + REF + '". ', false]);
       p.push(['I am working on a PAM or credential problem: ', false], f('fix', 'what you are trying to fix'), ['.', false]);
       if (v('tools')) p.push([' Platforms involved: ', false], [v('tools'), false], ['.', false]);
       p.push(['\n\nCould we talk it through?', false]);
@@ -77,6 +78,17 @@
   form.addEventListener('input', render);
   form.addEventListener('change', render);
   form.addEventListener('submit', function (e) { e.preventDefault(); });
+  // A link from a case study can open a path with its page already named:
+  // /talk/?why=problem&ref=<title> or /talk/?why=feedback&which=<text>. Plain text only, capped.
+  var REF = '';
+  try {
+    var q = new URLSearchParams(location.search);
+    var cap = function (x) { return (x || '').replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, 120); };
+    var w = q.get('why');
+    if (w === 'role' || w === 'problem' || w === 'feedback') form.querySelector('input[name="why"][value="' + w + '"]').checked = true;
+    REF = cap(q.get('ref'));
+    if (q.get('which')) form.elements.which.value = cap(q.get('which'));
+  } catch (e) {}
   form.hidden = false;
   form.closest('.cmp').classList.add('cmp-on');
   render();
