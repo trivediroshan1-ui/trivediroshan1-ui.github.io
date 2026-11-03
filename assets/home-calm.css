@@ -1,0 +1,38 @@
+/* Home page design pass (Nov 2026). Loaded last, so it overrides the inline styles only where noted.
+   1 A plain headline that says what I do.   2 Two typefaces: DM Sans and JetBrains Mono.
+   3 One named recommendation in the hero.   4 Motion only where it shows how something works. */
+
+/* 1  Headline: a full sentence needs a smaller size than the old four-word slogan. */
+.hero h1 { font-size: clamp(2.1rem, 3.9vw, 3.25rem); line-height: 1.04; letter-spacing: -0.035em; max-width: 21ch; }
+.hero .role { max-width: none; }
+.hero .role-sep { display: none; }
+.hero .role-tag { display: block; margin-top: 2px; font-size: 0.82em; color: var(--muted); font-weight: 600; }
+
+/* 2  Two typefaces. Body text moves from Manrope to DM Sans, which the headings already use. */
+:root { --body: "DM Sans", system-ui, sans-serif; }
+body { font-family: var(--body); }
+
+/* 3  Proof where people decide: one short quote, named, under the numbers. */
+.hero-q { margin: 26px 0 0; padding: 16px 18px; max-width: 560px; border-left: 3px solid var(--cyan); border-radius: 0 14px 14px 0; background: rgba(88, 230, 246, 0.07); }
+.hero-q blockquote { margin: 0; }
+.hero-q p { margin: 0; font-size: 1.02rem; line-height: 1.5; color: var(--ink); }
+.hero-q figcaption { margin-top: 8px; font-size: 13.5px; color: var(--subtle); }
+.hero-q figcaption b { color: var(--ink); font-weight: 700; }
+.hero-q a { color: var(--violet); }
+html[data-theme="light"] .hero-q { background: rgba(10, 127, 147, 0.07); }
+
+/* 4  Calm motion. The drifting page background and its sliding pattern stop; the pattern is removed.
+   Looping icons on the lab cards and case study art stop; the quote doodles go.
+   The hero's approval-path animation stays: it plays once and shows how the lab works. */
+html[data-bg="home"]::before { animation: none !important; }
+html[data-bg="home"]::after { display: none !important; }
+.blinks *, .blinks *::before, .blinks *::after,
+.subs *, .card .art *, .newlab * { animation: none !important; }
+.q::before { display: none !important; }
+.q blockquote p { padding-right: 0; }
+
+/* Symbol buttons (chat widget, dock close) use the page font instead of the browser default. */
+.sc-close, .sc-send, .ns-x { font-family: var(--body); }
+
+/* The lab cards now sit under the hero instead of above it. */
+.blinks-top { padding-top: 8px; }
