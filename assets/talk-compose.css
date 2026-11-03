@@ -1,0 +1,49 @@
+/* Talk page: first-message builder. Without JavaScript only the two direct buttons show. */
+.cmp { margin: 8px 0 40px; padding: 26px; border-radius: 18px; border: 1px solid rgba(167, 139, 250, .4); background: rgba(14, 10, 40, .72); }
+.cmp h2 { margin: 0 0 6px; font-size: 26px; }
+.cmp-lede { margin: 0 0 18px; color: #c3cbe0; max-width: 62ch; }
+.cmp-direct, .cmp-acts { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.cmp-on .cmp-direct { display: none; }
+.cmp-btn { font: inherit; font-weight: 700; font-size: 15px; min-height: 44px; padding: 10px 20px; border-radius: 999px; display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
+.cmp-1 { background: #58e6f6; color: #05061a; }
+.cmp-1:hover { background: #8ef0fa; }
+.cmp-2 { background: transparent; color: #e8eefc; border-color: rgba(167, 139, 250, .6); }
+.cmp-2:hover { background: rgba(167, 139, 250, .16); }
+.cmp-btn:focus-visible, .cmp input:focus-visible, .cmp textarea:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+.cmp-why { border: 0; padding: 0; margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.cmp-why legend { font-weight: 700; margin-bottom: 8px; padding: 0; }
+.cmp-why label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(167, 139, 250, .45); cursor: pointer; font-weight: 600; }
+.cmp-why label:has(input:checked) { background: rgba(88, 230, 246, .14); border-color: #58e6f6; }
+.cmp-why input { accent-color: #58e6f6; margin: 0; }
+.cmp-fields, .cmp-name { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }
+.cmp-fields[hidden] { display: none; }
+.cmp-fields .wide { grid-column: span 2; }
+.cmp-name { grid-template-columns: minmax(0, 1fr); max-width: 33%; }
+.cmp label { font-size: 14px; color: #c3cbe0; }
+.cmp-fields label, .cmp-name { display: flex; flex-direction: column; gap: 6px; }
+.cmp input:not([type="radio"]), .cmp textarea { font: inherit; font-size: 15px; color: #e8eefc; background: rgba(5, 6, 26, .6); border: 1px solid rgba(167, 139, 250, .35); border-radius: 10px; padding: 10px 12px; min-height: 44px; width: 100%; box-sizing: border-box; resize: vertical; }
+.cmp-out { margin: 8px 0 14px; }
+.cmp-k { margin: 0 0 6px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #58e6f6; font-weight: 700; }
+.cmp pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: inherit; font-size: 15px; line-height: 1.55; padding: 14px 16px; border-radius: 12px; background: rgba(5, 6, 26, .6); border-left: 3px solid #58e6f6; color: #e8eefc; }
+.cmp pre mark { background: rgba(251, 191, 36, .22); color: inherit; padding: 0 3px; border-radius: 4px; }
+.cmp-done { font-size: 14px; color: #65e5ad; }
+.cmp-note { margin: 14px 0 0; font-size: 13.5px; color: #a9b6d3; }
+
+html[data-theme="light"] .cmp { background: #fff; border-color: #c9bdf3; }
+html[data-theme="light"] .cmp-lede, html[data-theme="light"] .cmp label { color: #3b3866; }
+html[data-theme="light"] .cmp-1 { background: #0a7f93; color: #fff; }
+html[data-theme="light"] .cmp-1:hover { background: #086a7a; }
+html[data-theme="light"] .cmp-2 { color: #1a1340; border-color: #6d4fd8; }
+html[data-theme="light"] .cmp input:not([type="radio"]), html[data-theme="light"] .cmp textarea, html[data-theme="light"] .cmp pre { background: #f6f4ff; color: #1a1340; border-color: #c9bdf3; }
+html[data-theme="light"] .cmp pre { border-left-color: #0a7f93; }
+html[data-theme="light"] .cmp-k { color: #0a7f93; }
+html[data-theme="light"] .cmp-why label:has(input:checked) { background: #e3f6f9; border-color: #0a7f93; }
+html[data-theme="light"] .cmp-done { color: #11805a; }
+html[data-theme="light"] .cmp-note { color: #5a5280; }
+
+@media (max-width: 720px) {
+  .cmp { padding: 18px; }
+  .cmp-fields, .cmp-name { grid-template-columns: minmax(0, 1fr); max-width: none; }
+  .cmp-fields .wide { grid-column: auto; }
+  .cmp-acts .cmp-btn { flex: 1 1 100%; justify-content: center; }
+}
