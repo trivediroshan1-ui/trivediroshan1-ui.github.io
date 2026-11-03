@@ -189,11 +189,41 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
 
       <section class="sec" id="start-here" aria-labelledby="start-title">
         <div class="wrap">
-          <div class="head"><div><p class="ey">Start here</p><h2 id="start-title">Three pages that show how I work</h2></div><a class="more" href="/resume/">Full r&eacute;sum&eacute; &rarr;</a></div>
-          <div class="g3">
-            <a class="card" href="/resume/"><span class="tag">2 minutes</span><h3>R&eacute;sum&eacute;</h3><p>14+ years in IAM and PAM across India, the UK and Australia, leading delivery teams since 2017. Every current certification links to the issuer&rsquo;s own record.</p><span class="go">Read the r&eacute;sum&eacute; &rarr;</span></a>
-            <a class="card" href="/ai-governance-lab/"><span class="tag">5 minutes</span><h3>AI Governance Lab</h3><p>13 rounds and 164 cases on made-up data. Every guess is hashed before the code runs, and my mistakes stay on the page.</p><span class="go">Open the lab &rarr;</span></a>
-            <a class="card" href="/case-studies/non-human-identity-at-scale/"><span class="tag">5 minutes</span><h3>Non-human identity at scale</h3><p>An independent guide to giving every service account, secret and AI agent an owner, a rotation date and an end date.</p><span class="go">Read the guide &rarr;</span></a>
+          <div class="head"><div><p class="ey">Start here</p><h2 id="start-title">What brings you here?</h2></div><a class="more" href="/resume/">Full r&eacute;sum&eacute; &rarr;</a></div>
+          <div class="who" role="tablist" aria-label="Choose the path that fits you" hidden>
+            <button type="button" role="tab" id="who-t-hire" aria-controls="who-hire" aria-selected="true">I am hiring</button>
+            <button type="button" role="tab" id="who-t-fix" aria-controls="who-fix" aria-selected="false" tabindex="-1">I have a PAM or credential problem</button>
+            <button type="button" role="tab" id="who-t-build" aria-controls="who-build" aria-selected="false" tabindex="-1">I build with AI agents</button>
+          </div>
+
+          <div class="who-p" id="who-hire" role="tabpanel" aria-labelledby="who-t-hire">
+            <h3 class="who-h">If you are hiring</h3>
+            <ol class="g3 steps">
+              <li><a class="card" href="/resume/"><span class="tag">Step 1 &middot; 2 minutes</span><h3>R&eacute;sum&eacute;</h3><p>14+ years in IAM and PAM across India, the UK and Australia, leading delivery teams since 2017. Every current certification links to the issuer&rsquo;s own record.</p><span class="go">Read the r&eacute;sum&eacute; &rarr;</span></a></li>
+              <li><a class="card" href="/case-studies/non-human-identity-at-scale/"><span class="tag">Step 2 &middot; 5 minutes</span><h3>How I think about a hard problem</h3><p>An independent guide to giving every service account, secret and AI agent an owner, a rotation date and an end date.</p><span class="go">Read the guide &rarr;</span></a></li>
+              <li><a class="card" href="https://www.linkedin.com/in/roshan-trivedi-ciam/details/recommendations/" rel="noopener"><span class="tag">Step 3 &middot; 2 minutes</span><h3>What colleagues say</h3><p>Recommendations from people I have worked with, on LinkedIn where you can see who wrote them.</p><span class="go">Read the recommendations &rarr;</span></a></li>
+            </ol>
+            <p class="who-cta"><a class="btn btn-1" href="https://www.linkedin.com/in/roshan-trivedi-ciam/">Message me about a role</a><span>I reply on LinkedIn.</span></p>
+          </div>
+
+          <div class="who-p" id="who-fix" role="tabpanel" aria-labelledby="who-t-fix">
+            <h3 class="who-h">If you have a PAM or credential problem</h3>
+            <ol class="g3 steps">
+              <li><a class="card" href="/tools/tier-check/"><span class="tag">Step 1 &middot; 3 minutes</span><h3>Credential tiering self-check</h3><p>Check your setup against the Tier 0 to 3 guardrails: where would one stolen credential stop, and where would it keep going?</p><span class="go">Take the self-check &rarr;</span></a></li>
+              <li><a class="card" href="/case-studies/credential-tiering-model/"><span class="tag">Step 2 &middot; 5 minutes</span><h3>The tiering model behind it</h3><p>The case study that explains the tiers, what belongs in each, and how access moves between them.</p><span class="go">Read the case study &rarr;</span></a></li>
+              <li><a class="card" href="/book/"><span class="tag">Step 3 &middot; when you have time</span><h3>Who Approved That?</h3><p>The free book on approvals, ownership and records when people and AI agents ask for access. 138 pages.</p><span class="go">Read the preface &rarr;</span></a></li>
+            </ol>
+            <p class="who-cta"><a class="btn btn-1" href="/talk/">Talk it through with me</a><span>Open to advisory work and talks.</span></p>
+          </div>
+
+          <div class="who-p" id="who-build" role="tabpanel" aria-labelledby="who-t-build">
+            <h3 class="who-h">If you build with AI agents</h3>
+            <ol class="g3 steps">
+              <li><a class="card" href="/mcp-lab-portal/"><span class="tag">Step 1 &middot; 5 minutes</span><h3>HumanGate MCP lab</h3><p>An approval gateway for AI agents: a portal, 161 cases, a risk score to play with, and the full report.</p><span class="go">Open the lab &rarr;</span></a></li>
+              <li><a class="card" href="/ai-governance-lab/"><span class="tag">Step 2 &middot; 5 minutes</span><h3>AI Governance Lab</h3><p>13 rounds and 164 cases on made-up data. Every guess is hashed before the code runs, and my mistakes stay on the page.</p><span class="go">Open the lab &rarr;</span></a></li>
+              <li><a class="card" href="/nhi-lab/"><span class="tag">Step 3 &middot; 10 minutes</span><h3>Machine identity lab</h3><p>46 machine identity cases, free, with a 65 page book.</p><span class="go">Open the lab &rarr;</span></a></li>
+            </ol>
+            <p class="who-cta"><a class="btn btn-1" href="https://github.com/trivediroshan1-ui">See the code on GitHub</a><span>Tell me what I missed.</span></p>
           </div>
         </div>
       </section>
@@ -343,5 +373,7 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
     <script defer src="/assets/motion-toggle.js?v=20261025a"></script>
     <link rel="stylesheet" href="/assets/next-step.css?v=20261103a">
     <script defer src="/assets/next-step.js?v=20261103a"></script>
+    <link rel="stylesheet" href="/assets/who-paths.css?v=20261103a">
+    <script defer src="/assets/who-paths.js?v=20261103a"></script>
   </body>
 </html>
