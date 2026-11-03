@@ -1,0 +1,40 @@
+/* Home page: a slim "next step" dock that appears once the hero is behind you. */
+.nextstep {
+  position: fixed; left: 50%; bottom: 20px; z-index: 35;
+  transform: translate(-50%, 24px); opacity: 0; pointer-events: none;
+  display: flex; align-items: center; gap: 10px;
+  max-width: calc(100vw - 32px);
+  padding: 8px 8px 8px 18px;
+  background: rgba(11, 7, 32, 0.92); color: #e8eefc;
+  border: 1px solid rgba(167, 139, 250, 0.45); border-radius: 999px;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  font-size: 14px;
+}
+.nextstep.on { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+.nextstep .ns-q { font-weight: 700; white-space: nowrap; }
+.nextstep a {
+  text-decoration: none; font-weight: 700; font-size: 14px; white-space: nowrap;
+  border-radius: 999px; padding: 9px 16px; min-height: 40px; display: inline-flex; align-items: center;
+}
+.nextstep .ns-p { background: #58e6f6; color: #05061a; }
+.nextstep .ns-s { color: #e8eefc; border: 1px solid rgba(167, 139, 250, 0.55); }
+.nextstep .ns-s:hover { background: rgba(167, 139, 250, 0.16); }
+.nextstep .ns-x {
+  background: none; border: 0; color: #a9b6d3; cursor: pointer;
+  width: 40px; height: 40px; border-radius: 50%; font-size: 20px; line-height: 1;
+}
+.nextstep .ns-x:hover { color: #fff; }
+:root[data-theme="light"] .nextstep { background: rgba(255, 255, 255, 0.96); color: #1a1340; border-color: #6d4fd8; box-shadow: 0 10px 34px rgba(60, 40, 120, 0.22); }
+:root[data-theme="light"] .nextstep .ns-p { background: #0a7f93; color: #fff; }
+:root[data-theme="light"] .nextstep .ns-s { color: #1a1340; border-color: #6d4fd8; }
+:root[data-theme="light"] .nextstep .ns-x { color: #5a5280; }
+@media (max-width: 720px) {
+  .nextstep { left: 12px; right: 166px; bottom: 16px; transform: translateY(24px); padding: 6px 6px 6px 14px; max-width: none; justify-content: space-between; }
+  .nextstep.on { transform: translateY(0); }
+  .nextstep .ns-q, .nextstep .ns-s { display: none; }
+  .nextstep .ns-p { flex: 1; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .nextstep { transition: none; } }
+@media print { .nextstep { display: none; } }
