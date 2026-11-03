@@ -1,9 +1,10 @@
-/* Talk page: first-message builder. Without JavaScript only the two direct buttons show. */
+/* Talk page: first-message builder. It is in the page from the start so nothing moves when the script runs;
+   without JavaScript a <noscript> style swaps it for the two direct buttons. */
 .cmp { margin: 8px 0 40px; padding: 26px; border-radius: 18px; border: 1px solid rgba(167, 139, 250, .4); background: rgba(14, 10, 40, .72); }
 .cmp h2 { margin: 0 0 6px; font-size: 26px; }
 .cmp-lede { margin: 0 0 18px; color: #c3cbe0; max-width: 62ch; }
 .cmp-direct, .cmp-acts { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-.cmp-on .cmp-direct { display: none; }
+.cmp-direct { display: none; }
 .cmp-btn { font: inherit; font-weight: 700; font-size: 15px; min-height: 44px; padding: 10px 20px; border-radius: 999px; display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; border: 1px solid transparent; }
 .cmp-1 { background: #58e6f6; color: #05061a; }
 .cmp-1:hover { background: #8ef0fa; }
