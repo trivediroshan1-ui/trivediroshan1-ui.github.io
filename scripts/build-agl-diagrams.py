@@ -352,7 +352,7 @@ def main():
     a = tpl.index('<main id="main">'); b = tpl.index('<aside class="hg-next"')
     head = tpl[:a]; tail = tpl[b:]
     head = head.replace("/ai-governance-lab/try/", "/ai-governance-lab/diagrams/")
-    head = re.sub(r'content="Run the AI governance lab in your browser[^"]*"', 'content="Nine animated architecture diagrams for the AI governance lab, as SVG: the request flow, filters, agent access, the audit log, the agent-to-API pattern, HR to directory, bypass response and who owns what."', head)
+    head = re.sub(r'content="Run the AI governance lab in your browser[^"]*"', 'content="Nine animated SVG diagrams of the AI governance lab: request flow, filters, agent access, audit log, agent-to-API, HR to directory, bypass and ownership."', head)
     head = head.replace('content="AI governance lab: try it yourself"', 'content="AI governance lab: architecture diagrams"')
     head = head.replace("<title>Try the AI governance lab &middot; Roshan Trivedi</title>", "<title>Architecture diagrams &middot; AI governance lab</title>")
     head = head.replace("agl.css?v=20261024d", "agl.css?v=20261024f")
