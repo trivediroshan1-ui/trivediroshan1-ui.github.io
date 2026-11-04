@@ -109,3 +109,6 @@ html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitena
   html .hg-sitenav .rt-sbtn { width: 40px; padding: 0; justify-content: center; }
   html .hg-sitenav li a { padding-inline: .55rem; }
 }
+
+/* One body font on every page: DM Sans, which the headings already use. Manrope stays loaded only where a page names it. */
+html:root { --body: "DM Sans", system-ui, sans-serif; }
