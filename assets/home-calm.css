@@ -42,3 +42,10 @@ html[data-bg="home"]::after { display: none !important; }
 .hero .open-to i { position: absolute; left: 0; top: .5em; width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(101, 229, 173, 0.18); }
 .hero .open-to a { color: var(--violet); white-space: nowrap; }
 .hero .acts { margin-top: 18px; }
+
+/* "Hire me" in the home menu: never wraps, and takes the Résumé button's place below 1060px so the bar fits. */
+.top .nav a { white-space: nowrap; }
+.top .nav a[href="/hire/"] { background: #58e6f6; color: #05061a; }
+.top .nav a[href="/hire/"]:hover { background: #8cf0fb; color: #05061a; }
+html[data-theme="light"] .top .nav a[href="/hire/"] { background: #0a7f93; color: #fff; }
+@media (max-width: 1060px) { .top .btn-res { display: none; } }
