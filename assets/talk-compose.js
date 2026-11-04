@@ -26,6 +26,9 @@
       p.push(['I am working on a PAM or credential problem: ', false], f('fix', 'what you are trying to fix'), ['.', false]);
       if (v('tools')) p.push([' Platforms involved: ', false], [v('tools'), false], ['.', false]);
       p.push(['\n\nCould we talk it through?', false]);
+    } else if (w === 'talk') {
+      p.push(['I would like to invite you to speak at ', false], f('event', 'event or team'), ['. Date: ', false], f('when', 'date'),
+        ['. Audience and length: ', false], f('aud', 'audience and length'), ['.\n\nWould you be interested?', false]);
     } else {
       p.push(['I read ', false], f('which', 'which lab or book'), ['. ', false], f('gap', 'what looks wrong or missing'), ['.', false]);
     }
@@ -38,6 +41,7 @@
     var w = why();
     return w === 'role' ? 'Role: ' + (v('role') || 'identity security')
       : w === 'problem' ? 'A PAM or credential problem'
+      : w === 'talk' ? 'Invitation to speak: ' + (v('event') || 'an event')
       : 'Feedback: ' + (v('which') || 'a lab or book');
   }
 
@@ -85,7 +89,7 @@
     var q = new URLSearchParams(location.search);
     var cap = function (x) { return (x || '').replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, 120); };
     var w = q.get('why');
-    if (w === 'role' || w === 'problem' || w === 'feedback') form.querySelector('input[name="why"][value="' + w + '"]').checked = true;
+    if (w === 'role' || w === 'problem' || w === 'feedback' || w === 'talk') form.querySelector('input[name="why"][value="' + w + '"]').checked = true;
     REF = cap(q.get('ref'));
     if (q.get('which')) form.elements.which.value = cap(q.get('which'));
     if (q.get('role')) form.elements.role.value = cap(q.get('role'));

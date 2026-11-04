@@ -1,0 +1,25 @@
+/* Talks and workshops page. Static; no script. */
+.sp h2, .sp-ask h2 { margin: 0 0 16px; }
+.sp-list { list-style: none; margin: 0 0 40px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.sp-item { position: relative; padding: 22px 22px 18px; border-radius: 18px; border: 1px solid rgba(167, 139, 250, .35); background: rgba(14, 10, 40, .72); overflow: hidden; }
+.sp-item::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px; background: var(--k); }
+.sp-item:first-child { grid-column: 1 / -1; }
+.sp-k { margin: 0 0 8px; font-family: var(--mono, "JetBrains Mono", monospace); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--k); }
+.sp-item h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.3; }
+.sp-item p { margin: 0 0 12px; line-height: 1.55; color: #c3cbe0; }
+.sp-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0 !important; font-weight: 700; font-size: 14.5px; }
+.sp-links a { color: #a78bfa; min-height: 24px; }
+.sp-acts { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 40px; }
+.sp-btn { font-weight: 700; font-size: 15px; min-height: 44px; padding: 10px 20px; border-radius: 999px; display: inline-flex; align-items: center; text-decoration: none; border: 1px solid transparent; }
+.sp-1 { background: #58e6f6; color: #05061a !important; }
+.sp-1:hover { background: #8ef0fa; }
+.sp-2 { color: #e8eefc !important; border-color: rgba(167, 139, 250, .6); }
+.sp-2:hover { background: rgba(167, 139, 250, .16); }
+.sp-btn:focus-visible, .sp-links a:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; }
+html[data-theme="light"] .sp-item { background: #fff; border-color: #c9bdf3; }
+html[data-theme="light"] .sp-item p { color: #3b3866; }
+html[data-theme="light"] .sp-links a { color: #5b3fc4; }
+html[data-theme="light"] .sp-1 { background: #0a7f93; color: #fff !important; }
+html[data-theme="light"] .sp-2 { color: #1a1340 !important; border-color: #6d4fd8; }
+html[data-theme="light"] .sp-k { filter: brightness(.6); }
+@media (max-width: 640px) { .sp-list { grid-template-columns: minmax(0, 1fr); } .sp-item { padding: 18px; } .sp-acts .sp-btn { flex: 1 1 100%; justify-content: center; } }

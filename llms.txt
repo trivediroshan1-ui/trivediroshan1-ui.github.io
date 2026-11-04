@@ -5,6 +5,7 @@
 ## Start here
 - [About](https://roshantrivedi.co.in/about/): background, how he works, where he can help
 - [Hiring brief](https://roshantrivedi.co.in/hire/): pick the role (Head of IAM, PAM lead, platform owner, principal architect) and see what he has done for it and what to read to check
+- [Talks and workshops](https://roshantrivedi.co.in/speaking/): talks he can give, each built on one of his public labs
 - [Résumé](https://roshantrivedi.co.in/resume/): roles, certifications with status and verification links
 - [Case studies](https://roshantrivedi.co.in/case-studies/): 20 privacy-safe case studies on privileged access, NHI, governance and agentic AI
 

@@ -1,5 +1,5 @@
 ---
-title: "Can a Person Stay in Control of an AI Agent? I Tried to Break an Approval Gate 76 Ways"
+title: "Can a Person Stay in Control of an AI Agent? I Tried to Break an Approval Gate 210 Ways"
 layout: post
 bg: post-plan
 motif: grid
@@ -10,10 +10,10 @@ tags: [mcp, ai-agents, human-approval, audit, agentic-ai, security-testing]
 share_title: "Can a Person Stay in Control of an AI Agent?"
 share_label: "Article · MCP lab"
 share_accent: violet
-description: "I built a small approval gate for MCP tool calls and tried to break it 76 ways. What held, what did not, and the one gap that matters."
+description: "I built a small approval gate for MCP tool calls and tried to break it 210 ways. What held, what did not, and the one gap that matters."
 ---
 
-# Can a Person Stay in Control of an AI Agent? I Tried to Break an Approval Gate 76 Ways
+# Can a Person Stay in Control of an AI Agent? I Tried to Break an Approval Gate 210 Ways
 
 *Filed under: MCP · Agent Governance*
 
@@ -22,7 +22,7 @@ description: "I built a small approval gate for MCP tool calls and tried to brea
 ## The short version
 
 - I built a small open-source gateway that sits between an AI agent and its tools, using MCP (Model Context Protocol). Risky calls wait for a person. The approval is tied to the exact request, works once and expires.
-- I then tried to break it. The first round was 76 scripted cases against the real endpoint. Three rounds ran 210 scripted checks in total.
+- I then tried to break it: 210 scripted checks over three rounds. The first round was 76 cases against the real endpoint.
 - A changed target, an extra argument, a look-alike letter and an invisible character were all refused. Reusing an approval was refused. An expired approval was refused, including after a real 11-minute wait.
 - The one real gap: if someone could write to the database and flip a request to approved, it ran, and the audit log still looked valid. I fixed it, and a test now covers it.
 - What a gateway cannot fix is the person. I approved 40 production deploys in under half a second with the same reason each time, and nothing slowed me down.
