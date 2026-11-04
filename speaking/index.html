@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-bg="resume" data-m="diag">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="Talks and workshops Roshan Trivedi can give on privileged access, machine identities and keeping a person in the loop when AI agents act, each built on his public labs." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/speaking/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Talks and workshops &middot; Roshan Trivedi" />
+    <meta property="og:description" content="Talks built on public labs: AI agent approval, AI governance tests, machine identities, credential tiering and Zero Standing Privilege." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/speaking/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi-2026.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi-2026.png" />
+    <title>Talks and workshops &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+      <link rel="stylesheet" href="/assets/theme.css">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261104f">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261102b" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Talks and workshops", "item": "https://roshantrivedi.co.in/speaking/"}]}, {"@type": "WebPage", "name": "Talks and workshops", "url": "https://roshantrivedi.co.in/speaking/", "description": "Talks and workshops built on Roshan Trivedi's public labs.", "about": {"@id": "https://roshantrivedi.co.in/#person"}, "author": {"@id": "https://roshantrivedi.co.in/#person"}, "inLanguage": "en"}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261022m">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+      <link rel="stylesheet" href="/assets/speaking.css?v=20261104g">
+  </head>
+  <body style="--c:#4de2ff">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/talk/">Talk to me</a><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+
+      <header class="hero">
+        <p class="eyebrow">Talks and workshops</p>
+        <h1>Talks built on work you can check.</h1>
+        <p class="dek">Each talk comes from one of my public labs. The data is made up, the guesses were written down before the tests ran, and the mistakes are part of the talk. Nothing comes from an employer or a client.</p>
+      </header>
+
+      <section class="sp" aria-labelledby="sp-t">
+        <h2 id="sp-t">What I can talk about</h2>
+        <ol class="sp-list">
+          <li class="sp-item" style="--k:#a78bfa">
+            <p class="sp-k">AI agents &middot; MCP lab</p>
+            <h3>Who approved that? A person in the loop for AI agent tool calls</h3>
+            <p>I built an approval gate for MCP tool calls and ran 210 scripted checks against it over three rounds. The gate held against changed and reused requests. The weak point was me: I approved 40 production deploys in under half a second with the same reason each time.</p>
+            <p class="sp-links"><a href="/mcp-lab-case-study/">The lab</a><a href="/book/">The free book</a></p>
+          </li>
+          <li class="sp-item" style="--k:#58e6f6">
+            <p class="sp-k">AI governance &middot; 13 rounds</p>
+            <h3>Do AI governance controls hold when you test them?</h3>
+            <p>164 cases on made-up Indian data, with every guess hashed before the code ran. What held, what did not, and how to run the same tests yourself.</p>
+            <p class="sp-links"><a href="/ai-governance-lab/">The lab</a><a href="/writing/do-ai-governance-controls-hold/">The write-up</a></p>
+          </li>
+          <li class="sp-item" style="--k:#7df2d0">
+            <p class="sp-k">Machine identities &middot; 46 cases</p>
+            <h3>Service accounts, tokens and break-glass, tested in public</h3>
+            <p>46 machine identity cases. My guesses were wrong in four places, and in 8 cases a control sat there and nothing noticed.</p>
+            <p class="sp-links"><a href="/nhi-lab/">The lab</a><a href="/writing/non-human-identity-lab-46-cases/">The write-up</a></p>
+          </li>
+          <li class="sp-item" style="--k:#c4b5fd">
+            <p class="sp-k">Privileged access</p>
+            <h3>Where does one stolen credential stop?</h3>
+            <p>Credential tiering from Tier 0 to Tier 3, and how to check your own setup in three minutes.</p>
+            <p class="sp-links"><a href="/case-studies/credential-tiering-model/">The case study</a><a href="/tools/tier-check/">The self-check</a></p>
+          </li>
+          <li class="sp-item" style="--k:#f7c873">
+            <p class="sp-k">PAM programmes</p>
+            <h3>From permanent admin rights to Zero Standing Privilege</h3>
+            <p>A practical path for moving a PAM programme away from standing admin access, phase by phase.</p>
+            <p class="sp-links"><a href="/writing/pam-modernization-and-zero-standing-privilege/">The write-up</a><a href="/writing/pam-series/">The PAM series</a></p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="sp-ask" aria-labelledby="sp-a">
+        <h2 id="sp-a">Asking me to speak</h2>
+        <p class="body-text">Tell me the event, the audience and how long you have. Meetups, internal team sessions, podcasts and university talks are all welcome.</p>
+        <div class="sp-acts">
+          <a class="sp-btn sp-1" href="/talk/?why=talk">Write an invitation</a>
+          <a class="sp-btn sp-2" href="https://www.linkedin.com/in/roshan-trivedi-ciam/">Message me on LinkedIn</a>
+        </div>
+      </section>
+
+      <aside class="hg-next" aria-labelledby="hg-next-t">
+        <p class="eyebrow">Where next</p>
+        <p class="ttl" id="hg-next-t">See the work behind the talks</p>
+        <p class="lede">Every talk links to a lab or case study you can read first.</p>
+        <div class="grid">
+          <a href="/labs/" style="--k:#4de2ff"><b>All labs</b><span>The MCP, AI governance and machine identity labs.</span></a>
+          <a href="/case-studies/" style="--k:#7df2d0"><b>All case studies</b><span>Privileged access, credentials, governance and agent identity.</span></a>
+          <a href="/book/" style="--k:#c4b5fd"><b>Free books</b><span>The long versions, free as PDFs.</span></a>
+          <a href="/about/" style="--k:#f7c873"><b>About me</b><span>Background and how I work.</span></a>
+        </div>
+      </aside>
+    </main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/" aria-current="page">Speaking</a><a href="/talk/">Talk to me</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+    <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
+    <script defer src="/assets/chatbot-widget.js?v=20261102b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
