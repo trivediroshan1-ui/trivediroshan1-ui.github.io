@@ -1,0 +1,86 @@
+original_commit,current_commit,committed_at,subject
+28c7e36d1b19572944b933d5f741ff73fd5bcffd,d3aecfc15df4d723d63efc1427770e18243f756b,2026-10-21T19:17:34+05:30,Lab as received
+61db692560e150f841f80b89ea6c6342f19b75a5,cc5064737c08156fb70699e19fc39ebd628af614,2026-10-21T19:19:20+05:30,Make the lab run on Python 3.9
+0fdc36cbced392fb949c5a8a6446d2519c69b36a,3ab3ac1d1cd455bd59aab219a7c43a3730e059dd,2026-10-21T19:21:25+05:30,Round 1 results from my MacBook
+920f475b95e257583aa2a8f2042e9b5ff1a39a83,e999e954fb0e2c92a5cb8bfb0b32b43bd039917c,2026-10-21T19:28:09+05:30,Round 2 code and draft guesses
+8e678f4adae7fea8cdbe351f9282a6a8eb733347,7048f9b7384a69ac063d9ecea356cacb4561cc77,2026-10-21T19:29:40+05:30,Round 2 results from my MacBook
+a6b560a4a4e6fcb2b3bdd3e8424534bc9f574238,931b51e8a343e12992542d4ef62d4d33b639d59c,2026-10-21T19:42:22+05:30,Round 3 code and draft guesses
+2acbd5b47b848b6f915e6903b5194f5cc5103f35,ce542ddea3b53eaefb05abd5b1fad508f10a7ebc,2026-10-21T19:45:29+05:30,Round 4 code and draft guesses
+b16f533d99eede30e87768aa491cdc43cbcde0c3,66544af897eec3111910f91920f3a4979b86cd93,2026-10-21T19:47:58+05:30,Round 4 results from my MacBook
+7ffa1e60f30cc1531cc41976604fe760ab5cb5e9,3bad091c4d793ce8796fd2c649cb2d555ba3e2be,2026-10-21T19:51:30+05:30,"Held-out draft, --file option, Track P walkthrough"
+9d2c78b0be068ff5de08820749ad7800a66547bb,dd2588d31f290a5547ac5d2d0d5e1fde0b4cb727,2026-10-21T20:11:08+05:30,"Held-out items picked from the draft, before any filter ran on them"
+c31f364bdacea6063a115260256bd945112ce6d1,b9d7a8de74a6f34fbeccf5e6b9216e47c7b969d1,2026-10-21T20:13:10+05:30,"Held-out results: v1, v2, v3 each 4 of 10"
+17c2a87f68863f9f1be2dbf4fcee7956adf05379,b984e092e6d97ebb190ce8c02d54a8d53f9cd484,2026-10-24T14:45:58+05:30,Track P: Claude Sonnet 5.5 results
+b078a9015ad787f7dd422020bad14be68ffd4910,e2f95f3959cc196ebea7f2fc11b062ac47e47256,2026-10-24T15:03:51+05:30,Held-out cases
+439ef31b9e8847b8593e22452bcc77493d9d3adb,0b9a69a5abc8462e22743c4eb5052d1a2f829c79,2026-10-24T15:06:21+05:30,Fix held-out JSON
+1f1af47ded7a41a65a2b27f43d7daccc34fd244e,cae4d9ff77d9d2c071e03fdffa18e33f482532ac,2026-10-24T15:21:56+05:30,Held-out cases: eight starter items
+7042781d354482316cb862497ca19476ec49e7db,a60835a32a7175a52cfb8a9423aba459034ca258,2026-10-24T15:23:33+05:30,Held-out run: 8 starter cases
+9441a2bcf49e38e3a9966ba1e30f04348d94d504,28d749fc1216e305c1ea36e5ea4a8e9c62e19090,2026-10-24T15:59:07+05:30,"Presidio comparison, small model"
+30e3120ea8d15705231638673e60c95fa3bfda51,b324395ecce72f3801013ad82af09998b02148c0,2026-10-24T16:00:18+05:30,Presidio comparison with India recognisers on
+661e52a9ef0c7822171455847f552d96a011d936,cec09157e0e101629173c7aebce4f86daf164f3e,2026-10-24T16:11:07+05:30,Track P: clean re-run of P5 and P7
+efe55b94903e79c3ebac3b5b7fce16478f18fb8d,4178bf4f23795ef07ef743a1226d989e6a7de20d,2026-10-24T16:12:24+05:30,Remove incomplete Track P re-run record (placeholder notes)
+b019ad5caf712b020cf94515b8e35a78857a8448,4834de992ca50ceb06f6d9f390461707b7d332cf,2026-10-24T23:47:22+05:30,"Round five: guesses written before the code (V, R and extended I, E cases). Guesses file first written and committed locally at 23:38 IST on 24 Oct 2026; this is the same file (SHA-256 c35063c5...)"
+9e0ee5bdbc62f5131d356a0c7716a5d445aa476e,c03e8698f002d0f5feea064c1dfea9e31f679ad6,2026-10-24T23:47:22+05:30,"Round five: vendor consent, permission-aware search, mover, access review, toxic combination, audience, user-left, step-up, log privacy, backdating (14 cases, all as expected)"
+759e9baebda6e6284542646318948aeabc46df73,34254340f86b8f1acbef5cb50ddb0ace2f8571d9,2026-10-24T23:47:36+05:30,Keep the round-two comparison result from 24 Oct
+c95e721dccdb169b532c205c0d7a3ae61d83a6aa,e6ee102b30d0502a4b606148acf1480ac7e0ec4b,2026-10-25T00:11:48+05:30,Merge pull request #1 from trivediroshan1-ui/round-five
+33047926c877904e55ca07d754c39cdaa5eac151,c9869829c81618864f45fc4c206188222a577109,2026-10-25T00:28:47+05:30,"Round six: guesses written before the code (agent to API actions, gateway, executor, vault; 18 cases). First written 25 Oct 2026 00:28 IST, SHA-256 47fd08c1..."
+be14d2627a1a0b1338469560d4c830edcef6563c,5958ebe65b620a6e6e53a9f20f94da262cb2a750,2026-10-25T00:32:08+05:30,"Round six: gateway, executor, vault and identity-API models; 18 cases all as expected; 12 of 12 cases notice when their control is switched off"
+1a08b1a579ac945b9c3c01d623b872b31b72ee71,3320e5183c64a12ba5d6b0fc9ce58dc949a3bbe1,2026-10-25T00:43:49+05:30,"Round seven: guesses written before the code (HR-driven identity lifecycle, 12 cases). First written 25 Oct 2026 00:43 IST"
+86b19bd7191e165ad5a831aea011f0427526c7a4,e5102909059354e508a1ec790ead54ed969bf7b5,2026-10-25T00:46:24+05:30,"Round seven: HR-driven identity lifecycle model and 12 cases, all as expected; 14 of 14 control-off checks noticed after tightening H8; gateway hook for approved hire events"
+bdd8fb16c3a45f4b462680a313acba06d2cd99e0,eb08c6810408eaa290a1bdb3d626ae6ff2e0872d,2026-10-25T01:07:24+05:30,"Round eight guesses: 12 bypass cases B1-B12, written before any code (25 Oct 2026 01:07 IST)"
+8f187f85fe8ccfff2c7a4257f0b3f0236489f305,08681e2d54221ead90e01864bef64fac19c79707,2026-10-25T01:09:52+05:30,"Round eight: bypass, response, lists, helpers, evidence (lab/bypass.py, cases B1-B12); 12 of 12 as expected, 21 of 21 control-off checks noticed; rounds 6 and 7 re-run"
+cb5f3b8757b3b774e006d288ce30650046127c80,280a6f60770339a282cb8091b9d996aff6f34611,2026-10-25T02:14:50+05:30,Merge pull request #2 from trivediroshan1-ui/round-eight
+e175f9c7aa4f41029a6abc35f60b3d0a770402c8,2e0f0529fc0c045c40dfbdadadb8f5fca22db637,2026-10-25T02:26:04+05:30,"Round nine guesses: 12 retrieval-augmented answer cases Q1-Q12, written before any code (25 Oct 2026 02:26 IST)"
+0d654856ad0e2c9912363388be7ddcaaea614607,cd773db1f42ee9685f116334626b7085f9aabdbf,2026-10-25T02:28:06+05:30,"Round nine: retrieval-augmented answers model and cases Q1-Q12. First run 11 of 12 (Q8: my masking missed numbers without spaces), fixed, 12 of 12; 12 of 12 control-off checks noticed"
+669b98445720735dd6f8b2ae51730934af7b62c3,88cc2043774a88a3f11f0c72973b78ad1094ba72,2026-10-25T02:28:09+05:30,Round nine: final run and control-off run from the committed code
+95739686d07c99add9266e7adad36ec9a42a7fd0,f4b6aecdd7e008d7ada71fdcbe8c848f49d06569,2026-10-25T03:47:10+05:30,"Mac run: rounds 5 to 9 on Darwin, Python 3.9.6 (25 Oct 2026)"
+e15e6e6235911ec0dde97966aa90960cb44e947e,0c0255f45b5d145f6fef607a4f322ff644d75976,2026-10-25T03:55:02+05:30,"Round ten guesses: 12 credential, session and identity edge cases C1-C12, written before any code (25 Oct 2026 03:53 IST)"
+c0374d00ffd5e0e9cad96f858c4ff5c1a9c09919,0d61e37368d503932fefb44f58719ecb4245164c,2026-10-25T03:55:10+05:30,Round ten: sessions and identity edge-case models (lab/sessions.py) and cases C1-C12; control-off checks for 11 of them
+09c6563040df85e388ac33a6186a885fa2f2f8ef,5bfcd2b7afdb6c73ae38d5cb383d8ef1ac06a42f,2026-10-25T03:55:18+05:30,Round ten: final run and control-off run from the committed code
+3241e0ce8659f85b8bb2d12f370a80883223a754,2279fd550e0b8efed22244ce31ec5d63b343d927,2026-10-25T03:59:04+05:30,Round ten: run on a Mac
+d437afd2297877a48aa17101a006d71fc6e99151,210439e73bdd2ad9f0e19b1794b1d30b3bd83409,2026-10-25T04:10:31+05:30,"Round eleven guesses: 12 delegation, key and organisation cases D1-D12, written before any code (25 Oct 2026 04:10 IST)"
+d4bed3818533f21d26a11128c1b55193ae09281f,7dec226fed297aac31432c32b9caaaf40a3930dc,2026-10-25T04:12:09+05:30,"Round eleven: delegation, key and organisation models (lab/delegation.py) and cases D1-D12; first run 11 of 12 (D11: my test searched one number three ways, fixed); D12 reworked as a data hand-off"
+df01d799b5e28a21cc28c8f89425199e6368fd3e,3dc37671f910de57fca252362e34cf4fecc98234,2026-10-25T04:12:15+05:30,"Round eleven: first run, final run and control-off run"
+56054088366c14848d6f7b5969dbee42e68f491d,81d8da8be3ecc40ba922a119852b4434b363b941,2026-10-25T04:14:51+05:30,Round eleven: plain-Python Ed25519 (lab/ed25519.py) so the lab needs only the standard library; the cryptography package is no longer used
+f54adf33ed44433c10ec70d911201840fab3e8a2,1560c21268c8cf48dbd1412962976a6f0bc462a4,2026-10-25T04:14:53+05:30,Round eleven: final run and control-off run with the plain-Python Ed25519 (the earlier final run used the cryptography package and was replaced; the first run is kept)
+046d74e4b1d48406b3e9bd79e0424892c83a5a43,0faeebf8ea142325675c49eab6bb5f41ec66722d,2026-10-25T04:18:46+05:30,Round eleven: run on a Mac
+da77c8ae5e18dcfe19ab3260e5e31bc2adddba06,b3a9f1f77107989297d0ed4c078c107705962445,2026-10-25T04:42:32+05:30,"Round nine: three stronger control-off checks (Q1, Q2, Q5); 14 of 15 noticed, Q5 gateway-only check not noticed because the executor refuses too"
+b98cb8b6149d2a7e474e8ab846d6b81aa812f79d,3149371a1f6f12df8daaceefa448b4fe5ed04b38,2026-10-25T04:53:18+05:30,Stronger checks (#3)
+25caf8eafa7e34babfe9ac842b10d45110f10f39,17d24585badd028885d1c2dfcb1fa59786d8053a,2026-10-25T04:54:34+05:30,Round nine stronger checks: Mac run
+45b82348f326936c05f11e02d293250fa7cf36fa,79eb33cf15f43b91d832c705f4c8bc900f760999,2026-10-25T04:58:46+05:30,"Round twelve guesses: 7 approval cases F1-F7, written before any code (25 Oct 2026 04:58 IST)"
+801f8c87388b4dadca221bd2c97e0847a611bdcb,28f90e01631b5085cec1cb1c8a9f539207c26064,2026-10-25T04:59:31+05:30,"Round twelve: approvals (F1-F7); 7 of 7 as expected on the first run, 6 of 6 control-off checks noticed; F7 is a limit"
+c84f35333bec6bf757567600682d1f59dc210f67,fabec7d760b9f1e6e36272312bdb4806d3e2edd1,2026-10-25T05:00:35+05:30,Round twelve: run on a Mac
+a8bf105b636eb39c0ab98a4a9c2ee31d95142750,0584e7498f69d1cab02548e20790a6b68164c776,2026-10-25T05:08:44+05:30,Round twelve (#4)
+200bfa4db411680c8bcc9b0b987aff5dd2e67c70,357d995e59bc5f4d9af0b675b6dcf2776f3ee17a,2026-10-25T05:09:41+05:30,Round twelve (#5)
+6409340d113a281123044975458cdc92e1f42fe9,4521cce8c4f72a0ebb464815d53cb46d42ea11ea,2026-10-25T05:14:00+05:30,"Round thirteen guesses: 6 search-by-meaning cases S1-S6, written before any code (25 Oct 2026 05:14 IST)"
+6470dfa6ee7ba3092a67f23889f8ee0449782cc1,697a5e236f795ddd24ef38a5fd5cc5ea8aea3537,2026-10-25T05:15:08+05:30,"Round thirteen: search by meaning (S1-S6); toy embedder in the sandbox, real model to be run on the Mac; 6 of 6 as guessed, 5 of 5 control-off checks noticed"
+340ca30d7b2290e472e49e244745d498a4252e81,eb610d7c7800db5c55bbb627b24d21aca3a63a96,2026-10-25T05:27:03+05:30,"Round thirteen: load the embedding model once per process (it was reloaded for every case, 215 s on the Mac)"
+3c9cb03e1bc639185e8ed9bcdb13fcc74f1c9a13,394e9f4fbd08976480059cee30ddbf84e1a2778d,2026-10-25T05:27:04+05:30,Round thirteen: run on a Mac with a real embedding model
+41936371b74877de69dab36f6a6405a7bc35a3a0,4edc2d1b3f41d978779593f01c8c2a7e95ed7401,2026-10-25T05:27:41+05:30,"Round thirteen: a case that errors can no longer count as noticing a switched-off control (found on the Mac, where NumPy 2 made every case error and the check still said 5 of 5)"
+948e6a6e4503b9a5d9ee0b998dcf8c78a85883ea,1bd61ad6456c1332ef44cb6bc0d8da722f92a26f,2026-10-25T05:33:31+05:30,Round thirteen: corrected Mac run (NumPy below 2)
+74e58dd1077ba07eb731742aea65802e173371b3,9c3a789fbe7dcc581eb01669f1fa7b27129e549a,2026-10-25T05:33:31+05:30,Merge fixes
+bd5c9823d4e70c50bd2c9f3671fe2fc5f70fa6ff,a86a8fd27969dd8602b308bda7d33501614ff8ee,2026-10-25T05:36:26+05:30,Round thirteen (#6)
+297947f7f774d914ee435f77295a59f39b9d9120,e98a085413a1e2926cb13a54c43413761d9d01d5,2026-10-25T05:38:49+05:30,Mac run thirteen (#7)
+5d9243a1913e3ae3dfe7a549f71dff281193cc3b,ec66e216593383442ac8ddd28ed502fe592565d1,2026-10-25T05:39:45+05:30,Round nine stronger checks: Mac run (#9)
+f542d999434f170c59c312ed7092e50e18f51587,e2e92a2dfa0c08d3274b6b8d9718e4a3b3c481d4,2026-10-25T05:42:25+05:30,Round thirteen (#10)
+6a2cd34797a643cadd579f5197462203a18e7e95,d06f446653eb12a5eadbf9151f6f27638222bf01,2026-10-25T05:43:25+05:30,Round thirteen (#11)
+2c075365343d87f379f46499169f565bc75c1bbb,6084e51b3ed8e0eb96d25c6594228dcc8a994709,2026-10-25T12:02:12+05:30,Keep Mac round thirteen result files on this branch (already on main)
+3f0b06cf96f8fcf4eea323fe953d85c8ea52f2ea,c835cdef2634f558e44bcf8436481bbf4f1afc6d,2026-10-25T15:59:50+05:30,"README: cover all 13 rounds, findings, method and where to start; move round one to four instructions to docs"
+66e4a3e3f070a7ae302350eeaf972aa41aa79c13,f3baf8ed8bd855fb87ddaa9ac273a260b5fa979a,2026-10-25T16:02:40+05:30,"README: cover all 13 rounds, findings, method and where to start; move round one to four instructions to docs (#12)"
+9bd570c61e3ebe260d94b6855f729b2f7116b6a5,b3f6376873e6be0761577b6d1f15bada63a49900,2026-10-25T17:30:31+05:30,Add gitleaks allowlist for the fake round 2 test secrets
+09270e186a984ac85337fb7f7c5ee9051e7e1f9f,9e646a5fbe149fbd287fddf78659e7190d79989d,2026-10-25T17:31:38+05:30,Add gitleaks allowlist for the fake round 2 test secrets (#13)
+c6be34428a2622f2b75a846c138027fd512d0735,f2fa152f2d45bdabec4bf6fe19a67e89a78e45e1,2026-10-25T17:38:24+05:30,"Add citation, security, contributing and changelog"
+80968dda736bf77a53f7f2e5cf1d8d09e2ef5593,b240c1afbc919b0f73e9b1c74bfcc4e5382c7edb,2026-10-25T17:39:01+05:30,Add pull request template
+c0de31ce2462b1b9a99102023c1301c2c19988ec,70dc828a94285862634861c9989857157731f9b9,2026-10-25T17:39:41+05:30,Add 'Propose a test case' issue form
+a939b2d29a7ea7d587bd85f885848e8c48a68380,24cc59ac6b31d1e970a45273e7deac897745cd9d,2026-10-25T17:40:49+05:30,"README: badges, jump links, licence line, drop 'proves'"
+be4a3573ae07ab6444a0a00bfa03794abbaf68d3,e44dab76686f04b194955c026ac7eed6f7d93317,2026-10-25T18:05:40+05:30,CI: run every round and the control-off checks on push
+08739be7c9d14b5d232461c26006a7ca26d09abb,58eb0161dfb89bf5e0d610f7d8d746bc1b37e42b,2026-10-25T18:42:02+05:30,"Repo files: citation, security, contributing, changelog, case form, README polish (#14)"
+7748748eb3d342df1b59a9325bbfe558cfac5cf0,d9455149365bfee65cb1a8f8c631a1e69be1991b,2026-10-25T19:02:33+05:30,Strict notice rule rounds 6-12: a crash no longer counts as noticing
+c27e40fffd3c8698b24b9032f268712d23eaecc6,b5f43bb351c622514c7a5572ac39b2c12f922fc5,2026-10-25T19:04:37+05:30,"README and changelog: re-counted control-off checks for rounds 6, 7, 9"
+fd4320f24d1803795bad11e65f1ba07985b2b6f9,a42afae0ff28d2b373b2d81fe606d476dc20476d,2026-10-25T19:15:53+05:30,Strict notice rule for rounds 6-12: a crash no longer counts as noticing (#15)
+e0e843054d34c0447dc9bb663e4f6dea957d5a9d,bfe1564a83acd3e01c5f6b155902b797f0858739,2026-10-25T19:26:58+05:30,"Animated method diagram, light and dark"
+35c7e83f872e39cd3000ecf14e485cc751981dcc,1c36c141c732212a8df429b756b6665818f2ad7a,2026-10-25T19:27:47+05:30,"Codespaces: Python 3.11, runs the dry run on start"
+4678727927dc593e0fb360f9d325cbb8baaf7e9b,0c7be1d10e7863ebc9109378c9eed2f66ebcd2cb,2026-10-25T19:29:01+05:30,"README: animated method, Codespaces button, CI badge; add code of conduct"
+6d66ff91ccce2f3438808838787120f7b06ecf1b,736c647b9de4ad1f64cb7826b67024f28c8405eb,2026-10-25T19:38:52+05:30,"Engineer onboarding: animated method, Codespaces, CI badge, code of conduct (#16)"
+a7a4b41465437c791d47c11d6770def14865a049,60a767d096c2478a68e3a1fc88df7c2663687567,2026-10-29T09:49:36+05:30,README: link the newsletter
+ad0212b10fe234f10d2520c8942af87ec64be411,9912126cfe781b5d3b7958e8ad646235ea40085e,2026-10-29T09:50:08+05:30,README: link the newsletter (#22)
