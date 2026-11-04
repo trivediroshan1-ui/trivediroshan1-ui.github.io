@@ -1,0 +1,22 @@
+/* "Coming by 30 November" strip: what is next, with a way to get it or shape it. Static, works without JavaScript. */
+.soon { position: relative; margin: 0 0 22px; padding: 18px 22px; border-radius: 16px; border: 1px solid transparent;
+  background: linear-gradient(rgba(14, 10, 40, .9), rgba(14, 10, 40, .9)) padding-box, linear-gradient(120deg, #58e6f6, #a78bfa) border-box; }
+.soon-k { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font-family: var(--mono, "JetBrains Mono", monospace); font-size: 12.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #58e6f6; }
+.soon-k i { width: 9px; height: 9px; border-radius: 50%; background: #58e6f6; box-shadow: 0 0 0 0 rgba(88, 230, 246, .6); animation: soon-pulse 2.4s ease-out 3; }
+.soon ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; }
+.soon li b { display: block; font-size: 16px; line-height: 1.35; color: var(--ink, #e8eefc); }
+.soon li span { display: block; margin-top: 3px; font-size: 14px; line-height: 1.5; color: var(--muted, #a9b6d3); }
+.soon-acts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 14px 0 0; font-size: 14.5px; font-weight: 700; }
+.soon-acts a { color: #a78bfa; text-decoration: underline; text-underline-offset: 3px; min-height: 24px; }
+.soon-acts a:hover { color: #c4b5fd; }
+.soon-acts a:focus-visible { outline: 2px solid #a78bfa; outline-offset: 2px; border-radius: 4px; }
+@keyframes soon-pulse { 0% { box-shadow: 0 0 0 0 rgba(88, 230, 246, .6); } 80%, 100% { box-shadow: 0 0 0 10px rgba(88, 230, 246, 0); } }
+html[data-theme="light"] .soon { background: linear-gradient(#fff, #fff) padding-box, linear-gradient(120deg, #0a7f93, #6d4fd8) border-box; }
+html[data-theme="light"] .soon-k { color: #0a7f93; }
+html[data-theme="light"] .soon-k i { background: #0a7f93; }
+html[data-theme="light"] .soon li b { color: #1a1340; }
+html[data-theme="light"] .soon li span { color: #3b3866; }
+html[data-theme="light"] .soon-acts a { color: #5b3fc4; }
+@media (max-width: 720px) { .soon { padding: 16px; } .soon ul { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .soon-k i { animation: none; } }
+html.motion-off .soon-k i { animation: none; }
