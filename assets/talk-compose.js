@@ -88,6 +88,7 @@
     if (w === 'role' || w === 'problem' || w === 'feedback') form.querySelector('input[name="why"][value="' + w + '"]').checked = true;
     REF = cap(q.get('ref'));
     if (q.get('which')) form.elements.which.value = cap(q.get('which'));
+    if (q.get('role')) form.elements.role.value = cap(q.get('role'));
   } catch (e) {}
   form.closest('.cmp').classList.add('cmp-on');
   render();
