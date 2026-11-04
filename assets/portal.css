@@ -23,7 +23,7 @@ body.pt { margin: 0; background: var(--bg); color: var(--ink); font-family: "DM 
 .pt a:hover { text-decoration-thickness: 2px; }
 .pt :focus-visible { outline: 2px solid var(--cy); outline-offset: 3px; border-radius: 6px; }
 .pt code, .pt .mono { font-family: "JetBrains Mono", ui-monospace, Menlo, monospace; }
-.pt h1, .pt h2, .pt h3, .pt h4 { font-family: "Manrope", "DM Sans", sans-serif; margin: 0; letter-spacing: -.015em; text-wrap: balance; }
+.pt h1, .pt h2, .pt h3, .pt h4 { font-family: "DM Sans", sans-serif; margin: 0; letter-spacing: -.015em; text-wrap: balance; }
 .pt p { margin: 0 0 1rem; }
 .skip { position: absolute; left: -999px; top: 8px; background: var(--cy); color: var(--btn-ink); padding: .5rem .9rem; border-radius: 8px; z-index: 100; }
 .skip:focus { left: 8px; }
@@ -32,7 +32,7 @@ body.pt { margin: 0; background: var(--bg); color: var(--ink); font-family: "DM 
 /* top bar */
 .bar { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
 .bar .wrap { display: flex; align-items: center; gap: 1rem; min-height: 58px; }
-.brand { display: flex; align-items: center; gap: .6rem; font: 800 .98rem "Manrope", sans-serif; color: var(--ink) !important; text-decoration: none; white-space: nowrap; }
+.brand { display: flex; align-items: center; gap: .6rem; font: 800 .98rem "DM Sans", sans-serif; color: var(--ink) !important; text-decoration: none; white-space: nowrap; }
 .brand i { width: 11px; height: 11px; border-radius: 50%; background: linear-gradient(135deg, var(--cy), var(--vi)); box-shadow: 0 0 0 4px var(--cy-s); }
 .brand small { font: 500 .8rem "DM Sans", sans-serif; color: var(--dim); }
 .bar nav { min-width: 0; flex: 1 1 auto; }
@@ -69,7 +69,7 @@ html[data-theme="light"] .btn.pri { background: var(--cy); box-shadow: 0 10px 26
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .8rem; margin-top: clamp(32px, 5vw, 56px); }
 .stat { padding: 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--r); background: linear-gradient(180deg, var(--panel), transparent); position: relative; overflow: hidden; }
 .stat::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px; background: var(--k, var(--cy)); }
-.stat b { display: block; font: 800 2.2rem/1 "Manrope", sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; }
+.stat b { display: block; font: 800 2.2rem/1 "DM Sans", sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; }
 .stat span { display: block; color: var(--mut); font-size: .88rem; margin-top: .45rem; line-height: 1.35; }
 
 /* hero pipeline */

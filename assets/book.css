@@ -4,7 +4,7 @@
 .bk-text p { max-width: 66ch; color: var(--ink); font-size: 1.04rem; line-height: 1.7; margin: 0 0 1rem; }
 .bk-text .bk-thanks { color: var(--mut); font-size: .98rem; }
 .bk-sig { margin-top: 1.4rem !important; }
-.bk-sig b { display: block; font: 800 1.15rem "Manrope", sans-serif; color: var(--ink); }
+.bk-sig b { display: block; font: 800 1.15rem "DM Sans", sans-serif; color: var(--ink); }
 .bk-sig span { color: var(--dim); font-size: .92rem; }
 .bk-photo { margin: 0; justify-self: center; }
 .bk-photo img { width: min(240px, 100%); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 6px var(--bg), 0 0 0 8px var(--cy), var(--shadow); }
