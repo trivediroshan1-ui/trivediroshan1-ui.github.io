@@ -95,3 +95,17 @@ html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitena
   .theme-toggle { right: 72px !important; bottom: 20px !important; width: 38px !important; height: 38px !important; opacity: .92; }
   .theme-toggle svg { width: 17px !important; height: 17px !important; }
 }
+
+/* Tablets (iPad, Galaxy Tab): the top bar fits on one row. */
+/* no keyboard shortcut hint on touch screens or narrow windows */
+@media (hover: none), (max-width: 1060px) { html .rt-sbtn kbd { display: none; } }
+/* pages that list both "Talk to me" and "Contact" keep one, so the bar does not wrap to two lines */
+.hg-sitenav li.ct { white-space: nowrap; }
+@media (max-width: 1240px) { html .hg-sitenav li.ct a + a { display: none; } }
+/* upright tablets: logo without the name, search as an icon, so Résumé and the theme switch stay on screen */
+@media (min-width: 521px) and (max-width: 960px) {
+  html .hg-sitenav .brand span { display: none; }
+  html .hg-sitenav .rt-sbtn .lbl { display: none; }
+  html .hg-sitenav .rt-sbtn { width: 40px; padding: 0; justify-content: center; }
+  html .hg-sitenav li a { padding-inline: .55rem; }
+}

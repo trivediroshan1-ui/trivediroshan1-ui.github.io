@@ -43,7 +43,7 @@ html[data-theme="light"] .hr-tabs button[aria-selected="true"] { background: #0a
 html[data-theme="light"] .hr-cols h4 { color: #0a7f93; }
 html[data-theme="light"] .hr-done { color: #11805a; }
 
-@media (max-width: 760px) {
+@media (max-width: 640px) {
   .hr-glance { grid-template-columns: minmax(0, 1fr); padding: 18px; }
   .hr-glance dl { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .hr-cols { grid-template-columns: minmax(0, 1fr); gap: 18px; }
@@ -58,3 +58,5 @@ html[data-theme="light"] .hr-done { color: #11805a; }
 }
 html.motion-off .hr-panel:not([hidden]) { animation: none; }
 .hr-more .body-text, .hr-share .body-text { margin: 0 0 12px; max-width: 70ch; }
+/* tablets: the numbers on one row, the two buttons under them */
+@media (min-width: 641px) and (max-width: 900px) { .hr-glance { grid-template-columns: minmax(0, 1fr); } }
