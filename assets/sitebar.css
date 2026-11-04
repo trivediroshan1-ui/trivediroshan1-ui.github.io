@@ -113,13 +113,5 @@ html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitena
 /* One body font on every page: DM Sans, which the headings already use. Manrope stays loaded only where a page names it. */
 html:root { --body: "DM Sans", system-ui, sans-serif; }
 
-/* "Hire me": the one main next step. On tablets and phones it takes the Résumé link's place so the bar still fits. */
-.hg-sitenav li.hire a { background: #58e6f6; color: #05061a; opacity: 1; font-weight: 700; margin-left: .3rem; }
-.hg-sitenav li.hire a:hover { background: #8cf0fb; }
-html[data-theme="light"] .hg-sitenav li.hire a { background: #0a7f93; color: #fff; }
-html[data-theme="light"] .hg-sitenav li.hire a:hover { background: #086a7b; }
-@media (max-width: 1060px) { html .hg-sitenav li.res { display: none; } }
-@media (max-width: 520px) { html .hg-sitenav li.hire a { margin-left: 0; } }
-@media (max-width: 430px) { html .hg-sitenav li a { padding-inline: .2rem; font-size: .76rem; } html .hg-sitenav li.hire a { padding-inline: .4rem; } }
 @media (max-width: 390px) { html .hg-sitenav { padding-inline: 6px; gap: .1rem; } html .hg-sitenav li a { font-size: .74rem; } }
 html[data-theme="light"] 
