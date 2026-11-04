@@ -358,14 +358,6 @@ window.SITE_QA = [
       "On 25 October 2026 Roshan found that his own rounds 6 to 12 had been counted with a looser rule than the one the lab describes: a crash counted as a case noticing its control. Under the strict rule, rounds 6, 7 and 9 dropped (11 of 12, 12 of 14 and 13 of 15). The page keeps the original numbers, the corrected ones and the weak tests, which are open as issues on GitHub.",
   },
   {
-    id: "hiring-brief",
-    title: "Hiring brief",
-    url: "/hire/",
-    keywords: ["hire", "hiring", "hire me", "recruiter", "recruiting", "open to roles", "looking for a role", "head of iam", "pam lead", "platform owner", "principal architect", "hiring brief", "job"],
-    answer:
-      "The hiring brief at /hire/ takes about two minutes. You pick the role you are filling (Head of IAM, PAM lead, platform owner or principal architect) and it shows what Roshan has done for that kind of role, what to read to check it, and a message you can send him. He has 14+ years in identity and privileged access across India, the UK and Australia, is based in Bengaluru and is open to remote. The résumé is a PDF linked from the same page.",
-  },
-  {
     id: "tier-check",
     title: "Credential tiering self-check",
     url: "/tools/tier-check/",
@@ -395,7 +387,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["contact", "email", "linkedin", "reach", "get in touch", "hire", "connect"],
     answer:
-      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. For hiring, the two-minute brief at /hire/ is the quickest start. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi-ciam) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
+      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi-ciam) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
   },
   {
     id: "site-purpose",

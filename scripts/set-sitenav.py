@@ -13,7 +13,6 @@ LINKS = [
     ("Book", "/book/", ("/book",)),
     ("Writing", "/writing/", ("/writing",)),
     ("About", "/about/", ("/about", "/now", "/ai")),
-    ("Hire me", "/hire/", ("/hire",)),
     ("Contact", "/#contact", ()),
 ]
 STATIC = {"book/index.html", "mcp-lab-portal/index.html", "secure-india-exams/index.html", "tools/tier-check/index.html"}  # these keep their own sticky section bar
@@ -25,8 +24,8 @@ NAVJS = '<script src="/assets/nav.js?v=20261102b" defer></script>'
 def nav(url, static):
     items = ""
     for label, href, prefixes in LINKS:
-        cur = ' aria-current="page"' if prefixes and label != "Hire me" and any(url.startswith(p) for p in prefixes) else ""
-        cls = ' class="ct"' if label == "Contact" else (' class="hire"' if label == "Hire me" else "")
+        cur = ' aria-current="page"' if prefixes and any(url.startswith(p) for p in prefixes) else ""
+        cls = ' class="ct"' if label == "Contact" else ""
         items += f'<li{cls}><a href="{href}"{cur}>{label}</a></li>'
     res_cur = ' aria-current="page"' if url.startswith("/resume") else ""
     items += f'<li class="res"><a href="/resume/"{res_cur}>R&eacute;sum&eacute;</a></li>'
