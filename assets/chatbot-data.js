@@ -374,12 +374,20 @@ window.SITE_QA = [
       "Roshan gives talks and workshops on AI agents and the MCP approval lab, AI governance controls, machine identities, credential tiering, and moving a PAM programme to Zero Standing Privilege. Each talk is built on a public lab or case study you can read first. Meetups, internal team sessions, podcasts and university talks are all welcome. The page at /speaking/ has a short builder to write an invitation, or you can message him on LinkedIn with the event, the audience and how long you have.",
   },
   {
+    id: "conditional-access-mfa-sso",
+    title: "Case study: Conditional Access, MFA and SSO",
+    url: "/case-studies/conditional-access-mfa-sso/",
+    keywords: ["conditional access", "mfa", "multi-factor", "sso", "single sign-on", "passkeys", "phishing-resistant", "report-only", "number matching", "sign-in rules"],
+    answer:
+      "The conditional access case study at /case-studies/conditional-access-mfa-sso/ covers rolling out sign-in rules in risk order: inventory which apps are behind SSO, protect and exclude the emergency accounts, move admins to phishing-resistant MFA (passkeys or security keys) with no SMS fallback, block legacy sign-in, then add context rules and remove exceptions. Every rule runs in report-only mode first. It also covers the recovery problem: strong sign-in moves attackers to the help desk, so the reset path is planned before anything is switched on.",
+  },
+  {
     id: "case-studies-count",
     title: "How many case studies are there",
     url: "/case-studies/",
-    keywords: ["how many case studies", "21 case studies", "all case studies", "list of case studies", "case study topics"],
+    keywords: ["how many case studies", "22 case studies", "all case studies", "list of case studies", "case study topics"],
     answer:
-      "There are 21 case studies at /case-studies/. They cover privileged access programmes, credential tiering, break-glass access, just-in-time elevation, secrets consolidation, access recertification, non-human identity at scale, passwordless authentication, platform evaluation, migration planning, and AI agent identity and governance.",
+      "There are 22 case studies at /case-studies/. They cover privileged access programmes, conditional access and MFA, credential tiering, break-glass access, just-in-time elevation, secrets consolidation, access recertification, non-human identity at scale, passwordless authentication, platform evaluation, migration planning, and AI agent identity and governance.",
   },
   {
     id: "contact",
