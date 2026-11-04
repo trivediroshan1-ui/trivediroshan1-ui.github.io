@@ -1,6 +1,8 @@
 # roshantrivedi.co.in
 
-Personal site of **Roshan Trivedi** — Identity & Security. Cybersecurity professional specializing in Identity & Access Management (IAM), Privileged Access Management (PAM), and Zero Trust architecture. Hosted on GitHub Pages at the custom domain [roshantrivedi.co.in](https://roshantrivedi.co.in).
+Source for [roshantrivedi.co.in](https://roshantrivedi.co.in), the personal site of **Roshan Trivedi**: privileged access, identity, three open labs, free books and 21 case studies. Plain HTML and Jekyll on GitHub Pages, behind Cloudflare.
+
+![GitHub Pages](https://img.shields.io/badge/hosted%20on-GitHub%20Pages-4de2ff?style=flat-square) ![No build step](https://img.shields.io/badge/build%20step-none-34d399?style=flat-square) ![Strict CSP](https://img.shields.io/badge/CSP-no%20inline%20scripts-8b5cf6?style=flat-square) ![Licence](https://img.shields.io/badge/licence-MIT-f7c873?style=flat-square)
 
 ## What's here
 
@@ -37,7 +39,7 @@ Things that changed in the rebuild, so nothing surprises you:
 
 ## How to update this site yourself
 
-You don't need git installed or any tooling for the genuinely hand-editable files above — everything below can be done from github.com in a browser, and GitHub Pages redeploys automatically (usually within 1–2 minutes) every time you commit to `main`.
+You don't need git installed or any tooling for the genuinely hand-editable files above. Everything below can be done from github.com in a browser, and GitHub Pages redeploys automatically (usually within 1–2 minutes) every time you commit to `main`.
 
 **Edit existing text in a hand-editable file (a blog post, a case study's hand-written section, the chatbot's knowledge):**
 1. Open the file in this repo.
