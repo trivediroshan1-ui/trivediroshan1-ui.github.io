@@ -11,7 +11,7 @@
   --r-card: rgba(20, 18, 58, .55);
   --r-accent: var(--c, #a78bfa);
   --r-serif: "Lora", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --r-sans: "Manrope", "DM Sans", system-ui, sans-serif;
+  --r-sans: "DM Sans", system-ui, sans-serif;
   --r-display: "DM Sans", "Manrope", system-ui, sans-serif;
   --r-mono: "JetBrains Mono", ui-monospace, monospace;
   --measure: 41rem;
