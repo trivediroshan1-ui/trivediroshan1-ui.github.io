@@ -358,12 +358,44 @@ window.SITE_QA = [
       "On 25 October 2026 Roshan found that his own rounds 6 to 12 had been counted with a looser rule than the one the lab describes: a crash counted as a case noticing its control. Under the strict rule, rounds 6, 7 and 9 dropped (11 of 12, 12 of 14 and 13 of 15). The page keeps the original numbers, the corrected ones and the weak tests, which are open as issues on GitHub.",
   },
   {
+    id: "hiring-brief",
+    title: "Hiring brief",
+    url: "/hire/",
+    keywords: ["hire", "hiring", "hire me", "recruiter", "recruiting", "open to roles", "looking for a role", "head of iam", "pam lead", "platform owner", "principal architect", "hiring brief", "job"],
+    answer:
+      "The hiring brief at /hire/ takes about two minutes. You pick the role you are filling (Head of IAM, PAM lead, platform owner or principal architect) and it shows what Roshan has done for that kind of role, what to read to check it, and a message you can send him. He has 14+ years in identity and privileged access across India, the UK and Australia, is based in Bengaluru and is open to remote. The résumé is a PDF linked from the same page.",
+  },
+  {
+    id: "tier-check",
+    title: "Credential tiering self-check",
+    url: "/tools/tier-check/",
+    keywords: ["self check", "self-check", "tier check", "tiering self check", "credential tiering check", "three minute check", "3 minute check", "where would a stolen credential stop"],
+    answer:
+      "The self-check at /tools/tier-check/ asks eleven questions based on the guardrails in the credential tiering study and gives a per-tier read on where one stolen credential would stop and where it would keep going. It takes about three minutes and runs in your browser, so nothing you select is sent or stored. It is a conversation starter, not an audit.",
+  },
+  {
+    id: "speaking",
+    title: "Talks and workshops",
+    url: "/speaking/",
+    keywords: ["speaking", "speaker", "talk", "talks", "workshop", "meetup", "podcast", "conference", "invite", "invitation", "guest"],
+    answer:
+      "Roshan gives talks and workshops on AI agents and the MCP approval lab, AI governance controls, machine identities, credential tiering, and moving a PAM programme to Zero Standing Privilege. Each talk is built on a public lab or case study you can read first. Meetups, internal team sessions, podcasts and university talks are all welcome. The page at /speaking/ has a short builder to write an invitation, or you can message him on LinkedIn with the event, the audience and how long you have.",
+  },
+  {
+    id: "case-studies-count",
+    title: "How many case studies are there",
+    url: "/case-studies/",
+    keywords: ["how many case studies", "21 case studies", "all case studies", "list of case studies", "case study topics"],
+    answer:
+      "There are 21 case studies at /case-studies/. They cover privileged access programmes, credential tiering, break-glass access, just-in-time elevation, secrets consolidation, access recertification, non-human identity at scale, passwordless authentication, platform evaluation, migration planning, and AI agent identity and governance.",
+  },
+  {
     id: "contact",
     title: "Contact",
     url: "/",
     keywords: ["contact", "email", "linkedin", "reach", "get in touch", "hire", "connect"],
     answer:
-      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi-ciam) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
+      "Roshan is open to thoughtful conversations on PAM, credential management, NHI, Zero Trust, IAM governance and AI-assisted security product work. For hiring, the two-minute brief at /hire/ is the quickest start. Reach him via LinkedIn (linkedin.com/in/roshan-trivedi-ciam) or email at trivedi.roshan1@gmail.com. He's based in Bengaluru, India.",
   },
   {
     id: "site-purpose",
