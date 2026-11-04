@@ -103,7 +103,7 @@ html .nv-panel .nv-inner .nv-art-line { flex: 1; height: 0; border-top: 2px dash
 html .nv-panel .nv-inner .nv-art-dot { position: absolute; left: 20px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--nv-ai); box-shadow: 0 0 12px var(--nv-ai); z-index: 2; }
 html .nv-panel .nv-inner .nv-portrait { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--nv-edge); box-shadow: 0 0 0 4px color-mix(in srgb, var(--nv-ai) 28%, transparent); }
 html .nv-panel .nv-inner .nv-kicker { font: 600 11.5px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--nv-mute); }
-html .nv-panel .nv-inner .nv-ftitle { font: 700 1.2rem/1.2 "Manrope", "DM Sans", system-ui, sans-serif; letter-spacing: -.01em; text-wrap: balance; }
+html .nv-panel .nv-inner .nv-ftitle { font: 700 1.2rem/1.2 "DM Sans", system-ui, sans-serif; letter-spacing: -.01em; text-wrap: balance; }
 html .nv-panel .nv-inner .nv-ftext { color: var(--nv-soft); font-size: .92rem; }
 html .nv-panel .nv-inner .nv-cta { margin-top: auto; padding-top: .5rem; display: inline-flex; align-items: center; gap: .35rem; font-weight: 700; color: var(--nv-ai); font-size: .92rem; }
 html .nv-panel .nv-inner .nv-cta-i { width: 16px; height: 16px; transition: transform .25s; }

@@ -39,7 +39,7 @@ Standing privilege makes it worse. If an admin group has forty members, then for
 
 ## How the controls fit together
 
-A privileged session passes five checkpoints in order. If one is missing, the others can be walked around. The audit store sits outside the systems being administered, so the people being recorded cannot change the record. Products split the work differently, but the functions are the same. In CyberArk's self-hosted architecture, for example, the Vault stores the secrets, the Central Policy Manager (CPM) generates new passwords and replaces them on the target machines, and the Privileged Session Manager (PSM) records sessions and can restrict commands. Other platforms combine or separate those roles.
+A privileged session passes five checkpoints in order, and a sixth step closes it: the access expires and the secret is rotated. If one is missing, the others can be walked around. The audit store sits outside the systems being administered, so the people being recorded cannot change the record. Products split the work differently, but the functions are the same. In CyberArk's self-hosted architecture, for example, the Vault stores the secrets, the Central Policy Manager (CPM) generates new passwords and replaces them on the target machines, and the Privileged Session Manager (PSM) records sessions and can restrict commands. Other platforms combine or separate those roles.
 
 Why: what matters is that every function exists and none can be skipped.
 

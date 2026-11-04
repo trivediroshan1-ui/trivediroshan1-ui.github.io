@@ -56,13 +56,13 @@
   "keywords": "privileged access management, zero standing privilege, just-in-time access, session recording, audit, NIST 800-53"
 }
     </script>
-        <link rel="stylesheet" href="/assets/casestudy.css?v=20261019d">
+        <link rel="stylesheet" href="/assets/casestudy.css?v=20261104h">
       <link rel="stylesheet" href="/assets/theme.css">
     <script src="/assets/theme.js?v=20261022b"></script>
-    <link rel="stylesheet" href="/assets/sitebar.css?v=20261104f">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261104h">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-    <link rel="stylesheet" href="/assets/reading.css?v=20261021b">
-      <link rel="stylesheet" href="/assets/nav.css?v=20261022a">
+    <link rel="stylesheet" href="/assets/reading.css?v=20261104h">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
       <script src="/assets/palette.js?v=20261022b" defer></script>
     <script src="/assets/nav.js?v=20261102b" defer></script>
       <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "PAM Modernization & Zero Standing Privilege", "item": "https://roshantrivedi.co.in/case-studies/pam-modernization/"}]}]}</script>
@@ -140,7 +140,7 @@
 <g class="node" style="--i:0"><rect x="30" y="20" width="300" height="62" rx="12"/><text class="ttl" x="180" y="47" text-anchor="middle">Request</text><text class="sub" x="180" y="66" text-anchor="middle">Ticket, reason, duration</text></g><g class="badge"><circle cx="30" cy="20" r="12"/><text x="30" y="24">1</text></g><g class="node" style="--i:1"><rect x="30" y="110" width="300" height="62" rx="12"/><text class="ttl" x="180" y="137" text-anchor="middle">Verify</text><text class="sub" x="180" y="156" text-anchor="middle">SSO and strong MFA</text></g><g class="badge"><circle cx="30" cy="110" r="12"/><text x="30" y="114">2</text></g><g class="node" style="--i:2"><rect x="30" y="200" width="300" height="62" rx="12"/><text class="ttl" x="180" y="227" text-anchor="middle">Approve</text><text class="sub" x="180" y="246" text-anchor="middle">Policy, or a person</text></g><g class="badge"><circle cx="30" cy="200" r="12"/><text x="30" y="204">3</text></g><g class="node" style="--i:3"><rect x="30" y="290" width="300" height="62" rx="12"/><text class="ttl" x="180" y="317" text-anchor="middle">Broker</text><text class="sub" x="180" y="336" text-anchor="middle">Vault and session proxy</text></g><g class="badge"><circle cx="30" cy="290" r="12"/><text x="30" y="294">4</text></g><g class="node" style="--i:4"><rect x="30" y="380" width="300" height="62" rx="12"/><text class="ttl" x="180" y="407" text-anchor="middle">Target</text><text class="sub" x="180" y="426" text-anchor="middle">Server, database, cloud</text></g><g class="badge"><circle cx="30" cy="380" r="12"/><text x="30" y="384">5</text></g>
 <rect x="30" y="468" width="300" height="50" rx="10" fill="none" stroke="#f7c873" stroke-width="1.6"/><text class="sub" x="180" y="491" text-anchor="middle" style="fill:#f7c873">6 &middot; Access expires</text><text class="sub" x="180" y="507" text-anchor="middle" style="fill:#f7c873">and the secret is rotated</text>
 <rect class="logbar" x="30" y="544" width="300" height="72" rx="10"/><text class="ttl" x="180" y="574" text-anchor="middle">Audit log and recordings</text><text class="sub" x="180" y="594" text-anchor="middle">Every step writes here, to a store</text><text class="sub" x="180" y="609" text-anchor="middle">the admin cannot edit</text></svg>
-          <figcaption>A request passes five checkpoints in order. The audit store sits outside the systems being administered, so the people being recorded cannot change the record. Step 6 removes the access again.</figcaption>
+          <figcaption>A request passes five checkpoints in order, and a sixth step closes it: the access expires and the secret is rotated. The audit store sits outside the systems being administered, so the people being recorded cannot change the record. Step 6 removes the access again.</figcaption>
         </figure>
         <p class="body-text">Products split this work differently, but the functions are the same. In CyberArk&rsquo;s self-hosted architecture, for example, the Vault stores the secrets, the Central Policy Manager (CPM) generates new passwords and replaces them on the target machines, and the Privileged Session Manager (PSM) records sessions and can restrict commands. Other platforms combine or separate these roles. What matters is that all of the functions exist and that none can be skipped. <a href="https://docs.cyberark.com/pam-self-hosted/latest/en/content/pasimp/privileged-account-security-solution-architecture.htm">CyberArk architecture reference</a>.</p>
       </section>
