@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#05061a" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
 
-        <link rel="alternate" type="application/rss+xml" title="Roshan Trivedi — Writing" href="/feed.xml" />
+        <link rel="alternate" type="application/rss+xml" title="Roshan Trivedi: Writing" href="/feed.xml" />
     <link rel="canonical" href="https://roshantrivedi.co.in/" />
 
     <meta property="og:type" content="website" />
@@ -85,13 +85,14 @@
 html.motion-off *, html.motion-off *::before, html.motion-off *::after { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 .motion-toggle { position: fixed; right: 16px; bottom: 136px; z-index: 70; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; padding: 0; background: var(--card-solid); color: var(--ink); border: 1px solid var(--line2); }
 .motion-toggle svg { width: 16px; height: 16px; }
-@media (max-width: 640px) { .motion-toggle { right: 120px; bottom: 20px; width: 38px; height: 38px; opacity: 1; } }
+@media (max-width: 640px) { .motion-toggle { right: 20px; bottom: 74px; width: 38px; height: 38px; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .motion-toggle { display: none; } }
 @media print { .motion-toggle { display: none; } }
 </style>
       <link rel="stylesheet" href="/assets/next-step.css?v=20261103a">
     <link rel="stylesheet" href="/assets/who-paths.css?v=20261103a">
-    <link rel="stylesheet" href="/assets/home-calm.css?v=20261104b">
+    <link rel="stylesheet" href="/assets/home-calm.css?v=20261104e">
+    <link rel="stylesheet" href="/assets/coming-soon.css?v=20261104e">
   </head>
 
   <body>
@@ -176,6 +177,14 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
       </section>
 
       <div class="blinks-top"><div class="wrap">
+        <aside class="soon" aria-labelledby="soon-t">
+          <p class="soon-k" id="soon-t"><i aria-hidden="true"></i>Coming by 30 November</p>
+          <ul>
+            <li><b>Case study: conditional access, MFA and SSO</b><span>A new case study on sign-in controls.</span></li>
+            <li><b>Machine identity lab: chain tests and 13 more cases</b><span>The guesses are already written. They get hashed and committed before any code runs.</span></li>
+          </ul>
+          <p class="soon-acts"><a href="https://buttondown.com/trivedi">Get them by email</a><a href="/talk/?why=feedback&amp;which=the%20machine%20identity%20lab">Suggest a case to test</a></p>
+        </aside>
         <div class="bl-head"><h2>Labs: tested in public</h2><a href="/labs/">All labs &rarr;</a></div>
         <ul class="blinks" aria-label="Labs and case studies">
         <li class="bl mcp"><div class="bl-top"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle class="ink" cx="9" cy="38" r="5"/><circle class="ink" cx="55" cy="38" r="5"/><path class="ink" d="M14 38 H50" opacity=".5"/><circle class="pkt" cx="16" cy="38" r="3" fill="currentColor"/><g class="gate"><rect class="fillc" x="28" y="26" width="8" height="28" rx="3"/><rect class="ink" x="28" y="26" width="8" height="28" rx="3"/></g><path class="ink gtick" d="M24 14 L30 20 L42 8"/></svg></span><p class="kick"><i></i>MCP</p></div>
@@ -287,7 +296,7 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
             
             <a class="card feat" href="/mcp-lab-case-study/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3 8.3-7 10-4-1.7-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></span></span><div><span class="tag">Open-source lab</span><h3>HumanGate MCP lab</h3><p>An approval gateway for AI agents: a portal, 161 cases, a risk score to play with, and the full report.</p><span class="go">Explore the lab &rarr;</span></div></a>
             <a class="card feat" href="/secure-india-exams/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6M8 15h3"/></svg></span></span><div><span class="tag">Public research</span><h3>Securing India&rsquo;s National Exams</h3><p>A Zero Trust model for high-stakes exams, from paper creation to verified destruction.</p><span class="go">Read the research &rarr;</span></div></a>
-            <a class="card feat" href="/tools/tier-check/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 3l9 17H3z"/><path d="M7.2 12h9.6M5 16h14"/></svg></span></span><div><span class="tag">Interactive tool</span><h3>Credential tiering self-check</h3><p>Three minutes against the Tier 0&ndash;3 guardrails: where would one stolen credential stop, and where would it keep going?</p><span class="go">Take the self-check &rarr;</span></div></a>
+            <a class="card feat" href="/tools/tier-check/"><span class="vis"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M12 3l9 17H3z"/><path d="M7.2 12h9.6M5 16h14"/></svg></span></span><div><span class="tag">Interactive tool</span><h3>Credential tiering self-check</h3><p>Three minutes against the Tier 0 to 3 guardrails: where would one stolen credential stop, and where would it keep going?</p><span class="go">Take the self-check &rarr;</span></div></a>
           </div>
         </div>
       </section>
@@ -332,10 +341,10 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
         <div class="wrap">
           <div class="head"><div><p class="ey">Writing</p><h2 id="wr-title">Latest writing</h2></div><a class="more" href="/writing/">All writing &rarr;</a></div>
           <ul class="posts">
-            <li><a href="/writing/openai-huggingface-breach-cybersecurity-analysis/"><b>The Hugging Face intrusion, read as an identity incident</b><span>Post-mortem</span></a></li>
-            <li><a href="/writing/pam-as-an-identity/"><b>PAM as an identity: what changes when the vault can talk to your governance system</b><span>PAM series, part 3</span></a></li>
-            <li><a href="/writing/pam-project-plan-by-organization-tier/"><b>A PAM project plan for Tier 1, 2 and 3 organisations</b><span>PAM series, part 2</span></a></li>
-            <li><a href="/writing/pam-framework-and-design/"><b>PAM framework and design: what sits around the vault</b><span>PAM series, part 1</span></a></li>
+            <li><a href="/writing/non-human-identity-lab-46-cases/"><b>I tested 46 non-human identity cases. My guesses were wrong in four</b><span>Machine identity lab &middot; <time datetime="2026-11-03">3 Nov 2026</time></span></a></li>
+            <li><a href="/writing/pam-modernization-and-zero-standing-privilege/"><b>From permanent admin rights to Zero Standing Privilege: a practical PAM modernization path</b><span>PAM &middot; <time datetime="2026-10-29">29 Oct 2026</time></span></a></li>
+            <li><a href="/writing/do-ai-governance-controls-hold/"><b>Do AI governance controls hold? What I found in 13 rounds and 164 cases</b><span>AI governance lab &middot; <time datetime="2026-10-29">29 Oct 2026</time></span></a></li>
+            <li><a href="/writing/can-a-person-stay-in-control-of-an-ai-agent/"><b>Can a person stay in control of an AI agent? I tried to break an approval gate 76 ways</b><span>MCP lab &middot; <time datetime="2026-10-29">29 Oct 2026</time></span></a></li>
           </ul>
         </div>
       </section>
