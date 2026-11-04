@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" data-bg="cs-conditional-access-mfa-sso" data-m="rings">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="A practitioner guide to rolling out SSO, phishing-resistant MFA and conditional access in risk order, with report-only testing, emergency-account exclusions and the recovery problem." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/case-studies/conditional-access-mfa-sso/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Conditional Access, MFA and SSO · Roshan Trivedi" />
+    <meta property="og:description" content="A practitioner guide to rolling out SSO, phishing-resistant MFA and conditional access in risk order, with report-only testing, emergency-account exclusions and the recovery problem." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/case-studies/conditional-access-mfa-sso/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>Conditional Access, MFA and SSO · Roshan Trivedi</title>
+
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Conditional Access, MFA and SSO",
+  "description": "A practitioner guide to rolling out SSO, phishing-resistant MFA and conditional access in risk order, with report-only testing, emergency-account exclusions and the recovery problem.",
+  "author": {
+    "@type": "Person",
+    "name": "Roshan Trivedi",
+    "url": "https://roshantrivedi.co.in/",
+    "jobTitle": "Credential Management Platform Owner"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Roshan Trivedi"
+  },
+  "datePublished": "2026-11-04",
+  "dateModified": "2026-11-04",
+  "mainEntityOfPage": "https://roshantrivedi.co.in/case-studies/conditional-access-mfa-sso/",
+  "image": "https://roshantrivedi.co.in/og-image.png",
+  "articleSection": "Identity and access",
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "url": "https://roshantrivedi.co.in/case-studies/"
+  },
+  "keywords": "conditional access, MFA, phishing-resistant MFA, passkeys, SSO, report-only"
+}
+    </script>
+      <link rel="stylesheet" href="/assets/casestudy.css?v=20261104h">
+      <link rel="stylesheet" href="/assets/theme.css">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261104q">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+    <link rel="stylesheet" href="/assets/reading.css?v=20261104h">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+      <script src="/assets/palette.js?v=20261022b" defer></script>
+    <script src="/assets/nav.js?v=20261102b" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Conditional Access, MFA and SSO", "item": "https://roshantrivedi.co.in/case-studies/conditional-access-mfa-sso/"}]}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261104a">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+      <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
+  </head>
+  <body class="read" style="--c:#4de2ff">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/" aria-current="page">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/case-studies/">Work</a></nav>
+
+      <header class="hero">
+        <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 112" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g stroke="currentColor" fill="none" stroke-width="1.2" opacity=".55" stroke-dasharray="3 4"><path d="M92 56H124"/><path d="M196 56H228"/></g><g fill="currentColor" opacity=".7"><path d="M124 52l6 4-6 4z"/><path d="M228 52l6 4-6 4z"/></g><circle class="ring" cx="160" cy="56" r="34" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/><circle cx="160" cy="56" r="25" fill="currentColor" opacity=".1"/><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="76" cy="48" r="7"/><path d="M63 70c2-8 8-12 13-12s11 4 13 12"/><path d="M160 38l15 6v10c0 10-7 17-15 20-8-3-15-10-15-20V44z"/><path d="M153 56l5 5 9-10"/><rect x="236" y="40" width="34" height="30" rx="4"/><path d="M236 49h34"/><circle cx="242" cy="44.5" r="1" fill="currentColor"/></g></svg></div>
+        <p class="eyebrow">Identity and access &middot; Case study</p>
+        <h1>Conditional Access, MFA and SSO</h1>
+        <p class="dek">How to put sign-in rules in front of every app: one front door, proof that holds up against phishing, and rules that decide when to ask for more. Rolled out without locking anyone out.</p>
+        <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 4 Nov 2026</span></p>
+        <p class="meta">A general guide from my own practice and public sources. Not a description of any employer&rsquo;s systems, data or projects.</p>
+      </header>
+
+      <div class="tldr">
+        <h2>The short version</h2>
+        <ul>
+          <li>SSO gives you one place to make sign-in decisions. MFA is only as good as the weakest method a person is allowed to fall back to. Conditional access is the set of rules that chooses, at each sign-in, whether to allow, ask for more or block.</li>
+          <li>Start with admins and with the methods attackers already beat: SMS codes and push prompts a tired person accepts. Move admins to phishing-resistant methods (passkeys or security keys) first.</li>
+          <li>Every new rule runs in report-only mode first, and the emergency access accounts are excluded from every rule, so a mistake cannot lock out the people who fix mistakes.</li>
+          <li>The rollout fails at recovery, not at sign-in. Plan the help desk reset path before you switch anything on.</li>
+        </ul>
+      </div>
+
+      <section id="challenge">
+        <h2>The problem</h2>
+        <p class="body-text">Most organisations have MFA &ldquo;on&rdquo; and still lose accounts. The usual reasons: some apps bypass the identity provider, the MFA method can be phished or fatigued, legacy sign-in protocols skip MFA entirely, and exceptions granted during the rollout are never removed.</p>
+      </section>
+
+      <section id="terms">
+        <h2>The terms, in plain words</h2>
+        <ul class="plain-list">
+          <li><strong>SSO (single sign-on):</strong> apps trust one identity provider, so a person signs in once and the provider decides.</li>
+          <li><strong>MFA:</strong> more than one kind of proof. Not all kinds are equal.</li>
+          <li><strong>Phishing-resistant MFA:</strong> the method is bound to the real site, so a fake page cannot relay it. Passkeys and security keys (FIDO2/WebAuthn) are the common examples.</li>
+          <li><strong>Conditional access:</strong> rules that look at who, which app, which device, where and how risky the sign-in is, then allow, require more, or block.</li>
+          <li><strong>Report-only mode:</strong> the rule is evaluated and logged, but not enforced.</li>
+        </ul>
+      </section>
+
+      <section id="standards">
+        <h2>What the standards say</h2>
+        <p class="body-text">Checked on 4 November 2026.</p>
+        <ul class="plain-list">
+          <li>NIST SP 800-63B-4: verifiers &ldquo;SHALL offer at least one phishing-resistant authentication option at AAL2&rdquo;, and AAL3 &ldquo;requires a phishing-resistant authenticator&rdquo;. Use of the phone network (SMS or voice) for out-of-band verification &ldquo;is restricted&rdquo;.</li>
+          <li>CISA&rsquo;s guidance (October 2022) pushes organisations to phishing-resistant MFA, and to number matching as an interim step for push-based apps.</li>
+          <li>Microsoft&rsquo;s Conditional Access planning guide: run each policy in report-only mode &ldquo;for at least one week before enforcement&rdquo;, and exclude emergency access accounts &ldquo;to prevent lockout due to policy misconfiguration&rdquo;.</li>
+        </ul>
+      </section>
+
+      <section id="rollout">
+        <h2>The rollout, in risk order</h2>
+        <ol class="steps">
+          <li><strong>Inventory the front doors.</strong> List every app and how it signs people in: through the identity provider, a local login, or a legacy protocol. Apps outside SSO are outside every rule you write.</li>
+          <li><strong>Protect the emergency accounts first.</strong> Two cloud-only emergency accounts, excluded from every rule, with strong credentials stored offline and an alert on every use. The <a href="/case-studies/break-glass-access/">break-glass case study</a> covers this in full.</li>
+          <li><strong>Admins to phishing-resistant MFA.</strong> Passkeys or security keys for every privileged role, with no SMS fallback.</li>
+          <li><strong>Block legacy sign-in.</strong> Old protocols that cannot do MFA are where a correct policy is quietly bypassed.</li>
+          <li><strong>Everyone to MFA, with number matching or better.</strong> Then move groups to passkeys in risk order: finance, HR, engineers with production access.</li>
+          <li><strong>Add context rules.</strong> Require a managed device for sensitive apps, step up for risky sign-ins, block countries you never operate in (emergency accounts still excluded).</li>
+          <li><strong>Remove the exceptions.</strong> Every exclusion has an owner and an end date, and is reviewed.</li>
+        </ol>
+      </section>
+
+      <section id="naming">
+        <h2>How I name and test rules</h2>
+        <ul class="plain-list">
+          <li>A name that says number, app, response, who and when, so a rule can be found on a call: for example <code>CA03 - All apps: Require phishing-resistant MFA - Admins - Always</code>.</li>
+          <li>Report-only for at least a week, then read the sign-in logs for who would have been blocked.</li>
+          <li>A written test plan with expected results, run with test users, including the exclusions.</li>
+          <li>Rollback is a switch: disable the rule, or exclude one person for a short, recorded time.</li>
+        </ul>
+      </section>
+
+      <section id="recovery">
+        <h2>The recovery problem</h2>
+        <p class="body-text">Strong sign-in moves the attack to the help desk. An attacker with a name and a phone number asks for a reset. Before the rollout, put three things in place: identity proof that does not rely on things an attacker can look up, a notice to the person whenever their methods change, and a short delay on admin resets.</p>
+      </section>
+
+      <section id="example">
+        <h2>Worked example (made up)</h2>
+        <p class="body-text">Kaveri Finance is invented: 1,200 staff, 60 admins, 140 apps. 18 apps sign in locally and are outside SSO. Admins use push MFA, and 4 of them accepted prompts they did not start in one month.</p>
+        <ul class="plain-list">
+          <li><strong>Week 1:</strong> emergency accounts set up and excluded; admin passkey rule in report-only. Logs show 3 service tools that would break.</li>
+          <li><strong>Week 2:</strong> the 3 tools moved to workload identities; admin rule switched on.</li>
+          <li><strong>Weeks 3 to 6:</strong> legacy sign-in blocked; number matching for all; finance and HR move to passkeys.</li>
+          <li><strong>Still open:</strong> the 18 local-login apps, each with an owner and a date.</li>
+        </ul>
+      </section>
+
+      <section id="tradeoffs">
+        <h2>Where conditional access usually fails</h2>
+        <ul class="plain-list">
+          <li>Rules that are correct but never apply, because the app is not behind SSO.</li>
+          <li>An exclusion group that grows every month.</li>
+          <li>SMS kept &ldquo;just for recovery&rdquo;, which becomes the way in.</li>
+          <li>No alert when an emergency account signs in.</li>
+          <li>Policies changed in the console with no record of who changed what.</li>
+        </ul>
+      </section>
+
+      <section id="audit">
+        <h2>What an auditor will ask</h2>
+        <ul class="plain-list">
+          <li>Which apps are behind SSO, and which are not?</li>
+          <li>Which accounts are excluded from which rules, and why?</li>
+          <li>How are admins authenticated, and can they fall back to a weaker method?</li>
+          <li>Show a policy change and its approval.</li>
+        </ul>
+      </section>
+
+      <section id="lessons">
+        <h2>Habits I now keep</h2>
+        <ul class="plain-list">
+          <li>Report-only first, every time.</li>
+          <li>Emergency accounts excluded and alerted, every rule.</li>
+          <li>No exception without an owner and an end date.</li>
+        </ul>
+        <p class="body-text">How this fits into a whole program is in <a href="/case-studies/privileged-access-program/">How I Run a Privileged Access Program</a>.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Sources</h2>
+        <ol class="sources">
+          <li><a href="https://pages.nist.gov/800-63-4/sp800-63b.html">NIST SP 800-63B-4, Digital Identity Guidelines: Authentication and Authenticator Management</a> (read 4 November 2026)</li>
+          <li><a href="https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access">Microsoft Learn: Plan a Conditional Access deployment</a> (read 4 November 2026)</li>
+          <li><a href="https://cisa.gov/news-events/alerts/2022/10/31/cisa-releases-guidance-phishing-resistant-and-numbers-matching">CISA: Guidance on phishing-resistant and numbers matching MFA</a> (31 October 2022)</li>
+          <li><a href="https://www.cisa.gov/sites/default/files/publications/fact-sheet-implement-number-matching-in-mfa-applications-508c.pdf">CISA fact sheet: Implementing number matching in MFA applications</a></li>
+        </ol>
+        <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data. Product names are examples of a kind of tool, not endorsements, and the worked example is made up.</p>
+      </section>
+
+      <section id="tags"><div class="tags"><span>#conditional-access</span><span>#phishing-resistant-mfa</span><span>#single-sign-on</span></div></section>
+
+      <nav class="pager" aria-label="More case studies"><div class="pager-inner"><a class="prev" style="--c:#7df2d0" href="/case-studies/break-glass-access/"><small><i></i>&larr; Previous</small><strong>Break-Glass Emergency Access</strong></a><a class="next" style="--c:#c4b5fd" href="/case-studies/secrets-consolidation/"><small><i></i>Next &rarr;</small><strong>Secrets Discovery &amp; Consolidation</strong></a></div></nav>
+      <aside class="hg-next" aria-labelledby="hg-next-t">
+        <p class="eyebrow">Where next</p>
+        <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>
+        <p class="lede">Everything here is written to be useful on its own. If it matches a problem you are working on, I would like to hear how you handle it.</p>
+        <div class="grid">
+          <a href="/case-studies/" style="--k:#7df2d0"><b>All case studies</b><span>Privileged access, credentials, governance and agent identity.</span></a>
+          <a href="/labs/#mcp-flow" style="--k:#4de2ff"><b>The MCP approval lab</b><span>Follow one request through the gateway, with the tests behind it.</span></a>
+          <a href="/Roshan_Trivedi_Resume.pdf" style="--k:#c4b5fd"><b>R&eacute;sum&eacute;</b><span>Roles, focus areas and background (PDF).</span></a>
+          <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>LinkedIn, GitHub and email, all in one place.</span></a>
+        </div>
+      </aside>
+    </main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+    <script src="/assets/diagram.js" defer></script>
+    <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261019c" />
+    <script defer src="/assets/chatbot-widget.js?v=20261104c"></script>
+      <script defer src="/assets/casestudy.js?v=20261021b"></script>
+      <script defer src="/assets/cs-discuss.js?v=20261104a"></script>
+      <script defer src="/assets/showcase.js?v=20261021b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
