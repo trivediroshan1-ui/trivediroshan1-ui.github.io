@@ -6,7 +6,8 @@
 - [About](https://roshantrivedi.co.in/about/): background, how he works, where he can help
 - [Talks and workshops](https://roshantrivedi.co.in/speaking/): talks he can give, each built on one of his public labs
 - [Résumé](https://roshantrivedi.co.in/resume/): roles, certifications with status and verification links
-- [Case studies](https://roshantrivedi.co.in/case-studies/): 20 privacy-safe case studies on privileged access, NHI, governance and agentic AI
+- [Cover letter](https://roshantrivedi.co.in/cover-letter/): the kind of senior IAM and PAM role he is looking for, with proof to check
+- [Case studies](https://roshantrivedi.co.in/case-studies/): 22 privacy-safe case studies on privileged access, NHI, governance and agentic AI
 
 ## Research and labs
 - [Who Approved That? (free book)](https://roshantrivedi.co.in/book/): 138 pages on human approval for AI agent tool calls, 210 scripted checks
