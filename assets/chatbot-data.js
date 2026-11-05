@@ -366,6 +366,14 @@ window.SITE_QA = [
       "The self-check at /tools/tier-check/ asks eleven questions based on the guardrails in the credential tiering study and gives a per-tier read on where one stolen credential would stop and where it would keep going. It takes about three minutes and runs in your browser, so nothing you select is sent or stored. It is a conversation starter, not an audit.",
   },
   {
+    id: "cover-letter",
+    title: "Cover letter",
+    url: "/cover-letter/",
+    keywords: ["cover letter", "letter", "looking for", "job", "role", "roles", "hire", "hiring", "open to work", "opportunity"],
+    answer:
+      "Roshan has written a short cover letter for hiring managers at /cover-letter/. In it he says he is looking for a senior IAM and PAM role that is about half leadership and half architecture, such as Head of IAM, PAM lead, platform owner or principal architect. He is based in Bengaluru and open to remote work. The best way to reach him is a message on LinkedIn, and the résumé page lists his roles and certifications.",
+  },
+  {
     id: "speaking",
     title: "Talks and workshops",
     url: "/speaking/",
