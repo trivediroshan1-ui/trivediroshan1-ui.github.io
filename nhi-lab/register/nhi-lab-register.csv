@@ -1,0 +1,194 @@
+row,group,use_case,final_status,reason_kind,case_or_reason
+N01,Non-human identity,Service accounts nobody has listed,Run in this lab,,N-R14-01
+N02,Non-human identity,API keys in SaaS consoles and cloud accounts,Not run,Needs a real product or environment,"A scan of real consoles needs real consoles. N-R14-02 tests the scan logic on code, config, chat and tickets."
+N03,Non-human identity,"Secrets in code, config, chat and tickets",Run in this lab,,N-R14-02
+N04,Non-human identity,"CI/CD variables, runners and deploy keys",Run in this lab,,N-R14-03
+N05,Non-human identity,SSH keys shared across many servers,Not run,Needs a real product or environment,Needs real servers and keys. The shared-key chain C08 is also documented only.
+N06,Non-human identity,Certificates and private keys,Run in this lab,,N-R14-04
+N07,Non-human identity,OAuth apps approved with one click,Run in this lab,,N-R14-05
+N08,Non-human identity,Cloud workload identities and IAM roles,Not run,Needs a real product or environment,"Needs a real cloud tenant. N-R14-17 tests the trust condition, which is the part a model can show."
+N09,Non-human identity,Kubernetes service accounts and tokens,Not run,Needs a real product or environment,Kubernetes workload identity is out of scope for this lab and needs a real cluster.
+N10,Non-human identity,Bots and RPA robots running as a person,Not run,Needs a real product or environment,Needs a real RPA platform to see which identity a robot uses. N-R14-22 is the nearest case.
+N11,Non-human identity,"AI agents, MCP connections and plugins",Tested in an earlier lab,,"AI governance lab A2, I1, I10, E1"
+N12,Non-human identity,Identity created outside the normal process,Run in this lab,,N-R14-06
+N13,Non-human identity,One identity under different names,Run in this lab,,N-R14-07
+N14,Non-human identity,Hard-coded credentials in legacy batch jobs,Not run,Needs a real product or environment,Needs real legacy scripts and a mainframe scheduler to scan.
+N15,Non-human identity,Database users and connection strings,Not run,Needs a real product or environment,Needs a real database. Dynamic credentials (P59) are also not run.
+N16,Non-human identity,Vendor and partner integrations that hold your credentials,Partly tested,,"Vendor workers tested in the AI governance lab (H9, H10). Vendor service accounts were not tested and need real vendor integrations."
+N17,Non-human identity,Test credentials that also work in production,Run in this lab,,N-R18-02 (round 18). The queued case N-R14-08 was not run under its own id.
+N18,Non-human identity,Identity with no named owner,Run in this lab,,N-R14-09
+N19,Non-human identity,The owner leaves,Tested in an earlier lab,,"AI governance lab A7, I6, B8, D4"
+N20,Non-human identity,The owner moves to another team,Tested in an earlier lab,,"AI governance lab I13, B7"
+N21,Non-human identity,The owning team is disbanded,Run in this lab,,N-R14-10
+N22,Non-human identity,Two companies merge with the same IDs,Tested in an earlier lab,,AI governance lab D9
+N23,Non-human identity,"Application retired, identities stay",Run in this lab,,N-R14-11
+N24,Non-human identity,"Dormant identity, idle 31 days or more",Tested in an earlier lab,,"AI governance lab I10, I14"
+N25,Non-human identity,Owner attestation,Not run,A nearby case covers the mechanism,"Attestation is a control in N-R14-10 and N-R14-11. It had no effect on what those cases count, so a separate case would show the same."
+N26,Non-human identity,Long-lived static key instead of a short token,Tested in an earlier lab,,"AI governance lab I2, I3"
+N27,Non-human identity,Overprivileged identity,Run in this lab,,N-R14-12
+N28,Non-human identity,Toxic combination of permissions,Tested in an earlier lab,,"AI governance lab I15, D12"
+N29,Non-human identity,Secret shared by several consumers,Tested in an earlier lab,,AI governance lab I8 (tokens)
+N30,Non-human identity,Rotation on a schedule,Run in this lab,,N-R14-13
+N31,Non-human identity,Rotation fails silently,Run in this lab,,N-R14-14
+N32,Non-human identity,Rotate before the consumer is updated,Run in this lab,,N-R14-15
+N33,Non-human identity,Retire before you rotate,Run in this lab,,N-R14-16
+N34,Non-human identity,Token copied from a log and replayed,Tested in an earlier lab,,"AI governance lab C1, C2, D5, D10"
+N35,Non-human identity,Token for one service shown to another,Tested in an earlier lab,,AI governance lab I16
+N36,Non-human identity,Bearer token against a token tied to a key,Tested in an earlier lab,,"AI governance lab C1, D5"
+N37,Non-human identity,Loose federation trust condition,Run in this lab,,N-R14-17
+N38,Non-human identity,Credential lease reused after its life,Tested in an earlier lab,,"AI governance lab T16, B5"
+N39,Non-human identity,Check-out and check-in of a service account password,Tested in an earlier lab,,AI governance lab T17
+N40,Non-human identity,Clock drift accepts an expired token,Tested in an earlier lab,,AI governance lab C12
+N41,Non-human identity,Signing key rotated after a scare,Tested in an earlier lab,,AI governance lab D8
+N42,Non-human identity,Front door for new identities,Run in this lab,,N-R14-18
+N43,Non-human identity,Block a secret at commit and in the pipeline,Partly tested,,The prompt scan was tested in the AI governance lab (G12) and the scan logic in N-R14-02 and S-R17-05. A real commit gate needs a real repository and pipeline.
+N44,Non-human identity,Scoring: rank so the top is fixed first,Run in this lab,,N-R14-19
+N45,Non-human identity,Exceptions with an end date,Not run,A nearby case covers the mechanism,The end date is a control in N-R14-18 and the expiry in N-R14-06. A separate exception case would repeat them.
+N46,Non-human identity,Close only when the old secret is dead,Run in this lab,,N-R14-20
+N47,Non-human identity,Secrets service outage and disaster recovery,Not run,Needs a real product or environment,Needs a real vault to fail and restore. P45 is not run for the same reason.
+N48,Non-human identity,Non-human identities in access reviews,Tested in an earlier lab,,AI governance lab I14 (agents only). Service account review quality was not tested.
+N49,Non-human identity,Leaked token used to call the identity API,Tested in an earlier lab,,"AI governance lab B1, B2, B3, B4"
+N50,Non-human identity,Mass change by an agent or job,Tested in an earlier lab,,AI governance lab T12
+N51,Non-human identity,"Audit log tamper, cut tail, out of order",Tested in an earlier lab,,"AI governance lab A13, B12, E5, E16"
+N52,Non-human identity,Sensitive data in requests and logs,Tested in an earlier lab,,"AI governance lab E15, T11, H5"
+N53,Non-human identity,Agent registered with no human sponsor,Tested in an earlier lab,,AI governance lab I1
+N54,Non-human identity,Agent asks for more than the person has,Tested in an earlier lab,,AI governance lab I4
+N55,Non-human identity,Agent hands work to another agent,Tested in an earlier lab,,"AI governance lab D1, D2, D3"
+N56,Non-human identity,Hidden instruction hijacks an agent,Tested in an earlier lab,,"AI governance lab I9, T3, Q5"
+N57,Non-human identity,Poisoned note in an agent memory,Tested in an earlier lab,,AI governance lab I12
+N58,Non-human identity,Agent tries to read the credential from the vault,Tested in an earlier lab,,"AI governance lab T8, T18"
+N59,Non-human identity,Kill switch with a pending approval,Tested in an earlier lab,,"AI governance lab A12, A16, I11, T9"
+N60,Non-human identity,MCP server holds its own credential,Not run,A nearby case covers the mechanism,The MCP lab covers the approval side and N-R14-21 the shared credential. Where the MCP server keeps its own credential needs a real server.
+N61,Non-human identity,Agents share a team credential,Run in this lab,,N-R14-21
+N62,Non-human identity,Agent rights after the delegator leaves,Tested in an earlier lab,,"AI governance lab I17, D4"
+N63,Non-human identity,A person logs in with a service account,Run in this lab,,N-R14-22
+N64,Non-human identity,"One identity shared across dev, test, staging and production",Partly tested,,N-R18-02 tested a test runner that reaches production. One identity shared across all four environments was not tested separately. The queued case N-R14-23 was not run under that id.
+S01,Shadow AI accounts,Personal OAuth grant to an AI tool,Run in this lab,,S-R17-01
+S02,Shadow AI accounts,AI tool inherits the full permissions,Run in this lab,,S-R17-02
+S03,Shadow AI accounts,Agent runs under a person account,Run in this lab,,S-R17-03
+S04,Shadow AI accounts,Ghost credentials from AI-assisted work,Run in this lab,,S-R17-04
+S05,Shadow AI accounts,Secrets in AI-assisted code and config,Run in this lab,,S-R17-05
+S06,Shadow AI accounts,AI-service keys leak into repositories,Run in this lab,,S-R17-06
+S07,Shadow AI accounts,AI features inside an approved SaaS app,Run in this lab,,S-R17-07
+S08,Shadow AI accounts,Personal AI accounts used for work,Not run,Cannot be tested with made-up data,Cannot be tested with made-up data. It is a policy and detection question.
+S09,Shadow AI accounts,AI browser extensions and browser agents,Not run,Needs a real product or environment,Needs a real browser with real sessions.
+S10,Shadow AI accounts,"Agent built in a low-code tool, never registered",Run in this lab,,S-R17-08
+S11,Shadow AI accounts,Agent creates credentials and sub agents,Run in this lab,,S-R17-09
+S12,Shadow AI accounts,Scheduled automations outlive the test,Run in this lab,,S-R17-10
+S13,Shadow AI accounts,MCP clients and servers with tokens on laptops,Not run,Needs a real product or environment,Needs real laptops and community servers. The MCP lab covers the approval side.
+S14,Shadow AI accounts,Chatbot stores data through an uninventoried token,Not run,Needs a real product or environment,Needs a real chatbot platform and storage bucket.
+S15,Shadow AI accounts,Vendor-embedded agents,Not run,Needs a real product or environment,Needs a real third-party platform. See N07 and N16 for the nearest cases.
+S16,Shadow AI accounts,AI note-taker bots joining through OAuth,Not run,Needs a real product or environment,"Needs a real calendar tenant. The catalogue marks this row as my inference, not from a source."
+S17,Shadow AI accounts,Detection signals for shadow AI,Not run,"A list of signals, not a control","A list of signals, not a control to switch off. P-R15-24 tests analytics rules in general."
+S18,Shadow AI accounts,A fast approved path for people who want AI,Not run,"A plan or process, not a control to switch off",A process question. A model cannot show whether people use the approved path.
+P01,Privileged access,Request privileged access with a ticket and an end time,Run in this lab,,P-R15-01
+P02,Privileged access,Just-in-time window,Run in this lab,,P-R15-02
+P03,Privileged access,Work runs past the window,Run in this lab,,P-R15-03
+P04,Privileged access,The elevation path is down,Run in this lab,,P-R15-04
+P05,Privileged access,Accounts that cannot be elevated just in time,Not run,Needs a real product or environment,Needs real legacy systems that cannot take a short-lived grant.
+P06,Privileged access,Zero standing privilege,Run in this lab,,P-R15-05
+P07,Privileged access,The person never sees the password,Run in this lab,,P-R15-06
+P08,Privileged access,Direct login to a target is blocked,Run in this lab,,P-R15-07
+P09,Privileged access,Session recording the user cannot switch off,Run in this lab,,P-R15-08
+P10,Privileged access,Dangerous commands blocked in real time,Not run,Needs a real product or environment,Needs a real session tool that reads commands.
+P11,Privileged access,Two approvers for Tier 0,Run in this lab,,P-R15-09
+P12,Privileged access,Approver sees many requests and approves in a batch,Tested in an earlier lab,,AI governance lab F3
+P13,Privileged access,Phishing-resistant MFA for admins,Run in this lab,,P-R15-10
+P14,Privileged access,Recent sign-in check before approval,Tested in an earlier lab,,AI governance lab I18
+P15,Privileged access,Break-glass used at 2 a.m.,Run in this lab,,P-R15-11
+P16,Privileged access,Break-glass drill,Run in this lab,,P-R15-12
+P17,Privileged access,Break-glass storage that does not depend on what is down,Not run,A nearby case covers the mechanism,The drill (P-R15-12) found the sealed copy fault. Where the copy is physically kept needs a real site.
+P18,Privileged access,Break-glass becomes a side door,Run in this lab,,P-R15-13
+P19,Privileged access,Check-out and rotate after use,Tested in an earlier lab,,AI governance lab T17 (service account). Human check-out was tested through P-R15-14.
+P20,Privileged access,Shared accounts: who did what,Run in this lab,,P-R15-14
+P21,Privileged access,Local admin passwords the same on every machine,Not run,Needs a real product or environment,Needs a real fleet. Chain C14 is also documented only.
+P22,Privileged access,Privileged workstations and Tier 0 to Tier 3,Not run,"A plan or process, not a control to switch off","An architecture decision, not a control to switch off in a model."
+P23,Privileged access,"Domain admin, directory and certificate authority accounts",Not run,Needs a real product or environment,Needs a real directory and CA.
+P24,Privileged access,"The vault, its backups and who can read them",Run in this lab,,P-R15-15
+P25,Privileged access,"Root and sudo on Linux, SSH for engineers",Not run,Needs a real product or environment,Needs real Linux hosts.
+P26,Privileged access,"Cloud console roles, just in time",Not run,Needs a real product or environment,Needs a real cloud tenant and its role tool.
+P27,Privileged access,SaaS administrator roles,Not run,Needs a real product or environment,Needs real SaaS tenants.
+P28,Privileged access,Database administrator access to production data,Not run,Needs a real product or environment,Needs a real database and its audit log.
+P29,Privileged access,Network devices and operational technology,Not run,Needs a real product or environment,Needs real devices. The catalogue marked this row as needing a real environment from the start.
+P30,Privileged access,Developers and on-call engineers needing production access,Not run,A nearby case covers the mechanism,"P-R15-02, P-R15-03 and P-R15-19 cover the window, the extension and the 2 a.m. call."
+P31,Privileged access,Help desk staff who can reset passwords,Run in this lab,,P-R15-16
+P32,Privileged access,"Vendor onboarded, then each vendor person",Partly tested,,AI governance lab H9 tested vendor workers. P-R15-17 and P-R15-18 tested the session and the leaver.
+P33,Privileged access,"Vendor session with sponsor, end date and recording",Run in this lab,,P-R15-17
+P34,Privileged access,Vendor access end date arrives and nobody removes it,Tested in an earlier lab,,"AI governance lab H10, C9"
+P35,Privileged access,Vendor person leaves the vendor,Run in this lab,,P-R15-18
+P36,Privileged access,A vendor is needed at 2 a.m.,Run in this lab,,P-R15-19
+P37,Privileged access,Managed service provider with many customers,Not run,Needs a real product or environment,Needs a real multi-customer setup.
+P38,Privileged access,Discover privileged accounts and assign owners,Run in this lab,,P-R15-20
+P39,Privileged access,"Onboard an account to the vault, verify, rotate",Not run,Needs a real product or environment,Needs a real vault and a real target account.
+P40,Privileged access,Recertification of privileged groups without a rubber stamp,Partly tested,,AI governance lab F3 and I14 tested review quality. Privileged group reviews with real reviewers were not run.
+P41,Privileged access,Separation of duties inside privileged access,Run in this lab,,P-R15-21
+P42,Privileged access,Migration from one PAM tool to another,Not run,"A plan or process, not a control to switch off","A plan with waves and a cutover. The Stage 2 pages cover tool fit and the plan, and nothing was migrated."
+P43,Privileged access,Control equivalence between old and new tool,Not run,"A plan or process, not a control to switch off",A comparison of two real products. No product was tested.
+P44,Privileged access,Platform evaluation with scenarios and weights,Not run,"A plan or process, not a control to switch off",The Stage 2 pages hold the scenarios and the weights. No product was tested.
+P45,Privileged access,High availability and disaster recovery for the PAM platform,Not run,Needs a real product or environment,Needs a real platform to fail over.
+P46,Privileged access,"Integration with ticket system, identity provider and SIEM",Run in this lab,,P-R15-22
+P47,Privileged access,"Audit mapping: control, evidence, freshness, sampling",Not run,"A plan or process, not a control to switch off",The Stage 2 control mapping page holds the mapping. A real audit would test it.
+P48,Privileged access,"Training, go-live and BAU support",Not run,"A plan or process, not a control to switch off",People and process. A model cannot show it.
+P49,Privileged access,Insider who has given notice and downloads a lot,Tested in an earlier lab,,AI governance lab B10
+P50,Privileged access,Privileged access for AI agents and MCP tools,Tested in an earlier lab,,AI governance lab I7 and the MCP lab
+P51,Privileged access,Securing exam and regulated environments,Not run,"A plan or process, not a control to switch off","Covered by a case study on this site, not by a lab case."
+P52,Privileged access,Endpoint privilege management,Run in this lab,,P-R15-23
+P53,Privileged access,Server command control with per-command approval,Not run,Needs a real product or environment,Needs real servers and a command broker.
+P54,Privileged access,Cloud entitlement management,Not run,Needs a real product or environment,Needs a real cloud tenant and its permission data.
+P55,Privileged access,Session analytics and identity threat detection,Run in this lab,,P-R15-24
+P56,Privileged access,Enterprise password manager for staff,Not run,Needs a real product or environment,Needs a real product. It is a different category from PAM.
+P57,Privileged access,Mass rotation after a breach,Run in this lab,,P-R15-25
+P58,Privileged access,gMSA and managed identities,Not run,Needs a real product or environment,Needs a real Active Directory or cloud tenant.
+P59,Privileged access,Dynamic database credentials,Not run,Needs a real product or environment,Needs a real database and a real broker.
+G01,Gap rows,OAuth allowlist and revoke after a vendor breach,Run in this lab,,N-R14-23
+G02,Gap rows,Environment variables not marked sensitive,Run in this lab,,N-R14-24
+G03,Gap rows,Credential stolen from a CI runner and replayed,Run in this lab,,N-R14-25
+G04,Gap rows,ASI05 Unexpected code execution,Not run,Needs a real product or environment,Needs a real agent runtime that runs code. An in-memory model cannot show an escape.
+G05,Gap rows,ASI06 Memory and context poisoning,Tested in an earlier lab,,AI governance lab I12 (row N57). The row existed under another heading.
+G06,Gap rows,ASI07 Insecure inter-agent communication,Partly tested,,"Delegation depth and the chain log were tested in the AI governance lab (D1 to D3, row N55). Message authenticity between agents was not tested and needs a real multi-agent setup."
+C01,Chains,The forgotten service account,Run in this lab,,C-R16-C01
+C02,Chains,The token in the repository,Run in this lab,,C-R16-C02
+C03,Chains,The long-lived pipeline variable,"Documented only, not run",,"Links to N04, N26"
+C04,Chains,The contractor who never left,Run in this lab,,C-R16-C04
+C05,Chains,The break-glass password everyone knows,Run in this lab,,C-R16-C05
+C06,Chains,Approval fatigue,Run in this lab,,C-R16-C06
+C07,Chains,The one-click OAuth grant,"Documented only, not run",,Links to N07
+C08,Chains,The shared SSH key,"Documented only, not run",,Links to N05
+C09,Chains,The agent with a broad token,"Documented only, not run",,"Links to N54, N56"
+C10,Chains,The window that never closes,"Documented only, not run",,Links to P03
+C11,Chains,The vault admin outside the vault,"Documented only, not run",,"Links to P24, P23"
+C12,Chains,The expired certificate,"Documented only, not run",,Links to N06
+C13,Chains,The silent rotation failure,"Documented only, not run",,"Links to N31, N44"
+C14,Chains,The same local admin password,"Documented only, not run",,Links to P21
+C15,Chains,The loose federation rule,"Documented only, not run",,Links to N37
+C16,Chains,The recording gap,"Documented only, not run",,Links to P09
+C17,Chains,The old door,Run in this lab,,C-R16-C17
+C18,Chains,The wrong person after a merger,"Documented only, not run",,Links to N22
+C19,Chains,The help-desk reset,"Documented only, not run",,Links to P31
+C20,Chains,The unprotected vault copy,"Documented only, not run",,"Links to P24, P45"
+B01,Business use cases,Pass an audit,Roll-up of linked rows,,"3 run or tested, 1 partly, 1 not run."
+B02,Business use cases,Answer the cyber insurance questionnaire,Roll-up of linked rows,,"4 run or tested, 0 partly, 0 not run."
+B03,Business use cases,Answer customer security questionnaires,Roll-up of linked rows,,"1 run or tested, 0 partly, 1 not run."
+B04,Business use cases,Merge or acquire a company and join directories,Roll-up of linked rows,,"4 run or tested, 0 partly, 0 not run."
+B05,Business use cases,Cut the cost of vendor onboarding and offboarding,Roll-up of linked rows,,"4 run or tested, 1 partly, 1 not run."
+B06,Business use cases,Reduce help-desk tickets for resets,Roll-up of linked rows,,"2 run or tested, 0 partly, 1 not run."
+B07,Business use cases,Restore service in an outage without a side door,Roll-up of linked rows,,"3 run or tested, 0 partly, 1 not run."
+B08,Business use cases,Avoid outages from expired certificates and failed rotations,Roll-up of linked rows,,"4 run or tested, 0 partly, 0 not run."
+B09,Business use cases,Move to the cloud without copying standing access,Roll-up of linked rows,,"1 run or tested, 0 partly, 3 not run."
+B10,Business use cases,Let developers ship without long-lived keys,Roll-up of linked rows,,"3 run or tested, 1 partly, 0 not run."
+B11,Business use cases,Control PAM licence cost and tool sprawl,Roll-up of linked rows,,"0 run or tested, 0 partly, 2 not run."
+B12,Business use cases,Report to the board with a few numbers,Roll-up of linked rows,,"0 run or tested, 0 partly, 0 not run. A reporting use. It draws on every row and is not a control to test."
+B13,Business use cases,Be ready to rotate everything in the first hour,Roll-up of linked rows,,"3 run or tested, 0 partly, 0 not run."
+B14,Business use cases,Adopt AI safely,Roll-up of linked rows,,"19 run or tested, 0 partly, 9 not run."
+B15,Business use cases,Prove vendor access is limited and recorded,Roll-up of linked rows,,"3 run or tested, 1 partly, 0 not run."
+B16,Business use cases,Run a zero trust program,Roll-up of linked rows,,"2 run or tested, 0 partly, 1 not run."
+B17,Business use cases,Give joiners and movers the right access,Roll-up of linked rows,,"0 run or tested, 0 partly, 0 not run. Tested in the AI governance lab, round 7 (H1 to H12). Nothing in this lab."
+B18,Business use cases,Meet regulator expectations in India,Roll-up of linked rows,,"2 run or tested, 0 partly, 1 not run. Indian rules were not checked. No compliance claim."
+B19,Business use cases,Keep evidence and still honour erasure requests,Roll-up of linked rows,,"2 run or tested, 0 partly, 0 not run."
+B20,Business use cases,Explain a decision in plain words,Roll-up of linked rows,,"2 run or tested, 0 partly, 0 not run."
+B21,Business use cases,Be ready for ransomware and wide compromise,Roll-up of linked rows,,"0 run or tested, 0 partly, 3 not run."
+B22,Business use cases,Cut the effort of collecting audit evidence,Roll-up of linked rows,,"0 run or tested, 0 partly, 1 not run."
+B23,Business use cases,Developer and engineer productivity,Roll-up of linked rows,,"2 run or tested, 0 partly, 1 not run."
+B24,Business use cases,Due diligence on a target company,Roll-up of linked rows,,"3 run or tested, 0 partly, 0 not run."
+B25,Business use cases,Third-party and supply chain exposure,Roll-up of linked rows,,"1 run or tested, 1 partly, 1 not run."
+B26,Business use cases,Customer-facing AI people can trust,Roll-up of linked rows,,"1 run or tested, 0 partly, 0 not run. Also AI governance lab A12 and E8."

@@ -113,7 +113,7 @@ def build():
     body = f'''<main id="main" class="nhi">
   {subnav('stage2')}
   {hero('Stage 2', 'From lab results to a plan: tool fit, risks, requirements and a test plan', 'The lab showed what controls do in small models. This page turns that into the documents a team needs to act on it: how to choose a tool, what to rank first, what to ask for and how to test it. It is a draft for discussion and ranks no products.',
-        ['Last reviewed 10 November 2026', 'Built on 48 cases in three runs', 'No product tested'])}
+        ['Last reviewed 10 November 2026', 'Built on 67 cases in four runs', 'No product tested'])}
 
   <section class="nsec" id="read" aria-labelledby="rd-h">
     <h2 id="rd-h">Read this first</h2>

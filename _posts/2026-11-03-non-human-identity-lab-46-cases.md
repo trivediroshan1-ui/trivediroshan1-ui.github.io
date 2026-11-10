@@ -19,7 +19,7 @@ description: "46 machine identity cases on made-up data, with every guess hashed
 
 *Independent practitioner write-up. Last reviewed 3 November 2026. Everything here comes from my own public lab on made-up data. It does not describe any employer's systems, data or projects.*
 
-**Update, 10 November 2026.** A third run added 2 cases, on insecure authentication and on keeping test away from production. One guess was wrong, so the lab now has 48 cases and 5 wrong guesses. The numbers below are as I published them on 3 November. The new cases are on the [round 18 page](/nhi-lab/round-18/).
+**Update, 10 November 2026.** A third run added 2 cases, on insecure authentication and on keeping test away from production. One guess was wrong. A fourth run on 10 November ran the 19 queued cases, and 5 of those had a wrong guess, so the lab now has 67 cases and 10 wrong guesses. The numbers below are as I published them on 3 November. The new cases are on the [round 18](/nhi-lab/round-18/) and [round 19](/nhi-lab/round-19/) pages.
 
 ## The short version
 

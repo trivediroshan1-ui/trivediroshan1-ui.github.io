@@ -35,7 +35,9 @@
     "cases_first_run": 27,
     "cases_second_run": 19,
     "cases_third_run": 2,
-    "cases": 48,
-    "book_pages": 67
+    "cases": 67,
+    "book_pages": 83,
+    "cases_fourth_run": 19,
+    "cases_with_round_18": 48
   }
 }

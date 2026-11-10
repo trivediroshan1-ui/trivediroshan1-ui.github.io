@@ -10,6 +10,7 @@ RECORDED = {
     'guesses-gap-cases.md': '7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d',
     'guesses-stretch-and-chains.md': '40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed',
     'guesses-round-18.md': '9155e0783c997589bc8daf2a6bc2dad4afa1cec0a2e183f9254665f847404180',
+    'guesses-round-19.md': '729e16f25cf4a67e34ab87607b80ad59ae0935d4d72b1a087dfa0cb2bcec1b4b',
 }
 here = os.path.dirname(os.path.abspath(__file__))
 bad = 0

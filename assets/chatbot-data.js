@@ -692,9 +692,9 @@ window.SITE_QA = [
     id: "nhi-lab",
     title: "Non-human identity lab: what it is and what it found",
     url: "/nhi-lab/",
-    keywords: ["nhi lab", "non-human identity lab", "machine identity lab", "machine identities", "service accounts", "48 cases", "nhi cases", "round 18", "stage 2", "break-glass test", "shadow ai credentials", "kaveri finance nhi"],
+    keywords: ["nhi lab", "non-human identity lab", "machine identity lab", "machine identities", "service accounts", "67 cases", "nhi cases", "round 18", "round 19", "stage 2", "break-glass test", "shadow ai credentials", "kaveri finance nhi"],
     answer:
-      "The non-human identity lab tests 48 cases about machine identities on made-up data: service accounts, API keys, CI tokens, certificates, break-glass accounts, vendor access and AI tools that hold their own logins. A first run of 27 cases and a second run of 19 (13 stretch cases and 6 chain tests). I wrote my guesses first, hashed the guess files and committed them before writing any code, then ran each case without and with the control, then switched each control off alone to see if anything noticed. 43 guesses matched and 5 were wrong. In 10 cases there was a control that no check noticed, because another control covered it or it did not matter. The models are small and run in memory, and I wrote both the guesses and the code, so a match shows my reasoning is consistent and does not prove a product behaves that way. The page has 48 animated case cards and a lab you can run in the browser.",
+      "The non-human identity lab tests 67 cases about machine identities on made-up data: service accounts, API keys, CI tokens, certificates, break-glass accounts, vendor access and AI tools that hold their own logins. A first run of 27 cases, a second run of 19 (13 stretch cases and 6 chain tests), a third run of 2 and a fourth run of the 19 queued cases. I wrote my guesses first, hashed the guess files and committed them before writing any code, then ran each case without and with the control, then switched each control off alone to see if anything noticed. 57 guesses matched and 10 were wrong. In 20 cases there was a control that no check noticed, because another control covered it or it did not matter. The models are small and run in memory, and I wrote both the guesses and the code, so a match shows my reasoning is consistent and does not prove a product behaves that way. The page has 67 animated case cards and a lab you can run in the browser.",
   },
   {
     id: "nhi-lab-framework",
@@ -718,15 +718,31 @@ window.SITE_QA = [
     url: "/nhi-lab/method/",
     keywords: ["nhi lab method", "how the lab was run", "guesses first", "hash the guesses", "sha-256 guess", "what we did", "control off", "switch control off", "chain tests", "lab mistakes", "what went wrong"],
     answer:
-      "Each case is run the same way: write the guess (what I expect without the control and with it), hash the guess file with SHA-256, commit it, and only then write a small in-memory model of the control. Then run the case with the control off and on, switch each control off alone to see if any check notices, write down the limit, and run it again on a second machine. The Mac output matched the sandbox for all three runs. The page lists the mistakes: five wrong guesses (a scan that missed 2 secrets instead of 1, a short token lifetime that changed nothing because another control already blocked the replay, my own arithmetic in an identity-merge case, a chain test where the owner rule mattered more than the ticket scan, and an alert count in round 18: I guessed 3 alerts for 3 replays of a copied key and the model raised 1, one per new network), plus bad test data on a first run and a harness slip, both fixed and recorded.",
+      "Each case is run the same way: write the guess (what I expect without the control and with it), hash the guess file with SHA-256, commit it, and only then write a small in-memory model of the control. Then run the case with the control off and on, switch each control off alone to see if any check notices, write down the limit, and run it again on a second machine. The Mac output matched the sandbox for every run. The page lists the mistakes: ten wrong guesses (a scan that missed 2 secrets instead of 1, a short token lifetime that changed nothing because another control already blocked the replay, my own arithmetic in an identity-merge case, a chain test where the owner rule mattered more than the ticket scan, and an alert count in round 18: I guessed 3 alerts for 3 replays of a copied key and the model raised 1, one per new network; round 19 added five more: a drill that found 1 fault instead of 2, 14 of 20 events arriving with no controls, 5 alerts instead of 4, a control I thought mattered alone, and a count of agents at day 10), plus bad test data on a first run and a harness slip, both fixed and recorded.",
   },
   {
     id: "nhi-lab-audit",
-    title: "NHI lab audit data: 48 cases, downloads and hash check",
+    title: "NHI lab audit data: 67 cases, downloads and hash check",
     url: "/nhi-lab/audit/",
     keywords: ["audit data", "nhi audit", "lab audit", "download csv", "json download", "verify hashes", "verify.py", "chain of custody", "wrong guesses", "controls nothing noticed", "commit hashes"],
     answer:
-      "The audit page lists all 48 cases in one filterable table, with a CSV and a JSON download. It shows 43 guesses matched and 5 wrong, 10 cases with a control no check noticed, and 14 cases with a recorded limit. It records the five guess-file hashes and the Mac commits (78d7e3e and 05235fe for the second run, e50df1b and ce3c57e for round 18). A small script, verify.py, recomputes the five guess hashes on your own machine; it printed '5 of 5 guess files match' when I ran it. A re-run of all three runs gave the same results apart from the time stamp. The page says plainly what it cannot tell you: it is not independent, and a hash proves a file did not change after the commit, not when I wrote it.",
+      "The audit page lists all 67 cases in one filterable table, with a CSV and a JSON download. It shows 57 guesses matched and 10 wrong, 20 cases with a control no check noticed, and 33 cases with a recorded limit. It records the six guess-file hashes and the Mac commits (78d7e3e and 05235fe for the second run, e50df1b and ce3c57e for round 18, a2dc1fd and cbec7a8 for round 19). A small script, verify.py, recomputes the six guess hashes on your own machine; it printed '6 of 6 guess files match' when I ran it. A re-run of the runs gave the same results apart from the time stamp. The page says plainly what it cannot tell you: it is not independent, and a hash proves a file did not change after the commit, not when I wrote it.",
+  },
+  {
+    id: "nhi-lab-round-19",
+    title: "NHI lab round 19: the 19 queued cases",
+    url: "/nhi-lab/round-19/",
+    keywords: ["round 19", "queued cases", "nhi round 19", "19 cases", "wrong guesses round 19", "controls that changed nothing", "masked controls"],
+    answer:
+      "Round 19 ran the 19 cases that were designed but never run: 6 on non-human identities, 10 on privileged access and 3 on shadow AI. I wrote and hashed the guesses first (a2dc1fd on my Mac), then wrote the code and ran it (cbec7a8). Fourteen cases matched every guess and five had at least one wrong guess: P-R15-06, P-R15-12, P-R15-22, S-R17-08 and S-R17-09. Of 57 controls switched off alone, 14 changed nothing the case counts. Six were masked by another control, and eight were logs, reviews, approvals or thresholds that a model counting access outcomes cannot see. Every case has a limit written down. The data is made up and the models are small, so none of this says how a real product behaves."
+  },
+  {
+    id: "nhi-lab-register",
+    title: "NHI lab register: every catalogue row and its final status",
+    url: "/nhi-lab/register/",
+    keywords: ["register", "completeness", "catalogue", "use cases completed", "not run", "needs a real environment", "193 rows", "nhi register"],
+    answer:
+      "The register gives each of the 193 catalogue rows a final status. Sixty technical rows and 6 chain tests were run in the lab. Thirty-five rows were tested in an earlier lab and were not re-run, and 6 were partly tested. Forty-six technical rows and 14 chains were not run. Most of those need a real product or environment, such as a vault, a fleet, a cloud tenant or a database, which a small in-memory model cannot hold, so I wrote no guesses and ran no code for them. Each row that was not run has a reason, and the page has a CSV download. The 26 business use cases are rolled up from the technical rows they link to. The data is made up, and no product was tested."
   },
   {
     id: "nhi-lab-roadmap",

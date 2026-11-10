@@ -1,0 +1,1170 @@
+{
+ "run_at": "2026-11-10T20:11:39",
+ "rows": [
+  {
+   "id": "N-R14-02",
+   "title": "Secrets in code, config, chat and tickets",
+   "without": {
+    "found": 0,
+    "still_live": 20,
+    "missed_in_scanned_places": 0,
+    "missed_kinds": []
+   },
+   "with_": {
+    "found": 17,
+    "still_live": 3,
+    "missed_in_scanned_places": 3,
+    "missed_kinds": [
+     "base64",
+     "image",
+     "split"
+    ]
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "repo_scan": true,
+    "chat_scan": true,
+    "ticket_scan": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "secret_in_an_image_seen": false,
+    "note": "the screenshot secret sits in a scanned place and is still missed, because no scan reads images"
+   },
+   "extras": [
+    {
+     "label": "repo and config scan off",
+     "got": {
+      "found": 7,
+      "still_live": 13,
+      "missed_in_scanned_places": 1,
+      "missed_kinds": [
+       "image"
+      ]
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "chat scan off",
+     "got": {
+      "found": 13,
+      "still_live": 7,
+      "missed_in_scanned_places": 3,
+      "missed_kinds": [
+       "base64",
+       "image",
+       "split"
+      ]
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "ticket scan off",
+     "got": {
+      "found": 14,
+      "still_live": 6,
+      "missed_in_scanned_places": 2,
+      "missed_kinds": [
+       "base64",
+       "split"
+      ]
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "N-R14-06",
+   "title": "An identity created outside the normal process",
+   "without": {
+    "created": 10,
+    "refused": 0,
+    "ownerless_day_1": 3,
+    "first_found_day": null,
+    "removed_day": null,
+    "ownerless_day_30": 3
+   },
+   "with_": {
+    "created": 7,
+    "refused": 3,
+    "ownerless_day_1": 0,
+    "first_found_day": null,
+    "removed_day": null,
+    "ownerless_day_30": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "cloud_policy": true,
+    "weekly_sweep": false,
+    "auto_expiry": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "account_with_unaware_owner_accepted": true,
+    "note": "the tag names a real person who never agreed, so the policy, the sweep and the expiry all pass it"
+   },
+   "extras": [
+    {
+     "label": "policy off, sweep and expiry on",
+     "got": {
+      "created": 10,
+      "refused": 0,
+      "ownerless_day_1": 3,
+      "first_found_day": 7,
+      "removed_day": 14,
+      "ownerless_day_30": 0
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "N-R14-10",
+   "title": "The owning team is disbanded",
+   "without": {
+    "queued_day0": 0,
+    "claimed_by_day14": 0,
+    "paused_day14": 0,
+    "outages": 0,
+    "active_with_old_owner_day90": 12
+   },
+   "with_": {
+    "queued_day0": 12,
+    "claimed_by_day14": 9,
+    "paused_day14": 3,
+    "outages": 1,
+    "active_with_old_owner_day90": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "orphan_queue": true,
+    "limit_14_days": true,
+    "attestation": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "unread_mailing_list_accepted_as_owner": true,
+    "note": "the claim check asks only that the owner resolves; a list nobody reads resolves"
+   },
+   "extras": [
+    {
+     "label": "orphan queue off",
+     "got": {
+      "queued_day0": 0,
+      "claimed_by_day14": 0,
+      "paused_day14": 0,
+      "outages": 0,
+      "active_with_old_owner_day90": 12
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "14 day limit off",
+     "got": {
+      "queued_day0": 12,
+      "claimed_by_day14": 9,
+      "paused_day14": 0,
+      "outages": 0,
+      "active_with_old_owner_day90": 3
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "N-R14-12",
+   "title": "Overprivileged identities",
+   "without": {
+    "permissions": 120,
+    "unused_permissions": 82,
+    "removed": 0,
+    "broken_jobs": 0,
+    "wildcard_grants_ok": 2
+   },
+   "with_": {
+    "permissions": 44,
+    "unused_permissions": 6,
+    "removed": 76,
+    "broken_jobs": 1,
+    "wildcard_grants_ok": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "right_sizing_report": true,
+    "person_approves": false,
+    "wildcard_rule": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "annual_job_broken": true,
+    "note": "90 days of use cannot see a job that runs once a year, so its permission is counted as unused"
+   },
+   "extras": [
+    {
+     "label": "report off",
+     "got": {
+      "permissions": 120,
+      "unused_permissions": 82,
+      "removed": 0,
+      "broken_jobs": 0,
+      "wildcard_grants_ok": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "approval off",
+     "got": {
+      "permissions": 44,
+      "unused_permissions": 6,
+      "removed": 76,
+      "broken_jobs": 1,
+      "wildcard_grants_ok": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "wildcard rule off",
+     "got": {
+      "permissions": 44,
+      "unused_permissions": 6,
+      "removed": 76,
+      "broken_jobs": 1,
+      "wildcard_grants_ok": 2
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "N-R14-13",
+   "title": "Rotation on a schedule",
+   "without": {
+    "rotated": 0,
+    "avg_age_days": 400,
+    "outages": 0,
+    "old_secrets_valid_after_2h": 0
+   },
+   "with_": {
+    "rotated": 20,
+    "avg_age_days": 0,
+    "outages": 0,
+    "old_secrets_valid_after_2h": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "schedule": true,
+    "overlap_2h": true,
+    "dead_secret_check": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "consumer_caching_3h_fails_despite_2h_overlap": true
+   },
+   "extras": [
+    {
+     "label": "overlap off",
+     "got": {
+      "rotated": 20,
+      "avg_age_days": 0,
+      "outages": 3,
+      "old_secrets_valid_after_2h": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "dead-secret check off",
+     "got": {
+      "rotated": 20,
+      "avg_age_days": 0,
+      "outages": 0,
+      "old_secrets_valid_after_2h": 20
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "schedule off",
+     "got": {
+      "rotated": 0,
+      "avg_age_days": 400,
+      "outages": 0,
+      "old_secrets_valid_after_2h": 0
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "N-R14-16",
+   "title": "Retire before you rotate",
+   "without": {
+    "disabled": 0,
+    "rotated": 30,
+    "outages": 0,
+    "permanent_loss": 0
+   },
+   "with_": {
+    "disabled": 12,
+    "rotated": 18,
+    "outages": 1,
+    "permanent_loss": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "use_check": true,
+    "hold_30_days": true,
+    "delete_after_hold": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "two_identities_missed_by_logs_were_retired": true,
+    "note": "the use logs do not see an older sign-in route, so a used identity looks idle"
+   },
+   "extras": [
+    {
+     "label": "hold off",
+     "got": {
+      "disabled": 0,
+      "rotated": 18,
+      "outages": 1,
+      "permanent_loss": 1
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "use check off",
+     "got": {
+      "disabled": 0,
+      "rotated": 30,
+      "outages": 0,
+      "permanent_loss": 0
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-01",
+   "title": "Request privileged access with a ticket and an end time",
+   "without": {
+    "granted": 10,
+    "refused": 0
+   },
+   "with_": {
+    "granted": 6,
+    "refused": 4
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "ticket_open": true,
+    "end_time": true,
+    "second_approver_tier0": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "ticket_for_other_system_accepted": true,
+    "note": "the check asks whether the ticket is open, not whether it matches the task"
+   },
+   "extras": [
+    {
+     "label": "ticket check off",
+     "got": {
+      "granted": 8,
+      "refused": 2
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "end time rule off",
+     "got": {
+      "granted": 7,
+      "refused": 3
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "second approver off",
+     "got": {
+      "granted": 7,
+      "refused": 3
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "open ticket of another system, all controls on",
+     "got": {
+      "granted": 7,
+      "refused": 4
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-04",
+   "title": "The elevation path is down",
+   "without": {
+    "blocked": 5,
+    "break_glass_uses": 0,
+    "alerts": 0,
+    "reviews": 0,
+    "shared_password_used": 3
+   },
+   "with_": {
+    "blocked": 0,
+    "break_glass_uses": 0,
+    "alerts": 0,
+    "reviews": 0,
+    "shared_password_used": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "second_node": true,
+    "break_glass": false,
+    "fallback_review": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "second_node_helped": false,
+    "note": "both nodes fail for the same reason, so the fallback is used even with the second node"
+   },
+   "extras": [
+    {
+     "label": "second node off",
+     "got": {
+      "blocked": 0,
+      "break_glass_uses": 5,
+      "alerts": 5,
+      "reviews": 5,
+      "shared_password_used": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "second node and break-glass off",
+     "got": {
+      "blocked": 5,
+      "break_glass_uses": 0,
+      "alerts": 0,
+      "reviews": 0,
+      "shared_password_used": 3
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-06",
+   "title": "The person never sees the password",
+   "without": {
+    "sessions_ok": 10,
+    "reveals": 2,
+    "direct_logins_ok": 3,
+    "direct_logins_refused": 0
+   },
+   "with_": {
+    "sessions_ok": 10,
+    "reveals": 0,
+    "direct_logins_ok": 0,
+    "direct_logins_refused": 3
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "inject_credential": false,
+    "reveal_disabled": false,
+    "rotate_after_session": true
+   },
+   "notice_mismatch": {
+    "inject_credential": [
+     true,
+     false
+    ],
+    "rotate_after_session": [
+     false,
+     true
+    ]
+   },
+   "limit": {
+    "keylogger_or_memory_on_target_seen_by_controls": false,
+    "note": "an assertion about my model, not a measurement: none of the three controls inspects the user machine or target memory"
+   },
+   "extras": [
+    {
+     "label": "injection off",
+     "got": {
+      "sessions_ok": 10,
+      "reveals": 0,
+      "direct_logins_ok": 0,
+      "direct_logins_refused": 3
+     },
+     "mismatch": {
+      "reveals": [
+       2,
+       0
+      ]
+     }
+    },
+    {
+     "label": "rotation off",
+     "got": {
+      "sessions_ok": 10,
+      "reveals": 0,
+      "direct_logins_ok": 3,
+      "direct_logins_refused": 0
+     },
+     "mismatch": {
+      "direct_logins_refused": [
+       3,
+       0
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "P-R15-12",
+   "title": "The break-glass drill",
+   "without": {
+    "faults_found": 0,
+    "faults_fixed": 0,
+    "found_by": {
+     "alert_routing": null,
+     "sealed_copy": null
+    },
+    "first_run_failures": null,
+    "steps_pass_second_run": null
+   },
+   "with_": {
+    "faults_found": 1,
+    "faults_fixed": 1,
+    "found_by": {
+     "alert_routing": "routing_check",
+     "sealed_copy": null
+    },
+    "first_run_failures": 0,
+    "steps_pass_second_run": 4
+   },
+   "mismatch_without": {},
+   "mismatch_with": {
+    "faults_found": [
+     2,
+     1
+    ],
+    "faults_fixed": [
+     2,
+     1
+    ]
+   },
+   "noticed": {
+    "routing_check": true,
+    "second_holder": true,
+    "drill": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "announced_drill_flatters_result": true,
+    "note": "an assertion about my model: the model has no people in it, so it cannot show that an announced drill is easier than a real night"
+   },
+   "extras": [
+    {
+     "label": "routing check off",
+     "got": {
+      "faults_found": 1,
+      "faults_fixed": 1,
+      "found_by": {
+       "alert_routing": "drill",
+       "sealed_copy": null
+      },
+      "first_run_failures": 1,
+      "steps_pass_second_run": 4
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "second holder off",
+     "got": {
+      "faults_found": 2,
+      "faults_fixed": 2,
+      "found_by": {
+       "alert_routing": "routing_check",
+       "sealed_copy": "drill"
+      },
+      "first_run_failures": 1,
+      "steps_pass_second_run": 4
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "drill off",
+     "got": {
+      "faults_found": 1,
+      "faults_fixed": 1,
+      "found_by": {
+       "alert_routing": "routing_check",
+       "sealed_copy": null
+      },
+      "first_run_failures": null,
+      "steps_pass_second_run": null
+     },
+     "mismatch": {
+      "faults_found": [
+       0,
+       1
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "P-R15-14",
+   "title": "Shared accounts: who did what",
+   "without": {
+    "attributed": 0,
+    "ambiguous": 0,
+    "password_changes": 0,
+    "late_login_possible": true
+   },
+   "with_": {
+    "attributed": 12,
+    "ambiguous": 0,
+    "password_changes": 4,
+    "late_login_possible": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "checkout_names_person": true,
+    "session_log_tag": true,
+    "password_change": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "handed_over_session_attributed_to_wrong_person": true
+   },
+   "extras": [
+    {
+     "label": "log tag off",
+     "got": {
+      "attributed": 10,
+      "ambiguous": 2,
+      "password_changes": 4,
+      "late_login_possible": false
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "password change off",
+     "got": {
+      "attributed": 12,
+      "ambiguous": 0,
+      "password_changes": 0,
+      "late_login_possible": true
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "check-out off",
+     "got": {
+      "attributed": 0,
+      "ambiguous": 0,
+      "password_changes": 0,
+      "late_login_possible": false
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-20",
+   "title": "Discover privileged accounts and assign owners",
+   "without": {
+    "found": 23,
+    "proposed": 0,
+    "confirmed": 0,
+    "wrong_owners_corrected": 0,
+    "wrong_owners_remaining": 0
+   },
+   "with_": {
+    "found": 38,
+    "proposed": 38,
+    "confirmed": 33,
+    "wrong_owners_corrected": 5,
+    "wrong_owners_remaining": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "merge_sources": true,
+    "propose_owner": true,
+    "owner_confirms": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "wrong_owner_confirmed_anyway": true
+   },
+   "extras": [
+    {
+     "label": "merge off",
+     "got": {
+      "found": 23,
+      "proposed": 23,
+      "confirmed": 21,
+      "wrong_owners_corrected": 2,
+      "wrong_owners_remaining": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "confirmation off",
+     "got": {
+      "found": 38,
+      "proposed": 38,
+      "confirmed": 0,
+      "wrong_owners_corrected": 0,
+      "wrong_owners_remaining": 5
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "proposal off",
+     "got": {
+      "found": 38,
+      "proposed": 0,
+      "confirmed": 0,
+      "wrong_owners_corrected": 0,
+      "wrong_owners_remaining": 0
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-21",
+   "title": "Separation of duties inside privileged access",
+   "without": {
+    "granted": 15,
+    "refused": 0
+   },
+   "with_": {
+    "granted": 9,
+    "refused": 6
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "no_self_approval": true,
+    "no_policy_approver": true,
+    "no_audit_edit": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "mutual_approval_accepted": true,
+    "note": "each rule looks at one person at a time"
+   },
+   "extras": [
+    {
+     "label": "self approval rule off",
+     "got": {
+      "granted": 12,
+      "refused": 3
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "policy rule off",
+     "got": {
+      "granted": 11,
+      "refused": 4
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "audit rule off",
+     "got": {
+      "granted": 10,
+      "refused": 5
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "two people approve each other, all controls on",
+     "got": {
+      "granted": 11,
+      "refused": 6
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-22",
+   "title": "Integration with ticket system, identity provider and SIEM",
+   "without": {
+    "tickets_linked": 0,
+    "siem_events_arrived": 14,
+    "lost_unnoticed": 6,
+    "heartbeat_alarmed": false,
+    "leaver_session_in_gap": 1,
+    "leaver_access_after_sync": true
+   },
+   "with_": {
+    "tickets_linked": 20,
+    "siem_events_arrived": 20,
+    "lost_unnoticed": 0,
+    "heartbeat_alarmed": true,
+    "leaver_session_in_gap": 1,
+    "leaver_access_after_sync": false
+   },
+   "mismatch_without": {
+    "siem_events_arrived": [
+     0,
+     14
+    ]
+   },
+   "mismatch_with": {},
+   "noticed": {
+    "ticket_link": true,
+    "group_sync": true,
+    "heartbeat": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "heartbeat_missed_the_loss": true,
+    "note": "the heartbeat message is dropped by the same full queue it is checking"
+   },
+   "extras": [
+    {
+     "label": "heartbeat off",
+     "got": {
+      "tickets_linked": 20,
+      "siem_events_arrived": 14,
+      "lost_unnoticed": 6,
+      "heartbeat_alarmed": false,
+      "leaver_session_in_gap": 1,
+      "leaver_access_after_sync": false
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "sync off",
+     "got": {
+      "tickets_linked": 20,
+      "siem_events_arrived": 20,
+      "lost_unnoticed": 0,
+      "heartbeat_alarmed": true,
+      "leaver_session_in_gap": 1,
+      "leaver_access_after_sync": true
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "ticket link off",
+     "got": {
+      "tickets_linked": 0,
+      "siem_events_arrived": 20,
+      "lost_unnoticed": 0,
+      "heartbeat_alarmed": true,
+      "leaver_session_in_gap": 1,
+      "leaver_access_after_sync": false
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-23",
+   "title": "Endpoint privilege management",
+   "without": {
+    "allowed": 40,
+    "refused_or_approval": 0,
+    "shells_allowed": 2,
+    "renamed_shell_allowed": true
+   },
+   "with_": {
+    "allowed": 31,
+    "refused_or_approval": 9,
+    "shells_allowed": 0,
+    "renamed_shell_allowed": false
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "remove_local_admin": true,
+    "allow_list": true,
+    "log_elevations": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "shell_started_inside_an_allowed_app": true,
+    "note": "elevation applies to the allowed application, and its child process inherits it"
+   },
+   "extras": [
+    {
+     "label": "local admin removal off",
+     "got": {
+      "allowed": 40,
+      "refused_or_approval": 0,
+      "shells_allowed": 2,
+      "renamed_shell_allowed": true
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "allow list off",
+     "got": {
+      "allowed": 0,
+      "refused_or_approval": 40,
+      "shells_allowed": 0,
+      "renamed_shell_allowed": false
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "list matches file name, not hash",
+     "got": {
+      "allowed": 32,
+      "refused_or_approval": 8,
+      "shells_allowed": 0,
+      "renamed_shell_allowed": true
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "P-R15-24",
+   "title": "Session analytics",
+   "without": {
+    "odd_flagged": 0,
+    "odd_missed": 5,
+    "false_positives": 0
+   },
+   "with_": {
+    "odd_flagged": 4,
+    "odd_missed": 1,
+    "false_positives": 10
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "off_hours_rule": true,
+    "new_target_rule": true,
+    "volume_threshold": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "slow_copy_over_many_sessions_flagged": false,
+    "note": "20 sessions of 100 MB each stay under the 1000 MB per-session threshold"
+   },
+   "extras": [
+    {
+     "label": "off hours rule off",
+     "got": {
+      "odd_flagged": 1,
+      "odd_missed": 4,
+      "false_positives": 4
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "new target rule off",
+     "got": {
+      "odd_flagged": 3,
+      "odd_missed": 2,
+      "false_positives": 6
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "volume threshold off",
+     "got": {
+      "odd_flagged": 4,
+      "odd_missed": 1,
+      "false_positives": 10
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "S-R17-07",
+   "title": "AI features inside an approved SaaS app",
+   "without": {
+    "files_read_per_user": 100,
+    "hr_files_exposed": 100
+   },
+   "with_": {
+    "files_read_per_user": 5,
+    "hr_files_exposed": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "scope_review": false,
+    "file_limit": true,
+    "read_log": false
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "hr_file_pasted_by_hand_exposed": true,
+    "note": "the limit applies to what the assistant fetches, not to what a user pastes in"
+   },
+   "extras": [
+    {
+     "label": "file limit off",
+     "got": {
+      "files_read_per_user": 100,
+      "hr_files_exposed": 100
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "S-R17-08",
+   "title": "An agent built in a low code tool and never registered",
+   "without": {
+    "found": 0,
+    "flagged": 0,
+    "registered_after_request": 0,
+    "disabled": 0,
+    "unregistered_with_creds_day10": 4,
+    "unregistered_with_creds_day31": 4
+   },
+   "with_": {
+    "found": 6,
+    "flagged": 4,
+    "registered_after_request": 3,
+    "disabled": 1,
+    "unregistered_with_creds_day10": 0,
+    "unregistered_with_creds_day31": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "weekly_scan": true,
+    "issue_rule": true,
+    "expiry_30_days": true
+   },
+   "notice_mismatch": {
+    "expiry_30_days": [
+     false,
+     true
+    ]
+   },
+   "limit": {
+    "agent_under_personal_account_found": false,
+    "note": "the scan reads the tenant app list; an agent under a personal account is not in it"
+   },
+   "extras": [
+    {
+     "label": "scan off",
+     "got": {
+      "found": 0,
+      "flagged": 0,
+      "registered_after_request": 0,
+      "disabled": 4,
+      "unregistered_with_creds_day10": 0,
+      "unregistered_with_creds_day31": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "issue rule off",
+     "got": {
+      "found": 6,
+      "flagged": 4,
+      "registered_after_request": 3,
+      "disabled": 1,
+      "unregistered_with_creds_day10": 1,
+      "unregistered_with_creds_day31": 0
+     },
+     "mismatch": {
+      "unregistered_with_creds_day10": [
+       4,
+       1
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "S-R17-09",
+   "title": "An agent creates credentials and sub agents for itself",
+   "without": {
+    "keys": 3,
+    "sub_agents": 2,
+    "refused": 0,
+    "alerts": 0,
+    "objects_without_owner": 5
+   },
+   "with_": {
+    "keys": 0,
+    "sub_agents": 1,
+    "refused": 4,
+    "alerts": 5,
+    "objects_without_owner": 1
+   },
+   "mismatch_without": {},
+   "mismatch_with": {
+    "alerts": [
+     4,
+     5
+    ]
+   },
+   "noticed": {
+    "no_credential_creation": true,
+    "depth_limit_1": true,
+    "alert_on_creation": true
+   },
+   "notice_mismatch": {},
+   "limit": {
+    "key_created_by_a_person_at_the_agents_request": true,
+    "note": "the key is created under a person, outside all three agent-identity controls"
+   },
+   "extras": [
+    {
+     "label": "credential rule off",
+     "got": {
+      "keys": 3,
+      "sub_agents": 1,
+      "refused": 1,
+      "alerts": 5,
+      "objects_without_owner": 4
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "depth limit off",
+     "got": {
+      "keys": 0,
+      "sub_agents": 2,
+      "refused": 3,
+      "alerts": 5,
+      "objects_without_owner": 2
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "alert off",
+     "got": {
+      "keys": 0,
+      "sub_agents": 1,
+      "refused": 4,
+      "alerts": 0,
+      "objects_without_owner": 1
+     },
+     "mismatch": {}
+    }
+   ]
+  }
+ ]
+}

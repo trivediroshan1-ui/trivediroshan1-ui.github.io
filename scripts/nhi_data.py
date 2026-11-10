@@ -69,6 +69,56 @@ T3 = {
 'N-R18-02': ('control','A test credential that opens production','All 8 runs succeed, 2 from a compromised runner','2 refused, 2 alerts; a wildcard path still leaks 1 secret'),
 }
 
+T4 = {
+'N-R14-02': ('discover','Secrets in code, config, chat and tickets','Nothing scanned: all 20 secrets stay live','Three scans find 17; the split, base64 and screenshot secrets get through'),
+'N-R14-06': ('own','A service account made in the cloud console','All 10 exist, 3 with no owner or expiry','The policy refuses the 3 console accounts; sweep and expiry back it up'),
+'N-R14-10': ('own','The owning team is disbanded','All 12 still show the old team and stay active at day 90','Orphan queue: 9 claimed, 3 paused on day 14, 1 weekly job breaks'),
+'N-R14-12': ('control','Service accounts with more rights than they use','120 permissions stay, 82 of them unused','Cut to 44; 1 quarterly job breaks'),
+'N-R14-13': ('credential','Rotation on a schedule','20 secrets average 400 days old','All 20 rotated with a 2 hour overlap: 0 outages'),
+'N-R14-16': ('own','Retire before you rotate','All 30 rotated, including 12 idle ones','12 disabled and held, 18 rotated; 1 quarterly job breaks once'),
+'P-R15-01': ('privileged','A request with a ticket and an end time','All 10 granted','6 granted, 4 refused'),
+'P-R15-04': ('privileged','The elevation broker is down for 2 hours','All 5 blocked; 3 use a shared admin password','A second node takes over: 0 blocked'),
+'P-R15-06': ('privileged','The person never sees the password','2 users see it; 3 remembered logins work','Nothing shown; the 3 remembered logins are refused'),
+'P-R15-12': ('privileged','The break-glass drill','No drill: 0 faults found','The routing check finds 1; the second holder hides the other'),
+'P-R15-14': ('privileged','Four people share one firewall account','The log says "fw-admin" 12 times','All 12 actions tied to a person'),
+'P-R15-20': ('privileged','Privileged accounts in five places','The inventory finds 23 of 38','All 38 found; 5 wrong owners corrected on confirmation'),
+'P-R15-21': ('privileged','Separation of duties in privileged access','All 15 granted','9 granted, 6 refused; two people approving each other still pass'),
+'P-R15-22': ('privileged','Ticket system, identity provider and SIEM','The connector drops 6 of 20 events and nobody knows','The heartbeat alarms and the 6 are replayed; the leaver gets one session'),
+'P-R15-23': ('privileged','Endpoint privilege management','All 40 elevations succeed','31 allowed, 9 refused or sent to approval'),
+'P-R15-24': ('privileged','Session analytics','0 of 5 odd sessions flagged','4 of 5 flagged, and 10 normal sessions flagged too'),
+'S-R17-07': ('shadow','An AI feature inside an approved SaaS app','The assistant reads 100 files per user; 100 HR files exposed','Limited to 5 files per user: 0 HR files'),
+'S-R17-08': ('shadow','A low code agent nobody registered','4 unregistered agents hold live credentials','The scan finds 6; 3 register, 1 is disabled at day 30'),
+'S-R17-09': ('shadow','An agent makes keys and sub agents for itself','3 keys and 2 sub agents, none with an owner','0 keys, 1 sub agent, 5 alerts'),
+}
+# cases whose unnoticed controls all have no effect on what the case counts (none is masked by another control)
+NO_EFFECT_ONLY = {'N-R14-10','N-R14-12','N-R14-16','P-R15-14','P-R15-23','P-R15-24','S-R17-07'}
+WRONG_EXTRA = {
+'P-R15-06': 'control-off checks: expected the injection to matter alone and the rotation to be safe to drop; neither held. The reveal policy covers the injection, and without rotation all 3 remembered logins work',
+'S-R17-08': 'control-off checks: expected 4 agents to hold credentials with the issue rule off, but the scan had already got 3 registered, so 1 does. Expected the expiry to go unnoticed; it disables the last agent',
+}
+
+LIMIT_R19 = {
+    'N-R14-02': 'A secret inside a screenshot or attachment is missed, even in a place the scans cover.',
+    'N-R14-06': 'An administrator can create an account with a tag naming a real person who never agreed. Every check passes it.',
+    'N-R14-10': 'A team mailing list that nobody reads is accepted as an owner.',
+    'N-R14-12': 'Ninety days of use cannot see a job that runs once a year, so its permission is removed too.',
+    'N-R14-13': 'A consumer that caches for 3 hours still fails during a 2 hour overlap.',
+    'N-R14-16': 'The use logs miss 2 identities that sign in by an older route, so they are retired while still in use.',
+    'P-R15-01': 'A ticket that is open but belongs to another system is accepted. Nothing checks that it matches the task.',
+    'P-R15-04': 'If both nodes fail for the same reason, such as a shared database, the second node does not help.',
+    'P-R15-06': 'A recording tool on the user machine, or the credential in memory on the target, sits outside all three controls. This is an assertion about my model, not a measurement.',
+    'P-R15-12': 'An announced drill probably runs better than a real night. My model has no people in it, so it cannot show that. This is an assertion, not a measurement.',
+    'P-R15-14': 'A person who hands their session to a colleague is still attributed, to the wrong person.',
+    'P-R15-20': 'The last person to sign in is often not the responsible one, and a wrong owner who confirms anyway passes.',
+    'P-R15-21': 'Two people approving each other\'s requests both pass, because each rule looks at one person at a time.',
+    'P-R15-22': 'The heartbeat travels through the same queue it checks, so a full queue can drop the heartbeat too.',
+    'P-R15-23': 'An allowed application that can start a shell passes its elevation on to the shell.',
+    'P-R15-24': 'A large copy spread over many sessions stays under a per-session threshold.',
+    'S-R17-07': 'A file the user pastes in by hand is not covered by a limit on what the assistant fetches.',
+    'S-R17-08': 'An agent under a personal account outside the tenant is not in the app list the scan reads.',
+    'S-R17-09': 'The agent asks a person to create the key, and the person does. That sits outside all three controls.',
+}
+
 # ---- framework stages: every case sits in exactly one -------------------------------------------
 STAGES = [
     ('find',   'Find',             'List every machine identity and where it lives'),
@@ -81,28 +131,28 @@ STAGES = [
 ]
 STAGE_OF = {}
 for _s, _ids in {
-    'find':   'N-R14-01 N-R14-07 P-R15-08 S-R17-06',
-    'own':    'N-R14-09 N-R14-18 N-R14-21 S-R17-03 S-R17-04 P-R15-18',
-    'limit':  'N-R18-02 N-R14-17 N-R14-22 P-R15-05 P-R15-07 P-R15-09 S-R17-02 C-R16-C17 C-R16-C06 P-R15-10 P-R15-16',
-    'store':  'N-R18-01 S-R17-05 N-R14-24 N-R14-03 P-R15-15 N-R14-25 C-R16-C02 C-R16-C01',
-    'rotate': 'N-R14-04 N-R14-05 N-R14-14 N-R14-15 N-R14-19 N-R14-20 P-R15-02 P-R15-03 P-R15-25',
-    'watch':  'P-R15-11 P-R15-13 C-R16-C05',
-    'retire': 'N-R14-11 S-R17-01 S-R17-10 P-R15-17 P-R15-19 N-R14-23 C-R16-C04',
+    'find':   'N-R14-01 N-R14-07 P-R15-08 S-R17-06 P-R15-20 S-R17-08',
+    'own':    'N-R14-09 N-R14-18 N-R14-21 S-R17-03 S-R17-04 P-R15-18 N-R14-06 N-R14-10',
+    'limit':  'N-R18-02 N-R14-17 N-R14-22 P-R15-05 P-R15-07 P-R15-09 S-R17-02 C-R16-C17 C-R16-C06 P-R15-10 P-R15-16 N-R14-12 P-R15-01 P-R15-04 P-R15-21 P-R15-23 S-R17-07 S-R17-09',
+    'store':  'N-R18-01 S-R17-05 N-R14-24 N-R14-03 P-R15-15 N-R14-25 C-R16-C02 C-R16-C01 N-R14-02 P-R15-06',
+    'rotate': 'N-R14-04 N-R14-05 N-R14-14 N-R14-15 N-R14-19 N-R14-20 P-R15-02 P-R15-03 P-R15-25 N-R14-13',
+    'watch':  'P-R15-11 P-R15-13 C-R16-C05 P-R15-12 P-R15-14 P-R15-22 P-R15-24',
+    'retire': 'N-R14-11 S-R17-01 S-R17-10 P-R15-17 P-R15-19 N-R14-23 C-R16-C04 N-R14-16',
 }.items():
     for _i in _ids.split():
         STAGE_OF[_i] = _s
 
 # ---- OWASP NHI Top 10 (2025) names, from owasp.github.io/www-project-non-human-identities-top-10 ---
 OWASP = [
-    ('NHI1',  'Improper Offboarding',               'N-R14-11 P-R15-18 S-R17-01 S-R17-10', 'direct'),
-    ('NHI2',  'Secret Leakage',                     'S-R17-05 S-R17-06 N-R14-24 C-R16-C02', 'direct'),
+    ('NHI1',  'Improper Offboarding',               'N-R14-11 P-R15-18 S-R17-01 S-R17-10 N-R14-10 N-R14-16', 'direct'),
+    ('NHI2',  'Secret Leakage',                     'S-R17-05 S-R17-06 N-R14-24 C-R16-C02 N-R14-02 P-R15-06', 'direct'),
     ('NHI3',  'Vulnerable Third-Party NHI',         'N-R14-05 N-R14-23 S-R17-01', 'direct'),
     ('NHI4',  'Insecure Authentication',            'N-R14-25 N-R18-01', 'direct'),
-    ('NHI5',  'Overprivileged NHI',                 'P-R15-05 S-R17-02 N-R14-17', 'direct'),
+    ('NHI5',  'Overprivileged NHI',                 'P-R15-05 S-R17-02 N-R14-17 N-R14-12 P-R15-01 P-R15-23 S-R17-07 S-R17-09', 'direct'),
     ('NHI6',  'Insecure Cloud Deployment Configurations', 'N-R14-03 N-R14-25 C-R16-C02', 'direct'),
-    ('NHI7',  'Long-Lived Secrets',                 'N-R14-05 N-R14-14 N-R14-25', 'direct'),
+    ('NHI7',  'Long-Lived Secrets',                 'N-R14-05 N-R14-14 N-R14-25 N-R14-13', 'direct'),
     ('NHI8',  'Environment Isolation',              'N-R14-17 N-R18-02', 'direct'),
-    ('NHI9',  'NHI Reuse',                          'N-R14-21 P-R15-19', 'direct'),
+    ('NHI9',  'NHI Reuse',                          'N-R14-21 P-R15-19 P-R15-14', 'direct'),
     ('NHI10', 'Human Use of NHI',                   'N-R14-22 S-R17-03 C-R16-C17', 'direct'),
 ]
 
@@ -112,11 +162,13 @@ GUESS_FILES = {
     'r17':   ('guesses-round-17.md', 'Round 17, shadow AI (4 cases)', '4e6dfc1a80b2fa1e0a0da0a129882e87fdd3be931b5dddafd018d92c05dc8b7c'),
     'gap':   ('guesses-gap-cases.md', 'Gap cases (3 cases)', '7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d'),
     'r2':    ('guesses-stretch-and-chains.md', 'Stretch cases and chain tests (19 cases)', '40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed'),
+    'r19':   ('guesses-round-19.md', 'Round 19, the queued cases (19 cases)', '729e16f25cf4a67e34ab87607b80ad59ae0935d4d72b1a087dfa0cb2bcec1b4b'),
     'r18':   ('guesses-round-18.md', 'Round 18, NHI4 and NHI8 (2 cases)', '9155e0783c997589bc8daf2a6bc2dad4afa1cec0a2e183f9254665f847404180'),
 }
 GAP_IDS = {'N-R14-23', 'N-R14-24', 'N-R14-25'}
 
 def guess_key(cid):
+    if cid in T4: return 'r19'
     if cid in T3: return 'r18'
     if cid in T2: return 'r2'
     if cid in GAP_IDS: return 'gap'
@@ -133,7 +185,7 @@ def sha256_file(path):
 # ---- scenario text, read from the guess files -----------------------------------------------------
 def _scenarios():
     out = {}
-    idre = re.compile(r'^(?:#{2,4}\s+|\*\*)([NPSC]-R1[4-8]-C?\d+)\s+(.*)$')
+    idre = re.compile(r'^(?:#{2,4}\s+|\*\*)([NPSC]-R1[4-9]-C?\d+)\s+(.*)$')
     for key, (fn, _, _) in GUESS_FILES.items():
         lines = open(os.path.join(EV, 'guesses', fn), encoding='utf-8').read().split('\n')
         for i, ln in enumerate(lines):
@@ -162,6 +214,8 @@ def _scenarios():
 SCEN = _scenarios()
 
 def _limit_text(cid, lim):
+    if cid in LIMIT_R19:
+        return LIMIT_R19[cid]
     if isinstance(lim, dict):
         if lim.get('note'):
             return lim['note']
@@ -178,6 +232,8 @@ def _wrong_detail(cid, mw, mi):
         for k, v in (d or {}).items():
             if isinstance(v, list) and len(v) == 2:
                 parts.append(f'{tag}: expected {k} = {v[0]}, got {v[1]}')
+    if cid in WRONG_EXTRA:
+        parts.append(WRONG_EXTRA[cid])
     if cid == 'N-R14-25':
         parts.append('control-off check: expected a short lifetime to change a replay result; another control already blocked both replays')
     return '; '.join(parts)
@@ -187,11 +243,12 @@ def load_cases():
     r1 = {r['id']: r for r in json.load(open(os.path.join(EV, 'results.json')))['rows']}
     r2 = {r['id']: r for r in json.load(open(os.path.join(EV, 'results-stretch.json')))['rows']}
     r3 = {r['id']: r for r in json.load(open(os.path.join(EV, 'results-round-18.json')))['rows']}
+    r4 = {r['id']: r for r in json.load(open(os.path.join(EV, 'results-round-19.json')))['rows']}
     out = []
-    for cid, (g, trig, wo, wi) in list(T.items()) + list(T2.items()) + list(T3.items()):
-        run = 3 if cid in T3 else (2 if cid in T2 else 1)
-        r = {1: r1, 2: r2, 3: r3}[run][cid]
-        wrong = bool(r['mismatch_without'] or r['mismatch_with']) or cid == 'N-R14-25'
+    for cid, (g, trig, wo, wi) in list(T.items()) + list(T2.items()) + list(T3.items()) + list(T4.items()):
+        run = 4 if cid in T4 else (3 if cid in T3 else (2 if cid in T2 else 1))
+        r = {1: r1, 2: r2, 3: r3, 4: r4}[run][cid]
+        wrong = bool(r['mismatch_without'] or r['mismatch_with']) or cid == 'N-R14-25' or cid in WRONG_EXTRA
         masked = [k for k, v in r['noticed'].items() if not v]
         title, setup = SCEN.get(cid, (r['title'], ''))
         out.append(dict(
@@ -206,7 +263,7 @@ def load_cases():
 
 if __name__ == '__main__':
     cs = load_cases()
-    assert len(cs) == 48, len(cs)
+    assert len(cs) == 67, len(cs)
     assert set(STAGE_OF) == {c['id'] for c in cs}, set(STAGE_OF) ^ {c['id'] for c in cs}
     print('cases', len(cs), 'wrong', sum(c['wrong'] for c in cs), 'with masked control', sum(bool(c['masked']) for c in cs))
     print('setup missing:', [c['id'] for c in cs if not c['setup']])
