@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
   <script src="/assets/nav.js?v=20261111a" defer></script>
   <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
-  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
   <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Dataset","name":"Non-human identity lab: 67 cases","description":"67 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]},{"@type":"VideoObject","name":"Non-human identity lab in 60 seconds","description":"A silent, captioned 60 second video: how the lab runs, how it is built, and what the data says across 67 cases.","thumbnailUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion-poster.jpg","uploadDate":"2026-11-02","duration":"PT1M","contentUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4","embedUrl":"https://roshantrivedi.co.in/nhi-lab/","isAccessibleForFree":true,"author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"}}]}</script>
 </head>
@@ -51,18 +51,21 @@
     <p class="dek">Service accounts, API keys, CI tokens, break-glass accounts and AI tools with their own logins. Made-up data, guesses committed before the code, and every control switched off once to see if anything noticed.</p>
     <p class="stats" aria-label="Summary numbers"><span><b>67</b> cases</span><span><b>57</b> guesses matched</span><span><b>10</b> guesses wrong</span><span><b>20</b> cases with a control nothing noticed</span></p>
     <p class="dek"><strong>Update, 10 November:</strong> a third run added 2 cases, on insecure authentication and on keeping test away from production, and a fourth run added the 19 cases that had been queued and never run. Six guesses were wrong across the two. The numbers on this page include them. <a href="/nhi-lab/round-18/">Read round 18</a>, <a href="/nhi-lab/round-19/">read round 19</a> and the <a href="/nhi-lab/stage-2/">Stage 2 plan</a>.</p>
-    <figure class="hero-vid">
-      <video controls playsinline preload="none" poster="/assets/share/nhi-lab-motion-poster.jpg" width="1920" height="1080" aria-label="A 60-second silent video: how the lab runs, how it is built, and what the data says"><source src="/assets/share/nhi-lab-motion.mp4" type="video/mp4">Your browser cannot play this video. The same content is written out below.</video>
-      <figcaption>60 seconds, no sound, captions on screen: the lab, the architecture and the data. <a href="/assets/share/nhi-lab-motion.mp4" download>Download the MP4</a> (2.6 MB).</figcaption>
+    <figure class="hero-vid sq" id="top-video">
+      <video controls playsinline preload="none" poster="/assets/share/nhi-lab-square-poster.jpg" width="1080" height="1080" aria-label="A two-minute silent video: the framework, the method, two cases as animated workflows, the architecture and the results"><source src="/assets/share/nhi-lab-square.mp4" type="video/mp4">Your browser cannot play this video. The same content is written out below.</video>
+      <figcaption>Two minutes, no sound, captions on screen. <a href="/assets/share/nhi-lab-square.mp4" download>Download the MP4</a> (5 MB). There is also a <a href="/assets/share/nhi-lab-motion.mp4">60-second landscape version</a>.</figcaption>
       <details class="hero-vid-tx"><summary>Read the video as text</summary>
-        <p><strong>The lab.</strong> Each guess is written first, hashed with SHA-256 and committed before any code. Then the code is written, each case is run with the control off and on, and each control is switched off alone to see whether any check notices. The 67 cases sit in six guess files, each with its own hash. A small script, verify.py, re-checks the six hashes.</p>
-        <p><strong>The architecture.</strong> The guess files and the results go through one shared data module. The lab pages, the audit data (CSV and JSON) and the 83-page book are built from it. A 7-step framework holds every case at exactly one step: Find 6, Own 8, Limit 18, Store and issue 10, Rotate and expire 10, Watch 7, Retire and respond 8.</p>
-        <p><strong>The data.</strong> 67 cases (27 in the first run, 19 in the second, 2 in the third, 19 in the fourth). 57 guesses matched and 10 were wrong. 133 controls were switched off one at a time. In 20 cases a control went unnoticed, and 33 cases carry a recorded limit. Against the OWASP Non-Human Identities Top 10, all 10 have a tested case.</p>
+        <p><strong>The problem.</strong> Most companies have far more machine identities than people: service accounts, keys, tokens and agents. Many have no owner and some never expire.</p>
+        <p><strong>The framework.</strong> Seven steps hold all 67 cases: Find 6, Own 8, Limit 18, Store and issue 10, Rotate and expire 10, Watch 7, Retire and respond 8. Retiring what is unused feeds the next discovery scan, so it is a loop.</p>
+        <p><strong>The method.</strong> Write the guess, hash it, commit it alone, write the code, run it twice (control off, then on), then switch each control off alone. For the last run the guesses went in as commit a2dc1fd and the code and results as cbec7a8. Every run was repeated on a second machine and the output matched.</p>
+        <p><strong>Workflow 1, case N-R14-25.</strong> A token is copied from a CI runner and replayed twice. Without the controls both replays work. With the token bound to its runner and revoked at job end, both are refused. Switching off the 10-minute lifetime changed nothing, which my guess got wrong. The limit that stayed: a bound token still works from inside the runner while the job runs.</p>
+        <p><strong>Workflow 2, case N-R14-23.</strong> A connected vendor is breached and its refresh token is replayed. With both controls off the replay reads files at minute 30 and at minute 90. With only the 60-minute revoke, the attacker still has an hour. With the allowlist on, the grant is refused at consent, and switching the revoke off then changes nothing, because the allowlist hides it.</p>
+        <p><strong>The architecture and the results.</strong> Guesses and results go through one shared reader that builds the pages, the audit files and the 83-page book. 57 guesses matched and 10 were wrong; 133 controls were switched off one at a time; in 20 cases no check noticed; 33 cases carry a recorded limit.</p>
       </details>
     </figure>
   </header>
 
-  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">One email when I publish a new lab or case study.</span></span><span class="go">Subscribe &rarr;</span></a>
+  <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next lab&rsquo;s guesses before the results</b><span class="s">I send the guesses for the next lab before I run it, so you can check them against what happens. One or two emails a month.</span></span><span class="go">Subscribe &rarr;</span></a>
 
   <nav class="toc" aria-label="On this page"><a href="#more">Go deeper</a><a href="#what">What, why, how</a><a href="#workflow">Workflow</a><a href="#found">What I found</a><a href="#lab">Try it</a><a href="#cases">All 67 cases</a><a href="#market">Market</a><a href="#missing">What is missing</a><a href="#help">How this helps</a><a href="#evidence">Evidence</a></nav>
 
@@ -106,6 +109,7 @@
     </ul>
     <p class="note">All 24 must cases and 3 gap cases ran on a Mac with identical output. Where a check passed here, it only means the model did what I wrote it to do.</p>
   </section>
+  <a class="subs subs-mid" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next lab&rsquo;s guesses before the results</b><span class="s">I send the guesses for the next lab before I run it, so you can check them against what happens. One or two emails a month.</span></span><span class="go">Subscribe &rarr;</span></a>
 
   <section id="lab" aria-labelledby="lab-h">
     <h2 id="lab-h">Try it: a small lab in your browser</h2>
