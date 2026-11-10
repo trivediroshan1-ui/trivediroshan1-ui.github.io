@@ -100,7 +100,7 @@ def d_flow():
     stop = (4 * step) / (7 * step)
     d.packet("agl-flow-a", f"M 30 {y0} L 30 {y1}", "good", 10, keys_go(100, 90))
     d.packet("agl-flow-b", f"M 62 {y0} L 62 {y1}", "bd", 10, [(0, 0, 0), (4, 0, 1), (46, round(stop*100, 1), 1), (86, round(stop*100, 1), 1), (92, round(stop*100, 1), 0), (100, 0, 0)])
-    d.badge("agl-flow-bg", 372, top + 4 * step + bh + 16, "Personal data for an unapproved model stops here", "bd", 10, 44, 86)
+    d.badge("agl-flow-bg", 332, top + 4 * step + bh + 16, "Personal data for an unapproved model stops here", "bd", 10, 44, 86)
     return d
 
 # ---------------------------------------------------------------- 2. where the filters plug in

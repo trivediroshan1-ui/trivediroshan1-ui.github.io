@@ -19,7 +19,7 @@ PAGE_SCENES = {  # pages that are not case studies
     "mcp-lab-portal": ("grid", "gauge", "doc"),
 }
 LABELS = {"about": "About", "ai": "How I use AI", "now": "Now", "resume": "Résumé", "writing": "Writing",
-          "pam-series": "The PAM series", "case-studies": "Work · 20 case studies", "tier-check": "Tool · self-check",
+          "pam-series": "The PAM series", "case-studies": "Work · 22 case studies", "tier-check": "Tool · self-check",
           "labs": "Labs and projects", "mcp-lab-case-study": "HumanGate MCP lab", "mcp-lab-results": "HumanGate MCP lab · results",
           "mcp-lab-use-cases": "HumanGate MCP lab · use cases", "mcp-lab-in-depth": "HumanGate MCP lab · in depth",
           "mcp-lab-portal": "HumanGate MCP lab · portal"}
