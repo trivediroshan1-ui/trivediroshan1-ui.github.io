@@ -127,6 +127,7 @@ def build():
       <li>No product was tested, so none is endorsed or criticised.</li>
     </ul>
     <p>Next: the <a href="/nhi-lab/stage-2/">Stage 2 pages</a> use these results in the control mapping and the test plan.</p>
+    <p>Want the next lab's guesses before the results? <a href="https://buttondown.com/trivedi">Get them by email</a>. One or two emails a month.</p>
   </section>
 </main>'''
     desc = 'Round 19 of the non-human identity lab: the 19 queued cases on secrets, privileged access and shadow AI. Guesses first, five cases with a wrong guess, 14 controls that changed nothing, with the record.'

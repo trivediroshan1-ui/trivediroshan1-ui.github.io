@@ -75,3 +75,6 @@ html[data-theme="light"] .nflow .tx{fill:#0f172a}
 .nhi .hero-vid-tx{margin-top:8px;font-size:.95rem;color:var(--muted,#93a1bd)}
 .nhi .hero-vid-tx summary{cursor:pointer;color:var(--accent,#4de2ff)}
 .nhi .hero-vid-tx p{margin:.6em 0}
+
+.nhi .hero-vid.sq{max-width:560px}.nhi .hero-vid.sq video{aspect-ratio:1/1}
+.nhi .subs-mid{margin:8px 0 34px}
