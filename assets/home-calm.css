@@ -45,3 +45,6 @@ html[data-bg="home"]::after { display: none !important; }
 
 .top .nav a { white-space: nowrap; }
 @media (max-width: 1040px) { .top .btn-res { display: none; } }
+/* November 2026: on 961 to 1040 px (a tablet held sideways) keep the Résumé button in the header and
+   shrink search to its icon instead of hiding Résumé. */
+@media (max-width: 1040px) and (min-width: 961px) { .top .btn-res { display: inline-block; padding: 8px 14px; } header.top .rt-sbtn .lbl, header.top .rt-sbtn kbd { display: none; } header.top .nav a { padding: 8px 7px; } }

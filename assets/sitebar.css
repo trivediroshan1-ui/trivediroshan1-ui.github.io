@@ -114,4 +114,18 @@ html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitena
 html:root { --body: "DM Sans", system-ui, sans-serif; }
 
 @media (max-width: 390px) { html .hg-sitenav { padding-inline: 6px; gap: .1rem; } html .hg-sitenav li a { font-size: .74rem; } }
-html[data-theme="light"] 
+html[data-theme="light"] /* November 2026: the theme switch styling for the header bar lives here too, so pages that do not
+   load site-2026.css (the AI governance and machine identity lab pages) get the same switch instead
+   of an unstyled button that floats over the menu on phones. */
+nav.hg-sitenav > .brand{min-height:36px}
+.theme-toggle.in-bar{position:static!important;inset:auto!important;right:auto!important;bottom:auto!important;width:40px!important;height:40px!important;min-width:40px;flex-shrink:0;display:inline-grid;place-items:center;padding:0;margin:0;border-radius:999px;cursor:pointer;background:transparent!important;color:inherit;border:1px solid rgba(167,139,250,.38)!important;box-shadow:none!important;opacity:1!important;z-index:auto}
+.theme-toggle.in-bar:hover{background:rgba(167,139,250,.14)!important}
+.theme-toggle.in-bar:focus-visible{outline:2px solid #4de2ff;outline-offset:2px}
+.theme-toggle.in-bar svg{width:18px!important;height:18px!important}
+.theme-toggle.in-bar .moon{display:none}
+html[data-theme="light"] .theme-toggle.in-bar{border-color:rgba(76,52,160,.35)!important;color:#25344a}
+html[data-theme="light"] .theme-toggle.in-bar .sun{display:none}
+html[data-theme="light"] .theme-toggle.in-bar .moon{display:block}
+nav.hg-sitenav > .theme-toggle.in-bar{margin-left:.35rem}
+@media (max-width:520px){.theme-toggle.in-bar{width:36px!important;height:36px!important;min-width:36px}nav.hg-sitenav > .theme-toggle.in-bar{margin-left:.15rem}}
+@media (max-width:520px){.hg-sitenav ul{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:14px}}
