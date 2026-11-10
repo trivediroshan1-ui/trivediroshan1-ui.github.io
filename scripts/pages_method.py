@@ -50,7 +50,7 @@ def build():
         ('2 November 2026', '3. Second run', f'Code and results committed as <code>05235fe</code>. The Mac output matched the sandbox exactly.'),
         ('2 November 2026', '4. Site, book, video', 'The lab page with 46 animated cases at launch, a PDF book, a 54-second silent video, and this set of pages.'),
         ('10 November 2026', '5. Round 18: two cases', 'Guesses committed as <code>e50df1b</code> before any code. Code and results committed as <code>ce3c57e</code>. The Mac output matched the sandbox.'),
-        ('10 November 2026', '6. Round 19: the 19 queued cases', 'Guesses hashed on the Mac (<code>729e16f2…</code>) and committed as <code>a2dc1fd</code> before any code. The code commit is on the <a href="/nhi-lab/round-19/">round 19 page</a>.'),
+        ('10 November 2026', '6. Round 19: the 19 queued cases', 'Guesses hashed on the Mac (<code>729e16f2…</code>) and committed as <code>a2dc1fd</code> before any code. Code and results committed as <code>cbec7a8</code>. The Mac output matched the sandbox, and the results file has the same SHA-256 on both (<code>86aa9d58…</code>). More on the <a href="/nhi-lab/round-19/">round 19 page</a>.'),
     ]
     tlh = '<ol class="tl">' + ''.join(f'<li><time>{d}</time><b>{E(t)}</b>{x}</li>' for d, t, x in tl) + '</ol>'
 
@@ -103,7 +103,7 @@ def build():
 
   <section class="nsec" id="steps" aria-labelledby="s-h">
     <h2 id="s-h">The procedure, as steps you could repeat</h2>
-    <p>Each step says what you should see afterwards. The <code>shasum</code> and <code>git</code> steps I ran on my Mac. The Python commands I ran in the build machine, a cloud sandbox, on 2 November 2026, and the Mac run of the second run matched it.</p>
+    <p>Each step says what you should see afterwards. The <code>shasum</code> and <code>git</code> steps I ran on my Mac. The Python commands I ran in the build machine, a cloud sandbox, on 2 November 2026 for the first runs and on 10 November for rounds 18 and 19. The Mac runs matched each time.</p>
     {steps_html}
     <div class="nnote"><b>Careful with the commit</b>Commit only the guess file before the code. On my Mac I ran <code>git add</code> with no paths once, and I ran a hash command with no file name, which waits for input. Both are harmless, and both cost time.</div>
   </section>
