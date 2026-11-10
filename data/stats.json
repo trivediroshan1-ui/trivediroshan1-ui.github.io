@@ -30,6 +30,7 @@
     "from the first four rounds"
   ],
   "nhi_lab": {
+    "cases_with_round_18": 48,
     "cases_first_run": 27,
     "cases_second_run": 19,
     "cases": 46,
