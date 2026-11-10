@@ -17,9 +17,9 @@ LINKS = [
 ]
 STATIC = {"book/index.html", "mcp-lab-portal/index.html", "secure-india-exams/index.html", "tools/tier-check/index.html"}  # these keep their own sticky section bar
 CSS = '<link rel="stylesheet" href="/assets/sitebar.css?v=20261019c">'
-JS = '<script src="/assets/palette.js?v=20261019f" defer></script>'
+JS = '<script src="/assets/palette.js?v=20261111a" defer></script>'
 NAVCSS = '<link rel="stylesheet" href="/assets/nav.css?v=20261022a">'
-NAVJS = '<script src="/assets/nav.js?v=20261102b" defer></script>'
+NAVJS = '<script src="/assets/nav.js?v=20261111a" defer></script>'
 
 def nav(url, static):
     items = ""

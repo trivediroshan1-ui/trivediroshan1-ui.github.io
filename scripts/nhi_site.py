@@ -51,7 +51,7 @@ def shell(path, title, desc, og_title, body, js=None, ld=None, published='2026-1
         extra += f'  <script type="application/ld+json">{ld}</script>\n'
     head = head.replace('</head>', extra + '</head>')
     tail = f'  <script src="/assets/{js}?v={CSS_V}" defer></script>\n' if js else ''
-    tail += '  <script defer src="/assets/chatbot-widget.js?v=20261105a"></script>\n'
+    tail += '  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>\n'
     return (head + '  <body style="--c:#7df2d0">\n    <a class="skip" href="#main">Skip to content</a>\n    ' + _NAV +
             '\n' + body + '\n    ' + _FOOT + '\n' + tail + '  </body>\n</html>\n')
 
