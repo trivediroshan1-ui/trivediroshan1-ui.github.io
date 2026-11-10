@@ -13,6 +13,8 @@ SUBNAV = [
     ('/nhi-lab/method/', 'What we did', 'method'),
     ('/nhi-lab/audit/', 'Audit data', 'audit'),
     ('/nhi-lab/round-18/', 'Round 18', 'round18'),
+    ('/nhi-lab/round-19/', 'Round 19', 'round19'),
+    ('/nhi-lab/register/', 'Register', 'register'),
     ('/nhi-lab/stage-2/', 'Stage 2', 'stage2'),
     ('/nhi-lab/roadmap/', 'Roadmap', 'roadmap'),
     ('/nhi-lab/explainer/', 'Explainer', 'explainer'),

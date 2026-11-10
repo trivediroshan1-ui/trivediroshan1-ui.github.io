@@ -51,9 +51,9 @@ def A(html, top, t_in, t_out, left=None, width=None, extra=""):
     return f"<div class='a' data-in='{t_in}' data-out='{t_out}' style='{st}'>{html}</div>"
 els = []
 # S1 0-6
-els += [A("<h1>I tested <em>48 machine identity</em> cases</h1>", 330, 0.3, 6.0),
+els += [A("<h1>I tested <em>67 machine identity</em> cases</h1>", 330, 0.3, 6.0),
         A("<p>Service accounts, API keys, CI tokens, break-glass accounts and AI tools. Made-up data.</p>", 700, 1.4, 6.0),
-        A("<div class='q big'>My guesses were wrong in five places.</div>", 960, 3.0, 6.0)]
+        A("<div class='q big'>My guesses were wrong in ten cases.</div>", 960, 3.0, 6.0)]
 # S2 6-16 method
 S2o = 16.0
 els += [A("<h2>How I kept myself honest</h2>", 130, 6.2, S2o)]
@@ -73,7 +73,7 @@ els += [A("<h2>Two cases</h2>", 130, 16.2, S3o),
 # S4 28-39 stats
 S4o = 39.0
 els += [A("<h2>What I found</h2>", 130, 28.2, S4o)]
-stats = [("48", "cases run", "#4de2ff"), ("43", "guesses matched", "#7df2d0"), ("5", "guesses wrong", "#ff7a93"), ("10", "controls nothing noticed", "#f7c873")]
+stats = [("67", "cases run", "#4de2ff"), ("57", "guesses matched", "#7df2d0"), ("10", "guesses wrong", "#ff7a93"), ("20", "cases with a control nothing noticed", "#f7c873")]
 for i, (b, s, c) in enumerate(stats):
     els.append(A(f"<div class='st' style='--c:{c}'><b>{b}</b><span>{s}</span></div>", 290 + (i//2)*240, 29.0 + i*0.9, S4o, left=70 if i % 2 == 0 else 560, width=450))
 els += [A("<p>A 10-minute token lifetime changed nothing once the token was bound and revoked. Layering hides a control that matters elsewhere.</p>", 800, 33.0, S4o)]
@@ -85,9 +85,9 @@ for i, q in enumerate(["A made-up ticket number passed the break-glass review", 
 els.append(A("<p>Nothing checks that the sign-off is true.</p>", 900, 42.9, S5o))
 # S6 45-54 what is on the site
 els += [A("<h2>Free and public</h2>", 140, 45.2, DUR),
-        A("<p>48 cases with animated workflows, and a lab you can run in your browser. Also:</p>", 260, 45.7, DUR)]
+        A("<p>67 cases with animated workflows, and a lab you can run in your browser. Also:</p>", 260, 45.7, DUR)]
 for i, (h, d) in enumerate([("A 7 step framework", "every case sits at one step"), ("A 2026 market view", "with the sources listed"),
-                            ("The audit data", "all 48 cases as CSV and JSON"), ("A 67 page PDF book", "a workflow diagram for every case")]):
+                            ("The audit data", "all 67 cases as CSV and JSON"), ("An 83 page PDF book", "a workflow diagram for every case")]):
     els.append(A(f"<div class='box' style='--c:#34d399'>{h}<small>{d}</small></div>", 375 + i*142, 46.3 + i*0.6, DUR))
 els += [A("<div class='url' style='font-size:54px'>roshantrivedi.co.in/nhi-lab</div>", 975, 49.0, DUR),
         A("<p>Think a case is wrong? Tell me. I will add it.</p>", 1090, 51.0, DUR)]

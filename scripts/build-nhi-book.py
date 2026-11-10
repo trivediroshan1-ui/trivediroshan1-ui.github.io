@@ -13,7 +13,7 @@ from pages_roadmap import LANES
 
 ROOT = D.ROOT
 OUT = os.path.join(ROOT, 'nhi-lab', 'nhi-lab-book.pdf')
-EDITION_DATE = '2 November 2026'
+EDITION_DATE = '10 November 2026'
 
 # ------------------------------------------------------------------ data
 CASES = D.load_cases()
@@ -22,7 +22,7 @@ N = len(CASES)
 WRONG_N = sum(c['wrong'] for c in CASES)
 MASKED_N = sum(bool(c['masked']) for c in CASES)
 LIMIT_N = sum(bool(c['limit']) for c in CASES)
-assert (N, WRONG_N, MASKED_N, LIMIT_N) == (48, 5, 10, 14), (N, WRONG_N, MASKED_N, LIMIT_N)
+assert (N, WRONG_N, MASKED_N, LIMIT_N) == (67, 10, 20, 33), (N, WRONG_N, MASKED_N, LIMIT_N)
 
 cwd = os.getcwd(); os.chdir(os.path.join(ROOT, 'nhi-lab', 'evidence')); sys.path.insert(0, '.')
 with contextlib.redirect_stdout(io.StringIO()):
@@ -33,6 +33,7 @@ EFFECT = {'C-R16-C02': {'revoke_on_find': 'late'}, 'C-R16-C04': {'sponsor_review
 RES = {r['id']: r for r in json.load(open(os.path.join(D.EV, 'results.json')))['rows']}
 RES.update({r['id']: r for r in json.load(open(os.path.join(D.EV, 'results-stretch.json')))['rows']})
 RES.update({r['id']: r for r in json.load(open(os.path.join(D.EV, 'results-round-18.json')))['rows']})
+RES.update({r['id']: r for r in json.load(open(os.path.join(D.EV, 'results-round-19.json')))['rows']})
 
 STEPS = {k: (n, sub) for k, n, sub in D.STAGES}
 STEP_NO = {k: i + 1 for i, (k, _, _) in enumerate(D.STAGES)}
@@ -104,26 +105,31 @@ def case_block(c):
 class ResultsMap(Flowable):
     """One square per case, one row per framework step."""
     def wrap(self, aw, ah):
+        import math as _m
         self.w = aw; self.sq = 9.2 * mm; self.gap = 1.6 * mm; self.rh = self.sq + 3.4 * mm
-        self.h = 7 * self.rh + 14 * mm
+        self.per = int((aw - 52 * mm + self.gap) // (self.sq + self.gap))
+        self.rows = [max(1, _m.ceil(len([x for x in CASES if x['stage'] == k]) / self.per)) for k, _, _ in D.STAGES]
+        self.h = sum(self.rows) * self.rh + 14 * mm
         return aw, self.h
     def draw(self):
         c = self.canv; y = self.h
         for i, (k, name, sub) in enumerate(D.STAGES):
-            y -= self.rh
             col = hexc(STAGE_COLOR[k])
-            c.setFillColor(col); c.roundRect(0, y, 1.8 * mm, self.sq, 0.9 * mm, 0, 1)
-            c.setFont('BodyB', 9); c.setFillColor(NAVY); c.drawString(4 * mm, y + self.sq / 2 + 0.6 * mm, f'{i + 1}. {name}')
+            cs = [x for x in CASES if x['stage'] == k]
+            top = y - self.rh
+            c.setFillColor(col); c.roundRect(0, top - (self.rows[i] - 1) * self.rh, 1.8 * mm, self.sq + (self.rows[i] - 1) * self.rh, 0.9 * mm, 0, 1)
+            c.setFont('BodyB', 9); c.setFillColor(NAVY); c.drawString(4 * mm, top + self.sq / 2 + 0.6 * mm, f'{i + 1}. {name}')
             c.setFont('Body', 7.2); c.setFillColor(MUTED)
-            cs = [x for x in CASES if x['stage'] == k]; c.drawString(4 * mm, y + self.sq / 2 - 3 * mm, f'{len(cs)} case' + ('s' if len(cs) != 1 else ''))
+            c.drawString(4 * mm, top + self.sq / 2 - 3 * mm, f'{len(cs)} case' + ('s' if len(cs) != 1 else ''))
             for j, cc in enumerate(cs):
-                x = 52 * mm + j * (self.sq + self.gap)
-                c.setFillColor(RED if cc['wrong'] else GREEN); c.roundRect(x, y, self.sq, self.sq, 1.4 * mm, 0, 1)
-                c.setFillColor(colors.white); c.setFont('BodyB', 6.8); c.drawCentredString(x + self.sq / 2, y + self.sq / 2 - 2.2, SHORT(cc['id']))
+                x = 52 * mm + (j % self.per) * (self.sq + self.gap); yy = top - (j // self.per) * self.rh
+                c.setFillColor(RED if cc['wrong'] else GREEN); c.roundRect(x, yy, self.sq, self.sq, 1.4 * mm, 0, 1)
+                c.setFillColor(colors.white); c.setFont('BodyB', 6.8); c.drawCentredString(x + self.sq / 2, yy + self.sq / 2 - 2.2, SHORT(cc['id']))
                 if cc['masked']:
-                    c.setFillColor(AMBER); c.setStrokeColor(colors.white); c.setLineWidth(0.8); c.circle(x + self.sq - 0.6 * mm, y + self.sq - 0.6 * mm, 1.7 * mm, 1, 1)
+                    c.setFillColor(AMBER); c.setStrokeColor(colors.white); c.setLineWidth(0.8); c.circle(x + self.sq - 0.6 * mm, yy + self.sq - 0.6 * mm, 1.7 * mm, 1, 1)
                 if cc['limit']:
-                    c.setFillColor(NAVY); p = c.beginPath(); p.moveTo(x, y); p.lineTo(x + 3.0 * mm, y); p.lineTo(x, y + 3.0 * mm); p.close(); c.drawPath(p, fill=1, stroke=0)
+                    c.setFillColor(NAVY); p = c.beginPath(); p.moveTo(x, yy); p.lineTo(x + 3.0 * mm, yy); p.lineTo(x, yy + 3.0 * mm); p.close(); c.drawPath(p, fill=1, stroke=0)
+            y -= self.rows[i] * self.rh
         y -= 7 * mm
         lx = 0
         for kind, label in (('g', 'Guess matched'), ('r', 'Guess wrong'), ('a', 'A control nothing noticed'), ('n', 'A limit is recorded')):
@@ -194,7 +200,7 @@ def cover_art(c, doc):
     c.drawString(LEFT, 0.365 * H, 'Machine identities,'); c.drawString(LEFT, 0.365 * H - 16 * mm, 'tested in public')
     c.setFont('Body', 14); c.setFillColor(colors.HexColor('#c8d3ee'))
     y = 0.365 * H - 29 * mm
-    for ln in simpleSplit('48 cases on service accounts, secrets, privileged access and AI tools, with the guesses, the mistakes and the market in 2026', 'Body', 14, CW - 20 * mm):
+    for ln in simpleSplit('67 cases on service accounts, secrets, privileged access and AI tools, with the guesses, the mistakes and the market in 2026', 'Body', 14, CW - 20 * mm):
         c.drawString(LEFT, y, ln); y -= 6.4 * mm
     bx = LEFT; by = 0.17 * H
     for num, lab, col in ((str(N), 'cases', CYAN), (str(N - WRONG_N), 'guesses matched', GREEN), (str(WRONG_N), 'guesses wrong', RED), (str(MASKED_N), 'controls nothing noticed', AMBER)):
@@ -212,7 +218,7 @@ def back_art(c, doc):
     c.setFont('Head', 24); c.setFillColor(colors.white); c.drawString(LEFT, H * 0.62, 'Check my work.')
     c.setFont('Body', 12); c.setFillColor(colors.HexColor('#c8d3ee'))
     y = H * 0.62 - 10 * mm
-    for ln in simpleSplit('Every guess file, hash, result and script is in the public repository. The audit page lets you filter the 48 cases and download them as CSV or JSON. If a case is wrong, tell me. I will fix it and keep the original on the page.', 'Body', 12, CW):
+    for ln in simpleSplit('Every guess file, hash, result and script is in the public repository. The audit page lets you filter the 67 cases and download them as CSV or JSON. If a case is wrong, tell me. I will fix it and keep the original on the page.', 'Body', 12, CW):
         c.drawString(LEFT, y, ln); y -= 5.8 * mm
     c.setFont('BodyB', 12); c.setFillColor(colors.white)
     for k, t in enumerate(('roshantrivedi.co.in/nhi-lab/', 'roshantrivedi.co.in/nhi-lab/audit/', 'roshantrivedi.co.in/nhi-lab/framework/')):
@@ -247,13 +253,13 @@ add(*bullets(['Platform owners and IAM or PAM engineers who run service accounts
               'Anyone who has been told that machine identities outnumber people and wants to know what to do about it.']))
 h2('How to read it')
 add(table([['If you have', 'Read', 'You will get'],
-           ['10 minutes', 'Chapter 2', 'The findings in plain words and one picture of all 48 cases.'],
+           ['10 minutes', 'Chapter 2', 'The findings in plain words and one picture of all 67 cases.'],
            ['An hour', 'Chapters 1 to 4, then the cases for the step you care about', 'The method, the framework and the evidence for one step.'],
            ['An afternoon', 'The whole book', 'Every case with its own workflow diagram, the market in 2026, what is missing and what comes next.']],
           [28, 62, 84], col_styles='first-bold'))
 story.append(Spacer(1, 4 * mm))
 story.append(KeepTogether([Paragraph('How to read a case diagram', S['h2']),
-    Paragraph('Each of the 48 cases has the same kind of picture, so once you have read one you can read them all. The numbers on the boxes match the numbers below. This example is case N-R14-15, which is about rotating a password in the wrong order.', S['body']),
+    Paragraph('Each of the 67 cases has the same kind of picture, so once you have read one you can read them all. The numbers on the boxes match the numbers below. This example is case N-R14-15, which is about rotating a password in the wrong order.', S['body']),
     Legend(), CaseDiagram(BYID['N-R14-15'], None), Spacer(1, 2 * mm)]))
 add(*numbered(['<b>Event.</b> What happens in the case, in one line.',
                '<b>Control.</b> The rule or check being tested. Some cases test more than one.',
@@ -264,7 +270,7 @@ add(*numbered(['<b>Event.</b> What happens in the case, in one line.',
 p('Chain tests look a little different. The top row shows the attacker\'s links. A flag under a link shows where a control acts: it stops the attacker there, only reports, arrives too late, or has no effect.', 'body')
 story.append(Spacer(1, 3 * mm))
 add(Callout('A note on the data', 'Every account, bank and number in this book is made up. The bank is called Kaveri Finance and does not exist. Nothing relates to any employer, client or real company. The models are small and run in memory.', 'info'))
-add(Callout('What changed since edition 1', 'The first edition had 27 cases and 21 pages. This one has 48 cases, a workflow diagram for each, the framework, a dated market chapter, a method chapter that lists my mistakes, an audit appendix, a roadmap and a glossary.', 'violet'))
+add(Callout('What changed since edition 1', 'The first edition had 27 cases and 21 pages. This one has 67 cases, a workflow diagram for each, the framework, a dated market chapter, a method chapter that lists my mistakes, an audit appendix, a roadmap and a glossary.', 'violet'))
 
 # ---- contents
 story.append(ChapterMark('Contents'))
@@ -289,7 +295,7 @@ add(table([['In scope', 'Out of scope'],
           [87, 87], zebra=False))
 story.append(Spacer(1, 3 * mm))
 h2('What you will find in the book')
-add(*bullets(['<b>Chapter 2</b> gives the findings and a one-page map of all 48 cases.',
+add(*bullets(['<b>Chapter 2</b> gives the findings and a one-page map of all 67 cases.',
               '<b>Chapter 3</b> says exactly what I did, in order, with dates and the mistakes I made.',
               '<b>Chapter 4</b> turns the evidence into a seven-step framework you can use on your own estate.',
               '<b>Chapters 5 to 11</b> hold the cases, one workflow diagram each, grouped by framework step.',
@@ -299,17 +305,17 @@ add(*bullets(['<b>Chapter 2</b> gives the findings and a one-page map of all 48 
 
 # ================================================================== 2 THE SHORT VERSION
 chapter(2, 'The short version', 'Chapter 2', GREEN, 'The findings in plain words, and a map of every case.')
-add(Tiles([(str(N), 'cases in two runs', CYAN), (str(N - WRONG_N), 'guesses matched', GREEN), (str(WRONG_N), 'guesses wrong', RED),
+add(Tiles([(str(N), 'cases in four runs', CYAN), (str(N - WRONG_N), 'guesses matched', GREEN), (str(WRONG_N), 'guesses wrong', RED),
            (str(MASKED_N), 'cases with a control nothing noticed', AMBER), (str(LIMIT_N), 'cases with a recorded limit', VIOLET)]))
 story.append(Spacer(1, 3 * mm))
 h2('What I found')
 for i, (hd, tx) in enumerate(FINDINGS):
     add(KeepTogether([Paragraph(f'<font color="#1aa6c9">{i + 1}.</font>&nbsp;&nbsp;{esc(hd)}', S['h3']), Paragraph(esc(tx), S['body'])]))
 story.append(CondPageBreak(110 * mm))
-h2('All 48 cases on one page')
+h2('All 67 cases on one page')
 p('One square per case, grouped by the framework step it tests. Green means my guess matched. Red means it was wrong. An amber dot means a control in that case was one nothing noticed. A dark corner means I recorded a limit.')
 add(ResultsMap(), Spacer(1, 2 * mm))
-story.append(Paragraph('Figure 2.1  The 48 cases by framework step. Letters and numbers match the case ids in Chapters 5 to 11 (N01 is N-R14-01).', S['cap']))
+story.append(Paragraph('Figure 2.1  The 67 cases by framework step. Letters and numbers match the case ids in Chapters 5 to 11 (N01 is N-R14-01).', S['cap']))
 h2('What I would do on Monday')
 p('If you take only one page from the book, take this one. Each line is a check you can do without buying anything.')
 add(*numbered(MONDAY))
@@ -326,8 +332,9 @@ add(table([['Date', 'What happened'],
            ['2 November 2026, first run', 'Guess files hashed and committed on the Mac, then the models were written and run. 24 must-run cases and 3 gap cases from 2026 incident reports: 27 in all.'],
            ['2 November 2026, second-run guesses', '19 more cases: 13 stretch cases and 6 chain tests. Hashed on the Mac (40c2f87c…) and committed as 78d7e3e before any code.'],
            ['2 November 2026, second run', 'Code and results committed as 05235fe. The Mac output matched the build sandbox exactly.'],
+           ['2 November 2026, publishing', 'The lab page with 46 animated cases, this book, a 54-second silent video, and the framework, market, method, audit, roadmap and explainer pages.'],
            ['10 November 2026, third run', '2 more cases, NHI4 and NHI8. Guesses committed as e50df1b, code and results as ce3c57e. The Mac output matched the sandbox.'],
-           ['2 November 2026, publishing', 'The lab page with 46 animated cases, this book, a 54-second silent video, and the framework, market, method, audit, roadmap and explainer pages.']],
+           ['10 November 2026, fourth run', 'The 19 queued cases. Guesses hashed (729e16f2…) and committed as a2dc1fd before any code. Code and results committed as cbec7a8. The Mac results file had the same SHA-256 as the sandbox one.']],
           [46, 128], col_styles='first-bold'))
 story.append(Spacer(1, 4 * mm))
 h2('The procedure in one picture')
@@ -362,22 +369,27 @@ add(table([['Term', 'Meaning in this book'],
            ['Chain test', 'A series of links an attacker needs. The test records which link each control stops.']],
           [32, 142], col_styles='first-bold'))
 h2('The numbers')
-add(Tiles([('27', 'first run: 25 matched, 2 wrong', CYAN), ('19', 'second run: 17 matched, 2 wrong', GREEN), ('2', 'third run: 1 matched, 1 wrong', CYAN), (str(MASKED_N), 'cases with a control nothing noticed', AMBER), ('3 of 3', 'runs that matched on the Mac', VIOLET)]))
+add(Tiles([('27', 'first run: 25 matched, 2 wrong', CYAN), ('19', 'second run: 17 matched, 2 wrong', GREEN), ('2', 'third run: 1 matched, 1 wrong', CYAN), ('19', 'fourth run: 14 matched, 5 wrong', GREEN), (str(MASKED_N), 'cases with a control nothing noticed', AMBER), ('4 of 4', 'runs that matched on the Mac', VIOLET)]))
 story.append(Spacer(1, 3 * mm))
 h2('What went wrong')
-p('These are the mistakes, in the order they matter. The first five are wrong guesses. The last two are mistakes in my own test harness.')
+p('These are the mistakes, in the order they matter. The first ten are wrong guesses. The last two are mistakes in my own test harness.')
 add(table([['What went wrong', 'Case', 'What I did'],
            ['I guessed the scan would miss 1 secret. It missed 2.', 'S-R17-05', 'Recorded. The 2 misses were a secret split over two lines and one in base64.'],
            ['I guessed a short token lifetime would change the replay result.', 'N-R14-25', 'It did not. Binding and revoking already refused both replays. Recorded.'],
            ['My own arithmetic was wrong.', 'N-R14-07', 'Nine identities with two or three names each cannot make 51 entries. The count is 43. A rule that stripped trailing digits also merged two real accounts. Recorded.'],
            ['I guessed the ticket scan would matter most.', 'C-R16-C01', 'The owner rule did. Recorded.'],
            ['I guessed 3 alerts for 3 replays of a copied key.', 'N-R18-01', 'The model gave 1, because it raises one alert per new network and all 3 replays came from one network. Recorded.'],
+           ['I guessed 0 events would arrive with no controls.', 'P-R15-22', 'The connector delivers 14 of 20 either way. I had not said what I was counting. Recorded.'],
+           ['I guessed 4 alerts for 5 creation attempts.', 'S-R17-09', 'The model alerts on every attempt, refused or not. I never wrote down which I meant. Recorded.'],
+           ['I guessed the drill would find 2 faults.', 'P-R15-12', 'It found 1, because the routing check caught the other first. Recorded.'],
+           ['I guessed the injection control would matter alone.', 'P-R15-06', 'The reveal policy already stopped both reveals, so it did not. Rotation mattered, and I had guessed it did not. Recorded.'],
+           ['I guessed 4 agents would still hold credentials at day 10.', 'S-R17-08', 'The scan and 3 registrations had already left 1. The expiry, which I guessed no one would notice, disabled it. Recorded.'],
            ['Bad test data on the first run.', 'N-R14-07', 'I had given 21 identities one shared owner, so the merge collapsed them to 11. I fixed the data and kept the first-run file as RESULTS-stretch-first-run.md.'],
            ['A harness slip.', 'C-R16-C04', 'An extra scenario ignored its "late" marker. I fixed it so the marker sets the attack day to 120, and re-ran.']],
           [58, 22, 94]))
 story.append(Spacer(1, 3 * mm))
 h2('Checking it again on 2 November 2026')
-p('After the second run I re-ran everything in the build sandbox. The verify script printed 5 of 5 guess files match their recorded hash. Running run.py and run2.py gave results identical to the committed ones, except for the time stamp. The Mac output of the second run had already matched the sandbox.')
+p('After the second run I re-ran everything in the build sandbox. The verify script printed 5 of 5 guess files match their recorded hash. Running run.py and run2.py gave results identical to the committed ones, except for the time stamp. The Mac output of the second run had already matched the sandbox. On 10 November 2026 the verify script covers 6 guess files, and the round 19 results file has the same SHA-256 on the Mac and in the sandbox.')
 h2('What this method cannot tell you')
 add(*bullets(['I wrote the guesses and the code. A match shows my model agrees with my reasoning. It does not show that a real product behaves that way.',
               'A hash proves the file did not change after I committed it. It does not prove when I wrote it, beyond the commit time.',
@@ -386,7 +398,7 @@ add(*bullets(['I wrote the guesses and the code. A match shows my model agrees w
 
 # ================================================================== 4 FRAMEWORK
 chapter(4, 'A framework for machine identities', 'Chapter 4', AMBER, 'Seven steps, drawn from what the cases showed. Targets and thresholds are yours to set.')
-p('This framework is a draft method tested only on made-up data. Every one of the 48 cases sits in exactly one step. Where a number depends on your organisation, the book says so and leaves it for you to set.', 'lede')
+p('This framework is a draft method tested only on made-up data. Every one of the 67 cases sits in exactly one step. Where a number depends on your organisation, the book says so and leaves it for you to set.', 'lede')
 h2('The seven steps')
 rowsA = [[(f'{i + 1}. {n}', sub, 'info' if i % 2 == 0 else 'violet') for i, (k, n, sub) in enumerate(D.STAGES[:4])],
          [(f'{i + 5}. {n}', sub, 'bad' if k == 'retire' else ('info' if (i + 4) % 2 == 0 else 'violet')) for i, (k, n, sub) in enumerate(D.STAGES[4:])]]
@@ -458,7 +470,7 @@ add(table([['Metric', 'How to count it', 'Target', 'Lab example'],
           [42, 48, 20, 64], col_styles='first-bold'))
 story.append(Paragraph('The lab numbers come from small models and prove nothing about your estate.', S['cap']))
 h2('OWASP Non-Human Identities Top 10 (2025)')
-p(f'OWASP publishes a Top 10 for non-human identities {src_ref("S8")}. I mapped each risk to the lab cases that touch it. Two have thin coverage: insecure authentication (NHI4) and environment isolation (NHI8). They are the next cases to write.')
+p(f'OWASP publishes a Top 10 for non-human identities {src_ref("S8")}. I mapped each risk to the lab cases that touch it. Two had thin coverage: insecure authentication (NHI4) and environment isolation (NHI8). Round 18 added a case for each. The agentic risks ASI05 to ASI07 have no cases yet.')
 add(table([['OWASP risk', 'Lab cases', 'Coverage']] + [[f'<b>{code}</b> {esc(name)}', esc(', '.join(ids.split())), esc(cov)] for code, name, ids, cov in D.OWASP],
           [58, 74, 42]))
 story.append(Paragraph('I read OWASP\'s risk names for this mapping. The mapping is mine and is not an OWASP endorsement.', S['cap']))
@@ -492,7 +504,7 @@ for k, n, _ in D.STAGES:
 rows.append(['<b>All</b>', f'<b>{N}</b>', f'<b>{N - WRONG_N}</b>', f'<b>{WRONG_N}</b>', f'<b>{MASKED_N}</b>', f'<b>{LIMIT_N}</b>'])
 add(table(rows, [54, 24, 24, 24, 24, 24], col_styles='first-bold'))
 story.append(Spacer(1, 4 * mm))
-h2('The five wrong guesses')
+h2('The ten wrong guesses')
 p('A wrong guess is the most useful thing the lab produced. Each is recorded with what I wrote and what happened.')
 add(table([['Case', 'What I wrote', 'What happened']] + [[f'<b>{cid}</b><br/>{esc(BYID[cid]["title"])}', esc(a), esc(b)] for cid, (a, b) in WRONG.items()], [42, 60, 72]))
 story.append(Spacer(1, 4 * mm))
@@ -506,14 +518,14 @@ for c in CASES:
 add(table(mrows, [52, 62, 60]))
 story.append(Spacer(1, 4 * mm))
 h2('Limits I recorded')
-p('A limit is what the control cannot see. These 14 are written down. The other 34 cases have no limit recorded, which is not the same as having none.')
+p(f'A limit is what the control cannot see. These {LIMIT_N} are written down. The other {N - LIMIT_N} cases have no limit recorded, which is not the same as having none.')
 lrows = [['Case', 'What the control cannot see']] + [[f'<b>{c["id"]}</b><br/>{esc(c["title"])}', esc(c['limit'][:1].upper() + c['limit'][1:] + ('' if c['limit'].endswith('.') else '.'))] for c in CASES if c['limit']]
 add(table(lrows, [60, 114]))
 h2('What the numbers do not say')
 add(*bullets(['That any product passes or fails. I tested none.',
               'That a control is worth its cost. I have no cost data.',
-              'That 43 of 48 is a good score. The guesses and models are mine, so it is a consistency check.',
-              'That the 34 cases with no recorded limit have no limit.']))
+              f'That {N - WRONG_N} of {N} is a good score. The guesses and models are mine, so it is a consistency check.',
+              f'That the {N - LIMIT_N} cases with no recorded limit have no limit.']))
 
 # ================================================================== 13 MARKET
 chapter(13, 'The market in 2026', 'Chapter 13', CYAN, 'Four deals, one new identity type and a standards project. Checked on 2 November 2026.')
@@ -605,16 +617,18 @@ add(table([['Commit', 'What it holds'],
            ['<font name="Mono" size="8">78d7e3e</font>', 'Second-run guesses (13 stretch cases and 6 chain tests), before any code.'],
            ['<font name="Mono" size="8">05235fe</font>', 'Second-run code and results.'],
            ['<font name="Mono" size="8">e50df1b</font>', 'Round 18 guesses (2 cases), before any code.'],
-           ['<font name="Mono" size="8">ce3c57e</font>', 'Round 18 code and results.']], [40, 134]))
+           ['<font name="Mono" size="8">ce3c57e</font>', 'Round 18 code and results.'],
+           ['<font name="Mono" size="8">a2dc1fd</font>', 'Round 19 guesses (19 cases), before any code.'],
+           ['<font name="Mono" size="8">cbec7a8</font>', 'Round 19 code and results.']], [40, 134]))
 story.append(Paragraph('A hash proves a file did not change after the commit. It does not prove when I wrote it. The commit time is the only date evidence, and I did not record those times.', S['cap']))
 h3('Check them yourself')
 add(table([['Step', 'Do this', 'You should see'],
-           ['1', 'Download <font name="Mono" size="7.8">nhi-lab/evidence/</font> from the repository.', 'A folder with guesses/, cases.py, run.py, cases2.py, run2.py, cases3.py, run3.py and verify.py.'],
-           ['2', 'Run <font name="Mono" size="7.8">python3 verify.py</font> in that folder.', '"5 of 5 guess files match the recorded hash." Tested in the build sandbox on 2 November 2026.'],
+           ['1', 'Download <font name="Mono" size="7.8">nhi-lab/evidence/</font> from the repository.', 'A folder with guesses/, the case files cases.py to cases4.py, the runners run.py to run4.py and verify.py.'],
+           ['2', 'Run <font name="Mono" size="7.8">python3 verify.py</font> in that folder.', '"6 of 6 guess files match the recorded hash." Tested in the build sandbox on 10 November 2026.'],
            ['3', 'Run <font name="Mono" size="7.8">python3 run.py</font> <font name="Mono" size="7.8">python3 run2.py</font> then <font name="Mono" size="7.8">python3 run3.py</font>. They need only Python 3 and check the hashes first.', 'The tables in RESULTS.md and RESULTS-stretch.md. On 2 November 2026 the results were identical to the committed ones except for the time stamp.']],
           [12, 74, 88]))
 
-chapter('B', 'Audit table', 'Appendix B', NAVY, 'All 48 cases in one table. The same data is on the website as CSV and JSON.')
+chapter('B', 'Audit table', 'Appendix B', NAVY, 'All 67 cases in one table. The same data is on the website as CSV and JSON.')
 arows = [['Case', 'Title', 'Step', 'Run', 'Guess', 'Masked', 'Limit']]
 for c in CASES:
     arows.append([f'<font name="Mono" size="7.4">{c["id"]}</font>', esc(c['title']), esc(STEPS[c['stage']][0]), str(c['run']),

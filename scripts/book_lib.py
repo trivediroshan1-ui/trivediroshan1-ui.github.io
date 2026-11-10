@@ -401,7 +401,7 @@ class Book(BaseDocTemplate):
     def __init__(self, fn, **kw):
         super().__init__(fn, pagesize=A4, leftMargin=LEFT, rightMargin=RIGHT, topMargin=23 * mm, bottomMargin=20 * mm,
                          title='Machine identities, tested in public', author='Roshan Trivedi',
-                         subject='A 46-case lab on service accounts, secrets, privileged access and AI tools',
+                         subject='A 67-case lab on service accounts, secrets, privileged access and AI tools',
                          keywords='non-human identity, machine identity, PAM, secrets, AI agents', creator='roshantrivedi.co.in', **kw)
         self.chapter = ''
         self._k = 0

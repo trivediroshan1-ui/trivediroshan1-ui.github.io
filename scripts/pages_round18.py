@@ -38,7 +38,7 @@ def build():
       <div class="ntile good"><b>Same</b><span>output on the Mac and in the build sandbox</span></div>
     </div>
     {res}
-    <p>Round 18 is the third run. With it the lab has 48 cases, 43 matched guesses and 5 wrong ones. The 46 cases from the first two runs are on the <a href="/nhi-lab/">lab page</a> and in the <a href="/nhi-lab/audit/">audit data</a>, which now include these two.</p>
+    <p>Round 18 is the third run. With it the lab had 48 cases, 43 matched guesses and 5 wrong ones. Round 19 later brought the totals to 67 cases and 10 wrong guesses. The 46 cases from the first two runs are on the <a href="/nhi-lab/">lab page</a> and in the <a href="/nhi-lab/audit/">audit data</a>, which include these two and the round 19 cases.</p>
   </section>
 
   <section class="nsec" id="n1" aria-labelledby="n1-h">

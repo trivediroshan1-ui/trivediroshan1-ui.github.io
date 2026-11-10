@@ -48,18 +48,23 @@ def build():
         ('2 November 2026', '1. First run: 27 cases', 'Guess files hashed and committed on the Mac, then the models were written and run. 24 must-run cases and 3 gap cases from 2026 incident reports.'),
         ('2 November 2026', '2. Second-run guesses', f'19 more cases: 13 stretch cases and 6 chain tests. Hashed on the Mac (<code>40c2f87c…</code>) and committed as <code>78d7e3e</code> before any code.'),
         ('2 November 2026', '3. Second run', f'Code and results committed as <code>05235fe</code>. The Mac output matched the sandbox exactly.'),
-        ('2 November 2026', '4. Site, book, video', 'The lab page with 46 animated cases (48 after round 18), a PDF book, a 54-second silent video, and this set of pages.'),
+        ('2 November 2026', '4. Site, book, video', 'The lab page with 46 animated cases at launch, a PDF book, a 54-second silent video, and this set of pages.'),
+        ('10 November 2026', '5. Round 18: two cases', 'Guesses committed as <code>e50df1b</code> before any code. Code and results committed as <code>ce3c57e</code>. The Mac output matched the sandbox.'),
+        ('10 November 2026', '6. Round 19: the 19 queued cases', 'Guesses hashed on the Mac (<code>729e16f2…</code>) and committed as <code>a2dc1fd</code> before any code. The code commit is on the <a href="/nhi-lab/round-19/">round 19 page</a>.'),
     ]
     tlh = '<ol class="tl">' + ''.join(f'<li><time>{d}</time><b>{E(t)}</b>{x}</li>' for d, t, x in tl) + '</ol>'
 
     slips = table(['What went wrong', 'Case', 'What I did'], [
         [th_row('Guess wrong: the scan missed 2 secrets, not 1'), td(case_links(['S-R17-05'])), td('Recorded. The 2 misses matched no pattern.')],
         [th_row('Guess wrong about which control mattered'), td(case_links(['N-R14-25'])), td('I expected a short token lifetime to change the replay result. Another control already blocked both replays, so it did not.')],
+        [th_row('Guess wrong: the alert count'), td(case_links(['N-R18-01'])), td('Recorded with both numbers. Nothing was changed afterwards.')],
+        [th_row('Guess wrong: I never said what I was counting'), td(case_links(['P-R15-22', 'S-R17-09'])), td('In one I guessed 0 events without controls, but the connector delivers 14 of 20 either way. In the other I guessed 4 alerts, and the model alerts on every creation attempt, which gives 5. Both left the thing counted open, so the model took the plain reading.')],
+        [th_row('Guess wrong: I treated controls as independent'), td(case_links(['P-R15-06', 'P-R15-12', 'S-R17-08'])), td('One control covered another, or an earlier check had already caught the fault. Recorded, with the unnoticed controls split into masked and no effect on what the case counts.')],
         [th_row('Guess wrong: my own arithmetic'), td(case_links(['N-R14-07'])), td('Nine identities with two or three names each cannot make 51 entries; the count is 43. A rule that stripped trailing digits also merged two real accounts. Recorded.')],
         [th_row('Guess wrong: which control matters most'), td(case_links(['C-R16-C01'])), td('I expected the ticket scan to matter most. The owner rule did.')],
         [th_row('Bad test data on the first run'), td(case_links(['N-R14-07'])), td('I had given 21 identities one shared owner, so the merge collapsed them to 11. I fixed the data and kept the first-run file as <a href="/nhi-lab/evidence/RESULTS-stretch-first-run.md">RESULTS-stretch-first-run.md</a>.')],
         [th_row('Harness slip'), td(case_links(['C-R16-C04'])), td('An extra scenario ignored its "late" marker. I fixed it so the marker sets the attack day to 120, and re-ran.')],
-    ], 'Mistakes, in the order they matter. The first four are wrong guesses. The last two are mistakes in my own test harness.')
+    ], 'Mistakes, in the order they matter. Most rows are wrong guesses. The last two are mistakes in my own test harness.')
 
     defs_tbl = table(['Term', 'Meaning here'], [
         [th_row('Match'), td('The result equals what the guess said, in every run.')],
@@ -73,7 +78,7 @@ def build():
     body = f'''<main id="main" class="nhi">
   {subnav('method')}
   {hero('What we did', 'How the lab was run, step by step, with the mistakes', 'I wrote my guesses, locked them with a hash, then wrote the code and ran every case twice, once without the control and once with it. This page is the full procedure, the dates, and the places I got it wrong.',
-        ['Last reviewed 2 November 2026', f'{len(cases)} cases in three runs', 'Made-up data only'])}
+        ['Last reviewed 2 November 2026', f'{len(cases)} cases in four runs', 'Made-up data only'])}
 
   <section class="nsec" id="question" aria-labelledby="q-h">
     <h2 id="q-h">The question</h2>
@@ -114,7 +119,7 @@ def build():
       <div class="ntile"><b>{len(n1)}</b><span>first-run cases ({len(n1) - w1} guesses matched, {w1} wrong)</span></div>
       <div class="ntile"><b>{len(n2)}</b><span>second-run cases ({len(n2) - w2} matched, {w2} wrong)</span></div>
       <div class="ntile warn"><b>{m_all}</b><span>cases with a control no check noticed</span></div>
-      <div class="ntile good"><b>2 of 2</b><span>runs that matched on the Mac</span></div>
+      <div class="ntile good"><b>4 of 4</b><span>runs that matched on the Mac</span></div>
     </div>
     <p>The full table is on the <a href="/nhi-lab/audit/">audit page</a>, with downloads.</p>
   </section>
@@ -138,15 +143,15 @@ def build():
   <section class="nsec" id="repeat" aria-labelledby="r-h">
     <h2 id="r-h">Repeat it yourself</h2>
     <ol class="nsteps">
-      <li><b class="t">Download the evidence folder.</b>It is in the repository under <code>nhi-lab/evidence/</code>.<span class="exp">A folder with <code>guesses/</code>, <code>cases.py</code>, <code>run.py</code>, <code>cases2.py</code> and <code>run2.py</code>.</span></li>
-      <li><b class="t">Check the guess hashes.</b><code>python3 verify.py</code><span class="exp">"5 of 5 guess files match the recorded hash." Tested in the build sandbox on 2 November 2026.</span></li>
-      <li><b class="t">Run all three runs.</b><code>python3 run.py</code>, <code>python3 run2.py</code> then <code>python3 run3.py</code>. They need only Python 3 and they check the hashes first.<span class="exp">The tables in <code>RESULTS.md</code> and <code>RESULTS-stretch.md</code>. On 2 November 2026 the results were identical to the committed ones except for the time stamp.</span></li>
+      <li><b class="t">Download the evidence folder.</b>It is in the repository under <code>nhi-lab/evidence/</code>.<span class="exp">A folder with <code>guesses/</code>, the case files <code>cases.py</code> to <code>cases4.py</code> and the runners <code>run.py</code> to <code>run4.py</code>.</span></li>
+      <li><b class="t">Check the guess hashes.</b><code>python3 verify.py</code><span class="exp">"6 of 6 guess files match the recorded hash." Tested in the build sandbox on 10 November 2026.</span></li>
+      <li><b class="t">Run all four runs.</b><code>python3 run.py</code>, <code>python3 run2.py</code>, <code>python3 run3.py</code> then <code>python3 run4.py</code>. They need only Python 3 and they check the hashes first.<span class="exp">The tables in <code>RESULTS.md</code>, <code>RESULTS-stretch.md</code>, <code>RESULTS-round-18.md</code> and <code>RESULTS-round-19.md</code>. The first two runs were identical to the committed files on 2 November 2026, except for the time stamp.</span></li>
     </ol>
   </section>
 </main>'''
-    desc = 'The full procedure for the 48-case non-human identity lab: guesses hashed before code, each control switched off alone, dates, steps with expected results, and every mistake.'
+    desc = 'The full procedure for the 67-case non-human identity lab: guesses hashed before code, each control switched off alone, dates, steps with expected results, and every mistake.'
     write('nhi-lab/method/index.html', shell('nhi-lab/method/', 'How the lab was run', desc,
-          'How I ran 48 non-human identity cases, and where I got it wrong', body, ld=ld_article('How the NHI lab was run', desc, 'nhi-lab/method/')))
+          'How I ran 67 non-human identity cases, and where I got it wrong', body, ld=ld_article('How the NHI lab was run', desc, 'nhi-lab/method/')))
 
 if __name__ == '__main__':
     build()
