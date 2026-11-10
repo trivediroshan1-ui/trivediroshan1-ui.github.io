@@ -32,8 +32,8 @@ for p in ROOT.rglob("*"):
         low = line.lower()
         if any(w in low for w in legacy):
             continue
-        for m in re.finditer(r"\b(\d{1,3})(?:\s|&nbsp;)+(cases|rounds|pages)\b", line):
-            num, kind = int(m.group(1)), m.group(2)
+        for m in re.finditer(r"(?<![\w-])(\d{1,3})(?:\s|&nbsp;|-)+(cases?|rounds?|pages?)\b(?!-)", line):
+            num, kind = int(m.group(1)), m.group(2).rstrip("s") + "s"
             ok = {"cases": good_cases, "rounds": good_rounds, "pages": good_pages}[kind]
             if kind == "cases" and num < 40:
                 continue          # small counts such as "12 cases" in one round

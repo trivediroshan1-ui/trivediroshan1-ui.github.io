@@ -251,7 +251,7 @@ window.SITE_QA = [
     url: "/book/#library",
     keywords: ["books","all books","all the books","how many books","list of books","books list","which books","what books","what books has roshan written","what books has roshan published","other books","more books","book menu","book dropdown","find the books","where are the books","free books","download books","reports","papers","library","book library","all pdfs","pdf list","which book should i read first","what should i read first"],
     answer:
-      "There are three free books, all on the Book page at /book/ (the Book menu in the top bar links to each one). (1) Who Approved That? is the MCP lab book: 138 pages on putting a human approval step in front of AI agent tool calls, 210 scripted checks, 81 use cases. (2) Does AI Governance Hold? is the AI governance lab notebook: 69 pages, 13 rounds, 164 cases with made-up Indian data. (3) Machine identities, tested in public (edition 2) is the non-human identity lab book: 67 pages, 48 cases, each with its own workflow diagram. There are also longer reports and papers: the AI governance addendum for rounds 5 to 13 (74 pages), the HumanGate MCP lab final report (122 pages), and the 30-page paper Securing India's National Examinations. Each book has a SHA-256 checksum on the Book page. All of it is free, needs no sign-up, and uses made-up data. If you are not sure where to start: Who Approved That? for AI agent approvals, the NHI book for service accounts, keys and machine logins, and the AI governance book for testing AI controls.",
+      "There are three free books, all on the Book page at /book/ (the Book menu in the top bar links to each one). (1) Who Approved That? is the MCP lab book: 138 pages on putting a human approval step in front of AI agent tool calls, 210 scripted checks, 81 use cases. (2) Does AI Governance Hold? is the AI governance lab notebook: 69 pages, 13 rounds, 164 cases with made-up Indian data. (3) Machine identities, tested in public (edition 2) is the non-human identity lab book: 83 pages, 67 cases, each with its own workflow diagram. There are also longer reports and papers: the AI governance addendum for rounds 5 to 13 (74 pages), the HumanGate MCP lab final report (122 pages), and the 30-page paper Securing India's National Examinations. Each book has a SHA-256 checksum on the Book page. All of it is free, needs no sign-up, and uses made-up data. If you are not sure where to start: Who Approved That? for AI agent approvals, the NHI book for service accounts, keys and machine logins, and the AI governance book for testing AI controls.",
   },
   {
     id: "book",
@@ -347,7 +347,7 @@ window.SITE_QA = [
     url: "/#start-here",
     keywords: ["best pages", "best case studies", "best work", "strongest work", "where should i start", "what should i read first", "top pages", "short version", "for recruiters", "hiring manager"],
     answer:
-      "Three pages show the work fastest. The résumé (/resume/) has roles, dates and certifications. The AI Governance Lab (/ai-governance-lab/) has 13 rounds and 164 cases on made-up data, with every guess hashed before the code runs, and the non-human identity lab (/nhi-lab/) has 48 cases with a framework, a dated market view and downloadable audit data. Non-human identity at scale (/case-studies/non-human-identity-at-scale/) is an independent guide to owning, rotating and retiring machine credentials. For privileged-access depth, add Credential tiering and the PAM market, and Break-glass access.",
+      "Three pages show the work fastest. The résumé (/resume/) has roles, dates and certifications. The AI Governance Lab (/ai-governance-lab/) has 13 rounds and 164 cases on made-up data, with every guess hashed before the code runs, and the non-human identity lab (/nhi-lab/) has 67 cases with a framework, a dated market view and downloadable audit data. Non-human identity at scale (/case-studies/non-human-identity-at-scale/) is an independent guide to owning, rotating and retiring machine credentials. For privileged-access depth, add Credential tiering and the PAM market, and Break-glass access.",
   },
   {
     id: "what-i-got-wrong",
@@ -758,7 +758,7 @@ window.SITE_QA = [
     url: "/nhi-lab/explainer/",
     keywords: ["explainer", "animation", "animated explainer", "machine identities in a minute", "nhi video", "transcript", "pause animation"],
     answer:
-      "The explainer is a one-minute animation in six scenes: there are more machine identities than people, many have no owner, new identities should meet a front door that refuses them without an owner, scope and end date, secrets should be changed in order (application first, then the secret, then check the old one is dead), each control should be switched off once to see if anything notices, and a summary of the 48 cases. It has no sound, can be paused, stepped or replayed, respects reduced-motion settings and has a full transcript on the page. There is also a 54-second silent video for sharing.",
+      "The explainer is a one-minute animation in six scenes: there are more machine identities than people, many have no owner, new identities should meet a front door that refuses them without an owner, scope and end date, secrets should be changed in order (application first, then the secret, then check the old one is dead), each control should be switched off once to see if anything notices, and a summary of the 67 cases. It has no sound, can be paused, stepped or replayed, respects reduced-motion settings and has a full transcript on the page. There is also a 54-second silent video for sharing.",
   },
   {
     id: "nhi-lab-book",
@@ -766,6 +766,6 @@ window.SITE_QA = [
     url: "/nhi-lab/nhi-lab-book.pdf",
     keywords: ["nhi book", "the nhi book", "what is in the nhi book", "what is in the nhi lab book", "inside the nhi book", "nhi lab book", "machine identity book", "machine identities tested in public", "nhi book pages", "free book nhi", "pdf nhi", "all books", "books list"],
     answer:
-      "The NHI lab book (edition 2, 67 pages) is a free PDF about the 48-case lab, with a problem statement, scope, the method, the framework, a workflow diagram for every case, results, the market view, what is missing, a roadmap, appendices with the guess hashes and the audit table, a glossary and an author page. The Book page lists it beside the other books, with a picker so you can jump to one.",
+      "The NHI lab book (edition 2, 83 pages) is a free PDF about the 67-case lab, with a problem statement, scope, the method, the framework, a workflow diagram for every case, results, the market view, what is missing, a roadmap, appendices with the guess hashes and the audit table, a glossary and an author page. The Book page lists it beside the other books, with a picker so you can jump to one.",
   },
 ];
