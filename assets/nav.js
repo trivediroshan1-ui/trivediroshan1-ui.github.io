@@ -87,7 +87,7 @@
         { title: "The books", k: "ai", items: [
           ["/book/#approve", "Who Approved That? MCP lab, 138 pages", "book"],
           ["/book/#agl", "Does AI Governance Hold? 69 pages", "book"],
-          ["/book/#nhi", "Machine identities, tested in public. 67 pages", "book"]] },
+          ["/book/#nhi", "Machine identities, tested in public. 83 pages", "book"]] },
         { title: "Reports and papers", k: "gov", items: [
           ["/assets/ai-governance-lab-addendum.pdf", "AI governance addendum, rounds 5 to 13. 74 pages", "doc"],
           ["/assets/humangate-mcp-lab-final-report.pdf", "HumanGate MCP lab final report. 122 pages", "doc"],
