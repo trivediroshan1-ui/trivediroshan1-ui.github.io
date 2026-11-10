@@ -10,7 +10,7 @@ tags: [non-human-identity, nhi, pam, shadow-ai, security-testing]
 share_title: "I ran the 19 cases I had been putting off"
 share_label: "Article · NHI lab"
 share_accent: green
-description: "Round 19 of my public machine identity lab: 19 more cases on made-up data, five with a wrong guess, 14 control checks where nothing changed, and a status for every one of the 193 catalogue rows."
+description: "19 more machine identity cases on made-up data. Five guesses were wrong, and in 14 control checks nothing changed."
 ---
 
 # I Ran the 19 Cases I Had Been Putting Off. Five Guesses Were Wrong.
