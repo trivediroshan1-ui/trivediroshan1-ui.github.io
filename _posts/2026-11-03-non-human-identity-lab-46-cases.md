@@ -89,7 +89,7 @@ One author wrote the controls, the models and the guesses. The models are small 
 
 ## Sources
 
-All figures come from my own published lab. Read the [Non-human identity lab](https://roshantrivedi.co.in/nhi-lab/), the [method](https://roshantrivedi.co.in/nhi-lab/method/), the [audit data](https://roshantrivedi.co.in/nhi-lab/audit/) and the [framework](https://roshantrivedi.co.in/nhi-lab/framework/). The free 65 page book is on the [Book page](https://roshantrivedi.co.in/book/).
+All figures come from my own published lab. Read the [Non-human identity lab](https://roshantrivedi.co.in/nhi-lab/), the [method](https://roshantrivedi.co.in/nhi-lab/method/), the [audit data](https://roshantrivedi.co.in/nhi-lab/audit/) and the [framework](https://roshantrivedi.co.in/nhi-lab/framework/). The free 83 page book is on the [Book page](https://roshantrivedi.co.in/book/).
 
 **Roshan Trivedi** writes about privileged access, identity and AI governance at [roshantrivedi.co.in](https://roshantrivedi.co.in). The lab, the animated workflows and the audit data are free to read and reuse.
 
