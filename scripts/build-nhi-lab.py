@@ -98,6 +98,6 @@ for r in R2:
 from nhi_site import subnav
 body = body.replace('{{SUBNAV}}', subnav('overview')).replace('{{ROUND2}}', r2)
 body = body.replace('{{CHIPS}}', chips).replace('{{CASES}}', '\n'.join(cards)).replace('{{METHOD}}', method_svg()).replace('{{LIFE}}', life_svg())
-page = head + '  <body style="--c:#7df2d0">\n    <a class="skip" href="#main">Skip to content</a>\n    ' + nav + '\n' + body + '\n    ' + foot + '\n  <script src="/assets/nhi-lab.js?v=20261102a" defer></script>\n  <script defer src="/assets/chatbot-widget.js?v=20261105a"></script>\n  </body>\n</html>\n'
+page = head + '  <body style="--c:#7df2d0">\n    <a class="skip" href="#main">Skip to content</a>\n    ' + nav + '\n' + body + '\n    ' + foot + '\n  <script src="/assets/nhi-lab.js?v=20261102a" defer></script>\n  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>\n  </body>\n</html>\n'
 open('nhi-lab/index.html', 'w').write(page)
 print('wrote nhi-lab/index.html', len(page))

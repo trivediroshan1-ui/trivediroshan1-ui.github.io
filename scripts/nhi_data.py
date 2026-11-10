@@ -38,7 +38,7 @@ T = {
 GROUPS = {
  'discover':('Discover','#4de2ff'),'own':('Own and retire','#7df2d0'),'credential':('Credentials','#c4b5fd'),
  'control':('Front door and trust','#f7c873'),'privileged':('Privileged access','#ff8fa3'),
- 'shadow':('Shadow AI','#8b5cf6'),'gap':('Gap cases from 2026 incidents','#34d399')}
+ 'shadow':('Shadow AI','#a78bfa'),'gap':('Gap cases from 2026 incidents','#34d399')}
 
 
 T2 = {
