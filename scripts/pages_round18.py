@@ -26,7 +26,7 @@ def build():
 
     body = f'''<main id="main" class="nhi">
   {subnav('round18')}
-  {hero('Round 18', 'Two more cases: a copied key, and a test credential that opens production', 'These cover the two OWASP items where the lab was thinnest: insecure authentication (NHI4) and environment isolation (NHI8). The guesses were written, hashed and committed first. One guess was wrong, and it stays on the page.',
+  {hero('Round 18', 'Two more cases: a copied key, and a test credential that opens production', 'Insecure authentication (NHI4) and environment isolation (NHI8) were the two OWASP items with the weakest coverage, so round 18 adds one case for each. I wrote, hashed and committed the guesses first. One was wrong, and it stays on the page.',
         ['Run 10 November 2026', '2 cases', '1 guess wrong', 'Made-up data only (Kaveri Finance)'])}
 
   <section class="nsec" id="result" aria-labelledby="r-h">
@@ -43,22 +43,22 @@ def build():
 
   <section class="nsec" id="n1" aria-labelledby="n1-h">
     <h2 id="n1-h">N-R18-01: a copied key from another network</h2>
-    <p><b>Scenario.</b> An internal payments API accepts a static key from the billing service. In one hour there are 12 calls: 6 genuine ones from the billing workload, 3 replays of a copied key from an unknown network, and 3 calls with the old key after it was rotated 2 days ago.</p>
-    <p><b>Controls.</b> The key is bound to the workload, so a call must also carry the workload's own certificate. The old key is revoked at rotation. An alert fires when a key is used from a new network.</p>
+    <p>An internal payments API accepts a static key from the billing service. In one hour there are 12 calls: 6 genuine ones from the billing workload, 3 replays of a copied key from an unknown network, and 3 calls with the old key after it was rotated 2 days ago.</p>
+    <p>Three controls: the key is bound to the workload, so a call must also carry the workload's own certificate. The old key is revoked at rotation. An alert fires when a key is used from a new network.</p>
     {off1}
-    <div class="nnote"><b>Where my guess was wrong</b>I guessed 3 alerts. The model gave 1, because it raises one alert per new network and all 3 replays came from the same unknown network. I had written in the guess file that a repeat from one network might be counted once, so I saw the risk and still put down the wrong number. Replays from 3 different networks give 3 alerts. The rule "one alert per new network" is a choice I made in the model, so this shows how I built it, not how a real product counts.</div>
-    <p><b>What it means.</b> A key with no binding cannot be told apart from a copy of itself. With the binding, the copies are refused and the log shows which calls were bad. Revoking the old key at rotation did nothing here, because the binding already refused it. That control matters when there is no binding.</p>
-    <p><b>Limit.</b> A replay made from inside the real billing workload carries the certificate and is accepted. The binding cannot see a compromised host.</p>
+    <div class="nnote"><b>Where my guess was wrong</b>I guessed 3 alerts. The model gave 1: it raises one alert per new network, and all 3 replays came from the same unknown network. My guess file even noted that a repeat from one network might be counted once, and I still wrote down 3. Replays from 3 different networks give 3 alerts. The "one alert per new network" rule is my own choice in the model, so this tells you how I built it and nothing about how a real product counts.</div>
+    <p>Without a binding, a key looks the same as a copy of itself. With one, the copies are refused and the log shows which calls were bad. Revoking the old key at rotation changed nothing here, because the binding already refused it. It would matter in a setup with no binding.</p>
+    <p>The limit: a replay made from inside the real billing workload carries the certificate and is accepted. The binding cannot see a compromised host.</p>
   </section>
 
   <section class="nsec" id="n2" aria-labelledby="n2-h">
     <h2 id="n2-h">N-R18-02: a test credential that opens production</h2>
-    <p><b>Scenario.</b> The test pipeline and the production service share one service account and one vault path. Over a day there are 8 pipeline runs in the test environment. 2 of them come from a compromised test runner that tries the production database.</p>
-    <p><b>Controls.</b> A separate identity per environment. The production secret path is closed to every test identity. An alert when a test identity asks for a production secret.</p>
+    <p>The test pipeline and the production service share one service account and one vault path. Over a day there are 8 pipeline runs in the test environment. 2 of them come from a compromised test runner that tries the production database.</p>
+    <p>Three controls: a separate identity per environment, the production secret path closed to every test identity, and an alert when a test identity asks for a production secret.</p>
     {off2}
-    <div class="nnote"><b>The wildcard</b>This was the guess I thought most likely to be wrong in either direction. It was right. A production secret stored under a path like <code>/kaveri/*/db</code> can be matched by a test identity, and the path restriction misses it. The separate identity stopped the other attempt. Path rules written with wildcards need to be read for what they let through.</div>
-    <p><b>What it means.</b> The separate identity did the real work. The path restriction only showed its value in the wildcard case, which the main scenario did not include.</p>
-    <p><b>Limit.</b> Loading a real copy of production data into the test database for a refresh is not seen by any of the three controls. That is an assertion about my model, not something I measured. The model does not inspect data.</p>
+    <div class="nnote"><b>The wildcard</b>I thought this guess was the most likely to be wrong, in either direction, and it held. A production secret stored under a path like <code>/kaveri/*/db</code> can be matched by a test identity, and the path restriction misses it. The separate identity stopped the other attempt. Path rules written with wildcards need to be read for what they let through.</div>
+    <p>The separate identity did the work. The path restriction only showed up in the wildcard scenario, which the main case did not include.</p>
+    <p>The limit: loading a real copy of production data into the test database for a refresh is not seen by any of the three controls. That is an assertion about my model, not something I measured. The model does not inspect data.</p>
   </section>
 
   <section class="nsec" id="custody" aria-labelledby="c-h">
@@ -75,9 +75,9 @@ def build():
   <section class="nsec" id="limits" aria-labelledby="l-h">
     <h2 id="l-h">What this cannot tell you</h2>
     <ul>
-      <li>I wrote the guesses and the code. A match shows my model agrees with my reasoning, not that a real product behaves this way.</li>
+      <li>I wrote the guesses and the code. A match shows my model agrees with my reasoning. It says nothing about a real product.</li>
       <li>Both are small in-memory models with made-up data.</li>
-      <li>Two cases cannot show how common these failures are. They show what each control does in a clear setup.</li>
+      <li>Two cases say nothing about how common these failures are.</li>
       <li>No product was tested, so none is endorsed or criticised.</li>
     </ul>
     <p>Next: the <a href="/nhi-lab/stage-2/">Stage 2 pages</a> use these results in the control mapping and the test plan.</p>
