@@ -74,8 +74,8 @@
       <section id="lab">
         <h2>The lab as a whole</h2>
         <p class="body-text">Four tracks, five rounds, an unseen-items test and a real assistant, and what came out of it.</p>
-        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-lab-t agl-lab-d" width="640" height="640" preserveAspectRatio="xMidYMin meet"><title id="agl-lab-t">The lab as a whole</title><desc id="agl-lab-d">Four tracks of cases, run in rounds on three filters, then tested on unseen items, then on a real assistant. Results go into what held and what broke.</desc><style>@keyframes agl-lab-d{0%{offset-distance:0%;opacity:0}5%{opacity:1}90%{offset-distance:100%;opacity:1}96%{opacity:0}100%{offset-distance:0%;opacity:0}}
-.dg #agl-lab-d{offset-path:path('M 60 190 L 580 190');animation:agl-lab-d 10s linear infinite}</style>
+        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-lab-t agl-lab-d" width="640" height="640" preserveAspectRatio="xMidYMin meet"><title id="agl-lab-t">The lab as a whole</title><desc id="agl-lab-d">Four tracks of cases, run in rounds on three filters, then tested on unseen items, then on a real assistant. Results go into what held and what broke.</desc><style>@keyframes agl-lab-dot{0%{offset-distance:0%;opacity:0}5%{opacity:1}90%{offset-distance:100%;opacity:1}96%{opacity:0}100%{offset-distance:0%;opacity:0}}
+.dg #agl-lab-dot{offset-path:path('M 60 190 L 580 190');animation:agl-lab-dot 10s linear infinite}</style>
 <text class="dg-h" x="20" y="16" text-anchor="start" >Four tracks, first 59 cases, all made-up data</text>
 <rect class="dg-node " x="20" y="30" width="140" height="66" rx="10"/>
 <text class="dg-t" x="34" y="52">A  Gateway</text>
@@ -108,7 +108,7 @@
 <circle cx="580" cy="190" r="16" class="dg-node dg-acc"/>
 <text class="dg-t" x="580" y="195" text-anchor="middle" >5</text>
 <text class="dg-s" x="580" y="226" text-anchor="middle" >unseen</text>
-<circle id="agl-lab-d" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
+<circle id="agl-lab-dot" class="dg-pkt dg-good" r="7" cx="0" cy="0"/>
 <path class="dg-ln" d="M 320 240 L 320 268"/>
 <polygon class="dg-ar" points="315,259 325,259 320,267"/>
 <rect class="dg-node " x="20" y="268" width="290" height="76" rx="10"/>
@@ -326,8 +326,8 @@
       <section id="audit">
         <h2>The tamper-evident log</h2>
         <p class="body-text">Each line carries a fingerprint of the one before. Edit one and the chain breaks. Cut lines off the end and you need an anchor.</p>
-        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-audit-t agl-audit-d" width="640" height="620" preserveAspectRatio="xMidYMin meet"><title id="agl-audit-t">The tamper-evident log</title><desc id="agl-audit-d">Each log line includes a fingerprint of the line before it. Editing or deleting a line breaks the chain from that point. Cutting lines off the end is only visible against an anchor kept somewhere else.</desc><style>@keyframes agl-audit-t{0%,30%{opacity:0}34%,70%{opacity:1}74%,100%{opacity:0}}
-.dg #agl-audit-t{animation:agl-audit-t 10s linear infinite}
+        <figure class="dg-fig"><div class="dg-wrap"><svg class="dg" viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="agl-audit-t agl-audit-d" width="640" height="620" preserveAspectRatio="xMidYMin meet"><title id="agl-audit-t">The tamper-evident log</title><desc id="agl-audit-d">Each log line includes a fingerprint of the line before it. Editing or deleting a line breaks the chain from that point. Cutting lines off the end is only visible against an anchor kept somewhere else.</desc><style>@keyframes agl-audit-tamper{0%,30%{opacity:0}34%,70%{opacity:1}74%,100%{opacity:0}}
+.dg #agl-audit-tamper{animation:agl-audit-tamper 10s linear infinite}
 @keyframes agl-audit-p{0%{offset-distance:0%;opacity:0}4%{offset-distance:0%;opacity:1}28%{offset-distance:100%;opacity:1}30%{offset-distance:100%;opacity:0}100%{offset-distance:100%;opacity:0}}
 .dg #agl-audit-p{offset-path:path('M 200 20 L 200 380');animation:agl-audit-p 10s linear infinite}</style>
 <rect class="dg-node " x="20" y="20" width="360" height="56" rx="10"/>
@@ -358,7 +358,7 @@
 <text class="dg-t" x="34" y="362">Line 5</text>
 <text class="dg-s" x="34" y="381">Kill switch pulled on U2</text>
 <text class="dg-n" x="366" y="362" text-anchor="end" >fingerprint of line 4</text>
-<g id="agl-audit-t" opacity="0"><rect x="17" y="177" width="366" height="62" rx="12" fill="none" stroke="var(--d-bad)" stroke-width="3"/>
+<g id="agl-audit-tamper" opacity="0"><rect x="17" y="177" width="366" height="62" rx="12" fill="none" stroke="var(--d-bad)" stroke-width="3"/>
 <text class="dg-bd" x="394" y="212">edited</text><rect x="17" y="257" width="366" height="62" rx="12" fill="none" stroke="var(--d-bad)" stroke-width="2" stroke-dasharray="5 5"/><rect x="17" y="337" width="366" height="62" rx="12" fill="none" stroke="var(--d-bad)" stroke-width="2" stroke-dasharray="5 5"/><text class="dg-bd" x="394" y="292">chain breaks</text><text class="dg-bd" x="394" y="372">from here on</text></g>
 <rect class="dg-node dg-okb" x="440" y="20" width="180" height="120" rx="10"/>
 <text class="dg-t" x="454" y="42">Anchor</text>

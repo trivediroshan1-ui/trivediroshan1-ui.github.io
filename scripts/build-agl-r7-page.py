@@ -59,7 +59,7 @@ legend = "".join(f'<li data-lane="{k}"><i></i>{e(n)}</li>' for k, n in LANES)
 def step(s):
     lane, title, who, what, data, ai, cases = s
     links = "".join(f'<a href="/ai-governance-lab/cases/#{c}">{c}</a>' for c in cases)
-    return (f'<li class="lc-step" data-lane="{lane}"><h4>{e(title)} <span class="lc-who">{e(who)}</span></h4><p>{e(what)}</p>'
+    return (f'<li class="lc-step" data-lane="{lane}"><h3>{e(title)} <span class="lc-who">{e(who)}</span></h3><p>{e(what)}</p>'
             f'<ul class="lc-data" aria-label="Data">{"".join(f"<li>{e(d)}</li>" for d in data)}</ul>'
             f'<p class="lc-ai"><b>AI&rsquo;s part:</b> {e(ai)}</p>' + (f'<p class="lc-cases">Lab cases: {links}</p>' if links else "") + '</li>')
 steps_html = "".join(step(s) for s in STEPS)
@@ -115,7 +115,7 @@ h = h.replace("<!-- r6:start -->", block + "<!-- r6:start -->", 1)
 h = h.replace("lists all 91 lab cases (59 from the first four rounds, 14 added in round five and 18 in round six)",
               "lists all 103 lab cases (59 from the first four rounds, 14 added in round five, 18 in round six and 12 in round seven)")
 if "agl-lifecycle.css" not in h:
-    h = h.replace('<link rel="stylesheet" href="/assets/agl.css?v=20261024f">', '<link rel="stylesheet" href="/assets/agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261025a">', 1)
+    h = h.replace('<link rel="stylesheet" href="/assets/agl.css?v=20261024f">', '<link rel="stylesheet" href="/assets/agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">', 1)
 if "agl-lifecycle.js" not in h:
     h = h.replace('<script defer src="/assets/chatbot-widget.js', '<script src="/assets/agl-lifecycle.js?v=20261025a" defer></script>\n  <script defer src="/assets/chatbot-widget.js', 1)
 open("ai-governance-lab/index.html", "w").write(h)

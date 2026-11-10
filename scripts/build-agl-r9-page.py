@@ -51,7 +51,7 @@ legend = "".join(f'<li data-lane="{k}"><i></i>{e(n)}</li>' for k, n in LANES)
 def step(s):
     lane, title, who, what, data, ai, cases = s
     links = "".join(f'<a href="/ai-governance-lab/cases/#{c}">{c}</a>' for c in cases)
-    return (f'<li class="lc-step" data-lane="{lane}"><h4>{e(title)} <span class="lc-who">{e(who)}</span></h4><p>{e(what)}</p>'
+    return (f'<li class="lc-step" data-lane="{lane}"><h3>{e(title)} <span class="lc-who">{e(who)}</span></h3><p>{e(what)}</p>'
             f'<ul class="lc-data" aria-label="Data">{"".join(f"<li>{e(d)}</li>" for d in data)}</ul>'
             f'<p class="lc-ai"><b>AI&rsquo;s part:</b> {e(ai)}</p>' + (f'<p class="lc-cases">Lab cases: {links}</p>' if links else "") + '</li>')
 steps_html = "".join(step(s) for s in STEPS)

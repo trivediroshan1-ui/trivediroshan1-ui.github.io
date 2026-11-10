@@ -16,7 +16,7 @@ html[data-theme="light"] .lc{--lc-hr:#8a5208;--lc-bu:#a04a0c;--lc-iga:#0b7a5b;--
 .lc-step[data-lane="ai"]{--lane:var(--lc-ai)}.lc-step[data-lane="dir"]{--lane:var(--lc-dir)}.lc-step[data-lane="aud"]{--lane:var(--lc-aud)}
 .lc-legend [data-lane="hr"]{--lane:var(--lc-hr)}.lc-legend [data-lane="bu"]{--lane:var(--lc-bu)}.lc-legend [data-lane="iga"]{--lane:var(--lc-iga)}
 .lc-legend [data-lane="ai"]{--lane:var(--lc-ai)}.lc-legend [data-lane="dir"]{--lane:var(--lc-dir)}.lc-legend [data-lane="aud"]{--lane:var(--lc-aud)}
-.lc-step h4{margin:0;font:700 15.5px/1.25 var(--a-fd);color:var(--a-ink);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.lc-step h3,.lc-step h4{margin:0;font:700 15.5px/1.25 var(--a-fd);color:var(--a-ink);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
 .lc-who{font:500 12px/1.3 var(--a-fm);color:var(--lane);border:1px solid var(--lane);border-radius:999px;padding:3px 8px;white-space:normal}
 .lc-step p{font-size:14px;line-height:1.5;color:var(--a-ink);margin:0}
 .lc-data{display:flex;flex-wrap:wrap;gap:5px;margin:0;padding:0;list-style:none}
