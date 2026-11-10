@@ -12,6 +12,8 @@ SUBNAV = [
     ('/nhi-lab/market/', 'Market', 'market'),
     ('/nhi-lab/method/', 'What we did', 'method'),
     ('/nhi-lab/audit/', 'Audit data', 'audit'),
+    ('/nhi-lab/round-18/', 'Round 18', 'round18'),
+    ('/nhi-lab/stage-2/', 'Stage 2', 'stage2'),
     ('/nhi-lab/roadmap/', 'Roadmap', 'roadmap'),
     ('/nhi-lab/explainer/', 'Explainer', 'explainer'),
     ('/nhi-lab/nhi-lab-book.pdf', 'Book (PDF)', 'book'),
@@ -47,7 +49,7 @@ def shell(path, title, desc, og_title, body, js=None, ld=None, published='2026-1
         extra += f'  <script type="application/ld+json">{ld}</script>\n'
     head = head.replace('</head>', extra + '</head>')
     tail = f'  <script src="/assets/{js}?v={CSS_V}" defer></script>\n' if js else ''
-    tail += '  <script defer src="/assets/chatbot-widget.js?v=20261102b"></script>\n'
+    tail += '  <script defer src="/assets/chatbot-widget.js?v=20261105a"></script>\n'
     return (head + '  <body style="--c:#7df2d0">\n    <a class="skip" href="#main">Skip to content</a>\n    ' + _NAV +
             '\n' + body + '\n    ' + _FOOT + '\n' + tail + '  </body>\n</html>\n')
 
@@ -119,11 +121,11 @@ def badge(kind, text=None):
              'high': 'High confidence', 'med': 'Medium confidence', 'low': 'Low confidence', 'hi': 'High impact', 'irr': 'Irreversible'}
     return f'<span class="nb {kind}">{text or names[kind]}</span>'
 
-def ld_article(name, desc, path, kind='TechArticle'):
+def ld_article(name, desc, path, kind='TechArticle', date='2026-11-02'):
     import json
     return json.dumps({
         '@context': 'https://schema.org', '@type': kind, 'headline': name, 'description': desc,
-        'url': f'{BASE}/{path}', 'datePublished': '2026-11-02', 'dateModified': '2026-11-02',
+        'url': f'{BASE}/{path}', 'datePublished': date, 'dateModified': date,
         'author': {'@type': 'Person', 'name': 'Roshan Trivedi', 'url': f'{BASE}/'},
         'license': 'https://creativecommons.org/licenses/by/4.0/', 'isAccessibleForFree': True,
     }, separators=(',', ':'))

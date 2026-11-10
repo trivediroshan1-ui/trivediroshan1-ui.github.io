@@ -1,0 +1,166 @@
+{
+ "run_at": "2026-11-10T18:43:41",
+ "rows": [
+  {
+   "id": "N-R18-01",
+   "title": "A copied key from another network",
+   "without": {
+    "accepted": 12,
+    "refused": 0,
+    "alerts": 0,
+    "replays_accepted": 3,
+    "old_key_refused": 0,
+    "can_tell_apart": false
+   },
+   "with_": {
+    "accepted": 6,
+    "refused": 6,
+    "alerts": 1,
+    "replays_accepted": 0,
+    "old_key_refused": 3,
+    "can_tell_apart": true
+   },
+   "mismatch_without": {},
+   "mismatch_with": {
+    "alerts": [
+     3,
+     1
+    ]
+   },
+   "noticed": {
+    "workload_binding": true,
+    "revoke_old": false,
+    "alert_new_network": true
+   },
+   "limit": {
+    "call_from_inside_the_real_workload_accepted": true,
+    "note": "a replay from inside the real billing workload carries the certificate, so the binding cannot see it"
+   },
+   "extras": [
+    {
+     "label": "binding off",
+     "got": {
+      "accepted": 9,
+      "refused": 3,
+      "alerts": 1,
+      "replays_accepted": 3,
+      "old_key_refused": 3,
+      "can_tell_apart": false
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "revocation off",
+     "got": {
+      "accepted": 6,
+      "refused": 6,
+      "alerts": 1,
+      "replays_accepted": 0,
+      "old_key_refused": 3,
+      "can_tell_apart": true
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "alert off",
+     "got": {
+      "accepted": 6,
+      "refused": 6,
+      "alerts": 0,
+      "replays_accepted": 0,
+      "old_key_refused": 3,
+      "can_tell_apart": true
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "replays from three different networks, all controls on",
+     "got": {
+      "accepted": 6,
+      "refused": 6,
+      "alerts": 3,
+      "replays_accepted": 0,
+      "old_key_refused": 3,
+      "can_tell_apart": true
+     },
+     "mismatch": {}
+    }
+   ]
+  },
+  {
+   "id": "N-R18-02",
+   "title": "A test credential that opens production",
+   "without": {
+    "normal_ok": 6,
+    "attacks_succeeded": 2,
+    "attacks_refused": 0,
+    "alerts": 0,
+    "readable_prod_secrets": 1
+   },
+   "with_": {
+    "normal_ok": 6,
+    "attacks_succeeded": 0,
+    "attacks_refused": 2,
+    "alerts": 2,
+    "readable_prod_secrets": 0
+   },
+   "mismatch_without": {},
+   "mismatch_with": {},
+   "noticed": {
+    "separate_identity": true,
+    "path_restriction": false,
+    "alert_test_asks_prod": true
+   },
+   "limit": {
+    "prod_data_copied_into_test_seen_by_controls": false,
+    "note": "a refresh job copies production rows into the test database under the production identity. None of the three controls inspects data, so this is an assertion about my model, not a measurement"
+   },
+   "extras": [
+    {
+     "label": "separate identity off",
+     "got": {
+      "normal_ok": 6,
+      "attacks_succeeded": 2,
+      "attacks_refused": 0,
+      "alerts": 0,
+      "readable_prod_secrets": 1
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "path restriction off",
+     "got": {
+      "normal_ok": 6,
+      "attacks_succeeded": 0,
+      "attacks_refused": 2,
+      "alerts": 2,
+      "readable_prod_secrets": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "alert off",
+     "got": {
+      "normal_ok": 6,
+      "attacks_succeeded": 0,
+      "attacks_refused": 2,
+      "alerts": 0,
+      "readable_prod_secrets": 0
+     },
+     "mismatch": {}
+    },
+    {
+     "label": "one production secret under a wildcard path, all controls on",
+     "got": {
+      "normal_ok": 6,
+      "attacks_succeeded": 1,
+      "attacks_refused": 1,
+      "alerts": 1,
+      "readable_prod_secrets": 1
+     },
+     "mismatch": {}
+    }
+   ]
+  }
+ ]
+}

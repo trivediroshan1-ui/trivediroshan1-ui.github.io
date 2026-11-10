@@ -7,14 +7,15 @@ LANES = [
    ('2 Nov 2026', 'Second run: 19 cases', '13 stretch cases and 6 chain tests. Mac and sandbox output matched.'),
    ('2 Nov 2026', 'Lab page, PDF book, video', '46 animated case cards, a book, and a 54-second silent video.'),
    ('2 Nov 2026', 'Framework, market, method, audit, roadmap, explainer', 'This set of pages, with downloadable audit data.'),
+   ('10 Nov 2026', 'Round 18: two cases', 'NHI4 and NHI8, the two thin OWASP items. 1 guess wrong (the alert count) and 2 controls masked. Mac and sandbox output matched.'),
+   ('10 Nov 2026', 'Stage 2 pages', 'Tool fit, capability matrix, risk scores, requirements, SIT and UAT plan and control mapping, now updated with round 18.'),
  ]),
  ('now', 'Now', [
    ('In review', 'Roshan\'s read of the new pages', 'Wording, claims about the market, and anything that reads as more certain than the evidence.'),
    ('In review', 'Accessibility and speed checks', 'Lighthouse and a screen-reader pass on the new pages. Not yet run.'),
  ]),
  ('next', 'Next', [
-   ('No date set', 'Two cases for thin OWASP coverage', 'Insecure authentication (NHI4) and environment isolation (NHI8) have one weak case each. Write the guesses first, as always.'),
-   ('No date set', 'Stage 2 documents as pages', 'Capability matrix, risk scores, requirements, SIT and UAT plan, control mapping. Drafts exist; they are not published.'),
+   ('No date set', 'Bring the older pages to 48 cases', 'The lab page, audit data and book still count 46 cases and 4 wrong guesses. Round 18 makes it 48 and 5. I will update them together.'),
    ('No date set', 'Close the catalogue gap', 'OWASP agentic risks ASI05, ASI06 and ASI07 have no rows yet.'),
    ('No date set', 'Read ATT&CK campaign C0064', 'I noted it but have not read it.'),
    ('No date set', 'Check vendor wording', 'The PAM and secrets-manager descriptions on the market page. Product claims need the vendor\'s own documents.'),
@@ -40,7 +41,7 @@ def build():
     body = f'''<main id="main" class="nhi">
   {subnav('roadmap')}
   {hero('Roadmap', 'What is done, what I am checking now, and what comes next', 'I have not put dates on the future items. A date I cannot keep is a claim I cannot back, so the order is the plan. Posting anything publicly waits for my own go.',
-        ['Last reviewed 2 November 2026', f'{n} items', 'Dates only where work is done'])}
+        ['Last reviewed 10 November 2026', f'{n} items', 'Dates only where work is done'])}
 
   <section class="nsec" id="board" aria-labelledby="bd-h">
     <h2 id="bd-h">The board</h2>
