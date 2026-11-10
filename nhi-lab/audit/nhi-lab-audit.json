@@ -1,13 +1,13 @@
 {
  "meta": {
-  "title": "Non-human identity lab: audit data, 46 cases",
+  "title": "Non-human identity lab: audit data, 48 cases",
   "generated": "2026-11-02",
   "author": "Roshan Trivedi",
   "licence": "CC BY 4.0",
   "note": "Made-up data. Models are small in-memory simulations written by the same author as the guesses.",
-  "cases": 46,
-  "guesses_wrong": 4,
-  "cases_with_control_not_noticed": 8,
+  "cases": 48,
+  "guesses_wrong": 5,
+  "cases_with_control_not_noticed": 10,
   "guess_files": [
    {
     "file": "guesses-round-14-15.md",
@@ -28,6 +28,11 @@
     "file": "guesses-stretch-and-chains.md",
     "label": "Stretch cases and chain tests (19 cases)",
     "sha256": "40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed"
+   },
+   {
+    "file": "guesses-round-18.md",
+    "label": "Round 18, NHI4 and NHI8 (2 cases)",
+    "sha256": "9155e0783c997589bc8daf2a6bc2dad4afa1cec0a2e183f9254665f847404180"
    }
   ],
   "mac_commits": {
@@ -38,7 +43,9 @@
     "f902ea8"
    ],
    "second_run_guesses": "78d7e3e",
-   "second_run_code_and_results": "05235fe"
+   "second_run_code_and_results": "05235fe",
+   "third_run_guesses": "e50df1b",
+   "third_run_code_and_results": "ce3c57e"
   }
  },
  "rows": [
@@ -869,6 +876,42 @@
    "controls_not_noticed": "",
    "owasp_nhi": "NHI10",
    "limit": ""
+  },
+  {
+   "id": "N-R18-01",
+   "run": 3,
+   "group": "Front door and trust",
+   "framework_step": "Store and issue",
+   "title": "A copied key from another network",
+   "what_goes_wrong": "A key copied to another network",
+   "without_control": "12 calls accepted; the log cannot tell genuine from copied",
+   "with_control": "Bound to the workload: 6 refused, 1 alert",
+   "guess_file": "guesses-round-18.md",
+   "guess_file_sha256": "9155e0783c997589bc8daf2a6bc2dad4afa1cec0a2e183f9254665f847404180",
+   "guess_matched": "no",
+   "wrong_guess_detail": "with control: expected alerts = 3, got 1",
+   "controls_checked": 3,
+   "controls_not_noticed": "revoke_old",
+   "owasp_nhi": "NHI4",
+   "limit": "a replay from inside the real billing workload carries the certificate, so the binding cannot see it"
+  },
+  {
+   "id": "N-R18-02",
+   "run": 3,
+   "group": "Front door and trust",
+   "framework_step": "Limit",
+   "title": "A test credential that opens production",
+   "what_goes_wrong": "A test credential that opens production",
+   "without_control": "All 8 runs succeed, 2 from a compromised runner",
+   "with_control": "2 refused, 2 alerts; a wildcard path still leaks 1 secret",
+   "guess_file": "guesses-round-18.md",
+   "guess_file_sha256": "9155e0783c997589bc8daf2a6bc2dad4afa1cec0a2e183f9254665f847404180",
+   "guess_matched": "yes",
+   "wrong_guess_detail": "",
+   "controls_checked": 3,
+   "controls_not_noticed": "path_restriction",
+   "owasp_nhi": "NHI8",
+   "limit": "a refresh job copies production rows into the test database under the production identity. None of the three controls inspects data, so this is an assertion about my model, not a measurement"
   }
  ]
 }

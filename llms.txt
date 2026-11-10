@@ -14,15 +14,15 @@
 - [HumanGate MCP lab](https://roshantrivedi.co.in/mcp-lab-case-study/): an approval gateway for MCP tool calls and what held under testing
 - [Securing India's National Exams](https://roshantrivedi.co.in/secure-india-exams/): a Zero Trust reference architecture for exam security
 - [Credential tiering self-check](https://roshantrivedi.co.in/tools/tier-check/)
-- [Non-human identity lab](https://roshantrivedi.co.in/nhi-lab/): 46 machine-identity cases on made-up data, guesses hashed before the code, 4 wrong guesses recorded
+- [Non-human identity lab](https://roshantrivedi.co.in/nhi-lab/): 48 machine-identity cases on made-up data, guesses hashed before the code, 5 wrong guesses recorded
 - [NHI framework](https://roshantrivedi.co.in/nhi-lab/framework/): seven steps from finding an identity to retiring it, mapped to the OWASP NHI Top 10
 - [NHI market in 2026](https://roshantrivedi.co.in/nhi-lab/market/): four acquisitions, agent identity and a NIST project, each dated and sourced
 - [How the NHI lab was run](https://roshantrivedi.co.in/nhi-lab/method/): the procedure, dates and mistakes
-- [NHI lab audit data](https://roshantrivedi.co.in/nhi-lab/audit/): all 46 cases as a table, CSV and JSON, with a hash check script
+- [NHI lab audit data](https://roshantrivedi.co.in/nhi-lab/audit/): all 48 cases as a table, CSV and JSON, with a hash check script
 - [NHI lab round 18](https://roshantrivedi.co.in/nhi-lab/round-18/): two more cases on insecure authentication and environment isolation, one guess wrong
 - [NHI lab Stage 2](https://roshantrivedi.co.in/nhi-lab/stage-2/): tool fit, risk scores, requirements, test plan and OWASP mapping
 - [NHI lab roadmap](https://roshantrivedi.co.in/nhi-lab/roadmap/) and [explainer](https://roshantrivedi.co.in/nhi-lab/explainer/)
-- [Machine identities, tested in public (book, 65 pages)](https://roshantrivedi.co.in/nhi-lab/nhi-lab-book.pdf)
+- [Machine identities, tested in public (book, 67 pages)](https://roshantrivedi.co.in/nhi-lab/nhi-lab-book.pdf)
 - [NHI lab in 60 seconds (silent video: the lab, the architecture, the data)](https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4)
 
 ## Writing

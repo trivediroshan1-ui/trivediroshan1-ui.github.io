@@ -23,14 +23,14 @@ STEPS = collections.Counter(r["framework_step"] for r in ROWS)
 FILES = collections.OrderedDict()
 for r in ROWS:
     FILES.setdefault(r["guess_file"], [r["guess_file_sha256"], 0])[1] += 1
-assert (N, sum(MATCH), len(WRONG), sum(MASKED), LIMITS, CONTROLS) == (46, 42, 4, 8, 12, 70), "audit totals changed: re-check the script text"
-assert RUNS == {1: 27, 2: 19} and sum(STEPS.values()) == 46 and [STEPS[s] for s in STEP_ORDER] == [4, 6, 10, 7, 9, 3, 7]
-assert AUD["meta"]["cases"] == N and AUD["meta"]["guesses_wrong"] == 4 and AUD["meta"]["cases_with_control_not_noticed"] == 8
-assert len(FILES) == 4
+assert (N, sum(MATCH), len(WRONG), sum(MASKED), LIMITS, CONTROLS) == (48, 43, 5, 10, 14, 76), "audit totals changed: re-check the script text"
+assert RUNS == {1: 27, 2: 19, 3: 2} and sum(STEPS.values()) == 48 and [STEPS[s] for s in STEP_ORDER] == [4, 6, 11, 8, 9, 3, 7]
+assert AUD["meta"]["cases"] == N and AUD["meta"]["guesses_wrong"] == 5 and AUD["meta"]["cases_with_control_not_noticed"] == 10
+assert len(FILES) == 5
 # the 10 OWASP NHI Top 10 entries as the lab maps them: 8 direct, NHI4 partial, NHI8 weak (scripts/nhi_data.py OWASP)
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from nhi_data import OWASP, STAGES  # noqa: E402
-assert len(OWASP) == 10 and [o[0] for o in OWASP if not o[3].startswith("direct")] == ["NHI4", "NHI8"]
+assert len(OWASP) == 10 and all(o[3].startswith("direct") for o in OWASP)
 
 CYAN, GREEN, AMBER, PINK, VIOLET, MINT = "#4de2ff", "#34d399", "#f7c873", "#ff7a93", "#8b5cf6", "#7df2d0"
 STEP_COL = ["#4de2ff", "#7df2d0", "#f7c873", "#c4b5fd", "#34d399", "#ff8fa3", "#8b5cf6"]
@@ -72,8 +72,8 @@ p{font-size:40px;line-height:1.35;color:#c4cfe6}
 .tile{width:410px;height:156px;border:3px solid #1f2a40;border-radius:22px;background:rgba(255,255,255,.045);padding:16px 24px}
 .tile b{display:block;font-size:64px;font-weight:800;line-height:1;color:var(--c)}
 .tile span{display:block;font-size:23px;line-height:1.22;color:#b7c4df;margin-top:6px}
-.dot{position:absolute;width:50px;height:50px;border-radius:12px;opacity:0}
-.mini{width:400px;height:95px;border-left:8px solid #ff7a93;background:rgba(255,122,147,.10);border-radius:12px;padding:10px 18px;font-size:23px;line-height:1.25;color:#e8eefc}
+.dot{position:absolute;width:46px;height:46px;border-radius:12px;opacity:0}
+.mini{width:400px;height:86px;border-left:8px solid #ff7a93;background:rgba(255,122,147,.10);border-radius:12px;padding:10px 18px;font-size:23px;line-height:1.25;color:#e8eefc}
 .mini b{font:700 21px/1.2 ui-monospace,Menlo,Consolas,monospace;color:#ff9db0;display:block;margin-bottom:2px}
 .seg{position:absolute;height:54px;border-radius:10px;font-weight:800;font-size:21px;line-height:54px;text-align:center;color:#04121a;opacity:0}
 .url{font-weight:800;font-size:92px;color:#4de2ff;line-height:1.1}
@@ -138,21 +138,21 @@ els.append(PK(keys))
 els.append(CAP("I write each guess first, hash it and commit it. Only then do I write the code and run it.", 5.4, 15.9))
 
 # guess files panel 16-21
-els.append(A("<h3>Four guess files, each with its own hash. Total: 46 cases</h3>", 90, 556, 15.9, 21.0, w=1700))
+els.append(A("<h3>Five guess files, each with its own hash. Total: 48 cases</h3>", 90, 556, 15.9, 21.0, w=1700))
 labels = {"guesses-round-14-15.md": ("Rounds 14 and 15", "first run"), "guesses-round-17.md": ("Round 17, shadow AI", "first run"),
-          "guesses-gap-cases.md": ("Gap cases", "first run"), "guesses-stretch-and-chains.md": ("Stretch cases and chain tests", "second run")}
-cols = [CYAN, VIOLET, GREEN, AMBER]
+          "guesses-gap-cases.md": ("Gap cases", "first run"), "guesses-stretch-and-chains.md": ("Stretch cases and chain tests", "second run"), "guesses-round-18.md": ("Round 18, NHI4 and NHI8", "third run")}
+cols = [CYAN, VIOLET, GREEN, AMBER, PINK]
 for i, (fn, (sha, cnt)) in enumerate(FILES.items()):
     y = 612 + i * 72; nm, run = labels[fn]
     t0 = 16.3 + i * 0.5
     els.append(A(f"<div class='row'><div class='lab'>{nm}<small>{fn}, {run}</small></div><div class='hash'>{sha[:12]}&hellip;</div>"
                  f"<div class='fill' data-bar='{cnt * 34}' data-bar-in='{t0 + 0.2}' style='background:{cols[i]}'></div><div class='num'>{cnt}</div></div>", 90, y, t0, 21.0, w=1700))
-els.append(CAP("Anyone can re-check those four hashes with one small script.", 16.0, 20.9))
+els.append(CAP("Anyone can re-check those five hashes with one small script.", 16.0, 20.9))
 
 # ---------------------------------------------------------------- scene 2: architecture 21-39
 els.append(A("<h2>2. The architecture</h2>", 80, 112, 21.2, 39.0))
 els.append(A("<h3 style='font-size:28px'>Evidence in, one shared data module, three outputs</h3>", 80, 178, 21.4, 30.0, w=1500))
-els.append(A("<h3 style='font-size:28px'>A 7 step framework holds all 46 cases</h3>", 80, 178, 30.4, 39.0, w=1500))
+els.append(A("<h3 style='font-size:28px'>A 7 step framework holds all 48 cases</h3>", 80, 178, 30.4, 39.0, w=1500))
 # diagram 21-30
 BX = {"A": (90, 250, 330, 150), "F": (90, 455, 330, 150), "B": (90, 650, 330, 150), "C": (520, 650, 330, 150),
       "D": (950, 240, 330, 170), "E1": (1380, 235, 430, 135), "E2": (1380, 420, 430, 135), "E3": (1380, 605, 430, 135)}
@@ -170,7 +170,7 @@ els += [box("A", "Evidence", "guesses/", "4 hashed guess files", CYAN, 21.6),
         box("D", "Shared", "nhi_data.py", "One reader for guesses and results", VIOLET, 24.8),
         box("E1", "Output", "Lab and framework pages", "", AMBER, 25.8),
         box("E2", "Output", "Audit data", "CSV and JSON, free to download", AMBER, 26.3),
-        box("E3", "Output", "The PDF book", "65 pages", AMBER, 26.8)]
+        box("E3", "Output", "The PDF book", "67 pages", AMBER, 26.8)]
 els += [LN(255 - 2, 400, 4, 55, MINT, 22.4, 30.0),  # A - verify.py
         LN(420, 725 - 2, 100, 4, GREEN, 23.8, 30.0),  # B -> C
         LN(420, 325 - 2, 530, 4, CYAN, 24.9, 30.0),  # A -> D
@@ -188,19 +188,19 @@ for i, (key, name, desc) in enumerate(STAGES):
     y = 232 + i * 92; t0 = 30.7 + i * 0.5
     els.append(A(f"<div class='row' style='height:84px'><div class='lab' style='width:640px'>{i + 1}. {name}<small>{desc}</small></div>"
                  f"<div class='fill' data-bar='{STEPS[STEP_ORDER[i]] * 78}' data-bar-in='{t0 + 0.2}' style='height:44px;background:{STEP_COL[i]}'></div><div class='num' style='font-size:44px'>{STEPS[STEP_ORDER[i]]}</div></div>", 90, y, t0, 39.0, w=1740))
-els.append(A("<p style='font-size:30px;color:#c4cfe6'>46 cases, each at exactly one step</p>", 1500, 700, 34.6, 39.0, w=340))
+els.append(A("<p style='font-size:30px;color:#c4cfe6'>48 cases, each at exactly one step</p>", 1500, 700, 34.6, 39.0, w=340))
 els.append(CAP("Every case sits at exactly one of 7 steps: find, own, limit, store, rotate, watch, retire.", 30.5, 38.9))
 
 # ---------------------------------------------------------------- scene 3: data 39-56
 els.append(A("<h2>3. What the data says</h2>", 80, 112, 39.2, 56.0))
-els.append(A(f"<h3 style='font-size:26px'>First run {RUNS[1]} cases, second run {RUNS[2]} cases. Both runs repeated on a second machine with identical output.</h3>", 80, 180, 39.4, 56.0, w=1750))
+els.append(A(f"<h3 style='font-size:26px'>First run {RUNS[1]} cases, second run {RUNS[2]}, third run {RUNS[3]}. Every run repeated on a second machine with identical output.</h3>", 80, 180, 39.4, 56.0, w=1750))
 TILES = [(N, "cases run", CYAN), (sum(MATCH), "guesses matched", MINT), (len(WRONG), "guesses wrong", PINK),
          (CONTROLS, "controls switched off, one at a time", VIOLET), (sum(MASKED), "cases with a control no check noticed", AMBER), (LIMITS, "cases with a recorded limit", "#c4b5fd")]
 for i, (v, s, c) in enumerate(TILES):
     x = 90 + (i % 2) * 440; y = 225 + (i // 2) * 168; t0 = 39.8 + i * 0.4
     els.append(A(f"<div class='tile' style='--c:{c}'><b data-count='{v}' data-count-in='{t0 + 0.1}'>0</b><span>{s}</span></div>", x, y, t0, 56.0))
-# 46 case grid
-GX, GY, CELL = 1010, 225, 62
+# case grid
+GX, GY, CELL = 1010, 225, 56
 cells = []
 for i in range(N):
     r, c = divmod(i, 10)
@@ -210,31 +210,32 @@ for i in range(N):
     cells.append(f"<div class='dot' data-in='{ti:.2f}' style='left:{GX + c * CELL + 4}px;top:{GY + 30 + r * CELL + 4}px;background:{fill};{ring}'></div>")
 els += cells
 els.append(A(f"<div style='display:flex;flex-wrap:wrap;gap:6px 0'><span class='leg' style='color:#fff'>Each square is one case:</span><span class='leg'><i style='background:{MINT}'></i>guess matched</span><span class='leg'><i style='background:{PINK}'></i>guess wrong</span>"
-             f"<span class='leg'><i style='background:transparent;box-shadow:0 0 0 4px {AMBER}'></i>a control no check noticed</span></div>", GX, 580, 44.4, 56.0, w=820))
+             f"<span class='leg'><i style='background:transparent;box-shadow:0 0 0 4px {AMBER}'></i>a control no check noticed</span></div>", GX, 540, 44.4, 56.0, w=820))
 # the 4 wrong guesses
 SHORT = {"S-R17-05": "The scan missed 2 secrets. I guessed 1.",
          "N-R14-25": "Another control already blocked both replays.",
          "N-R14-07": "Entry counts were off: 43 not 51, and 29 not 30.",
-         "C-R16-C01": "The best single control was a different one than I guessed."}
-els.append(A("<h3 style='font-size:26px'>The 4 wrong guesses</h3>", GX, 656, 45.6, 56.0, w=820, extra="font-size:26px;"))
+         "C-R16-C01": "The best single control was a different one than I guessed.",
+         "N-R18-01": "I guessed 3 alerts. It gave 1, one per new network."}
+els.append(A("<h3 style='font-size:26px'>The 5 wrong guesses</h3>", GX, 612, 45.6, 56.0, w=820, extra="font-size:26px;"))
 for i, r in enumerate(WRONG):
     assert r["id"] in SHORT, r["id"]
-    x = GX + (i % 2) * 420; y = 694 + (i // 2) * 110
-    els.append(A(f"<div class='mini'><b>{r['id']}</b>{SHORT[r['id']]}</div>", x, y, 45.9 + i * 0.4, 56.0, w=400, h=104))
+    x = GX + (i % 2) * 420; y = 648 + (i // 2) * 92
+    els.append(A(f"<div class='mini'><b>{r['id']}</b>{SHORT[r['id']]}</div>", x, y, 45.9 + i * 0.4, 56.0, w=400, h=88))
 # OWASP strip
 els.append(A("<h3 style='font-size:26px'>OWASP Non-Human Identities Top 10, NHI1 to NHI10, as the lab maps it</h3>", 90, 735, 49.2, 56.0, w=900, extra="font-size:26px;"))
 for i, o in enumerate(OWASP):
     kind = o[3]
     col = MINT if kind.startswith("direct") else (AMBER if kind.startswith("partial") else PINK)
     els.append(f"<div class='seg' data-in='{49.5 + i * 0.12:.2f}' style='left:{90 + i * 88}px;top:778px;width:80px;background:{col}'>{o[0].replace('NHI', '')}</div>")
-els.append(A("<p style='font-size:23px;line-height:1.3;color:#b7c4df'>Green: covered directly (8 of 10). NHI4 is partial: bearer-token replay only. NHI8 is weak: no case separates test from production.</p>", 90, 844, 50.2, 56.0, w=880))
-els.append(CAP("42 guesses matched, 4 were wrong. I wrote both guesses and code, so a match proves little. The misses are the useful part.", 39.4, 45.4))
-els.append(CAP("In 8 cases, switching a control off alone changed nothing the checks could see. Another control may be covering it. 12 cases carry a recorded limit.", 45.5, 55.9))
+els.append(A("<p style='font-size:23px;line-height:1.3;color:#b7c4df'>Green: every one of the 10 now has a tested case. NHI4 and NHI8 were the thin ones until round 18, which added two cases for them.</p>", 90, 844, 50.2, 56.0, w=880))
+els.append(CAP("43 guesses matched, 5 were wrong. I wrote both guesses and code, so a match proves little. The misses are the useful part.", 39.4, 45.4))
+els.append(CAP("In 10 cases, switching a control off alone changed nothing the checks could see. Another control may be covering it. 14 cases carry a recorded limit.", 45.5, 55.9))
 
 # ---------------------------------------------------------------- end 56-60
 els += [A("<h2 style='font-size:84px'>Free and public</h2>", 80, 250, 56.2, DUR, w=1700),
         A("<div class='url'>roshantrivedi.co.in/nhi-lab</div>", 80, 410, 56.6, DUR, w=1760),
-        A("<p style='font-size:40px'>46 animated cases, the framework, the market view, the audit data and a 65 page PDF book.</p>", 80, 600, 57.0, DUR, w=1700),
+        A("<p style='font-size:40px'>48 animated cases, the framework, the market view, the audit data and a 67 page PDF book.</p>", 80, 600, 57.0, DUR, w=1700),
         A("<p style='font-size:30px;color:#93a1bd'>Made-up data only. The models are small simulations written by the same person who wrote the guesses.</p>", 80, 800, 57.8, DUR, w=1700)]
 
 HTML = f"""<!doctype html><html><head><meta charset='utf-8'><style>{CSS}</style></head><body>

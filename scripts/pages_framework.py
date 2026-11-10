@@ -150,18 +150,18 @@ def build():
     body = f'''<main id="main" class="nhi">
   {subnav('framework')}
   {hero('Framework', 'A lifecycle for machine identities and their secrets', 'Seven steps from finding an identity to retiring it, with the decision each step needs and the lab case that tested it. Draft v0.1, 2 November 2026. It is a working method, not a standard, and it was tested only on made-up data.',
-        ['Last reviewed 2 November 2026', 'Built from the lab\'s 46 cases', 'For security and identity leads'])}
+        ['Last reviewed 2 November 2026', 'Built from the lab\'s 48 cases', 'For security and identity leads'])}
 
   <section class="nsec" id="use" aria-labelledby="use-h">
     <h2 id="use-h">Who this is for and how to use it</h2>
     <p class="lede">You run identity, privileged access or cloud security and you want one method for the credentials nobody talks about: service accounts, API keys, tokens, certificates, workload identities and the logins AI tools now hold.</p>
     <p>Use it in this order. Build the inventory, find the gaps, tier what you found, decide per credential, retire in stages, and set standards so new ones start clean. Where the page says <em>you set it</em>, the number depends on your organisation and I have not guessed it.</p>
-    <div class="nnote"><b>Limits</b>This framework came out of 46 cases on made-up data. The models are small and I wrote both the guesses and the code. Treat the lab results as examples of what to check, and test each control in your own environment before relying on it. Kubernetes and cloud workload identity design, and vault onboarding, are outside this page.</div>
+    <div class="nnote"><b>Limits</b>This framework came out of 48 cases on made-up data. The models are small and I wrote both the guesses and the code. Treat the lab results as examples of what to check, and test each control in your own environment before relying on it. Kubernetes and cloud workload identity design, and vault onboarding, are outside this page.</div>
   </section>
 
   <section class="nsec" id="lifecycle" aria-labelledby="lc-h">
     <h2 id="lc-h">The seven steps</h2>
-    {figure(lifecycle_svg(counts), 'The seven steps in order. The number under each box is how many of the 46 lab cases test that step. The dot travels left to right; with reduced motion it rests on the last step.', [('', 'Step'), ('t1', 'Step that deletes or revokes'), ('da', 'Feedback')])}
+    {figure(lifecycle_svg(counts), 'The seven steps in order. The number under each box is how many of the 48 lab cases test that step. The dot travels left to right; with reduced motion it rests on the last step.', [('', 'Step'), ('t1', 'Step that deletes or revokes'), ('da', 'Feedback')])}
     {stage_html}
   </section>
 
@@ -215,7 +215,7 @@ def build():
 
   <section class="nsec" id="cases" aria-labelledby="cs-h">
     <h2 id="cs-h">Which lab cases test which step</h2>
-    <p>Each of the 46 cases sits in one step. Chain tests cross several steps, so I placed each one where its first link is stopped.</p>
+    <p>Each of the 48 cases sits in one step. Chain tests cross several steps, so I placed each one where its first link is stopped.</p>
     <div class="stages">{sg}</div>
   </section>
 

@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 R = json.load(open('nhi-lab/evidence/results.json'))['rows']
 E = html.escape
 
-from nhi_data import T, T2, GROUPS
+from nhi_data import T, T2, T3, GROUPS
 
 
 def wrap(s, n):
@@ -50,33 +50,36 @@ def life_svg():
 rows = {r['id']: r for r in R}
 cards = []
 R2ROWS = {r['id']: r for r in json.load(open('nhi-lab/evidence/results-stretch.json'))['rows']}
-for cid, (g, trig, wo, wi) in list(T.items()) + list(T2.items()):
+R3ROWS = {r['id']: r for r in json.load(open('nhi-lab/evidence/results-round-18.json'))['rows']}
+for cid, (g, trig, wo, wi) in list(T.items()) + list(T2.items()) + list(T3.items()):
     second = cid in T2
-    r = R2ROWS[cid] if second else rows[cid]
+    third = cid in T3
+    r = R3ROWS[cid] if third else (R2ROWS[cid] if second else rows[cid])
     wrong = bool(r['mismatch_without'] or r['mismatch_with'])
     masked = [k for k, v in r['noticed'].items() if not v]
     tags = []
     tags.append('<span class="pill bad">guess wrong</span>' if wrong or (cid == 'N-R14-25') else '<span class="pill ok">guess matched</span>')
     if masked: tags.append('<span class="pill warn">control masked by another</span>')
     if second: tags.append('<span class="pill grp" style="--k:#94a3b8">second run</span>')
+    if third: tags.append('<span class="pill grp" style="--k:#94a3b8">third run</span>')
     cards.append(f'''<article class="case" data-g="{g}" id="{cid.lower()}"><header><h3>{cid} <span>{E(trig)}</span></h3><p class="ntags"><span class="pill grp" style="--k:{GROUPS[g][1]}">{GROUPS[g][0]}</span>{''.join(tags)}</p></header>{case_svg(cid, trig, wo, wi, GROUPS[g][1])}</article>''')
 
-chips = '<button class="chip on" data-f="all" type="button">All 46</button>' + ''.join(
+chips = '<button class="chip on" data-f="all" type="button">All 48</button>' + ''.join(
     f'<button class="chip" data-f="{k}" type="button">{v[0]}</button>' for k, v in GROUPS.items())
 
 head = open('ai-governance-lab/index.html').read().split('<body')[0]
 # reuse the site head (CSP, fonts, theme) and replace the page-specific parts
 import re
-head = re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="46 non-human identity cases on made-up data. Guesses written and hashed before the code, every control switched off once. A framework, a dated market view, downloadable audit data and animated workflows." />', head)
+head = re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="48 non-human identity cases on made-up data. Guesses written and hashed before the code, every control switched off once. A framework, a dated market view, downloadable audit data and animated workflows." />', head)
 head = re.sub(r'<link rel="canonical"[^>]*>', '<link rel="canonical" href="https://roshantrivedi.co.in/nhi-lab/" />', head)
-head = re.sub(r'<meta property="og:title"[^>]*>', '<meta property="og:title" content="I tested 46 non-human identity cases. My guesses were wrong in four places." />', head)
+head = re.sub(r'<meta property="og:title"[^>]*>', '<meta property="og:title" content="I tested 48 non-human identity cases. My guesses were wrong in five places." />', head)
 head = re.sub(r'<meta property="og:description"[^>]*>', '<meta property="og:description" content="Service accounts, tokens, break-glass and shadow AI, tested on made-up data with the guesses committed first." />', head)
 head = re.sub(r'<meta property="og:url"[^>]*>', '<meta property="og:url" content="https://roshantrivedi.co.in/nhi-lab/" />', head)
 head = re.sub(r'(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")', r'\g<1>https://roshantrivedi.co.in/assets/share/og-nhi-lab.png\g<2>', head)
 head = re.sub(r'<title>.*?</title>', '<title>Non-human identity lab &middot; Roshan Trivedi</title>', head)
 head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', head, flags=re.S)
-_dataset = {"@type":"Dataset","name":"Non-human identity lab: 46 cases","description":"46 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":True,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}
-_video = {"@type":"VideoObject","name":"Non-human identity lab in 60 seconds","description":"A silent, captioned 60 second video: how the lab runs, how it is built, and what the data says across 46 cases.","thumbnailUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion-poster.jpg","uploadDate":"2026-11-02","duration":"PT1M","contentUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4","embedUrl":"https://roshantrivedi.co.in/nhi-lab/","isAccessibleForFree":True,"author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"}}
+_dataset = {"@type":"Dataset","name":"Non-human identity lab: 48 cases","description":"48 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":True,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]}
+_video = {"@type":"VideoObject","name":"Non-human identity lab in 60 seconds","description":"A silent, captioned 60 second video: how the lab runs, how it is built, and what the data says across 48 cases.","thumbnailUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion-poster.jpg","uploadDate":"2026-11-02","duration":"PT1M","contentUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4","embedUrl":"https://roshantrivedi.co.in/nhi-lab/","isAccessibleForFree":True,"author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"}}
 ld = '<script type="application/ld+json">' + json.dumps({"@context":"https://schema.org","@graph":[_dataset,_video]}, separators=(',',':'), ensure_ascii=False) + '</script>'
 head = head.replace('</head>', '  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">\n  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261102d">\n  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">\n  ' + ld + '\n</head>')
 nav = re.search(r'<nav class="hg-sitenav".*?</nav>', open('ai-governance-lab/index.html').read(), re.S).group(0)

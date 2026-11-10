@@ -48,6 +48,8 @@ TAKE = {
 'C-R16-C05': 'An alert on every use reports the reuse at link 4 and does not stop it. Rotating the password on return makes the pasted one useless, which stops the chain at link 3.',
 'C-R16-C06': 'Showing the risk first flags the hostile request. A second approver for high-risk requests stops it. Whether a tired approver acts on the flag is human behaviour, and this model does not test that.',
 'C-R16-C17': 'Blocking direct login stops the chain at link 2. A vault check-in alert only reports it, at link 4, after the bypass has happened.',
+'N-R18-01': 'A key copied to another network was replayed 3 times among 12 calls. Without a binding, the log showed "billing key" 12 times and nobody could tell the 6 genuine calls from the bad ones. With the key bound to the workload, the 6 bad ones were refused. I guessed 3 alerts and got 1, because the model raises one alert per new network. A call from inside the real workload still passes.',
+'N-R18-02': 'A test runner shared a service account and a vault path with production, so 2 attacks on the production database worked. A separate identity per environment stopped them, and the path restriction was masked by it. A production secret under a wildcard path was still readable from test, as I guessed.',
 }
 
 # Wrong guesses in plain words: what I wrote, what happened.
@@ -56,6 +58,7 @@ WRONG = {
 'N-R14-25': ('I guessed a short token lifetime would change whether a replay worked.', 'It changed nothing. Binding the token and revoking it already refused both replays.'),
 'N-R14-07': ('I guessed 51 entries without the control and 30 with it.', 'The true counts are 43 and 29. Nine identities with 2 or 3 names each cannot make 51. The rule also merged two real accounts.'),
 'C-R16-C01': ('I guessed the secret scan on tickets would be the most useful single control.', 'The owner rule was. It stops the chain at the first link.'),
+'N-R18-01': ('I guessed 3 alerts with all controls on.', 'The result was 1 alert. The model raises one alert per new network, and all 3 replays came from the same network. Replays from 3 networks gave 3.'),
 }
 
 STEP_INTRO = {
