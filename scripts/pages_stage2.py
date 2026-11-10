@@ -112,14 +112,14 @@ def build():
 
     body = f'''<main id="main" class="nhi">
   {subnav('stage2')}
-  {hero('Stage 2', 'From lab results to a plan: tool fit, risks, requirements and a test plan', 'The lab found what controls do in small models. This page turns that into the documents a team would need to act: how to choose, what to rank first, what to ask for, and how to test it. It is a draft for discussion, not a product ranking.',
+  {hero('Stage 2', 'From lab results to a plan: tool fit, risks, requirements and a test plan', 'The lab showed what controls do in small models. This page turns that into the documents a team needs to act on it: how to choose a tool, what to rank first, what to ask for and how to test it. It is a draft for discussion and ranks no products.',
         ['Last reviewed 10 November 2026', 'Built on 48 cases in three runs', 'No product tested'])}
 
   <section class="nsec" id="read" aria-labelledby="rd-h">
     <h2 id="rd-h">Read this first</h2>
     <ul>
-      <li>No product was tested. Where I describe a category of tool, it is my reading of public material and needs checking against the vendor's own documents.</li>
-      <li>The scores are my proposal for ranking a list. They use lab results as evidence, not as proof, because every case is a small model that I wrote.</li>
+      <li>No product was tested. Where I describe a category of tool, I am reading public material, and each claim needs checking against the vendor's own documents.</li>
+      <li>The scores are my proposal for ranking a list. Treat the lab results behind them as evidence only, because every case is a small model that I wrote.</li>
       <li>Passing a test in this plan is not a compliance claim.</li>
       <li>All data is made up (Kaveri Finance). Case numbers link to the lab page, or to the <a href="/nhi-lab/round-18/">round 18 page</a>.</li>
     </ul>
@@ -171,9 +171,9 @@ def build():
   <section class="nsec" id="not" aria-labelledby="nt-h">
     <h2 id="nt-h">What this page does not do</h2>
     <ul>
-      <li>It does not rank products or say what any vendor does today.</li>
+      <li>It ranks no products and says nothing about what any vendor does today.</li>
       <li>The scores are a proposal, not a measured result.</li>
-      <li>It does not replace a risk assessment of your own environment.</li>
+      <li>It is no substitute for a risk assessment of your own environment.</li>
     </ul>
     <p>See the <a href="/nhi-lab/framework/">framework</a>, the <a href="/nhi-lab/market/">market view</a> and the <a href="/nhi-lab/method/">method</a>.</p>
   </section>
