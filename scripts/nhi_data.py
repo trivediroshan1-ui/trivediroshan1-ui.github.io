@@ -64,6 +64,11 @@ T2 = {
 }
 GROUPS['chain'] = ('Chain tests', '#fbbf24')
 
+T3 = {
+'N-R18-01': ('control','A key copied to another network','12 calls accepted; the log cannot tell genuine from copied','Bound to the workload: 6 refused, 1 alert'),
+'N-R18-02': ('control','A test credential that opens production','All 8 runs succeed, 2 from a compromised runner','2 refused, 2 alerts; a wildcard path still leaks 1 secret'),
+}
+
 # ---- framework stages: every case sits in exactly one -------------------------------------------
 STAGES = [
     ('find',   'Find',             'List every machine identity and where it lives'),
@@ -78,8 +83,8 @@ STAGE_OF = {}
 for _s, _ids in {
     'find':   'N-R14-01 N-R14-07 P-R15-08 S-R17-06',
     'own':    'N-R14-09 N-R14-18 N-R14-21 S-R17-03 S-R17-04 P-R15-18',
-    'limit':  'N-R14-17 N-R14-22 P-R15-05 P-R15-07 P-R15-09 S-R17-02 C-R16-C17 C-R16-C06 P-R15-10 P-R15-16',
-    'store':  'S-R17-05 N-R14-24 N-R14-03 P-R15-15 N-R14-25 C-R16-C02 C-R16-C01',
+    'limit':  'N-R18-02 N-R14-17 N-R14-22 P-R15-05 P-R15-07 P-R15-09 S-R17-02 C-R16-C17 C-R16-C06 P-R15-10 P-R15-16',
+    'store':  'N-R18-01 S-R17-05 N-R14-24 N-R14-03 P-R15-15 N-R14-25 C-R16-C02 C-R16-C01',
     'rotate': 'N-R14-04 N-R14-05 N-R14-14 N-R14-15 N-R14-19 N-R14-20 P-R15-02 P-R15-03 P-R15-25',
     'watch':  'P-R15-11 P-R15-13 C-R16-C05',
     'retire': 'N-R14-11 S-R17-01 S-R17-10 P-R15-17 P-R15-19 N-R14-23 C-R16-C04',
@@ -92,11 +97,11 @@ OWASP = [
     ('NHI1',  'Improper Offboarding',               'N-R14-11 P-R15-18 S-R17-01 S-R17-10', 'direct'),
     ('NHI2',  'Secret Leakage',                     'S-R17-05 S-R17-06 N-R14-24 C-R16-C02', 'direct'),
     ('NHI3',  'Vulnerable Third-Party NHI',         'N-R14-05 N-R14-23 S-R17-01', 'direct'),
-    ('NHI4',  'Insecure Authentication',            'N-R14-25', 'partial: only bearer-token replay'),
+    ('NHI4',  'Insecure Authentication',            'N-R14-25 N-R18-01', 'direct'),
     ('NHI5',  'Overprivileged NHI',                 'P-R15-05 S-R17-02 N-R14-17', 'direct'),
     ('NHI6',  'Insecure Cloud Deployment Configurations', 'N-R14-03 N-R14-25 C-R16-C02', 'direct'),
     ('NHI7',  'Long-Lived Secrets',                 'N-R14-05 N-R14-14 N-R14-25', 'direct'),
-    ('NHI8',  'Environment Isolation',              'N-R14-17', 'weak: no case separates test from production'),
+    ('NHI8',  'Environment Isolation',              'N-R14-17 N-R18-02', 'direct'),
     ('NHI9',  'NHI Reuse',                          'N-R14-21 P-R15-19', 'direct'),
     ('NHI10', 'Human Use of NHI',                   'N-R14-22 S-R17-03 C-R16-C17', 'direct'),
 ]
@@ -107,10 +112,12 @@ GUESS_FILES = {
     'r17':   ('guesses-round-17.md', 'Round 17, shadow AI (4 cases)', '4e6dfc1a80b2fa1e0a0da0a129882e87fdd3be931b5dddafd018d92c05dc8b7c'),
     'gap':   ('guesses-gap-cases.md', 'Gap cases (3 cases)', '7d3aee7a941b3915915690294e97ef22118957fc82b5505a1a0502d6e4bd5f8d'),
     'r2':    ('guesses-stretch-and-chains.md', 'Stretch cases and chain tests (19 cases)', '40c2f87c9f3fa914b48a09c4abf016f1189b02ea91f07232e456275b842489ed'),
+    'r18':   ('guesses-round-18.md', 'Round 18, NHI4 and NHI8 (2 cases)', '9155e0783c997589bc8daf2a6bc2dad4afa1cec0a2e183f9254665f847404180'),
 }
 GAP_IDS = {'N-R14-23', 'N-R14-24', 'N-R14-25'}
 
 def guess_key(cid):
+    if cid in T3: return 'r18'
     if cid in T2: return 'r2'
     if cid in GAP_IDS: return 'gap'
     if cid.startswith('S-R17'): return 'r17'
@@ -126,7 +133,7 @@ def sha256_file(path):
 # ---- scenario text, read from the guess files -----------------------------------------------------
 def _scenarios():
     out = {}
-    idre = re.compile(r'^(?:#{2,4}\s+|\*\*)([NPSC]-R1[4-7]-C?\d+)\s+(.*)$')
+    idre = re.compile(r'^(?:#{2,4}\s+|\*\*)([NPSC]-R1[4-8]-C?\d+)\s+(.*)$')
     for key, (fn, _, _) in GUESS_FILES.items():
         lines = open(os.path.join(EV, 'guesses', fn), encoding='utf-8').read().split('\n')
         for i, ln in enumerate(lines):
@@ -179,10 +186,11 @@ def load_cases():
     """One dict per case, in the order the page shows them."""
     r1 = {r['id']: r for r in json.load(open(os.path.join(EV, 'results.json')))['rows']}
     r2 = {r['id']: r for r in json.load(open(os.path.join(EV, 'results-stretch.json')))['rows']}
+    r3 = {r['id']: r for r in json.load(open(os.path.join(EV, 'results-round-18.json')))['rows']}
     out = []
-    for cid, (g, trig, wo, wi) in list(T.items()) + list(T2.items()):
-        run = 2 if cid in T2 else 1
-        r = r2[cid] if run == 2 else r1[cid]
+    for cid, (g, trig, wo, wi) in list(T.items()) + list(T2.items()) + list(T3.items()):
+        run = 3 if cid in T3 else (2 if cid in T2 else 1)
+        r = {1: r1, 2: r2, 3: r3}[run][cid]
         wrong = bool(r['mismatch_without'] or r['mismatch_with']) or cid == 'N-R14-25'
         masked = [k for k, v in r['noticed'].items() if not v]
         title, setup = SCEN.get(cid, (r['title'], ''))
@@ -198,7 +206,7 @@ def load_cases():
 
 if __name__ == '__main__':
     cs = load_cases()
-    assert len(cs) == 46, len(cs)
+    assert len(cs) == 48, len(cs)
     assert set(STAGE_OF) == {c['id'] for c in cs}, set(STAGE_OF) ^ {c['id'] for c in cs}
     print('cases', len(cs), 'wrong', sum(c['wrong'] for c in cs), 'with masked control', sum(bool(c['masked']) for c in cs))
     print('setup missing:', [c['id'] for c in cs if not c['setup']])

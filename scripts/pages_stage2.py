@@ -1,7 +1,7 @@
 from nhi_site import *
 from nhi_data import OWASP
 
-R18 = {'NHI4': ['N-R18-01'], 'NHI8': ['N-R18-02']}
+R18 = {}
 
 def link(cid):
     if cid.startswith('N-R18'):

@@ -21,6 +21,8 @@
     "round_one_first_run_cases": 71
   },
   "legacy_context_words": [
+    "at launch",
+    "first two runs",
     "first four rounds",
     "rounds 1 to 4",
     "first 59",
@@ -30,10 +32,10 @@
     "from the first four rounds"
   ],
   "nhi_lab": {
-    "cases_with_round_18": 48,
     "cases_first_run": 27,
     "cases_second_run": 19,
-    "cases": 46,
-    "book_pages": 65
+    "cases_third_run": 2,
+    "cases": 48,
+    "book_pages": 67
   }
 }

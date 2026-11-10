@@ -64,14 +64,14 @@
           ["/ai-governance-lab/appendix/", "Appendix and glossary", "doc"],
           ["/ai-governance-lab/implement/", "Using it, and what it costs", "coin"]] },
         { title: "Non-human identity lab", k: "pam", items: [
-          ["/nhi-lab/", "Overview: 46 cases, 4 wrong guesses", "shield"],
+          ["/nhi-lab/", "Overview: 48 cases, 5 wrong guesses", "shield"],
           ["/nhi-lab/framework/", "The 7 step framework", "layers"],
           ["/nhi-lab/market/", "Market in 2026", "scale"],
           ["/nhi-lab/method/", "What we did, step by step", "list"],
           ["/nhi-lab/audit/", "Audit data, CSV and JSON", "check"],
           ["/nhi-lab/roadmap/", "Roadmap", "calendar"],
           ["/nhi-lab/explainer/", "One minute explainer", "spark"],
-          ["/nhi-lab/nhi-lab-book.pdf", "The book. 65 pages", "book"]] },
+          ["/nhi-lab/nhi-lab-book.pdf", "The book. 67 pages", "book"]] },
         { title: "Read and try", k: "plat", items: [
           ["/book/", "All the free books", "book"],
           ["/tools/tier-check/", "Credential tier self-check", "pyramid"],
@@ -87,7 +87,7 @@
         { title: "The books", k: "ai", items: [
           ["/book/#approve", "Who Approved That? MCP lab, 138 pages", "book"],
           ["/book/#agl", "Does AI Governance Hold? 69 pages", "book"],
-          ["/book/#nhi", "Machine identities, tested in public. 65 pages", "book"]] },
+          ["/book/#nhi", "Machine identities, tested in public. 67 pages", "book"]] },
         { title: "Reports and papers", k: "gov", items: [
           ["/assets/ai-governance-lab-addendum.pdf", "AI governance addendum, rounds 5 to 13. 74 pages", "doc"],
           ["/assets/humangate-mcp-lab-final-report.pdf", "HumanGate MCP lab final report. 122 pages", "doc"],

@@ -7,7 +7,7 @@ SCENES = [
  (12, 'A front door for new ones', 'Put a front door in front of new identities. No owner, no scope, no end date, no account. In the lab this stopped the problem when the identity was created.'),
  (12, 'Change secrets in order', 'Update the application first, then change the secret, then check the old one is dead. In one test, five tickets closed and two old secrets still worked.'),
  (11, 'Switch each control off once', 'Then switch each control off, one at a time, and see if anything notices. Eight cases had a control that nothing noticed. Another control was covering it, or it did not matter.'),
- (8,  'What I found', 'I tested 46 cases on made-up data. My guesses were wrong in four places. The data and the script to check it are on the audit page.'),
+ (8,  'What I found', 'I tested 48 cases on made-up data. My guesses were wrong in five places. The data and the script to check it are on the audit page.'),
 ]
 
 def svg(n):
@@ -80,8 +80,8 @@ def svg(n):
         inner += '<defs><marker id="a5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--mut)"/></marker></defs>'
         inner += '<g class="a a5"><text class="s-s y" x="640" y="610" text-anchor="middle">Nothing changed: covered by another control, or it did not matter</text></g>'
         return H(inner, '')
-    inner = title('What I found', '46 cases, made-up data, guesses written first')
-    nums = [('46', 'cases', 'p'), ('4', 'wrong guesses', 'r'), ('8', 'cases with a control nothing noticed', 'y')]
+    inner = title('What I found', '48 cases, made-up data, guesses written first')
+    nums = [('48', 'cases', 'p'), ('5', 'wrong guesses', 'r'), ('10', 'cases with a control nothing noticed', 'y')]
     for i, (v, t, c) in enumerate(nums):
         x = 220 + i * 420
         lines = ''.join(f'<text class="s-s" x="{x}" y="{420 + j * 34}" text-anchor="middle">{E(ln)}</text>' for j, ln in enumerate(wrap(t, 20)))
@@ -125,7 +125,7 @@ def build():
     <h2 id="mo-h">Go further</h2>
     <ul>
       <li>The <a href="/nhi-lab/framework/">framework</a> turns these ideas into seven steps.</li>
-      <li>The <a href="/nhi-lab/audit/">audit data</a> has all 46 cases and a script that checks the hashes.</li>
+      <li>The <a href="/nhi-lab/audit/">audit data</a> has all 48 cases and a script that checks the hashes.</li>
       <li>The same story as a <a href="/assets/share/nhi-lab.mp4">54-second silent video</a> (1.5 MB), for sharing.</li>
     </ul>
     <div class="nnote"><b>Rights and originality</b>All shapes are drawn for this page. There is no audio, no third-party artwork, no logo and no real company data. The numbers come from the lab's made-up data.</div>

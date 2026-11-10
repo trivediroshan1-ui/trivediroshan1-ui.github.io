@@ -6,7 +6,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 A = json.load(open(os.path.join(ROOT, "nhi-lab/audit/nhi-lab-audit.json")))["rows"]
 N, M, W = len(A), sum(r["guess_matched"] == "yes" for r in A), sum(r["guess_matched"] != "yes" for r in A)
 U = sum(bool(r["controls_not_noticed"]) for r in A)
-assert (N, M, W, U) == (46, 42, 4, 8)
+assert (N, M, W, U) == (48, 43, 5, 10)
 HTML = f"""<!doctype html><meta charset=utf-8><style>
 @font-face{{font-family:'DM Sans';font-weight:500;src:url(/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2) format('woff2')}}
 @font-face{{font-family:'DM Sans';font-weight:700;src:url(/assets/dm-sans-latin-700-normal-DvUfVpUG.woff2) format('woff2')}}
@@ -24,7 +24,7 @@ h1{{position:absolute;left:70px;top:112px;width:1080px;font-weight:800;font-size
 </style><div class=bar></div><div class=glow></div><div class=eye>Non-human identity lab</div>
 <h1>I tested <em>{N}</em> machine identity cases.<br>My guesses were wrong in <em>{W}</em>.</h1>
 <div class=st><div class=t style="--c:#4de2ff"><b>{N}</b><span>cases run</span></div><div class=t style="--c:#7df2d0"><b>{M}</b><span>guesses matched</span></div><div class=t style="--c:#ff7a93"><b>{W}</b><span>guesses wrong</span></div><div class=t style="--c:#f7c873"><b>{U}</b><span>cases with an unnoticed control</span></div></div>
-<div class=foot><b>roshantrivedi.co.in/nhi-lab</b><span>Free audit data and a 65 page book. Made-up data only.</span></div>"""
+<div class=foot><b>roshantrivedi.co.in/nhi-lab</b><span>Free audit data and a 67 page book. Made-up data only.</span></div>"""
 def main():
     from playwright.sync_api import sync_playwright
     p = os.path.join(ROOT, "assets", "_og.html"); open(p, "w").write(HTML)

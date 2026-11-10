@@ -19,6 +19,8 @@ description: "46 machine identity cases on made-up data, with every guess hashed
 
 *Independent practitioner write-up. Last reviewed 3 November 2026. Everything here comes from my own public lab on made-up data. It does not describe any employer's systems, data or projects.*
 
+**Update, 10 November 2026.** A third run added 2 cases, on insecure authentication and on keeping test away from production. One guess was wrong, so the lab now has 48 cases and 5 wrong guesses. The numbers below are as I published them on 3 November. The new cases are on the [round 18 page](/nhi-lab/round-18/).
+
 ## The short version
 
 - I built a small lab for non-human identities: service accounts, tokens, break-glass accounts, vendor access and AI tools that hold credentials. It has 46 cases.

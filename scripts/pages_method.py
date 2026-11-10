@@ -48,7 +48,7 @@ def build():
         ('2 November 2026', '1. First run: 27 cases', 'Guess files hashed and committed on the Mac, then the models were written and run. 24 must-run cases and 3 gap cases from 2026 incident reports.'),
         ('2 November 2026', '2. Second-run guesses', f'19 more cases: 13 stretch cases and 6 chain tests. Hashed on the Mac (<code>40c2f87c…</code>) and committed as <code>78d7e3e</code> before any code.'),
         ('2 November 2026', '3. Second run', f'Code and results committed as <code>05235fe</code>. The Mac output matched the sandbox exactly.'),
-        ('2 November 2026', '4. Site, book, video', 'The lab page with 46 animated cases, a PDF book, a 54-second silent video, and this set of pages.'),
+        ('2 November 2026', '4. Site, book, video', 'The lab page with 46 animated cases (48 after round 18), a PDF book, a 54-second silent video, and this set of pages.'),
     ]
     tlh = '<ol class="tl">' + ''.join(f'<li><time>{d}</time><b>{E(t)}</b>{x}</li>' for d, t, x in tl) + '</ol>'
 
@@ -62,7 +62,7 @@ def build():
     ], 'Mistakes, in the order they matter. The first four are wrong guesses. The last two are mistakes in my own test harness.')
 
     defs_tbl = table(['Term', 'Meaning here'], [
-        [th_row('Match'), td('The result equals what the guess said, in both runs.')],
+        [th_row('Match'), td('The result equals what the guess said, in every run.')],
         [th_row('Wrong guess'), td('A number or a ranking in the guess did not equal the result. The page keeps both.')],
         [th_row('Noticed'), td('Switching that one control off changed a result.')],
         [th_row('Masked'), td('Switching it off changed nothing, because another control already stopped the same thing, or the control did not matter in that case.')],
@@ -73,7 +73,7 @@ def build():
     body = f'''<main id="main" class="nhi">
   {subnav('method')}
   {hero('What we did', 'How the lab was run, step by step, with the mistakes', 'I wrote my guesses, locked them with a hash, then wrote the code and ran every case twice, once without the control and once with it. This page is the full procedure, the dates, and the places I got it wrong.',
-        ['Last reviewed 2 November 2026', f'{len(cases)} cases in two runs', 'Made-up data only'])}
+        ['Last reviewed 2 November 2026', f'{len(cases)} cases in three runs', 'Made-up data only'])}
 
   <section class="nsec" id="question" aria-labelledby="q-h">
     <h2 id="q-h">The question</h2>
@@ -139,14 +139,14 @@ def build():
     <h2 id="r-h">Repeat it yourself</h2>
     <ol class="nsteps">
       <li><b class="t">Download the evidence folder.</b>It is in the repository under <code>nhi-lab/evidence/</code>.<span class="exp">A folder with <code>guesses/</code>, <code>cases.py</code>, <code>run.py</code>, <code>cases2.py</code> and <code>run2.py</code>.</span></li>
-      <li><b class="t">Check the guess hashes.</b><code>python3 verify.py</code><span class="exp">"4 of 4 guess files match the recorded hash." Tested in the build sandbox on 2 November 2026.</span></li>
-      <li><b class="t">Run both runs.</b><code>python3 run.py</code> then <code>python3 run2.py</code>. They need only Python 3 and they check the hashes first.<span class="exp">The tables in <code>RESULTS.md</code> and <code>RESULTS-stretch.md</code>. On 2 November 2026 the results were identical to the committed ones except for the time stamp.</span></li>
+      <li><b class="t">Check the guess hashes.</b><code>python3 verify.py</code><span class="exp">"5 of 5 guess files match the recorded hash." Tested in the build sandbox on 2 November 2026.</span></li>
+      <li><b class="t">Run all three runs.</b><code>python3 run.py</code>, <code>python3 run2.py</code> then <code>python3 run3.py</code>. They need only Python 3 and they check the hashes first.<span class="exp">The tables in <code>RESULTS.md</code> and <code>RESULTS-stretch.md</code>. On 2 November 2026 the results were identical to the committed ones except for the time stamp.</span></li>
     </ol>
   </section>
 </main>'''
-    desc = 'The full procedure for the 46-case non-human identity lab: guesses hashed before code, each control switched off alone, dates, steps with expected results, and every mistake.'
+    desc = 'The full procedure for the 48-case non-human identity lab: guesses hashed before code, each control switched off alone, dates, steps with expected results, and every mistake.'
     write('nhi-lab/method/index.html', shell('nhi-lab/method/', 'How the lab was run', desc,
-          'How I ran 46 non-human identity cases, and where I got it wrong', body, ld=ld_article('How the NHI lab was run', desc, 'nhi-lab/method/')))
+          'How I ran 48 non-human identity cases, and where I got it wrong', body, ld=ld_article('How the NHI lab was run', desc, 'nhi-lab/method/')))
 
 if __name__ == '__main__':
     build()
