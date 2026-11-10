@@ -43,7 +43,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["who is roshan", "who are you", "who is he", "roshan", "bio", "trivedi", "background", "what does he do", "what do you do", "his job", "his role", "job title"],
     answer:
-      "Roshan Trivedi is a Credential Management Platform Owner based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet — translating identity-security problems into products people can adopt, teams can operate, and leaders can govern. Recently he wrote a free book, Who Approved That?, about keeping a person in the loop when AI agents use real tools (see /book/).",
+      "Roshan Trivedi is a Credential Management Platform Owner based in Bengaluru, India, with 14+ years across consulting and global enterprise environments in India, the UK and Australia (including an on-site CyberArk engagement in Birmingham, UK). His focus: \"Identity is the control plane.\" He works where platform strategy, security architecture, product ownership and audit evidence meet, turning identity security problems into products people can adopt, teams can operate, and leaders can govern. Recently he wrote a free book, Who Approved That?, about keeping a person in the loop when AI agents use real tools (see /book/).",
   },
   {
     id: "expertise",
@@ -51,7 +51,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["expertise", "skills", "specialt", "focus", "areas", "what does he know", "specialize", "specialize"],
     answer:
-      "Core focus areas: Credential Management Platform ownership, PAM (Privileged Access Management) product leadership, Zero Standing Privilege, Non-Human Identity (NHI) management, IAM governance and audit/control mapping, plus using AI/agentic tooling responsibly as a security co-worker. Current work spans credential-management platform ownership, PAM product leadership, IAM control evaluation, roadmaps, architecture decisions, proof-of-concept leadership, migrations and audit mapping — plus independent research on non-human identity, MCP and agentic-AI security.",
+      "Core focus areas: Credential Management Platform ownership, PAM (Privileged Access Management) product leadership, Zero Standing Privilege, Non-Human Identity (NHI) management, IAM governance and audit/control mapping, plus using AI/agentic tooling responsibly as a security co-worker. Current work spans credential-management platform ownership, PAM product leadership, IAM control evaluation, roadmaps, architecture decisions, proof-of-concept leadership, migrations and audit mapping, plus independent research on non-human identity, MCP and agentic-AI security.",
   },
   {
     id: "case-studies-overview",
@@ -59,7 +59,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["case studies", "case study", "portfolio", "projects", "work examples", "list of case studies", "what's on this site", "whats on this site", "what is on the website", "sections"],
     answer:
-      "The site has 20 privacy-safe case studies (employer names, client details and internal metrics are left out of all of them): Credential Management Platform Strategy, PAM Modernization & Zero Standing Privilege, How I Run a Privileged Access Program, Privileged Access Migration Planning, PAM/NHI & Cloud Platform Evaluation, IAM Audit & Control-Mapping Framework, AI as a Security Product Co-worker, Non-Human Identity at Scale, Just-in-Time & Just-Enough-Access Elevation, Break-Glass Emergency Access, Secrets Sprawl & Consolidation, Third-Party & Vendor Privileged Access Governance, Access Recertification & IGA Automation, Passwordless Authentication Rollout, Cloud Entitlement Management (CIEM) at Scale, Agentic AI Identity Governance, the AI Processing Tax research piece, One Key, Every Agent (AI agent credential sharing), the Shadow AI Discovery Gap research piece, and Credential Tiering & the PAM Market (the Tier 0-3 model and where PAM tools fit). There's also the independent Secure India Exams project and a security blog.",
+      "The site has 22 privacy-safe case studies (employer names, client details and internal metrics are left out of all of them): Credential Management Platform Strategy, PAM Modernization & Zero Standing Privilege, How I Run a Privileged Access Program, Privileged Access Migration Planning, PAM/NHI & Cloud Platform Evaluation, IAM Audit & Control-Mapping Framework, AI as a Security Product Co-worker, Non-Human Identity at Scale, Just-in-Time & Just-Enough-Access Elevation, Break-Glass Emergency Access, Secrets Sprawl & Consolidation, Third-Party & Vendor Privileged Access Governance, Access Recertification & IGA Automation, Passwordless Authentication Rollout, Cloud Entitlement Management (CIEM) at Scale, Agentic AI Identity Governance, the AI Processing Tax research piece, One Key, Every Agent (AI agent credential sharing), the Shadow AI Discovery Gap research piece, and Credential Tiering & the PAM Market (the Tier 0-3 model and where PAM tools fit). There's also the independent Secure India Exams project and a security blog.",
   },
   {
     id: "credential-platform",
@@ -219,7 +219,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["secure india exams", "neet", "jee", "cuet", "national examinations", "exam paper leak", "zero trust proposal", "whitepaper", "poster"],
     answer:
-      "\"Securing India's National Examinations\" is Roshan's independent, non-commercial public-interest project — a Zero Trust reference architecture proposing how India can prevent national exam paper leaks (for exams like NEET, JEE and CUET). It's a lifecycle security model covering paper creation, protected storage, controlled delivery and verified destruction, built on threat-led architecture (not just process controls), cryptographic protection, least privilege and continuous evidence, with privacy, resilience and accountable human decision-making. There's a full 30-page whitepaper PDF (Securing_India_Exams_Master.pdf), plus the project page at /secure-india-exams/.",
+      "\"Securing India's National Examinations\" is Roshan's independent, non-commercial public-interest project: a Zero Trust reference architecture proposing how India can prevent national exam paper leaks (for exams like NEET, JEE and CUET). It's a lifecycle security model covering paper creation, protected storage, controlled delivery and verified destruction, built on threat-led architecture (not just process controls), cryptographic protection, least privilege and continuous evidence, with privacy, resilience and accountable human decision-making. There's a full 30-page whitepaper PDF (Securing_India_Exams_Master.pdf), plus the project page at /secure-india-exams/.",
   },
   {
     id: "mcp-lab",
@@ -323,7 +323,7 @@ window.SITE_QA = [
     url: "/resume/",
     keywords: ["resume", "cv", "curriculum vitae", "download resume", "employment history"],
     answer:
-      "Roshan's résumé is on its own page (/resume/), with every role, date and certification, and a PDF download. Note: every case study on the site is intentionally anonymized and excludes employer, client and internal operational data — the résumé is the deliberate exception, including full employment history for verification.",
+      "Roshan's résumé is on its own page (/resume/), with every role, date and certification, and a PDF download. Note: every case study on the site is intentionally anonymized and excludes employer, client and internal operational data. The résumé is the deliberate exception, including full employment history for verification.",
   },
   {
     id: "experience-roles",
@@ -411,7 +411,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["what is this site", "what is this website", "purpose of site", "site about"],
     answer:
-      "This is the personal site of Roshan Trivedi — Identity & Security. It covers his bio, expertise, career experience, a portfolio of privacy-safe PAM/IAM/NHI case studies and independent AI-security research, an interactive MCP Human Approval Gateway lab, his independent Secure India Exams zero-trust proposal, a security-writing blog, and his resume/contact details. Most pages are plain HTML/CSS with no framework, hosted on GitHub Pages at roshantrivedi.co.in.",
+      "This is the personal site of Roshan Trivedi, on identity and security. It covers his bio, expertise, career experience, a portfolio of privacy-safe PAM/IAM/NHI case studies and independent AI-security research, an interactive MCP Human Approval Gateway lab, his independent Secure India Exams zero-trust proposal, a security-writing blog, and his resume/contact details. Most pages are plain HTML/CSS with no framework, hosted on GitHub Pages at roshantrivedi.co.in.",
   },
   {
     id: "platforms-disclaimer",
@@ -419,7 +419,7 @@ window.SITE_QA = [
     url: "/",
     keywords: ["vendor endorsement", "platform names meaning", "does he endorse", "sponsor"],
     answer:
-      "Platform and vendor names mentioned across the case studies (e.g. Delinea, StrongDM, Clutch Security, Wiz, CyberArk) indicate personal knowledge and evaluation experience only — they do not imply vendor endorsement or client association.",
+      "Platform and vendor names mentioned across the case studies (e.g. Delinea, StrongDM, Clutch Security, Wiz, CyberArk) indicate personal knowledge and evaluation experience only. They do not imply vendor endorsement or client association.",
   },
 
   /* ---- Secure India Exams whitepaper deep-dive (from Securing_India_Exams_Master.pdf) ---- */
@@ -430,7 +430,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["neet-ug", "24 lakh", "exam leak cost", "how big is the problem", "exam scale", "crore", "paper leak cost", "why are exams vulnerable"],
     answer:
-      "From the whitepaper: India's national exams serve over 60 lakh candidates a year across 5,000+ centers — NEET-UG alone had 24.06 lakh candidates across ~4,750 centers in 2024. Procedural safeguards keep failing because they depend on humans reliably following rules under pressure. A single NEET-scale cancellation is estimated to cost ₹700–1,250 crore (re-exam logistics, candidate travel, academic delay, legal process) — versus ₹1,419 crore for the entire 3-year security program proposed, i.e. the program roughly breaks even on preventing one incident.",
+      "From the whitepaper: India's national exams serve over 60 lakh candidates a year across 5,000+ centers. NEET-UG alone had 24.06 lakh candidates across ~4,750 centers in 2024. Procedural safeguards keep failing because they depend on humans reliably following rules under pressure. A single NEET-scale cancellation is estimated to cost ₹700 to 1,250 crore (re-exam logistics, candidate travel, academic delay, legal process), against ₹1,419 crore for the entire 3-year security program proposed, i.e. the program roughly breaks even on preventing one incident.",
   },
   {
     id: "wp-four-pillars",
@@ -438,7 +438,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["four pillar", "4 pillar", "zero trust architecture", "pillars", "nist 800-207", "identity and access pillar", "secure content lifecycle", "national exam soc", "managed exam infrastructure", "mei"],
     answer:
-      "The proposal's four mutually reinforcing pillars (aligned to NIST SP 800-207 Zero Trust Architecture): (1) Identity & Access — biometric verification, zero standing privileges, just-in-time access, PAM-vaulted credentials re-authenticated every 15 minutes; (2) Secure Content Lifecycle — papers encrypted from AI-assisted authoring through HSM vaulting to geo-fenced, time-locked decryption requiring GPS + time window + two administrators together, plus invisible digital watermarking per copy; (3) Threat Detection & Security Operations — AI-driven UEBA, a 24×7 National Exam-SOC with SIEM/SOAR and 20 pre-built playbooks executing in under 2 minutes; (4) Managed Exam Infrastructure (MEI) — certificate-enrolled cameras, metal detectors, signal management and computer-vision proctoring hardening all 5,000 centers.",
+      "The proposal's four mutually reinforcing pillars (aligned to NIST SP 800-207 Zero Trust Architecture): (1) Identity and access: biometric verification, zero standing privileges, just-in-time access, PAM-vaulted credentials re-authenticated every 15 minutes; (2) Secure content lifecycle: papers encrypted from AI-assisted authoring through HSM vaulting to geo-fenced, time-locked decryption requiring GPS + time window + two administrators together, plus invisible digital watermarking per copy; (3) Threat detection and security operations: AI-driven UEBA, a 24×7 National Exam-SOC with SIEM/SOAR and 20 pre-built playbooks executing in under 2 minutes; (4) Managed Exam Infrastructure (MEI): certificate-enrolled cameras, metal detectors, signal management and computer-vision proctoring hardening all 5,000 centers.",
   },
   {
     id: "wp-lifecycle",
@@ -454,7 +454,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["aadhaar", "biometric enrollment", "digital admit card", "invigilator selection", "sme isolation", "examination identity number", "ein", "student identity"],
     answer:
-      "Every actor gets a verified digital identity. Students: Aadhaar-verified registration, DigiLocker document pull, biometric enrollment (fingerprint + iris) tied to an Examination Identity Number (EIN), and a time-limited digitally-signed QR admit card. Subject Matter Experts (paper setters): minimum 10 years' experience, no conflicts of interest, randomly drawn from an encrypted National Examiner Registry, identity known only to the DG NTA and one Oversight Board member, isolated with devices surrendered and a ₹1 crore confidentiality penalty clause. Invigilators: notified of exam date at D-21 but told their actual center only the night before (D-1, 8 PM) — the 'principle of surprise' so no one can pre-negotiate access — and any invigilator can be replaced without notice by a flying squad.",
+      "Every actor gets a verified digital identity. Students: Aadhaar-verified registration, DigiLocker document pull, biometric enrollment (fingerprint + iris) tied to an Examination Identity Number (EIN), and a time-limited digitally-signed QR admit card. Subject Matter Experts (paper setters): minimum 10 years' experience, no conflicts of interest, randomly drawn from an encrypted National Examiner Registry, identity known only to the DG NTA and one Oversight Board member, isolated with devices surrendered and a ₹1 crore confidentiality penalty clause. Invigilators: notified of exam date at D-21 but told their actual center only the night before (D-1, 8 PM). This is the 'principle of surprise', so no one can pre-negotiate access, and any invigilator can be replaced without notice by a flying squad.",
   },
   {
     id: "wp-threat-model",
@@ -462,7 +462,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["threat model", "stride", "adversary", "risk register", "malicious insider", "organized leak syndicate", "mitre att&ck", "residual risk"],
     answer:
-      "The whitepaper names six adversary personas (malicious insider, organized leak syndicate, external cyber attacker, nation-state actor, opportunist candidate, compromised vendor) and runs a full STRIDE threat analysis. Its top scored risk is an insider leaking a pre-exam paper — inherent risk 20/25 (Critical), reduced to residual risk 6 (Medium) via Zero Standing Privileges, PAM, watermarking and UEBA behavioral analytics. Every other major risk (interception in transit, candidate impersonation, cyber intrusion, AI-tool manipulation, biometric breach, outage, supply-chain compromise, physical breach, collusion) is scored the same way, and SOC detection playbooks are mapped to MITRE ATT&CK tactics for measurable coverage.",
+      "The whitepaper names six adversary personas (malicious insider, organized leak syndicate, external cyber attacker, nation-state actor, opportunist candidate, compromised vendor) and runs a full STRIDE threat analysis. Its top scored risk is an insider leaking a pre-exam paper: inherent risk 20/25 (Critical), reduced to residual risk 6 (Medium) via Zero Standing Privileges, PAM, watermarking and UEBA behavioral analytics. Every other major risk (interception in transit, candidate impersonation, cyber intrusion, AI-tool manipulation, biometric breach, outage, supply-chain compromise, physical breach, collusion) is scored the same way, and SOC detection playbooks are mapped to MITRE ATT&CK tactics for measurable coverage.",
   },
   {
     id: "wp-ai-governance",
@@ -470,7 +470,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["ai security in exams", "prompt injection", "model theft", "deepfake", "ai model governance", "human in the loop", "kill switch", "sovereign hosting"],
     answer:
-      "Because AI assists both paper creation and proctoring, the whitepaper treats it as its own attack surface with a full threat taxonomy — prompt injection, training-data poisoning, model theft, adversarial examples, deepfake impersonation, hallucinated questions, and data leakage via the model — each mapped to a specific control (air-gapped models, signed/versioned corpora, no public API, liveness detection, mandatory dual-SME sign-off, etc.). The core rule: human-in-the-loop is mandatory — no AI output (a question, a proctoring flag, a risk score) is ever actioned autonomously where it affects a candidate. All models run on sovereign Indian government infrastructure (MeghRaj/NIC, no foreign cloud or external LLM API) and there's an instant kill switch reverting to a fully manual workflow.",
+      "Because AI assists both paper creation and proctoring, the whitepaper treats it as its own attack surface with a full threat taxonomy: prompt injection, training-data poisoning, model theft, adversarial examples, deepfake impersonation, hallucinated questions, and data leakage via the model, each mapped to a specific control (air-gapped models, signed/versioned corpora, no public API, liveness detection, mandatory dual-SME sign-off, etc.). The core rule: human-in-the-loop is mandatory. No AI output (a question, a proctoring flag, a risk score) is ever actioned autonomously where it affects a candidate. All models run on sovereign Indian government infrastructure (MeghRaj/NIC, no foreign cloud or external LLM API) and there's an instant kill switch reverting to a fully manual workflow.",
   },
   {
     id: "wp-governance-authority",
@@ -486,7 +486,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["nist csf", "iso 27001", "dpdp act", "cert-in directions", "it act 2000", "public examinations act 2024", "compliance matrix", "aadhaar act"],
     answer:
-      "The architecture is mapped control-by-control against recognized frameworks and Indian law: NIST Cybersecurity Framework 2.0 (Govern/Identify/Protect/Detect/Respond/Recover), ISO/IEC 27001:2022 Annex A, and Indian statutes — the DPDP Act 2023 (consent, purpose limitation, 6-hour breach notice, 3-year biometric erasure), CERT-In Directions 2022 (6-hour incident reporting), the IT Act 2000 (digital signature validity via NE-PKI), the Public Examinations (Prevention of Unfair Means) Act 2024 (watermark forensics as court-admissible evidence), and the Aadhaar Act (authentication-only, no Aadhaar number storage). The goal: compliance designed-in, not bolted on.",
+      "The architecture is mapped control-by-control against recognized frameworks and Indian law: NIST Cybersecurity Framework 2.0 (Govern/Identify/Protect/Detect/Respond/Recover), ISO/IEC 27001:2022 Annex A, and Indian statutes: the DPDP Act 2023 (consent, purpose limitation, 6-hour breach notice, 3-year biometric erasure), CERT-In Directions 2022 (6-hour incident reporting), the IT Act 2000 (digital signature validity via NE-PKI), the Public Examinations (Prevention of Unfair Means) Act 2024 (watermark forensics as court-admissible evidence), and the Aadhaar Act (authentication-only, no Aadhaar number storage). The goal: compliance designed-in, not bolted on.",
   },
   {
     id: "wp-resilience-privacy",
@@ -494,7 +494,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["disaster recovery", "rto rpo", "supply chain security", "sbom", "dpia", "accessibility", "divyang", "persons with disabilities", "privacy by design"],
     answer:
-      "Business continuity targets near-zero downtime: center-level paper decryption tolerates zero downtime via a local offline HSM cache; the national HSM vault recovers in under 15 minutes via active-active DR. Supply-chain controls include vendor risk tiering, mandatory SBOMs, sovereign (Indian-standard) sourcing of HSMs/PKI, and no vendor lock-in via open standards. Privacy is engineered in via a mandatory annual DPIA, data minimization, and biometric template deletion after 3 years. Accessibility is built in without weakening security — e.g. pre-registered, biometrically-enrolled scribes for candidates with disabilities, VSAT/offline HSM support for low-connectivity areas, and multi-language, separately-watermarked papers.",
+      "Business continuity targets near-zero downtime: center-level paper decryption tolerates zero downtime via a local offline HSM cache; the national HSM vault recovers in under 15 minutes via active-active DR. Supply-chain controls include vendor risk tiering, mandatory SBOMs, sovereign (Indian-standard) sourcing of HSMs/PKI, and no vendor lock-in via open standards. Privacy is engineered in via a mandatory annual DPIA, data minimization, and biometric template deletion after 3 years. Accessibility is built in without weakening security, for example pre-registered, biometrically-enrolled scribes for candidates with disabilities, VSAT/offline HSM support for low-connectivity areas, and multi-language, separately-watermarked papers.",
   },
   {
     id: "wp-breach-response",
@@ -502,7 +502,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["breach response", "incident severity", "p1 critical", "rollback", "5-phase response", "continuation vs cancellation", "flying squad response"],
     answer:
-      "Incidents are classified P1 (Critical, e.g. confirmed leak or HSM compromise — under 5 minutes to auto-contain) through P4 (Low). The universal response is 5 phases: Detect → Contain → Eradicate → Recover → Review. For a confirmed insider paper leak, the playbook auto-suspends sessions and revokes PAM credentials at T+0, identifies the source center via watermark extraction by T+5 minutes, notifies CERT-In and police by T+15, and requires a decision (rotate the question pool or halt the exam) by T+20 minutes. Within 30 days of any P1/P2 incident, the Independent Oversight Board must publish a public incident summary — concealing a breach is treated as its own governance failure.",
+      "Incidents are classified P1 (Critical, e.g. confirmed leak or HSM compromise, under 5 minutes to auto-contain) through P4 (Low). The universal response is 5 phases: Detect → Contain → Eradicate → Recover → Review. For a confirmed insider paper leak, the playbook auto-suspends sessions and revokes PAM credentials at T+0, identifies the source center via watermark extraction by T+5 minutes, notifies CERT-In and police by T+15, and requires a decision (rotate the question pool or halt the exam) by T+20 minutes. Within 30 days of any P1/P2 incident, the Independent Oversight Board must publish a public incident summary. Concealing a breach is treated as its own governance failure.",
   },
   {
     id: "wp-budget-kpis",
@@ -510,7 +510,7 @@ window.SITE_QA = [
     url: "/secure-india-exams/",
     keywords: ["budget", "3 year plan", "implementation timeline", "kpi", "cost per candidate", "roi", "phase 1 phase 2 phase 3", "36 month"],
     answer:
-      "A phased 36-month, 3-phase rollout across all 5,000 centers, totalling ₹1,419 crore (Phase 1: ₹385cr foundation — SOC, PAM, HSM/PKI, 200-centre pilot; Phase 2: ₹539cr core deployment — encrypted distribution, universal watermarking, 2,000 centers on MEI; Phase 3: ₹495cr full scale — all 5,000 centers, post-quantum crypto, ISO 27001). That works out to about ₹79 per candidate per year — under 5% of the current exam fee. Target KPIs by Year 3: paper leak incidents down from 3–5/year to 0, mean time to detect an anomaly under 5 minutes, 100% of staff on zero standing privileges, and 99.9% exam-day system uptime.",
+      "A phased 36-month, 3-phase rollout across all 5,000 centers, totalling ₹1,419 crore (Phase 1: ₹385cr foundation: SOC, PAM, HSM/PKI, 200-centre pilot; Phase 2: ₹539cr core deployment: encrypted distribution, universal watermarking, 2,000 centers on MEI; Phase 3: ₹495cr full scale: all 5,000 centers, post-quantum crypto, ISO 27001). That works out to about ₹790 per candidate per year during the build (₹1,419 crore over 3 years for about 60 lakh candidates), and about ₹350 a year from Year 4. Target KPIs by Year 3: paper leak incidents down from 3 to 5 a year to 0, mean time to detect an anomaly under 5 minutes, 100% of staff on zero standing privileges, and 99.9% exam-day system uptime.",
   },
   {
     id: "ai-governance-lab",
