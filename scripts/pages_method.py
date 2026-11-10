@@ -119,7 +119,7 @@ def build():
       <div class="ntile"><b>{len(n1)}</b><span>first-run cases ({len(n1) - w1} guesses matched, {w1} wrong)</span></div>
       <div class="ntile"><b>{len(n2)}</b><span>second-run cases ({len(n2) - w2} matched, {w2} wrong)</span></div>
       <div class="ntile warn"><b>{m_all}</b><span>cases with a control no check noticed</span></div>
-      <div class="ntile good"><b>3 of 3</b><span>checked runs that matched on the Mac (the fourth is pending)</span></div>
+      <div class="ntile good"><b>4 of 4</b><span>runs that matched on the Mac</span></div>
     </div>
     <p>The full table is on the <a href="/nhi-lab/audit/">audit page</a>, with downloads.</p>
   </section>
