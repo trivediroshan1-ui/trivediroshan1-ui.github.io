@@ -28,6 +28,7 @@
 - [NHI lab in 60 seconds (silent video: the lab, the architecture, the data)](https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4)
 
 ## Writing
+- [I tested 67 machine identity cases. Here is where the controls stopped.](https://roshantrivedi.co.in/writing/i-tested-67-machine-identity-cases/)
 - [I ran the 19 cases I had been putting off. Five guesses were wrong.](https://roshantrivedi.co.in/writing/non-human-identity-lab-round-19/)
 - [I tested 46 non-human identity cases. My guesses were wrong in four.](https://roshantrivedi.co.in/writing/non-human-identity-lab-46-cases/)
 - [The Hugging Face intrusion, read as an identity incident](https://roshantrivedi.co.in/writing/openai-huggingface-breach-cybersecurity-analysis/)
