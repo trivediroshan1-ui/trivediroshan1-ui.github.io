@@ -207,7 +207,7 @@ section.s { padding: clamp(48px, 7vw, 92px) 0 0; }
 .empty { padding: 2rem; border: 1px dashed var(--line2); border-radius: 14px; text-align: center; color: var(--mut); }
 
 /* findings */
-.fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: .8rem; }
+.fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: .8rem; }
 .fnd { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1.1rem 1.1rem; border-top: 3px solid var(--fc); display: flex; flex-direction: column; gap: .5rem; }
 .fnd .hd { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
 .fnd .fid { font: 700 .8rem "JetBrains Mono", monospace; color: var(--fc); }
