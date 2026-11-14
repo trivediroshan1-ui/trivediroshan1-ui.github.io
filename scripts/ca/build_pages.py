@@ -3,7 +3,7 @@ SITE="/home/claude/work/site"; OUT="/home/claude/work/out"
 tpl=open(SITE+"/ca-mfa-lab/run-4/index.html",encoding="utf-8").read()
 HEAD=tpl[:tpl.index("<main")]
 FOOT=tpl[tpl.index("</main>")+len("</main>"):]
-CSS='  <link rel="stylesheet" href="/assets/ca-fw.css?v=20261114a">\n'
+CSS='  <link rel="stylesheet" href="/assets/ca-fw.css?v=20261114a">\n  <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">\n'
 def head(title,desc,path,headline):
     h=HEAD
     url="https://roshantrivedi.co.in"+path
@@ -18,8 +18,10 @@ def head(title,desc,path,headline):
     assert h.count("</head>")==1
     return h.replace("</head>",CSS+"</head>")
 def nsub(cur):
-    items=[("/ca-mfa-lab/","Overview"),("/ca-mfa-lab/framework/","Framework"),("/ca-mfa-lab/virtual-lab/","Virtual lab"),("/ca-mfa-lab/register/","Register"),("/ca-mfa-lab/run-4/","Run 4"),("/ca-mfa-lab/sources/","Sources and events"),("/nhi-lab/method/","How the method works"),("/nhi-lab/","NHI lab")]
-    return '<nav class="nsub" aria-label="Conditional access, MFA and AI agent lab sections">'+"".join('<a href="%s"%s>%s</a>'%(u,' aria-current="page"' if u==cur else "",t) for u,t in items)+'</nav>'
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+    import lab_nav
+    return lab_nav.render("ca", cur)
 def page(path,title,desc,headline,body,scripts):
     return head(title,desc,path,headline)+'<main id="main" class="nhi fw">\n  '+nsub(path)+"\n"+body+"\n</main>"+FOOT.replace('  <script defer src="/assets/chatbot-widget.js',scripts+'  <script defer src="/assets/chatbot-widget.js',1)
 

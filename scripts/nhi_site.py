@@ -25,9 +25,11 @@ SUBNAV = [
 ]
 
 def subnav(active):
-    items = ''.join(
-        f'<a href="{h}"{" aria-current=\"page\"" if k == active else ""}>{E(t)}</a>' for h, t, k in SUBNAV)
-    return f'<nav class="nsub" aria-label="Non-human identity lab sections">{items}</nav>'
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import lab_nav
+    path = next(h for h, t, k in SUBNAV if k == active)
+    return lab_nav.render('nhi', path)
 
 _idx = open(os.path.join(ROOT, 'ai-governance-lab', 'index.html'), encoding='utf-8').read()
 _HEAD = _idx.split('<body')[0]
