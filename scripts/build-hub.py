@@ -73,7 +73,7 @@ NOT_YET = ["Customer identity (CIAM)", "Certificates and PKI", "Identity threat 
 
 # (term, plain definition, optional link)
 GLOSSARY = [
- ("Access chain", "My name for the seven steps every sign-in passes through: enrol and recover, prove, trust, decide, issue, act, watch and end. A weak step lets an attacker in even when the others are strong.", "/ca-mfa-lab/framework/"),
+ ("Access chain", "My name for the seven steps every sign-in passes through: enroll and recover, prove, trust, decide, issue, act, watch and end. A weak step lets an attacker in even when the others are strong.", "/ca-mfa-lab/framework/"),
  ("Access review (recertification)", "A regular check where an owner confirms that each person or account still needs the access it has. Access nobody confirms is removed.", CS + "access-recertification/"),
  ("AI agent", "Software that takes actions for a person or a team using a model, tools and credentials. For access purposes it is an identity: it needs an owner, a scope and an end date.", CS + "agentic-ai-identity-governance/"),
  ("API key", "A long secret string that lets a program call a service. It usually has no expiry and no second factor, so who holds it and what it can reach matter a great deal.", "/nhi-lab/"),

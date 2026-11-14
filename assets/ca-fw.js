@@ -76,7 +76,7 @@ var FLOWS=[
  steps:[
   [0,1,"Calls, says they are the employee","The caller has researched the employee and the usual script.","a"],
   [1,0,"Asks for identifying details","The caller answers with details found online or from earlier calls.","n"],
-  [1,2,"Resets the password, moves the MFA","The agent resets the password and enrols a new authenticator.","c","Callback to the number on file: waits","The reset waits for a callback to the number on file. In W12, self-service recovery is a second path and both must be closed."],
+  [1,2,"Resets the password, moves the MFA","The agent resets the password and enrolls a new authenticator.","c","Callback to the number on file: waits","The reset waits for a callback to the number on file. In W12, self-service recovery is a second path and both must be closed."],
   [0,2,"Signs in with the new method","The caller signs in with the new authenticator.","a"]],
  offOut:"A working new authenticator is enrolled for the attacker (W12).",
  onOut:"Closing the help desk path alone is not enough if self-service recovery is also weak.",

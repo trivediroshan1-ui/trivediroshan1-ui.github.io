@@ -1,7 +1,7 @@
 # The access chain: seven links every sign-in and every agent action passes through.
 STAGES = [
- ("enrol","1. Enrol and recover","Who can add, move or reset a way to sign in?",
-  "Phishing-resistant enrolment, callback before reset, notice on change, delay on new methods",
+ ("enrol","1. Enroll and recover","Who can add, move or reset a way to sign in?",
+  "Phishing-resistant enrollment, callback before reset, notice on change, delay on new methods",
   "M06 M08 M09 R01 R02 R03 R04 R05 R06 Z02 Y09 W12 C01 C05 Z22 E02 E03"),
  ("prove","2. Prove","How strong is the proof at sign-in?",
   "Phishing-resistant methods, number matching, rate limits, no weaker fallback",

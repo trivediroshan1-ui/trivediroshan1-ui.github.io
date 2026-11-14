@@ -52,7 +52,7 @@
 <text class="dg-s" x="448" y="370" text-anchor="start" >Its own agents</text>
 <rect class="dg-node " x="20" y="430" width="600" height="56" rx="10"/>
 <text class="dg-t" x="34" y="452">Everyone with an account</text>
-<text class="dg-s" x="34" y="471">Employees, contractors, vendors, helpers. Sign the policy, enrol MFA, report oddities.</text>
+<text class="dg-s" x="34" y="471">Employees, contractors, vendors, helpers. Sign the policy, enroll MFA, report oddities.</text>
 <rect class="dg-node dg-warnb" x="20" y="516" width="600" height="56" rx="10"/>
 <text class="dg-t" x="34" y="538">Security operations and audit</text>
 <text class="dg-s" x="34" y="557">Watch across all of it. Reconcile, respond, keep the evidence.</text>

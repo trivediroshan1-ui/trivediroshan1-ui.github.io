@@ -246,7 +246,7 @@ def d_hr():
               ("Only the minimum goes to identity", "Name, email, team, job code, manager, start date."),
               ("The agent proposes, the gateway checks", "No approved hire event, no account. The executor acts."),
               ("Account created, switched off", "It stays off until the start date. A withdrawn offer never turns it on."),
-              ("Day one", "Access for the job code, MFA enrolment, signed policy, then single sign-on."),
+              ("Day one", "Access for the job code, MFA enrollment, signed policy, then single sign-on."),
               ("It keeps being checked", "Daily: every account traces to an HR record. Vendor accounts expire.")]
     top, step, bh = 34, 88, 64
     h = top + len(stages) * step + 24
@@ -303,7 +303,7 @@ def d_org():
         d.node(x, 250, 186, 150, name, None, "")
         for j, t in enumerate(["Agent sponsors", "Approvers", "Its own lists", "Its own agents"]):
             d.text(x + 14, 304 + j * 22, t, "dg-s")
-    d.node(20, 430, 600, 56, "Everyone with an account", "Employees, contractors, vendors, helpers. Sign the policy, enrol MFA, report oddities.", "")
+    d.node(20, 430, 600, 56, "Everyone with an account", "Employees, contractors, vendors, helpers. Sign the policy, enroll MFA, report oddities.", "")
     d.node(20, 516, 600, 56, "Security operations and audit", "Watch across all of it. Reconcile, respond, keep the evidence.", "dg-warnb")
     for i in range(3):
         x = 20 + i * 207 + 168

@@ -66,7 +66,7 @@
 <rect class="dg-node " x="96" y="562" width="524" height="64" rx="10"/>
 <text class="dg-n" x="110" y="584">7</text>
 <text class="dg-t" x="134" y="584">Day one</text>
-<text class="dg-s" x="134" y="603">Access for the job code, MFA enrolment, signed policy, then single sign-on.</text>
+<text class="dg-s" x="134" y="603">Access for the job code, MFA enrollment, signed policy, then single sign-on.</text>
 <path class="dg-ln" d="M 358 626 L 358 650"/>
 <polygon class="dg-ar" points="353,641 363,641 358,649"/>
 <rect class="dg-node " x="96" y="650" width="524" height="64" rx="10"/>

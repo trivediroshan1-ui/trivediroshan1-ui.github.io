@@ -18,7 +18,7 @@ assert BY["W06"]["res"] == ["in", "out", "out", "in", "out"]
 assert BY["G03"]["res"] == ["in", "out", "out", "out", "in"] and BY["G03"]["controls"] == ["A", "B", "C"]
 g07 = [f for x in SENS if x["change"].startswith("attacker_same_network") for f in x["flips"] if f["id"] == "G07"][0]
 assert g07["was"] == ["in", "out", "out", "out", "out"] and g07["now"] == ["in", "out", "out", "out", "in"]
-STG = [("1", "Enrol and recover", "#a78bfa"), ("2", "Prove", "#4de2ff"), ("3", "Trust", "#60a5fa"), ("4", "Decide", "#f59e0b"),
+STG = [("1", "Enroll and recover", "#a78bfa"), ("2", "Prove", "#4de2ff"), ("3", "Trust", "#60a5fa"), ("4", "Decide", "#f59e0b"),
        ("5", "Issue", "#34d399"), ("6", "Act", "#f472b6"), ("7", "Watch and end", "#f87171")]
 CNT = {}
 for c in CASES: CNT[c["stage"]] = CNT.get(c["stage"], 0) + 1

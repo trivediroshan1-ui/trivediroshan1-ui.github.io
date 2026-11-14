@@ -43,7 +43,7 @@ STEPS = [
   ["Account", "Off until start date"],
   "None.", ["H1", "H7"]),
  ("dir", "Day one", "New hire and the identity provider",
-  "On the start date the account turns on with only the access that goes with the job code. Identity proofing, MFA enrolment and the signed acceptable-use policy come before single sign-on into sensitive apps.",
+  "On the start date the account turns on with only the access that goes with the job code. Identity proofing, MFA enrollment and the signed acceptable-use policy come before single sign-on into sensitive apps.",
   ["Birthright access", "MFA", "Signed policy", "SSO"],
   "None. This is activation, not provisioning.", ["H1", "H8"]),
  ("ai", "Extra access", "AI proposes, the manager decides",

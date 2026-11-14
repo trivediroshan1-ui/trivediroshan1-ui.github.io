@@ -80,7 +80,7 @@ window.AGL_R7 = {
   {
    "id": "H8",
    "track": "H",
-   "title": "Day one: the new hire tries a sensitive app without MFA enrolment, then without the signed acceptable-use policy",
+   "title": "Day one: the new hire tries a sensitive app without MFA enrollment, then without the signed acceptable-use policy",
    "expected": "refused_until_mfa_and_policy",
    "actual": "refused_until_mfa_and_policy",
    "verdict": "as expected",

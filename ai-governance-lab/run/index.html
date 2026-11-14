@@ -254,7 +254,7 @@ Verdicts: as expected 12
 | H5 | The HR record holds PAN, Aadhaar and bank details: what reaches the identity system and its log? | minimum_only | minimum_only | as expected |
 | H6 | The agent proposes extra access because the new hire&#x27;s peers have it, including a combination that is not allowed | proposals_only | proposals_only | as expected |
 | H7 | The offer is withdrawn after the account was created but before the start date | disabled_before_start | disabled_before_start | as expected |
-| H8 | Day one: the new hire tries a sensitive app without MFA enrolment, then without the signed acceptable-use policy | refused_until_mfa_and_policy | refused_until_mfa_and_policy | as expected |
+| H8 | Day one: the new hire tries a sensitive app without MFA enrollment, then without the signed acceptable-use policy | refused_until_mfa_and_policy | refused_until_mfa_and_policy | as expected |
 | H9 | A vendor worker with no sponsor, then no end date, then no security review | refused_until_complete | refused_until_complete | as expected |
 | H10 | A vendor worker&#x27;s end date arrives and nobody remembers to remove the account | expired_and_disabled | expired_and_disabled | as expected |
 | H11 | An administrator creates an account directly in the directory, with no HR record. Does reconciliation notice? | flagged_orphan | flagged_orphan | as expected |
@@ -275,7 +275,7 @@ Run 20261024-221443 UTC. One control at a time is removed from a copy of lab/lif
 | H5 | the hire event carries the PAN | minimum_only | other | yes |
 | H6 | toxic combinations are not checked on extra access | proposals_only | other | yes |
 | H7 | a withdrawn offer does not disable the account | disabled_before_start | other | yes |
-| H8 | MFA enrolment is not required | refused_until_mfa_and_policy | other | yes |
+| H8 | MFA enrollment is not required | refused_until_mfa_and_policy | other | yes |
 | H8 | the signed policy is not required | other | other | yes |
 | H9 | a vendor worker needs no sponsor | refused_until_complete | other | yes |
 | H10 | vendor accounts do not expire on their end date | expired_and_disabled | other | yes |
@@ -298,7 +298,7 @@ Verdicts: as expected 12
 | H5 | The HR record holds PAN, Aadhaar and bank details: what reaches the identity system and its log? | minimum_only | minimum_only | as expected |
 | H6 | The agent proposes extra access because the new hire&#x27;s peers have it, including a combination that is not allowed | proposals_only | proposals_only | as expected |
 | H7 | The offer is withdrawn after the account was created but before the start date | disabled_before_start | disabled_before_start | as expected |
-| H8 | Day one: the new hire tries a sensitive app without MFA enrolment, then without the signed acceptable-use policy | refused_until_mfa_and_policy | refused_until_mfa_and_policy | as expected |
+| H8 | Day one: the new hire tries a sensitive app without MFA enrollment, then without the signed acceptable-use policy | refused_until_mfa_and_policy | refused_until_mfa_and_policy | as expected |
 | H9 | A vendor worker with no sponsor, then no end date, then no security review | refused_until_complete | refused_until_complete | as expected |
 | H10 | A vendor worker&#x27;s end date arrives and nobody remembers to remove the account | expired_and_disabled | expired_and_disabled | as expected |
 | H11 | An administrator creates an account directly in the directory, with no HR record. Does reconciliation notice? | flagged_orphan | flagged_orphan | as expected |
@@ -319,7 +319,7 @@ Run 20261024-191612 UTC. One control at a time is removed from a copy of lab/lif
 | H5 | the hire event carries the PAN | minimum_only | other | yes |
 | H6 | toxic combinations are not checked on extra access | proposals_only | other | yes |
 | H7 | a withdrawn offer does not disable the account | disabled_before_start | other | yes |
-| H8 | MFA enrolment is not required | refused_until_mfa_and_policy | other | yes |
+| H8 | MFA enrollment is not required | refused_until_mfa_and_policy | other | yes |
 | H8 | the signed policy is not required | other | other | yes |
 | H9 | a vendor worker needs no sponsor | refused_until_complete | other | yes |
 | H10 | vendor accounts do not expire on their end date | expired_and_disabled | other | yes |
