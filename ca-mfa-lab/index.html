@@ -49,6 +49,17 @@
 
   <section class="nsec" id="result" aria-labelledby="res-h">
     <h2 id="res-h">What came out</h2>
+    <figure class="rvid" style="margin:18px 0 26px;max-width:520px"><video controls playsinline preload="none" poster="/assets/share/ca-mfa-lab-video-poster.jpg" aria-label="96-second video of the lab: the method, the seven-link framework, three cases and the results" style="width:100%;height:auto;border-radius:12px;background:#05061a"><source src="/assets/share/ca-mfa-lab-square.mp4" type="video/mp4"></video><figcaption class="body-text" style="font-size:.9em">The lab in 96 seconds. Silent, with on-screen text.</figcaption></figure>
+    <details style="margin:0 0 22px"><summary>Read the video as text</summary>
+      <p>MFA was on. The attacker still got in. I tested 130 sign-in cases to find where each control stops.</p>
+      <p>The rule: write the guess first. A Run 6 guess is shown with its SHA-256 hash, committed before any code existed. Change one word and the hash breaks, and a wrong guess stays wrong.</p>
+      <p>The framework: seven links every sign-in passes through. Enrol and recover (17 cases), prove (14), trust (21), decide (33), issue (16), act (14), and watch and end (15). A weak link anywhere lets the attacker through, however strong MFA is at link 2.</p>
+      <p>Case W06: a stolen integration token goes from the attacker to the API to the customer records, and MFA is never asked. An address allow-list refuses it. Where the token can be used from decided the case.</p>
+      <p>Case G03: an AI sub-agent writes where the person who asked cannot. Switching the controls on and off one at a time, only C, the resource checking the person&rsquo;s own rights, held.</p>
+      <p>Case G07: a cookie stolen after MFA. When the attacker appears to be on the victim&rsquo;s network, continuous evaluation misses it and only binding the session to the device holds.</p>
+      <p>What came out: 130 cases, 124 run on models, 118 guesses matched, 6 wrong. Run 1 41 of 41, Run 2 39 of 45, Run 3 16 of 16, Run 5 12 of 12, Run 6 10 of 10.</p>
+      <p>Your turn: run the real scripts in your browser, change an assumption, or break a guess and watch the hash stop it.</p>
+    </details>
     <div class="ntiles">
       <div class="ntile good"><b>41 of 41</b><span>Run 1 guesses matched. Single controls: MFA methods, SSO protocols, account recovery.</span></div>
       <div class="ntile warn"><b>39 of 45</b><span>Run 2 guesses matched. Each case had 2 or 3 controls working together.</span></div>
