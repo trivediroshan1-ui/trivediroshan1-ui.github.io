@@ -8,9 +8,9 @@ LABS = {
         name="Conditional access, MFA and AI agent lab",
         primary=[("Overview", "/ca-mfa-lab/"), ("How it works", "/ca-mfa-lab/framework/"),
                  ("Results", "/ca-mfa-lab/#result"), ("Cases", "/ca-mfa-lab/register/"),
-                 ("What I got wrong", "/ca-mfa-lab/#wrong"), ("Try it", "/ca-mfa-lab/virtual-lab/"),
+                 ("What I got wrong", "/ca-mfa-lab/what-i-got-wrong/"), ("Try it", "/ca-mfa-lab/virtual-lab/"),
                  ("Book", "/ca-mfa-lab/ca-mfa-lab-book.pdf")],
-        more=[("Run 4", "/ca-mfa-lab/run-4/"), ("Run it in the browser", "/ca-mfa-lab/virtual-lab/run/"),
+        more=[("The method", "/ca-mfa-lab/method/"), ("Run 4", "/ca-mfa-lab/run-4/"), ("Run it in the browser", "/ca-mfa-lab/virtual-lab/run/"),
               ("Sources and events", "/ca-mfa-lab/sources/"), ("Related: NHI lab", "/nhi-lab/")]),
     "nhi": dict(
         name="Non-human identity lab",
