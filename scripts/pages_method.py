@@ -77,7 +77,7 @@ def build():
 
     body = f'''<main id="main" class="nhi">
   {subnav('method')}
-  {hero('What we did', 'How the lab was run, step by step, with the mistakes', 'I wrote my guesses, locked them with a hash, then wrote the code and ran every case twice, once without the control and once with it. This page is the full procedure, the dates, and the places I got it wrong.',
+  {hero('What I did', 'How the lab was run, step by step, with the mistakes', 'I wrote my guesses, locked them with a hash, then wrote the code and ran every case twice, once without the control and once with it. This page is the full procedure, the dates, and the places I got it wrong.',
         ['Last reviewed 2 November 2026', f'{len(cases)} cases in four runs', 'Made-up data only'])}
 
   <section class="nsec" id="question" aria-labelledby="q-h">

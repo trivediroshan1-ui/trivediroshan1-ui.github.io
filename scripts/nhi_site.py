@@ -10,7 +10,7 @@ SUBNAV = [
     ('/nhi-lab/', 'Overview', 'overview'),
     ('/nhi-lab/framework/', 'Framework', 'framework'),
     ('/nhi-lab/market/', 'Market', 'market'),
-    ('/nhi-lab/method/', 'What we did', 'method'),
+    ('/nhi-lab/method/', 'What I did', 'method'),
     ('/nhi-lab/audit/', 'Audit data', 'audit'),
     ('/nhi-lab/round-18/', 'Round 18', 'round18'),
     ('/nhi-lab/round-19/', 'Round 19', 'round19'),
@@ -51,7 +51,7 @@ def shell(path, title, desc, og_title, body, js=None, ld=None, published='2026-1
         extra += f'  <script type="application/ld+json">{ld}</script>\n'
     head = head.replace('</head>', extra + '</head>')
     tail = f'  <script src="/assets/{js}?v={CSS_V}" defer></script>\n' if js else ''
-    tail += '  <script defer src="/assets/chatbot-widget.js?v=20261114c"></script>\n'
+    tail += '  <script defer src="/assets/chatbot-widget.js?v=20261114d"></script>\n'
     return (head + '  <body style="--c:#7df2d0">\n    <a class="skip" href="#main">Skip to content</a>\n    ' + _NAV +
             '\n' + body + '\n    ' + _FOOT + '\n' + tail + '  </body>\n</html>\n')
 

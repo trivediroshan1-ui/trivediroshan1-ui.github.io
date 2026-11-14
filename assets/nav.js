@@ -75,7 +75,7 @@
           ["/nhi-lab/", "Overview: 67 cases, 10 wrong guesses", "shield"],
           ["/nhi-lab/framework/", "The 7 step framework", "layers"],
           ["/nhi-lab/market/", "Market in 2026", "scale"],
-          ["/nhi-lab/method/", "What we did, step by step", "list"],
+          ["/nhi-lab/method/", "What I did, step by step", "list"],
           ["/nhi-lab/audit/", "Audit data, CSV and JSON", "check"],
           ["/nhi-lab/roadmap/", "Roadmap", "calendar"],
           ["/nhi-lab/explainer/", "One minute explainer", "spark"],
@@ -96,7 +96,7 @@
       feature: { kicker: "Free to read", title: "Four free books, one for each lab", text: "Each one is a PDF you can read on a phone. Pick a book below, or open the library to see them side by side.", href: "/book/#library", cta: "Open the library", icons: ["book", "doc", "book"] },
       groups: [
         { title: "The books", k: "ai", items: [
-          ["/ca-mfa-lab/ca-mfa-lab-book.pdf", "Who signs in? Sign-in lab, 72 pages", "book"],
+          ["/ca-mfa-lab/ca-mfa-lab-book.pdf", "Who signs in? Conditional access, MFA and AI agent lab, 72 pages", "book"],
           ["/book/#approve", "Who Approved That? MCP lab, 138 pages", "book"],
           ["/book/#agl", "Does AI Governance Hold? 69 pages", "book"],
           ["/book/#nhi", "Machine identities, tested in public. 83 pages", "book"]] },

@@ -27,7 +27,7 @@ window.SITE_QA = [
     url: "/ca-mfa-lab/",
     keywords: ["conditional access", "conditional access lab", "mfa lab", "ca-mfa", "ca mfa lab", "sign-in lab", "sign in lab", "signin lab", "130 cases", "sso lab", "single sign-on lab", "2fa", "mfa bypass", "does mfa hold", "do conditional access controls hold up", "what did the sign-in lab find", "sign-in cases"],
     answer:
-      "The conditional access, MFA and SSO lab tests 130 cases on made-up data: how people get past MFA, how single sign-on breaks, how recovery gets abused, how conditional access rules fail when controls interact, and how AI agents get, pass on and keep access. For every case Roshan wrote his guess first, hashed it with SHA-256 and committed it before writing any code. 124 cases were run as small rule models and 118 matched; the 6 wrong guesses were all in Run 2, where two or three controls work together. Six hand tests (E01 to E06) need a real tenant, a hardware key, a real agent product or a help desk call, so they are written up for anyone to run. The main finding: in the cases built from recent incidents, MFA was often not the control that decided the outcome. Token scope and lifetime, binding a token to one device, revocation and recovery mattered more. The models test reasoning about a control, not how any vendor product behaves.",
+      "The conditional access, MFA and AI agent lab tests 130 cases on made-up data: how people get past MFA, how single sign-on breaks, how recovery gets abused, how conditional access rules fail when controls interact, and how AI agents get, pass on and keep access. For every case Roshan wrote his guess first, hashed it with SHA-256 and committed it before writing any code. 124 cases were run as small rule models and 118 matched; the 6 wrong guesses were all in Run 2, where two or three controls work together. Six hand tests (E01 to E06) need a real tenant, a hardware key, a real agent product or a help desk call, so they are written up for anyone to run. The main finding: in the cases built from recent incidents, MFA was often not the control that decided the outcome. Token scope and lifetime, binding a token to one device, revocation and recovery mattered more. The models test reasoning about a control, not how any vendor product behaves.",
   },
   {
     id: "ca-mfa-lab-chain",
@@ -39,15 +39,15 @@ window.SITE_QA = [
   },
   {
     id: "ca-mfa-lab-wrong",
-    title: "The six wrong guesses in the sign-in lab",
+    title: "The six wrong guesses in the conditional access, MFA and AI agent lab",
     url: "/writing/130-conditional-access-mfa-and-ai-agent-cases/",
     keywords: ["wrong guesses", "six wrong", "6 wrong", "what did you get wrong", "mistakes in the sign-in lab", "c01", "c03", "a05", "z21", "x07", "a03", "run 2"],
     answer:
-      "All six wrong guesses in the conditional access lab were in Run 2, where two or three controls worked together, and they fall into five kinds of mistake: not saying what was being counted (C01, C03), treating controls as independent (A05), picking the wrong control as the one that mattered (Z21), not thinking through a control's own scope (X07), and counting a habit as a control (A03). Runs 1, 3, 5 and 6 matched 41 of 41, 16 of 16, 12 of 12 and 10 of 10, and Roshan says he trusts those less, because he wrote both the guesses and the models.",
+      "All six wrong guesses in the conditional access, MFA and AI agent lab were in Run 2, where two or three controls worked together, and they fall into five kinds of mistake: not saying what was being counted (C01, C03), treating controls as independent (A05), picking the wrong control as the one that mattered (Z21), not thinking through a control's own scope (X07), and counting a habit as a control (A03). Runs 1, 3, 5 and 6 matched 41 of 41, 16 of 16, 12 of 12 and 10 of 10, and Roshan says he trusts those less, because he wrote both the guesses and the models.",
   },
   {
     id: "ca-mfa-lab-agents",
-    title: "AI agents in the sign-in lab (Run 6)",
+    title: "AI agents in the conditional access, MFA and AI agent lab (Run 6)",
     url: "/ca-mfa-lab/framework/",
     keywords: ["ai agent identity", "agent identity", "run 6", "agent sso", "sub-agent", "subagent", "ownerless agent", "agent credential rotation", "agents keep access", "cross-app access"],
     answer:
@@ -55,7 +55,7 @@ window.SITE_QA = [
   },
   {
     id: "ca-mfa-lab-run",
-    title: "Run the sign-in lab yourself",
+    title: "Run the conditional access, MFA and AI agent lab yourself",
     url: "/ca-mfa-lab/virtual-lab/run/",
     keywords: ["run in browser", "run it in your browser", "run the scripts", "run it myself", "virtual lab", "reproduce", "reproduction", "pyodide", "exception form", "report an exception", "hand tests"],
     answer:
@@ -63,7 +63,7 @@ window.SITE_QA = [
   },
   {
     id: "ca-mfa-lab-book",
-    title: "Who signs in? (the sign-in lab book)",
+    title: "Who signs in? (the conditional access, MFA and AI agent lab book)",
     url: "/ca-mfa-lab/ca-mfa-lab-book.pdf",
     keywords: ["who signs in", "sign-in book", "conditional access book", "mfa book", "ca book", "72 pages", "72-page", "newest book", "latest book"],
     answer:
@@ -71,7 +71,7 @@ window.SITE_QA = [
   },
   {
     id: "ca-mfa-lab-media",
-    title: "Video, article and newsletter on the sign-in lab",
+    title: "Video, article and newsletter on the conditional access, MFA and AI agent lab",
     url: "/ca-mfa-lab/",
     keywords: ["video", "lab video", "linkedin article", "article", "weak spots have moved", "newsletter issue", "buttondown", "blog post on the lab"],
     answer:

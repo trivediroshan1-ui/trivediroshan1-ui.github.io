@@ -19,14 +19,14 @@ def head(title,desc,path,headline):
     return h.replace("</head>",CSS+"</head>")
 def nsub(cur):
     items=[("/ca-mfa-lab/","Overview"),("/ca-mfa-lab/framework/","Framework"),("/ca-mfa-lab/virtual-lab/","Virtual lab"),("/ca-mfa-lab/register/","Register"),("/ca-mfa-lab/run-4/","Run 4"),("/ca-mfa-lab/sources/","Sources and events"),("/nhi-lab/method/","How the method works"),("/nhi-lab/","NHI lab")]
-    return '<nav class="nsub" aria-label="Conditional access lab sections">'+"".join('<a href="%s"%s>%s</a>'%(u,' aria-current="page"' if u==cur else "",t) for u,t in items)+'</nav>'
+    return '<nav class="nsub" aria-label="Conditional access, MFA and AI agent lab sections">'+"".join('<a href="%s"%s>%s</a>'%(u,' aria-current="page"' if u==cur else "",t) for u,t in items)+'</nav>'
 def page(path,title,desc,headline,body,scripts):
     return head(title,desc,path,headline)+'<main id="main" class="nhi fw">\n  '+nsub(path)+"\n"+body+"\n</main>"+FOOT.replace('  <script defer src="/assets/chatbot-widget.js',scripts+'  <script defer src="/assets/chatbot-widget.js',1)
 
 # ---------------- Framework
 fw_body='''  <header class="nhero"><p class="eyebrow">Lab</p><h1>The conditional access and MFA framework, animated</h1>
   <p class="dek">Fifteen attack patterns you can play step by step, with the control and without it. Below them, every one of the 130 cases in the lab with the output my scripts produced, exactly as saved.</p>
-  <ul class="nmeta"><li>130 cases, 124 run on models</li><li>15 animated flows</li><li>7-link framework</li><li><a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">Download the book (PDF)</a></li><li>Made-up data only</li></ul></header>
+  <ul class="nmeta"><li>Last reviewed 14 November 2026</li><li>130 cases, 124 run on models</li><li>15 animated flows</li><li>7-link framework</li><li><a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">Download the book (PDF)</a></li><li>Made-up data only</li></ul></header>
 
   <section class="nsec" id="read" aria-labelledby="rd-h">
     <h2 id="rd-h">How to read this page</h2>
@@ -102,14 +102,14 @@ CHAIN='''  <section class="nsec" id="chain" aria-labelledby="ch-h">
     <p class="fnote">Pick a link to filter the case list below. Each case can be played one column at a time, with its controls switching on and off.</p>
   </section>'''
 fw_body=fw_body.replace("%%CHAIN%%",CHAIN)
-open(OUT+"/ca-mfa-lab/framework/index.html","w",encoding="utf-8").write(page("/ca-mfa-lab/framework/","The conditional access and MFA framework, animated","15 animated attack patterns and all 130 conditional access and MFA cases with the output my scripts produced. Made-up data only.","The conditional access and MFA framework, animated",fw_body,'  <script src="/ca-mfa-lab/data/cases.js?v=20261114a"></script>\n  <script defer src="/assets/ca-fw.js?v=20261114a"></script>\n'))
+open(OUT+"/ca-mfa-lab/framework/index.html","w",encoding="utf-8").write(page("/ca-mfa-lab/framework/","Conditional access and MFA framework","15 animated attack patterns and all 130 conditional access and MFA cases with the output my scripts produced. Made-up data only.","The conditional access and MFA framework, animated",fw_body,'  <script src="/ca-mfa-lab/data/cases.js?v=20261114a"></script>\n  <script defer src="/assets/ca-fw.js?v=20261114a"></script>\n'))
 
 # ---------------- Virtual lab
 sens=json.load(open("/home/claude/ca-mfa-lab/evidence/results-run5.json"))["sensitivity"]
 rows="".join("<tr><td>%s</td><td>%s</td></tr>"%(html.escape(s["change"]),html.escape(", ".join(f["id"] for f in s["flips"]) or "No case changes")) for s in sens)
 vl_body='''  <header class="nhero"><p class="eyebrow">Lab</p><h1>The virtual lab</h1>
   <p class="dek">Pick any case. Read the guess I locked before running anything. Switch the controls. See the output my script produced. Then run the same script on your own computer.</p>
-  <ul class="nmeta"><li>124 cases replayed</li><li>Python 3, no packages</li><li>Made-up data only</li></ul></header>
+  <ul class="nmeta"><li>Last reviewed 14 November 2026</li><li>124 cases replayed</li><li>Python 3, no packages</li><li>Made-up data only</li></ul></header>
 
   <section class="nsec" id="how" aria-labelledby="hw-h">
     <h2 id="hw-h">What this is, and is not</h2>
@@ -193,7 +193,7 @@ ev_rows="".join("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s<br><small>%s</small
 sd_rows="".join("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>"%(a,b,c,d,e) for a,b,c,d,e in STDS)
 src_body='''  <header class="nhero"><p class="eyebrow">Lab</p><h1>Sources and recent events</h1>
   <p class="dek">What happened to real companies and products, which lab case each event relates to, and how far I trust each source. Checked on 14 November 2026.</p>
-  <ul class="nmeta"><li>12 dated events</li><li>4 standards and specifications</li><li>Each one labelled</li></ul></header>
+  <ul class="nmeta"><li>Last reviewed 14 November 2026</li><li>12 dated events</li><li>4 standards and specifications</li><li>Each one labelled</li></ul></header>
 
   <section class="nsec" id="how" aria-labelledby="hw-h">
     <h2 id="hw-h">How to use this page</h2>
@@ -230,7 +230,7 @@ src_body='''  <header class="nhero"><p class="eyebrow">Lab</p><h1>Sources and re
       <li>This is not legal advice, and it is not a vulnerability scanner. If you run a SonicWall device with SAML on, read the vendor advisory and patch.</li>
     </ul>
   </section>'''
-open(OUT+"/ca-mfa-lab/sources/index.html","w",encoding="utf-8").write(page("/ca-mfa-lab/sources/","Sources and recent events","Dated real-world events behind the conditional access and MFA lab, each linked to a lab case and labelled for how far the source can be trusted.","Sources and recent events",src_body,""))
+open(OUT+"/ca-mfa-lab/sources/index.html","w",encoding="utf-8").write(page("/ca-mfa-lab/sources/","Sources and recent events","Dated real-world events behind the conditional access, MFA and AI agent lab, each linked to a lab case and labelled for how far the source can be trusted.","Sources and recent events",src_body,""))
 print("pages written")
 
 # ---------------- Run in the browser
