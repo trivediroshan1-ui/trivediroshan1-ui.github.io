@@ -19,15 +19,15 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
     <title>AI governance lab, round 6: Zoom in: agents that send instructions to an API · Roshan Trivedi</title>
     <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
-    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
+    <link rel="stylesheet" href="/assets/site.css?v=20261115a">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
     <link rel="stylesheet" href="/assets/theme.css">
-    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/agl.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261115a">
+    <link rel="stylesheet" href="/assets/study.css?v=20261115a">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261115a">
     <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261114e">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
@@ -56,8 +56,8 @@
         <h2>Zoom in: agents that send instructions to an API (round six)</h2>
         <p class="body-text">This zooms into steps 5 to 7 of the lifecycle above. An agent does not have to act on identities by itself. A safer pattern is that it only sends a request, and something else decides and acts. The request has a fixed shape, for example &ldquo;disable this account&rdquo;. A gateway outside the agent checks who the agent is, whether the action is on the list, whether a person must approve it and how many requests the agent has sent this hour. If everything passes, the gateway signs a decision. A separate program, the executor, checks the signature, borrows a short-lived credential from a vault, calls the identity API and gives the credential back.</p>
         <p class="body-text">The agent never holds the credential. That is the main design choice. Giving an agent &ldquo;read access to the vault&rdquo; so it can paste a password into an API call is the same mistake as giving an AI tool &ldquo;read access on your domain&rdquo;: it works, until something goes wrong.</p>
-        <figure style="margin:1.4rem 0">
-          <svg viewBox="0 0 460 470" role="img" aria-label="An agent sends a request to a gateway. A person approves risky requests. The gateway signs a decision for an executor. The executor borrows a short-lived credential from a vault and calls the identity API. The agent has no access to the vault. Every step is written to an audit log." style="max-width:100%;height:auto;display:block;margin:0 auto;font-size:12px" font-family="inherit">
+        <figure style="margin:1.4rem 0;overflow-x:auto">
+          <svg viewBox="0 0 460 470" role="img" aria-label="An agent sends a request to a gateway. A person approves risky requests. The gateway signs a decision for an executor. The executor borrows a short-lived credential from a vault and calls the identity API. The agent has no access to the vault. Every step is written to an audit log." style="min-width:460px;max-width:100%;height:auto;display:block;margin:0 auto;font-size:12px" font-family="inherit">
             <defs><marker id="r6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
             <g fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="140" y="10" width="180" height="54" rx="8"/>

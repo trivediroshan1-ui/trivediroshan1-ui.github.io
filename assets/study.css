@@ -71,13 +71,30 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .diagram-card svg.d-tall { display: none; }
 .sweep-m { stroke: var(--c); stroke-width: 2; animation: sweep-m 10s linear infinite; }
 @keyframes sweep-m { 0% { transform: translateX(0); } 100% { transform: translateX(320px); } }
-@media (max-width: 640px) {
+/* Labels stay at 12 px or more on screen. The wide drawing needs about 1000 px of width, so it breaks out of the reading
+   column on large screens and the tall drawing takes over below 1040 px. On phones the tall drawing uses nearly the whole width. */
+.diagram-card svg.d-wide .sub { font-size: 12.1px; }
+.diagram-card svg.d-wide .badge text { font-size: 12.1px; }
+.diagram-card svg.d-wide[viewBox^="0 0 1000"] .sub { font-size: 13.2px; }
+.diagram-card svg.d-wide[viewBox^="0 0 1000"] .badge text { font-size: 13px; }
+@media (min-width: 1041px) {
+  .diagram-card:has(> svg.d-wide) { width: min(1040px, calc(100vw - 48px)); margin-left: calc(50% - min(520px, 50vw - 24px)); box-sizing: border-box; }
+}
+/* From 1180 px the contents list sits to the right of the column, so the drawing grows to the left only. */
+@media (min-width: 1180px) {
+  .diagram-card:has(> svg.d-wide) { width: min(1040px, calc(50vw + 406px)); margin-left: calc(100% - min(1040px, 50vw + 406px)); }
+}
+@media (max-width: 1040px) {
   .diagram-card svg.d-wide { display: none; }
   .diagram-card svg.d-tall { display: block; max-width: 420px; margin: 0 auto; }
   .diagram-card svg text { font-size: inherit; }
-  .diagram-card .sub { font-size: 12px; }
+  .diagram-card .sub { font-size: 13px; }
   .diagram-card .ttl { font-size: 15px; }
-  .diagram-card .lane { font-size: 13px; }
+  .diagram-card .lane { font-size: 13.4px; }
+  .diagram-card svg.d-tall .badge text { font-size: 12.5px; }
+}
+@media (max-width: 640px) {
+  .diagram-card:has(> svg.d-tall), .diagram-card:has(> svg.ring) { margin-inline: -8px; padding: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .sweep-m { display: none; } }
 @media print { .sweep-m { display: none; } }
@@ -101,6 +118,7 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .node6 rect { fill: var(--surface-2); stroke: var(--border); stroke-width: 1.5; animation: node-rect6 12s linear infinite; animation-delay: calc(var(--i) * 2s); }
 @keyframes node-rect6 { 0%, 16.6% { stroke: var(--c); fill: color-mix(in srgb, var(--c) 14%, #101a2c); } 17.6%, 100% { stroke: #1f2a40; fill: #101a2c; } }
 .ring .ttl { font-size: 15px; } .ring .sub { font-size: 12px; }
+@media (max-width: 640px) { .ring .ttl { font-size: 16.5px; } .ring .sub { font-size: 14.6px; } }
 @media (prefers-reduced-motion: reduce) { .node6 rect { animation: none !important; } }
 @media print { .node6 rect { animation: none !important; } }
 

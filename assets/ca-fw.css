@@ -28,6 +28,10 @@
 
 /* flow svg */
 .fw .fsvg{width:100%;height:auto;display:block;overflow:visible}
+/* labels stay at 12 px or more: the narrow drawing is laid out at the real width of the card, so it never shrinks; the wide one is 860 and a mid-size screen scrolls it sideways */
+.fw .fstage{overflow-x:auto}
+.fw .fsvg[viewBox^="0 0 860"]{min-width:860px}
+.fw .fsvg.nw .actor text{font-size:12.5px}
 .fw .fsvg text{font-family:inherit;fill:var(--text,#f1f5f9)}
 .fw .fsvg .actor rect{fill:var(--surface,#0b1220);stroke:var(--border,#1f2a40);stroke-width:1.5}
 .fw .fsvg .actor text{font-size:14px;font-weight:700}
@@ -39,7 +43,7 @@
 .fw .fsvg .ar.blk{stroke:#ff8fa3;stroke-dasharray:6 5}
 .fw .fsvg .ah.a{fill:#ff8fa3}.fw .fsvg .ah.n{fill:var(--accent,#4de2ff)}.fw .fsvg .ah.c{fill:#f7c873}
 .fw .fsvg .lb{font-size:12.5px}
-.fw .fsvg .num{font-size:11px;font-weight:700;fill:var(--bg,#030712)}
+.fw .fsvg .num{font-size:12px;font-weight:700;fill:var(--bg,#030712)}
 .fw .fsvg .badge.a{fill:#ff8fa3}.fw .fsvg .badge.n{fill:var(--accent,#4de2ff)}.fw .fsvg .badge.c{fill:#f7c873}
 .fw .fsvg .stop{font-size:12px;font-weight:700;fill:#ff8fa3}
 .fw .fsvg .cur .ar{stroke-width:3.4}
