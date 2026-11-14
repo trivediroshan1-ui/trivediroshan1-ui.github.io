@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Puts the round-six section (agents that send instructions to an identity API) into ai-governance-lab/index.html
 between markers, after the round-five block. Safe to re-run. Also copies the guesses file next to the site so its hash can be checked."""
-import re, json, html, hashlib, shutil
+import sys, re, json, html, hashlib, shutil
 LAB = "/home/claude/ai-governance-lab"
 src = open("assets/agl-r6.js").read()
 R6 = json.loads(src[src.index("{"):src.rindex("}") + 1])
@@ -100,10 +100,6 @@ block = f'''<!-- r6:start -->
 <!-- r6:end -->
 
       '''
-h = open("ai-governance-lab/index.html").read()
-h = re.sub(r"<!-- r6:start -->.*?<!-- r6:end -->\n\n      ", "", h, flags=re.S)
-h = h.replace('<section id="try">', block + '<section id="try">', 1)
-h = h.replace("lists all 73 lab cases (59 from the first four rounds and 14 added in round five) and the 9 assistant cases",
-              "lists all 91 lab cases (59 from the first four rounds, 14 added in round five and 18 in round six) and the 9 assistant cases")
-open("ai-governance-lab/index.html", "w").write(h)
-print("ok", h.count("api-pattern"), sha[:12])
+sys.path.insert(0, "scripts")
+from agl_rounds import write_round
+write_round(6, block)

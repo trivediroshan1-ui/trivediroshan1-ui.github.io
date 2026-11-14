@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Gaps I found in my own audit, starting with the claim that an AI only needs read access on your domain." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ai-governance-lab/round-5/" />
+    <meta property="og:title" content="AI governance lab, round 5: Gaps I found in my own audit" />
+    <meta property="og:description" content="Gaps I found in my own audit, starting with the claim that an AI only needs read access on your domain." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ai-governance-lab/round-5/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>AI governance lab, round 5: Gaps I found in my own audit · Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261114e">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261114d" defer></script>
+    <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+  <script src="/assets/nav.js?v=20261114e" defer></script>
+  <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
+      <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">
+  </head>
+  <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      <nav class="lab-nav" aria-label="AI governance lab pages"><div class="ln-top"><a class="ln-all" href="/labs/">All labs</a><ul><li><a href="/ai-governance-lab/">Overview</a></li><li><a href="/ai-governance-lab/diagrams/">How it works</a></li><li><a href="/ai-governance-lab/evidence/">Results</a></li><li><a href="/ai-governance-lab/cases/">Cases</a></li><li><a href="/ai-governance-lab/what-i-got-wrong/">What I got wrong</a></li><li><a href="/ai-governance-lab/try/">Try it</a></li><li><a href="/assets/ai-governance-lab-book.pdf">Book</a></li></ul></div><ul class="ln-more" aria-label="More pages in this lab"><li><a href="/ai-governance-lab/implement/">Implement it</a></li><li><a href="/ai-governance-lab/run/">Run it</a></li><li><a href="/ai-governance-lab/mac/">Mac commands</a></li><li><a href="/ai-governance-lab/story/">The story</a></li><li><a href="/ai-governance-lab/transcripts/">Transcripts</a></li><li><a href="/ai-governance-lab/appendix/">Appendix</a></li><li><a href="/ai-governance-lab/#rounds" aria-current="page">Rounds 5 to 13</a></li></ul></nav>
+      <header class="hero mcp-hero">
+        <p class="eyebrow">AI governance lab</p>
+        <h1>Round 5 of the AI governance lab</h1>
+        <p class="dek">Gaps I found in my own audit, starting with the claim that an AI only needs read access on your domain.</p><p class="lastrev">Last reviewed 14 November 2026</p>
+        <div class="mcp-ribbon" aria-hidden="true"></div>
+      </header>
+      <p class="body-text"><a href="/ai-governance-lab/#rounds">All rounds</a> &middot; <a href="/ai-governance-lab/">Lab overview</a> &middot; <a href="/ai-governance-lab/cases/">Case explorer</a></p>
+
+      <!-- r5:start -->
+      <section id="round5">
+        <h2>Round five: gaps I found in my own audit</h2>
+        <p class="body-text">After the first posts were drafted I audited the lab from an identity-governance view and found things I had not tested. The biggest was the sentence vendors use: &ldquo;our AI only needs read access on your domain&rdquo;. I wrote the expected results for 14 new cases first and committed them in the lab repository at 23:38 on 24 Oct 2026, then wrote the code and ran them. All 14 came out as I guessed. That says the controls I added do what I built them to do. It does not say they are enough, because I wrote both the guess and the code.</p>
+        <p class="body-text">To check that I did not change the guesses afterwards, the SHA-256 of the guesses file (<code>cases/round-5.json</code>) is <code style="word-break:break-all;font-size:1.08em">c35063c59bc05f49165d5312d8782aaeb88e03d57851d3f356e8dd0193927d05</code>. The results file records the same value.</p>
+        <p class="body-text">One case, I13, crashed on the first run because my test did not let any time pass before the new token was issued. I fixed the test, not the lab, and kept both result files.</p>
+        <div class="tbl-wrap">
+          <table class="tbl wrap-first stack">
+            <thead><tr><th>Case</th><th>What I tested</th><th>My guess</th><th>What came out</th></tr></thead>
+            <tbody><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#V1">V1</a></td><td data-label="What I tested">A vendor AI app asks for read access to the whole domain: all mail and all files</td><td data-label="My guess">held</td><td data-label="What came out">held</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#V2">V2</a></td><td data-label="What I tested">The same vendor, narrowed to one shared folder, with a named data owner</td><td data-label="My guess">granted with expiry</td><td data-label="What came out">granted with expiry</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#V3">V3</a></td><td data-label="What I tested">A consent review 100 days later: one grant expired, one app never used</td><td data-label="My guess">expired and flagged</td><td data-label="What came out">expired and flagged</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#V4">V4</a></td><td data-label="What I tested">A vendor AI app that processes in a region outside India asks to read folders with personal data</td><td data-label="My guess">held</td><td data-label="What came out">held</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#R1">R1</a></td><td data-label="What I tested">An agent searching company files for one employee: search that ignores document permissions versus search that checks them</td><td data-label="My guess">leaks</td><td data-label="What came out">leaks</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#R2">R2</a></td><td data-label="What I tested">A person moves department, but the search index still holds their old permissions</td><td data-label="My guess">leaks until refresh</td><td data-label="What came out">leaks until refresh</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#I13">I13</a></td><td data-label="What I tested">An agent&#x27;s sponsor moves to another department</td><td data-label="My guess">held until recertified</td><td data-label="What came out">held until recertified</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#I14">I14</a></td><td data-label="What I tested">An access review of agents: one scope never used, one agent never reviewed in 30 days</td><td data-label="My guess">unused scope flagged and lapsed</td><td data-label="What came out">unused scope flagged and lapsed</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#I15">I15</a></td><td data-label="What I tested">An agent is registered with read on HR files and the right to send email (a toxic combination)</td><td data-label="My guess">refused</td><td data-label="What came out">refused</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#I16">I16</a></td><td data-label="What I tested">A token issued for one service is shown to a different service</td><td data-label="My guess">refused</td><td data-label="What came out">refused</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#I17">I17</a></td><td data-label="What I tested">A person who delegated to an agent leaves while the agent&#x27;s token is still valid</td><td data-label="My guess">revoked</td><td data-label="What came out">revoked</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#I18">I18</a></td><td data-label="What I tested">A privileged-access approval by someone whose last sign-in check was 45 minutes ago, then 3 minutes ago</td><td data-label="My guess">stale refused fresh accepted</td><td data-label="What came out">stale refused fresh accepted</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#E15">E15</a></td><td data-label="What I tested">A blocked request contained an Aadhaar number: does the decision log hold the number?</td><td data-label="My guess">clean</td><td data-label="What came out">clean</td></tr><tr><td data-label="Case"><a href="/ai-governance-lab/cases/#E16">E16</a></td><td data-label="What I tested">A log line is added with a date earlier than the line before it</td><td data-label="My guess">chain accepts backdating</td><td data-label="What came out">chain accepts backdating</td></tr></tbody>
+          </table>
+        </div>
+        <p class="body-text">Two of these show leaks on purpose: a plain search that ignores file permissions (R1) and a search index with an old copy of permissions (R2). A third shows a limit: a hash chain accepts a line with an earlier date (E16). Every case has a step-by-step page in the <a href="/ai-governance-lab/cases/#V1">case explorer</a>.</p>
+      </section>
+
+      <!-- r5:end -->
+    <nav class="lab-foot" aria-label="More in this lab"><a class="lf-prev" href="/ai-governance-lab/#rounds"><small>Previous</small><b>All rounds</b></a><a class="lf-next" href="/ai-governance-lab/round-6/"><small>Next</small><b>Round 6</b></a><span class="lf-extra"><a href="/assets/ai-governance-lab-book.pdf">Get the book</a><a href="/topics/">Browse by topic</a></span></nav>
+</main>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AI governance lab, round 5: Gaps I found in my own audit","dateModified":"2026-11-14","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"url":"https://roshantrivedi.co.in/ai-governance-lab/round-5/","isPartOf":{"@type":"WebPage","url":"https://roshantrivedi.co.in/ai-governance-lab/"},"license":"https://creativecommons.org/licenses/by/4.0/"}</script>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script defer src="/assets/agl-lifecycle.js?v=20261025a"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261114i"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>

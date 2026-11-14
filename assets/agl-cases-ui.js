@@ -200,7 +200,7 @@
       ctl.forEach(function (x) { var li = el("li"); li.appendChild(el("b", null, x.id + "  ")); li.appendChild(document.createTextNode(x.control)); ul.appendChild(li); });
       body.appendChild(ul);
       var cl = el("p", "agl-hint"); cl.appendChild(document.createTextNode("How each control maps to ISO 42001, NIST AI RMF, the EU AI Act and India's rules is in the controls table on the "));
-      var ca = el("a", null, c.added ? "lab page" : "run page"); ca.href = c.added ? (c.addedRound === 13 ? "/ai-governance-lab/#meaning" : c.addedRound === 12 ? "/ai-governance-lab/#approvals" : c.addedRound === 11 ? "/ai-governance-lab/#delegation" : c.addedRound === 10 ? "/ai-governance-lab/#credentials" : c.addedRound === 9 ? "/ai-governance-lab/#rag" : c.addedRound === 8 ? "/ai-governance-lab/#bypass" : c.addedRound === 7 ? "/ai-governance-lab/#hr-lifecycle" : c.addedRound === 6 ? "/ai-governance-lab/#api-pattern" : "/ai-governance-lab/#frameworks") : "/ai-governance-lab/run/#agl-ctl"; cl.appendChild(ca); cl.appendChild(document.createTextNode("."));
+      var ca = el("a", null, c.added ? "lab page" : "run page"); ca.href = c.added ? (c.addedRound === 13 ? "/ai-governance-lab/round-13/" : c.addedRound === 12 ? "/ai-governance-lab/round-12/" : c.addedRound === 11 ? "/ai-governance-lab/round-11/" : c.addedRound === 10 ? "/ai-governance-lab/round-10/" : c.addedRound === 9 ? "/ai-governance-lab/round-9/" : c.addedRound === 8 ? "/ai-governance-lab/round-8/" : c.addedRound === 7 ? "/ai-governance-lab/round-7/" : c.addedRound === 6 ? "/ai-governance-lab/round-6/" : "/ai-governance-lab/round-5/") : "/ai-governance-lab/run/#agl-ctl"; cl.appendChild(ca); cl.appendChild(document.createTextNode("."));
       body.appendChild(cl);
     }
     return body;

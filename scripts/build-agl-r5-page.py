@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Puts the round-five results and the framework map into ai-governance-lab/index.html (between markers, safe to re-run)."""
-import re, json, html
+import sys, re, json, html
 src = open("assets/agl-r5.js").read()
 R5 = json.loads(src[src.index("{"):src.rindex("}") + 1])
 old = R5["oldmap"]
@@ -47,9 +47,6 @@ block = f'''<!-- r5:start -->
 <!-- r5:end -->
 
       '''
-h = open("ai-governance-lab/index.html").read()
-h = re.sub(r"<!-- r5:start -->.*?<!-- r5:end -->\n\n      ", "", h, flags=re.S)
-h = h.replace('<section id="try">', block + '<section id="try">', 1)
-h = h.replace("lists all 59 lab cases and the 9 assistant cases", "lists all 73 lab cases (59 from the first four rounds and 14 added in round five) and the 9 assistant cases")
-open("ai-governance-lab/index.html", "w").write(h)
-print("ok", h.count("round5"))
+sys.path.insert(0, "scripts")
+from agl_rounds import write_round
+write_round(5, block)

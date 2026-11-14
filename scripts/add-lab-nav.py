@@ -9,6 +9,8 @@ LINK = f'<link rel="stylesheet" href="/assets/lab-nav.css?v={V}">'
 n = 0
 for lab, v in lab_nav.LABS.items():
     pages = {h.split("#")[0] for t, h in v["primary"] + v["more"] if h.endswith("/") and not t.startswith("Related")}
+    if lab == "agl":
+        pages |= {f"/ai-governance-lab/round-{i}/" for i in range(5, 14)}
     for path in sorted(pages):
         p = ROOT / path.strip("/") / "index.html"
         if not p.exists():

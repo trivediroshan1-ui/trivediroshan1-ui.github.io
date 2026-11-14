@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Puts the round-seven section (the HR side of identity onboarding, with the animated lifecycle) into ai-governance-lab/index.html
 between markers, before the round-six block. Safe to re-run. Also copies the guesses file next to the site."""
-import re, json, html, hashlib, shutil
+import sys, re, json, html, hashlib, shutil
 LAB = "/home/claude/ai-governance-lab"
 src = open("assets/agl-r7.js").read()
 R7 = json.loads(src[src.index("{"):src.rindex("}") + 1])
@@ -108,15 +108,6 @@ block = f'''<!-- r7:start -->
 <!-- r7:end -->
 
       '''
-h = open("ai-governance-lab/index.html").read()
-h = re.sub(r"<!-- r7:start -->.*?<!-- r7:end -->\n\n      ", "", h, flags=re.S)
-assert "<!-- r6:start -->" in h
-h = h.replace("<!-- r6:start -->", block + "<!-- r6:start -->", 1)
-h = h.replace("lists all 91 lab cases (59 from the first four rounds, 14 added in round five and 18 in round six)",
-              "lists all 103 lab cases (59 from the first four rounds, 14 added in round five, 18 in round six and 12 in round seven)")
-if "agl-lifecycle.css" not in h:
-    h = h.replace('<link rel="stylesheet" href="/assets/agl.css?v=20261024f">', '<link rel="stylesheet" href="/assets/agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">', 1)
-if "agl-lifecycle.js" not in h:
-    h = h.replace('<script defer src="/assets/chatbot-widget.js', '<script src="/assets/agl-lifecycle.js?v=20261025a" defer></script>\n  <script defer src="/assets/chatbot-widget.js', 1)
-open("ai-governance-lab/index.html", "w").write(h)
-print("ok", h.count("hr-lifecycle"), sha[:12])
+sys.path.insert(0, "scripts")
+from agl_rounds import write_round
+write_round(7, block)
