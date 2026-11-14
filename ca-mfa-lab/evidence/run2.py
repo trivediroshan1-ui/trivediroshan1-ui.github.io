@@ -180,7 +180,7 @@ def main():
         if diffs or (cid in PAIRS and row["pair_result"] != "in"): mism.append((cid, diffs, row.get("pair_result")))
     json.dump(rows, open("results-run2.json", "w"), indent=1)
     for rw in rows: print(rw["id"], rw["result"], "guess", rw["guess"], "OK" if not rw["diffs"] else "MISMATCH " + ",".join(rw["diffs"]), ("pair " + str(rw["pair_result"])) if "pair_off" in rw else "")
-    print("cases", len(rows), "full match", len(rows) - len([m for m in mism if m[1]]), "mismatched", [m[0] for m in mism])
+    print("cases", len(rows), "full match", len(rows) - len(mism), "mismatched", [m[0] for m in mism])
     no_single_in = [rw["id"] for rw in rows if all(x != "in" for x in rw["result"][2:])]
     any_single_in = len(rows) - len(no_single_in)
     all_out = sum(1 for rw in rows if rw["result"][1] == "out")

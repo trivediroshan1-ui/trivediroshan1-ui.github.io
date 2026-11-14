@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="89 conditional access, MFA and SSO cases on made-up data. Guesses locked before code. 86 run, 6 guesses wrong." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/" />
+    <meta property="og:title" content="Conditional access, MFA and SSO lab" />
+    <meta property="og:description" content="89 conditional access, MFA and SSO cases on made-up data. Guesses locked before code. 86 run, 6 guesses wrong." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <title>Conditional access, MFA and SSO lab &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
+    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+  <script src="/assets/nav.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Do conditional access, MFA and SSO controls hold up?", "description": "89 conditional access, MFA and SSO cases on made-up data. Guesses locked before code. 86 run, 6 guesses wrong.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+</head>
+    <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main" class="nhi">
+  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/" aria-current="page">Overview</a><a href="/ca-mfa-lab/register/">Register</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
+  <header class="nhero"><p class="eyebrow">Lab</p><h1>Do conditional access, MFA and SSO controls hold up?</h1><p class="dek">89 cases on made-up data: how people get past MFA, how single sign-on breaks, how recovery gets abused, and how conditional access rules fail when several controls interact. I wrote my guesses first and locked them before any code. 6 of those guesses were wrong.</p><ul class="nmeta"><li>Run on 14 November 2026</li><li>86 cases run, 3 not run</li><li>Made-up data only</li></ul></header>
+
+  <section class="nsec" id="result" aria-labelledby="res-h">
+    <h2 id="res-h">What came out</h2>
+    <div class="ntiles">
+      <div class="ntile good"><b>41 of 41</b><span>Run 1 guesses matched. Single controls: MFA methods, SSO protocols, account recovery.</span></div>
+      <div class="ntile warn"><b>39 of 45</b><span>Run 2 guesses matched. Each case had 2 or 3 controls working together.</span></div>
+    </div>
+    <p class="lede">A perfect score on Run 1 told me the cases were too easy. I had written the models while knowing my own guesses. So Run 2 used several controls per case, and that is where I found out what I did not understand.</p>
+  </section>
+
+  <section class="nsec" id="wrong" aria-labelledby="w-h">
+    <h2 id="w-h">The 6 guesses I got wrong</h2>
+    <div class="ngrid">
+      <div class="ncard"><h3>A notice is not a block (C01, C03)</h3><p>I defined the bad outcome as &ldquo;account taken and unnoticed&rdquo;. A change notice or an alert makes any takeover noticed, so the controls that stop the takeover looked unnecessary. A notice tells you about an attack. It does not stop it.</p></div>
+      <div class="ncard"><h3>Trusting a partner&rsquo;s MFA (A05)</h3><p>If you accept the home tenant&rsquo;s MFA claim for guests, a weak home MFA satisfies your requirement and your own guest rule adds nothing. This depends on my assumption that the home claim is weak.</p></div>
+      <div class="ncard"><h3>The control that decides the question (Z21)</h3><p>I said refresh token lifetime did not matter. For &ldquo;does the attacker still have access at 24 hours&rdquo; it is the control that decides. Blocking the device code flow and requiring a compliant device matter for the first hour.</p></div>
+      <div class="ncard"><h3>Scope of a control (X07)</h3><p>Limiting trusted locations to the managed office network already stops an attacker on guest wifi. I thought the device rule was also needed.</p></div>
+      <div class="ncard"><h3>A convention is not enforcement (A03)</h3><p>Separate admin accounts are a habit. Blocking the admin group from non-admin apps is enforcement. I had the two the wrong way round.</p></div>
+    </div>
+  </section>
+
+  <section class="nsec" id="held" aria-labelledby="h-h">
+    <h2 id="h-h">What the guesses got right</h2>
+    <p class="lede">Report-only mode protects nothing for an emergency account that never signs in during the test week (P05). Several controls were each enough alone: a phishing-resistant method, a compliant device at token use and token protection each stopped a stolen-session replay on their own (Z17). Pair checks for SMS fallback with SIM swap checks (C05) and registration protection with a device rule (Z22) failed only when both controls were off.</p>
+  </section>
+
+  <section class="nsec" id="new" aria-labelledby="n-h">
+    <h2 id="n-h">Cases I would have missed</h2>
+    <p class="lede">A web search added 22 cases after my first catalogue. The biggest gaps: device code phishing, password-only tokens that skip MFA (ROPC), OAuth consent phishing, forged SAML assertions from a stolen signing key, and policies with no default deny. The register marks which cases came from search.</p>
+  </section>
+
+  <section class="nsec" id="limits" aria-labelledby="l-h">
+    <h2 id="l-h">What this does not show</h2>
+    <ul>
+      <li>These are small models of rule logic. They do not show how any vendor product behaves. Three cases need a real tenant and were not run.</li>
+      <li>Several results depend on assumptions I chose and wrote in the code: the home tenant claim is weak, a reviewer keeps at most 5 exclusions, a change log is read within 7 days, 40 percent of users fall for a code lure. Change one and a result can change.</li>
+      <li>I made three mistakes in the test code, not in the guesses: bad test data in S06, a missing limit flag on Z01 and a wrong model for P11. I fixed them and kept the first-pass files in the record.</li>
+      <li>Sources for new rows are search excerpts and vendor blogs, not standards. I have not read each in full.</li>
+    </ul>
+  </section>
+
+  <section class="nsec" id="proof" aria-labelledby="p-h">
+    <h2 id="p-h">Check it yourself</h2>
+    <p class="lede">The guesses were committed to this site&rsquo;s repository before any code existed. Commit 5875323 holds the Run 1 guesses. Commit 7d31554 holds the Run 2 guesses. Commit 56b9622 holds the code and results. The method is the same as the <a href="/nhi-lab/method/">non-human identity lab</a>.</p>
+    <p><a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run1.md">Run 1 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run2.md">Run 2 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/run1.py">Run 1 code</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/run2.py">Run 2 code</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/RESULTS-run1.md">Run 1 results</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/RESULTS-run2.md">Run 2 results</a> &middot; <a href="/ca-mfa-lab/register/">Full register</a></p>
+  </section>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>
+  </body>
+</html>
