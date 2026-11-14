@@ -6,6 +6,70 @@
  */
 window.SITE_QA = [
   {
+    id: "whats-new",
+    title: "What's new on the site",
+    url: "/ca-mfa-lab/",
+    keywords: ["what's new", "whats new", "what is new", "anything new", "latest", "newest", "recent work", "latest lab", "new lab", "news", "update", "updates"],
+    answer:
+      "The newest work (14 November 2026) is the conditional access, MFA and AI agent lab at /ca-mfa-lab/: 130 sign-in cases on made-up data, with every guess hashed and committed before any code ran. 124 cases were run, 118 matched the locked guess and 6 did not. It comes with a 96-second video, a free 72-page book called Who signs in?, scripts you can run in your browser, and a LinkedIn article, The weak spots have moved past the MFA prompt.",
+  },
+  {
+    id: "ca-mfa-lab",
+    title: "The conditional access, MFA and AI agent lab",
+    url: "/ca-mfa-lab/",
+    keywords: ["conditional access", "conditional access lab", "mfa lab", "ca-mfa", "ca mfa lab", "sign-in lab", "sign in lab", "signin lab", "130 cases", "sso lab", "single sign-on lab", "2fa", "mfa bypass", "does mfa hold", "do conditional access controls hold up", "what did the sign-in lab find", "sign-in cases"],
+    answer:
+      "The conditional access, MFA and SSO lab tests 130 cases on made-up data: how people get past MFA, how single sign-on breaks, how recovery gets abused, how conditional access rules fail when controls interact, and how AI agents get, pass on and keep access. For every case Roshan wrote his guess first, hashed it with SHA-256 and committed it before writing any code. 124 cases were run as small rule models and 118 matched; the 6 wrong guesses were all in Run 2, where two or three controls work together. Six hand tests (E01 to E06) need a real tenant, a hardware key, a real agent product or a help desk call, so they are written up for anyone to run. The main finding: in the cases built from recent incidents, MFA was often not the control that decided the outcome. Token scope and lifetime, binding a token to one device, revocation and recovery mattered more. The models test reasoning about a control, not how any vendor product behaves.",
+  },
+  {
+    id: "ca-mfa-lab-chain",
+    title: "The access chain: seven links",
+    url: "/ca-mfa-lab/framework/",
+    keywords: ["access chain", "seven links", "7 links", "ca framework", "mfa framework", "sign-in framework", "enroll and recover", "watch and end", "where do sign-ins break", "weak spots", "mfa prompt"],
+    answer:
+      "The lab sorts every case into the access chain: seven links that each sign-in and each agent action passes through. 1 Enrol and recover (who can add or reset a way to sign in), 2 Prove (how strong the proof is), 3 Trust (who vouches for the user), 4 Decide (does a rule cover this sign-in), 5 Issue (what the token allows, for how long and to whom), 6 Act (is the sensitive action checked when it happens), 7 Watch and end (does access really stop). In 94 cases, switching off one control on its own let the attacker in, and 10 of those sat at the MFA link. The 22 cases built from 2026 incidents and agent research had none at the MFA link; 18 sat at Issue, Act or Watch and end. Roshan notes he chose the cases, so this shows where his sources pointed, not a measure of attacks. The framework page has 15 animated attack patterns and a filter for each link.",
+  },
+  {
+    id: "ca-mfa-lab-wrong",
+    title: "The six wrong guesses in the sign-in lab",
+    url: "/writing/130-conditional-access-mfa-and-ai-agent-cases/",
+    keywords: ["wrong guesses", "six wrong", "6 wrong", "what did you get wrong", "mistakes in the sign-in lab", "c01", "c03", "a05", "z21", "x07", "a03", "run 2"],
+    answer:
+      "All six wrong guesses in the conditional access lab were in Run 2, where two or three controls worked together, and they fall into five kinds of mistake: not saying what was being counted (C01, C03), treating controls as independent (A05), picking the wrong control as the one that mattered (Z21), not thinking through a control's own scope (X07), and counting a habit as a control (A03). Runs 1, 3, 5 and 6 matched 41 of 41, 16 of 16, 12 of 12 and 10 of 10, and Roshan says he trusts those less, because he wrote both the guesses and the models.",
+  },
+  {
+    id: "ca-mfa-lab-agents",
+    title: "AI agents in the sign-in lab (Run 6)",
+    url: "/ca-mfa-lab/framework/",
+    keywords: ["ai agent identity", "agent identity", "run 6", "agent sso", "sub-agent", "subagent", "ownerless agent", "agent credential rotation", "agents keep access", "cross-app access"],
+    answer:
+      "Run 6 has 10 cases on how AI agents get access, pass it on and keep it, built from Okta's Agent SSO announcement and the Cloud Security Alliance paper on non-human identity. All 10 guesses matched, and six of seven assumption changes flipped a result. Examples: a sub-agent wrote where the person who asked could not, and narrowing its token did not help because the parent agent ran with its own broad identity; rotating an unused agent's credential changed nothing because rotation hands it a new working credential; an ownerless agent was flagged by a monthly scan and kept working. The controls that decided these cases were a named human owner, an identity that expires with the task, and a check at the resource against the person's own rights.",
+  },
+  {
+    id: "ca-mfa-lab-run",
+    title: "Run the sign-in lab yourself",
+    url: "/ca-mfa-lab/virtual-lab/run/",
+    keywords: ["run in browser", "run it in your browser", "run the scripts", "run it myself", "virtual lab", "reproduce", "reproduction", "pyodide", "exception form", "report an exception", "hand tests"],
+    answer:
+      "You can run the lab's scripts in your browser at /ca-mfa-lab/virtual-lab/run/, with nothing to install; the page compares your output with the published results byte for byte. If you change one word in a guess file, the script refuses to run because the hash no longer matches. Roshan also reran every script on his own Mac and each results file came out identical. The virtual lab at /ca-mfa-lab/virtual-lab/ replays any case and shows the steps for running it locally with Python 3. If you test a case in a real product and it behaves differently, there is an exception form on GitHub, and accepted results go on the page next to his.",
+  },
+  {
+    id: "ca-mfa-lab-book",
+    title: "Who signs in? (the sign-in lab book)",
+    url: "/ca-mfa-lab/ca-mfa-lab-book.pdf",
+    keywords: ["who signs in", "sign-in book", "conditional access book", "mfa book", "ca book", "72 pages", "72-page", "newest book", "latest book"],
+    answer:
+      "Who signs in? is the free 72-page book from the conditional access, MFA, SSO and AI agent lab. It covers the problem, scope and method, the seven-link access chain with a chapter for each link, the six wrong guesses, the assumptions that changed results, dated public events behind the cases, where vendors and standards are going, how to run the lab yourself, and a conclusion. The appendices hold the evidence hashes, the full 130-row register, a glossary and the sources. All data is made up. The PDF is at /ca-mfa-lab/ca-mfa-lab-book.pdf.",
+  },
+  {
+    id: "ca-mfa-lab-media",
+    title: "Video, article and newsletter on the sign-in lab",
+    url: "/ca-mfa-lab/",
+    keywords: ["video", "lab video", "linkedin article", "article", "weak spots have moved", "newsletter issue", "buttondown", "blog post on the lab"],
+    answer:
+      "The lab overview at /ca-mfa-lab/ has a 96-second video with a text version underneath. Roshan wrote about the lab three ways: a blog post on the six wrong guesses (/writing/130-conditional-access-mfa-and-ai-agent-cases/), a newsletter issue on Buttondown, and a LinkedIn article, The weak spots have moved past the MFA prompt, which sorts the cases by where they break and ends with seven questions for an identity review. All three are linked from the lab overview.",
+  },
+  {
     id: "credential-tiering-model",
     title: "Research: Credential Tiering & the PAM Market",
     url: "/case-studies/credential-tiering-model/",
@@ -251,7 +315,7 @@ window.SITE_QA = [
     url: "/book/#library",
     keywords: ["books","all books","all the books","how many books","list of books","books list","which books","what books","what books has roshan written","what books has roshan published","other books","more books","book menu","book dropdown","find the books","where are the books","free books","download books","reports","papers","library","book library","all pdfs","pdf list","which book should i read first","what should i read first"],
     answer:
-      "There are three free books, all on the Book page at /book/ (the Book menu in the top bar links to each one). (1) Who Approved That? is the MCP lab book: 138 pages on putting a human approval step in front of AI agent tool calls, 210 scripted checks, 81 use cases. (2) Does AI Governance Hold? is the AI governance lab notebook: 69 pages, 13 rounds, 164 cases with made-up Indian data. (3) Machine identities, tested in public (edition 2) is the non-human identity lab book: 83 pages, 67 cases, each with its own workflow diagram. There are also longer reports and papers: the AI governance addendum for rounds 5 to 13 (74 pages), the HumanGate MCP lab final report (122 pages), and the 30-page paper Securing India's National Examinations. Each book has a SHA-256 checksum on the Book page. All of it is free, needs no sign-up, and uses made-up data. If you are not sure where to start: Who Approved That? for AI agent approvals, the NHI book for service accounts, keys and machine logins, and the AI governance book for testing AI controls.",
+      "There are four free books. Three are on the Book page at /book/ (the Book menu in the top bar links to each one), and the newest is on its lab page. (1) Who Approved That? is the MCP lab book: 138 pages on putting a human approval step in front of AI agent tool calls, 210 scripted checks, 81 use cases. (2) Does AI Governance Hold? is the AI governance lab notebook: 69 pages, 13 rounds, 164 cases with made-up Indian data. (3) Machine identities, tested in public (edition 2) is the non-human identity lab book: 83 pages, 67 cases, each with its own workflow diagram. (4) Who signs in? is the conditional access, MFA and AI agent lab book: 72 pages, 130 cases, at /ca-mfa-lab/ca-mfa-lab-book.pdf. There are also longer reports and papers: the AI governance addendum for rounds 5 to 13 (74 pages), the HumanGate MCP lab final report (122 pages), and the 30-page paper Securing India's National Examinations. Each book has a SHA-256 checksum on the Book page. All of it is free, needs no sign-up, and uses made-up data. If you are not sure where to start: Who Approved That? for AI agent approvals, Who signs in? for MFA, single sign-on and conditional access, the NHI book for service accounts, keys and machine logins, and the AI governance book for testing AI controls.",
   },
   {
     id: "book",
@@ -347,7 +411,7 @@ window.SITE_QA = [
     url: "/#start-here",
     keywords: ["best pages", "best case studies", "best work", "strongest work", "where should i start", "what should i read first", "top pages", "short version", "for recruiters", "hiring manager"],
     answer:
-      "Three pages show the work fastest. The résumé (/resume/) has roles, dates and certifications. The AI Governance Lab (/ai-governance-lab/) has 13 rounds and 164 cases on made-up data, with every guess hashed before the code runs, and the non-human identity lab (/nhi-lab/) has 67 cases with a framework, a dated market view and downloadable audit data. Non-human identity at scale (/case-studies/non-human-identity-at-scale/) is an independent guide to owning, rotating and retiring machine credentials. For privileged-access depth, add Credential tiering and the PAM market, and Break-glass access.",
+      "These pages show the work fastest. The résumé (/resume/) has roles, dates and certifications. The newest lab, on conditional access, MFA and AI agents (/ca-mfa-lab/), has 130 cases with every guess locked before the code ran, a 72-page book and scripts you can run in your browser. The AI Governance Lab (/ai-governance-lab/) has 13 rounds and 164 cases on made-up data, with every guess hashed before the code runs, and the non-human identity lab (/nhi-lab/) has 67 cases with a framework, a dated market view and downloadable audit data. Non-human identity at scale (/case-studies/non-human-identity-at-scale/) is an independent guide to owning, rotating and retiring machine credentials. For privileged-access depth, add Credential tiering and the PAM market, and Break-glass access.",
   },
   {
     id: "what-i-got-wrong",

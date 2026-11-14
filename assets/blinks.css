@@ -70,3 +70,8 @@ html[data-theme="light"] .subs svg,html[data-theme="light"] .subs .go{color:#b45
 html[data-theme="light"] .subs span.s{color:#52617a}
 @media (max-width:640px){.subs span.s{display:none}}
 @media (prefers-reduced-motion:reduce){.subs .flap,.subs .dotb{animation:none}.subs{transition:none}}
+/* 14 Nov 2026: four lab cards, two to a row on wide screens */
+@media (min-width:901px){.blinks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.bl.ca{--k:#60a5fa}
+.bl.ca .lk{animation:bl-blink 1.4s steps(2,start) infinite}
+html.motion-off .bl.ca .lk{animation:none}

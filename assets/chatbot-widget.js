@@ -132,7 +132,7 @@
     INDEX_WAITERS.push(cb);
     if (INDEX_STATE === "loading") return;
     INDEX_STATE = "loading";
-    fetch("/assets/chatbot-index.json?v=20261111a")
+    fetch("/assets/chatbot-index.json?v=20261114a")
       .then(function (res) { if (!res.ok) throw new Error("status " + res.status); return res.json(); })
       .then(function (raw) { buildIndex(raw); INDEX_STATE = "ready"; })
       .catch(function () { INDEX_STATE = "failed"; })
@@ -189,18 +189,27 @@
   }
 
   var FALLBACK =
-    "I couldn't find anything about that on this site. Try asking about the case studies, the Secure India Exams project, Roshan's background, or how to contact him — or reach out directly at trivedi.roshan1@gmail.com.";
+    "I couldn't find anything about that on this site. Try asking about the conditional access and MFA lab, the case studies, the Secure India Exams project, Roshan's background, or how to contact him — or reach out directly at trivedi.roshan1@gmail.com.";
 
   var DEFAULT_SUGGESTIONS = [
-    "Who is Roshan?",
-    "What case studies are here?",
+    "What's new on the site?",
+    "What did the sign-in lab find?",
     "Which free books are there?",
-    "What did the AI governance lab find?",
+    "Who is Roshan?",
   ];
 
   // Page-aware suggestions: shown instead of the defaults when the visitor
   // opens the widget from a page this section matches (checked in order).
   var PAGE_SUGGESTIONS = [
+    {
+      test: /^\/ca-mfa-lab\/?/,
+      suggestions: [
+        "What did the sign-in lab find?",
+        "What is the access chain?",
+        "Which guesses were wrong?",
+        "How do I run it myself?",
+      ],
+    },
     {
       test: /^\/book\/?/,
       suggestions: [
@@ -324,9 +333,45 @@
     if (DATA_STATE === "loading") return;
     DATA_STATE = "loading";
     var s = document.createElement("script");
-    s.src = "/assets/chatbot-data.js?v=20261111a";
+    s.src = "/assets/chatbot-data.js?v=20261114a";
     s.onload = s.onerror = function () { DATA_STATE = "ready"; var w = DATA_WAITERS; DATA_WAITERS = []; w.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
+  }
+
+  // "What's new" doodle next to the chat button. Change NOTICE for the next
+  // piece of news; a new id shows it again to people who closed the old one.
+  // It stops showing after `until`, and never on the pages it points to.
+  var NOTICE = {
+    id: "ca-mfa-lab-2026-11",
+    until: "2026-12-31",
+    skip: /^\/(ca-mfa-lab\/.*)?$/, // the home page has its own banner
+    kicker: "New",
+    text: "I tested 130 conditional access, MFA and AI agent cases. Free book, video and a lab you can run.",
+    href: "/ca-mfa-lab/",
+    linkText: "See the lab",
+    ask: "What did the sign-in lab find?",
+  };
+
+  var DOODLE_BOX =
+    '<svg class="sc-nd-box" viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true">' +
+    '<path pathLength="1" d="M8 12 C70 4 200 9 291 7 C296 50 293 100 294 141 C200 146 90 143 9 145 C5 100 7 50 8 12 Z"></path></svg>';
+  var DOODLE_ARROW =
+    '<svg class="sc-nd-arrow" viewBox="0 0 60 60" aria-hidden="true">' +
+    '<path pathLength="1" d="M6 4 C10 24 26 38 46 44"></path><path pathLength="1" d="M36 47 L47 44 L42 34"></path></svg>';
+  var DOODLE_LINE =
+    '<svg class="sc-nd-line" viewBox="0 0 120 10" preserveAspectRatio="none" aria-hidden="true">' +
+    '<path pathLength="1" d="M2 6 C20 2 34 9 52 5 C70 1 86 9 118 4"></path></svg>';
+
+  function noticeWanted() {
+    if (!NOTICE || !NOTICE.id) return false;
+    if (new Date() > new Date(NOTICE.until + "T23:59:59")) return false;
+    if (NOTICE.skip && NOTICE.skip.test(window.location.pathname || "/")) return false;
+    try { if (window.localStorage.getItem("sc-notice-closed") === NOTICE.id) return false; } catch (e) {}
+    return true;
+  }
+
+  function rememberNoticeClosed() {
+    try { window.localStorage.setItem("sc-notice-closed", NOTICE.id); } catch (e) {}
   }
 
   function init() {
@@ -364,6 +409,15 @@
     root.appendChild(panel);
     root.appendChild(launcher);
     document.body.appendChild(root);
+
+    // Some pages do not link the widget's stylesheet. Without it the button
+    // sits at the end of the page, so load the styles here when they are missing.
+    if (window.getComputedStyle(root).position !== "fixed") {
+      var wcss = document.createElement("link");
+      wcss.rel = "stylesheet";
+      wcss.href = "/assets/chatbot-widget.css?v=20261114a";
+      document.head.appendChild(wcss);
+    }
 
     var messagesEl = panel.querySelector("#sc-messages");
     var suggestionsEl = panel.querySelector("#sc-suggestions");
@@ -417,7 +471,7 @@
       if (greeted) return;
       greeted = true;
       addMessage(
-        "Hi, ask me anything about this site: the case studies, the MCP lab, the AI governance lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch. I answer from the text on the site, so I quote it rather than make anything up.",
+        "Hi, ask me anything about this site: the new conditional access and MFA lab, the case studies, the MCP lab, the AI governance lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch. I answer from the text on the site, so I quote it rather than make anything up.",
         "bot"
       );
       renderSuggestions();
@@ -503,6 +557,7 @@
     function openPanel() {
       loadData(function () {});
       loadIndex(function () {});
+      hideNotice(false);
       panel.style.display = "flex";
       launcher.classList.add("sc-launcher-open");
       greet();
@@ -530,6 +585,48 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && panel.style.display !== "none") closePanel();
     });
+
+    // The doodle notice: appears after a short pause, blinks gently, and goes
+    // away for good once closed. Opening the chat also hides it for this visit.
+    var notice = null;
+    function hideNotice(forever) {
+      if (!notice) return;
+      notice.classList.add("sc-nd-out");
+      launcher.classList.remove("sc-launcher-news");
+      var n = notice; notice = null;
+      setTimeout(function () { if (n.parentNode) n.parentNode.removeChild(n); }, 300);
+      if (forever) rememberNoticeClosed();
+    }
+    if (noticeWanted()) {
+      var showNotice = function () {
+        if (panel.style.display !== "none") return;
+        notice = el("aside", "sc-notice");
+        notice.setAttribute("aria-label", "What's new on this site");
+        notice.innerHTML =
+          DOODLE_BOX + DOODLE_ARROW +
+          '<p class="sc-nd-kicker"><span class="sc-nd-dot" aria-hidden="true"></span>' + escapeHtml(NOTICE.kicker) + "</p>" +
+          '<p class="sc-nd-text">' + escapeHtml(NOTICE.text) + DOODLE_LINE + "</p>" +
+          '<p class="sc-nd-actions"><a class="sc-nd-link" href="' + NOTICE.href + '">' + escapeHtml(NOTICE.linkText) + " &#8594;</a>" +
+          '<button type="button" class="sc-nd-ask">Ask me about it</button></p>' +
+          '<button type="button" class="sc-nd-close" aria-label="Close this notice">&#215;</button>';
+        root.insertBefore(notice, launcher);
+        launcher.classList.add("sc-launcher-news");
+        notice.querySelector(".sc-nd-close").addEventListener("click", function () { hideNotice(true); });
+        notice.querySelector(".sc-nd-link").addEventListener("click", function () { rememberNoticeClosed(); });
+        notice.querySelector(".sc-nd-ask").addEventListener("click", function () {
+          hideNotice(true);
+          openPanel();
+          handleQuery(NOTICE.ask);
+        });
+      };
+      setTimeout(function () {
+        var css = document.createElement("link");
+        css.rel = "stylesheet";
+        css.href = "/assets/sc-notice.css?v=20261114a";
+        css.onload = showNotice;
+        document.head.appendChild(css);
+      }, 1800);
+    }
   }
 
   if (document.readyState === "loading") {

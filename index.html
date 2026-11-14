@@ -55,8 +55,8 @@
     <title>
       Roshan Trivedi · IAM &amp; PAM Platform Owner and Architect
     </title>
-    <link rel="stylesheet" href="/assets/newlab.css?v=20261029a">
-    <link rel="stylesheet" href="/assets/blinks.css?v=20261102c">
+    <link rel="stylesheet" href="/assets/newlab.css?v=20261114a">
+    <link rel="stylesheet" href="/assets/blinks.css?v=20261114a">
     <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="preload" as="font" type="font/woff2" href="/assets/dm-sans-latin-700-normal-DvUfVpUG.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/assets/manrope-latin-500-normal-BYYD-dBL.woff2" crossorigin>
@@ -176,15 +176,33 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
       </section>
 
       <div class="blinks-top"><div class="wrap">
-        <aside class="soon" aria-labelledby="soon-t">
-          <p class="soon-k" id="soon-t"><i aria-hidden="true"></i>Just finished, 10 November</p>
-          <ul>
-            <li><b><a href="/nhi-lab/round-19/">Machine identity lab, round 19</a></b><span>The last 19 queued cases ran with the guesses hashed first. The lab now has 67 cases, and 10 of my guesses were wrong. Every catalogue row has a status in the <a href="/nhi-lab/register/">register</a>.</span></li>
-          </ul>
-          <p class="soon-acts"><a href="/nhi-lab/#top-video">Watch the two-minute video</a><a href="https://buttondown.com/trivedi">Get the next lab&rsquo;s guesses first</a><a href="/talk/?why=feedback&amp;which=the%20machine%20identity%20lab">Suggest a case to test</a></p>
+        <aside class="newlab nl-ca" aria-labelledby="nl-ca-t">
+          <svg class="doodle" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <path class="fill" d="M14 22 C30 19 46 20 60 21 C61 34 60 46 60 57 C45 58 29 58 15 57 C13 45 13 33 14 22Z"/>
+            <path class="ink" d="M13 21 C30 18 46 19 61 20 C62 33 61 46 61 58 C45 59 29 59 14 58 C12 45 12 33 13 21Z"/>
+            <path class="ink" d="M22 33 H52 M22 41 H44"/>
+            <path class="ink tick" d="M25 50 L30 54 L38 46"/>
+            <path class="ink route" d="M18 72 C34 80 50 66 66 74 C78 80 84 70 92 62"/>
+            <path class="ink" d="M84 60 L93 61 L90 70"/>
+            <path class="ink tok" d="M78 84 L104 84 L110 94 L104 104 L78 104 Z"/>
+            <circle class="ink tok" cx="86" cy="94" r="3"/>
+            <path class="spark" d="M98 22 V34 M92 28 H104"/>
+            <path class="spark b" d="M30 92 V100 M26 96 H34"/>
+          </svg>
+          <div>
+            <p class="t"><span class="newpill">New</span><span class="nl-date">14 November</span></p>
+            <h3 id="nl-ca-t">I tested 130 conditional access, MFA and AI agent cases</h3>
+            <p>Every guess was hashed before any code ran, and 118 of the 124 I could run matched. The 22 cases I built from this year&rsquo;s incidents and agent research had none at the MFA step. Eighteen broke after sign-in.</p>
+            <p class="nl-acts"><a href="/ca-mfa-lab/">Open the lab</a><a href="/ca-mfa-lab/#result">Watch the 96-second video</a><a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">Free book, 72 pages</a><a href="https://www.linkedin.com/pulse/weak-spots-have-moved-past-mfa-prompt-roshan-trivedi-izruf" rel="noopener">Read the LinkedIn article</a></p>
+          </div>
         </aside>
         <div class="bl-head"><h2>Labs: tested in public</h2><a href="/labs/">All labs &rarr;</a></div>
         <ul class="blinks" aria-label="Labs and case studies">
+        <li class="bl ca"><div class="bl-top"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect class="fillc" x="4" y="24" width="18" height="16" rx="8"/><rect class="ink" x="4" y="24" width="18" height="16" rx="8"/><rect class="ink lk" x="23" y="24" width="18" height="16" rx="8"/><rect class="ink" x="42" y="24" width="18" height="16" rx="8"/><path class="ink" d="M28 50 C32 54 36 54 40 50" opacity=".6"/></svg></span><p class="kick"><i></i>Sign-in and MFA <span class="newp">New</span></p></div>
+          <h3>Conditional access, MFA and AI agents</h3>
+          <p>130 sign-in cases with the guesses hashed first. Run every script in your browser, or read the free book.</p>
+          <ul class="st" aria-label="In numbers"><li><b>124</b><span>cases run</span></li><li><b>6</b><span>wrong guesses</span></li></ul>
+          <div class="acts"><a class="btn-bl" href="/ca-mfa-lab/">Open the lab</a><a href="/ca-mfa-lab/virtual-lab/run/">Run it in your browser &rarr;</a></div></li>
         <li class="bl mcp"><div class="bl-top"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle class="ink" cx="9" cy="38" r="5"/><circle class="ink" cx="55" cy="38" r="5"/><path class="ink" d="M14 38 H50" opacity=".5"/><circle class="pkt" cx="16" cy="38" r="3" fill="currentColor"/><g class="gate"><rect class="fillc" x="28" y="26" width="8" height="28" rx="3"/><rect class="ink" x="28" y="26" width="8" height="28" rx="3"/></g><path class="ink gtick" d="M24 14 L30 20 L42 8"/></svg></span><p class="kick"><i></i>MCP</p></div>
           <h3>A human approval gate for AI tool calls</h3>
           <p>81 use cases written up and 210 scripted checks run against my own gate. Play with the risk score in the browser. <a href="/mcp-lab-case-study/#numbers">What each number counts</a></p>
@@ -195,10 +213,10 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
           <p>Made-up Indian data, guesses written first. Run it in your browser or read the free book.</p>
           <ul class="st" aria-label="In numbers"><li><b>13</b><span>rounds</span></li><li><b>164</b><span>cases</span></li></ul>
           <div class="acts"><a class="btn-bl" href="/ai-governance-lab/">Open the lab</a><a href="/assets/ai-governance-lab-book.pdf">Free book (PDF) &rarr;</a></div></li>
-        <li class="bl nhi"><div class="bl-top"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle class="ring" cx="22" cy="32" r="14"/><circle class="ring b" cx="22" cy="32" r="14"/><circle class="fillc" cx="22" cy="32" r="11"/><circle class="ink" cx="22" cy="32" r="11"/><circle class="eye" cx="22" cy="32" r="3"/><path class="ink" d="M33 32 H58 M50 32 V40 M57 32 V38"/></svg></span><p class="kick"><i></i>Non-human identity <span class="newp">New</span></p></div>
+        <li class="bl nhi"><div class="bl-top"><span class="ico"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle class="ring" cx="22" cy="32" r="14"/><circle class="ring b" cx="22" cy="32" r="14"/><circle class="fillc" cx="22" cy="32" r="11"/><circle class="ink" cx="22" cy="32" r="11"/><circle class="eye" cx="22" cy="32" r="3"/><path class="ink" d="M33 32 H58 M50 32 V40 M57 32 V38"/></svg></span><p class="kick"><i></i>Non-human identity</p></div>
           <h3>Machine identities: 67 cases, 10 wrong guesses</h3>
           <p>Service accounts, tokens and break-glass tested on made-up data. Framework, market view and downloadable audit.</p>
-          <ul class="st" aria-label="In numbers"><li><b>48</b><span>cases</span></li><li><b>5</b><span>wrong guesses</span></li></ul>
+          <ul class="st" aria-label="In numbers"><li><b>67</b><span>cases</span></li><li><b>10</b><span>wrong guesses</span></li></ul>
           <div class="acts"><a class="btn-bl" href="/nhi-lab/">Open the lab</a><a href="/nhi-lab/audit/">Audit data &rarr;</a></div></li>
       </ul>
         <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next one by email</b><span class="s">One email when I publish a new lab or case study.</span></span><span class="go">Subscribe &rarr;</span></a></div></div>
@@ -385,7 +403,7 @@ html.motion-off *, html.motion-off *::before, html.motion-off *::after { animati
     </footer>
 
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script>
-    <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261114a"></script>
     <script defer src="/assets/motion-toggle.js?v=20261025a"></script>
     <script defer src="/assets/next-step.js?v=20261103a"></script>
     <script defer src="/assets/who-paths.js?v=20261103a"></script>
