@@ -14,9 +14,9 @@
 .bl svg{width:36px;height:36px;color:var(--k)}
 .bl .ink{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .bl .fillc{fill:color-mix(in srgb,var(--k) 20%,transparent);stroke:none}
-.bl .kick{display:flex;align-items:center;gap:8px;margin:0;font:700 11px/1.2 var(--mono,ui-monospace,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--k)}
+.bl .kick{display:flex;align-items:center;gap:8px;margin:0;font:700 12px/1.2 var(--mono,ui-monospace,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--k)}
 .bl .kick i{width:8px;height:8px;border-radius:50%;background:var(--k);animation:bl-blink 1.2s steps(2,start) infinite;flex:none}
-.bl .newp{padding:3px 7px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;font-size:10px;letter-spacing:.04em}
+.bl .newp{padding:3px 7px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;font-size:12px;letter-spacing:.04em}
 .bl h3{margin:0 0 6px;font:700 19px/1.25 var(--display,system-ui,sans-serif);color:var(--text,#f1f5f9);text-wrap:balance}
 .bl>p{margin:0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted,#93a1bd)}
 .bl .st{display:flex;flex-wrap:wrap;gap:6px 18px;margin:auto 0 14px;padding:12px 0 0;border-top:1px solid color-mix(in srgb,var(--k) 22%,transparent);list-style:none}
@@ -75,3 +75,5 @@ html[data-theme="light"] .subs span.s{color:#52617a}
 .bl.ca{--k:#60a5fa}
 .bl.ca .lk{animation:bl-blink 1.4s steps(2,start) infinite}
 html.motion-off .bl.ca .lk{animation:none}
+html[data-theme="light"] .bl-head a{color:#0a6a85}
+html[data-theme="light"] .bl.ca{--k:#1d4ed8}

@@ -242,7 +242,7 @@
     var cards = {};
     order.forEach(function (c) {
       var art = el("article", "cx-card"); art.id = c.id;
-      var h = el("h3", "cx-h3");
+      var h = el("h2", "cx-h3");
       var btn = el("button", "cx-head"); btn.type = "button"; btn.setAttribute("aria-expanded", "false");
       btn.appendChild(el("span", "cx-id", c.id));
       btn.appendChild(el("span", "cx-title", c.title));

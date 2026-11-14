@@ -29,3 +29,4 @@
 .hub-gl dd a{white-space:nowrap}
 html[data-theme="light"] .hub-k-lab{color:#0a6a7d}html[data-theme="light"] .hub-k-case{color:#0b6b4f}html[data-theme="light"] .hub-k-article{color:#4b34b3}html[data-theme="light"] .hub-k-book{color:#8a5208}html[data-theme="light"] .hub-k-tool,html[data-theme="light"] .hub-k-paper{color:#9d2463}
 @media (max-width:640px){.hub-list{grid-template-columns:1fr}}
+html[data-theme="light"] .hub-nav a{color:#4f35b0;opacity:1}

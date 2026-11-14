@@ -27,17 +27,17 @@
     <link rel="stylesheet" href="/assets/theme.css">
     <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
     <link rel="stylesheet" href="/assets/study.css?v=20261019d">
-    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261114c">
     <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
     <script src="/assets/theme.js"></script>
-    <link rel="stylesheet" href="/assets/sitebar.css?v=20261114b">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261114c">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
         <script src="/assets/palette.js?v=20261114c" defer></script>
   <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
   <script src="/assets/nav.js?v=20261114b" defer></script>
-  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
-  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
-  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261114b">
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261114c">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261114c">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261114c">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Non-human identity lab: round 18","description":"Round 18 of the non-human identity lab: a copied key from another network and a test credential that opens production. Guesses first, one wrong, two controls masked, with the record.","url":"https://roshantrivedi.co.in/nhi-lab/round-18/","datePublished":"2026-11-10","dateModified":"2026-11-10","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true}</script>
 </head>
     <body style="--c:#7df2d0">
@@ -55,7 +55,7 @@
       <div class="ntile warn"><b>2</b><span>controls no check noticed (masked by another control)</span></div>
       <div class="ntile good"><b>Same</b><span>output on the Mac and in the build sandbox</span></div>
     </div>
-    <div class="twrap" tabindex="0" role="region" aria-label="Round 18 results next to the guesses"><table class="ntable"><caption>Round 18 results next to the guesses</caption><thead><tr><th scope="col">Case</th><th scope="col">OWASP item</th><th scope="col">Without the controls</th><th scope="col">With all controls</th><th scope="col">My guess</th></tr></thead><tbody><tr><th scope="row"><a id="n-r18-01"></a>N-R18-01 A copied key from another network</th><td>NHI4 Insecure Authentication</td><td>12 calls accepted. The log says "billing key" 12 times, so the 6 genuine calls and the 6 bad ones look the same.</td><td>6 accepted, 6 refused, <b>1 alert</b>.</td><td>Without: matched. With: <b>wrong</b>. I guessed 3 alerts.</td></tr><tr><th scope="row"><a id="n-r18-02"></a>N-R18-02 A test credential that opens production</th><td>NHI8 Environment Isolation</td><td>All 8 runs succeed, including the 2 from the compromised test runner.</td><td>6 normal runs succeed, 2 attempts refused, 2 alerts.</td><td>Matched.</td></tr></tbody></table></div>
+    <div class="twrap" tabindex="0" role="region" aria-label="Round 18 results next to the guesses"><table class="ntable"><caption>Round 18 results next to the guesses</caption><thead><tr><th scope="col">Case</th><th scope="col">OWASP item</th><th scope="col">Without the controls</th><th scope="col">With all controls</th><th scope="col">My guess</th></tr></thead><tbody><tr><th scope="row" id="n-r18-01">N-R18-01 A copied key from another network</th><td>NHI4 Insecure Authentication</td><td>12 calls accepted. The log says "billing key" 12 times, so the 6 genuine calls and the 6 bad ones look the same.</td><td>6 accepted, 6 refused, <b>1 alert</b>.</td><td>Without: matched. With: <b>wrong</b>. I guessed 3 alerts.</td></tr><tr><th scope="row" id="n-r18-02">N-R18-02 A test credential that opens production</th><td>NHI8 Environment Isolation</td><td>All 8 runs succeed, including the 2 from the compromised test runner.</td><td>6 normal runs succeed, 2 attempts refused, 2 alerts.</td><td>Matched.</td></tr></tbody></table></div>
     <p>Round 18 is the third run. With it the lab had 48 cases, 43 matched guesses and 5 wrong ones. Round 19 later brought the totals to 67 cases and 10 wrong guesses. The 46 cases from the first two runs are on the <a href="/nhi-lab/">lab page</a> and in the <a href="/nhi-lab/audit/">audit data</a>, which include these two and the round 19 cases.</p>
   </section>
 

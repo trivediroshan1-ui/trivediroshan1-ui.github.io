@@ -7,7 +7,7 @@
 .hg h4{margin:0 0 var(--hg-sp-2);font-family:var(--hg-font-display)}
 .hg .lead{font-size:var(--hg-fs-4);color:var(--hg-ink-2);max-width:var(--hg-prose)}
 .hg section{padding:var(--hg-sp-7) 0;border-top:1px solid var(--hg-line)}
-.hg code{font-family:var(--hg-font-mono);font-size:.84em;background:var(--hg-surface-2);padding:.1em .4em;border-radius:4px}
+.hg code{font-family:var(--hg-font-mono);font-size:.9em;background:var(--hg-surface-2);padding:.1em .4em;border-radius:4px}
 .hg-jump{display:flex;flex-wrap:wrap;gap:var(--hg-sp-2);margin-top:var(--hg-sp-5)}
 .hg-jump a{min-height:40px;display:inline-flex;align-items:center;padding:.3rem .9rem;border:1px solid var(--hg-line-strong);border-radius:var(--hg-r-pill);text-decoration:none;color:var(--hg-ink-2);font:600 var(--hg-fs-2) var(--hg-font-display)}
 .hg-jump a:hover{color:var(--hg-ink);border-color:var(--hg-policy)}

@@ -29,3 +29,4 @@ html[data-theme="light"] .bk-limits b{color:#864a08}
 #booklist [hidden]{display:none}
 
 @media(min-width:900px){#booklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}}
+html[data-theme="light"] #booklist [data-book="ca"] .tag{color:#1d4ed8!important}

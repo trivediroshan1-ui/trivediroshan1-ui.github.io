@@ -3,7 +3,7 @@ import html, re, os, textwrap
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 E = html.escape
-CSS_V = '20261111a'
+CSS_V = '20261114c'
 BASE = 'https://roshantrivedi.co.in'
 
 SUBNAV = [
@@ -110,6 +110,10 @@ def td(x, cls=''):
     return f'<td class="{cls}">{x}</td>' if cls else f'<td>{x}</td>'
 
 def th_row(x):
+    import re
+    m = re.match(r'<a id="([^"]+)"></a>(.*)$', x, re.S)
+    if m:  # put the anchor id on the row header itself, no empty link
+        return f'<th scope="row" id="{m.group(1)}">{m.group(2)}</th>'
     return f'<th scope="row">{x}</th>'
 
 def case_link(cid):

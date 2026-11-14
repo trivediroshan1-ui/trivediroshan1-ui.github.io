@@ -3,7 +3,7 @@
 .flow-lab .fl-lead{max-width:62ch;color:var(--hg-ink-2,#aab4c3);margin:.5rem 0 1.4rem}
 .fl-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
 .fl-chips .hg-chip{display:flex;flex-direction:column;align-items:flex-start;gap:.1rem;padding:.55rem .9rem;min-height:44px;text-align:left}
-.fl-chips .hg-chip small{font-size:.75rem;opacity:.75}
+.fl-chips .hg-chip small{font-size:.75rem;opacity:1;color:#52617a}
 .fl-track{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;position:relative}
 .fl-stage{--c:var(--hg-ink-3,#8893a4);position:relative;display:flex;flex-direction:column;gap:.35rem;padding:.8rem .8rem 1rem;border:1px solid var(--cl,var(--hg-line,#2a3342));border-top:3px solid var(--c);border-radius:10px;background:var(--cs,transparent);transition:opacity .25s,transform .25s}
 .fl-stage .fl-n{font:600 .75rem/1 "JetBrains Mono",monospace;color:var(--c)}

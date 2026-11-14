@@ -113,7 +113,7 @@ html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitena
 /* One body font on every page: DM Sans, which the headings already use. Manrope stays loaded only where a page names it. */
 html:root { --body: "DM Sans", system-ui, sans-serif; }
 
-@media (max-width: 390px) { html .hg-sitenav { padding-inline: 6px; gap: .1rem; } html .hg-sitenav li a { font-size: .74rem; } }
+@media (max-width: 390px) { html .hg-sitenav { padding-inline: 6px; gap: .1rem; } html .hg-sitenav li a { font-size: .76rem; } }
 html[data-theme="light"] /* November 2026: the theme switch styling for the header bar lives here too, so pages that do not
    load site-2026.css (the AI governance and machine identity lab pages) get the same switch instead
    of an unstyled button that floats over the menu on phones. */
