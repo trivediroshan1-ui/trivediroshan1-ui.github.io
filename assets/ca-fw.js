@@ -257,10 +257,41 @@ function mountFlows(root){
 /* ---------- case list ---------- */
 function resultCell(v,diff){var td=H("td",{"class":(v==="in"||v==="out")?v:"x",text:v==="-"?"n/a":v});if(diff)td.className+=" diff";return td}
 function runLabel(r){return r===4?"Run 4 (hand tests)":"Run "+r}
+function stageOf(c){var S=window.CA_STAGES||[];for(var i=0;i<S.length;i++)if(S[i].id===c.stage)return S[i];return null}
+function switchboard(c){
+  /* Animated per-case run: one column at a time, controls shown as switches. Built from the case's own output. */
+  var five=c.res.length===5;
+  var letters=five?(c.controls&&c.controls.length?c.controls:["A","B","C"]):["Control"];
+  var steps=five?[["None on",[]],["All on",letters],["Off A",letters.filter(function(x){return x!=="A"})],["Off B",letters.filter(function(x){return x!=="B"})],["Off C",letters.filter(function(x){return x!=="C"})]]
+                 :[["No control",[]],["Control on",["Control"]],["Control off alone",[]]];
+  var w=H("div",{"class":"swb"});
+  var sw=H("div",{"class":"swrow","aria-hidden":"true"});var pills={};
+  letters.forEach(function(L){var p=H("span",{"class":"sw",text:L});pills[L]=p;sw.appendChild(p)});
+  var arrow=H("span",{"class":"swarrow",text:"→"});sw.appendChild(arrow);
+  var out=H("span",{"class":"swout",text:""});sw.appendChild(out);
+  var cap=H("p",{"class":"swcap","aria-live":"polite"});
+  var bar=H("div",{"class":"swbtns"});
+  var bPlay=H("button",{type:"button","class":"fbtn",text:"Play this case"});
+  var bNext=H("button",{type:"button","class":"fbtn",text:"Next column"});
+  bar.appendChild(bPlay);bar.appendChild(bNext);
+  w.appendChild(H("p",{"class":"fnote",text:"Watch this case run: the switches show which controls are on, and the result is the script's output for that column."}));
+  w.appendChild(sw);w.appendChild(cap);w.appendChild(bar);
+  var i=-1,timer=null;
+  function show(k){i=k;var st=steps[k],v=c.res[k];
+    letters.forEach(function(L){var on=st[1].indexOf(L)>=0;pills[L].className="sw "+(on?"on":"off");pills[L].setAttribute("title",L+(on?" on":" off"))});
+    out.className="swout "+(v==="in"?"in":v==="out"?"out":"na");out.textContent=v==="in"?"Bad outcome happens":v==="out"?"Stopped":"Not tested";
+    cap.textContent=st[0]+": "+(v==="in"?"the bad outcome happens.":v==="out"?"the bad outcome does not happen.":"not tested in this run.")+(c.guess&&c.guess[k]&&c.guess[k]!==v?" My guess was "+c.guess[k]+".":"")}
+  function next(){show((i+1)%steps.length)}
+  bNext.addEventListener("click",function(){if(timer){clearInterval(timer);timer=null;bPlay.textContent="Play this case"}next()});
+  bPlay.addEventListener("click",function(){if(timer){clearInterval(timer);timer=null;bPlay.textContent="Play this case";return}
+    if(RM){next();return}show(0);bPlay.textContent="Pause";timer=setInterval(function(){if(i>=steps.length-1){clearInterval(timer);timer=null;bPlay.textContent="Play this case";return}next()},1400)});
+  show(0);return w;
+}
 function caseBody(c){
   var b=H("div",{"class":"cbody"});
   var dl=H("dl");
   function row(k,v){if(!v)return;dl.appendChild(H("dt",{text:k}));dl.appendChild(H("dd",{text:v}))}
+  var stg=stageOf(c);if(stg)row("Stage",stg.name+": "+stg.q);
   row("Bad outcome",c.bad);row("Controls",c.ctl);
   if(c.g1){row("What I wrote first",c.g1.none+" / "+c.g1.with+" / "+c.g1.off);row("Limit I expected",c.g1.limit)}
   b.appendChild(dl);
@@ -270,6 +301,7 @@ function caseBody(c){
     var r1=H("tr");r1.appendChild(H("th",{text:"Output"}));c.res.forEach(function(v,i){r1.appendChild(resultCell(v,false))});t.appendChild(r1);
     var r2=H("tr");r2.appendChild(H("th",{text:"My guess"}));c.guess.forEach(function(v,i){r2.appendChild(resultCell(v,c.res[i]!==v&&c.res[i]!=="-"))});t.appendChild(r2);
     b.appendChild(t);
+    if(c.res.indexOf("-")<0||c.res.length===5)b.appendChild(switchboard(c));
     if(c.pair)b.appendChild(H("p",{"class":"fnote",text:"Two controls off together ("+c.pair.off.join(" and ")+"): output "+c.pair.result+", I guessed "+c.pair.guess+"."+(c.pair.result!==c.pair.guess?" This was the wrong guess.":"")}));
     if(c.match===false)b.appendChild(H("p",{"class":"fnote",text:(c.diffs&&c.diffs.length)?"At least one of my guesses was wrong here. The marked cells are where the output and my guess differ.":"My single-control guesses held here, but the guess for two controls off together was wrong."}));
     else b.appendChild(H("p",{"class":"fnote",text:"Guess and output agree."}));
@@ -285,6 +317,7 @@ function mountCases(root){
   var groups=[];all.forEach(function(c){if(groups.indexOf(c.group)<0)groups.push(c.group)});groups.sort();
   var fl=H("div",{"class":"filters"});
   function sel(label,opts){var s=H("select");opts.forEach(function(o){s.appendChild(H("option",{value:o[0],text:o[1]}))});var l=H("label",{text:label});l.appendChild(s);fl.appendChild(l);return s}
+  var S=window.CA_STAGES||[];var sStg=sel("Stage",[["","All stages"]].concat(S.map(function(x){return[x.id,x.name]})));
   var sRun=sel("Run",[["","All runs"],["1","Run 1: single controls"],["2","Run 2: controls working together"],["3","Run 3: new areas"],["4","Hand tests for people to run"],["5","Run 5: CI/CD, APIs, agents"],["6","Run 6: AI agent identity"]]);
   var sGrp=sel("Group",[["","All groups"]].concat(groups.map(function(g){return[g,g]})));
   var sRes=sel("Result",[["","Any"],["wrong","My guess was wrong"],["single","One control off lets it in"],["nosingle","No single control off lets it in"],["notrun","Not run"]]);
@@ -295,25 +328,29 @@ function mountCases(root){
     var d=H("details",{"class":"citem"});var s=H("summary");
     s.appendChild(H("span",{"class":"cid",text:c.id}));s.appendChild(H("span",{text:c.use}));
     var tg=H("span",{"class":"tagrow"});tg.style.margin="0";
+    var sg=stageOf(c);if(sg)tg.appendChild(H("span",{"class":"tag",text:sg.name.replace(/^\d+\. /,"")}));
     tg.appendChild(H("span",{"class":"tag",text:runLabel(c.run)}));
     if(!c.res)tg.appendChild(H("span",{"class":"tag warn",text:"Not run"}));else if(c.match===false)tg.appendChild(H("span",{"class":"tag bad",text:"Guess wrong"}));else tg.appendChild(H("span",{"class":"tag good",text:"Guess matched"}));
     s.appendChild(tg);d.appendChild(s);
     var done=false;d.addEventListener("toggle",function(){if(d.open&&!done){d.appendChild(caseBody(c));done=true}});
     list.appendChild(d);return {c:c,d:d};
   });
-  function singleIn(c){return c.res&&c.res.length===5&&c.res.slice(2).some(function(x){return x==="in"})}
+  function singleIn(c){return c.res&&((c.res.length===5&&c.res.slice(2).some(function(x){return x==="in"}))||(c.res.length===3&&c.res[1]==="out"&&c.res[2]==="in"))}
   function apply(){var n=0,t=q.value.trim().toLowerCase();
     items.forEach(function(it){var c=it.c,ok=true;
+      if(sStg.value&&c.stage!==sStg.value)ok=false;
       if(sRun.value&&String(c.run)!==sRun.value)ok=false;
       if(sGrp.value&&c.group!==sGrp.value)ok=false;
       if(sRes.value==="wrong"&&c.match!==false)ok=false;
       if(sRes.value==="notrun"&&c.res)ok=false;
-      if(sRes.value==="single"&&!(c.res&&c.res.length===5&&singleIn(c)))ok=false;
-      if(sRes.value==="nosingle"&&!(c.res&&c.res.length===5&&!singleIn(c)))ok=false;
+      if(sRes.value==="single"&&!singleIn(c))ok=false;
+      if(sRes.value==="nosingle"&&!(c.res&&!singleIn(c)))ok=false;
       if(t&&(c.id+" "+c.use+" "+c.group).toLowerCase().indexOf(t)<0)ok=false;
       it.d.hidden=!ok;if(ok)n++});
     cnt.textContent=n+" of "+items.length+" cases shown"}
-  [sRun,sGrp,sRes].forEach(function(s){s.addEventListener("change",apply)});q.addEventListener("input",apply);apply();
+  [sStg,sRun,sGrp,sRes].forEach(function(s){s.addEventListener("change",apply)});q.addEventListener("input",apply);
+  function fromHash(){var m=/stage=([a-z]+)/.exec(location.hash||"");if(m&&S.some(function(x){return x.id===m[1]})){sStg.value=m[1];apply();root.scrollIntoView({behavior:RM?"auto":"smooth",block:"start"})}}
+  window.addEventListener("hashchange",fromHash);apply();fromHash();
 }
 window.CAFW={mountFlows:mountFlows,mountCases:mountCases,FLOWS:FLOWS};
 document.addEventListener("DOMContentLoaded",function(){
