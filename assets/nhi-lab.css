@@ -15,7 +15,7 @@
 .nhi .note{border-left:3px solid #f7c873;padding:.6em 1em;margin:1.2em 0;background:rgba(247,200,115,.08);border-radius:6px}
 .nhi .finds li{margin:.8em 0}
 .nhi figure{margin:18px 0;overflow-x:auto}
-.nflow.wide{min-width:760px}
+.nflow{min-width:700px}.nflow.wide{min-width:900px}
 .nhi figcaption{color:var(--muted,#93a1bd);font-size:.88rem;margin-top:6px}
 .nhi .srcs li{margin:.6em 0}
 .nhi .hashes{width:100%;border-collapse:collapse;font-size:.85rem}
@@ -41,7 +41,9 @@
 .nhi .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
 .nhi .chip{background:none;color:var(--muted,#93a1bd);border:1px solid var(--border,#1f2a40);border-radius:999px;padding:6px 13px;cursor:pointer;font:inherit;font-size:.86rem}
 .nhi .chip.on,.nhi .chip:hover{color:var(--text,#f1f5f9);border-color:var(--accent,#4de2ff)}
-.nhi .cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:16px}
+/* each case drawing needs about 700 px for its labels to stay at 12 px or more, so cards take a full row; on a phone the card scrolls sideways */
+.nhi .cases{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,740px),1fr));gap:16px}
+.nhi .case{overflow-x:auto}.nhi .case .nflow{max-width:800px;margin-inline:auto}
 .nhi .case{background:var(--surface-2,#101a2c);border:1px solid var(--border,#1f2a40);border-radius:14px;padding:12px 14px}
 .nhi .case[hidden]{display:none}
 .nhi .case h3{margin:0 0 6px;font-size:1rem}.nhi .case h3 span{display:block;font-weight:400;color:var(--muted,#93a1bd);font-size:.9rem}

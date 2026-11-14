@@ -172,15 +172,15 @@ function visibleSteps(f,mode){ var out=[]; for(var i=0;i<f.steps.length;i++){ ou
 
 function wrap(text,max){ var w=text.split(" "),lines=[],cur=""; w.forEach(function(x){ if((cur+" "+x).trim().length>max){lines.push(cur.trim());cur=x}else cur=cur+" "+x }); if(cur.trim())lines.push(cur.trim()); return lines; }
 
-function draw(f,mode,n,narrow){
-  var W=narrow?420:860,top=narrow?96:78,row=narrow?100:78,N=f.actors.length,fs=narrow?13:12.5;
+function draw(f,mode,n,narrow,aw){
+  var W=narrow?Math.max(250,Math.min(560,aw||420)):860,top=narrow?96:78,row=narrow?100:78,N=f.actors.length,fs=narrow?13:12.5;
   var vis=visibleSteps(f,mode);
   var H_=top+row*vis.length+40;
-  var svg=E("svg",{"class":"fsvg",viewBox:"0 0 "+W+" "+H_,role:"img","aria-label":f.title+": "+f.steps.length+" step flow, "+(mode==="on"?"with":"without")+" the control. The full steps are listed as text below."});
+  var svg=E("svg",{"class":"fsvg"+(narrow?" nw":""),viewBox:"0 0 "+W+" "+H_,role:"img","aria-label":f.title+": "+f.steps.length+" step flow, "+(mode==="on"?"with":"without")+" the control. The full steps are listed as text below."});
   var xs=f.actors.map(function(_,i){return Math.round(W*(i+.5)/N)});
   f.actors.forEach(function(a,i){
     svg.appendChild(E("line",{"class":"life",x1:xs[i],y1:narrow?62:50,x2:xs[i],y2:H_-20}));
-    var bw=narrow?Math.floor(W/N)-10:180,al=narrow?wrap(a,Math.floor(bw/8)):[a],bh=narrow?18+al.length*15:40;
+    var bw=narrow?Math.floor(W/N)-6:180,al=narrow?wrap(a,Math.floor(bw/7.2)):[a],bh=narrow?18+al.length*15:40;
     var g=E("g",{"class":"actor"}); g.appendChild(E("rect",{x:xs[i]-bw/2,y:8,width:bw,height:bh,rx:10}));
     al.forEach(function(L,j){g.appendChild(E("text",{x:xs[i],y:(narrow?26:33)+j*15,"text-anchor":"middle"},L))}); svg.appendChild(g);
   });
@@ -209,7 +209,7 @@ function mountFlows(root){
     var b=H("button",{type:"button","aria-pressed":p[0]==="all"?"true":"false","data-f":p[0],text:p[1]});
     b.addEventListener("click",function(){state.filter=p[0];[].forEach.call(filt.children,function(c){c.setAttribute("aria-pressed",c===b?"true":"false")});buildPick()});
     filt.appendChild(b)});
-  var card=H("div",{"class":"fcard"}), stage=H("div"), cap=H("div",{"class":"fcap","aria-live":"polite"}), out=H("div",{"class":"fout"}), note=H("p",{"class":"fnote"}), txt=H("details",{"class":"ftext"});
+  var card=H("div",{"class":"fcard"}), stage=H("div",{"class":"fstage"}), cap=H("div",{"class":"fcap","aria-live":"polite"}), out=H("div",{"class":"fout"}), note=H("p",{"class":"fnote"}), txt=H("details",{"class":"ftext"});
   var title=H("h3"), meta=H("p",{"class":"fnote"});
   var bar=H("div",{"class":"fbar"}), playB=H("button",{type:"button","class":"fbtn",text:"Play"}), stepB=H("button",{type:"button","class":"fbtn",text:"Next step"}), rstB=H("button",{type:"button","class":"fbtn",text:"Restart"});
   var mode=H("div",{"class":"fmode",role:"group","aria-label":"Show the flow"});
@@ -228,7 +228,7 @@ function mountFlows(root){
       var ol=H("ol");visibleSteps(state.f,m).forEach(function(i){var st=state.f.steps[i];ol.appendChild(H("li",{text:(m==="on"&&st[4]==="c"?"BLOCKED. ":"")+stepLabel(st,m)+". "+stepCap(st,m)}))});txt.appendChild(ol)});
   }
   function render(){
-    stage.innerHTML="";state.narrow=(root.clientWidth||900)<640;stage.appendChild(draw(state.f,state.mode,state.n,state.narrow));
+    stage.innerHTML="";state.narrow=(root.clientWidth||900)<880;state.aw=stage.clientWidth;stage.appendChild(draw(state.f,state.mode,state.n,state.narrow,state.aw));
     var f=state.f,t=total();
     if(state.n>0){var vi=visibleSteps(f,state.mode)[state.n-1];cap.textContent=state.n+". "+stepCap(f.steps[vi],state.mode)}else cap.textContent="Press Play, or Next step, to walk through the flow.";
     var done=state.n>=t;out.className="fout"+(done?(state.mode==="on"?" good":" bad"):"");
@@ -251,7 +251,7 @@ function mountFlows(root){
   function setMode(m){state.mode=m;mOff.setAttribute("aria-pressed",m==="off"?"true":"false");mOn.setAttribute("aria-pressed",m==="on"?"true":"false");stop();state.n=RM?total():0;render()}
   mOff.addEventListener("click",function(){setMode("off")});mOn.addEventListener("click",function(){setMode("on")});
   buildPick();load(FLOWS[0]);
-  var rt=null;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(function(){var nw=(root.clientWidth||900)<640;if(nw!==state.narrow)render()},200)});
+  var rt=null;window.addEventListener("resize",function(){clearTimeout(rt);rt=setTimeout(function(){var nw=(root.clientWidth||900)<880;if(nw!==state.narrow||(nw&&Math.abs(stage.clientWidth-state.aw)>8))render()},200)});
 }
 
 /* ---------- case list ---------- */
