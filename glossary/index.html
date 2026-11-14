@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-bg="work" data-m="grid">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="42 identity and access terms in plain words, from PAM and MFA to MCP and zero standing privilege, each linked to where this site uses it." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/glossary/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Glossary: identity and access terms in plain words" />
+    <meta property="og:description" content="42 identity and access terms in plain words, from PAM and MFA to MCP and zero standing privilege, each linked to where this site uses it." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/glossary/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>Glossary: identity and access terms in plain words &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+      <link rel="stylesheet" href="/assets/theme.css">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+    <link rel="stylesheet" href="/assets/blinks.css?v=20261102b">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+      <script src="/assets/palette.js?v=20261111a" defer></script>
+    <script src="/assets/nav.js?v=20261111a" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Glossary: identity and access terms in plain words", "item": "https://roshantrivedi.co.in/glossary/"}]}, {"@type": "DefinedTermSet", "name": "Glossary: identity and access terms in plain words", "description": "42 identity and access terms in plain words, from PAM and MFA to MCP and zero standing privilege, each linked to where this site uses it.", "url": "https://roshantrivedi.co.in/glossary/", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261104a">
+    <link rel="stylesheet" href="/assets/hub.css?v=20261114a">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+  </head>
+  <body style="--c:#4de2ff">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      
+      <nav class="hub-nav" aria-label="Knowledge pages"><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a></nav>
+      <header class="hero">
+        <p class="eyebrow">Glossary</p>
+        <h1>Identity and access terms, in plain words.</h1>
+        <p class="dek">42 terms. Each one says what the thing is, and where it matters links to a page that uses or tests it. These are my working definitions, written to be understood, not to replace a standard.</p>
+        <p class="dek hub-rev">Last reviewed 14 November 2026. Lab data is made up; nothing here describes an employer or a client.</p>
+      </header>
+      <p class="hub-jump"><a href="#g-a">A</a><a href="#g-b">B</a><a href="#g-c">C</a><a href="#g-d">D</a><a href="#g-f">F</a><a href="#g-h">H</a><a href="#g-i">I</a><a href="#g-j">J</a><a href="#g-l">L</a><a href="#g-m">M</a><a href="#g-n">N</a><a href="#g-o">O</a><a href="#g-p">P</a><a href="#g-r">R</a><a href="#g-s">S</a><a href="#g-t">T</a><a href="#g-v">V</a><a href="#g-z">Z</a></p>
+      <section class="hub-gl" aria-labelledby="g-a"><h2 id="g-a">A</h2><dl>
+      <div><dt id="access-chain">Access chain</dt><dd>My name for the seven steps every sign-in passes through: enrol and recover, prove, trust, decide, issue, act, watch and end. A weak step lets an attacker in even when the others are strong. <a href="/ca-mfa-lab/framework/">See it used</a></dd></div>
+      <div><dt id="access-review-recertification">Access review (recertification)</dt><dd>A regular check where an owner confirms that each person or account still needs the access it has. Access nobody confirms is removed. <a href="/case-studies/access-recertification/">See it used</a></dd></div>
+      <div><dt id="ai-agent">AI agent</dt><dd>Software that takes actions for a person or a team using a model, tools and credentials. For access purposes it is an identity: it needs an owner, a scope and an end date. <a href="/case-studies/agentic-ai-identity-governance/">See it used</a></dd></div>
+      <div><dt id="api-key">API key</dt><dd>A long secret string that lets a program call a service. It usually has no expiry and no second factor, so who holds it and what it can reach matter a great deal. <a href="/nhi-lab/">See it used</a></dd></div>
+      <div><dt id="authentication">Authentication</dt><dd>Proving who you are. Passwords, passkeys and one-time codes are ways to authenticate.</dd></div>
+      <div><dt id="authorization">Authorization</dt><dd>Deciding what an authenticated identity is allowed to do.</dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-b"><h2 id="g-b">B</h2><dl>
+      <div><dt id="blast-radius">Blast radius</dt><dd>How much damage one stolen credential could do. It is the main input when ranking which credentials to fix first. <a href="/case-studies/credential-tiering-model/">See it used</a></dd></div>
+      <div><dt id="break-glass-account">Break-glass account</dt><dd>An emergency account used when normal access has failed. It should be separate, watched, tested, and rotated after every use. <a href="/case-studies/break-glass-access/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-c"><h2 id="g-c">C</h2><dl>
+      <div><dt id="ciem">CIEM</dt><dd>Cloud infrastructure entitlement management. Tools and practice for finding and reducing what identities can do in cloud accounts. <a href="/case-studies/ciem-at-scale/">See it used</a></dd></div>
+      <div><dt id="conditional-access">Conditional access</dt><dd>Rules that decide at sign-in whether to allow, block or ask for more proof, based on the user, device, location, app and risk. <a href="/ca-mfa-lab/">See it used</a></dd></div>
+      <div><dt id="continuous-access-evaluation">Continuous access evaluation</dt><dd>Checking a session again while it is running, so that a change such as a disabled account or a new network takes effect in minutes instead of when the token expires. <a href="/ca-mfa-lab/framework/">See it used</a></dd></div>
+      <div><dt id="credential">Credential</dt><dd>Anything that proves an identity: a password, key, token, certificate or passkey.</dd></div>
+      <div><dt id="credential-tiering">Credential tiering</dt><dd>Sorting credentials into levels by what they can reach, so the most powerful ones get the strictest handling. <a href="/tools/tier-check/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-d"><h2 id="g-d">D</h2><dl>
+      <div><dt id="default-deny">Default deny</dt><dd>A rule set where a request that matches no rule is refused. Without it, the gaps between rules are open. <a href="/ca-mfa-lab/framework/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-f"><h2 id="g-f">F</h2><dl>
+      <div><dt id="federation">Federation</dt><dd>One system trusting another to say who a user is. Single sign-on is built on it.</dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-h"><h2 id="g-h">H</h2><dl>
+      <div><dt id="human-in-the-loop">Human in the loop</dt><dd>A design where a person must approve a step before it runs. It only helps if the person sees exactly what will happen. <a href="/mcp-lab-case-study/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-i"><h2 id="g-i">I</h2><dl>
+      <div><dt id="iam">IAM</dt><dd>Identity and access management. The whole field: who people and machines are, and what they may do.</dd></div>
+      <div><dt id="identity-provider-idp">Identity provider (IdP)</dt><dd>The system that signs users in and tells other apps who they are.</dd></div>
+      <div><dt id="iga">IGA</dt><dd>Identity governance and administration. Requests, approvals, reviews and the records that show access was granted for a reason. <a href="/case-studies/access-recertification/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-j"><h2 id="g-j">J</h2><dl>
+      <div><dt id="just-enough-access-jea">Just-enough access (JEA)</dt><dd>Granting only the specific rights a task needs, not a broad role. <a href="/case-studies/jit-jea-elevation/">See it used</a></dd></div>
+      <div><dt id="just-in-time-access-jit">Just-in-time access (JIT)</dt><dd>Granting access when it is needed and removing it automatically afterwards, so nothing powerful sits idle. <a href="/case-studies/jit-jea-elevation/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-l"><h2 id="g-l">L</h2><dl>
+      <div><dt id="least-privilege">Least privilege</dt><dd>Give each identity the smallest set of rights that lets it do its job.</dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-m"><h2 id="g-m">M</h2><dl>
+      <div><dt id="mcp">MCP</dt><dd>Model Context Protocol. A standard way for an AI application to call tools and reach data. Each tool call is an action someone should be able to approve and trace. <a href="/mcp-lab-case-study/">See it used</a></dd></div>
+      <div><dt id="mfa">MFA</dt><dd>Multi-factor authentication. Signing in with two or more different kinds of proof. Not all methods are equal: codes and push prompts can be relayed by a phishing page. <a href="/ca-mfa-lab/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-n"><h2 id="g-n">N</h2><dl>
+      <div><dt id="non-human-identity-nhi">Non-human identity (NHI)</dt><dd>Any identity that is not a person: service accounts, API keys, workloads, bots and agents. <a href="/nhi-lab/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-o"><h2 id="g-o">O</h2><dl>
+      <div><dt id="oauth-and-openid-connect">OAuth and OpenID Connect</dt><dd>OAuth lets an app act with limited rights without seeing the password. OpenID Connect adds sign-in on top of it.</dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-p"><h2 id="g-p">P</h2><dl>
+      <div><dt id="pam">PAM</dt><dd>Privileged access management. Controlling, recording and limiting the use of powerful accounts. <a href="/case-studies/privileged-access-program/">See it used</a></dd></div>
+      <div><dt id="passkey">Passkey</dt><dd>A sign-in credential tied to the real site and held on a device or security key. A fake site cannot reuse it, which is what phishing-resistant means. <a href="/case-studies/passwordless-authentication/">See it used</a></dd></div>
+      <div><dt id="phishing-resistant-mfa">Phishing-resistant MFA</dt><dd>Methods such as passkeys and FIDO2 security keys, where the proof only works on the genuine site. <a href="/ca-mfa-lab/framework/">See it used</a></dd></div>
+      <div><dt id="pim">PIM</dt><dd>Privileged identity management. Used mainly for time-limited activation of admin roles in a directory or cloud. <a href="/case-studies/jit-jea-elevation/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-r"><h2 id="g-r">R</h2><dl>
+      <div><dt id="refresh-token">Refresh token</dt><dd>A long-lived token used to get new short-lived access tokens without signing in again. If it survives a password reset, so does the attacker. <a href="/ca-mfa-lab/framework/">See it used</a></dd></div>
+      <div><dt id="rotation">Rotation</dt><dd>Replacing a secret with a new one. It limits how long a stolen secret works. It does not remove access from something that should not have it. <a href="/nhi-lab/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-s"><h2 id="g-s">S</h2><dl>
+      <div><dt id="saml">SAML</dt><dd>An older, widely used standard for single sign-on between an identity provider and an app.</dd></div>
+      <div><dt id="secret">Secret</dt><dd>A credential used by software: a password, key or token stored in a vault, a pipeline or, too often, in code. <a href="/case-studies/secrets-consolidation/">See it used</a></dd></div>
+      <div><dt id="service-account">Service account</dt><dd>An account used by software, not a person. It often has broad rights, no MFA and no clear owner. <a href="/nhi-lab/">See it used</a></dd></div>
+      <div><dt id="sso">SSO</dt><dd>Single sign-on. Sign in once at the identity provider and reach many apps. <a href="/case-studies/conditional-access-mfa-sso/">See it used</a></dd></div>
+      <div><dt id="standing-privilege">Standing privilege</dt><dd>Powerful access that is always on, whether or not it is being used. <a href="/writing/pam-modernization-and-zero-standing-privilege/">See it used</a></dd></div>
+      <div><dt id="step-up-authentication">Step-up authentication</dt><dd>Asking for stronger or fresh proof at the moment of a sensitive action. It only works if the server checks for it. <a href="/ca-mfa-lab/framework/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-t"><h2 id="g-t">T</h2><dl>
+      <div><dt id="token-binding">Token binding</dt><dd>Tying a token to the device or client that received it, so a copy used elsewhere is refused. <a href="/ca-mfa-lab/framework/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-v"><h2 id="g-v">V</h2><dl>
+      <div><dt id="vault">Vault</dt><dd>A system that stores secrets, controls who can read them, and records each use. <a href="/case-studies/secrets-consolidation/">See it used</a></dd></div>
+      </dl></section>
+      <section class="hub-gl" aria-labelledby="g-z"><h2 id="g-z">Z</h2><dl>
+      <div><dt id="zero-standing-privilege">Zero standing privilege</dt><dd>A target state where no one holds powerful access by default. It is granted for a task and expires. <a href="/case-studies/pam-modernization/">See it used</a></dd></div>
+      <div><dt id="zero-trust">Zero trust</dt><dd>Do not trust a request because of where it comes from. Decide each one on identity, device and context. <a href="/secure-india-exams/">See it used</a></dd></div>
+      </dl></section>
+      <aside class="hg-next" aria-labelledby="hg-next-t">
+        <p class="eyebrow">Where next</p>
+        <p class="ttl" id="hg-next-t">Keep reading, or get in touch</p>
+        <p class="lede">Everything here is written to be useful on its own. If it matches a problem you are working on, I would like to hear how you handle it.</p>
+        <div class="grid">
+          <a href="/case-studies/" style="--k:#7df2d0"><b>All case studies</b><span>Privileged access, credentials, governance and agent identity.</span></a>
+          <a href="/labs/#mcp-flow" style="--k:#4de2ff"><b>The MCP approval lab</b><span>Follow one request through the gateway, with the tests behind it.</span></a>
+          <a href="/Roshan_Trivedi_Resume.pdf" style="--k:#c4b5fd"><b>R&eacute;sum&eacute;</b><span>Roles, focus areas and background (PDF).</span></a>
+          <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>LinkedIn, GitHub and email, all in one place.</span></a>
+        </div>
+      </aside>
+    </main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+    <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a" />
+    <script defer src="/assets/chatbot-widget.js?v=20261114a"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
