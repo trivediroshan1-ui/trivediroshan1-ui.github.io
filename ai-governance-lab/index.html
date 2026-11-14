@@ -38,6 +38,7 @@
   <script src="/assets/nav.js?v=20261114e" defer></script>
   <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
     <link rel="stylesheet" href="/assets/signup.css?v=20261114c">
+    <link rel="stylesheet" href="/assets/lab-summary.css?v=20261114g">
   </head>
   <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
@@ -49,6 +50,19 @@
         <p class="dek">Everyone sells the same handful of ideas for AI agents. I built a small lab to see whether they hold up when someone pushes on them. The register and the audit trail held. The filter did not.</p><p class="lastrev">Last reviewed 14 November 2026</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
+
+      <section class="lab-sum" id="summary" aria-labelledby="ls-h">
+        <h2 id="ls-h">The lab on one screen</h2>
+        <div><p class="ls-k">The question</p><p class="ls-q">Do common AI governance controls hold up when someone pushes on them, using Indian data?</p></div>
+        <div><p class="ls-k">The answer</p><p>Some do. The register, the approvals, the kill switch and the audit trail held. A plain pattern filter did not: it scored 100 percent on the cases it was tuned on, and 4 of 10 on items it had not seen.</p></div>
+        <ul class="ls-nums" aria-label="The lab in three numbers"><li><b>13</b><span>rounds</span></li><li><b>164</b><span>cases</span></li><li><b>9 of 9</b><span>policy tests, one assistant, one run</span></li></ul>
+        <div><p class="ls-k">What to check on Monday</p><ol>
+          <li>Can you say which AI is used here, by whom, and on what data?</li>
+          <li>Does every AI use and every agent have a named owner?</li>
+          <li>Have you tested your filters on cases they were not tuned on?</li></ol></div>
+        <p class="ls-lim"><b>The limits.</b> I wrote the guesses and the code, so a match shows the controls do what I intended, not that I thought of every case. All data is made up. The 9 of 9 is one assistant on one run.</p>
+        <div class="ls-acts"><a href="#held">Read the evidence</a><a href="/assets/ai-governance-lab-book.pdf">The book (PDF)</a></div>
+      </section>
 
       <p class="body-text agl-recount" style="border-left:3px solid #8b5cf6;padding:.6em 1em;margin:1.2em 0;background:rgba(139,92,246,.08);border-radius:6px"><strong>Correction, 25 Oct 2026:</strong> I re-counted rounds 6 to 12 with the stricter rule from round 13, where a crash no longer counts as noticing. Rounds 6, 7 and 9 dropped; the rest held. <a href="/ai-governance-lab/what-i-got-wrong/#recount">What changed and why</a>.</p>
       <div class="agl"><div class="ev-sum"><h2>In short</h2><ul>
