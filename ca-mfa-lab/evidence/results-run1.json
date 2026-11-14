@@ -1,0 +1,747 @@
+{
+ "rows": [
+  {
+   "id": "M01",
+   "result": [
+    "in",
+    "in",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "in",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M02",
+   "result": [
+    "in",
+    "in",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "in",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M03",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M04",
+   "result": [
+    "out",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "out",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M05",
+   "result": [
+    "out",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "out",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M06",
+   "result": [
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "out",
+    "out",
+    null
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M07",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M08",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M09",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M10",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M11",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M12",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M13",
+   "result": [
+    "out",
+    "in",
+    "out"
+   ],
+   "guess": [
+    null,
+    "in",
+    "out"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "M14",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "R01",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "R02",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "R03",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "R04",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "R05",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "R06",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S01",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S02",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S03",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S04",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S05",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S06",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S07",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S08",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S09",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S10",
+   "result": [
+    "in",
+    "detected",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "detected",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S11",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S12",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S13",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "S14",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "Z01",
+   "result": [
+    "in",
+    "partial",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "partial",
+    "out"
+   ],
+   "limit_result": true,
+   "limit_guess": true,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "Z02",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "Z03",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "Z04",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "Z05",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "Z06",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  },
+  {
+   "id": "Z07",
+   "result": [
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in"
+   ],
+   "limit_result": null,
+   "limit_guess": false,
+   "diffs": [],
+   "limit_diff": false,
+   "match": true
+  }
+ ],
+ "tally": {
+  "cases": 41,
+  "match": 41,
+  "wrong": 0
+ }
+}

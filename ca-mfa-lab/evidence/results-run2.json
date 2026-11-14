@@ -1,0 +1,1032 @@
+[
+ {
+  "id": "P01",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P02",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P03",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P04",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P05",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P06",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P07",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P08",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P09",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P10",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "P11",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X01",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X02",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X03",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "out",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "out",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X04",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X05",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X06",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "out",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "out",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X07",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": [
+   "offB"
+  ]
+ },
+ {
+  "id": "X08",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "X09",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "A01",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "A02",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "A03",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": [
+   "offA",
+   "offB"
+  ]
+ },
+ {
+  "id": "A04",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "A05",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "in",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": [
+   "all"
+  ]
+ },
+ {
+  "id": "C01",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "out"
+  ],
+  "diffs": [
+   "offA",
+   "offB"
+  ]
+ },
+ {
+  "id": "C02",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "C03",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "out"
+  ],
+  "diffs": [
+   "offB"
+  ]
+ },
+ {
+  "id": "C04",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "out"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "C05",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "pair_off": [
+   "A",
+   "B"
+  ],
+  "pair_result": "in",
+  "pair_guess": "in"
+ },
+ {
+  "id": "Z08",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z09",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z10",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z11",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z12",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z13",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z14",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z15",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z16",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z17",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z18",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z19",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z20",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": []
+ },
+ {
+  "id": "Z21",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "pair_off": [
+   "A",
+   "C"
+  ],
+  "pair_result": "out",
+  "pair_guess": "in"
+ },
+ {
+  "id": "Z22",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "pair_off": [
+   "A",
+   "B"
+  ],
+  "pair_result": "in",
+  "pair_guess": "in"
+ }
+]

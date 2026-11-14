@@ -1,0 +1,90 @@
+id,run,group,use_case,kind,source,status
+M01,1,MFA methods,SMS or voice code is relayed by a phishing page in real time,Technical,NIST SP 800-63B-4; draft 4 Nov,Lab case
+M02,1,MFA methods,TOTP code is relayed by a phishing page inside its 30 second window,Technical,RFC 6238,Lab case
+M03,1,MFA methods,Push approval with no number match accepted by a tired user (prompt bombing),Technical,CISA 2022 number matching,Lab case
+M04,1,MFA methods,Push with number matching: attacker cannot supply the number,Technical,CISA 2022,Lab case
+M05,1,MFA methods,Passkey or security key on a look-alike domain: origin check refuses,Technical,W3C WebAuthn; FIDO Alliance,Lab case
+M06,1,MFA methods,Passkey synced across devices: loss of one device,Technical,FIDO Alliance; verify,Lab case
+M07,1,MFA methods,Backup codes reused after first use,Technical,Vendor docs; verify,Lab case
+M08,1,MFA methods,SMS kept as recovery: attacker picks the weakest allowed method,Technical,Draft 4 Nov,Lab case
+M09,1,MFA methods,SIM swap moves the SMS factor to the attacker,Technical,NIST SP 800-63B-4,Lab case
+M10,1,MFA methods,TOTP seed stolen from a shared spreadsheet,Technical,Own catalogue,Lab case
+M11,1,MFA methods,Counter or clock drift on TOTP: allowed window too wide,Technical,RFC 6238,Lab case
+M12,1,MFA methods,Rate limit on wrong codes: 6 digit code guessed without lockout,Technical,NIST SP 800-63B-4,Lab case
+M13,1,MFA methods,Lockout used by an attacker to deny a real user,Technical,NIST SP 800-63B-4,Lab case
+M14,1,MFA methods,Method downgrade: user chooses weaker factor at prompt,Technical,Draft 4 Nov,Lab case
+S01,1,SSO protocols,SAML assertion replay after the first use,Technical,OASIS SAML 2.0,Lab case
+S02,1,SSO protocols,SAML assertion with missing or wrong audience accepted,Technical,OASIS SAML 2.0,Lab case
+S03,1,SSO protocols,SAML signature on the wrong element (signature wrapping),Technical,OASIS SAML 2.0; research,Lab case
+S04,1,SSO protocols,SAML clock skew: expired assertion still accepted,Technical,OASIS SAML 2.0,Lab case
+S05,1,SSO protocols,OIDC ID token with wrong nonce accepted,Technical,OpenID Connect Core,Lab case
+S06,1,SSO protocols,"OIDC redirect URI matched by prefix, not exact",Technical,RFC 9700 (OAuth security BCP); verify,Lab case
+S07,1,SSO protocols,OAuth authorization code intercepted: PKCE absent,Technical,RFC 7636,Lab case
+S08,1,SSO protocols,OAuth state parameter missing: login CSRF,Technical,RFC 9700; verify,Lab case
+S09,1,SSO protocols,Token audience not checked by the API,Technical,RFC 9068; verify,Lab case
+S10,1,SSO protocols,Refresh token not rotated or bound,Technical,RFC 9700; verify,Lab case
+S11,1,SSO protocols,Session lifetime longer than token lifetime after logout,Technical,Own catalogue,Lab case
+S12,1,SSO protocols,Single logout does not reach one app,Technical,SAML and OIDC logout specs,Lab case
+S13,1,SSO protocols,App keeps a local login beside SSO,Technical,Draft 4 Nov,Lab case
+S14,1,SSO protocols,IdP signing key rotated and one app still trusts the old key,Technical,Own catalogue,Lab case
+R01,1,Recovery and help desk,Help desk resets MFA after a caller gives name and phone number,Technical,Draft 4 Nov,Lab case
+R02,1,Recovery and help desk,Method change with no notice to the person,Technical,Draft 4 Nov,Lab case
+R03,1,Recovery and help desk,Admin reset with no delay,Technical,Draft 4 Nov,Lab case
+R04,1,Recovery and help desk,Account recovery by email to a mailbox the attacker owns,Technical,NIST SP 800-63B-4,Lab case
+R05,1,Recovery and help desk,New device enrolment right after a password reset,Technical,Own catalogue,Lab case
+R06,1,Recovery and help desk,Temporary access pass lifetime too long,Technical,Vendor docs; verify,Lab case
+P01,2,Policy logic,Two policies conflict: block and grant both match,Technical,Vendor docs; verify,Lab case
+P02,2,Policy logic,Policy scoped to 'all apps' but one app is outside the IdP,Technical,Draft 4 Nov,Lab case
+P03,2,Policy logic,Exclusion group grows by one person a month,Technical,Draft 4 Nov,Lab case
+P04,2,Policy logic,"Emergency accounts excluded from every rule, alert on use",Technical,Microsoft Learn plan CA,Lab case
+P05,2,Policy logic,Emergency account not excluded from one new rule: lockout,Technical,Microsoft Learn plan CA,Lab case
+P06,2,Policy logic,Report-only run shows who would be blocked; enforcement later,Technical,Microsoft Learn plan CA,Lab case
+P07,2,Policy logic,Rule enforced with no report-only week,Technical,Microsoft Learn plan CA,Lab case
+P08,2,Policy logic,Legacy sign-in protocol skips MFA,Technical,Vendor docs; verify,Lab case
+P09,2,Policy logic,Service account blocked by a user rule,Technical,Draft 4 Nov,Lab case
+P10,2,Policy logic,Rule order or precedence misunderstood,Technical,Vendor docs; verify,Lab case
+P11,2,Policy logic,Policy changed in the console with no record of who,Technical,Draft 4 Nov,Lab case
+X01,2,Context signals,Managed device required: unmanaged laptop with valid MFA,Technical,Vendor docs; verify,Lab case
+X02,2,Context signals,Device compliance claim is stale,Technical,Vendor docs; verify,Lab case
+X03,2,Context signals,Country block: user on VPN exit in a blocked country,Technical,Draft 4 Nov,Lab case
+X04,2,Context signals,Country block: attacker uses a proxy in an allowed country,Technical,Draft 4 Nov,Lab case
+X05,2,Context signals,Risk-based step-up: low risk score on a real attack,Technical,Vendor docs; verify,Lab case
+X06,2,Context signals,Risk-based block: high false positive on a travelling user,Technical,Vendor docs; verify,Lab case
+X07,2,Context signals,Trusted network exception used from a guest wifi in the same range,Technical,Own catalogue,Lab case
+X08,2,Context signals,Token stolen after MFA is replayed from another device,Technical,Research; verify,Lab case
+X09,2,Context signals,Session token lifetime beats the sign-in frequency rule,Technical,Vendor docs; verify,Lab case
+A01,2,Privileged roles,Admin on SMS fallback: phishing-resistant rule has a weaker alternative,Technical,NIST SP 800-63B-4,Lab case
+A02,2,Privileged roles,Admin role activation without fresh MFA,Technical,Vendor docs; verify,Lab case
+A03,2,Privileged roles,Privileged user signs in to a non-admin app and carries admin session,Technical,Own catalogue,Lab case
+A04,2,Privileged roles,Workload identity subject to a human MFA rule,Technical,Own catalogue,Lab case
+A05,2,Privileged roles,Guest or partner user not covered by internal rules,Technical,Vendor docs; verify,Lab case
+C01,2,Chain tests,Weak SMS fallback plus help desk reset plus no notice,Chain,Draft 4 Nov,Chain test
+C02,2,Chain tests,Token replay plus long session plus no device check,Chain,Research; verify,Chain test
+C03,2,Chain tests,App outside SSO plus exclusion group plus no alert,Chain,Draft 4 Nov,Chain test
+C04,2,Chain tests,Report-only skipped plus emergency account missed plus no alert,Chain,Microsoft Learn plan CA,Chain test
+C05,2,Chain tests,Passkey fallback to SMS plus SIM swap plus notice missing,Chain,Draft 4 Nov,Chain test
+E01,2,Needs a real tenant,Real identity provider sign-in logs and report-only export,Environment,Vendor docs,Needs real tenant
+E02,2,Needs a real tenant,Real FIDO2 hardware key enrolment and loss,Environment,FIDO Alliance,Needs real tenant
+E03,2,Needs a real tenant,Real help desk call handling,Environment,Own catalogue,Needs real tenant
+Z01,1,MFA methods,QR code lure (quishing) sends the user to a look-alike sign-in page,Technical,Swissbit AiTM blog; Menlo Security blog,Added from search
+Z02,1,MFA methods,Attacker registers their own MFA method after stealing the password,Technical,"Compass Security, Entra findings part 4",Added from search
+Z03,1,SSO protocols,Golden SAML: forged assertion signed with a stolen IdP signing key; no IdP sign-in event,Technical,Obsidian Security SSO bypass blog,Added from search
+Z04,1,SSO protocols,Silver SAML: forged assertion for one app using a key the app trusts,Technical,Obsidian Security SSO bypass blog,Added from search
+Z05,1,SSO protocols,ID token signature or algorithm not verified by the app (library flaw),Technical,guptadeepak.com; CVE-2020-26244 as cited,Added from search
+Z06,1,SSO protocols,OIDC mix-up: app with two IdPs sends the code to the wrong one,Technical,guptadeepak.com; OAuth security BCP,Added from search
+Z07,1,SSO protocols,Unverified email at the IdP lets an attacker sign in as the victim at the app,Technical,"PortSwigger Web Security Academy, OAuth",Added from search
+Z08,2,Auth flows,OAuth device code phishing: victim enters an attacker code at the real IdP; attacker gets tokens,Technical,Huntress; Dark Atlas; Microsoft Learn authentication flows,Added from search
+Z09,2,Auth flows,ROPC (password sent straight to the token endpoint) skips the MFA prompt,Technical,Huntress CA misconfigurations blog,Added from search
+Z10,2,Auth flows,OAuth consent phishing: malicious app granted access with no password stolen,Technical,"Microsoft Entra blog, OAuth consent phishing",Added from search
+Z11,2,Auth flows,A policy blocks one named client (e.g. a CLI) but the same flow arrives via another client,Technical,Huntress CA misconfigurations blog,Added from search
+Z12,2,Policy logic,Policy has too many AND conditions (e.g. sign-in risk and user risk) and rarely fires,Technical,"Compass Security, Entra findings part 4",Added from search
+Z13,2,Policy logic,No default deny: a sign-in no policy matches is allowed,Technical,"Compass Security, Entra findings part 4",Added from search
+Z14,2,Policy logic,Built-in bypass: compliant-device rule still allows security-info registration or device join,Technical,"Compass Security, Entra findings part 4",Added from search
+Z15,2,Policy logic,Policy drift: console edits diverge from the approved baseline (policy as code),Technical,T-Minus 365; Cloud Capsule,Added from search
+Z16,2,Context signals,Device platform condition relies on a user agent string the attacker can change,Technical,Microsoft Learn CA conditions,Added from search
+Z17,2,Context signals,AiTM session replay refused because policy needs a compliant device,Technical,Microsoft Entra blog AiTM; r/DefenderATP,Added from search
+Z18,2,Context signals,Continuous access evaluation: stolen token used from a new location after revoke,Technical,Cloud Capsule FAQ; verify,Added from search
+Z19,2,Context signals,Refresh token lifetime (up to 90 days per one source) outlives a password reset,Technical,Huntress blog; verify,Added from search
+Z20,2,Policy logic,Printers and scanners justify a broad legacy-auth exception,Technical,T-Minus 365; Cloud Capsule,Added from search
+Z21,2,Chain tests,Device code phishing plus no flow block plus long refresh token,Chain,Huntress; Compass Security,Chain test
+Z22,2,Chain tests,Stolen password plus open security-info registration plus no device rule,Chain,Compass Security,Chain test
