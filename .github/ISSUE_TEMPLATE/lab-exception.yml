@@ -1,0 +1,43 @@
+name: Lab exception (a product behaves differently)
+description: You tested a conditional access, MFA, SSO or agent case in a real product and it did not behave like my model.
+labels: ["lab-exception"]
+body:
+  - type: markdown
+    attributes:
+      value: "Use a throwaway test tenant and made-up users only. Do not include tenant names, secrets, tokens, codes or screenshots with personal data."
+  - type: input
+    id: case
+    attributes:
+      label: Case ID
+      placeholder: G01, W06, E04 ...
+    validations:
+      required: true
+  - type: input
+    id: product
+    attributes:
+      label: Product, edition and version (or date tested)
+    validations:
+      required: true
+  - type: textarea
+    id: saw
+    attributes:
+      label: What you saw, and which column of my result it differs from (none, all, off A, off B, off C)
+    validations:
+      required: true
+  - type: textarea
+    id: how
+    attributes:
+      label: How you checked (steps, settings, how long you waited)
+    validations:
+      required: true
+  - type: input
+    id: credit
+    attributes:
+      label: Name or alias to credit (optional)
+  - type: checkboxes
+    id: safe
+    attributes:
+      label: Safety
+      options:
+        - label: I used a test tenant and made-up data, and this report holds no secrets or personal data.
+          required: true

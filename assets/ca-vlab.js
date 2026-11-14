@@ -34,7 +34,7 @@ var groups=[];ALL.forEach(function(c){if(groups.indexOf(c.group)<0)groups.push(c
 var gsel=H("select",{"aria-label":"Group"});gsel.appendChild(H("option",{value:"",text:"All groups"}));groups.forEach(function(g){gsel.appendChild(H("option",{value:g,text:g}))});
 var csel=H("select",{"aria-label":"Use case"});
 var q=H("input",{type:"search",placeholder:"Search words or an ID such as W06","aria-label":"Search use cases"});
-var h1=stepHead(1,"Pick a use case","Every case in Runs 1, 2, 3 and 5 is here: 114 of the 117. The three hand tests (E01 to E03) have no script output.");
+var h1=stepHead(1,"Pick a use case","Every case in Runs 1, 2, 3, 5 and 6 is here: 124 of the 130. The six hand tests (E01 to E06) have no script output.");
 s1.appendChild(h1[0]);var b1=h1[1];
 var f1=H("div",{"class":"filters"});[["Group",gsel],["Search",q],["Use case",csel]].forEach(function(p){var l=H("label",{text:p[0]});l.appendChild(p[1]);f1.appendChild(l)});
 b1.appendChild(f1);s1.appendChild(b1);
@@ -95,8 +95,8 @@ function renderOut(c){
   if(rel.length){
     cmp.appendChild(H("p",{text:"Assumptions that change this result when I vary them one at a time:"}));
     var ul=H("ul");rel.forEach(function(x){var f=x.flips.filter(function(y){return y.id===c.id})[0];ul.appendChild(H("li",{text:x.change+": "+pyList(f.was)+" becomes "+pyList(f.now)}))});cmp.appendChild(ul);
-  }else if(c.run===5)cmp.appendChild(H("p",{"class":"fnote",text:"None of the five assumption changes I tried alters this case."}));
-  else cmp.appendChild(H("p",{"class":"fnote",text:"I only ran the assumption sensitivity test for Run 5."}));
+  }else if(c.run===5||c.run===6)cmp.appendChild(H("p",{"class":"fnote",text:"None of the assumption changes I tried for Run "+c.run+" alters this case."}));
+  else cmp.appendChild(H("p",{"class":"fnote",text:"I only ran the assumption sensitivity test for Runs 5 and 6."}));
 }
 gsel.addEventListener("change",fillCases);q.addEventListener("input",fillCases);csel.addEventListener("change",function(){choose(csel.value)});
 var start=ALL.filter(function(c){return c.id==="W06"})[0]||ALL[0];

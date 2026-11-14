@@ -15,9 +15,9 @@
 - [Securing India's National Exams](https://roshantrivedi.co.in/secure-india-exams/): a Zero Trust reference architecture for exam security
 - [Credential tiering self-check](https://roshantrivedi.co.in/tools/tier-check/)
 - [Non-human identity lab](https://roshantrivedi.co.in/nhi-lab/): 67 machine-identity cases on made-up data, guesses hashed before the code, 10 wrong guesses recorded
-- [Conditional access, MFA and SSO lab](https://roshantrivedi.co.in/ca-mfa-lab/): 117 cases on made-up data, guesses locked before code, 114 run, 6 guesses wrong
+- [Conditional access, MFA and SSO lab](https://roshantrivedi.co.in/ca-mfa-lab/): 130 cases on made-up data, guesses locked before code, 124 run, 6 guesses wrong
 - [Run 4: three tests I could not do with code](https://roshantrivedi.co.in/ca-mfa-lab/run-4/): predictions locked for a sign-in log test, a hardware key test and a help desk role play, with steps to run them yourself
-- [Conditional access and MFA framework, animated](https://roshantrivedi.co.in/ca-mfa-lab/framework/): 13 attack patterns you can play with and without the control, and all 117 cases with the output the scripts produced
+- [Conditional access and MFA framework, animated](https://roshantrivedi.co.in/ca-mfa-lab/framework/): 15 attack patterns you can play with and without the control, and all 130 cases with the output the scripts produced
 - [The virtual lab](https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/): replay any case, then run the Python scripts yourself
 - [Sources and recent events](https://roshantrivedi.co.in/ca-mfa-lab/sources/): dated real-world events behind the lab, each labelled for how far the source can be trusted
 - [NHI framework](https://roshantrivedi.co.in/nhi-lab/framework/): seven steps from finding an identity to retiring it, mapped to the OWASP NHI Top 10
