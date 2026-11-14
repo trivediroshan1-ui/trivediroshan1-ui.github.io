@@ -20,6 +20,7 @@ Source for [roshantrivedi.co.in](https://roshantrivedi.co.in), the personal site
 | `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | Site icons (RT monogram), linked from every page. |
 | `Roshan_Trivedi_Resume.pdf` | Current resume, linked from the homepage. |
 | `Securing_India_Exams_Master.pdf` | Full 30-page whitepaper for the exam-security proposal. |
+| `assets/*.pdf`, `*/*.pdf`, `scripts/pdf_access.py` | The books and reports. `python3 scripts/pdf_access.py report` lists which are tagged for screen readers, their language and bookmarks. Two files are deliberate legacy copies of the file the site links to: `assets/humangate-mcp-lab-test-results.pdf` (same bytes as `humangate-mcp-lab-final-report.pdf`) and the root `Securing_India_Exams_Master.pdf` (same as `secure-india-exams/`). Nothing on the site links to them. They stay so old shared links keep working, and they must be re-saved together with the real file so their checksums stay equal. |
 | `og-image.png` | Social-share preview image (Open Graph / Twitter cards). |
 | `CNAME` | Custom domain config for GitHub Pages (`roshantrivedi.co.in`). |
 | `robots.txt`, `sitemap.xml`, `.well-known/security.txt` | Standard SEO / security metadata files. |

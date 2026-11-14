@@ -22,7 +22,7 @@ DEK = ("Three rounds changed after the PDFs were made. This page says which numb
 SHORT = [
     "On 25 October 2026 I re-counted rounds 6 to 12 with the stricter rule from round 13. Rounds 6, 7 and 9 dropped. "
     "The book, the addendum and the round videos were made before that, so they still show the older numbers.",
-    "The PDFs have not changed, so the checksums on the Book page still match the files. This page is the fix.",
+    "The numbers printed in the PDFs have not been corrected. They are the numbers as first published, and this page is the fix.",
     "Nothing else moved. Every &ldquo;as guessed&rdquo; result, every guess hash and rounds 8, 10, 11, 12 and 13 are as printed. "
     "The round five PDF is not affected, because round five has no control-off checks.",
 ]
@@ -173,14 +173,16 @@ def render_pdf():
     raw = pathlib.Path("/tmp/agl-errata-raw.pdf")
     with sync_playwright() as p:
         b = p.chromium.launch(); pg = b.new_page(); pg.goto(f"file://{tmp}")
-        pg.pdf(path=str(raw), format="A4", print_background=True, prefer_css_page_size=True); b.close()
+        pg.pdf(path=str(raw), format="A4", print_background=True, prefer_css_page_size=True, tagged=True, outline=True); b.close()
     r = pypdf.PdfReader(str(raw))
     assert len(r.pages) == 1, f"errata PDF is {len(r.pages)} pages, expected 1"
-    w = pypdf.PdfWriter(clone_from=r)
-    w.add_metadata({"/Title": TITLE, "/Author": "Roshan Trivedi",
-                    "/Subject": "Corrections to the control-off numbers for rounds 6, 7 and 9",
-                    "/Keywords": "AI governance, errata, control-off checks, made-up data"})
-    w.write(str(PDF))
+    import shutil, sys
+    shutil.copy(raw, PDF)
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import pdf_access
+    pdf_access.finalize(PDF, title=TITLE, author="Roshan Trivedi",
+                        subject="Corrections to the control-off numbers for rounds 6, 7 and 9",
+                        keywords="AI governance, errata, control-off checks, made-up data")
 
 
 if __name__ == "__main__":

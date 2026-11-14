@@ -663,4 +663,8 @@ add(NextPageTemplate('back'), PageBreak(), Spacer(1, 1))
 # ------------------------------------------------------------------ build
 doc = Book(OUT)
 doc.multiBuild(story)
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import pdf_access
+pdf_access.finalize(OUT)   # language and title bar; keeps bookmarks
 print('wrote', OUT, os.path.getsize(OUT), 'bytes')
