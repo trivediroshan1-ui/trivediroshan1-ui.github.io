@@ -15,7 +15,7 @@
 - [Securing India's National Exams](https://roshantrivedi.co.in/secure-india-exams/): a Zero Trust reference architecture for exam security
 - [Credential tiering self-check](https://roshantrivedi.co.in/tools/tier-check/)
 - [Non-human identity lab](https://roshantrivedi.co.in/nhi-lab/): 67 machine-identity cases on made-up data, guesses hashed before the code, 10 wrong guesses recorded
-- [Conditional access, MFA and SSO lab](https://roshantrivedi.co.in/ca-mfa-lab/): 89 cases on made-up data, guesses locked before code, 86 run, 6 guesses wrong
+- [Conditional access, MFA and SSO lab](https://roshantrivedi.co.in/ca-mfa-lab/): 105 cases on made-up data, guesses locked before code, 102 run, 6 guesses wrong
 - [NHI framework](https://roshantrivedi.co.in/nhi-lab/framework/): seven steps from finding an identity to retiring it, mapped to the OWASP NHI Top 10
 - [NHI market in 2026](https://roshantrivedi.co.in/nhi-lab/market/): four acquisitions, agent identity and a NIST project, each dated and sourced
 - [How the NHI lab was run](https://roshantrivedi.co.in/nhi-lab/method/): the procedure, dates and mistakes
