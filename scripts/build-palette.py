@@ -40,7 +40,10 @@ for f in sorted((ROOT / "_posts").glob("*.md")):
     tags = get("tags").strip("[]").replace(",", " ").replace("-", " ")
     items.append({"t": get("title"), "u": f"/writing/{slug}/", "g": "Writing", "d": (get("description") or get("excerpt"))[:150], "k": tags})
 
-EXTRA = {"/resume/": "cv cyberark sailpoint beyondtrust hashicorp vault entra delinea saviynt strongdm wiz clutch certifications",
+EXTRA = {"/start/": "start here where to begin reading path",
+         "/topics/": "topics subjects index iam pam pim nhi mfa sso",
+         "/glossary/": "glossary definitions terms meaning",
+         "/resume/": "cv cyberark sailpoint beyondtrust hashicorp vault entra delinea saviynt strongdm wiz clutch certifications",
          "/ca-mfa-lab/": "conditional access mfa 2fa sso single sign-on ai agents sign-in lab passkey token phishing",
          "/ca-mfa-lab/framework/": "access chain seven links mfa sso conditional access attack patterns animated enrol prove trust decide issue act watch",
          "/ca-mfa-lab/virtual-lab/": "replay cases mfa conditional access python",
