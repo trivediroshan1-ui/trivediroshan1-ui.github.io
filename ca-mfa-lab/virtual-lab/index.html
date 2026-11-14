@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Replay any of 114 conditional access and MFA cases, switch controls on and off, then run the same Python script yourself." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/" />
+    <meta property="og:title" content="The virtual lab" />
+    <meta property="og:description" content="Replay any of 114 conditional access and MFA cases, switch controls on and off, then run the same Python script yourself." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <title>The virtual lab &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
+    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+  <script src="/assets/nav.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "The virtual lab", "description": "Replay any of 114 conditional access and MFA cases, switch controls on and off, then run the same Python script yourself.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+  <link rel="stylesheet" href="/assets/ca-fw.css?v=20261114a">
+</head>
+    <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main" class="nhi fw">
+  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/">Overview</a><a href="/ca-mfa-lab/framework/">Framework</a><a href="/ca-mfa-lab/virtual-lab/" aria-current="page">Virtual lab</a><a href="/ca-mfa-lab/register/">Register</a><a href="/ca-mfa-lab/run-4/">Run 4</a><a href="/ca-mfa-lab/sources/">Sources and events</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
+  <header class="nhero"><p class="eyebrow">Lab</p><h1>The virtual lab</h1>
+  <p class="dek">Pick any case. Read the guess I locked before running anything. Switch the controls. See the output my script produced. Then run the same script on your own computer.</p>
+  <ul class="nmeta"><li>114 cases replayed</li><li>Python 3, no packages</li><li>Made-up data only</li></ul></header>
+
+  <section class="nsec" id="how" aria-labelledby="hw-h">
+    <h2 id="hw-h">What this is, and is not</h2>
+    <p class="lede">This page replays saved output. Nothing is simulated in your browser. The numbers below are the ones my scripts wrote to their result files on 14 November 2026.</p>
+    <p>If you want to see a script run, the second half of this page has the steps for your own computer. It takes a few minutes.</p>
+  </section>
+
+  <section class="nsec" id="replay" aria-labelledby="rp-h">
+    <h2 id="rp-h">Replay a case</h2>
+    <div class="vlab" id="vlab-root"></div>
+    <noscript><p class="note">The replay needs JavaScript. The raw result files are linked on the <a href="/ca-mfa-lab/framework/#files">framework page</a>.</p></noscript>
+  </section>
+
+  <section class="nsec steps" id="local" aria-labelledby="lo-h">
+    <h2 id="lo-h">Run it yourself</h2>
+    <p class="lede">Run 5 is the newest. It uses only Python 3&rsquo;s standard library. The other runs work the same way.</p>
+    <ol>
+      <li><b>Check Python.</b> <code>python3 --version</code> should print a version that starts with 3.</li>
+      <li><b>Make a folder and download two files.</b>
+<pre class="term">mkdir ca-lab &amp;&amp; cd ca-lab
+curl -O https://roshantrivedi.co.in/ca-mfa-lab/evidence/run5.py
+curl -O https://roshantrivedi.co.in/ca-mfa-lab/evidence/guesses/guesses-run5.md</pre></li>
+      <li><b>Check that the guesses are the locked ones.</b>
+<pre class="term">shasum -a 256 guesses-run5.md</pre>
+        It should print <code>bc344bbd00d01d169c0dbde94d83fc628ec973dcbbb067d1c2cad3f74a65e63a</code>. The script checks this itself and refuses to run if the file differs.</li>
+      <li><b>Run it.</b>
+<pre class="term">python3 -I run5.py guesses-run5.md</pre>
+        You should see 12 lines that end in OK, two summary lines, and five lines that start with SENS. It writes <code>results-run5.json</code> next to the script.</li>
+      <li><b>Break an assumption.</b> Open <code>run5.py</code> and find <code>PARAMS</code> near the top. Change <code>p_no_read</code> from 0.30 to 0.02 and run again. W10 and W11 change. Because the script checks the guess file&rsquo;s hash, the guesses cannot be quietly changed to match.</li>
+      <li><b>Try the older runs.</b> They live in the same <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/tree/main/ca-mfa-lab/evidence">evidence folder</a>. From inside that folder: <code>python3 run1.py</code>, <code>python3 run2.py guesses/guesses-run2.md</code>, <code>python3 run3.py guesses/guesses-run3.md</code>.</li>
+      <li><b>Write your own guess first.</b> Pick a case, write what you expect for each switch, save it, hash it, and only then look at the output. That order is the whole method. <a href="/nhi-lab/method/">How the method works</a>.</li>
+    </ol>
+  </section>
+
+  <section class="nsec" id="sens" aria-labelledby="se-h">
+    <h2 id="se-h">What changes when one assumption changes (Run 5)</h2>
+    <p class="lede">I changed one assumption at a time and re-ran all 12 cases. These are the only changes that flip any result.</p>
+    <div class="twrap"><table class="srctable"><thead><tr><th>Assumption changed</th><th>Cases that change</th></tr></thead><tbody><tr><td>p_no_read 0.02 (people almost always read)</td><td>W10, W11</td></tr><tr><td>p_no_read 0.60</td><td>No case changes</td></tr><tr><td>session_hours 25 (cloud session outlasts the wait)</td><td>W02</td></tr><tr><td>attacker_delay_min 10 (replay after the short token ends)</td><td>W09</td></tr><tr><td>b_covers_all_credentials True (step-up check applies to keys and service tokens)</td><td>W08</td></tr></tbody></table></div>
+    <p class="fnote">The 30 percent, the 2 minutes and the 1 hour are numbers I chose. They are written at the top of the script so you can change them.</p>
+  </section>
+
+  <section class="nsec" id="hand" aria-labelledby="ha-h">
+    <h2 id="ha-h">Tests you can only do by hand</h2>
+    <p>Three cases need a real tenant, a hardware key or a person: sign-in logs and a report-only policy, a lost hardware key, and a help desk call. They are on the <a href="/ca-mfa-lab/run-4/">Run 4 page</a> with setup and safety notes. If you run one, tell me what you saw.</p>
+  </section>
+
+  <section class="nsec" id="limits" aria-labelledby="li-h">
+    <h2 id="li-h">Limits</h2>
+    <ul>
+      <li>The replay shows my models. Your product may behave differently.</li>
+      <li>Run 1 stored three columns (no control, control on, control off alone). Runs 2, 3 and 5 store five (none, all, off A, off B, off C).</li>
+      <li>The assumption test was only run for Run 5.</li>
+    </ul>
+  </section>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script src="/ca-mfa-lab/data/cases.js?v=20261114a"></script>
+  <script defer src="/assets/ca-vlab.js?v=20261114a"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>
+  </body>
+</html>
