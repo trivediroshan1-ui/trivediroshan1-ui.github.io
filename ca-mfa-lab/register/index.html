@@ -6,10 +6,10 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
-    <meta name="description" content="All 89 conditional access, MFA and SSO cases with source and outcome." />
+    <meta name="description" content="All 105 conditional access, MFA and SSO cases with source and outcome." />
     <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/register/" />
     <meta property="og:title" content="Conditional access lab register" />
-    <meta property="og:description" content="All 89 conditional access, MFA and SSO cases with source and outcome." />
+    <meta property="og:description" content="All 105 conditional access, MFA and SSO cases with source and outcome." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/register/" />
     <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
@@ -38,14 +38,14 @@
   <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
   <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
   <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Conditional access lab register", "description": "All 89 conditional access, MFA and SSO cases with source and outcome.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/register/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Conditional access lab register", "description": "All 105 conditional access, MFA and SSO cases with source and outcome.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/register/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
 </head>
     <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main" class="nhi">
   <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/">Overview</a><a href="/ca-mfa-lab/register/" aria-current="page">Register</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
-  <header class="nhero"><p class="eyebrow">Register</p><h1>All 89 rows, and what happened to each</h1><p class="dek">Every case in the conditional access, MFA and SSO catalogue, with its source and its outcome. 86 were run. 3 need a real tenant and were not.</p><ul class="nmeta"><li>Last reviewed 14 November 2026</li><li>Made-up data only</li><li><a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/ca-mfa-catalogue-v1.1.csv">Download the CSV</a></li></ul></header>
+  <header class="nhero"><p class="eyebrow">Register</p><h1>All 105 rows, and what happened to each</h1><p class="dek">Every case in the conditional access, MFA and SSO catalogue, with its source and its outcome. 102 were run. 3 need a real tenant and were not.</p><ul class="nmeta"><li>Last reviewed 14 November 2026</li><li>Made-up data only</li><li><a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/ca-mfa-catalogue-v1.2.csv">Download the CSV</a></li></ul></header>
   <section class="nsec" aria-labelledby="reg-h">
     <h2 id="reg-h">The register</h2>
     <p class="lede">&ldquo;Guess matched&rdquo; means my committed guess agreed with the model. &ldquo;Guess was wrong&rdquo; means it did not. Rows whose source says &ldquo;verify&rdquo; or &ldquo;Added from search&rdquo; come from search excerpts and my memory, not from a full reading of the source.</p>
@@ -139,6 +139,22 @@
 <tr><td>Z20</td><td>2</td><td>Policy logic</td><td>Printers and scanners justify a broad legacy-auth exception</td><td>T-Minus 365; Cloud Capsule</td><td><span class="nb med">Guess matched</span></td></tr>
 <tr><td>Z21</td><td>2</td><td>Chain tests</td><td>Device code phishing plus no flow block plus long refresh token</td><td>Huntress; Compass Security</td><td><span class="nb high">Guess was wrong</span></td></tr>
 <tr><td>Z22</td><td>2</td><td>Chain tests</td><td>Stolen password plus open security-info registration plus no device rule</td><td>Compass Security</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y01</td><td>3</td><td>PAM and step-up</td><td>Privileged app says step-up is required but its server never checks that the token shows fresh MFA</td><td>AuthMind privileged access and MFA bypass page (vendor, excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y02</td><td>3</td><td>PAM and step-up</td><td>Scheduled job or API integration runs with no active user session, so the step-up challenge never fires</td><td>Salesforce Help, step-up authentication notice (excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y03</td><td>3</td><td>Federation</td><td>Federated domain backdoor: an admin adds the attacker&#x27;s own federated domain, which forges tokens and claims MFA was done</td><td>Tenable indicators of exposure, Known Federated Domain Backdoor; Microsoft and Mandiant Solorigate write-ups as cited there</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y04</td><td>3</td><td>Federation</td><td>Tenant accepts the federated IdP&#x27;s MFA claim, and the on-premises IdP skips MFA for internal addresses</td><td>Microsoft Learn, migrate from federation to cloud authentication (excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y05</td><td>3</td><td>Mobile and native apps</td><td>Native app signs in without the broker, so device identity is missing and a device rule cannot be checked</td><td>intuneirl.com, brokered authentication iOS and Android; Microsoft Learn MSAL web browsers (excerpts)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y06</td><td>3</td><td>Mobile and native apps</td><td>Token obtained through a nested app path that the conditional access policy does not evaluate (verify)</td><td>NetSPI, nested app authentication bypass (excerpt only, details not read)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y07</td><td>3</td><td>Mobile and native apps</td><td>Token used from inside the compliant device itself, through a malicious browser extension</td><td>Mitiga, hunting conditional access bypass in the wild (excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y08</td><td>3</td><td>Passkeys and recovery</td><td>Pass-the-passkey: malware on the endpoint gets a valid passkey assertion with no user action (verify)</td><td>Palo Alto Unit 42, Pass the Passkey; Black Swan advisory 8 Sep 2026 (excerpts)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y09</td><td>3</td><td>Passkeys and recovery</td><td>Attacker with a stolen session registers their own passkey and keeps access after sessions are revoked</td><td>Black Swan advisory 8 Sep 2026 (excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y10</td><td>3</td><td>Resilience</td><td>MFA provider unreachable: the sign-in system fails open and accepts the password alone</td><td>RSA, how attackers bypass MFA (excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y11</td><td>3</td><td>Agents and MCP</td><td>MCP proxy confused deputy: a malicious client registers itself and skips consent because of an old consent cookie</td><td>Model Context Protocol security best practices (2026-07-28 edition, excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y12</td><td>3</td><td>Agents and MCP</td><td>MCP server accepts a token issued for another service and passes it on to a downstream API</td><td>Model Context Protocol security best practices; Aembit; WorkOS (excerpts)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y13</td><td>3</td><td>Agents and MCP</td><td>Agent includes its own token in data sent to a tool; the token is long lived and broad</td><td>Aembit, MCP authentication and authorization patterns (excerpt)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y14</td><td>3</td><td>Agents and MCP</td><td>Agent runs an irreversible action because injected text told it to; the token allows it and nobody asks a person</td><td>Curity, MCP authorization is not enough; WorkOS, MCP and zero trust (excerpts)</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y15</td><td>3</td><td>Chain tests</td><td>Malicious extension steals a session plus a new passkey is registered plus no revoke of recent methods</td><td>Mitiga; Black Swan advisory</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Y16</td><td>3</td><td>Chain tests</td><td>Malicious MCP client plus broad agent token plus long token life</td><td>MCP security best practices; Aembit</td><td><span class="nb med">Guess matched</span></td></tr>
 </tbody></table></div>
   </section>
 </main>
