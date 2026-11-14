@@ -22,7 +22,7 @@ Change one word and the hash breaks, and a wrong guess stays wrong.
 The framework: seven links every sign-in passes through.
 
 00:23.333 --> 00:28.667
-Enrol and recover (17 cases), prove (14), trust (21), decide (33), issue (16), act (14), and watch and end (15).
+Enroll and recover (17 cases), prove (14), trust (21), decide (33), issue (16), act (14), and watch and end (15).
 
 00:28.667 --> 00:34.000
 A weak link anywhere lets the attacker through, however strong MFA is at link 2.

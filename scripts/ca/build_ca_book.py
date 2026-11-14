@@ -192,7 +192,7 @@ add(Tiles([("130", "cases in the register", CYAN), ("124", "run on small models"
 ps("I ran 124 of the 130 cases. 118 matched the guess I had locked before any code. Six did not, and all six were in Run 2, the run where each case had two or three controls working together.",
    "The score is the least useful result. Four things I would tell a team that owns sign-in:")
 add(numbered([
-    "MFA was often not the control that decided the outcome. A stolen integration token never triggers a sign-in. A password reset that does not kill refresh tokens leaves a stolen session alive. A recovery path weaker than sign-in lets an attacker enrol their own authenticator.",
+    "MFA was often not the control that decided the outcome. A stolen integration token never triggers a sign-in. A password reset that does not kill refresh tokens leaves a stolen session alive. A recovery path weaker than sign-in lets an attacker enroll their own authenticator.",
     "The largest group of cases sits in link 4, Decide: a rule that does not cover the sign-in, an exception that grew, a legacy protocol that skips MFA. It holds 33 of the 130 cases and 3 of my 6 wrong guesses.",
     "For AI agents, the controls that decided Run 6 were plain ones: a named human owner, an identity that expires with the task, and a check at the resource against the human's own rights. Narrowing a sub-agent's token and rotating its credential did not decide anything.",
     "Each result rests on an assumption I chose. When I changed one assumption at a time, results flipped. A pass in this book holds only while its assumption holds."]))
