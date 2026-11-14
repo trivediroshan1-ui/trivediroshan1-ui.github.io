@@ -89,7 +89,7 @@ html[data-theme="light"] .pill b { color: #ffffff; }
 .tiles { position: absolute; left: calc(30% - 70px); top: 0; width: 250px; transform: rotateX(56deg) rotateZ(-42deg); transform-origin: 50% 0; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
 .tiles li { height: 56px; border-radius: 12px; display: flex; align-items: center; gap: 12px; padding: 0 18px; font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
   border: 1px solid rgba(167, 139, 250, 0.6); background: rgba(124, 58, 237, 0.17); color: #ede9fe; box-shadow: 8px 8px 0 #24164f, 0 0 34px rgba(124, 58, 237, 0.4); }
-.tiles li span { opacity: 0.7; }
+.tiles li span { opacity: 0.9; }
 .tiles .c { border-color: rgba(88, 230, 246, 0.6); background: rgba(88, 230, 246, 0.12); color: #ccfbff; box-shadow: 8px 8px 0 #102a4a, 0 0 34px rgba(88, 230, 246, 0.35); }
 .tiles .p { border: 2px solid #fbbf24; background: rgba(251, 191, 36, 0.2); color: #fff7d6; box-shadow: 8px 8px 0 #4a3108, 0 0 50px rgba(251, 191, 36, 0.55); }
 .tiles .g { border-color: rgba(101, 229, 173, 0.6); background: rgba(101, 229, 173, 0.13); color: #d6fff0; box-shadow: 8px 8px 0 #0f3b2c, 0 0 34px rgba(101, 229, 173, 0.35); }
@@ -243,7 +243,7 @@ html[data-theme="light"] .card .art { color: color-mix(in srgb, var(--c, #0a6178
       then TOOL and RECORD complete and the decision is stamped. Runs once, about 3.8 s.
       With reduced motion the finished state shows straight away. -- */
 .decide .r { display: flex; align-items: center; gap: 8px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(101, 229, 173, 0.4); font-family: var(--mono); font-size: 12px; color: var(--green); }
-.decide .r .tick { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: rgba(101, 229, 173, 0.18); font-size: 11px; }
+.decide .r .tick { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: rgba(101, 229, 173, 0.18); font-size: 12px; }
 html[data-theme="light"] .decide .r { color: #0b6b45; border-top-color: rgba(15, 122, 80, 0.35); }
 @keyframes rt-step { 0% { opacity: 0.16; transform: translate3d(0, 10px, 0); filter: saturate(0.2); } 55% { opacity: 1; filter: brightness(1.55) saturate(1.2); } 100% { opacity: 1; transform: none; filter: none; } }
 @keyframes rt-press { 0%, 100% { transform: none; box-shadow: none; } 40% { transform: scale(0.92); box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.28); } }
@@ -326,7 +326,7 @@ html[data-theme="light"] .q:nth-child(2)::before, html[data-theme="light"] .q:nt
 .q blockquote p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--ink); }
 .q figcaption { margin-top: auto; display: grid; gap: 2px; font-size: 13px; color: var(--subtle); border-top: 1px solid var(--line); padding-top: 12px; }
 .q figcaption b { color: var(--ink); font-family: var(--display); font-size: 14.5px; }
-.q time { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; }
+.q time { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; }
 .creds { margin-top: 22px; padding: 20px 22px; border-radius: var(--r); border: 1px dashed var(--line2); display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
 .creds .ey { margin: 0; }
 .creds ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }

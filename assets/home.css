@@ -76,7 +76,7 @@ ul, ol { padding: 0; list-style: none; }
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
 .brand-name { font-weight: 700; font-size: 15px; white-space: nowrap; }
-.brand-sub { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--subtle); white-space: nowrap; }
+.brand-sub { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--subtle); white-space: nowrap; }
 
 .nav-desktop { display: none; gap: 30px; }
 .nav-desktop a, .nav-mobile a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; }
@@ -279,7 +279,7 @@ section.block:last-of-type { border-bottom: 0; }
 .career-grid { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
 .career-grid article { padding: 26px 28px; border-bottom: 1px solid var(--line); display: grid; align-content: start; gap: 8px; background: rgba(7,16,29,0.5); }
 .career-grid article:last-child { border-bottom: 0; }
-.career-grid small { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); }
+.career-grid small { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); }
 .career-grid h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: -0.015em; }
 .career-grid p { color: var(--muted); font-size: 0.93rem; line-height: 1.7; }
 @media (min-width: 900px) {

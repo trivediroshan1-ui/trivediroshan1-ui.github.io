@@ -123,3 +123,9 @@
 .fw .rnta{width:100%;box-sizing:border-box;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg,#030712);color:var(--text,#f1f5f9);border:1px solid var(--border,#1f2a40);border-radius:8px;padding:10px}
 .fw .rnlab{display:block;font-size:.8rem;color:var(--muted,#93a1bd);margin:8px 0 4px}
 .fw #rn-out{min-height:6rem;max-height:28rem;overflow:auto;white-space:pre}
+
+/* Light theme contrast for tags */
+html[data-theme="light"] .fw .tag{color:#3b4a63}
+html[data-theme="light"] .fw .tag.good{color:#0b6b4a;border-color:#0b6b4a}
+html[data-theme="light"] .fw .tag.bad{color:#b4233f;border-color:#b4233f}
+html[data-theme="light"] .fw .tag.warn{color:#7a4b00;border-color:#7a4b00}
