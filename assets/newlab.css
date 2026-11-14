@@ -5,14 +5,14 @@
 .newlab .doodle{width:96px;height:96px;color:var(--accent,#4de2ff);flex:none}
 .newlab .doodle .ink{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .newlab .doodle .fill{fill:color-mix(in srgb,var(--safe,#7df2d0) 22%,transparent);stroke:none}
-.newlab .doodle .spark{fill:none;stroke:var(--warn,#f7c873);stroke-width:3;stroke-linecap:round;transform-origin:center;transform-box:fill-box;animation:nl-twinkle 2.4s ease-in-out infinite}
+.newlab .doodle .spark{fill:none;stroke:var(--warn,#f7c873);stroke-width:3;stroke-linecap:round;transform-origin:center;transform-box:fill-box;animation:nl-twinkle 2.4s ease-in-out 3}
 .newlab .doodle .spark.b{animation-delay:1.2s}
 .newlab .doodle .tick{stroke:var(--safe,#7df2d0)}
 .newlab .t{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .newlab h3,.newlab h2{margin:0;font:700 22px/1.2 var(--display,system-ui,sans-serif);color:var(--text,#f1f5f9)}
 .newlab p{margin:6px 0 8px;color:var(--muted,#93a1bd);font-size:15px}
 .newlab .go{font-weight:600;color:var(--accent,#4de2ff)}
-.newpill{display:inline-block;font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;transform:rotate(-3deg);animation:nl-blink 1.2s steps(2,start) infinite}
+.newpill{display:inline-block;font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;transform:rotate(-3deg);animation:nl-blink 1.2s steps(2,start) 3}
 @keyframes nl-blink{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes nl-twinkle{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1.15);opacity:1}}
 html[data-theme="light"] .newlab{background:#fff;border-color:#0a7285;color:#0f172a}
@@ -28,9 +28,9 @@ html[data-theme="light"] .newpill{background:#f2b84b}
 .newlab-top .wrap{width:min(1120px,100% - 32px);margin-inline:auto}
 .newlab-top .newlab{margin:0}
 .newlab{background:linear-gradient(120deg,color-mix(in srgb,var(--accent,#4de2ff) 12%,var(--surface,#0b1220)),var(--surface,#0b1220) 55%,color-mix(in srgb,var(--warn,#f7c873) 10%,var(--surface,#0b1220)))}
-.newlab .doodle .eye{fill:currentColor;transform-origin:center;transform-box:fill-box;animation:nl-eye 3.2s infinite}
-.newlab .doodle .shield{animation:nl-glow 2.4s ease-in-out infinite}
-.newlab .doodle .tick{stroke-dasharray:60;animation:nl-draw 3.2s ease-in-out infinite}
+.newlab .doodle .eye{fill:currentColor;transform-origin:center;transform-box:fill-box;animation:nl-eye 3.2s 3}
+.newlab .doodle .shield{animation:nl-glow 2.4s ease-in-out 3}
+.newlab .doodle .tick{stroke-dasharray:60;animation:nl-draw 3.2s ease-in-out 3}
 @keyframes nl-eye{0%,44%,52%,100%{transform:scaleY(1)}48%{transform:scaleY(.08)}}
 @keyframes nl-glow{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 6px var(--accent,#4de2ff))}}
 @keyframes nl-draw{0%{stroke-dashoffset:60}35%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:60}}
@@ -40,7 +40,7 @@ html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 
 .newlab .links{display:flex;flex-wrap:wrap;gap:6px 22px}
 .newlab .stretch::after{content:"";position:absolute;inset:0;border-radius:16px}
 .newlab .book{position:relative;z-index:2;text-decoration:underline;text-underline-offset:3px}
-.newlab .book::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--warn,#f7c873);margin-right:7px;animation:nl-blink 1.2s steps(2,start) infinite}
+.newlab .book::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--warn,#f7c873);margin-right:7px;animation:nl-blink 1.2s steps(2,start) 3}
 .newlab .go{text-decoration:none}
 @media (prefers-reduced-motion:reduce){.newlab .book::before{animation:none}}
 
@@ -51,8 +51,8 @@ html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 
 .newlab.nl-ca{grid-template-columns:110px minmax(0,1fr);border-color:#60a5fa;margin:0 0 22px;padding:20px 22px}
 .newlab.nl-ca:hover{transform:none}
 .nl-ca .doodle{width:110px;height:110px;color:#60a5fa}
-.nl-ca .doodle .route{stroke-dasharray:6 7;animation:nl-march 1.6s linear infinite}
-.nl-ca .doodle .tok{stroke:var(--warn,#f7c873);animation:nl-blink 1.4s steps(2,start) infinite}
+.nl-ca .doodle .route{stroke-dasharray:6 7;animation:nl-march 1.6s linear 3}
+.nl-ca .doodle .tok{stroke:var(--warn,#f7c873);animation:nl-blink 1.4s steps(2,start) 3}
 .nl-ca .doodle .tick{stroke:var(--safe,#7df2d0)}
 .nl-ca .nl-date{font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#93a1bd)}
 .nl-ca h3{margin-top:8px}

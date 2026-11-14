@@ -229,8 +229,8 @@ html[data-theme="light"] body::after { opacity: 0.8; }
 a.card.has-art:hover { border-color: color-mix(in srgb, var(--c, var(--violet)) 60%, transparent); }
 html[data-theme="light"] .card .art { color: color-mix(in srgb, var(--c, #0a6178) 30%, #0a4a5c); background: radial-gradient(circle at 78% 10%, color-mix(in srgb, var(--c, var(--cyan)) 16%, transparent), transparent 62%); }
 @media (prefers-reduced-motion: no-preference) {
-  .card .art .ring { animation: ringspin 26s linear infinite; }
-  .card .art .hub { animation: hubpulse 3.2s ease-in-out infinite; }
+  .card .art .ring { animation: ringspin 26s linear 3; }
+  .card .art .hub { animation: hubpulse 3.2s ease-in-out 3; }
   @keyframes ringspin { to { transform: rotate(360deg); } }
   @keyframes hubpulse { 50% { opacity: .55; } }
 }

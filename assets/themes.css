@@ -104,13 +104,13 @@ html[data-bg]::before {
     radial-gradient(46% 42% at 88% 8%, var(--tb-b), transparent 72%),
     radial-gradient(54% 50% at 72% 96%, var(--tb-c), transparent 74%),
     radial-gradient(40% 40% at 6% 88%, var(--tb-b), transparent 70%);
-  animation: tb-drift var(--tb-mesh) ease-in-out infinite alternate; will-change: transform;
+  animation: tb-drift var(--tb-mesh) ease-in-out 3 alternate forwards; will-change: transform;
 }
 html[data-bg]::after {
   content: ""; position: fixed; inset: calc(var(--th) * -1) calc(var(--tw) * -1); z-index: -3; pointer-events: none;
   background: var(--tb-ink); opacity: var(--tb-mo);
   -webkit-mask: var(--tb-motif) 0 0 / var(--tw) var(--th) repeat; mask: var(--tb-motif) 0 0 / var(--tw) var(--th) repeat;
-  animation: tb-slide var(--tb-dur) linear infinite; will-change: transform;
+  animation: tb-slide var(--tb-dur) linear 3; will-change: transform;
 }
 /* a soft veil over the reading column keeps text calm */
 html[data-bg] body::after {
