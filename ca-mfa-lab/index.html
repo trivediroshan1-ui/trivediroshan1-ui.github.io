@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -39,7 +39,9 @@
   <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261114c">
   <link rel="stylesheet" href="/assets/nhi-site.css?v=20261114c">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Do conditional access, MFA and SSO controls hold up?", "description": "130 conditional access, MFA and SSO cases on made-up data. Guesses locked before code. 124 run, 6 guesses wrong.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
-</head>
+  <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114c">
+    <link rel="stylesheet" href="/assets/signup.css?v=20261114c">
+  </head>
     <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
@@ -121,8 +123,14 @@
     <p class="lede">The guesses were committed to this site&rsquo;s repository before any code existed. Commit 5875323 holds the Run 1 guesses. Commit 7d31554 holds the Run 2 guesses. Commit 56b9622 holds the Run 1 and Run 2 code and results. Commit f8d6676 holds the Run 3 guesses, and commit 179b763 holds the Run 3 code and results. Commit 64c3573 holds the predictions for the three tests I will run by hand. The method is the same as the <a href="/nhi-lab/method/">non-human identity lab</a>.</p>
     <p><a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run1.md">Run 1 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run2.md">Run 2 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run3.md">Run 3 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run4.md">Run 4 predictions</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/run1.py">Run 1 code</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/run2.py">Run 2 code</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/run3.py">Run 3 code</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/RESULTS-run1.md">Run 1 results</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/RESULTS-run2.md">Run 2 results</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/RESULTS-run3.md">Run 3 results</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/source-check-14-nov.md">Source check</a> &middot; <a href="/ca-mfa-lab/register/">Full register</a></p>
   </section>
+<section class="lab-signup" aria-label="Get new write-ups by email"><form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/trivedi" method="post" target="_blank">
+              <label for="bd-email">Get new write-ups by email</label>
+              <div class="row"><input type="email" name="email" id="bd-email" autocomplete="email" placeholder="you@company.com" required><button type="submit">Subscribe</button></div>
+              <small>One or two emails a month. No tracking, unsubscribe any time. Sent with Buttondown.</small>
+            </form></section>
+<nav class="lab-foot" aria-label="More in this lab"><span class="lf-prev off"></span><a class="lf-next" href="/ca-mfa-lab/framework/"><small>Next</small><b>Framework</b></a><span class="lf-extra"><a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">Get the book</a><a href="/topics/">Browse by topic</a></span></nav>
 </main>
-    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
   <script defer src="/assets/chatbot-widget.js?v=20261114c"></script>
   </body>
 </html>
