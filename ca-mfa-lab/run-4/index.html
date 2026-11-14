@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Three tests I could not run with code: sign-in logs, a hardware key and a help desk call. Predictions locked before any test." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/run-4/" />
+    <meta property="og:title" content="Run 4: three tests I could not do with code" />
+    <meta property="og:description" content="Three tests I could not run with code: sign-in logs, a hardware key and a help desk call. Predictions locked before any test." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/run-4/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <title>Run 4: three tests I could not do with code &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
+    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+  <script src="/assets/nav.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Run 4: three tests I could not do with code", "description": "Three tests I could not run with code: sign-in logs, a hardware key and a help desk call. Predictions locked before any test.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/run-4/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+</head>
+    <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main" class="nhi">
+  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/">Overview</a><a href="/ca-mfa-lab/register/">Register</a><a href="/ca-mfa-lab/run-4/" aria-current="page">Run 4</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
+  <header class="nhero"><p class="eyebrow">Lab</p><h1>Run 4: three tests I could not do with code</h1><p class="dek">Runs 1 to 3 are small models I wrote. Three cases can only be answered with a real tenant, a real hardware key, or a person on the phone. I wrote my predictions for all three on 14 November and committed them before testing anything.</p><ul class="nmeta"><li>Predictions locked 14 November 2026</li><li>Commit 64c3573</li><li>Made-up data only</li></ul></header>
+
+  <section class="nsec" id="status" aria-labelledby="st-h">
+    <h2 id="st-h">Where each test stands</h2>
+    <div class="twrap"><table class="ntable"><thead><tr><th>Test</th><th>What it checks</th><th>Status</th></tr></thead><tbody>
+<tr><td>E01</td><td>Sign-in logs and a report-only Conditional Access policy</td><td>Not run. It needs a test tenant with Conditional Access. I do not have one yet.</td></tr>
+<tr><td>E02</td><td>A hardware security key: enrolling it, losing it, and what happens to a session that is already open</td><td>Not run. It needs a tenant and a spare key.</td></tr>
+<tr><td>E03</td><td>A help desk call, role played</td><td>Volunteers wanted</td></tr>
+</tbody></table></div>
+    <p class="lede">The lab count stays at 105 cases, with 102 run on models. These three move to &ldquo;tested by hand&rdquo; only when someone has actually run them.</p>
+    <p>My predictions are in <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run4.md">the locked file</a>. Its SHA-256 is 38f544b069739445cd057b9569970de89870e4cde688f7f6af93e82f248fd94a.</p>
+  </section>
+
+  <section class="nsec" id="before" aria-labelledby="bf-h">
+    <h2 id="bf-h">Before you try any of this</h2>
+    <ul>
+      <li>Use a throwaway test tenant, never your work one. An enforced Conditional Access policy can lock you out. Keep one admin account excluded from every policy, and make sure you can reach its sign-in details.</li>
+      <li>A key reset erases every passkey on the key. Use a spare key that holds nothing you need.</li>
+      <li>Do not call a real help desk. Everything in E03 is made up.</li>
+      <li>No passwords, codes, tokens or tenant names in your notes. Blur screenshots.</li>
+    </ul>
+  </section>
+
+  <section class="nsec" id="e01" aria-labelledby="e1-h">
+    <h2 id="e1-h">E01: sign-in logs and a report-only policy</h2>
+    <p class="lede"><b>Setup:</b> a test tenant where Conditional Access is available (licence terms change, check before you start). One test user with MFA registered. One policy that requires MFA for all users, all apps and all client apps, modern and legacy, set to report-only, with the excluded admin account.</p>
+    <ol>
+      <li>Does a normal browser sign-in show the report-only result for the policy on that sign-in row?</li>
+      <li>Does a silent token renewal also carry a report-only result, and does it sit in a different log view from the interactive one?</li>
+      <li>Does the portal&rsquo;s CSV download have the per-policy result, so you can answer &ldquo;who would have been blocked&rdquo; from it alone?</li>
+      <li>Does the interactive sign-in appear in the log within 5 minutes?</li>
+      <li>Is a sign-in from a legacy-style client, such as an old mail protocol, visible in the log with the report-only result?</li>
+    </ol>
+    <p><b>Write down:</b> what each log row showed, how many minutes it took, and the export file name. Leave tenant data out of what you send.</p>
+  </section>
+
+  <section class="nsec" id="e02" aria-labelledby="e2-h">
+    <h2 id="e2-h">E02: a hardware security key</h2>
+    <p class="lede"><b>Setup:</b> one spare FIDO2 key, the same test tenant, one test user with an authenticator app registered as a second method. A passkey in a phone app is not a hardware key. If you use one, say so.</p>
+    <ol>
+      <li>Does enrolling the key and signing in with it work first time?</li>
+      <li>With the key out of the picture and the authenticator app still registered, can the user still sign in?</li>
+      <li>With the key as the only method and the key lost, can the user sign in alone, or do they need an admin?</li>
+      <li>After an admin deletes the key&rsquo;s registration, does the key stop working, and how long does a session that was already open keep working?</li>
+      <li>Do repeated wrong PIN entries block the key, and does only a full reset bring it back, erasing the passkeys on it?</li>
+    </ol>
+    <p><b>Write down:</b> the key make and model, how many wrong PIN tries it took to block, and how long the old session lasted.</p>
+  </section>
+
+  <section class="nsec" id="e03" aria-labelledby="e3-h">
+    <h2 id="e3-h">E03: a help desk call, role played</h2>
+    <p class="lede">I am asking volunteers to play an IT help desk in a made-up company, one call each. I call as one of four callers. The desk has a one-page script that says to call back on the number on file before any reset, and to send a notice after any reset. They can refuse, end the call, or do the reset.</p>
+    <ul>
+      <li>I decide how to count the results before the first call. A prediction matches if more than half of the desks for that caller type did what I predicted. A tie counts as wrong.</li>
+      <li>The script and the four caller descriptions go on this page after the calls, so nobody sees them early.</li>
+      <li>I will not record a call without asking, and I will not use anyone&rsquo;s name.</li>
+    </ul>
+    <p>It takes about 10 minutes. <a href="/talk/?why=feedback&amp;which=the%20conditional%20access%20lab">Tell me if you want to be a desk.</a></p>
+  </section>
+
+  <section class="nsec" id="send" aria-labelledby="sd-h">
+    <h2 id="sd-h">Run one yourself, and tell me if I was wrong</h2>
+    <p class="lede">If you have a throwaway tenant, you can run E01 or E02 and tell me what happened. I will add it to this page marked as from a reader, with your first name or an alias if you want one. A wrong prediction goes on the page like any other. <a href="/talk/?why=feedback&amp;which=the%20conditional%20access%20lab">Send me what you found.</a></p>
+  </section>
+
+  <section class="nsec" id="limits" aria-labelledby="lm-h">
+    <h2 id="lm-h">What this does not show</h2>
+    <ul>
+      <li>One tenant, one key or one volunteer on one day shows what happened in that setup. It does not show how every product behaves.</li>
+      <li>Portals and licence terms change. A result from today may not hold next year.</li>
+      <li>Volunteers for E03 come from my own subscribers, so they lean towards people interested in security. A real help desk may behave differently.</li>
+    </ul>
+  </section>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>
+  </body>
+</html>

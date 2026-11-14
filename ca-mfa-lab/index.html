@@ -44,7 +44,7 @@
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
 <main id="main" class="nhi">
-  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/" aria-current="page">Overview</a><a href="/ca-mfa-lab/register/">Register</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
+  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/" aria-current="page">Overview</a><a href="/ca-mfa-lab/register/">Register</a><a href="/ca-mfa-lab/run-4/">Run 4</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
   <header class="nhero"><p class="eyebrow">Lab</p><h1>Do conditional access, MFA and SSO controls hold up?</h1><p class="dek">105 cases on made-up data: how people get past MFA, how single sign-on breaks, how recovery gets abused, and how conditional access rules fail when several controls interact, and how agents and MCP tools sign in. I wrote my guesses first and locked them before any code. 6 of those guesses were wrong.</p><ul class="nmeta"><li>Run on 14 November 2026</li><li>102 cases run, 3 not run</li><li>Made-up data only</li></ul></header>
 
   <section class="nsec" id="result" aria-labelledby="res-h">
@@ -94,7 +94,7 @@
   <section class="nsec" id="limits" aria-labelledby="l-h">
     <h2 id="l-h">What this does not show</h2>
     <ul>
-      <li>These are small models of rule logic. They do not show how any vendor product behaves. Three cases need a real tenant, a hardware key and a person on the phone. I wrote my predictions for them on 14 November and committed them (commit 64c3573) before running anything. They are not run yet, and the results will go on this page.</li>
+      <li>These are small models of rule logic. They do not show how any vendor product behaves. Three cases need a real tenant, a hardware key and a person on the phone. I wrote my predictions for them on 14 November and committed them (commit 64c3573) before running anything. E01 and E02 are not run, and E03 needs volunteers. <a href="/ca-mfa-lab/run-4/">The Run 4 page</a> has the details and how to run them yourself.</li>
       <li>Several results depend on assumptions I chose and wrote in the code: the home tenant claim is weak, a reviewer keeps at most 5 exclusions, a change log is read within 7 days, 40 percent of users fall for a code lure. Change one and a result can change.</li>
       <li>I made three mistakes in the test code, not in the guesses: bad test data in S06, a missing limit flag on Z01 and a wrong model for P11. I fixed them and kept the first-pass files in the record.</li>
       <li>Run 3 models were written after the guesses. Two of its cases (Y06, Y08) rest on thin sources, so a match there says little about real behaviour.</li>
