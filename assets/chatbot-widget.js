@@ -132,7 +132,7 @@
     INDEX_WAITERS.push(cb);
     if (INDEX_STATE === "loading") return;
     INDEX_STATE = "loading";
-    fetch("/assets/chatbot-index.json?v=20261114d")
+    fetch("/assets/chatbot-index.json?v=20261114e")
       .then(function (res) { if (!res.ok) throw new Error("status " + res.status); return res.json(); })
       .then(function (raw) { buildIndex(raw); INDEX_STATE = "ready"; })
       .catch(function () { INDEX_STATE = "failed"; })
@@ -189,11 +189,11 @@
   }
 
   var FALLBACK =
-    "I couldn't find anything about that on this site. Try asking about the conditional access and MFA lab, the case studies, the Secure India Exams project, Roshan's background, or how to contact him — or reach out directly at trivedi.roshan1@gmail.com.";
+    "I couldn't find anything about that on this site. Try asking about the conditional access, MFA and AI agent lab, the case studies, the Secure India Exams project, Roshan's background, or how to contact him — or reach out directly at trivedi.roshan1@gmail.com.";
 
   var DEFAULT_SUGGESTIONS = [
     "What's new on the site?",
-    "What did the sign-in lab find?",
+    "What did the conditional access, MFA and AI agent lab find?",
     "Which free books are there?",
     "Who is Roshan?",
   ];
@@ -204,7 +204,7 @@
     {
       test: /^\/ca-mfa-lab\/?/,
       suggestions: [
-        "What did the sign-in lab find?",
+        "What did the conditional access, MFA and AI agent lab find?",
         "What is the access chain?",
         "Which guesses were wrong?",
         "How do I run it myself?",
@@ -333,7 +333,7 @@
     if (DATA_STATE === "loading") return;
     DATA_STATE = "loading";
     var s = document.createElement("script");
-    s.src = "/assets/chatbot-data.js?v=20261114c";
+    s.src = "/assets/chatbot-data.js?v=20261114d";
     s.onload = s.onerror = function () { DATA_STATE = "ready"; var w = DATA_WAITERS; DATA_WAITERS = []; w.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
   }
@@ -349,7 +349,7 @@
     text: "I tested 130 conditional access, MFA and AI agent cases. Free book, video and a lab you can run.",
     href: "/ca-mfa-lab/",
     linkText: "See the lab",
-    ask: "What did the sign-in lab find?",
+    ask: "What did the conditional access, MFA and AI agent lab find?",
   };
 
   var DOODLE_BOX =
@@ -471,7 +471,7 @@
       if (greeted) return;
       greeted = true;
       addMessage(
-        "Hi, ask me anything about this site: the new conditional access and MFA lab, the case studies, the MCP lab, the AI governance lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch. I answer from the text on the site, so I quote it rather than make anything up.",
+        "Hi, ask me anything about this site: the new conditional access, MFA and AI agent lab, the case studies, the MCP lab, the AI governance lab, the writing, the Secure India Exams project, Roshan’s background, or how to get in touch. I answer from the text on the site, so I quote it rather than make anything up.",
         "bot"
       );
       renderSuggestions();

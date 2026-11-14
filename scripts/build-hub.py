@@ -132,14 +132,14 @@ PATHS = [
     ("/writing/pam-framework-and-design/", "PAM framework and design", "Part one of a three-part series."),
     (CS + "agentic-ai-identity-governance/", "Agentic AI identity governance", "A target state for agents that change shape at run time.")]),
  ("If you build and run it", "Things you can run, change and break.", [
-    ("/ca-mfa-lab/virtual-lab/run/", "Run the sign-in lab in your browser", "Nothing to install. Change an assumption and rerun."),
+    ("/ca-mfa-lab/virtual-lab/run/", "Run the conditional access, MFA and AI agent lab in your browser", "Nothing to install. Change an assumption and rerun."),
     ("/ai-governance-lab/try/", "Try the AI governance lab", "The same cases, in your own hands."),
     ("/mcp-lab-portal/", "MCP lab portal", "161 case cards with the request, the decision and the receipt."),
     ("/nhi-lab/audit/", "Audit data as CSV and JSON", "Every case, machine readable."),
     ("/tools/tier-check/", "Credential tier self-check", "Three minutes, runs in your browser.")]),
  ("If you audit or assess controls", "Evidence first: what was claimed, what was tested, what failed.", [
     (CS + "audit-mapping/", "IAM audit and control mapping", "From control intent to evidence and owner."),
-    ("/ca-mfa-lab/register/", "Sign-in lab register", "All 130 cases with status and source."),
+    ("/ca-mfa-lab/register/", "Conditional access, MFA and AI agent lab register", "All 130 cases with status and source."),
     ("/nhi-lab/register/", "Machine identity register", "Every catalogue row with its result."),
     ("/ai-governance-lab/", "AI governance lab", "Controls mapped to ISO 27001, NIST, PCI and HIPAA, then tested."),
     (CS + "access-recertification/", "Access recertification", "Reviews backed by usage, not habit.")]),

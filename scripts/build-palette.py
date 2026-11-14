@@ -61,7 +61,7 @@ items += [
     {"t": "The approval gateway code", "u": "/mcp-human-approval-gateway/", "g": "Lab", "d": "Try the MCP human approval gateway yourself", "k": "mcp code github try demo"},
     {"t": "Download my résumé (PDF)", "u": "/Roshan_Trivedi_Resume.pdf", "g": "Action", "d": "", "k": "resume cv download"},
     {"t": "Download the book (PDF)", "u": "/assets/who-approved-that-book.pdf", "g": "Action", "d": "Who Approved That? 138 pages, free", "k": "book download pdf mcp"},
-    {"t": "Who signs in? The sign-in lab book (PDF)", "u": "/ca-mfa-lab/ca-mfa-lab-book.pdf", "g": "Action", "d": "Conditional access, MFA, SSO and AI agents. 72 pages, free", "k": "book download pdf mfa sso conditional access who signs in access chain"},
+    {"t": "Who signs in? The conditional access, MFA and AI agent lab book (PDF)", "u": "/ca-mfa-lab/ca-mfa-lab-book.pdf", "g": "Action", "d": "Conditional access, MFA, SSO and AI agents. 72 pages, free", "k": "book download pdf mfa sso conditional access who signs in access chain"},
     {"t": "Machine identities, tested in public (PDF)", "u": "/nhi-lab/nhi-lab-book.pdf", "g": "Action", "d": "The non-human identity lab book. 83 pages, free", "k": "book download pdf nhi machine identity"},
     {"t": "Does AI Governance Hold? (PDF)", "u": "/assets/ai-governance-lab-book.pdf", "g": "Action", "d": "The AI governance lab notebook. 69 pages, free", "k": "book download pdf ai governance"},
     {"t": "Email me", "u": "mailto:trivedi.roshan1@gmail.com", "g": "Action", "d": "trivedi.roshan1@gmail.com", "k": "contact mail hello"},
