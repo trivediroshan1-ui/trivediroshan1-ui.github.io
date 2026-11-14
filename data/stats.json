@@ -39,5 +39,16 @@
     "book_pages": 83,
     "cases_fourth_run": 19,
     "cases_with_round_18": 48
+  },
+  "ca_mfa_lab": {
+    "cases": 117,
+    "cases_run_on_models": 114,
+    "cases_run1": 41,
+    "cases_run2": 45,
+    "cases_runs_1_and_2": 86,
+    "cases_run3": 16,
+    "cases_run5": 12,
+    "cases_not_run": 3,
+    "wrong_guesses": 6
   }
 }
