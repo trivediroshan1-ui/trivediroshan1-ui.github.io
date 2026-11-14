@@ -99,7 +99,7 @@ def graph_for(rel, h):
 n = 0
 for p in sorted(ROOT.rglob("index.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel.startswith(("worker/", ".git/", "_site/", "assets/")):
+    if rel.startswith(("worker/", "archive/", ".git/", "_site/", "assets/")):
         continue
     h = p.read_text(encoding="utf-8"); o = h
     h = re.sub(r'\s*<meta\s+name="keywords"\s+content="[^"]*"\s*/?>', "", h, flags=re.S)

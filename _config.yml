@@ -9,6 +9,8 @@ include:
   - .well-known
 exclude:
   - README.md
-  - worker/
+  - archive/
   - scripts/
   - CONTRIBUTING.md
+  - SECURITY.md
+  - LICENSE-CONTENT.md

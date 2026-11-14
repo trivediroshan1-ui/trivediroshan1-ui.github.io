@@ -15,7 +15,7 @@ TAGS = (f'<meta http-equiv="Content-Security-Policy" content="{POLICY}">\n'
 n = 0
 for p in sorted(ROOT.rglob("*.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel.startswith(("worker/", ".git/", "assets/")):
+    if rel.startswith(("worker/", "archive/", ".git/", "assets/")):
         continue
     h = p.read_text(); o = h
     h = re.sub(r'\s*<meta http-equiv="Content-Security-Policy"[^>]*>', "", h)

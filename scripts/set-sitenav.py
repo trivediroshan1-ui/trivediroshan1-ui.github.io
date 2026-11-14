@@ -36,7 +36,7 @@ def nav(url, static):
 n = 0
 for p in sorted(ROOT.rglob("*.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel in SKIP or rel.startswith(("worker/", ".git/", "node_modules/")):
+    if rel in SKIP or rel.startswith(("worker/", "archive/", ".git/", "node_modules/")):
         continue
     h = p.read_text()
     if rel == "_layouts/post.html":

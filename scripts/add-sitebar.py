@@ -28,7 +28,7 @@ NEXT = '''<aside class="hg-next" aria-labelledby="hg-next-t">
 n = 0
 for p in sorted(ROOT.rglob("*.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel in SKIP or rel.startswith(("worker/", "_", "tools/")): continue
+    if rel in SKIP or rel.startswith(("worker/", "archive/", "_", "tools/")): continue
     h = p.read_text()
     if "hg-sitenav" in h or 'class="page-footer"' not in h: continue
     url = "/" + rel[:-10] if rel.endswith("index.html") else "/" + rel
