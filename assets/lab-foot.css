@@ -8,3 +8,4 @@
 .lab-foot .lf-extra{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:10px}
 .lab-foot .lf-extra a{flex-direction:row;align-items:center;font-weight:700;font-size:14.5px}
 @media (max-width:520px){.lab-foot{grid-template-columns:1fr}.lab-foot .lf-next{text-align:left;align-items:flex-start}.lab-foot .off{display:none}}
+.lastrev{margin:6px 0 0;font-size:14px;color:var(--muted,#c4bfe0)}

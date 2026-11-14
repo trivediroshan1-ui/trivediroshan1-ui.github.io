@@ -55,7 +55,11 @@ def shell(path, title, desc, og_title, body, js=None, ld=None, published='2026-1
     return (head + '  <body style="--c:#7df2d0">\n    <a class="skip" href="#main">Skip to content</a>\n    ' + _NAV +
             '\n' + body + '\n    ' + _FOOT + '\n' + tail + '  </body>\n</html>\n')
 
+REVIEWED_14_NOV = ('Register', 'Round 18', 'Round 19')  # pages reviewed on 14 November 2026
+
 def hero(eyebrow, h1, dek, meta=()):
+    if eyebrow in REVIEWED_14_NOV:
+        meta = ('Last reviewed 14 November 2026',) + tuple(meta)
     m = ''.join(f'<li>{x}</li>' for x in meta)
     return (f'<header class="nhero"><p class="eyebrow">{E(eyebrow)}</p><h1>{E(h1)}</h1><p class="dek">{dek}</p>'
             + (f'<ul class="nmeta">{m}</ul>' if m else '') + '</header>')
