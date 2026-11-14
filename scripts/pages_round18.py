@@ -83,7 +83,7 @@ def build():
     <p>Next: the <a href="/nhi-lab/stage-2/">Stage 2 pages</a> use these results in the control mapping and the test plan.</p>
   </section>
 </main>'''
-    desc = 'Round 18 of the non-human identity lab: a copied key from another network and a test credential that opens production. Guesses first, one wrong, two controls masked, with the record.'
+    desc = 'Round 18 of the non-human identity lab: a key copied from another network and a test credential that opens production. Guesses first, one wrong, recorded.'
     write('nhi-lab/round-18/index.html', shell('nhi-lab/round-18/', 'Non-human identity lab: round 18', desc,
           'NHI lab round 18: two more cases', body, ld=ld_article('Non-human identity lab: round 18', desc, 'nhi-lab/round-18/', 'TechArticle', '2026-11-10')))
 

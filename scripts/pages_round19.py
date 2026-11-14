@@ -130,7 +130,7 @@ def build():
     <p>Want the next lab's guesses before the results? <a href="https://buttondown.com/trivedi">Get them by email</a>. One or two emails a month.</p>
   </section>
 </main>'''
-    desc = 'Round 19 of the non-human identity lab: the 19 queued cases on secrets, privileged access and shadow AI. Guesses first, five cases with a wrong guess, 14 controls that changed nothing, with the record.'
+    desc = 'Round 19 of the non-human identity lab: 19 cases on secrets, privileged access and shadow AI. Guesses first, five wrong, 14 controls that changed nothing.'
     write('nhi-lab/round-19/index.html', shell('nhi-lab/round-19/', 'Non-human identity lab: round 19', desc,
           'NHI lab round 19: the 19 queued cases', body, ld=ld_article('Non-human identity lab: round 19', desc, 'nhi-lab/round-19/', 'TechArticle', '2026-11-10')))
 

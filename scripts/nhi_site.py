@@ -4,6 +4,8 @@ import html, re, os, textwrap
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 E = html.escape
 CSS_V = '20261114c'
+# One stamp per file, the same as every other page (scripts/check-links.py enforces this). Bump with the file.
+STAMP = {'blinks.css': '20261114e', 'nhi-lab.css': '20261114e', 'nhi-site.css': '20261114c'}
 BASE = 'https://roshantrivedi.co.in'
 
 SUBNAV = [
@@ -42,11 +44,15 @@ def shell(path, title, desc, og_title, body, js=None, ld=None, published='2026-1
     head = re.sub(r'<meta property="og:description"[^>]*>', f'<meta property="og:description" content="{E(desc, True)}" />', head)
     head = re.sub(r'<meta property="og:url"[^>]*>', f'<meta property="og:url" content="{url}" />', head)
     head = re.sub(r'(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")', r'\g<1>https://roshantrivedi.co.in/assets/share/og-nhi-lab.png\g<2>', head)
+    # The AI governance head carries the sign-up form pieces; these pages have no form, so keep the tighter policy.
+    head = head.replace(" https://buttondown.com", "")
+    head = re.sub(r'\s*<link rel="stylesheet" href="/assets/signup\.css[^>]*>', '', head)
+    head = re.sub(r'\s*<link rel="stylesheet" href="/assets/lab-foot\.css[^>]*>', '', head)
     head = re.sub(r'<title>.*?</title>', f'<title>{E(title)} &middot; Roshan Trivedi</title>', head, flags=re.S)
     head = re.sub(r'\s*<script type="application/ld\+json">.*?</script>', '', head, flags=re.S)
-    extra = (f'  <link rel="stylesheet" href="/assets/blinks.css?v={CSS_V}">\n'
-             f'  <link rel="stylesheet" href="/assets/nhi-lab.css?v={CSS_V}">\n'
-             f'  <link rel="stylesheet" href="/assets/nhi-site.css?v={CSS_V}">\n')
+    extra = (f'  <link rel="stylesheet" href="/assets/blinks.css?v={STAMP["blinks.css"]}">\n'
+             f'  <link rel="stylesheet" href="/assets/nhi-lab.css?v={STAMP["nhi-lab.css"]}">\n'
+             f'  <link rel="stylesheet" href="/assets/nhi-site.css?v={STAMP["nhi-site.css"]}">\n')
     if ld:
         extra += f'  <script type="application/ld+json">{ld}</script>\n'
     head = head.replace('</head>', extra + '</head>')
