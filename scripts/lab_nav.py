@@ -28,7 +28,8 @@ LABS = {
                  ("Book", "/assets/ai-governance-lab-book.pdf")],
         more=[("Implement it", "/ai-governance-lab/implement/"), ("Run it", "/ai-governance-lab/run/"),
               ("Mac commands", "/ai-governance-lab/mac/"), ("The story", "/ai-governance-lab/story/"),
-              ("Transcripts", "/ai-governance-lab/transcripts/"), ("Appendix", "/ai-governance-lab/appendix/")]),
+              ("Transcripts", "/ai-governance-lab/transcripts/"), ("Appendix", "/ai-governance-lab/appendix/"),
+              ("Rounds 5 to 13", "/ai-governance-lab/#rounds")]),
     "mcp": dict(
         name="MCP lab",
         primary=[("Overview", "/mcp-lab-case-study/"), ("How it works", "/mcp-lab-in-depth/"),
@@ -39,6 +40,8 @@ LABS = {
 }
 
 def lab_of(path):
+    if path.startswith("/ai-governance-lab/round-"):
+        return "agl"
     for k, v in LABS.items():
         for t, h in v["primary"] + v["more"]:
             if h.split("#")[0] == path and not t.startswith("Related"):
@@ -49,7 +52,7 @@ def render(lab, path):
     """path like '/nhi-lab/register/' marks the matching link as the current page."""
     v = LABS[lab]
     def li(t, h):
-        cur = ' aria-current="page"' if h == path else ""
+        cur = ' aria-current="page"' if (h == path or (h.endswith("/#rounds") and path.startswith(h.split("#")[0] + "round-"))) else ""
         return f'<li><a href="{h}"{cur}>{html.escape(t)}</a></li>'
     main = "".join(li(t, h) for t, h in v["primary"])
     more = ""

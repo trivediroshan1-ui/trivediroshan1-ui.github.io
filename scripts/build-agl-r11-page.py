@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Puts the round-eleven section (an assistant that answers from documents, with the animated journey of one question) into
 ai-governance-lab/index.html between markers, before the round-ten block. Safe to re-run. Also copies the guesses file next to the site."""
-import re, json, html, hashlib, shutil
+import sys, re, json, html, hashlib, shutil
 LAB = "/home/claude/ai-governance-lab"
 src = open("assets/agl-r11.js").read()
 R11 = json.loads(src[src.index("{"):src.rindex("}") + 1])
@@ -106,11 +106,6 @@ block = f'''<!-- r11:start -->
 <!-- r11:end -->
 
       '''
-h = open("ai-governance-lab/index.html").read()
-h = re.sub(r"<!-- r11:start -->.*?<!-- r11:end -->\n\n      ", "", h, flags=re.S)
-assert "<!-- r10:start -->" in h
-h = h.replace("<!-- r10:start -->", block + "<!-- r10:start -->", 1)
-h = h.replace("lists all 139 lab cases (59 from the first four rounds, 14 added in round five, 18 in round six, 12 in round seven, 12 in round eight, 12 in round nine and 12 in round ten)",
-              "lists all 151 lab cases (59 from the first four rounds, 14 added in round five, 18 in round six, 12 in round seven, 12 in round eight, 12 in round nine, 12 in round ten and 12 in round eleven)")
-open("ai-governance-lab/index.html", "w").write(h)
-print("ok", h.count('id="delegation"'), sha[:12])
+sys.path.insert(0, "scripts")
+from agl_rounds import write_round
+write_round(11, block)

@@ -627,7 +627,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-round-five",
     title: "AI governance lab: round five and the framework map",
-    url: "/ai-governance-lab/#round5",
+    url: "/ai-governance-lab/round-5/",
     keywords: ["round five", "round 5", "vendor read access", "read access on your domain", "oauth consent", "permission aware search", "retrieval", "mover", "access review", "toxic combination", "iso 27001", "nist 800-53", "pci dss", "hipaa", "framework map"],
     answer:
       "Round five added 14 cases on 24 Oct 2026 after I audited the lab. They cover vendor AI apps asking for read access on a whole domain (held until narrowed, owned and time-limited), a search that ignores file permissions (it leaks) versus one that checks them, a stale permission copy after someone moves team, an agent whose sponsor moves, an access review of agents, a toxic combination (HR read plus send email), tokens made for one service, a person who leaves while an agent acts for them, step-up sign-in for privileged approvals, personal data in the log, and a log line with an earlier date (the hash chain accepts it). All 14 matched my guesses, but I wrote both the guesses and the code. The lab page also maps the controls to ISO 27001, NIST 800-53, PCI DSS 4.0 and HIPAA, and a 12-page addendum PDF (/assets/ai-governance-lab-round-five.pdf) has the same content.",
@@ -635,7 +635,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-round-six",
     title: "AI governance lab: round six, agents that send instructions to an API",
-    url: "/ai-governance-lab/#api-pattern",
+    url: "/ai-governance-lab/round-6/",
     keywords: ["round six", "round 6", "agent api", "scim", "rest api", "identity lifecycle", "joiner mover leaver", "vault", "hashicorp vault", "delinea", "credential checkout", "executor", "gateway", "agents send instructions", "agent never holds the credential"],
     answer:
       "Round six tests a pattern where an agent does not act on identities itself. It sends a fixed-shape request to a gateway outside the agent, which checks identity, policy, rate and approval and signs a decision. A separate executor, with its own identity, borrows a short-lived credential from a vault, calls the identity API and gives the credential back, so the agent never holds it. 18 cases (T1 to T18) were guessed before the code and all came out as guessed; switching off 12 controls one at a time made the matching case fail in all 12. Limits: the vault and API are small models I wrote, not HashiCorp Vault, Delinea or a SCIM product, the AI model itself is not tested, a wrong-but-allowed request (T15) passes every check, and T18 is an anti-pattern shown by construction.",
@@ -643,7 +643,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-hr-lifecycle",
     title: "AI governance lab: round seven, from HR to the directory",
-    url: "/ai-governance-lab/#hr-lifecycle",
+    url: "/ai-governance-lab/round-7/",
     keywords: ["round seven", "round 7", "hr approval", "hire event", "pre-hire", "onboarding", "joiner", "entra", "active directory", "mfa", "sso", "birthright access", "talent acquisition", "bu hr", "background verification", "vendor onboarding", "reconciliation", "consent", "data collected"],
     answer:
       "Round seven starts where an identity really starts: in HR. Talent acquisition HR and BU HR (two different people) approve, background verification must be clear, and only then does a hire event exist. That event is the only trigger. It carries only the minimum (name, email, team, job code, manager, start date); PAN, Aadhaar and bank details stay in HR. The AI agent prepares and proposes, and the gateway refuses a create request that no approved event backs. The account is created through an API, stays off until the start date, then turns on with only the access for the job code. MFA enrollment and the signed acceptable-use policy come on day one. Extra access the agent proposes from peers waits for the manager, and toxic combinations are refused. An auditor reconciles HR against the directory and flags accounts with no HR record. 12 cases (H1 to H12), all as guessed; the HR system, identity tool and directory are small models I wrote, not Workday, SailPoint or Entra.",
@@ -651,7 +651,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-bypass",
     title: "AI governance lab: round eight, when an agent goes around the gateway",
-    url: "/ai-governance-lab/#bypass",
+    url: "/ai-governance-lab/round-8/",
     keywords: ["round eight", "round 8", "bypass", "agent bypasses the api", "kill switch", "kill switch policy", "leaked token", "reconciliation", "whitelist", "greylist", "blacklist", "allow list", "watch list", "block list", "mover", "leaver", "sponsor leaves", "evidence", "chain of custody", "offence", "police", "assistive technology", "physically challenged", "accessibility", "helper", "delegate", "sensitive data", "audit log tampering"],
     answer:
       "Round eight asks what happens if an agent goes round the gateway, for example with a leaked token. It tests three layers. Make it hard: the identity API accepts a credential only from the caller it was lent to, it expires in minutes, and the agent's runtime has no network route to the API. Notice: every change in the identity system's own log must match a decision the gateway signed, and a change with no decision is a bypass. Answer: the policy switches off the agent it can trace, cancels its waiting approvals and revokes its credentials and the leaked token, evidence is copied and hashed first, and a named person decides whether to roll back. It also covers allow, watch and block lists by account state (a leaver's account touched, a mover asking for new access too soon), a sponsor who leaves, a recorded helper for people who use assistive technology (a code, never medical detail), a signal that reaches a person with evidence and no verdict from an agent, sensitive data the agent cannot request, and a tampered audit log. 12 cases (B1 to B12) were guessed before the code and all came out as guessed; switching off 21 controls one at a time made the matching case fail in all 21. Limits: the API, vault, network and log are small models I wrote, no real agent tries to get round the wall, and the legal and offence questions need counsel.",
@@ -659,7 +659,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-meaning",
     title: "AI governance lab: round thirteen, finding documents by meaning (embeddings)",
-    url: "/ai-governance-lab/#meaning",
+    url: "/ai-governance-lab/round-13/",
     keywords: ["round thirteen", "round 13", "embeddings", "embedding", "vector search", "semantic search", "search by meaning", "all-MiniLM-L6-v2", "sentence transformers", "rag permissions", "numpy", "restricted document", "crowd out", "top k", "filter before ranking", "real model"],
     answer:
       "Round thirteen asks whether the round-nine permission checks still hold when documents are found by meaning, with a real embedding model, instead of by matching words. It has 6 cases (S1 to S6), guessed and hashed before any code. I ran it on my MacBook Air with the small local model all-MiniLM-L6-v2: all 6 came out as I guessed and 5 of 5 control-off checks were noticed. With no permission check, a pay question with no matching words still found the HR salary document and leaked its text, so a missing check leaks more with meaning search, not less (S1). Titles can leak through the source list (S2). If the permission filter runs after the ranking, a restricted best match can leave the person with an empty answer, so filter before ranking (S3). Masking personal numbers when text is indexed works however the note is found (S4), and checking the live directory still beats a copy taken at indexing time (S5). S6 is a limit: two documents anyone may read can add up to a secret, and permissions are checked one document at a time. My mistakes are on the site: my first S1 question matched by keyword too, my first Mac run failed because pip installed NumPy 2 next to a torch built for NumPy 1, and the control-off check from that broken run wrongly said 5 of 5. I fixed the check and ran again. The sandbox could not download a real model, so it used a toy stand-in. One small model, one question per case, and a stand-in answer model, so this is a narrow result. All data is made up.",
@@ -667,7 +667,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-approvals",
     title: "AI governance lab: round twelve, approvals (self-approval, edits, stale and split votes)",
-    url: "/ai-governance-lab/#approvals",
+    url: "/ai-governance-lab/round-12/",
     keywords: ["round twelve", "round 12", "approvals", "approval", "four eyes", "self approval", "approve own request", "batch approve", "stale approval", "approval expiry", "approver leaves", "deny wins", "collusion", "approval fingerprint", "edit after approval"],
     answer:
       "Round twelve has 7 cases (F1 to F7) on approvals, guessed and hashed before any code. A person should not approve their own request, so the approver must be someone other than the requester (F1). An approval tied only to a request number still runs after the request is edited; tie it to a fingerprint of the content and any edit voids it (F2). A one-click batch approval can carry a high-risk item through, so high-risk items must be approved one by one (F3). An approval three days old should lapse, for example after 24 hours (F4). If the approver leaves, the waiting requests should move to a current approver (F5). With 'any one approval is enough' a request can run even though a second approver said no, so a no should win (F6). F7 is a limit, not a control: when two people agree to approve for each other, every rule is satisfied and the lab cannot see it. In the run, the seven first-run results matched my guesses, and the control-off checks noticed all six controls being removed. It was run in the sandbox and again on my MacBook Air. The models are small, I wrote both the guesses and the code, and no AI model was tested. All data is made up.",
@@ -675,7 +675,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-delegation",
     title: "AI governance lab: round eleven, agents handing work to agents, keys and mergers",
-    url: "/ai-governance-lab/#delegation",
+    url: "/ai-governance-lab/round-11/",
     keywords: ["round eleven", "round 11", "delegation", "agent to agent", "confused deputy", "chain of agents", "multi agent", "ed25519", "public key signing", "compromised executor", "compromised gateway", "key rotation", "replay", "nonce", "merger", "merge directories", "staff id collision", "pan masking", "two signatures", "cosign", "second approver"],
     answer:
       "Round eleven has 12 cases (D1 to D12) that I guessed before writing code. When agent A hands work to agent B, B should get less than A, never more (D1), the chain needs a depth limit (D2), the log should name the person who started it and every hop (D3), and cutting the person should cut everything handed on (D4). A captured signed request or message is accepted again unless it carries a one-time number and a time window (D5, D10). With a shared secret a compromised executor can forge decisions; with a public-key signature it cannot (D6). If the gateway itself is compromised, a second signature from an approver stops a delete (D7). A rotated key keeps working unless keys have an id and a retirement time (D8). When two companies merge, two staff both called S001 collide unless IDs get a company prefix (D9). A PAN mask that only knows capitals leaves lower-case and spaced numbers searchable (D11). D12 is a limit: two agents that are each allowed can move data together and nothing sees the chain. The first run was 11 of 12 because of a fault in my own D11 test, which I fixed; then 12 of 12, and 11 of 11 control-off checks noticed, on a sandbox and on my Mac. The signatures are real Ed25519 in my own plain-Python version, for tests only. These are small models; no real tenant or AI model is tested.",
@@ -683,7 +683,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-credentials",
     title: "AI governance lab: round ten, credentials, sessions and identity edge cases",
-    url: "/ai-governance-lab/#credentials",
+    url: "/ai-governance-lab/round-10/",
     keywords: ["round ten", "round 10", "token binding", "bound token", "dpop", "stolen token", "bearer token", "revoke signal", "caep", "shared signals", "session revocation", "scim put patch", "rehire", "name change", "surname", "contractor", "staffing agency", "break glass", "break-glass", "erasure", "right to erasure", "hash chain", "clock skew", "clock drift", "time sync"],
     answer:
       "Round ten covers the identity edge cases from my open list, with 12 cases (C1 to C12) that I guessed before writing code. A copied bearer token works for a thief, but a token tied to the caller's key is refused (C1); if the thief has the key too, nothing in the lab stops them (C2, a limit). A terminated person's token keeps working until it expires unless a signed revoke signal cuts it (C3, C4), and a late 'restored' message must not undo a newer 'revoked' (C5). A sync that sends a whole record can switch a disabled account back on, while a PATCH of the changed field does not (C6, assuming the server defaults active to true). A rehire should get a fresh account, not the old access back (C7); match accounts on a staff ID, not a name (C8); contractors from an agency need an end date (C9); break-glass use needs an alert and a new password at check-in (C10); erasing a name by editing a hash-chained log breaks the chain, while a pseudonym store holds (C11); and a slow clock accepts an expired token unless the app checks its clock (C12). All 12 came out as guessed on the first run, and 12 of 12 control-off checks noticed. It ran in a sandbox and on my Mac. These are small models I wrote, with a shared secret standing in for a public key; no real tenant or AI model is tested.",
@@ -691,7 +691,7 @@ window.SITE_QA = [
   {
     id: "ai-governance-lab-rag",
     title: "AI governance lab: round nine, an assistant that answers from documents (RAG)",
-    url: "/ai-governance-lab/#rag",
+    url: "/ai-governance-lab/round-9/",
     keywords: ["round nine", "round 9", "rag", "retrieval augmented generation", "retrieval-augmented", "document assistant", "enterprise search", "copilot", "vector", "embeddings", "answer cache", "citations", "prompt injection", "erasure", "right to erasure", "masking", "permission aware"],
     answer:
       "Round nine asks where the permission is checked when a company assistant answers from your documents, and what still leaks. I wrote 12 cases (Q1 to Q12) before the code and tested a small model of it. What leaks: no permission check (Q1), a 'do not reveal' sentence in the prompt (Q2), a permission copy that has gone stale after someone moves team (Q4), a shared answer cache (Q6), source titles of files you may not see (Q7), a trace that stores chunk text (Q11), an assistant that uses its own broad identity (Q12) and a deleted document that is still in the index until it is rebuilt (Q9). What holds: filtering by the person's live permissions before retrieval (Q3), masking Aadhaar and PAN before indexing (Q8), and the gateway refusing an action that a document tells the assistant to take (Q5). Q10 is a limit: two documents you may read can combine into something you may not know, and no permission check stops that. The first run gave 11 of 12 as I guessed: Q8 was a fault in my masking code, which I fixed (not the guess) and kept both result files. 12 of 12 control-off checks were noticed, though some are weak. Limits: keyword search, not a vector database; the model is a stand-in. It ran in a Linux sandbox and again on my Mac with the same verdicts.",

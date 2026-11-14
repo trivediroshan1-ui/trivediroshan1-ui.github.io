@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Puts the round-eight section (when an agent goes around the gateway, with the animated first-hour response) into ai-governance-lab/index.html
 between markers, before the round-seven block. Safe to re-run. Also copies the guesses file next to the site."""
-import re, json, html, hashlib, shutil
+import sys, re, json, html, hashlib, shutil
 LAB = "/home/claude/ai-governance-lab"
 src = open("assets/agl-r8.js").read()
 R8 = json.loads(src[src.index("{"):src.rindex("}") + 1])
@@ -101,11 +101,6 @@ block = f'''<!-- r8:start -->
 <!-- r8:end -->
 
       '''
-h = open("ai-governance-lab/index.html").read()
-h = re.sub(r"<!-- r8:start -->.*?<!-- r8:end -->\n\n      ", "", h, flags=re.S)
-assert "<!-- r7:start -->" in h
-h = h.replace("<!-- r7:start -->", block + "<!-- r7:start -->", 1)
-h = h.replace("lists all 103 lab cases (59 from the first four rounds, 14 added in round five, 18 in round six and 12 in round seven)",
-              "lists all 115 lab cases (59 from the first four rounds, 14 added in round five, 18 in round six, 12 in round seven and 12 in round eight)")
-open("ai-governance-lab/index.html", "w").write(h)
-print("ok", h.count('id="bypass"'), sha[:12])
+sys.path.insert(0, "scripts")
+from agl_rounds import write_round
+write_round(8, block)
