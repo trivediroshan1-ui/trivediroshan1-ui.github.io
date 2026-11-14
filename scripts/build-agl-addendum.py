@@ -73,10 +73,14 @@ def main():
             p.set_content(html_doc.replace("url(/assets/", f"url(http://localhost:{PORT}/assets/"), wait_until="networkidle"); p.wait_for_timeout(800)
             foot = '<div style="width:100%;font:9px DM Sans,Arial,sans-serif;color:#6b7a90;display:flex;justify-content:space-between;padding:0 0.7in"><span>Does AI Governance Hold? Addendum: round five &middot; Roshan Trivedi</span><span class="pageNumber"></span></div>'
             p.pdf(path=OUT, width="7in", height="10in", print_background=True, display_header_footer=True, header_template="<span></span>", footer_template=foot,
+                  tagged=True, outline=True,
                   margin=dict(top="0.7in", bottom="0.85in", left="0.7in", right="0.7in"))
             b.close()
     finally:
         s.shutdown()
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import pdf_access
+    pdf_access.finalize(OUT, title='Does AI Governance Hold? Addendum: round five', author="Roshan Trivedi", subject='14 more AI governance test cases, with controls mapped to ISO 27001, NIST 800-53, PCI DSS and HIPAA', keywords='AI governance, access control, search permissions, ISO 27001, NIST 800-53, PCI DSS, HIPAA, made-up data')
     from pypdf import PdfReader
     print(len(PdfReader(OUT).pages), "pages", os.path.getsize(OUT))
 main()

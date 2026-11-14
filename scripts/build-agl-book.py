@@ -396,7 +396,7 @@ def render(pw, html_s, path, cover=False):
     else:
         foot = '<div style="width:100%;font:9px DM Sans,Arial,sans-serif;color:#6b7a90;display:flex;justify-content:space-between;padding:0 0.7in"><span>Does AI Governance Hold? &middot; Roshan Trivedi</span><span class="pageNumber"></span></div>'
         p.pdf(path=path, width="7in", height="10in", print_background=True, display_header_footer=True, header_template="<span></span>", footer_template=foot,
-              margin=dict(top="0.7in", bottom="0.85in", left="0.7in", right="0.7in"))
+              tagged=True, outline=True, margin=dict(top="0.7in", bottom="0.85in", left="0.7in", right="0.7in"))
     b.close()
 
 def find_pages(pdf):
@@ -406,9 +406,34 @@ def find_pages(pdf):
         t = pg.extract_text() or ""
         for n, title in chapters:
             lab = f"Chapter {n}" if isinstance(n, int) else n
-            if str(n) not in pages and re.search(r"(^|\n)" + re.escape(lab) + r"\s*\n", t, re.I) and i > 3:
+            # The tagged render can letter-space headings ("C H A P T E R  1"), so allow blanks between characters.
+            pat = r"\s*".join(re.escape(ch) for ch in lab if not ch.isspace())
+            if str(n) not in pages and re.search(r"(^|\n)" + pat + r"\s*\n", t, re.I) and i > 3:
                 pages[str(n)] = i + 1
     return pages
+
+def fix_bookmark_titles(writer, html_s):
+    """Chromium drops the space where a heading wraps ("number Ido") and can repeat a heading. Put back the source text."""
+    from pypdf.generic import NameObject, TextStringObject
+    heads = {}
+    for m in re.finditer(r"<h[1-4][^>]*>(.*?)</h[1-4]>", html_s, re.S):
+        t = html.unescape(re.sub(r"<[^>]+>", "", m.group(1))); t = re.sub(r"\s+", " ", t).strip()
+        if t: heads[re.sub(r"\s+", "", t).lower()] = t
+    fixed = 0
+    def walk(node):
+        nonlocal fixed
+        while node is not None:
+            d = node.get_object()
+            title = str(d.get("/Title", ""))
+            n = re.sub(r"\s+", "", title).lower()
+            k = n if n in heads else max((h for h in heads if n.startswith(h)), key=len, default=None)
+            if k and heads[k] != title:
+                d[NameObject("/Title")] = TextStringObject(heads[k]); fixed += 1
+            if "/First" in d: walk(d["/First"])
+            node = d.get("/Next")
+    outlines = writer._root_object.get("/Outlines")
+    if outlines is not None and "/First" in outlines.get_object(): walk(outlines.get_object()["/First"])
+    return fixed
 
 def main():
     from playwright.sync_api import sync_playwright
@@ -420,18 +445,26 @@ def main():
             pages = find_pages(body)
             render(pw, body_html(pages), body)
             pages2 = find_pages(body)
+            final_html = body_html(pages)
             if pages2 != pages:
-                render(pw, body_html(pages2), body)
+                final_html = body_html(pages2)
+                render(pw, final_html, body)
             render(pw, cover_html(False), os.path.join(TMP, "front.pdf"), cover=True)
             render(pw, cover_html(True), os.path.join(TMP, "back.pdf"), cover=True)
     finally:
         srv.shutdown()
     from pypdf import PdfReader, PdfWriter
-    w = PdfWriter()
-    for f in ("front.pdf", "body.pdf", "back.pdf"):
-        for pg in PdfReader(os.path.join(TMP, f)).pages: w.add_page(pg)
-    w.add_metadata({"/Title": f"{TITLE} {SUB}", "/Author": "Roshan Trivedi", "/Subject": "AI governance lab, book edition 1.1"})
+    from pypdf.generic import NameObject, TextStringObject
+    # Start from the tagged body so its tag tree and bookmarks survive, then add the two cover pages.
+    w = PdfWriter(clone_from=PdfReader(os.path.join(TMP, "body.pdf")))
+    for i, pg in enumerate(PdfReader(os.path.join(TMP, "front.pdf")).pages): w.insert_page(pg, i)
+    for pg in PdfReader(os.path.join(TMP, "back.pdf")).pages: w.add_page(pg)
+    print("bookmark titles repaired:", fix_bookmark_titles(w, final_html))
     with open(OUT, "wb") as fh: w.write(fh)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import pdf_access
+    pdf_access.finalize(OUT, title=f"{TITLE} {SUB}", author="Roshan Trivedi", subject="AI governance lab, book edition 1.1",
+                        keywords="AI governance, AI agents, access control, retrieval, data leakage, test lab, made-up data")
     print("pages:", len(w.pages), "->", OUT, os.path.getsize(OUT))
 
 if __name__ == "__main__":

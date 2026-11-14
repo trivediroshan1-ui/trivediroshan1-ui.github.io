@@ -413,4 +413,7 @@ add(NextPageTemplate("back")); add(PageBreak()); add(Spacer(1, 1))
 
 doc = CABook(OUT)
 doc.multiBuild(story)
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import pdf_access
+pdf_access.finalize(OUT)   # language and title bar; keeps bookmarks
 print("pages:", doc.page)

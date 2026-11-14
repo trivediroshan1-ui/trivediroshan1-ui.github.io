@@ -2,7 +2,7 @@
 """Builds the addendum PDF for rounds five to thirteen: assets/ai-governance-lab-addendum.pdf (7 x 10 in).
 Edition 1 of the book and the round-five addendum are left as they were. This one adds rounds six to eight (25 Oct 2026),
 the four new architecture diagrams, and one table of all controls. Run: python3 scripts/build-agl-addendum2.py"""
-import base64, functools, html, http.server, json, os, socketserver, threading
+import sys, base64, functools, html, http.server, json, os, socketserver, threading
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "assets", "ai-governance-lab-addendum.pdf")
 TMP = os.environ.get("ADD_TMP", "/tmp/agl-addendum"); os.makedirs(TMP, exist_ok=True)
@@ -137,10 +137,14 @@ def main():
             p.set_content(build_html().replace("url(/assets/", f"url(http://localhost:{PORT}/assets/"), wait_until="networkidle"); p.wait_for_timeout(800)
             foot = '<div style="width:100%;font:9px DM Sans,Arial,sans-serif;color:#6b7a90;display:flex;justify-content:space-between;padding:0 0.7in"><span>Does AI Governance Hold? Addendum: rounds five to thirteen &middot; Roshan Trivedi</span><span class="pageNumber"></span></div>'
             p.pdf(path=OUT, width="7in", height="10in", print_background=True, display_header_footer=True, header_template="<span></span>", footer_template=foot,
+                  tagged=True, outline=True,
                   margin=dict(top="0.7in", bottom="0.85in", left="0.7in", right="0.7in"))
             b.close()
     finally:
         s.shutdown()
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import pdf_access
+    pdf_access.finalize(OUT, title='Does AI Governance Hold? Addendum: rounds five to thirteen', author="Roshan Trivedi", subject='105 more AI governance test cases, rounds five to thirteen, with made-up Indian data', keywords='AI governance, AI agents, access control, retrieval, approvals, test lab, made-up data')
     from pypdf import PdfReader
     print(len(PdfReader(OUT).pages), "pages", os.path.getsize(OUT))
 main()
