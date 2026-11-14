@@ -1,0 +1,100 @@
+/* Conditional access and MFA lab: framework, virtual lab and sources pages.
+   Uses the site's variables. Dark by default. Motion is off under prefers-reduced-motion. */
+.fw{max-width:1100px;margin:0 auto;padding:0 20px 64px}
+.fw h2{margin:2.2em 0 .5em}
+.fw section{scroll-margin-top:70px}
+.fw .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.fw .tag{font-size:.78rem;border:1px solid var(--border,#1f2a40);border-radius:999px;padding:3px 10px;color:var(--muted,#93a1bd)}
+.fw .tag.good{color:#34d399;border-color:#34d399}.fw .tag.bad{color:#ff8fa3;border-color:#ff8fa3}.fw .tag.warn{color:#f7c873;border-color:#f7c873}
+
+/* flow picker */
+.fw .fpick{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.fw .fpick button,.fw .fbtn{background:none;border:1px solid var(--border,#1f2a40);color:var(--muted,#93a1bd);border-radius:10px;padding:8px 12px;cursor:pointer;font:inherit;font-size:.88rem;text-align:left}
+.fw .fpick button[aria-pressed=true],.fw .fbtn.on{color:var(--text,#f1f5f9);border-color:var(--accent,#4de2ff);background:rgba(77,226,255,.08)}
+.fw .fpick button:focus-visible,.fw .fbtn:focus-visible,.fw .vlab button:focus-visible,.fw select:focus-visible,.fw input:focus-visible{outline:2px solid var(--accent,#4de2ff);outline-offset:2px}
+.fw .fpick small{display:block;color:var(--muted,#93a1bd);font-size:.74rem}
+.fw .fcard{border:1px solid var(--border,#1f2a40);border-radius:14px;background:var(--surface-2,#101a2c);padding:16px 18px}
+.fw .fcard h3{margin:0 0 4px}
+.fw .fbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.fw .fbar .sp{flex:1}
+.fw .fmode{display:inline-flex;border:1px solid var(--border,#1f2a40);border-radius:10px;overflow:hidden}
+.fw .fmode button{border:0;border-radius:0;background:none;color:var(--muted,#93a1bd);padding:8px 12px;cursor:pointer;font:inherit;font-size:.88rem}
+.fw .fmode button[aria-pressed=true]{background:rgba(77,226,255,.12);color:var(--text,#f1f5f9)}
+.fw .fcap{min-height:3.2em;margin:10px 0;padding:10px 12px;border-left:3px solid var(--accent,#4de2ff);background:rgba(77,226,255,.05);border-radius:6px}
+.fw .fout{margin:10px 0;padding:10px 12px;border-radius:10px;border:1px solid var(--border,#1f2a40)}
+.fw .fout.bad{border-color:#ff8fa3}.fw .fout.good{border-color:#34d399}
+.fw .fout b{display:block;margin-bottom:2px}
+.fw .fnote{color:var(--muted,#93a1bd);font-size:.9rem}
+
+/* flow svg */
+.fw .fsvg{width:100%;height:auto;display:block;overflow:visible}
+.fw .fsvg text{font-family:inherit;fill:var(--text,#f1f5f9)}
+.fw .fsvg .actor rect{fill:var(--surface,#0b1220);stroke:var(--border,#1f2a40);stroke-width:1.5}
+.fw .fsvg .actor text{font-size:14px;font-weight:700}
+.fw .fsvg .life{stroke:var(--border,#1f2a40);stroke-width:1.5;stroke-dasharray:4 5}
+.fw .fsvg .st{opacity:0;transition:opacity .45s ease}
+.fw .fsvg .st.on{opacity:1}
+.fw .fsvg .ar{fill:none;stroke-width:2.4}
+.fw .fsvg .ar.a{stroke:#ff8fa3}.fw .fsvg .ar.n{stroke:var(--accent,#4de2ff)}.fw .fsvg .ar.c{stroke:#f7c873}
+.fw .fsvg .ar.blk{stroke:#ff8fa3;stroke-dasharray:6 5}
+.fw .fsvg .ah.a{fill:#ff8fa3}.fw .fsvg .ah.n{fill:var(--accent,#4de2ff)}.fw .fsvg .ah.c{fill:#f7c873}
+.fw .fsvg .lb{font-size:12.5px}
+.fw .fsvg .num{font-size:11px;font-weight:700;fill:var(--bg,#030712)}
+.fw .fsvg .badge.a{fill:#ff8fa3}.fw .fsvg .badge.n{fill:var(--accent,#4de2ff)}.fw .fsvg .badge.c{fill:#f7c873}
+.fw .fsvg .stop{font-size:12px;font-weight:700;fill:#ff8fa3}
+.fw .fsvg .cur .ar{stroke-width:3.4}
+@media (prefers-reduced-motion:reduce){.fw .fsvg .st{transition:none}}
+.fw details.ftext{margin:10px 0}
+.fw details.ftext summary{cursor:pointer;color:var(--accent,#4de2ff)}
+.fw details.ftext ol{margin:.6em 0 0 1.2em}
+
+/* filters and case list */
+.fw .filters{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;align-items:end}
+.fw .filters label{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--muted,#93a1bd);min-width:0;max-width:100%}
+.fw .filters select{max-width:100%;width:100%;text-overflow:ellipsis}
+.fw .filters select,.fw .filters input{background:var(--bg,#030712);color:var(--text,#f1f5f9);border:1px solid var(--border,#1f2a40);border-radius:8px;padding:8px 10px;font:inherit;font-size:.9rem;min-width:150px}
+.fw .count{color:var(--muted,#93a1bd);margin:6px 0}
+.fw .clist{display:grid;gap:8px}
+.fw .citem{border:1px solid var(--border,#1f2a40);border-radius:12px;background:var(--surface-2,#101a2c)}
+.fw .citem[hidden]{display:none}
+.fw .citem summary{cursor:pointer;padding:10px 14px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;list-style:none}
+.fw .citem summary::-webkit-details-marker{display:none}
+.fw .citem summary:focus-visible{outline:2px solid var(--accent,#4de2ff);outline-offset:-2px;border-radius:12px}
+.fw .cid{font-weight:700;color:var(--accent,#4de2ff);min-width:3ch}
+.fw .cbody{padding:4px 14px 14px;border-top:1px solid var(--border,#1f2a40)}
+.fw .cbody dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:10px 0}
+.fw .cbody dt{color:var(--muted,#93a1bd);font-size:.85rem}.fw .cbody dd{margin:0}
+.fw .out{border-collapse:collapse;font-size:.88rem;margin:8px 0;width:100%}
+.fw .out th,.fw .out td{border:1px solid var(--border,#1f2a40);padding:6px 10px;text-align:left}
+.fw .out td.in{color:#ff8fa3;font-weight:700}.fw .out td.out{color:#34d399;font-weight:700}.fw .out td.x{color:var(--muted,#93a1bd)}
+.fw .out td.diff{outline:2px solid #f7c873;outline-offset:-2px}
+.fw pre.term{background:var(--bg,#030712);border:1px solid var(--border,#1f2a40);border-radius:10px;padding:12px 14px;overflow-x:auto;font:.84rem/1.55 ui-monospace,Menlo,monospace;color:var(--text,#f1f5f9);white-space:pre}
+.fw pre.term .in{color:#ff8fa3}.fw pre.term .out{color:#34d399}.fw pre.term .dim{color:var(--muted,#93a1bd)}
+
+/* virtual lab */
+.fw .vlab{border:1px solid var(--border,#1f2a40);border-radius:14px;background:var(--surface-2,#101a2c);padding:16px 18px;margin:14px 0}
+.fw .vstep{display:grid;grid-template-columns:2.2rem minmax(0,1fr);gap:12px;margin:0 0 18px}
+.fw .vstep>div{min-width:0}
+.fw .vlab pre,.fw .vlab .term{max-width:100%;overflow-x:auto}
+.fw .vstep>b{display:grid;place-items:center;width:2rem;height:2rem;border-radius:50%;background:var(--accent,#4de2ff);color:var(--bg,#030712)}
+.fw .vstep h3{margin:.1em 0 .3em;font-size:1.05rem}
+.fw .vopts{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.fw .vopts button{background:none;border:1px solid var(--border,#1f2a40);color:var(--muted,#93a1bd);border-radius:10px;padding:8px 14px;cursor:pointer;font:inherit}
+.fw .vopts button[aria-pressed=true]{color:var(--text,#f1f5f9);border-color:var(--accent,#4de2ff);background:rgba(77,226,255,.08)}
+.fw .vopts button:disabled{opacity:.45;cursor:not-allowed}
+.fw .big{font-size:1.15rem}
+.fw .steps ol{margin:.4em 0 0 1.2em}
+.fw .steps li{margin:.7em 0}
+.fw .srctable{width:100%;border-collapse:collapse;font-size:.9rem}
+.fw .srctable th,.fw .srctable td{border-bottom:1px solid var(--border,#1f2a40);padding:10px 8px;text-align:left;vertical-align:top}
+.fw .srctable th{color:var(--muted,#93a1bd);font-weight:600;white-space:nowrap}
+.fw .twrap{overflow-x:auto}
+
+/* narrow screens: let wide children shrink and scroll inside their own box */
+.fw .nsec,.fw .nsec>*,.fw .steps li{min-width:0}
+.fw pre.term,.fw .steps pre{max-width:100%;overflow-x:auto}
+.fw select{max-width:100%}
+.fw code{overflow-wrap:anywhere}
+.fw select{width:100%;min-width:0;box-sizing:border-box}
+.fw .filters label:last-child{flex:1 1 320px}
+.fw .filters label:last-child select{min-width:0;width:100%}

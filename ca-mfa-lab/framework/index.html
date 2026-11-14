@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="13 animated attack patterns and all 117 conditional access and MFA cases with the output my scripts produced. Made-up data only." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/framework/" />
+    <meta property="og:title" content="The conditional access and MFA framework, animated" />
+    <meta property="og:description" content="13 animated attack patterns and all 117 conditional access and MFA cases with the output my scripts produced. Made-up data only." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/framework/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <title>The conditional access and MFA framework, animated &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
+    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+  <script src="/assets/nav.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "The conditional access and MFA framework, animated", "description": "13 animated attack patterns and all 117 conditional access and MFA cases with the output my scripts produced. Made-up data only.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/framework/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+  <link rel="stylesheet" href="/assets/ca-fw.css?v=20261114a">
+</head>
+    <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main" class="nhi fw">
+  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/">Overview</a><a href="/ca-mfa-lab/framework/" aria-current="page">Framework</a><a href="/ca-mfa-lab/virtual-lab/">Virtual lab</a><a href="/ca-mfa-lab/register/">Register</a><a href="/ca-mfa-lab/run-4/">Run 4</a><a href="/ca-mfa-lab/sources/">Sources and events</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
+  <header class="nhero"><p class="eyebrow">Lab</p><h1>The conditional access and MFA framework, animated</h1>
+  <p class="dek">Thirteen attack patterns you can play step by step, with the control and without it. Below them, every one of the 117 cases in the lab with the output my scripts produced, exactly as saved.</p>
+  <ul class="nmeta"><li>117 cases, 114 run on models</li><li>13 animated flows</li><li>Made-up data only</li></ul></header>
+
+  <section class="nsec" id="read" aria-labelledby="rd-h">
+    <h2 id="rd-h">How to read this page</h2>
+    <p class="lede">Each case asks one question: does a bad outcome happen? <b>in</b> means it happens. <b>out</b> means it does not. I switch the controls on and off and write down what comes out.</p>
+    <p>The animated flows are teaching sketches. They show the order of events and where one control stops the attack. The list at the bottom is the evidence: the numbers come straight from the files my scripts wrote. Models are small rule simulations I wrote. They show whether a rule as written lets a case through. They do not show how any vendor product behaves.</p>
+    <div class="ntiles">
+      <div class="ntile good"><b>117</b><span>cases in the register, in 17 groups</span></div>
+      <div class="ntile good"><b>114</b><span>run: Run 1 (41), Run 2 (45), Run 3 (16), Run 5 (12)</span></div>
+      <div class="ntile warn"><b>6</b><span>guesses wrong, all of them in Run 2</span></div>
+      <div class="ntile warn"><b>3</b><span>not run: they need a real tenant, a key or a person</span></div>
+    </div>
+  </section>
+
+  <section class="nsec" id="flows" aria-labelledby="fl-h">
+    <h2 id="fl-h">Play a pattern</h2>
+    <p class="lede">Pick a flow. Press Play, or step through it. Switch between <b>without the control</b> and <b>with the control</b> to see where the attack stops. Every flow also has a plain text version.</p>
+    <div id="flows-root"></div>
+    <noscript><p class="note">The animated flows need JavaScript. The full list of cases further down is also built with JavaScript. The raw result files are linked at the end of this page.</p></noscript>
+  </section>
+
+  <section class="nsec" id="known" aria-labelledby="kn-h">
+    <h2 id="kn-h">Well known, and less talked about</h2>
+    <div class="ngrid">
+      <div class="ncard"><h3>What most teams already know</h3><p>Phishing that relays a code, push approvals a tired user taps, replayed sign-in assertions, and help desk resets. Each has a clear fix in the models: a phishing-resistant method, number matching, one-time assertion IDs, a callback.</p></div>
+      <div class="ncard"><h3>What gets less attention</h3><p>An app that no rule ever covered. A token that never signs in, so MFA has nothing to check. A cloud trust policy that accepts any repository. A privileged call that never asks for fresh MFA. A client that trusts the sign-in server its own server names.</p></div>
+      <div class="ncard"><h3>Where MFA is not the deciding control</h3><p>In Run 5, the stolen integration token (W06) is decided by where the token can be used from. The privileged API call (W08) is decided by whether the check applies to every credential type, keys and service tokens included. Password reset (W07) is decided by whether it revokes refresh tokens.</p></div>
+    </div>
+  </section>
+
+  <section class="nsec" id="cases" aria-labelledby="cs-h">
+    <h2 id="cs-h">Every case, with the output as produced</h2>
+    <p class="lede">Open any case to see the bad outcome, the controls, the script output and my guess side by side. Cells where my guess was wrong are outlined.</p>
+    <div id="cases-root"></div>
+  </section>
+
+  <section class="nsec" id="files" aria-labelledby="fi-h">
+    <h2 id="fi-h">The raw files</h2>
+    <ul>
+      <li>Results: <a href="/ca-mfa-lab/evidence/results-run1.json">run 1</a>, <a href="/ca-mfa-lab/evidence/results-run2.json">run 2</a>, <a href="/ca-mfa-lab/evidence/results-run3.json">run 3</a>, <a href="/ca-mfa-lab/evidence/results-run5.json">run 5</a></li>
+      <li>Written results: <a href="/ca-mfa-lab/evidence/RESULTS-run1.md">run 1</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run2.md">run 2</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run3.md">run 3</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run5.md">run 5</a></li>
+      <li>Locked guesses: <a href="/ca-mfa-lab/evidence/guesses/guesses-run1.md">run 1</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run2.md">run 2</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run3.md">run 3</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run4.md">run 4</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run5.md">run 5</a></li>
+      <li>Scripts: <a href="/ca-mfa-lab/evidence/run1.py">run1.py</a>, <a href="/ca-mfa-lab/evidence/run2.py">run2.py</a>, <a href="/ca-mfa-lab/evidence/run3.py">run3.py</a>, <a href="/ca-mfa-lab/evidence/run5.py">run5.py</a></li>
+      <li>Catalogue: <a href="/ca-mfa-lab/ca-mfa-catalogue-v1.4.csv">v1.4 (117 rows)</a></li>
+    </ul>
+  </section>
+
+  <section class="nsec" id="limits" aria-labelledby="li-h">
+    <h2 id="li-h">What this does not show</h2>
+    <ul>
+      <li>The models are mine. I wrote them after the guesses, so a match shows my reasoning agrees with itself. Run 2 is the only run that caught me out.</li>
+      <li>Nothing here says how Okta, Entra, Ping or any other product behaves. It says whether a rule, as written, lets a case through.</li>
+      <li>The flows simplify. Real sign-ins have more steps than five arrows.</li>
+      <li>The three hand tests (E01 to E03) are not run. See <a href="/ca-mfa-lab/run-4/">Run 4</a>.</li>
+    </ul>
+  </section>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script src="/ca-mfa-lab/data/cases.js?v=20261114a"></script>
+  <script defer src="/assets/ca-fw.js?v=20261114a"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>
+  </body>
+</html>

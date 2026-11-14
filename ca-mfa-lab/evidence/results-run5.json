@@ -1,0 +1,401 @@
+{
+ "params": {
+  "p_no_read": 0.3,
+  "threshold": 0.05,
+  "session_hours": 1,
+  "poison_wait_hours": 24,
+  "attacker_delay_min": 2,
+  "short_token_min": 5,
+  "default_token_min": 60,
+  "b_covers_all_credentials": false
+ },
+ "rows": [
+  {
+   "id": "W01",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W02",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W03",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W04",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "in"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W05",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W06",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "in",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "in",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W07",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W08",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "in"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W09",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W10",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W11",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "W12",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "out"
+   ],
+   "diffs": []
+  }
+ ],
+ "sensitivity": [
+  {
+   "change": "p_no_read 0.02 (people almost always read)",
+   "flips": [
+    {
+     "id": "W10",
+     "was": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ]
+    },
+    {
+     "id": "W11",
+     "was": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "p_no_read 0.60",
+   "flips": []
+  },
+  {
+   "change": "session_hours 25 (cloud session outlasts the wait)",
+   "flips": [
+    {
+     "id": "W02",
+     "was": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "attacker_delay_min 10 (replay after the short token ends)",
+   "flips": [
+    {
+     "id": "W09",
+     "was": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "b_covers_all_credentials True (step-up check applies to keys and service tokens)",
+   "flips": [
+    {
+     "id": "W08",
+     "was": [
+      "in",
+      "out",
+      "in",
+      "in",
+      "in"
+     ],
+     "now": [
+      "in",
+      "out",
+      "out",
+      "in",
+      "out"
+     ]
+    }
+   ]
+  }
+ ]
+}
