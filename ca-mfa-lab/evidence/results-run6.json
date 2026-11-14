@@ -1,0 +1,385 @@
+{
+ "params": {
+  "threshold": 0.05,
+  "p_no_read": 0.3,
+  "assertion_hours": 24,
+  "check_after_min": 60,
+  "default_token_min": 60,
+  "orchestrator_own_identity": true,
+  "review_interval_days": 90,
+  "check_day_g04": 60,
+  "attacker_same_network": false,
+  "scanner_reads_logs": true,
+  "default_retention_days": 7
+ },
+ "rows": [
+  {
+   "id": "G01",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "in"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G02",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G03",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "in"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G04",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G05",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "in",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G06",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G07",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G08",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G09",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "out",
+    "out",
+    "out"
+   ],
+   "diffs": []
+  },
+  {
+   "id": "G10",
+   "controls": [
+    "A",
+    "B",
+    "C"
+   ],
+   "result": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "in"
+   ],
+   "guess": [
+    "in",
+    "out",
+    "in",
+    "out",
+    "in"
+   ],
+   "diffs": []
+  }
+ ],
+ "sensitivity": [
+  {
+   "change": "p_no_read 0.02 (people almost always read the confirmation)",
+   "flips": [
+    {
+     "id": "G02",
+     "was": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "default_token_min 90 (second-app tokens outlive the hour)",
+   "flips": []
+  },
+  {
+   "change": "orchestrator_own_identity False (the parent agent acts with the human's own token)",
+   "flips": [
+    {
+     "id": "G03",
+     "was": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "in"
+     ],
+     "now": [
+      "out",
+      "out",
+      "out",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "review_interval_days 30 (monthly access review)",
+   "flips": [
+    {
+     "id": "G04",
+     "was": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "attacker_same_network True (attacker replays through a proxy on the victim's network)",
+   "flips": [
+    {
+     "id": "G07",
+     "was": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "in"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "scanner_reads_logs False (secret scanning does not cover build logs)",
+   "flips": [
+    {
+     "id": "G09",
+     "was": [
+      "in",
+      "out",
+      "out",
+      "out",
+      "out"
+     ],
+     "now": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  },
+  {
+   "change": "default_retention_days 45 (logs kept 45 days without C)",
+   "flips": [
+    {
+     "id": "G10",
+     "was": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "in"
+     ],
+     "now": [
+      "in",
+      "out",
+      "in",
+      "out",
+      "out"
+     ]
+    }
+   ]
+  }
+ ]
+}

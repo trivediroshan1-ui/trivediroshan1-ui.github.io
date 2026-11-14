@@ -6,10 +6,10 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
-    <meta name="description" content="13 animated attack patterns and all 117 conditional access and MFA cases with the output my scripts produced. Made-up data only." />
+    <meta name="description" content="15 animated attack patterns and all 130 conditional access and MFA cases with the output my scripts produced. Made-up data only." />
     <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/framework/" />
     <meta property="og:title" content="The conditional access and MFA framework, animated" />
-    <meta property="og:description" content="13 animated attack patterns and all 117 conditional access and MFA cases with the output my scripts produced. Made-up data only." />
+    <meta property="og:description" content="15 animated attack patterns and all 130 conditional access and MFA cases with the output my scripts produced. Made-up data only." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/framework/" />
     <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
   <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
   <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "The conditional access and MFA framework, animated", "description": "13 animated attack patterns and all 117 conditional access and MFA cases with the output my scripts produced. Made-up data only.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/framework/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "The conditional access and MFA framework, animated", "description": "15 animated attack patterns and all 130 conditional access and MFA cases with the output my scripts produced. Made-up data only.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/framework/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
   <link rel="stylesheet" href="/assets/ca-fw.css?v=20261114a">
 </head>
     <body style="--c:#7df2d0">
@@ -47,8 +47,8 @@
 <main id="main" class="nhi fw">
   <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/">Overview</a><a href="/ca-mfa-lab/framework/" aria-current="page">Framework</a><a href="/ca-mfa-lab/virtual-lab/">Virtual lab</a><a href="/ca-mfa-lab/register/">Register</a><a href="/ca-mfa-lab/run-4/">Run 4</a><a href="/ca-mfa-lab/sources/">Sources and events</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
   <header class="nhero"><p class="eyebrow">Lab</p><h1>The conditional access and MFA framework, animated</h1>
-  <p class="dek">Thirteen attack patterns you can play step by step, with the control and without it. Below them, every one of the 117 cases in the lab with the output my scripts produced, exactly as saved.</p>
-  <ul class="nmeta"><li>117 cases, 114 run on models</li><li>13 animated flows</li><li>Made-up data only</li></ul></header>
+  <p class="dek">Thirteen attack patterns you can play step by step, with the control and without it. Below them, every one of the 130 cases in the lab with the output my scripts produced, exactly as saved.</p>
+  <ul class="nmeta"><li>130 cases, 124 run on models</li><li>15 animated flows</li><li>Made-up data only</li></ul></header>
 
   <section class="nsec" id="read" aria-labelledby="rd-h">
     <h2 id="rd-h">How to read this page</h2>
@@ -75,6 +75,7 @@
       <div class="ncard"><h3>What most teams already know</h3><p>Phishing that relays a code, push approvals a tired user taps, replayed sign-in assertions, and help desk resets. Each has a clear fix in the models: a phishing-resistant method, number matching, one-time assertion IDs, a callback.</p></div>
       <div class="ncard"><h3>What gets less attention</h3><p>An app that no rule ever covered. A token that never signs in, so MFA has nothing to check. A cloud trust policy that accepts any repository. A privileged call that never asks for fresh MFA. A client that trusts the sign-in server its own server names.</p></div>
       <div class="ncard"><h3>Where MFA is not the deciding control</h3><p>In Run 5, the stolen integration token (W06) is decided by where the token can be used from. The privileged API call (W08) is decided by whether the check applies to every credential type, keys and service tokens included. Password reset (W07) is decided by whether it revokes refresh tokens.</p></div>
+      <div class="ncard"><h3>What changes with AI agents</h3><p>In Run 6, a sub-agent writing beyond the human&rsquo;s rights (G03) is stopped only when the resource checks the human&rsquo;s own permissions. An agent that outlives its project (G04) keeps working through credential rotation. An agent whose owner leaves (G05) is flagged but not removed. A cookie stolen after MFA (G07) gets past network checks if the attacker looks local.</p></div>
     </div>
   </section>
 
@@ -90,7 +91,7 @@
       <li>Results: <a href="/ca-mfa-lab/evidence/results-run1.json">run 1</a>, <a href="/ca-mfa-lab/evidence/results-run2.json">run 2</a>, <a href="/ca-mfa-lab/evidence/results-run3.json">run 3</a>, <a href="/ca-mfa-lab/evidence/results-run5.json">run 5</a></li>
       <li>Written results: <a href="/ca-mfa-lab/evidence/RESULTS-run1.md">run 1</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run2.md">run 2</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run3.md">run 3</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run5.md">run 5</a></li>
       <li>Locked guesses: <a href="/ca-mfa-lab/evidence/guesses/guesses-run1.md">run 1</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run2.md">run 2</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run3.md">run 3</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run4.md">run 4</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run5.md">run 5</a></li>
-      <li>Scripts: <a href="/ca-mfa-lab/evidence/run1.py">run1.py</a>, <a href="/ca-mfa-lab/evidence/run2.py">run2.py</a>, <a href="/ca-mfa-lab/evidence/run3.py">run3.py</a>, <a href="/ca-mfa-lab/evidence/run5.py">run5.py</a></li>
+      <li>Scripts: <a href="/ca-mfa-lab/evidence/run1.py">run1.py</a>, <a href="/ca-mfa-lab/evidence/run2.py">run2.py</a>, <a href="/ca-mfa-lab/evidence/run3.py">run3.py</a>, <a href="/ca-mfa-lab/evidence/run5.py">run5.py</a>, <a href="/ca-mfa-lab/evidence/run6.py">run6.py</a></li>
       <li>Catalogue: <a href="/ca-mfa-lab/ca-mfa-catalogue-v1.4.csv">v1.4 (117 rows)</a></li>
     </ul>
   </section>

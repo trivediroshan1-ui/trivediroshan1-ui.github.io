@@ -139,7 +139,27 @@ var FLOWS=[
   [1,0,"Action runs","The privileged action runs.","a"]],
  offOut:"A privileged action runs with no fresh MFA (Y01).",
  onOut:"The attacker cannot complete step-up.",
- note:"W08 adds three other paths that skip the check: an API key, a replayed refresh token and a service token with user-level scope. Run 5 shows the result flips if the check also applies to keys."}
+ note:"W08 adds three other paths that skip the check: an API key, a replayed refresh token and a service token with user-level scope. Run 5 shows the result flips if the check also applies to keys."},
+{id:"delegate",known:false,title:"Sub-agent overreach",short:"A sub-agent can do more than the person who asked",cases:"G03 G10",
+ actors:["Analyst","Orchestrator agent","Finance system"],
+ steps:[
+  [0,1,"Asks for a finance update","The analyst can read finance records but not change them. She asks the agent for an update.","n"],
+  [1,2,"Sub-agent sends a write","The orchestrator runs with its own broad identity and hands a narrowed token to a sub-agent. The narrowed token still includes write.","a"],
+  [2,1,"Write checked against the human","The finance system decides whether to accept the write.","c","Checked against the analyst's rights: refused","The finance system checks the delegated action against the analyst's own permissions. She cannot write, so the sub-agent cannot either."],
+  [2,1,"Write goes through","The record changes, and the log shows only the orchestrator's service account.","a"]],
+ offOut:"A sub-agent writes where the person who asked cannot (G03).",
+ onOut:"The finance system refuses the write. Narrowing the token alone did not stop it.",
+ note:"Run 6's assumption test: if the orchestrator acts with the analyst's own token instead of its own identity, the problem disappears. The Cloud Security Alliance advises limiting delegated actions to the human's own permissions."},
+{id:"crossapp",known:false,title:"Revoked, but still connected",short:"An agent keeps reaching a second app",cases:"G01",
+ actors:["User","Identity provider","Agent","Second app"],
+ steps:[
+  [0,1,"Revokes the agent's access","The user removes the agent's grant at the identity provider.","n"],
+  [2,1,"Exchanges a cached assertion","An hour later the agent presents an identity assertion it cached earlier and asks for a fresh token.","a"],
+  [1,2,"Grant re-checked on exchange","The identity provider decides whether to issue a token.","c","Grant gone: no new token","The identity provider checks the current grant on every exchange. The grant is revoked, so it refuses. The old token had already expired."],
+  [2,3,"New token accepted","The second app accepts the fresh token, an hour after revocation.","a"]],
+ offOut:"The agent still reaches the second app an hour after the user revoked it (G01).",
+ onOut:"The exchange is refused. Revoking old tokens alone does not decide this at one hour.",
+ note:"Okta's Agent SSO release says tokens are short-lived and authorization moves to the identity provider, but does not describe revocation. This flow is my model; E04 asks someone with a test tenant to check it."}
 ];
 
 function E(n,a,t){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e}
@@ -185,7 +205,7 @@ function mountFlows(root){
   var state={f:FLOWS[0],mode:"off",n:0,timer:null,filter:"all"};
   var pick=H("div",{"class":"fpick",role:"group","aria-label":"Choose a flow"});
   var filt=H("div",{"class":"fpick",role:"group","aria-label":"Filter flows"});
-  [["all","All 13"],["known","Well known"],["less","Less talked about"]].forEach(function(p){
+  [["all","All "+FLOWS.length+""],["known","Well known"],["less","Less talked about"]].forEach(function(p){
     var b=H("button",{type:"button","aria-pressed":p[0]==="all"?"true":"false","data-f":p[0],text:p[1]});
     b.addEventListener("click",function(){state.filter=p[0];[].forEach.call(filt.children,function(c){c.setAttribute("aria-pressed",c===b?"true":"false")});buildPick()});
     filt.appendChild(b)});
@@ -265,7 +285,7 @@ function mountCases(root){
   var groups=[];all.forEach(function(c){if(groups.indexOf(c.group)<0)groups.push(c.group)});groups.sort();
   var fl=H("div",{"class":"filters"});
   function sel(label,opts){var s=H("select");opts.forEach(function(o){s.appendChild(H("option",{value:o[0],text:o[1]}))});var l=H("label",{text:label});l.appendChild(s);fl.appendChild(l);return s}
-  var sRun=sel("Run",[["","All runs"],["1","Run 1: single controls"],["2","Run 2: controls working together"],["3","Run 3: new areas"],["4","Run 4: hand tests (not run)"],["5","Run 5: CI/CD, APIs, agents"]]);
+  var sRun=sel("Run",[["","All runs"],["1","Run 1: single controls"],["2","Run 2: controls working together"],["3","Run 3: new areas"],["4","Hand tests for people to run"],["5","Run 5: CI/CD, APIs, agents"],["6","Run 6: AI agent identity"]]);
   var sGrp=sel("Group",[["","All groups"]].concat(groups.map(function(g){return[g,g]})));
   var sRes=sel("Result",[["","Any"],["wrong","My guess was wrong"],["single","One control off lets it in"],["nosingle","No single control off lets it in"],["notrun","Not run"]]);
   var q=H("input",{type:"search",placeholder:"Search ID or words","aria-label":"Search cases"});var ql=H("label",{text:"Search"});ql.appendChild(q);fl.appendChild(ql);
