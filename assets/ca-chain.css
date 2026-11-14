@@ -1,0 +1,24 @@
+/* CA lab hero: a dot walks the seven links, then guess, lock and run light up. One loop is 9 seconds.
+   Only opacity and a translate are animated. Without motion (reduced-motion setting, or no script) everything shows lit and still. */
+.ca-chain{max-width:520px;margin:20px 0 6px}
+.ca-chain svg{display:block;width:100%;height:auto;overflow:visible}
+.ca-chain .trk{stroke:var(--line,#2a3350);stroke-width:1.5;stroke-dasharray:3 5}
+.ca-chain .ring{fill:none;stroke-width:2.5}
+.ca-chain .num{fill:currentColor;font:600 13px/1 system-ui,sans-serif;text-anchor:middle}
+.ca-chain .cap{fill:var(--mut,#9aa3b8);font:500 12.5px/1 system-ui,sans-serif}
+.ca-chain .box{fill:var(--card,transparent);stroke-width:1.5}
+.ca-chain .lab{fill:currentColor;font:600 13.5px/1 system-ui,sans-serif;text-anchor:middle}
+.ca-chain .arw{stroke:var(--mut,#9aa3b8);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ca-chain .dot{fill:var(--k,#7df2d0)}
+.ca-chain .l{animation:ca-lit 9s infinite both}
+.ca-chain .dot{animation:ca-run 9s infinite both}
+.ca-chain.is-paused .l,.ca-chain.is-paused .dot,.ca-chain.is-off .l,.ca-chain.is-off .dot{animation-play-state:paused}
+.ca-chain .ca-ctl{margin:6px 0 0;font:inherit;font-size:.85rem;color:var(--mut,#9aa3b8);background:none;border:1px solid var(--line,#2a3350);border-radius:999px;padding:3px 12px;cursor:pointer}
+.ca-chain .ca-ctl:hover,.ca-chain .ca-ctl:focus-visible{color:var(--ink,currentColor);border-color:var(--k,#7df2d0)}
+@keyframes ca-lit{0%{opacity:.3}4%{opacity:1}90%{opacity:1}100%{opacity:.3}}
+@keyframes ca-run{0%{transform:translateX(0);opacity:1}55%{transform:translateX(264px);opacity:1}60%,100%{transform:translateX(264px);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .ca-chain .l,.ca-chain .dot{animation:none}
+  .ca-chain .dot{opacity:0}
+  .ca-chain .ca-ctl{display:none}
+}

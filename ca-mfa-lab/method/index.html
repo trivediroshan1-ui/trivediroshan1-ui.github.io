@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Write the guess, lock it in a commit, then write the code and run it. How the conditional access and MFA lab keeps its guesses honest, and how to check it." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/method/" />
+    <meta property="og:title" content="How the method works in the CA and MFA lab" />
+    <meta property="og:description" content="Write the guess, lock it in a commit, then write the code and run it. How the conditional access and MFA lab keeps its guesses honest, and how to check it." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/method/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-ca-mfa-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-ca-mfa-lab.png" />
+    <title>How the method works in the CA and MFA lab &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/site.css?v=20261022a">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261114d" defer></script>
+  <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+  <script src="/assets/nav.js?v=20261114e" defer></script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261114e">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261114e">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261114c">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "How the method works in the CA and MFA lab", "description": "Write the guess, lock it in a commit, then write the code and run it. How the conditional access and MFA lab keeps its guesses honest, and how to check it.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/method/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "isPartOf": {"@type": "WebPage", "url": "https://roshantrivedi.co.in/ca-mfa-lab/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+  <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
+    <link rel="stylesheet" href="/assets/signup.css?v=20261114c">
+    <link rel="stylesheet" href="/assets/lab-summary.css?v=20261114g">
+        <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">
+  </head>
+    <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main" class="nhi">
+  <nav class="lab-nav" aria-label="Conditional access, MFA and AI agent lab pages"><div class="ln-top"><a class="ln-all" href="/labs/">All labs</a><ul><li><a href="/ca-mfa-lab/">Overview</a></li><li><a href="/ca-mfa-lab/framework/">How it works</a></li><li><a href="/ca-mfa-lab/#result">Results</a></li><li><a href="/ca-mfa-lab/register/">Cases</a></li><li><a href="/ca-mfa-lab/what-i-got-wrong/">What I got wrong</a></li><li><a href="/ca-mfa-lab/virtual-lab/">Try it</a></li><li><a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">Book</a></li></ul></div><ul class="ln-more" aria-label="More pages in this lab"><li><a href="/ca-mfa-lab/method/" aria-current="page">The method</a></li><li><a href="/ca-mfa-lab/run-4/">Run 4</a></li><li><a href="/ca-mfa-lab/virtual-lab/run/">Run it in the browser</a></li><li><a href="/ca-mfa-lab/sources/">Sources and events</a></li><li><a href="/nhi-lab/">Related: NHI lab</a></li></ul></nav>
+  <header class="nhero"><p class="eyebrow">Lab</p><h1>How the method works</h1><p class="dek">I write what I expect before any code exists, lock it in a commit, then run the cases. Where I was wrong, the wrong guess stays.</p><ul class="nmeta"><li>Last reviewed 14 November 2026</li><li><a href="/ca-mfa-lab/">Lab overview</a></li><li><a href="/ca-mfa-lab/what-i-got-wrong/">What I got wrong</a></li><li>Made-up data only</li></ul></header>
+  <section class="nsec" id="order" aria-labelledby="o-h">
+    <h2 id="o-h">The order is the method</h2>
+    <ol><li><b>Write the case.</b> A made-up company, the bad outcome, and the controls that could stop it. <i>Why: If I do not say what I am counting first, I can talk myself into any result afterwards.</i></li><li><b>Write my guess for each switch.</b> One word each: <i>in</i> if the bad outcome happens, <i>out</i> if it does not. All controls on, all off, and each control off by itself. <i>Why: A guess with no switch to flip cannot be wrong, so it cannot teach me anything.</i></li><li><b>Hash the guesses file and commit it.</b> After that I do not edit it. <i>Why: A commit shows the order. The guesses came first.</i></li><li><b>Only then write the code.</b> A small model of the rule logic on made-up data. Assumptions I chose are written in comments. <i>Why: Writing the code second means the code cannot shape the guess.</i></li><li><b>Run it.</b> Each case prints one line ending in OK, or MISMATCH where my guess was wrong. <i>Why: A mismatch is the useful result. It shows where my picture of the controls was off.</i></li><li><b>Fix my code, never my guess.</b> If the code was wrong, I fix the code and say so. If the guess was wrong, both stay on the page. <i>Why: Changing a guess after the fact would turn the record into a story I like.</i></li></ol>
+  </section>
+  <section class="nsec" id="read" aria-labelledby="r-h">
+    <h2 id="r-h">How to read one case</h2>
+    <p class="lede">Each case has up to three controls, A, B and C, and a bad outcome. The script tries every case with all controls on, with all off, and with each control off on its own. If switching off one control lets the bad outcome in, that control is doing the work. If no single switch does, either control alone is enough. Some cases also have a pair check, where two controls go off together.</p>
+    <p class="lede">The <a href="/ca-mfa-lab/what-i-got-wrong/">wrong guesses</a> are the cases where my one-word answers and the script disagreed.</p>
+  </section>
+  <section class="nsec" id="check" aria-labelledby="c-h">
+    <h2 id="c-h">Check it yourself</h2>
+    <p class="lede">The guesses were committed to this site&rsquo;s repository before any code existed. Commit 5875323 holds the Run 1 guesses. Commit 7d31554 holds the Run 2 guesses. Commit 56b9622 holds the Run 1 and Run 2 code and results. Commit f8d6676 holds the Run 3 guesses, and commit 179b763 holds the Run 3 code and results. Commit 64c3573 holds the predictions for the three tests I will run by hand.</p>
+    <p class="lede">On 14 November 2026 I reran all five scripts on my own Mac. Every results file came out byte for byte identical to the one published here. You can also <a href="/ca-mfa-lab/virtual-lab/run/">run it in your browser</a>.</p>
+    <p><a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run1.md">Run 1 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run2.md">Run 2 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run3.md">Run 3 guesses</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/evidence/guesses/guesses-run4.md">Run 4 predictions</a> &middot; <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/source-check-14-nov.md">Source check</a> &middot; <a href="/ca-mfa-lab/register/">Full register</a></p>
+  </section>
+  <section class="nsec" id="limits" aria-labelledby="l-h">
+    <h2 id="l-h">What the method does not show</h2>
+    <p class="lede">These are small models of rule logic. They do not show how any vendor product behaves. Three cases need a real tenant, a hardware key and a person on the phone; the <a href="/ca-mfa-lab/run-4/">Run 4 page</a> has the details. Several results depend on assumptions I chose and wrote in the code, such as a weak home tenant claim, a reviewer who keeps at most 5 exclusions, a change log read within 7 days and 40 percent of users falling for a code lure. Change one and a result can change.</p>
+    <p class="lede">Writing the guess first keeps me honest about my own thinking. It does not make the model right.</p>
+    <p class="lede">The same method runs the <a href="/nhi-lab/method/">non-human identity lab</a>.</p>
+  </section>
+  <nav class="lab-foot" aria-label="More in this lab"><a class="lf-prev" href="/ca-mfa-lab/what-i-got-wrong/"><small>Previous</small><b>What I got wrong</b></a><a class="lf-next" href="/ca-mfa-lab/framework/"><small>Next</small><b>Framework</b></a><span class="lf-extra"><a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">Get the book</a><a href="/topics/">Browse by topic</a></span></nav>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script defer src="/assets/chatbot-widget.js?v=20261114i"></script>
+  </body>
+</html>
