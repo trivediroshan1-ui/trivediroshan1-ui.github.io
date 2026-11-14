@@ -17,7 +17,7 @@ BADGE = {m.group(1): html.unescape(m.group(2)) for m in re.finditer(r'<a class="
 items = []
 for p in sorted(ROOT.rglob("index.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel.startswith(("worker/", ".git/", "_site/")) or rel in SKIP:
+    if rel.startswith(("worker/", "archive/", ".git/", "_site/")) or rel in SKIP:
         continue
     h = p.read_text()
     url = "/" + rel[: -len("index.html")]

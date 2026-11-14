@@ -66,7 +66,7 @@ BADGE = {m.group(1): (html.unescape(m.group(3)), m.group(2)) for m in re.findite
 jobs = []
 for p in sorted(ROOT.rglob("index.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel.startswith(("worker/", ".git/")):
+    if rel.startswith(("worker/", "archive/", ".git/")):
         continue
     h = p.read_text()
     img = meta(h, "og:image")

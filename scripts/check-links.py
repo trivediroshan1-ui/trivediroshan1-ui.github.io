@@ -7,7 +7,7 @@ import os, re, sys
 from urllib.parse import urlparse
 
 EXTERNAL_PATHS = {"/mcp-human-approval-gateway/"}
-skip_dirs = {".git", "_site", "node_modules", "worker"}
+skip_dirs = {".git", "_site", "node_modules", "worker", "archive"}
 pages = {}
 for dp, dn, fn in os.walk("."):
     dn[:] = [d for d in dn if d not in skip_dirs]
@@ -50,6 +50,16 @@ if os.path.isdir("_posts"):
             img = "assets/og-post-" + re.sub(r"^\d{4}-\d{2}-\d{2}-", "", name[:-3]) + ".png"
             if not os.path.isfile(img):
                 bad.add(("_posts/" + name, "/" + img + " (share image)"))
+
+# One version stamp per file: the same /assets/ file must not appear with two different ?v= values
+# (or with and without one) across pages, or visitors get mixed cached copies.
+stamps = {}
+for f, t in pages.items():
+    for m in re.finditer(r'(?:href|src)="(/assets/[^"?#]+)(\?v=[^"]*)?"', t):
+        stamps.setdefault(m.group(1), {}).setdefault(m.group(2) or "(none)", f)
+for a, v in sorted(stamps.items()):
+    if len(v) > 1:
+        bad.add((next(iter(v.values())), a + " (different ?v= values: " + ", ".join(sorted(v)) + ")"))
 
 for f, u in sorted(bad):
     print(f"broken: {f} -> {u}")

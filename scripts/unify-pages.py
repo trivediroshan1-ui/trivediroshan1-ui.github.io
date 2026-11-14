@@ -23,7 +23,7 @@ def crumbs(m):
 n = 0
 for p in sorted(ROOT.rglob("*.html")):
     rel = p.relative_to(ROOT).as_posix()
-    if rel in SKIP or rel.startswith(("worker/", ".git/")):
+    if rel in SKIP or rel.startswith(("worker/", "archive/", ".git/")):
         continue
     h = p.read_text(); o = h
     h = re.sub(r'<link rel="stylesheet" href="/assets/refresh\.css[^"]*">\s*', "", h)
