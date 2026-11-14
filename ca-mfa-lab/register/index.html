@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="All 89 conditional access, MFA and SSO cases with source and outcome." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/register/" />
+    <meta property="og:title" content="Conditional access lab register" />
+    <meta property="og:description" content="All 89 conditional access, MFA and SSO cases with source and outcome." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/register/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <title>Conditional access lab register &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
+    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+  <script src="/assets/nav.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Conditional access lab register", "description": "All 89 conditional access, MFA and SSO cases with source and outcome.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/register/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+</head>
+    <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main" class="nhi">
+  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/">Overview</a><a href="/ca-mfa-lab/register/" aria-current="page">Register</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
+  <header class="nhero"><p class="eyebrow">Register</p><h1>All 89 rows, and what happened to each</h1><p class="dek">Every case in the conditional access, MFA and SSO catalogue, with its source and its outcome. 86 were run. 3 need a real tenant and were not.</p><ul class="nmeta"><li>Last reviewed 14 November 2026</li><li>Made-up data only</li><li><a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/ca-mfa-lab/ca-mfa-catalogue-v1.1.csv">Download the CSV</a></li></ul></header>
+  <section class="nsec" aria-labelledby="reg-h">
+    <h2 id="reg-h">The register</h2>
+    <p class="lede">&ldquo;Guess matched&rdquo; means my committed guess agreed with the model. &ldquo;Guess was wrong&rdquo; means it did not. Rows whose source says &ldquo;verify&rdquo; or &ldquo;Added from search&rdquo; come from search excerpts and my memory, not from a full reading of the source.</p>
+    <div class="twrap"><table class="ntable"><thead><tr><th>ID</th><th>Run</th><th>Group</th><th>Case</th><th>Source</th><th>Outcome</th></tr></thead><tbody>
+<tr><td>M01</td><td>1</td><td>MFA methods</td><td>SMS or voice code is relayed by a phishing page in real time</td><td>NIST SP 800-63B-4; draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M02</td><td>1</td><td>MFA methods</td><td>TOTP code is relayed by a phishing page inside its 30 second window</td><td>RFC 6238</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M03</td><td>1</td><td>MFA methods</td><td>Push approval with no number match accepted by a tired user (prompt bombing)</td><td>CISA 2022 number matching</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M04</td><td>1</td><td>MFA methods</td><td>Push with number matching: attacker cannot supply the number</td><td>CISA 2022</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M05</td><td>1</td><td>MFA methods</td><td>Passkey or security key on a look-alike domain: origin check refuses</td><td>W3C WebAuthn; FIDO Alliance</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M06</td><td>1</td><td>MFA methods</td><td>Passkey synced across devices: loss of one device</td><td>FIDO Alliance; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M07</td><td>1</td><td>MFA methods</td><td>Backup codes reused after first use</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M08</td><td>1</td><td>MFA methods</td><td>SMS kept as recovery: attacker picks the weakest allowed method</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M09</td><td>1</td><td>MFA methods</td><td>SIM swap moves the SMS factor to the attacker</td><td>NIST SP 800-63B-4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M10</td><td>1</td><td>MFA methods</td><td>TOTP seed stolen from a shared spreadsheet</td><td>Own catalogue</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M11</td><td>1</td><td>MFA methods</td><td>Counter or clock drift on TOTP: allowed window too wide</td><td>RFC 6238</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M12</td><td>1</td><td>MFA methods</td><td>Rate limit on wrong codes: 6 digit code guessed without lockout</td><td>NIST SP 800-63B-4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M13</td><td>1</td><td>MFA methods</td><td>Lockout used by an attacker to deny a real user</td><td>NIST SP 800-63B-4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>M14</td><td>1</td><td>MFA methods</td><td>Method downgrade: user chooses weaker factor at prompt</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S01</td><td>1</td><td>SSO protocols</td><td>SAML assertion replay after the first use</td><td>OASIS SAML 2.0</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S02</td><td>1</td><td>SSO protocols</td><td>SAML assertion with missing or wrong audience accepted</td><td>OASIS SAML 2.0</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S03</td><td>1</td><td>SSO protocols</td><td>SAML signature on the wrong element (signature wrapping)</td><td>OASIS SAML 2.0; research</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S04</td><td>1</td><td>SSO protocols</td><td>SAML clock skew: expired assertion still accepted</td><td>OASIS SAML 2.0</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S05</td><td>1</td><td>SSO protocols</td><td>OIDC ID token with wrong nonce accepted</td><td>OpenID Connect Core</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S06</td><td>1</td><td>SSO protocols</td><td>OIDC redirect URI matched by prefix, not exact</td><td>RFC 9700 (OAuth security BCP); verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S07</td><td>1</td><td>SSO protocols</td><td>OAuth authorization code intercepted: PKCE absent</td><td>RFC 7636</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S08</td><td>1</td><td>SSO protocols</td><td>OAuth state parameter missing: login CSRF</td><td>RFC 9700; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S09</td><td>1</td><td>SSO protocols</td><td>Token audience not checked by the API</td><td>RFC 9068; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S10</td><td>1</td><td>SSO protocols</td><td>Refresh token not rotated or bound</td><td>RFC 9700; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S11</td><td>1</td><td>SSO protocols</td><td>Session lifetime longer than token lifetime after logout</td><td>Own catalogue</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S12</td><td>1</td><td>SSO protocols</td><td>Single logout does not reach one app</td><td>SAML and OIDC logout specs</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S13</td><td>1</td><td>SSO protocols</td><td>App keeps a local login beside SSO</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>S14</td><td>1</td><td>SSO protocols</td><td>IdP signing key rotated and one app still trusts the old key</td><td>Own catalogue</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>R01</td><td>1</td><td>Recovery and help desk</td><td>Help desk resets MFA after a caller gives name and phone number</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>R02</td><td>1</td><td>Recovery and help desk</td><td>Method change with no notice to the person</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>R03</td><td>1</td><td>Recovery and help desk</td><td>Admin reset with no delay</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>R04</td><td>1</td><td>Recovery and help desk</td><td>Account recovery by email to a mailbox the attacker owns</td><td>NIST SP 800-63B-4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>R05</td><td>1</td><td>Recovery and help desk</td><td>New device enrolment right after a password reset</td><td>Own catalogue</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>R06</td><td>1</td><td>Recovery and help desk</td><td>Temporary access pass lifetime too long</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P01</td><td>2</td><td>Policy logic</td><td>Two policies conflict: block and grant both match</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P02</td><td>2</td><td>Policy logic</td><td>Policy scoped to &#x27;all apps&#x27; but one app is outside the IdP</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P03</td><td>2</td><td>Policy logic</td><td>Exclusion group grows by one person a month</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P04</td><td>2</td><td>Policy logic</td><td>Emergency accounts excluded from every rule, alert on use</td><td>Microsoft Learn plan CA</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P05</td><td>2</td><td>Policy logic</td><td>Emergency account not excluded from one new rule: lockout</td><td>Microsoft Learn plan CA</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P06</td><td>2</td><td>Policy logic</td><td>Report-only run shows who would be blocked; enforcement later</td><td>Microsoft Learn plan CA</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P07</td><td>2</td><td>Policy logic</td><td>Rule enforced with no report-only week</td><td>Microsoft Learn plan CA</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P08</td><td>2</td><td>Policy logic</td><td>Legacy sign-in protocol skips MFA</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P09</td><td>2</td><td>Policy logic</td><td>Service account blocked by a user rule</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P10</td><td>2</td><td>Policy logic</td><td>Rule order or precedence misunderstood</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>P11</td><td>2</td><td>Policy logic</td><td>Policy changed in the console with no record of who</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X01</td><td>2</td><td>Context signals</td><td>Managed device required: unmanaged laptop with valid MFA</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X02</td><td>2</td><td>Context signals</td><td>Device compliance claim is stale</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X03</td><td>2</td><td>Context signals</td><td>Country block: user on VPN exit in a blocked country</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X04</td><td>2</td><td>Context signals</td><td>Country block: attacker uses a proxy in an allowed country</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X05</td><td>2</td><td>Context signals</td><td>Risk-based step-up: low risk score on a real attack</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X06</td><td>2</td><td>Context signals</td><td>Risk-based block: high false positive on a travelling user</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X07</td><td>2</td><td>Context signals</td><td>Trusted network exception used from a guest wifi in the same range</td><td>Own catalogue</td><td><span class="nb high">Guess was wrong</span></td></tr>
+<tr><td>X08</td><td>2</td><td>Context signals</td><td>Token stolen after MFA is replayed from another device</td><td>Research; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>X09</td><td>2</td><td>Context signals</td><td>Session token lifetime beats the sign-in frequency rule</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>A01</td><td>2</td><td>Privileged roles</td><td>Admin on SMS fallback: phishing-resistant rule has a weaker alternative</td><td>NIST SP 800-63B-4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>A02</td><td>2</td><td>Privileged roles</td><td>Admin role activation without fresh MFA</td><td>Vendor docs; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>A03</td><td>2</td><td>Privileged roles</td><td>Privileged user signs in to a non-admin app and carries admin session</td><td>Own catalogue</td><td><span class="nb high">Guess was wrong</span></td></tr>
+<tr><td>A04</td><td>2</td><td>Privileged roles</td><td>Workload identity subject to a human MFA rule</td><td>Own catalogue</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>A05</td><td>2</td><td>Privileged roles</td><td>Guest or partner user not covered by internal rules</td><td>Vendor docs; verify</td><td><span class="nb high">Guess was wrong</span></td></tr>
+<tr><td>C01</td><td>2</td><td>Chain tests</td><td>Weak SMS fallback plus help desk reset plus no notice</td><td>Draft 4 Nov</td><td><span class="nb high">Guess was wrong</span></td></tr>
+<tr><td>C02</td><td>2</td><td>Chain tests</td><td>Token replay plus long session plus no device check</td><td>Research; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>C03</td><td>2</td><td>Chain tests</td><td>App outside SSO plus exclusion group plus no alert</td><td>Draft 4 Nov</td><td><span class="nb high">Guess was wrong</span></td></tr>
+<tr><td>C04</td><td>2</td><td>Chain tests</td><td>Report-only skipped plus emergency account missed plus no alert</td><td>Microsoft Learn plan CA</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>C05</td><td>2</td><td>Chain tests</td><td>Passkey fallback to SMS plus SIM swap plus notice missing</td><td>Draft 4 Nov</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>E01</td><td>2</td><td>Needs a real tenant</td><td>Real identity provider sign-in logs and report-only export</td><td>Vendor docs</td><td><span class="nb low">Not run, needs a real tenant</span></td></tr>
+<tr><td>E02</td><td>2</td><td>Needs a real tenant</td><td>Real FIDO2 hardware key enrolment and loss</td><td>FIDO Alliance</td><td><span class="nb low">Not run, needs a real tenant</span></td></tr>
+<tr><td>E03</td><td>2</td><td>Needs a real tenant</td><td>Real help desk call handling</td><td>Own catalogue</td><td><span class="nb low">Not run, needs a real tenant</span></td></tr>
+<tr><td>Z01</td><td>1</td><td>MFA methods</td><td>QR code lure (quishing) sends the user to a look-alike sign-in page</td><td>Swissbit AiTM blog; Menlo Security blog</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z02</td><td>1</td><td>MFA methods</td><td>Attacker registers their own MFA method after stealing the password</td><td>Compass Security, Entra findings part 4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z03</td><td>1</td><td>SSO protocols</td><td>Golden SAML: forged assertion signed with a stolen IdP signing key; no IdP sign-in event</td><td>Obsidian Security SSO bypass blog</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z04</td><td>1</td><td>SSO protocols</td><td>Silver SAML: forged assertion for one app using a key the app trusts</td><td>Obsidian Security SSO bypass blog</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z05</td><td>1</td><td>SSO protocols</td><td>ID token signature or algorithm not verified by the app (library flaw)</td><td>guptadeepak.com; CVE-2020-26244 as cited</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z06</td><td>1</td><td>SSO protocols</td><td>OIDC mix-up: app with two IdPs sends the code to the wrong one</td><td>guptadeepak.com; OAuth security BCP</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z07</td><td>1</td><td>SSO protocols</td><td>Unverified email at the IdP lets an attacker sign in as the victim at the app</td><td>PortSwigger Web Security Academy, OAuth</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z08</td><td>2</td><td>Auth flows</td><td>OAuth device code phishing: victim enters an attacker code at the real IdP; attacker gets tokens</td><td>Huntress; Dark Atlas; Microsoft Learn authentication flows</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z09</td><td>2</td><td>Auth flows</td><td>ROPC (password sent straight to the token endpoint) skips the MFA prompt</td><td>Huntress CA misconfigurations blog</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z10</td><td>2</td><td>Auth flows</td><td>OAuth consent phishing: malicious app granted access with no password stolen</td><td>Microsoft Entra blog, OAuth consent phishing</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z11</td><td>2</td><td>Auth flows</td><td>A policy blocks one named client (e.g. a CLI) but the same flow arrives via another client</td><td>Huntress CA misconfigurations blog</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z12</td><td>2</td><td>Policy logic</td><td>Policy has too many AND conditions (e.g. sign-in risk and user risk) and rarely fires</td><td>Compass Security, Entra findings part 4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z13</td><td>2</td><td>Policy logic</td><td>No default deny: a sign-in no policy matches is allowed</td><td>Compass Security, Entra findings part 4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z14</td><td>2</td><td>Policy logic</td><td>Built-in bypass: compliant-device rule still allows security-info registration or device join</td><td>Compass Security, Entra findings part 4</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z15</td><td>2</td><td>Policy logic</td><td>Policy drift: console edits diverge from the approved baseline (policy as code)</td><td>T-Minus 365; Cloud Capsule</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z16</td><td>2</td><td>Context signals</td><td>Device platform condition relies on a user agent string the attacker can change</td><td>Microsoft Learn CA conditions</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z17</td><td>2</td><td>Context signals</td><td>AiTM session replay refused because policy needs a compliant device</td><td>Microsoft Entra blog AiTM; r/DefenderATP</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z18</td><td>2</td><td>Context signals</td><td>Continuous access evaluation: stolen token used from a new location after revoke</td><td>Cloud Capsule FAQ; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z19</td><td>2</td><td>Context signals</td><td>Refresh token lifetime (up to 90 days per one source) outlives a password reset</td><td>Huntress blog; verify</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z20</td><td>2</td><td>Policy logic</td><td>Printers and scanners justify a broad legacy-auth exception</td><td>T-Minus 365; Cloud Capsule</td><td><span class="nb med">Guess matched</span></td></tr>
+<tr><td>Z21</td><td>2</td><td>Chain tests</td><td>Device code phishing plus no flow block plus long refresh token</td><td>Huntress; Compass Security</td><td><span class="nb high">Guess was wrong</span></td></tr>
+<tr><td>Z22</td><td>2</td><td>Chain tests</td><td>Stolen password plus open security-info registration plus no device rule</td><td>Compass Security</td><td><span class="nb med">Guess matched</span></td></tr>
+</tbody></table></div>
+  </section>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>
+  </body>
+</html>
