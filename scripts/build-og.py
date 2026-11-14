@@ -2,8 +2,9 @@
 """Share images (1200 x 630) for every page in the October 2026 look. Reads each page's og:image file name,
 title and description, and draws the page's story illustration on the right. Run from anywhere:
     python3 scripts/build-og.py
+To draw only some images, pass part of the file name: python3 scripts/build-og.py og-post-130 og-ca-mfa
 """
-import re, html, pathlib, base64
+import re, html, pathlib, base64, sys
 from playwright.sync_api import sync_playwright
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ns = {"__file__": str(ROOT / "scripts" / "case-art.py")}
@@ -108,6 +109,14 @@ for f in sorted((ROOT / "_posts").glob("*.md")):
 # the research paper
 jobs.append(("og-post-page-secure-india-exams.png", card("Public research · Zero Trust", "Securing India's National Exams",
     "A Zero Trust architecture for high-stakes exams, from AI-assisted paper creation to verified destruction.", scene(("doc", "shield", "check")), "#fbbf24")))
+
+# the conditional access, MFA and AI agent lab (one image for all its pages)
+jobs.append(("share/og-ca-mfa-lab.png", card("Lab · sign-in and MFA", "Do conditional access, MFA and SSO controls hold up?",
+    "130 cases on made-up data. Guesses locked before any code ran. 6 of them were wrong.", scene(("idcard", "key", "shieldok")), "#60a5fa")))
+
+ONLY = sys.argv[1:]
+if ONLY:
+    jobs = [j for j in jobs if any(o in j[0] for o in ONLY)]
 
 with sync_playwright() as pw:
     b = pw.chromium.launch(); pg = b.new_page(viewport={"width": 1200, "height": 630})

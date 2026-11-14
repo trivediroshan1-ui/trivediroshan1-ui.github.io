@@ -1,6 +1,6 @@
 {
   "_note": "Single source for the numbers quoted across the site. scripts/check-numbers.py fails if a page quotes a different number without a legacy label. Update here first, then the pages.",
-  "as_of": "2026-10-25",
+  "as_of": "2026-11-14",
   "ai_governance_lab": {
     "rounds": 13,
     "cases": 164,
