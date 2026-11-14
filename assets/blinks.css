@@ -15,7 +15,7 @@
 .bl .ink{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .bl .fillc{fill:color-mix(in srgb,var(--k) 20%,transparent);stroke:none}
 .bl .kick{display:flex;align-items:center;gap:8px;margin:0;font:700 12px/1.2 var(--mono,ui-monospace,monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--k)}
-.bl .kick i{width:8px;height:8px;border-radius:50%;background:var(--k);animation:bl-blink 1.2s steps(2,start) infinite;flex:none}
+.bl .kick i{width:8px;height:8px;border-radius:50%;background:var(--k);animation:bl-blink 1.2s steps(2,start) 3;flex:none}
 .bl .newp{padding:3px 7px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;font-size:12px;letter-spacing:.04em}
 .bl h3{margin:0 0 6px;font:700 19px/1.25 var(--display,system-ui,sans-serif);color:var(--text,#f1f5f9);text-wrap:balance}
 .bl>p{margin:0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted,#93a1bd)}
@@ -30,14 +30,14 @@
 .bl .btn-bl:hover,.bl .btn-bl:focus-visible{filter:brightness(1.08)}
 .bl a:focus-visible{outline:2px solid var(--k);outline-offset:3px;border-radius:6px}
 /* MCP: a gate bar slides across the request path, then the tick draws */
-.bl .gate{animation:bl-gate 3.6s ease-in-out infinite;transform-box:fill-box}
-.bl .gtick{stroke-dasharray:40;animation:bl-draw 3.6s ease-in-out infinite}
-.bl .pkt{animation:bl-pkt 3.6s linear infinite}
+.bl .gate{animation:bl-gate 3.6s ease-in-out 3;transform-box:fill-box}
+.bl .gtick{stroke-dasharray:40;animation:bl-draw 3.6s ease-in-out 3}
+.bl .pkt{animation:bl-pkt 3.6s linear 3}
 /* AI governance: the shield glows and its eyes blink */
-.bl .shield{animation:bl-glow 2.4s ease-in-out infinite}
-.bl .eye{fill:currentColor;transform-origin:center;transform-box:fill-box;animation:bl-eye 3.2s infinite}
+.bl .shield{animation:bl-glow 2.4s ease-in-out 3}
+.bl .eye{fill:currentColor;transform-origin:center;transform-box:fill-box;animation:bl-eye 3.2s 3}
 /* NHI: a key pulses with a ring */
-.bl .ring{fill:none;stroke:currentColor;stroke-width:2;transform-origin:center;transform-box:fill-box;animation:bl-ring 2.4s ease-out infinite}
+.bl .ring{fill:none;stroke:currentColor;stroke-width:2;transform-origin:center;transform-box:fill-box;animation:bl-ring 2.4s ease-out 3}
 .bl .ring.b{animation-delay:1.2s}
 @keyframes bl-blink{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes bl-gate{0%,20%{transform:translateY(0)}45%,75%{transform:translateY(-14px)}100%{transform:translateY(0)}}
@@ -59,8 +59,8 @@ html[data-theme="light"] .bl .btn-bl{color:#fff!important}
 .subs:hover,.subs:focus-visible{border-color:var(--warn,#f7c873);background:color-mix(in srgb,var(--warn,#f7c873) 8%,transparent)}
 .subs svg{width:26px;height:26px;flex:none;color:var(--warn,#f7c873)}
 .subs .env,.subs .flap{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.subs .flap{transform-origin:50% 30%;transform-box:fill-box;animation:subs-flap 3.2s ease-in-out infinite}
-.subs .dotb{fill:#ff8fa3;animation:bl-blink 1.2s steps(2,start) infinite}
+.subs .flap{transform-origin:50% 30%;transform-box:fill-box;animation:subs-flap 3.2s ease-in-out 3}
+.subs .dotb{fill:#ff8fa3;animation:bl-blink 1.2s steps(2,start) 3}
 .subs b{font:700 14.5px/1.25 var(--display,system-ui,sans-serif)}
 .subs span.s{margin-left:8px;font-size:13.5px;color:var(--muted,#93a1bd)}
 .subs .go{margin-left:auto;font-weight:700;font-size:14px;color:var(--warn,#f7c873);white-space:nowrap}
@@ -73,7 +73,7 @@ html[data-theme="light"] .subs span.s{color:#52617a}
 /* 14 Nov 2026: four lab cards, two to a row on wide screens */
 @media (min-width:901px){.blinks{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .bl.ca{--k:#60a5fa}
-.bl.ca .lk{animation:bl-blink 1.4s steps(2,start) infinite}
+.bl.ca .lk{animation:bl-blink 1.4s steps(2,start) 3}
 html.motion-off .bl.ca .lk{animation:none}
 html[data-theme="light"] .bl-head a{color:#0a6a85}
 html[data-theme="light"] .bl.ca{--k:#1d4ed8}

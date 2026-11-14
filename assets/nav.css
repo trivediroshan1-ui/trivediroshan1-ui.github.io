@@ -182,9 +182,9 @@ html[data-theme="light"] .nv-scrim { background: rgba(20, 30, 60, .16); }
 
 @media (prefers-reduced-motion: no-preference) {
   /* case-study cover: dashed links flow, the ring turns, the centre breathes */
-  .read .cs-art svg g[stroke-dasharray] path { animation: mo-flow 1.6s linear infinite; }
-  .read .cs-art .ring { transform-box: fill-box; transform-origin: center; animation: mo-spin 60s linear infinite; }
-  .read .cs-art svg circle[fill="currentColor"] { animation: mo-breathe 5s ease-in-out infinite; }
+  .read .cs-art svg g[stroke-dasharray] path { animation: mo-flow 1.6s linear 3; }
+  .read .cs-art .ring { transform-box: fill-box; transform-origin: center; animation: mo-spin 60s linear 3; }
+  .read .cs-art svg circle[fill="currentColor"] { animation: mo-breathe 5s ease-in-out 3; }
   /* the top of a reading page arrives in order: label, title, summary, facts */
   .read .hero > * { animation: mo-rise .75s cubic-bezier(.2, .8, .2, 1) both; }
   .read .hero > :nth-child(2) { animation-delay: .06s; } .read .hero > :nth-child(3) { animation-delay: .12s; } .read .hero > :nth-child(4) { animation-delay: .18s; }

@@ -33,7 +33,7 @@
 .nflow .shield{fill:rgba(52,211,153,.15);stroke:#34d399;stroke-width:1.6}
 .nflow .out{fill:var(--surface-2,#101a2c);stroke-width:1.4}.nflow .out.bad{stroke:#ff8fa3}.nflow .out.good{stroke:#34d399}
 .nflow .lbl{font-weight:700;font-size:12px;letter-spacing:.08em;fill:var(--muted,#93a1bd)}
-.nflow .ndot{offset-rotate:0deg;animation:nhi-move 4.5s linear infinite}
+.nflow .ndot{offset-rotate:0deg;animation:nhi-move 4.5s linear 3}
 .nflow .ndot.bad{fill:#ff8fa3}.nflow .ndot.good{fill:#34d399;animation-delay:.6s}
 @keyframes nhi-move{0%{offset-distance:0%;opacity:0}8%{opacity:1}92%{opacity:1}100%{offset-distance:100%;opacity:0}}
 @media (prefers-reduced-motion:reduce){.nflow .ndot{animation:none;offset-distance:100%;opacity:1}}
