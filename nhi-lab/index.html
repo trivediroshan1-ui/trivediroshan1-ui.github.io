@@ -41,6 +41,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Dataset","name":"Non-human identity lab: 67 cases","description":"67 non-human identity cases on made-up data, with guesses hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/nhi-lab/","creator":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["non-human identity","service accounts","PAM","IAM","OAuth"]},{"@type":"VideoObject","name":"Non-human identity lab in 60 seconds","description":"A silent, captioned 60 second video: how the lab runs, how it is built, and what the data says across 67 cases.","thumbnailUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion-poster.jpg","uploadDate":"2026-11-02","duration":"PT1M","contentUrl":"https://roshantrivedi.co.in/assets/share/nhi-lab-motion.mp4","embedUrl":"https://roshantrivedi.co.in/nhi-lab/","isAccessibleForFree":true,"author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"}}]}</script>
   <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
     <link rel="stylesheet" href="/assets/signup.css?v=20261114c">
+    <link rel="stylesheet" href="/assets/lab-summary.css?v=20261114g">
   </head>
     <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
@@ -66,6 +67,18 @@
       </details>
     </figure>
   </header>
+  <section class="lab-sum" id="summary" aria-labelledby="ls-h">
+    <h2 id="ls-h">The lab on one screen</h2>
+    <div><p class="ls-k">The question</p><p class="ls-q">Do the controls on service accounts, keys, tokens and AI tools hold when I test them?</p></div>
+    <div><p class="ls-k">The answer</p><p>Often, but not always the way I expected. 57 guesses matched and 10 were wrong. In 20 cases, switching a control off was noticed by nothing.</p></div>
+    <ul class="ls-nums" aria-label="The lab in three numbers"><li><b>67</b><span>cases</span></li><li><b>10</b><span>wrong guesses</span></li><li><b>20</b><span>cases nothing noticed</span></li></ul>
+    <div><p class="ls-k">What to check on Monday</p><ol>
+      <li>Is a CI token bound to its runner and revoked when the job ends? (case N-R14-25)</li>
+      <li>Does a connected vendor&rsquo;s grant need an allowlist at consent, not just a short revoke? (case N-R14-23)</li>
+      <li>Does every machine identity have an owner and an expiry?</li></ol></div>
+    <p class="ls-lim"><b>The limits.</b> I wrote both the guesses and the code. Every case is a small in-memory model, not a real vault, directory or cloud, so a match proves little.</p>
+    <div class="ls-acts"><a href="/nhi-lab/audit/">Read the evidence</a><a href="/nhi-lab/nhi-lab-book.pdf">The book (PDF)</a></div>
+  </section>
 
   <a class="subs" href="https://buttondown.com/trivedi"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect class="env" x="5" y="12" width="38" height="26" rx="4"/><path class="flap" d="M6 14 L24 28 L42 14"/><circle class="dotb" cx="40" cy="12" r="5"/></svg><span><b>Get the next lab&rsquo;s guesses before the results</b><span class="s">I send the guesses for the next lab before I run it, so you can check them against what happens. One or two emails a month.</span></span><span class="go">Subscribe &rarr;</span></a>
 
