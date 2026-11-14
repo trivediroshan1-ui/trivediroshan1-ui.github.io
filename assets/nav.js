@@ -46,6 +46,14 @@
       id: "labs", title: "Labs",
       feature: { kicker: "Try it", title: "Pick a request. See where it stops.", text: "Follow one AI agent request through the approval gateway, stage by stage.", href: "/labs/#mcp-flow", cta: "Open the walkthrough", icons: ["plug", "person", "shield"] },
       groups: [
+        { title: "Conditional access, MFA and AI agent lab", k: "pam", items: [
+          ["/ca-mfa-lab/", "Overview: 130 cases, 6 wrong guesses", "shield"],
+          ["/ca-mfa-lab/framework/", "The access chain, animated", "layers"],
+          ["/ca-mfa-lab/virtual-lab/run/", "Run it in your browser", "flask"],
+          ["/ca-mfa-lab/virtual-lab/", "Virtual lab: replay any case", "list"],
+          ["/ca-mfa-lab/register/", "Register of every case", "check"],
+          ["/ca-mfa-lab/sources/", "Sources and events", "doc"],
+          ["/ca-mfa-lab/ca-mfa-lab-book.pdf", "The book. 72 pages", "book"]] },
         { title: "HumanGate MCP lab", k: "ai", logo: "humangate", items: [
           ["/mcp-lab-case-study/", "Overview: what held, what did not", "flask"],
           ["/mcp-lab-results/", "Results", "check"],
@@ -82,9 +90,10 @@
     },
     "/book/": {
       id: "book", title: "Book",
-      feature: { kicker: "Free to read", title: "Three free books, one for each lab", text: "Each one is a PDF you can read on a phone. Pick a book below, or open the library to see them side by side.", href: "/book/#library", cta: "Open the library", icons: ["book", "doc", "book"] },
+      feature: { kicker: "Free to read", title: "Four free books, one for each lab", text: "Each one is a PDF you can read on a phone. Pick a book below, or open the library to see them side by side.", href: "/book/#library", cta: "Open the library", icons: ["book", "doc", "book"] },
       groups: [
         { title: "The books", k: "ai", items: [
+          ["/ca-mfa-lab/ca-mfa-lab-book.pdf", "Who signs in? Sign-in lab, 72 pages", "book"],
           ["/book/#approve", "Who Approved That? MCP lab, 138 pages", "book"],
           ["/book/#agl", "Does AI Governance Hold? 69 pages", "book"],
           ["/book/#nhi", "Machine identities, tested in public. 83 pages", "book"]] },
@@ -95,7 +104,8 @@
         { title: "Read it on the web", k: "plat", items: [
           ["/mcp-lab-portal/", "MCP lab portal, 161 case cards", "flask"],
           ["/ai-governance-lab/", "AI governance lab", "shield"],
-          ["/nhi-lab/", "Non-human identity lab", "shield"]] }
+          ["/nhi-lab/", "Non-human identity lab", "shield"],
+          ["/ca-mfa-lab/", "Conditional access, MFA and AI agent lab", "shield"]] }
       ],
       all: ["/book/", "All books, with checksums"]
     },

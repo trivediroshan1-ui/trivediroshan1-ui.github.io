@@ -45,6 +45,32 @@ for p in ROOT.rglob("*"):
                 continue          # "21 pages", "15-page" and similar other documents
             if num not in ok:
                 bad.append(f"{rel}:{n}: '{m.group(0)}' is not in data/stats.json")
+# The sign-in lab's totals before Run 6 (117 cases, 114 run) may only appear next to
+# words that mark them as history. A bare 117 or 114 on a lab page is a stale total.
+import glob as _glob
+from html.parser import HTMLParser as _HTMLParser
+
+class _Text(_HTMLParser):
+    """Collect the text a visitor reads, leaving out script and style blocks."""
+    def __init__(self):
+        super().__init__(); self.skip = 0; self.out = []
+    def handle_starttag(self, tag, attrs):
+        if tag in ("script", "style"): self.skip += 1
+    def handle_endtag(self, tag):
+        if tag in ("script", "style") and self.skip: self.skip -= 1
+    def handle_data(self, data):
+        if not self.skip: self.out.append(data)
+
+def _visible_text(markup):
+    p = _Text(); p.feed(markup); return " ".join(p.out)
+
+for rel in sorted(_glob.glob("ca-mfa-lab/**/index.html", recursive=True)):
+    txt = _visible_text(open(rel, encoding="utf-8").read())
+    for m in re.finditer(r"\b(117|114)\b", txt):
+        near = txt[max(0, m.start() - 160): m.end() + 160].lower()
+        if not any(w in near for w in ("before run 6", "at that point", "earlier", "then had", "v1.4", "v1.5", "v1.6")):
+            bad.append(f"{rel}: '{m.group(0)}' looks like the old total; the lab has 130 cases and 124 run")
+
 for b in bad:
     print(b)
 print(len(bad), "number mismatches")

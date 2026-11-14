@@ -344,7 +344,7 @@
   var NOTICE = {
     id: "ca-mfa-lab-2026-11",
     until: "2026-12-31",
-    skip: /^\/(ca-mfa-lab\/.*)?$/, // the home page has its own banner
+    skip: /^\/((ca-mfa-lab|labs)\/.*)?$/, // the home and Labs pages have their own banner
     kicker: "New",
     text: "I tested 130 conditional access, MFA and AI agent cases. Free book, video and a lab you can run.",
     href: "/ca-mfa-lab/",

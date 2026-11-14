@@ -178,3 +178,7 @@ html[data-theme="light"] .nsub{background:var(--page,#f5f7fb)}
 .nex.nojs .nex-scene .a{opacity:1;transform:none}
 .nex.nojs .nex-bar{display:none}
 .nex .s-t{font-size:46px}.nex .s-s{font-size:28px}
+
+/* 14 Nov 2026: long hashes and file names wrap on phones instead of pushing the page sideways */
+.nhi p code,.nhi li code,.nsec code{overflow-wrap:anywhere;word-break:break-word}
+.nhi p,.nhi li,.nsec p,.nsec li{overflow-wrap:break-word}

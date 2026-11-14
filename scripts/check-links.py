@@ -38,6 +38,19 @@ for f, t in pages.items():
             continue
         if not exists(u):
             bad.add((f, u))
+# Share images: every og:image and twitter:image must exist, and so must the
+# image each post will ask for (assets/og-post-<slug>.png when it has share_title).
+for f, t in pages.items():
+    for m in re.finditer(r'<meta[^>]+(?:og:image|twitter:image)"[^>]+content="https://roshantrivedi\.co\.in(/[^"{?]+)', t):
+        if not os.path.isfile(m.group(1).lstrip("/")):
+            bad.add((f, m.group(1) + " (share image)"))
+if os.path.isdir("_posts"):
+    for name in sorted(os.listdir("_posts")):
+        if name.endswith(".md") and re.search(r"^share_title:", open(os.path.join("_posts", name), encoding="utf-8").read(), re.M):
+            img = "assets/og-post-" + re.sub(r"^\d{4}-\d{2}-\d{2}-", "", name[:-3]) + ".png"
+            if not os.path.isfile(img):
+                bad.add(("_posts/" + name, "/" + img + " (share image)"))
+
 for f, u in sorted(bad):
     print(f"broken: {f} -> {u}")
 print(len(bad), "broken internal links")
