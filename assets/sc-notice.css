@@ -1,0 +1,190 @@
+/* "What's new" doodle beside the chat button. Loaded by chatbot-widget.js only when the notice shows. */
+.sc-notice {
+  position: absolute;
+  right: 4px;
+  bottom: 84px;
+  width: min(290px, calc(100vw - 40px));
+  padding: 16px 18px 14px;
+  color: #f1f5f9;
+  background: #0b1220;
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+  transform: rotate(-1.5deg);
+  transform-origin: 90% 100%;
+  animation: sc-nd-in 420ms cubic-bezier(.2, .9, .3, 1.3) both;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.sc-notice.sc-nd-out { animation: sc-nd-gone 260ms ease-in both; }
+
+/* The hand-drawn border, drawn in once, and the curly arrow down to the button */
+.sc-nd-box {
+  position: absolute;
+  inset: -3px;
+  width: calc(100% + 6px);
+  height: calc(100% + 6px);
+  overflow: visible;
+  pointer-events: none;
+}
+.sc-nd-box path,
+.sc-nd-arrow path,
+.sc-nd-line path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: sc-nd-draw 900ms ease-out 200ms forwards;
+}
+.sc-nd-box path { stroke: #f7c873; stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.sc-nd-arrow {
+  position: absolute;
+  right: 6px;
+  bottom: -50px;
+  width: 46px;
+  height: 46px;
+  overflow: visible;
+  pointer-events: none;
+}
+.sc-nd-arrow path { stroke: #f7c873; stroke-width: 3; animation-delay: 900ms; }
+.sc-nd-line {
+  display: block;
+  width: 70%;
+  height: 8px;
+  margin-top: 4px;
+}
+.sc-nd-line path { stroke: #4de2ff; stroke-width: 2.5; vector-effect: non-scaling-stroke; animation-delay: 700ms; }
+
+.sc-nd-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 6px;
+  font: 700 12px/1 ui-monospace, "JetBrains Mono", monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #1b1300;
+}
+.sc-nd-kicker {
+  display: inline-flex;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #f7c873;
+  transform: rotate(-4deg);
+}
+.sc-nd-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c93a53;
+  animation: sc-nd-blink 1.2s steps(2, start) infinite;
+}
+.sc-nd-text {
+  position: relative;
+  margin: 4px 0 10px;
+  padding-right: 14px;
+  font-size: 14.5px;
+  line-height: 1.45;
+}
+.sc-nd-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 0;
+}
+.sc-nd-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #4de2ff;
+  color: #03111d !important;
+  font-weight: 700;
+  font-size: 13.5px;
+  text-decoration: none !important;
+}
+.sc-nd-ask {
+  min-height: 34px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #4de2ff;
+  font: 700 13.5px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.sc-nd-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  color: #93a1bd;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+.sc-nd-link:focus-visible,
+.sc-nd-ask:focus-visible,
+.sc-nd-close:focus-visible { outline: 2px solid #f7c873; outline-offset: 2px; }
+.sc-nd-close:hover { color: #f1f5f9; }
+
+/* A gentle blinking ring on the chat button while there is news */
+.sc-launcher-news { position: relative; }
+.sc-launcher-news::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f7c873;
+  border: 2px solid #03111d;
+  animation: sc-nd-blink 1.2s steps(2, start) infinite;
+}
+.sc-launcher-news::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(247, 200, 115, 0.8);
+  animation: sc-nd-ring 2.4s ease-out infinite;
+}
+
+@keyframes sc-nd-in { from { opacity: 0; transform: translateY(12px) rotate(-6deg) scale(.92); } to { opacity: 1; transform: rotate(-1.5deg); } }
+@keyframes sc-nd-gone { to { opacity: 0; transform: translateY(10px) rotate(-4deg) scale(.95); } }
+@keyframes sc-nd-draw { to { stroke-dashoffset: 0; } }
+@keyframes sc-nd-blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+@keyframes sc-nd-ring { 0% { transform: scale(.9); opacity: .9; } 80%, 100% { transform: scale(1.35); opacity: 0; } }
+
+html[data-theme="light"] .sc-notice { background: #fff; color: #0f172a; box-shadow: 0 18px 44px rgba(15, 23, 42, .18); }
+html[data-theme="light"] .sc-nd-box path,
+html[data-theme="light"] .sc-nd-arrow path { stroke: #c2410c; }
+html[data-theme="light"] .sc-nd-line path { stroke: #0a7285; }
+html[data-theme="light"] .sc-nd-ask { color: #0a5c6b; }
+html[data-theme="light"] .sc-nd-link { background: #0a7285; color: #fff !important; }
+html[data-theme="light"] .sc-nd-close { color: #52617a; }
+
+@media (max-width: 640px) {
+  .sc-notice { bottom: 70px; right: 0; width: min(270px, calc(100vw - 32px)); }
+  .sc-nd-arrow { bottom: -44px; width: 38px; height: 38px; }
+}
+
+/* No movement for people who ask for less, or who switched motion off on this site */
+@media (prefers-reduced-motion: reduce) {
+  .sc-notice, .sc-notice.sc-nd-out, .sc-nd-dot,
+  .sc-launcher-news::after, .sc-launcher-news::before { animation: none; }
+  .sc-nd-box path, .sc-nd-arrow path, .sc-nd-line path { animation: none; stroke-dashoffset: 0; }
+  .sc-launcher-news::before { display: none; }
+}
+html.motion-off .sc-notice, html.motion-off .sc-notice.sc-nd-out, html.motion-off .sc-nd-dot,
+html.motion-off .sc-launcher-news::after { animation: none; }
+html.motion-off .sc-nd-box path, html.motion-off .sc-nd-arrow path, html.motion-off .sc-nd-line path { animation: none; stroke-dashoffset: 0; }
+html.motion-off .sc-launcher-news::before { display: none; }

@@ -46,3 +46,26 @@ html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 
 
 /* Phones: keep the lab card short so the page headline is visible without scrolling */
 @media (max-width:560px){.newlab{grid-template-columns:minmax(0,1fr);padding:12px 14px}.newlab .doodle{display:none}.newlab p{display:none}.newlab h3{font-size:18px}.newlab .links{display:flex;flex-direction:column;gap:6px}}
+
+/* 14 Nov 2026: the sign-in lab banner. Not a single link, so it holds several actions. */
+.newlab.nl-ca{grid-template-columns:110px minmax(0,1fr);border-color:#60a5fa;margin:0 0 22px;padding:20px 22px}
+.newlab.nl-ca:hover{transform:none}
+.nl-ca .doodle{width:110px;height:110px;color:#60a5fa}
+.nl-ca .doodle .route{stroke-dasharray:6 7;animation:nl-march 1.6s linear infinite}
+.nl-ca .doodle .tok{stroke:var(--warn,#f7c873);animation:nl-blink 1.4s steps(2,start) infinite}
+.nl-ca .doodle .tick{stroke:var(--safe,#7df2d0)}
+.nl-ca .nl-date{font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#93a1bd)}
+.nl-ca h3{margin-top:8px}
+.nl-ca .nl-acts{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0 0;font-size:14.5px;font-weight:700}
+.nl-ca .nl-acts a{color:var(--accent,#4de2ff);text-decoration:underline;text-underline-offset:3px;min-height:24px}
+.nl-ca .nl-acts a:first-child{display:inline-flex;align-items:center;min-height:38px;padding:0 16px;border-radius:999px;background:#60a5fa;color:#04121a;text-decoration:none}
+.nl-ca .nl-acts a:focus-visible{outline:2px solid var(--accent,#4de2ff);outline-offset:2px;border-radius:6px}
+@keyframes nl-march{to{stroke-dashoffset:-26}}
+html[data-theme="light"] .newlab.nl-ca{border-color:#1d5fc4}
+html[data-theme="light"] .nl-ca .doodle{color:#1d5fc4}
+html[data-theme="light"] .nl-ca .doodle .tok{stroke:#8a5208}
+html[data-theme="light"] .nl-ca .nl-acts a{color:#0a5c6b}
+html[data-theme="light"] .nl-ca .nl-acts a:first-child{background:#1d5fc4;color:#fff}
+@media (max-width:560px){.newlab.nl-ca{display:block;padding:16px}.nl-ca .doodle{display:block;float:right;width:64px;height:64px;margin:0 0 6px 10px}.nl-ca h3{font-size:19px}.nl-ca .nl-acts{gap:6px 16px}}
+@media (prefers-reduced-motion:reduce){.nl-ca .doodle .route,.nl-ca .doodle .tok{animation:none}}
+html.motion-off .newpill,html.motion-off .nl-ca .doodle *{animation:none}
