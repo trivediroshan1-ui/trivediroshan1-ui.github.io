@@ -120,3 +120,6 @@
 .fw .link .q{font-size:.88rem;margin:0 0 6px}
 .fw .link .n{font-size:.8rem;color:var(--muted,#93a1bd)}
 @media (prefers-reduced-motion:reduce){.fw .sw,.fw .swout{transition:none}}
+.fw .rnta{width:100%;box-sizing:border-box;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg,#030712);color:var(--text,#f1f5f9);border:1px solid var(--border,#1f2a40);border-radius:8px;padding:10px}
+.fw .rnlab{display:block;font-size:.8rem;color:var(--muted,#93a1bd);margin:8px 0 4px}
+.fw #rn-out{min-height:6rem;max-height:28rem;overflow:auto;white-space:pre}

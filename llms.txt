@@ -19,6 +19,8 @@
 - [Run 4: three tests I could not do with code](https://roshantrivedi.co.in/ca-mfa-lab/run-4/): predictions locked for a sign-in log test, a hardware key test and a help desk role play, with steps to run them yourself
 - [Conditional access and MFA framework, animated](https://roshantrivedi.co.in/ca-mfa-lab/framework/): 15 attack patterns you can play with and without the control, and all 130 cases with the output the scripts produced
 - [The virtual lab](https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/): replay any case, then run the Python scripts yourself
+- [Run the lab in your browser](https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/run/): the lab's own Python scripts running on the page with Pyodide; change an assumption and see which cases change
+- [Who signs in? (PDF book)](https://roshantrivedi.co.in/ca-mfa-lab/ca-mfa-lab-book.pdf): 72 pages, all 130 cases, the access chain framework, sources and glossary
 - [Sources and recent events](https://roshantrivedi.co.in/ca-mfa-lab/sources/): dated real-world events behind the lab, each labelled for how far the source can be trusted
 - [NHI framework](https://roshantrivedi.co.in/nhi-lab/framework/): seven steps from finding an identity to retiring it, mapped to the OWASP NHI Top 10
 - [NHI market in 2026](https://roshantrivedi.co.in/nhi-lab/market/): four acquisitions, agent identity and a NIST project, each dated and sourced
