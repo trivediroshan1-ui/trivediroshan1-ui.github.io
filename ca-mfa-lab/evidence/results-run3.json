@@ -1,0 +1,430 @@
+[
+ {
+  "id": "Y01",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": [],
+  "assumes": "attacker holds a session opened 6 hours ago with MFA; he has no second factor; the app asks the IdP for step-up"
+ },
+ {
+  "id": "Y02",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "privileged scopes exist; a background job holds a user-delegated token; step-up needs a live session",
+  "extra_two_off_not_guessed": {
+   "AB": "in",
+   "AC": "in",
+   "BC": "in"
+  }
+ },
+ {
+  "id": "Y03",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "attacker has a Global Admin session; second approver is a different, honest person; alert is read after the fact",
+  "extra_two_off_not_guessed": {
+   "AB": "out",
+   "AC": "out",
+   "BC": "in"
+  }
+ },
+ {
+  "id": "Y04",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "-"
+  ],
+  "diffs": [],
+  "assumes": "attacker is on a compromised internal workstation with the user's password only"
+ },
+ {
+  "id": "Y05",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "-"
+  ],
+  "diffs": [],
+  "assumes": "attacker's own unmanaged phone; Authenticator broker can be installed by anyone; unknown device state = refuse"
+ },
+ {
+  "id": "Y06",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": [],
+  "assumes": "attacker has password and relayed MFA; unmanaged host; policy engine skips paths it does not target (verify)"
+ },
+ {
+  "id": "Y07",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "in"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "in"
+  ],
+  "diffs": [],
+  "assumes": "attacker code runs inside the user's browser on the compliant, managed device",
+  "extra_two_off_not_guessed": {
+   "AB": "out",
+   "AC": "in",
+   "BC": "in"
+  }
+ },
+ {
+  "id": "Y08",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": [],
+  "assumes": "malware already on the endpoint; synced passkey path can be driven without the local prompt (verify)"
+ },
+ {
+  "id": "Y09",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "attacker has a stolen session; the user reports within the day; reporting revokes sessions; the user acts on an alert",
+  "extra_two_off_not_guessed": {
+   "AB": "in",
+   "AC": "in",
+   "BC": "out"
+  }
+ },
+ {
+  "id": "Y10",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "main MFA provider is down; attacker has the password; second provider is up if it exists",
+  "extra_two_off_not_guessed": {
+   "AB": "out",
+   "AC": "in",
+   "BC": "out"
+  }
+ },
+ {
+  "id": "Y11",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "victim declines consent for a client they do not know; attacker registers a client with his own redirect URI",
+  "extra_two_off_not_guessed": {
+   "AB": "in",
+   "AC": "out",
+   "BC": "in"
+  }
+ },
+ {
+  "id": "Y12",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "attacker holds a token issued for another service (audience = 'payroll-api'); downstream is 'ledger-api'",
+  "extra_two_off_not_guessed": {
+   "AB": "out",
+   "AC": "in",
+   "BC": "out"
+  }
+ },
+ {
+  "id": "Y13",
+  "controls": [
+   "A",
+   "B"
+  ],
+  "result": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "in",
+   "in",
+   "-"
+  ],
+  "diffs": [],
+  "assumes": "the leak happens; attacker uses the token 2 hours later and tries data outside the task"
+ },
+ {
+  "id": "Y14",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "in"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "in",
+   "in"
+  ],
+  "diffs": [],
+  "assumes": "prompt injection in a document tells the agent to delete records; the token allows delete",
+  "extra_two_off_not_guessed": {
+   "AB": "in",
+   "AC": "in",
+   "BC": "in"
+  }
+ },
+ {
+  "id": "Y15",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "extension steals a session; attacker tries to register a passkey; user reports; sessions are revoked",
+  "extra_two_off_not_guessed": {
+   "AB": "out",
+   "AC": "out",
+   "BC": "out"
+  }
+ },
+ {
+  "id": "Y16",
+  "controls": [
+   "A",
+   "B",
+   "C"
+  ],
+  "result": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "guess": [
+   "in",
+   "out",
+   "out",
+   "out",
+   "out"
+  ],
+  "diffs": [],
+  "assumes": "malicious MCP client tries to get a token; if it gets one, it is judged broad or long",
+  "extra_two_off_not_guessed": {
+   "AB": "in",
+   "AC": "in",
+   "BC": "out"
+  }
+ }
+]
