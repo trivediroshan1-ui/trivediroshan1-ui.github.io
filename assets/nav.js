@@ -81,6 +81,9 @@
           ["/nhi-lab/explainer/", "One minute explainer", "spark"],
           ["/nhi-lab/nhi-lab-book.pdf", "The book. 83 pages", "book"]] },
         { title: "Read and try", k: "plat", items: [
+          ["/start/", "Start here: four reading paths", "arrow"],
+          ["/topics/", "Topics: everything by subject", "layers"],
+          ["/glossary/", "Glossary: terms in plain words", "list"],
           ["/book/", "All the free books", "book"],
           ["/tools/tier-check/", "Credential tier self-check", "pyramid"],
           ["/secure-india-exams/", "Securing India's national exams", "india"],

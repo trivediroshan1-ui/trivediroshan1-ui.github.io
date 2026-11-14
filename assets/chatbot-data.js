@@ -6,6 +6,14 @@
  */
 window.SITE_QA = [
   {
+    id: "hub",
+    title: "Start here, Topics and Glossary",
+    url: "/start/",
+    keywords: ["start here", "where do i start", "where to start", "topics", "by topic", "by subject", "glossary", "what does", "definition", "define", "meaning of", "iam", "pim", "sso", "terms"],
+    answer:
+      "Three pages help you find your way. Start here (/start/) has four short reading paths: for security leaders, identity architects, engineers and auditors. Topics (/topics/) lists every lab, case study, article and book by subject: privileged access, just-in-time access, non-human identity, MFA and SSO, AI agents, AI governance, access reviews, cloud entitlements and zero trust, plus a list of what is not covered yet. The Glossary (/glossary/) explains 42 identity and access terms in plain words, from PAM and MFA to MCP and zero standing privilege, each linked to a page that uses it.",
+  },
+  {
     id: "whats-new",
     title: "What's new on the site",
     url: "/ca-mfa-lab/",
