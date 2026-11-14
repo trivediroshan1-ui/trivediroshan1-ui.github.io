@@ -39,6 +39,7 @@
       <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
     <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
+    <link rel="stylesheet" href="/assets/lab-summary.css?v=20261114g">
   </head>
   <body class="read" style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
@@ -53,6 +54,19 @@
         <p class="dek">I built a small approval gate for MCP tool calls, then tried to break it 210 ways. Here is what held, what did not, and what I still do not know.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
+
+      <section class="lab-sum" id="summary" aria-labelledby="ls-h">
+        <h2 id="ls-h">The lab on one screen</h2>
+        <div><p class="ls-k">The question</p><p class="ls-q">Can a person stay in control of an AI agent?</p></div>
+        <div><p class="ls-k">The answer</p><p>The approval itself held. A changed request, a reused or expired approval and an edited log were all caught. The person is the weak point: nothing slowed a careless approver down.</p></div>
+        <ul class="ls-nums" aria-label="The lab in three numbers"><li><b>210</b><span>scripted checks</span></li><li><b>6</b><span>guesses off on the first run</span></li><li><b>40</b><span>deploys I approved in under half a second</span></li></ul>
+        <div><p class="ls-k">What to check on Monday</p><ol>
+          <li>Is each approval tied to the exact request, single use, and set to expire?</li>
+          <li>When a tool&rsquo;s reply is lost, who settles what happened? It must not be the requester.</li>
+          <li>Does anything slow an approver down when the same request arrives 40 times?</li></ol></div>
+        <p class="ls-lim"><b>The limits.</b> One run each, on my machines, with synthetic tools. It shows what this gateway did on these cases, not that it is secure. Reviewer names are typed, not proven.</p>
+        <div class="ls-acts"><a href="/mcp-lab-results/">Read the evidence</a><a href="/assets/humangate-mcp-lab-final-report.pdf">Full report (PDF)</a></div>
+      </section>
 
       <section>
         <h2>The question</h2>
