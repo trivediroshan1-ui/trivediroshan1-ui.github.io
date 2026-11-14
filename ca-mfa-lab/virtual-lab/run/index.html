@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="description" content="Run the conditional access, MFA and AI agent lab&#x27;s own Python scripts in your browser, change an assumption and see which cases change." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/run/" />
+    <meta property="og:title" content="Run the lab in your browser" />
+    <meta property="og:description" content="Run the conditional access, MFA and AI agent lab&#x27;s own Python scripts in your browser, change an assumption and see which cases change." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/run/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-nhi-lab.png" />
+    <title>Run the lab in your browser &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css">
+    <link rel="stylesheet" href="/assets/site.css?v=20261019d">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/theme.css">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/study.css?v=20261019d">
+    <link rel="stylesheet" href="/assets/agl.css?v=20261029a">
+    <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+        <script src="/assets/palette.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
+  <script src="/assets/nav.js?v=20261111a" defer></script>
+  <link rel="stylesheet" href="/assets/blinks.css?v=20261102d">
+  <link rel="stylesheet" href="/assets/nhi-lab.css?v=20261111a">
+  <link rel="stylesheet" href="/assets/nhi-site.css?v=20261102d">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Run the lab in your browser", "description": "Run the conditional access, MFA and AI agent lab's own Python scripts in your browser, change an assumption and see which cases change.", "url": "https://roshantrivedi.co.in/ca-mfa-lab/virtual-lab/run/", "datePublished": "2026-11-14", "dateModified": "2026-11-14", "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": true}</script>
+  <link rel="stylesheet" href="/assets/ca-fw.css?v=20261114a">
+</head>
+    <body style="--c:#7df2d0">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main" class="nhi fw">
+  <nav class="nsub" aria-label="Conditional access lab sections"><a href="/ca-mfa-lab/">Overview</a><a href="/ca-mfa-lab/framework/">Framework</a><a href="/ca-mfa-lab/virtual-lab/">Virtual lab</a><a href="/ca-mfa-lab/register/">Register</a><a href="/ca-mfa-lab/run-4/">Run 4</a><a href="/ca-mfa-lab/sources/">Sources and events</a><a href="/nhi-lab/method/">How the method works</a><a href="/nhi-lab/">NHI lab</a></nav>
+  <header class="nhero"><p class="eyebrow">Lab</p><h1>Run the lab in your browser</h1>
+  <p class="dek">The same Python scripts that produced every result in this lab, running on this page. Change an assumption, run again, and see which cases change. Nothing is installed and nothing leaves your browser.</p>
+  <ul class="nmeta"><li>Real scripts, unchanged</li><li>Python runs on your device</li><li>Made-up data only</li></ul></header>
+
+  <section class="nsec" id="how" aria-labelledby="rh-h">
+    <h2 id="rh-h">How it works</h2>
+    <p class="lede">The page loads Python (Pyodide, about 13 MB the first time) from this website, then runs the script you pick from the <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/tree/main/ca-mfa-lab/evidence">evidence folder</a> exactly as published. Runs 5 and 6 check the guess file&rsquo;s SHA-256 before they start, so if you edit a guess they refuse to run. That refusal is the point of locking guesses before any code.</p>
+    <ol>
+      <li>Pick a run and press <b>Run</b>. You should see one line per case ending in OK, or MISMATCH where my guess was wrong.</li>
+      <li>Under the output, the page compares your results file with the published one.</li>
+      <li>Find <code>PARAMS</code> near the top of Run 5 or Run 6, change one value, and run again. Run 6&rsquo;s <code>attacker_same_network</code> is a good one to try.</li>
+      <li>Change one word in the guess file and run again. The script stops and says the hash does not match.</li>
+    </ol>
+  </section>
+
+  <section class="nsec" id="runner" aria-labelledby="rr-h">
+    <h2 id="rr-h">Run a script</h2>
+    <div class="vlab">
+      <div class="filters"><label>Run<select id="rn-run" aria-label="Choose a run"></select></label></div>
+      <div class="swbtns"><button type="button" class="fbtn" id="rn-go">Run</button><button type="button" class="fbtn" id="rn-reset">Reset to the published files</button></div>
+      <p class="fnote" id="rn-status" aria-live="polite">Loading.</p>
+      <h3>Output</h3>
+      <pre class="term" id="rn-out" aria-live="polite" tabindex="0"></pre>
+      <p class="fnote" id="rn-cmp" aria-live="polite"></p>
+      <details><summary>The script (you can edit it)</summary><label class="rnlab" for="rn-script">Script</label><textarea id="rn-script" class="rnta" rows="20" spellcheck="false"></textarea></details>
+      <div id="rn-guess-wrap"><details><summary>The locked guess file (edit it to see the hash check stop the run)</summary><label class="rnlab" for="rn-guess">Guess file</label><textarea id="rn-guess" class="rnta" rows="14" spellcheck="false"></textarea><p class="fnote" id="rn-hash"></p></details></div>
+    </div>
+  </section>
+
+  <section class="nsec" id="limits" aria-labelledby="rl-h">
+    <h2 id="rl-h">Limits</h2>
+    <ul>
+      <li>These are models of rule logic on made-up data. They do not test any vendor&rsquo;s product.</li>
+      <li>Your edits stay in your browser and disappear when you reload.</li>
+      <li>To test a real product, use the <a href="/ca-mfa-lab/run-4/">hand tests</a> in a throwaway tenant and report anything different with the exception form.</li>
+    </ul>
+  </section>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script src="/assets/pyodide/pyodide.js"></script>
+  <script defer src="/assets/ca-run.js?v=20261114a"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261111a"></script>
+  </body>
+</html>
