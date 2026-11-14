@@ -4,7 +4,7 @@ and a link to /topics/. The order is the order of each lab's own page list below
 Run after any script that regenerates lab pages:  python3 scripts/add-lab-foot.py"""
 import pathlib, re
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-V = "20261114c"
+V = "20261114f"
 LABS = {
   "ca": {"dir": "ca-mfa-lab", "book": "/ca-mfa-lab/ca-mfa-lab-book.pdf",
          "order": [("/ca-mfa-lab/", "Overview"), ("/ca-mfa-lab/framework/", "Framework"), ("/ca-mfa-lab/virtual-lab/", "Virtual lab"),
