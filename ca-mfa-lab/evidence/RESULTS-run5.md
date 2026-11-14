@@ -48,3 +48,5 @@ I changed one assumption at a time and re-ran. These are the only changes that f
 - The scores are not independent of me. The models encode my reading of each case.
 - W05 and W11 still carry (verify): the SonicWall page itself and the research notes on the MCP SDK flaw were not read in full.
 - Every attacker behaviour (the 2-minute delay, the 1-hour session, the 30 percent) is an assumption I chose. The sensitivity list above shows which ones matter.
+
+Update, 14 November 2026: the W05 line above says SonicWall lists no workaround. That was true of revision 1.0. Revision 1.1 (9 Nov) added one: with SAML in use and no upgrade possible, disable or delete active LDAP, RADIUS and TACACS+ servers. The note near the end that the SonicWall page was not read in full is also out of date: it was read on 14 November. See source-check-w05-correction-14-nov.md. Nothing else in this file changed.
