@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -36,7 +36,9 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://roshantrivedi.co.in/ai-governance-lab/#page","url":"https://roshantrivedi.co.in/ai-governance-lab/","name":"AI Governance Lab","description":"13 rounds and 164 cases testing whether AI governance controls hold, on made-up data. Expected results hashed before code; every control switched off once to see if a test notices.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"isAccessibleForFree":true,"license":"https://creativecommons.org/licenses/by/4.0/"},{"@type":"Dataset","name":"AI Governance Lab: cases and results","description":"164 cases across 13 rounds testing AI governance controls on made-up data, with expected results hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/ai-governance-lab/","creator":{"@type":"Person","name":"Roshan Trivedi"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["AI governance","IAM","PAM","non-human identity","agentic AI"],"distribution":[{"@type":"DataDownload","encodingFormat":"text/html","contentUrl":"https://github.com/trivediroshan1-ui/ai-governance-lab"}]},{"@type":"Book","name":"Does AI Governance Hold?","author":{"@type":"Person","name":"Roshan Trivedi"},"numberOfPages":69,"bookFormat":"https://schema.org/EBook","url":"https://roshantrivedi.co.in/assets/ai-governance-lab-book.pdf","isAccessibleForFree":true},{"@type":"VideoObject","name":"AI Governance Lab: the whole architecture","description":"The gateway, going round it, noticing it, answering it, HR lifecycle, documents and approvals, in two minutes.","thumbnailUrl":"https://roshantrivedi.co.in/assets/share/agl-master-architecture.png","uploadDate":"2026-10-25","duration":"PT2M2S","contentUrl":"https://roshantrivedi.co.in/assets/share/agl-architecture.mp4"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://roshantrivedi.co.in/"},{"@type":"ListItem","position":2,"name":"AI Governance Lab","item":"https://roshantrivedi.co.in/ai-governance-lab/"}]}]}</script>
   <link rel="stylesheet" href="/assets/nav.css?v=20261104h">
   <script src="/assets/nav.js?v=20261114b" defer></script>
-</head>
+  <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114c">
+    <link rel="stylesheet" href="/assets/signup.css?v=20261114c">
+  </head>
   <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
     <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
@@ -697,8 +699,14 @@
           <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>If you can think of a variant that would break a filter, send it.</span></a>
         </div>
       </aside>
-    </main>
-    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+    <section class="lab-signup" aria-label="Get new write-ups by email"><form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/trivedi" method="post" target="_blank">
+              <label for="bd-email">Get new write-ups by email</label>
+              <div class="row"><input type="email" name="email" id="bd-email" autocomplete="email" placeholder="you@company.com" required><button type="submit">Subscribe</button></div>
+              <small>One or two emails a month. No tracking, unsubscribe any time. Sent with Buttondown.</small>
+            </form></section>
+<nav class="lab-foot" aria-label="More in this lab"><span class="lf-prev off"></span><a class="lf-next" href="/ai-governance-lab/run/"><small>Next</small><b>Run it</b></a><span class="lf-extra"><a href="/assets/ai-governance-lab-book.pdf">Get the book</a><a href="/topics/">Browse by topic</a></span></nav>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
   <script src="/assets/agl-data.js?v=20261024e"></script>
   <script src="/assets/agl-arch.js?v=20261021a"></script>
   <script src="/assets/agl-boot-arch.js?v=20261021a"></script>

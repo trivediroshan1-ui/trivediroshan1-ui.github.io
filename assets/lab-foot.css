@@ -1,0 +1,10 @@
+.lab-foot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:40px 0 8px;padding-top:20px;border-top:1px solid var(--line,var(--border,rgba(127,127,127,.3)))}
+.lab-foot a{display:flex;flex-direction:column;gap:2px;min-height:44px;justify-content:center;padding:10px 14px;border:1px solid var(--line,var(--border,rgba(127,127,127,.35)));border-radius:12px;text-decoration:none;color:inherit}
+.lab-foot a:hover,.lab-foot a:focus-visible{border-color:currentColor}
+.lab-foot small{font-size:13px;opacity:1;color:var(--mut,var(--muted,inherit))}
+.lab-foot b{font-size:15px}
+.lab-foot .lf-next{text-align:right;align-items:flex-end}
+.lab-foot .off{display:block}
+.lab-foot .lf-extra{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:10px}
+.lab-foot .lf-extra a{flex-direction:row;align-items:center;font-weight:700;font-size:14.5px}
+@media (max-width:520px){.lab-foot{grid-template-columns:1fr}.lab-foot .lf-next{text-align:left;align-items:flex-start}.lab-foot .off{display:none}}
