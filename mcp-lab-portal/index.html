@@ -2,7 +2,7 @@
 <html lang="en" data-bg="mcpportal" data-m="hex">
 <head>
 <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05061a">
@@ -23,14 +23,14 @@
 <meta name="twitter:description" content="210 checks in three rounds against a human approval gateway for AI agents. Explore it, read the report, get the book.">
 <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-post-page-mcp-lab-portal.png">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
-<link rel="stylesheet" href="/assets/portal.css?v=20261111a">
+<link rel="stylesheet" href="/assets/portal.css?v=20261115b">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script src="/assets/theme.js?v=20261022b"></script>
-    <link rel="stylesheet" href="/assets/sitebar.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
       <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
-      <script src="/assets/palette.js?v=20261114d" defer></script>
+      <script src="/assets/palette.js?v=20261115b" defer></script>
     <script src="/assets/nav.js?v=20261114e" defer></script>
       <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "HumanGate MCP lab portal", "item": "https://roshantrivedi.co.in/mcp-lab-portal/"}]}, {"@type": "WebPage", "name": "HumanGate MCP lab portal", "url": "https://roshantrivedi.co.in/mcp-lab-portal/", "description": "Three rounds of trying to break a human approval gateway for MCP tool calls: the request path, a risk score to play with, 161 case cards and the full report.", "author": {"@id": "https://roshantrivedi.co.in/#person"}, "inLanguage": "en"}]}</script>
       <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
@@ -61,6 +61,7 @@
       <div>
         <p class="eyebrow">MCP approval lab &middot; 3 to 17 October 2026</p>
         <h1>Can a person stay in control of an <em>AI agent?</em></h1>
+<p class="lastrev" style="font-size:.85rem;opacity:.8;margin:.5rem 0 0">Last reviewed 15 November 2026</p>
         <p class="dek">I built a small approval gateway for MCP tool calls, then spent three rounds trying to break it. Here is what held, what did not, and what to ask before you trust an approval step in your own company.</p>
         <div class="cta">
           <a class="btn pri" href="#path"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Explore the lab</a>
@@ -95,6 +96,10 @@
     </div>
   </div>
 </section>
+<aside class="mcp-numbers" aria-label="What the numbers mean">
+        <p><strong>What the numbers mean.</strong> <b>81</b> use cases were written down before testing. <b>210</b> scripted checks ran against the gateway over three rounds (76, 88 and 46). <b>161</b> case cards write those checks up on the portal (some cards group close checks). <b>213</b> is the code&rsquo;s own unit test suite. <a href="/mcp-lab-case-study/#numbers">How they fit together</a>.</p>
+      </aside>
+
 
 <section class="s" id="idea">
   <div class="wrap">
@@ -300,13 +305,13 @@
       <p><small>All tools and data in the lab are synthetic.</small></p>
     </div>
     <div>
-      <p><a href="/">roshantrivedi.co.in</a><br><a href="/mcp-lab-case-study/">Case study</a> &middot; <a href="/mcp-lab-in-depth/">In depth</a> &middot; <a href="/mcp-lab-use-cases/">Use cases</a> &middot; <a href="/mcp-lab-results/">Results</a></p>
+      <p><a href="/">roshantrivedi.co.in</a> &middot; <a href="/privacy/">Privacy</a><br><a href="/mcp-lab-case-study/">Case study</a> &middot; <a href="/mcp-lab-in-depth/">In depth</a> &middot; <a href="/mcp-lab-use-cases/">Use cases</a> &middot; <a href="/mcp-lab-results/">Results</a></p>
     </div>
   </div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="/assets/portal.js?v=20261017" defer></script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
-    <script defer src="/assets/chatbot-widget.js?v=20261115a"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261115b"></script>
   </body>
 </html>

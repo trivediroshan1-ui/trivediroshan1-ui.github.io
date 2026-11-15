@@ -125,7 +125,7 @@ html[data-theme="light"] .nsub{background:var(--page,#f5f7fb)}
 .rcard{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin:8px 0;background:rgba(127,127,127,.04)}
 .rcard b{display:block;font-size:.92rem}
 .rcard p{margin:.25em 0 0;font-size:.84rem;color:var(--mut)}
-.rcard .when{font-size:.74rem;color:var(--mut)}
+.rcard .when{font-size:.75rem;color:var(--mut)}
 
 /* timeline */
 .tl{list-style:none;margin:16px 0;padding:0 0 0 22px;border-left:2px solid var(--line)}
@@ -189,3 +189,9 @@ html[data-theme="light"] .nhi .pill.grp{color:#1e293b}
 html[data-theme="light"] .nhi .pill.ok{color:#0b6b4a;border-color:#0b6b4a}
 html[data-theme="light"] .nhi .pill.bad{color:#b4233f;border-color:#b4233f}
 html[data-theme="light"] .nhi .pill.warn{color:#7a4b00;border-color:#7a4b00}
+
+/* Tap targets: footnote numbers and case IDs in tables are at least 24 px (WCAG 2.2, 2.5.8) */
+sup a{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-align:center}
+.nhi th a,.nhi td a.cid{display:inline-block;padding:3px 0}
+html[data-theme="light"] .nb.opinion{color:#5b3fb8;border-color:#5b3fb8}
+html[data-theme="light"] .nhero .lastrev{color:#51607a;opacity:1!important}

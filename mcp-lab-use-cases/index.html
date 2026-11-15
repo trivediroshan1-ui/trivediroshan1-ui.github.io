@@ -2,7 +2,7 @@
 <html lang="en" data-bg="mcpcases" data-m="chevrons">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://*.workers.dev https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#05061a" />
@@ -25,12 +25,12 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
     <link rel="stylesheet" href="/assets/theme.css">
-    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261115a">
+    <link rel="stylesheet" href="/assets/mcp-results.css?v=20261115b">
     <script src="/assets/theme.js?v=20261022b"></script>
-    <link rel="stylesheet" href="/assets/sitebar.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
       <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
-      <script src="/assets/palette.js?v=20261114d" defer></script>
+      <script src="/assets/palette.js?v=20261115b" defer></script>
     <script src="/assets/nav.js?v=20261114e" defer></script>
       <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "MCP lab use cases in detail", "item": "https://roshantrivedi.co.in/mcp-lab-use-cases/"}]}, {"@type": "WebPage", "name": "MCP lab use cases in detail", "url": "https://roshantrivedi.co.in/mcp-lab-use-cases/", "description": "81 use cases I tested against my own MCP approval gateway, each with what I did, what I expected, what happened and why it matters.", "author": {"@id": "https://roshantrivedi.co.in/#person"}, "inLanguage": "en"}]}</script>
       <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
@@ -48,9 +48,14 @@
       <header class="hero mcp-hero">
         <p class="eyebrow">MCP lab</p>
         <h1>Every use case I tested, in detail.</h1>
+<p class="lastrev" style="font-size:.85rem;opacity:.8;margin:.5rem 0 0">Last reviewed 15 November 2026</p>
         <p class="dek">What I tried against my own approval gateway, what I expected, and what actually happened.</p>
         <div class="mcp-ribbon" aria-hidden="true"></div>
       </header>
+      <aside class="mcp-numbers" aria-label="What the numbers mean">
+        <p><strong>What the numbers mean.</strong> <b>81</b> use cases were written down before testing. <b>210</b> scripted checks ran against the gateway over three rounds (76, 88 and 46). <b>161</b> case cards write those checks up on the portal (some cards group close checks). <b>213</b> is the code&rsquo;s own unit test suite. <a href="/mcp-lab-case-study/#numbers">How they fit together</a>.</p>
+      </aside>
+
 
       <section>
         <p class="body-text">An AI agent asks to do something risky. A person has to approve it first. These are the situations I tried against my own gateway to see where that holds and where it does not. 81 are documented here; six are marked not done. Each one says what I do, what I expected, what happened, and why it matters.</p>
@@ -96,8 +101,8 @@ node scripts/run-use-cases.mjs</code></pre>
       </aside>
     <nav class="lab-foot" aria-label="More in this lab"><a class="lf-prev" href="/mcp-lab-results/"><small>Previous</small><b>Results</b></a><a class="lf-next" href="/mcp-lab-in-depth/"><small>Next</small><b>In depth</b></a><span class="lf-extra"><a href="/assets/who-approved-that-book.pdf">Get the book</a><a href="/topics/">Browse by topic</a></span></nav>
 </main>
-    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
-    <script defer src="/assets/chatbot-widget.js?v=20261115a"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261115b"></script>
   </body>
 </html>

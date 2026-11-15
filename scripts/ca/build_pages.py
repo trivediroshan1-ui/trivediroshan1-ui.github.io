@@ -3,7 +3,7 @@ SITE="/home/claude/work/site"; OUT="/home/claude/work/out"
 tpl=open(SITE+"/ca-mfa-lab/run-4/index.html",encoding="utf-8").read()
 HEAD=tpl[:tpl.index("<main")]
 FOOT=tpl[tpl.index("</main>")+len("</main>"):]
-CSS='  <link rel="stylesheet" href="/assets/ca-fw.css?v=20261114a">\n  <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">\n'
+CSS='  <link rel="stylesheet" href="/assets/ca-fw.css?v=20261115b">\n  <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">\n'
 def head(title,desc,path,headline):
     h=HEAD
     url="https://roshantrivedi.co.in"+path

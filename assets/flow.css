@@ -31,3 +31,6 @@
 html[data-theme="light"] .fl-limit strong{color:#8f4208}
 html[data-theme="light"] .fl-state{color:#4a5870}
 html[data-theme="light"] .fl-result .hg-badge.hg-exec{color:#065f46}
+/* Contrast: stage numbers and chip notes at 4.5:1 or better */
+html[data-theme="light"] .fl-stage .fl-n{color:#3f4a5c}
+html:not([data-theme="light"]) .fl-chips .hg-chip small{color:#9aa8bf}

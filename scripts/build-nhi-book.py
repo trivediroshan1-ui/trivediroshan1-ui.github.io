@@ -323,7 +323,7 @@ story.append(Spacer(1, 2 * mm))
 add(Callout('How far to trust all of this', 'The guesses and the models are mine. The results show that my reasoning holds together. They do not show that a product behaves this way. Chapter 3 says what the method cannot tell you.', 'warn'))
 
 # ================================================================== 3 WHAT WE DID
-chapter(3, 'What we did', 'Chapter 3', VIOLET, 'The procedure, the dates and the mistakes. Enough detail to repeat it.')
+chapter(3, 'What I did', 'Chapter 3', VIOLET, 'The procedure, the dates and the mistakes. Enough detail to repeat it.')
 h2('The approach in one paragraph')
 p('Pick a failure and a control that should stop it. Write what I expect with the control off and on. Hash the guess file and commit it. Only then write a small in-memory model of the control, run it twice, and compare. Switch each control off alone to see whether anything notices. Write down what the control cannot see. Run it again on a second machine and compare the output.')
 h2('When it happened')

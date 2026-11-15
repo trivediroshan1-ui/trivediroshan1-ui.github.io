@@ -9,7 +9,7 @@
 }
 html[data-theme="light"] .agl{
   --a-panel:#ffffff;--a-panel2:#f1f5fa;--a-line:rgba(15,23,42,.14);--a-ink:#0f172a;--a-muted:#52617a;
-  --a-accent:#0a7285;--a-accent-soft:rgba(10,114,133,.10);--a-ok:#0b7a5b;--a-ok-soft:rgba(11,122,91,.10);
+  --a-accent:#0a7285;--a-accent-soft:rgba(10,114,133,.10);--a-ok:#08664c;--a-ok-soft:rgba(11,122,91,.10);
   --a-bad:#c0264a;--a-bad-soft:rgba(192,38,74,.09);--a-warn:#8a5208;--a-warn-soft:rgba(138,82,8,.10)
 }
 .agl *{box-sizing:border-box}
@@ -182,7 +182,7 @@ ol.ev-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns
 .agl .try-block{display:grid;gap:6px;margin:8px 0}
 .agl .try-detail{margin-top:8px;border:1px solid var(--a-line);border-radius:10px;padding:14px;background:var(--a-panel2)}
 .agl .try-judge{display:grid;gap:6px;margin-top:12px}
-.agl .try-opt{display:block;font-size:13.5px;cursor:pointer}
+.agl .try-opt{display:flex;align-items:center;min-height:28px;font-size:13.5px;cursor:pointer}
 .agl .try-opt input{accent-color:var(--a-accent);margin-right:4px}
 @media (max-width:560px){.agl .try-table{min-width:420px}.agl .try-table th,.agl .try-table td{padding:7px 9px}}
 .agl .try-pane[hidden]{display:none}
