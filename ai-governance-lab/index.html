@@ -32,7 +32,7 @@
     <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261115i" defer></script>
+        <script src="/assets/palette.js?v=20261115k" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://roshantrivedi.co.in/ai-governance-lab/#page","url":"https://roshantrivedi.co.in/ai-governance-lab/","name":"AI Governance Lab","description":"13 rounds and 164 cases testing whether AI governance controls hold, on made-up data. Expected results hashed before code; every control switched off once to see if a test notices.","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"isAccessibleForFree":true,"license":"https://creativecommons.org/licenses/by/4.0/"},{"@type":"Dataset","name":"AI Governance Lab: cases and results","description":"164 cases across 13 rounds testing AI governance controls on made-up data, with expected results hashed before the code and control-off checks.","url":"https://roshantrivedi.co.in/ai-governance-lab/","creator":{"@type":"Person","name":"Roshan Trivedi"},"license":"https://creativecommons.org/licenses/by/4.0/","isAccessibleForFree":true,"keywords":["AI governance","IAM","PAM","non-human identity","agentic AI"],"distribution":[{"@type":"DataDownload","encodingFormat":"text/html","contentUrl":"https://github.com/trivediroshan1-ui/ai-governance-lab"}]},{"@type":"Book","name":"Does AI Governance Hold?","author":{"@type":"Person","name":"Roshan Trivedi"},"numberOfPages":69,"bookFormat":"https://schema.org/EBook","url":"https://roshantrivedi.co.in/assets/ai-governance-lab-book.pdf","isAccessibleForFree":true},{"@type":"VideoObject","name":"AI Governance Lab: the whole architecture","description":"The gateway, going round it, noticing it, answering it, HR lifecycle, documents and approvals, in two minutes.","thumbnailUrl":"https://roshantrivedi.co.in/assets/share/agl-master-architecture.png","uploadDate":"2026-10-25","duration":"PT2M2S","contentUrl":"https://roshantrivedi.co.in/assets/share/agl-architecture.mp4"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://roshantrivedi.co.in/"},{"@type":"ListItem","position":2,"name":"AI Governance Lab","item":"https://roshantrivedi.co.in/ai-governance-lab/"}]}]}</script>
   <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
   <script src="/assets/nav.js?v=20261115i" defer></script>
@@ -40,6 +40,8 @@
     <link rel="stylesheet" href="/assets/signup.css?v=20261114c">
     <link rel="stylesheet" href="/assets/lab-summary.css?v=20261114g">
         <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">
+    <link rel="stylesheet" href="/assets/vid-text.css?v=20261115a">
+    <link rel="stylesheet" href="/assets/signup-topics.css?v=20261115a">
   </head>
   <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
@@ -148,7 +150,10 @@
         <figure class="rvid" style="margin:18px 0;max-width:420px"><video controls playsinline preload="none" poster="/assets/share/agl-master-architecture.png" style="width:100%;height:auto;border-radius:12px;background:#05061a"><source src="/assets/share/agl-architecture.mp4" type="video/mp4"></video><figcaption class="body-text" style="font-size:.9em">2 minutes. <a href="/assets/share/agl-architecture.mp4">Download the full MP4</a> (7.0 MB), <a href="/assets/share/agl-architecture-60s.mp4">the 1-minute cut</a> (2.7 MB), or <a href="/assets/share/agl-master-architecture.png">the master picture</a>.</figcaption></figure>
       </section>
       <!-- archvid:end -->
-      <section id="architecture">
+        <!-- vt:start -->
+        <details class="vid-text"><summary>What the video shows</summary><p>Two minutes, silent, every scene captioned. In order:</p><ol><li>One picture of the whole lab, with numbers that match the seven diagrams.</li><li>The agent only proposes: it sends a request in a fixed shape. The gateway checks who is asking, the shape, the policy, the rate and whether a person must approve, then signs a decision. A separate executor checks the signature, borrows a five-minute credential and makes the call. The agent never sees the credential, and every decision is logged.</li><li>If the agent goes around the gateway (layer 1, make it hard): a token found in a config file only works from the caller it was lent to, and the agent has no network route to the API.</li><li>If it still gets through (layer 2, notice): a scheduled job lines up every change in the identity system's log with a signed decision. A change with no decision behind it is a bypass alert.</li><li>Then answer (layer 3): the alert is traced to one agent, which is switched off and its access revoked. Logs are copied and hashed before clean-up. A person decides what to undo, then the hole is closed and the case added to the tests.</li><li>An identity starts in HR: an approved hire, two people for the risky steps, the minimum data, MFA from day one, then a check that the directory matches HR. Leavers still active and movers with old access are flagged.</li><li>Answering from documents: the person's permissions are checked live before any document is fetched, so the model only sees what they may read. Telling the model not to reveal something changed nothing.</li><li>Agents handing work to agents: the second agent inherited everything until the token was cut down to the job. Deleting a user needs a second person with a separate key and a public-key signature. If the approver leaves, their waiting requests move to the manager.</li><li>All of it together: every box was tested with the expected result written first, then with the control switched off.</li></ol></details>
+        <!-- vt:end -->
+                      <section id="architecture">
         <h2>How it works: one request through the gateway</h2>
         <p class="body-text">Every call to a model goes through one gateway. It checks the register, the model, the data and the tools, masks what the guardrail finds, and writes every decision to a log that is chained so an edited line shows up. Pick a request below and send it. Each one is a real case from the lab, and the step where it stops is where the lab found the problem.</p>
         <div id="agl-arch"></div>
@@ -386,6 +391,7 @@
     <section class="lab-signup" aria-label="Get new write-ups by email"><form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/trivedi" method="post" target="_blank">
               <label for="bd-email">Get new write-ups by email</label>
               <div class="row"><input type="email" name="email" id="bd-email" autocomplete="email" placeholder="you@company.com" required><button type="submit">Subscribe</button></div>
+              <!-- topics:start --><fieldset class="su-topics"><legend>Which topics? Optional. Leave them all unticked to get everything.</legend><label><input type="checkbox" name="tag" value="pam"> Privileged access and credentials</label><label><input type="checkbox" name="tag" value="nhi"> Machine identities and secrets</label><label><input type="checkbox" name="tag" value="ai-agents"> AI agents and AI governance</label><label><input type="checkbox" name="tag" value="sign-in"> Sign-in, MFA and conditional access</label></fieldset><!-- topics:end -->
               <small>One or two emails a month. Unsubscribe any time. Sent with Buttondown. <a href="/privacy/">How your email is used</a>.</small>
             </form></section>
 <nav class="lab-foot" aria-label="More in this lab"><span class="lf-prev off"></span><a class="lf-next" href="/ai-governance-lab/guided/"><small>Next</small><b>10-minute guide</b></a><span class="lf-extra"><a href="/assets/ai-governance-lab-book.pdf">Get the book</a><a href="/topics/">Browse by topic</a></span></nav>
@@ -395,7 +401,7 @@
   <script src="/assets/agl-arch.js?v=20261021a"></script>
   <script src="/assets/agl-boot-arch.js?v=20261021a"></script>
   <script src="/assets/agl-lifecycle.js?v=20261025a" defer></script>
-  <script defer src="/assets/chatbot-widget.js?v=20261115j"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261115k"></script>
   <script defer src="/assets/events.js?v=20261115a"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>

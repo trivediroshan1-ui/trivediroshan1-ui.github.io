@@ -1,0 +1,7 @@
+/* 'What the video shows' text under silent videos (A11Y-05). */
+.vid-text{margin:10px 0 22px;max-width:760px;border:1px solid var(--line,rgba(127,127,127,.3));border-radius:12px;padding:0 16px}
+.vid-text summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700}
+.vid-text summary:focus-visible{outline:3px solid var(--c,currentColor);outline-offset:3px}
+.vid-text[open]{padding-bottom:12px}
+.vid-text ol{margin:6px 0 0;padding-left:1.3em}
+.vid-text li{margin:0 0 6px;line-height:1.55}

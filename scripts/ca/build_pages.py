@@ -73,7 +73,7 @@ fw_body='''  <header class="nhero"><p class="eyebrow">Lab</p><h1>The conditional
       <li>Written results: <a href="/ca-mfa-lab/evidence/RESULTS-run1.md">run 1</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run2.md">run 2</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run3.md">run 3</a>, <a href="/ca-mfa-lab/evidence/RESULTS-run5.md">run 5</a></li>
       <li>Locked guesses: <a href="/ca-mfa-lab/evidence/guesses/guesses-run1.md">run 1</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run2.md">run 2</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run3.md">run 3</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run4.md">run 4</a>, <a href="/ca-mfa-lab/evidence/guesses/guesses-run5.md">run 5</a></li>
       <li>Scripts: <a href="/ca-mfa-lab/evidence/run1.py">run1.py</a>, <a href="/ca-mfa-lab/evidence/run2.py">run2.py</a>, <a href="/ca-mfa-lab/evidence/run3.py">run3.py</a>, <a href="/ca-mfa-lab/evidence/run5.py">run5.py</a>, <a href="/ca-mfa-lab/evidence/run6.py">run6.py</a></li>
-      <li>Catalogue: <a href="/ca-mfa-lab/ca-mfa-catalogue-v1.7.csv">v1.7 (130 rows)</a></li>
+      <li>Catalogue: <a href="/ca-mfa-lab/ca-mfa-catalogue-v1.7.csv">v1.7 (130 rows)</a>, also at <a href="/ca-mfa-lab/ca-mfa-catalogue.csv">ca-mfa-catalogue.csv</a>, which always holds the latest. <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/tree/main/ca-mfa-lab/archive">Older versions</a></li>
     </ul>
   </section>
 

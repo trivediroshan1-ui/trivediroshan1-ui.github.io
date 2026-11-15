@@ -1,0 +1,6 @@
+/* Optional topic choices on the signup forms (AN-02). */
+.su-topics{border:0;margin:10px 0 6px;padding:0;display:flex;flex-wrap:wrap;gap:4px 14px}
+.su-topics legend{padding:0;margin:0 0 4px;font-size:.88rem;opacity:.85;width:100%}
+.su-topics label{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:.92rem;cursor:pointer}
+.su-topics input{width:20px;height:20px;margin:0;accent-color:currentColor;flex:none}
+.su-topics input:focus-visible{outline:3px solid currentColor;outline-offset:2px}
