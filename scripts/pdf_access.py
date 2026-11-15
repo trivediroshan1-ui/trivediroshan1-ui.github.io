@@ -18,16 +18,43 @@ from pypdf.generic import BooleanObject, DictionaryObject, NameObject, TextStrin
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 
-def finalize(path, title=None, author=None, subject=None, keywords=None, lang="en-IN"):
+RIGHTS = ("(c) 2026 Roshan Trivedi. Licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. "
+          "How to credit: https://roshantrivedi.co.in/copyright/")
+LICENSE_URL = "https://roshantrivedi.co.in/copyright/"
+
+
+def _xmp(title, author, rights, url):
+    from xml.sax.saxutils import escape as x
+    return f"""<?xpacket begin="\ufeff" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xmpRights="http://ns.adobe.com/xap/1.0/rights/">
+<dc:title><rdf:Alt><rdf:li xml:lang="x-default">{x(title or "")}</rdf:li></rdf:Alt></dc:title>
+<dc:creator><rdf:Seq><rdf:li>{x(author or "")}</rdf:li></rdf:Seq></dc:creator>
+<dc:rights><rdf:Alt><rdf:li xml:lang="x-default">{x(rights)}</rdf:li></rdf:Alt></dc:rights>
+<xmpRights:Marked>True</xmpRights:Marked><xmpRights:WebStatement>{x(url)}</xmpRights:WebStatement>
+</rdf:Description></rdf:RDF></x:xmpmeta>
+<?xpacket end="w"?>"""
+
+
+def finalize(path, title=None, author=None, subject=None, keywords=None, lang="en-IN", rights=None):
+    """Set metadata, language and title bar. With rights=..., also write a Copyright entry and
+    XMP rights metadata (dc:rights, xmpRights:WebStatement), so the licence travels with the file (IP-02)."""
     path = pathlib.Path(path)
     r = PdfReader(str(path))
     w = PdfWriter(clone_from=r)
     md = dict(r.metadata or {})
-    for k, v in (("/Title", title), ("/Author", author), ("/Subject", subject), ("/Keywords", keywords)):
+    for k, v in (("/Title", title), ("/Author", author), ("/Subject", subject), ("/Keywords", keywords), ("/Copyright", rights)):
         if v:
             md[k] = v
     w.add_metadata(md)
     root = w._root_object
+    if rights:
+        from pypdf.generic import StreamObject
+        xmp = StreamObject()
+        xmp._data = _xmp(md.get("/Title"), md.get("/Author"), rights, LICENSE_URL).encode("utf-8")
+        xmp[NameObject("/Type")] = NameObject("/Metadata")
+        xmp[NameObject("/Subtype")] = NameObject("/XML")
+        root[NameObject("/Metadata")] = w._add_object(xmp)
     root[NameObject("/Lang")] = TextStringObject(lang)
     vp = root.get("/ViewerPreferences")
     vp = DictionaryObject() if vp is None else vp.get_object()

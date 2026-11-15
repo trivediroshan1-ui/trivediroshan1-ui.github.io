@@ -14,6 +14,8 @@ def load(name):
 R = {5: load("agl-r5"), 6: load("agl-r6"), 7: load("agl-r7"), 8: load("agl-r8"), 9: load("agl-r9"), 10: load("agl-r10"), 11: load("agl-r11"), 12: load("agl-r12"), 13: load("agl-r13")}
 D = load("agl-data")
 CSS = open(os.path.join(ROOT, "scripts/agl-book.css"), encoding="utf-8").read()
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import agl_sources
 MARK = {"ok": ("Works", "ok"), "stop": ("Stopped", "stop"), "miss": ("Gets through", "miss"), "note": ("Step", "note")}
 
 def case(r, c):
@@ -121,7 +123,8 @@ def build_html():
 <li>Changes made by other approved paths, such as the HR sync job, are not part of the reconciliation. If a bypass makes exactly the same change as a real request at the same moment, only the extra one is flagged.</li>
 <li>What counts as an offence, what may be monitored and what a court accepts are for counsel, not this lab.</li>
 <li>The next big step is a test against a real sandbox tenant, and a held-out set of cases written by someone other than me. If you can see a weak test, please tell me. I would rather learn it from you than from an incident.</li></ul>
-<p style="margin-top:14pt"><b>Everything is free:</b> roshantrivedi.co.in/ai-governance-lab</p></section></body></html>'''
+<p style="margin-top:14pt"><b>Everything is free:</b> roshantrivedi.co.in/ai-governance-lab</p></section>
+<section class="chapter"><div class="chap-head"><span class="chapno">Sources</span><h2>Sources</h2></div><p>{agl_sources.INTRO}</p>{agl_sources.table(agl_sources.ADDENDUM)}</section></body></html>'''
 
 class Q(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -144,7 +147,7 @@ def main():
         s.shutdown()
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import pdf_access
-    pdf_access.finalize(OUT, title='Does AI Governance Hold? Addendum: rounds five to thirteen', author="Roshan Trivedi", subject='105 more AI governance test cases, rounds five to thirteen, with made-up Indian data', keywords='AI governance, AI agents, access control, retrieval, approvals, test lab, made-up data')
+    pdf_access.finalize(OUT, title='Does AI Governance Hold? Addendum: rounds five to thirteen', author="Roshan Trivedi", subject='105 more AI governance test cases, rounds five to thirteen, with made-up Indian data', keywords='AI governance, AI agents, access control, retrieval, approvals, test lab, made-up data, CC BY 4.0', rights=pdf_access.RIGHTS)
     from pypdf import PdfReader
     print(len(PdfReader(OUT).pages), "pages", os.path.getsize(OUT))
 main()

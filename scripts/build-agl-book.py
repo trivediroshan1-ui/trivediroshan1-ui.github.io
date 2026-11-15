@@ -253,7 +253,7 @@ ch.append(chap(14, "Run it yourself", f'''
 '''))
 
 ch.append(chap(15, "After this book: rounds five to thirteen", f'''
-<p>This book covers the first four rounds, finished on 24 October 2026. I kept going. By 25 October the lab had nine more rounds and 164 cases in all. Those rounds are not written up chapter by chapter here. They are in a free 74-page addendum, and every case is on the website. This chapter says what they are and what to keep in mind.</p>
+<p>This book covers the first four rounds, finished on 24 October 2026. I kept going. By 25 October the lab had nine more rounds and 164 cases in all. Those rounds are not written up chapter by chapter here. They are in a free 76-page addendum, and every case is on the website. This chapter says what they are and what to keep in mind.</p>
 <table class="plain"><thead><tr><th>Round</th><th>What it tests</th><th>Cases</th><th>Controls switched off and noticed</th></tr></thead><tbody>
 <tr><td>5</td><td>The 24 Oct audit round: more cases on agent identity, audit evidence and vendors</td><td>14</td><td>none run</td></tr>
 <tr><td>6</td><td>An agent that only sends instructions, and a gateway that decides</td><td>18</td><td>12 of 12</td></tr>
@@ -322,6 +322,10 @@ GL = [("AI use register", "A list of every AI use the organisation has approved:
 ("Track P", "The nine hand-run tests of a real assistant against the made-up policy.")]
 ch.append(chap("Appendix C", "Glossary", "<dl>" + "".join(f"<dt>{t}</dt><dd>{d}</dd>" for t, d in GL) + "</dl>"))
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import agl_sources
+ch.append(chap("Appendix D", "Sources", f"<p>{agl_sources.INTRO}</p>" + agl_sources.table(agl_sources.BOOK)))
+
 # ---------------------------------------------------------------- contents
 def toc(pages):
     rows = []
@@ -341,7 +345,7 @@ PREFACE = '''
 
 ABOUT = f'''
 <p><b>{e(TITLE)}</b><br>{e(SUB)}</p>
-<p>Edition 1.1, 25 October 2026 (adds chapter 15, rounds five to thirteen). Written by Roshan Trivedi. Free to read and share; please credit the author.</p>
+<p>Edition 1.2, 15 November 2026 (adds Appendix D, the sources). Edition 1.1, 25 October 2026 (adds chapter 15, rounds five to thirteen). Written by Roshan Trivedi. Licensed under CC BY 4.0: you may share and adapt it with credit. How to credit: roshantrivedi.co.in/copyright/</p>
 <p>All people, companies, numbers and data in this book are made up. The lender, Kaveri Finance, does not exist. Aadhaar, PAN and card numbers are invented, although they pass the real format checks on purpose.</p>
 <p>This is not a product review and not legal advice. The filters tested are the author&rsquo;s own and deliberately plain. Any mapping to a law or standard is the author&rsquo;s reading. Nothing here is a claim that any system is secure.</p>
 <p>The lab, its cases and its results are described at {SITE}/. This book was generated from the same data as the web pages, so the numbers match.</p>
@@ -463,8 +467,8 @@ def main():
     with open(OUT, "wb") as fh: w.write(fh)
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import pdf_access
-    pdf_access.finalize(OUT, title=f"{TITLE} {SUB}", author="Roshan Trivedi", subject="AI governance lab, book edition 1.1",
-                        keywords="AI governance, AI agents, access control, retrieval, data leakage, test lab, made-up data")
+    pdf_access.finalize(OUT, title=f"{TITLE} {SUB}", author="Roshan Trivedi", subject="AI governance lab, book edition 1.2",
+                        keywords="AI governance, AI agents, access control, retrieval, data leakage, test lab, made-up data, CC BY 4.0", rights=pdf_access.RIGHTS)
     print("pages:", len(w.pages), "->", OUT, os.path.getsize(OUT))
 
 if __name__ == "__main__":
