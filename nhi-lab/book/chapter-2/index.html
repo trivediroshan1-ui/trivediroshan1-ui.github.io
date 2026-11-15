@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: The short version · Machine identity lab book · Roshan Trivedi</title>
+    <meta name="description" content="The findings in plain words, and a map of every case. From the machine identity lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/nhi-lab/book/chapter-2/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 2: The short version · Machine identity lab book · Roshan Trivedi">
+    <meta property="og:description" content="The findings in plain words, and a map of every case. From the machine identity lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/nhi-lab/book/chapter-2/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+    <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+      <script src="/assets/palette.js?v=20261115o" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Machine identity lab", "item": "https://roshantrivedi.co.in/nhi-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/nhi-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 2: The short version", "item": "https://roshantrivedi.co.in/nhi-lab/book/chapter-2/"}]}, {"@type": "CollectionPage", "name": "Chapter 2: The short version · Machine identity lab book", "url": "https://roshantrivedi.co.in/nhi-lab/book/chapter-2/", "description": "The findings in plain words, and a map of every case. From the machine identity lab book."}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+      <link rel="stylesheet" href="/assets/web-book.css?v=20261115a">
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/nhi-lab/book/">Machine identities, tested in public</a> · Chapter 2</p>
+          <h1 id="wb-h">The short version</h1>
+          <p class="lede">The findings in plain words, and a map of every case.</p>
+          <ul class="wb-tiles"><li><b>67</b> cases in four runs</li><li><b>57</b> guesses matched</li><li><b>10</b> guesses wrong</li><li><b>20</b> cases with a control nothing noticed</li><li><b>33</b> cases with a recorded limit</li></ul><h2>What I found</h2><h3>1. Most of my guesses held, which is weaker evidence than it sounds.</h3><p>57 of 67 guesses matched. I wrote the guesses and the models, so a match shows that my reasoning is consistent. It does not show that a product behaves this way.</p><h3>2. Ten guesses were wrong, and the wrong ones are the useful ones.</h3><p>Five were about counting (S-R17-05, N-R14-07, N-R18-01, S-R17-09, P-R15-22). In two of those I never said what I was counting. Five were about which control does the work, or whether one covers another (N-R14-25, C-R16-C01, P-R15-06, P-R15-12, S-R17-08). Each is recorded with the right answer next to it.</p><h3>3. In 20 cases a control sat there and nothing noticed when it was switched off.</h3><p>In round 19 I split these into two kinds. Either another control was doing the same job, or the control had no effect on what the case counts, as with logs, reviews and thresholds. A control no check notices is one you cannot tell is working. Decide which it is before you rely on it or remove it.</p><h3>4. A control that reports is not a control that stops.</h3><p>In three chain tests an alert reported the attack after it happened, and a different control stopped it (C-R16-C05, C-R16-C06, C-R16-C17). Count the two separately.</p><h3>5. Order decides whether a change causes an outage.</h3><p>Update the consumer, then rotate, then prove the old secret is dead (N-R14-15, N-R14-20, P-R15-25). The shortcut caused 12 outages in one case and left 2 live old secrets in another.</p><h3>6. A named owner did the most work.</h3><p>Ownership stopped a chain at its first link (C-R16-C01) and turned silent risks into tickets (N-R14-09, N-R14-18). Everything else in the framework depends on knowing who answers for an identity.</p><h3>7. Every case has a limit, and 33 of 67 have one written down.</h3><p>Several controls accept a sign-off as text: an attestation, a break-glass reason, a ticket number. If the text is not checked against a system, the control checks that someone typed something.</p><h2>All 67 cases on one page</h2><p>One square per case, grouped by the framework step it tests. Green means my guess matched. Red means it was wrong. An amber dot means a control in that case was one nothing noticed. A dark corner means I recorded a limit.</p><p class="wb-fig">The map of all 67 cases is a picture in the PDF. The same results are in <a href="/nhi-lab/audit/">the audit table</a> and <a href="/labs/cases/?lab=nhi">the case list</a>.</p><p class="wb-small">Figure 2.1 The 67 cases by framework step. Letters and numbers match the case ids in Chapters 5 to 11 (N01 is N-R14-01).</p><h2>What I would do on Monday</h2><p>If you take only one page from the book, take this one. Each line is a check you can do without buying anything.</p><ol><li>Pick one source of service accounts you do not scan yet, and add it to the inventory (find).</li><li>List identities with no named owner. Ask the platform owner to claim or stage them for disable (own).</li><li>Look at your front door for new service accounts. Does it refuse one with no owner, scope or end date (own, limit)?</li><li>Take the last rotation you did and test that the old secret is refused (rotate).</li><li>Find the person who would see a break-glass sign-in tonight, and ask what they would do (watch).</li><li>Write down which of your controls would go unnoticed if you switched it off (all steps).</li></ol><aside class="wb-note wb-warn"><p><b>How far to trust all of this</b></p><p>The guesses and the models are mine. The results show that my reasoning holds together. They do not show that a product behaves this way. Chapter 3 says what the method cannot tell you.</p></aside>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/nhi-lab/book/chapter-1/"><span>Previous</span>Chapter 1: The problem and what I tested</a><a rel="next" href="/nhi-lab/book/chapter-3/"><span>Next</span>Chapter 3: What I did</a></nav>
+          <p class="wb-pdf"><a href="/nhi-lab/book/">Contents</a> · <a href="/nhi-lab/nhi-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261115o"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

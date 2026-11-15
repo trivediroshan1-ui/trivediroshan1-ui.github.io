@@ -713,6 +713,182 @@
    "reviewed": "10 November 2026"
   },
   {
+   "url": "/nhi-lab/book/",
+   "title": "Machine identities, tested in public: the book on the web",
+   "summary": "The machine identity lab book, chapter by chapter on the web: 67 cases, a seven-step framework, the 2026 market and what is missing.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/about-the-author/",
+   "title": "About the author · Machine identity lab book",
+   "summary": "Roshan Trivedi, Bengaluru. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/appendix-a/",
+   "title": "Appendix A: Guess files and hashes · Machine identity lab book",
+   "summary": "The evidence that the guesses came first. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/appendix-b/",
+   "title": "Appendix B: Audit table · Machine identity lab book",
+   "summary": "All 67 cases in one table. The same data is on the website as CSV and JSON. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/appendix-c/",
+   "title": "Appendix C: Sources · Machine identity lab book",
+   "summary": "Every source used in the market chapter. Retrieved 2 November 2026 unless noted. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/appendix-d/",
+   "title": "Appendix D: Glossary · Machine identity lab book",
+   "summary": "The words used in this book. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/before-you-start/",
+   "title": "Before you start · Machine identity lab book",
+   "summary": "Who it is for, how to read it, and how to read a case diagram. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-1/",
+   "title": "Chapter 1: The problem and what I tested · Machine identity lab book",
+   "summary": "Why machine identities, what I asked, and what is in and out of scope. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-10/",
+   "title": "Chapter 10: Step 6: Watch · Machine identity lab book",
+   "summary": "Use is logged and the odd use is noticed. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-11/",
+   "title": "Chapter 11: Step 7: Retire and respond · Machine identity lab book",
+   "summary": "Remove what is unused, cut access fast after a breach. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-12/",
+   "title": "Chapter 12: Results · Machine identity lab book",
+   "summary": "What matched, what was wrong, what nothing noticed, and what each control cannot see. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-13/",
+   "title": "Chapter 13: The market in 2026 · Machine identity lab book",
+   "summary": "Four deals, one new identity type and a standards project. Checked on 2 November 2026. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-14/",
+   "title": "Chapter 14: What is missing · Machine identity lab book",
+   "summary": "The gaps I know about. A book that hid them would be weaker. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-15/",
+   "title": "Chapter 15: Roadmap · Machine identity lab book",
+   "summary": "What is done, what I am checking, and what comes next. No invented deadlines. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-2/",
+   "title": "Chapter 2: The short version · Machine identity lab book",
+   "summary": "The findings in plain words, and a map of every case. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-3/",
+   "title": "Chapter 3: What I did · Machine identity lab book",
+   "summary": "The procedure, the dates and the mistakes. Enough detail to repeat it. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-4/",
+   "title": "Chapter 4: A framework for machine identities · Machine identity lab book",
+   "summary": "Seven steps, drawn from what the cases showed. Targets and thresholds are yours to set. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-5/",
+   "title": "Chapter 5: Step 1: Find · Machine identity lab book",
+   "summary": "List every machine identity and where it lives. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-6/",
+   "title": "Chapter 6: Step 2: Own · Machine identity lab book",
+   "summary": "A named person, a purpose and an end date for each. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-7/",
+   "title": "Chapter 7: Step 3: Limit · Machine identity lab book",
+   "summary": "Least privilege and a front door that refuses the wrong caller. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-8/",
+   "title": "Chapter 8: Step 4: Store and issue · Machine identity lab book",
+   "summary": "Secrets in an approved place, short-lived, never in code. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
+   "url": "/nhi-lab/book/chapter-9/",
+   "title": "Chapter 9: Step 5: Rotate and expire · Machine identity lab book",
+   "summary": "Change on a schedule, consumers first, old value proven dead. From the machine identity lab book.",
+   "type": "Books",
+   "collection": "nhi",
+   "updated": "2026-11-15"
+  },
+  {
    "url": "/nhi-lab/explainer/",
    "title": "Machine identities in about a minute",
    "summary": "A one-minute animated explainer of the non-human identity lab: owners, a front door for new identities, ordered secret changes, and each control off o",
@@ -857,7 +1033,7 @@
    "summary": "New to this site? Four short reading paths: for security leaders, identity architects, engineers and auditors. Five links each.",
    "type": "Page",
    "collection": "site",
-   "updated": "2026-11-15",
+   "updated": "2026-11-14",
    "reviewed": "14 November 2026"
   },
   {
@@ -883,7 +1059,7 @@
    "summary": "Every lab, case study, article and book on this site, sorted by subject: privileged access, non-human identity, MFA and SSO, AI agents, governance and",
    "type": "Page",
    "collection": "site",
-   "updated": "2026-11-15",
+   "updated": "2026-11-14",
    "reviewed": "14 November 2026"
   },
   {

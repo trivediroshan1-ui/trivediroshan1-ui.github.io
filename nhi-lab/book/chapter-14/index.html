@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 14: What is missing · Machine identity lab book · Roshan Trivedi</title>
+    <meta name="description" content="The gaps I know about. A book that hid them would be weaker. From the machine identity lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/nhi-lab/book/chapter-14/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 14: What is missing · Machine identity lab book · Roshan Trivedi">
+    <meta property="og:description" content="The gaps I know about. A book that hid them would be weaker. From the machine identity lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/nhi-lab/book/chapter-14/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+    <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+      <script src="/assets/palette.js?v=20261115o" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Machine identity lab", "item": "https://roshantrivedi.co.in/nhi-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/nhi-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 14: What is missing", "item": "https://roshantrivedi.co.in/nhi-lab/book/chapter-14/"}]}, {"@type": "CollectionPage", "name": "Chapter 14: What is missing · Machine identity lab book", "url": "https://roshantrivedi.co.in/nhi-lab/book/chapter-14/", "description": "The gaps I know about. A book that hid them would be weaker. From the machine identity lab book."}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+      <link rel="stylesheet" href="/assets/web-book.css?v=20261115a">
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/nhi-lab/book/">Machine identities, tested in public</a> · Chapter 14</p>
+          <h1 id="wb-h">What is missing</h1>
+          <p class="lede">The gaps I know about. A book that hid them would be weaker.</p>
+          <div class="wb-tw"><table><thead><tr><th scope="col">Gap</th><th scope="col">Detail</th></tr></thead><tbody><tr><td><b>No product was tested.</b></td><td>Every result comes from a small model I wrote. I make no claim about what any product does today.</td></tr><tr><td><b>One author for guesses, models and results.</b></td><td>An outside reader writing guesses first is the stronger test. It is on the roadmap.</td></tr><tr><td><b>Two of the OWASP risks are thinly covered.</b></td><td>Round 18 added a case each for insecure authentication (NHI4) and environment isolation (NHI8). Each risk still rests on two cases. The agentic risks ASI05 to ASI07 have no cases.</td></tr><tr><td><b>Sign-offs that are only text.</b></td><td>Attestations, break-glass reasons, extensions and ticket numbers were accepted as written. I have not tested what checking them would take.</td></tr><tr><td><b>Nothing cloud-specific.</b></td><td>AWS, Azure and Google Cloud each have their own key and role habits. The models are generic.</td></tr><tr><td><b>Catalogue rows that need a real environment.</b></td><td>Some rows cannot be shown in a small model. The completeness register on the website gives each one a final status and a reason. Nothing was run for them.</td></tr><tr><td><b>No Kubernetes workload identity.</b></td><td>It has its own tooling and is out of scope for this run.</td></tr><tr><td><b>No cost or performance data.</b></td><td>The models cannot say what a control costs to run or how it slows people down.</td></tr><tr><td><b>No Indian rules check.</b></td><td>RBI, CERT-In and the data protection law were not mapped. I make no compliance claim.</td></tr><tr><td><b>Licensed analyst reports were not read.</b></td><td>Gartner, Forrester and KuppingerCole are licensed. The market chapter uses public primary sources.</td></tr><tr><td><b>Mac commit times are not recorded.</b></td><td>I have the commit hashes. I did not write down exactly when each one was made, and I cannot tell you which file commit f902ea8 holds.</td></tr><tr><td><b>Accessibility and speed checks of the website pages.</b></td><td>Lighthouse and a screen-reader pass are not run yet. They concern the web pages, not this book.</td></tr><tr><td><b>A hash proves a file did not change, not when I wrote it.</b></td><td>It shows the guess file is the same file that was committed. The commit time is the only date evidence.</td></tr></tbody></table></div><aside class="wb-note wb-violet"><p><b>Where you can help</b></p><p>If you work on identity or privileged access and you think a case is wrong, or you can think of a variant that breaks a control, tell me. I will add it and keep the original on the page. If you would like to write guesses for a case before you see mine, I would like that most of all.</p></aside>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/nhi-lab/book/chapter-13/"><span>Previous</span>Chapter 13: The market in 2026</a><a rel="next" href="/nhi-lab/book/chapter-15/"><span>Next</span>Chapter 15: Roadmap</a></nav>
+          <p class="wb-pdf"><a href="/nhi-lab/book/">Contents</a> · <a href="/nhi-lab/nhi-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261115o"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>
