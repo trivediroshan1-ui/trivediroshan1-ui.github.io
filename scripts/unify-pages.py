@@ -8,7 +8,7 @@ SKIP = {"index.html", "labs/index.html", "book/index.html", "mcp-lab-portal/inde
 CSS = '<link rel="stylesheet" href="/assets/refresh.css?v=20261019e">'
 FOOT = ('<footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>'
         '<nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a>'
-        '<a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a>'
+        '<a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a>'
         '<a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>')
 NAMES = {"all case studies": "Work", "case studies": "Work", "writing": "Writing"}
 

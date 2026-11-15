@@ -29,7 +29,7 @@ LABS = {
         more=[("Implement it", "/ai-governance-lab/implement/"), ("Run it", "/ai-governance-lab/run/"),
               ("Mac commands", "/ai-governance-lab/mac/"), ("The story", "/ai-governance-lab/story/"),
               ("Transcripts", "/ai-governance-lab/transcripts/"), ("Appendix", "/ai-governance-lab/appendix/"),
-              ("Rounds 5 to 13", "/ai-governance-lab/#rounds"), ("Errata", "/ai-governance-lab/errata/")]),
+              ("Rounds 5 to 13", "/ai-governance-lab/#rounds"), ("Standards map", "/ai-governance-lab/frameworks/"), ("Errata", "/ai-governance-lab/errata/")]),
     "mcp": dict(
         name="MCP lab",
         primary=[("Overview", "/mcp-lab-case-study/"), ("How it works", "/mcp-lab-in-depth/"),

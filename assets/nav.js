@@ -133,6 +133,7 @@
         { title: "Know more", k: "plat", items: [
           ["/about/", "About me", "user"],
           ["/now/", "What I am doing now", "clock"],
+          ["/method/", "How I test: the method behind every lab", "check"],
           ["/ai/", "How I use AI, and where I stop", "spark"],
           ["/resume/", "Résumé", "doc"]] },
         { title: "Get in touch", k: "gov", items: [
