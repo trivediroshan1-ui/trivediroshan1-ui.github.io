@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 15: The lab for your people · sign-in lab book</title>
+    <meta name="description" content="The lab for your people From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-15/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 15: The lab for your people · sign-in lab book">
+    <meta property="og:description" content="The lab for your people From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-15/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-b526dca98c.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-b526dca98c.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 15: The lab for your people", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-15/"}]}, {"@type": "CollectionPage", "name": "Chapter 15: The lab for your people · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-15/", "description": "The lab for your people From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · Run it, break it, report what you find</p>
+          <h1 id="wb-h">The lab for your people</h1>
+          
+          <h2>Run the scripts</h2><ol><li>Install Python 3. The scripts use only the standard library.</li><li>Download a script and its guess file from roshantrivedi.co.in/ca-mfa-lab/evidence/.</li><li>Check the guess file's hash with shasum -a 256. It should match the table in appendix A.</li><li>Run it, for example python3 -I run6.py guesses-run6.md. Each case prints its output, my guess and OK or MISMATCH.</li><li>Open the script, change one value in PARAMS, run it again, and see which cases change.</li></ol><h2>The six hand tests</h2><p>These need something a model cannot stand in for. Use a throwaway test tenant, made-up users and a spare key. Never call a real help desk, and never put a tenant name, password, code or token in your notes.</p><div class="wb-tw"><table><thead><tr><th scope="col">Test</th><th scope="col">What it checks</th><th scope="col">Link</th></tr></thead><tbody><tr><td>E01</td><td>Real identity provider sign-in logs and report-only export</td><td>4. Decide</td></tr><tr><td>E02</td><td>Real FIDO2 hardware key enrollment and loss</td><td>1. Enroll and recover</td></tr><tr><td>E03</td><td>Real help desk call handling</td><td>1. Enroll and recover</td></tr><tr><td>E04</td><td>Real cross-app agent access: revoke the user's grant and keep calling the second app</td><td>7. Watch and end</td></tr><tr><td>E05</td><td>Real admin agent handling a ticket that carries a reset instruction for another account</td><td>6. Act</td></tr><tr><td>E06</td><td>Real continuous access evaluation when a session is copied to another network</td><td>7. Watch and end</td></tr></tbody></table></div><h2>Report an exception</h2><p>If you test any case in a real product and it behaves differently from my model, use the exception form on the lab's GitHub. It asks for the case ID, the product and version, what you saw and how you checked. Accepted exceptions go next to my result with a date, and my result stays.</p><h2>Run it as a team workshop</h2><ol><li>Pick one link from chapter 3 that your team owns.</li><li>Before anyone opens the results, each person writes a guess for three cases in that link.</li><li>Compare the guesses, then open the case pages and play each case one column at a time.</li><li>For every case where someone was surprised, write down the assumption that would make your own setup different.</li><li>Turn the surprises into checks: a policy review, a test in a test tenant, or a question for your vendor.</li></ol>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/chapter-14/"><span>Previous</span>Chapter 14: Research and development: where vendors and standards are going</a><a rel="next" href="/ca-mfa-lab/book/chapter-16/"><span>Next</span>Chapter 16: Conclusion</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

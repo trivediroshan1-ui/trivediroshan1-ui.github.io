@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appendix D: Sources · sign-in lab book</title>
+    <meta name="description" content="Sources From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-d/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Appendix D: Sources · sign-in lab book">
+    <meta property="og:description" content="Sources From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-d/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-b526dca98c.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-b526dca98c.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Appendix D: Sources", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-d/"}]}, {"@type": "CollectionPage", "name": "Appendix D: Sources · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-d/", "description": "Sources From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · Standards, documents and events</p>
+          <h1 id="wb-h">Sources</h1>
+          
+          <h2>Standards and documents</h2><div class="wb-tw"><table><thead><tr><th scope="col">Document</th><th scope="col">Kind</th><th scope="col">What it says that matters here</th><th scope="col">Cases</th></tr></thead><tbody><tr><td>RFC 9449: OAuth 2.0 Demonstrating Proof of Possession (DPoP), September 2023<br>https://www.rfc-editor.org/rfc/rfc9449</td><td>Standard</td><td>Binds a token to a key so a copied token fails from another machine. Does not help against code inside the client.</td><td>W09 Y07</td></tr><tr><td>MCP authorization specification, 2026-07-28 revision<br>https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization</td><td>Specification</td><td>Clients use protected resource metadata to find the authorization server, and check the issuer value on the response. The check gives no protection if the expected issuer came from an unvalidated source.</td><td>W11 Y11 Y12</td></tr><tr><td>Cloud Security Alliance, Defining Non-Human Identity, 22 July 2026<br>https://cloudsecurityalliance.org/artifacts/defining-non-human-identity</td><td>Industry research</td><td>Names six risk areas for all non-human identities, including missing owners, missing decommissioning triggers and access that grows through delegation. For agents it advises a human sponsor for each agent, sub-agents with minimal short-lived access limited to the human’s own permissions, and logs that record the delegator, the agent and the intent.</td><td>G03 G04 G05 G10</td></tr><tr><td>GitHub Docs: OpenID Connect reference<br>https://docs.github.com/en/actions/reference/security/oidc</td><td>Vendor documentation</td><td>At least one condition must be set on the cloud role so untrusted repositories cannot get tokens.</td><td>W01</td></tr></tbody></table></div><h2>Events</h2><div class="wb-tw"><table><thead><tr><th scope="col">Date</th><th scope="col">Event</th><th scope="col">Links</th></tr></thead><tbody><tr><td>6 Nov 2026</td><td>SonicWall SSLVPN: a user with valid credentials for another login method can bypass SAML, including SAML-enforced MFA (CVE-2026-19868). Applies only when SAML is on for VPN logins....</td><td>https://psirt.global.sonicwall.com/vuln-detail/SNWLID-2026-0014<br>https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2026-19868<br>https://securityweek.com/sonicwall-patches-exploited-sonicos-bug-that-weakens-vpn-logins</td></tr><tr><td>28 Sep 2026</td><td>The official MCP Python SDK did not check the issuer on a fallback discovery path. A malicious MCP server could make an SDK-based client send its client secret, authorization code ...</td><td>https://labs.cloudsecurityalliance.org/research/csa-research-note-mcp-python-sdk-oauth-flaw-20260930-csa-sty/<br>https://thehackernews.com/2026/09/official-mcp-python-sdk-flaw-can-let.html</td></tr><tr><td>24 Aug 2026</td><td>Okta made Agent SSO generally available. It registers AI agents as identities, issues short-lived tokens in place of stored credentials, and moves agent authorization to the identi...</td><td>https://www.okta.com/newsroom/press-releases/okta-brings-first-class-identity-to-ai-agents-with-agent-sso/</td></tr><tr><td>15 Jul 2026</td><td>GitHub moves new repositories, and repositories that opt in, to an immutable subject claim in OIDC tokens. Cloud trust policies must include the numeric owner and repository IDs.</td><td>https://docs.github.com/en/actions/reference/security/oidc</td></tr><tr><td>Reported 17 Mar 2026</td><td>Researchers at NetSPI showed that certain nested app authentication flows could return Microsoft Graph tokens without Conditional Access being applied. They told Microsoft on 17 Ma...</td><td>https://www.netspi.com/blog/technical-blog/cloud-pentesting/bypassing-microsoft-entra-conditional-access-policies-via-nested-app-authentication/</td></tr><tr><td>27 Jan 2026</td><td>Microsoft revised the Exchange Online timeline for ending Basic authentication on SMTP AUTH (the path older printers and scanners use). It stays unchanged until December 2026, is t...</td><td>https://techcommunity.microsoft.com/blog/exchange/updated-exchange-online-smtp-auth-basic-authentication-deprecation-timeline/4489835</td></tr><tr><td>22 Jan 2026</td><td>Okta Threat Intelligence described phishing kits built for phone callers. The caller steers what the user sees in step with their script, which defeats any MFA that is not phishing...</td><td>https://www.okta.com/blog/threat-intelligence/phishing-kits-adapt-to-the-script-of-callers/</td></tr><tr><td>1 Oct 2025</td><td>Microsoft began enforcing MFA for Azure resource management at the Azure Resource Manager layer (Phase 2), for CLI, PowerShell, SDKs and REST calls. Tenants could postpone to 1 Jul...</td><td>https://learn.microsoft.com/entra/identity/authentication/concept-mandatory-multifactor-authentication<br>https://azure.microsoft.com/blog/azure-mandatory-multifactor-authentication-phase-2-starting-in-october-2025/</td></tr><tr><td>8 to 20 Aug 2025</td><td>Stolen OAuth and refresh tokens from the Salesloft Drift integration were used to read data from many customers’ Salesforce instances between 8 and 18 August. Salesloft and Salesfo...</td><td>https://cloud.google.com/blog/topics/threat-intelligence/data-theft-salesforce-instances-via-salesloft-drift</td></tr><tr><td>9 Jul 2025</td><td>mcp-remote, a tool that connects AI clients to remote MCP servers, ran operating system commands from a crafted authorization endpoint sent by a malicious server (CVE-2025-6514, CV...</td><td>https://research.jfrog.com/vulnerabilities/mcp-remote-command-injection-rce-jfsa-2025-001290844/</td></tr><tr><td>14 to 18 Mar 2025</td><td>The GitHub Action tj-actions/changed-files was compromised and leaked CI/CD secrets through workflow logs (CVE-2025-30066). CISA added it to its Known Exploited Vulnerabilities lis...</td><td>https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066</td></tr><tr><td>16 Nov 2023, updated 29 Jul 2025</td><td>CISA and the FBI described a group that phones IT help desks, poses as an employee and has the password reset and MFA moved to a device they control.</td><td>https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a</td></tr></tbody></table></div><p>Each catalogue row also has its own source, listed in the register on the website. Where I read only an excerpt or a summary, the register says so.</p>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/appendix-c/"><span>Previous</span>Appendix C: Glossary</a><span></span></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

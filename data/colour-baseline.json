@@ -69,7 +69,8 @@
  ],
  "ai-governance-lab/guided/index.html": [
   "#05061a",
-  "#7df2d0"
+  "#7df2d0",
+  "#ffffff"
  ],
  "ai-governance-lab/implement/index.html": [
   "#7df2d0"
@@ -175,6 +176,7 @@
   "#1f2a40",
   "#4de2ff",
   "#52617a",
+  "#5b3cc4",
   "#7d8db0",
   "#7df2d0",
   "#8a5208",
@@ -418,6 +420,7 @@
   "#f9a8d4"
  ],
  "assets/lab-foot.css": [
+  "#4a4f68",
   "#c4bfe0"
  ],
  "assets/lab-nav.css": [
@@ -451,6 +454,7 @@
  ],
  "assets/nav.css": [
   "#0a6178",
+  "#0a6f84",
   "#0b6b47",
   "#14203a",
   "#25344a",
@@ -464,7 +468,8 @@
   "#b4bdd6",
   "#b9a2ff",
   "#eef1ff",
-  "#f4c46a"
+  "#f4c46a",
+  "#ffffff"
  ],
  "assets/newlab.css": [
   "#04121a",
@@ -527,6 +532,7 @@
   "#3b4a63",
   "#4de2ff",
   "#51607a",
+  "#5b3cc4",
   "#5b3fb8",
   "#7a4b00",
   "#93a1bd",
@@ -578,9 +584,9 @@
   "#6d28d9",
   "#6f87a8",
   "#7dd3fc",
+  "#8a4a06",
   "#9590b8",
   "#9fb2cc",
-  "#a1580a",
   "#a78bfa",
   "#b9b4d8",
   "#be123c",
@@ -809,7 +815,8 @@
  ],
  "ca-mfa-lab/guided/index.html": [
   "#05061a",
-  "#7df2d0"
+  "#7df2d0",
+  "#ffffff"
  ],
  "ca-mfa-lab/index.html": [
   "#05061a",
@@ -1069,7 +1076,8 @@
  ],
  "mcp-lab/guided/index.html": [
   "#05061a",
-  "#4de2ff"
+  "#4de2ff",
+  "#ffffff"
  ],
  "mcp-lab/in-depth/index.html": [
   "#4de2ff",
@@ -1133,7 +1141,8 @@
  ],
  "nhi-lab/guided/index.html": [
   "#05061a",
-  "#7df2d0"
+  "#7df2d0",
+  "#ffffff"
  ],
  "nhi-lab/index.html": [
   "#34d399",
@@ -1218,6 +1227,14 @@
   "#fbe3e9",
   "#fdeed5",
   "#ffffff"
+ ],
+ "scripts/resume/print.css": [
+  "#11131f",
+  "#1b1d2a",
+  "#3b3ed1",
+  "#4a4f68",
+  "#9aa0b8",
+  "#c9cdf2"
  ],
  "secure-india-exams/index.html": [
   "#006d5f",

@@ -29,7 +29,8 @@
     "first four",
     "made at round 5",
     "Written at round 5",
-    "from the first four rounds"
+    "from the first four rounds",
+    "the react version"
   ],
   "nhi_lab": {
     "cases_first_run": 27,
@@ -58,5 +59,6 @@
   "catalogue": {
     "cases": 442,
     "library_pages": 132
-  }
+  },
+  "case_studies": 22
 }

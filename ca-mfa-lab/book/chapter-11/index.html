@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: What I got wrong · sign-in lab book</title>
+    <meta name="description" content="What I got wrong From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-11/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 11: What I got wrong · sign-in lab book">
+    <meta property="og:description" content="What I got wrong From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-11/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-b526dca98c.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-b526dca98c.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 11: What I got wrong", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-11/"}]}, {"@type": "CollectionPage", "name": "Chapter 11: What I got wrong · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-11/", "description": "What I got wrong From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · Six wrong guesses, five kinds of mistake</p>
+          <h1 id="wb-h">What I got wrong</h1>
+          
+          <p>All six wrong guesses were in Run 2. Read together, they fall into five kinds of mistake. Each one is a habit I now check for before I write a guess.</p><aside class="wb-note wb-bad"><p><b>I did not say what I was counting (C01, C03).</b></p><p>I defined the bad outcome as an account takeover that nobody notices. The change notice and the exclusion alert make any takeover noticed, so removing the SMS fallback or the exclusion review alone never produced the bad outcome.</p></aside><aside class="wb-note wb-bad"><p><b>I treated controls as independent (A05).</b></p><p>For guest sign-ins, trusting the home tenant's MFA claim means a weak MFA at home satisfies the requirement in mine. Adding my own guest MFA rule did not help, and with the trust on, all controls on still let the bad outcome in.</p></aside><aside class="wb-note wb-bad"><p><b>I picked the wrong control as the one that mattered (Z21).</b></p><p>I said refresh token lifetime did not matter. The bad outcome was the attacker still having access after 24 hours, which the refresh token lifetime decides. My wrong guess was in the pair test with two controls off together.</p></aside><aside class="wb-note wb-bad"><p><b>I did not think through a control's own scope (X07).</b></p><p>The trusted-network exception was limited to the managed office. Guest wifi in the same range was not trusted, so MFA was required and the attacker was stopped without the device rule.</p></aside><aside class="wb-note wb-bad"><p><b>I counted a convention as a control (A03).</b></p><p>Separate admin accounts are a habit, not enforcement. I had the two cases reversed: with only separate accounts nothing stops the admin account reaching a risky app, while the group block does stop the daily account.</p></aside><h2>One mistake in my own code</h2><p>In the first pass of Run 2, my model said approval stops an unauthorised console change (P11). An unauthorised change skips approval by definition, so only the log can show it. I fixed the model and kept the first-pass script and results in the repository. This was a coding mistake, not a wrong guess, and I count it separately.</p>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/chapter-10/"><span>Previous</span>Chapter 10: Watch and end</a><a rel="next" href="/ca-mfa-lab/book/chapter-12/"><span>Next</span>Chapter 12: What changes the answer</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

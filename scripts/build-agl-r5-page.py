@@ -16,9 +16,9 @@ D = json.loads(D[D.index("{"):D.rindex("}") + 1])
 for c in D["controls"]:
     m = old.get(c["id"])
     if m:
-        ctl_rows += f'<tr><td data-label="Control"><b>{c["id"]}</b> {e(c["control"])}</td><td data-label="ISO 27001:2022">{e(m["iso27001"]) or "—"}</td><td data-label="NIST 800-53">{e(m["nist80053"]) or "—"}</td><td data-label="PCI DSS 4.0">{e(m["pci"]) or "—"}</td><td data-label="HIPAA">{e(m["hipaa"]) or "—"}</td></tr>'
+        ctl_rows += f'<tr><td data-label="Control"><b>{c["id"]}</b> {e(c["control"])}</td><td data-label="ISO 27001:2022">{e(m["iso27001"]) or "—"}</td><td data-label="NIST 800-53">{e(m["nist80053"]) or "—"}</td><td data-label="PCI DSS 4.0.1">{e(m["pci"]) or "—"}</td><td data-label="HIPAA">{e(m["hipaa"]) or "—"}</td></tr>'
 for c in R5["controls"]:
-    ctl_rows += f'<tr><td data-label="Control"><b>{c["id"]}</b> {e(c["control"])} <small>({", ".join(c["cases"])})</small></td><td data-label="ISO 27001:2022">{e(c["iso27001"])}</td><td data-label="NIST 800-53">{e(c["nist80053"])}</td><td data-label="PCI DSS 4.0">{e(c["pci"])}</td><td data-label="HIPAA">{e(c["hipaa"])}</td></tr>'
+    ctl_rows += f'<tr><td data-label="Control"><b>{c["id"]}</b> {e(c["control"])} <small>({", ".join(c["cases"])})</small></td><td data-label="ISO 27001:2022">{e(c["iso27001"])}</td><td data-label="NIST 800-53">{e(c["nist80053"])}</td><td data-label="PCI DSS 4.0.1">{e(c["pci"])}</td><td data-label="HIPAA">{e(c["hipaa"])}</td></tr>'
 block = f'''<!-- r5:start -->
       <section id="round5">
         <h2>Round five: gaps I found in my own audit</h2>
@@ -35,10 +35,10 @@ block = f'''<!-- r5:start -->
 
       <section id="frameworks">
         <h2>Where the controls sit in ISO 27001, NIST 800-53, PCI DSS and HIPAA</h2>
-        <p class="body-text">The first sixteen controls were mapped to AI frameworks (ISO 42001, NIST AI RMF, the EU AI Act and Indian guidance), and that table is on the <a href="/ai-governance-lab/run/#agl-ctl">run page</a>. Auditors in finance and healthcare also ask about the older standards, so this table shows the same controls against ISO/IEC 27001:2022 Annex A, NIST SP 800-53, PCI DSS 4.0 and HIPAA, plus seven new controls (C17 to C23) for the round-five cases. A dash means I did not map it.</p>
+        <p class="body-text">The first sixteen controls were mapped to AI frameworks (ISO 42001, NIST AI RMF, the EU AI Act and Indian guidance), and that table is on the <a href="/ai-governance-lab/run/#agl-ctl">run page</a>. Auditors in finance and healthcare also ask about the older standards, so this table shows the same controls against ISO/IEC 27001:2022 Annex A, NIST SP 800-53, PCI DSS 4.0.1 and HIPAA, plus seven new controls (C17 to C23) for the round-five cases. A dash means I did not map it.</p>
         <div class="tbl-wrap">
           <table class="tbl wrap-first stack">
-            <thead><tr><th>Control</th><th>ISO 27001:2022</th><th>NIST 800-53</th><th>PCI DSS 4.0</th><th>HIPAA</th></tr></thead>
+            <thead><tr><th>Control</th><th>ISO 27001:2022</th><th>NIST 800-53</th><th>PCI DSS 4.0.1</th><th>HIPAA</th></tr></thead>
             <tbody>{ctl_rows}</tbody>
           </table>
         </div>

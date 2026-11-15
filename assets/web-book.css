@@ -25,3 +25,4 @@
 .wb-pn a[rel=next]{text-align:right}.wb-pn span{display:block;font-size:.8rem;opacity:.75}
 .wb-pdf{font-size:.92rem;opacity:.9}
 @media (max-width:560px){.wb-pn{grid-template-columns:1fr}.wb-pn a[rel=next]{text-align:left}}
+.wb-grid td.wb-wrong{box-shadow:inset 0 0 0 2px currentColor}

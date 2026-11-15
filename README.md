@@ -1,6 +1,6 @@
 # roshantrivedi.co.in
 
-Source for [roshantrivedi.co.in](https://roshantrivedi.co.in), the personal site of **Roshan Trivedi**: privileged access, identity, three open labs, free books and 21 case studies. Plain HTML and Jekyll on GitHub Pages, behind Cloudflare.
+Source for [roshantrivedi.co.in](https://roshantrivedi.co.in), the personal site of **Roshan Trivedi**: privileged access, identity, three open labs, free books and 22 case studies. Plain HTML and Jekyll on GitHub Pages, behind Cloudflare.
 
 ![GitHub Pages](https://img.shields.io/badge/hosted%20on-GitHub%20Pages-4de2ff?style=flat-square) ![No build step](https://img.shields.io/badge/build%20step-none-34d399?style=flat-square) ![Strict CSP](https://img.shields.io/badge/CSP-no%20inline%20scripts-8b5cf6?style=flat-square) ![Licence](https://img.shields.io/badge/code-MIT%20·%20writing%20CC%20BY%204.0-f7c873?style=flat-square)
 

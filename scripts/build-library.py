@@ -35,7 +35,7 @@ WORDS = {  # checked in this order; the first collection with a match wins
     "pam": ["privileg", "pam", "vault", "break-glass", "credential", "jit", "recertif", "audit", "vendor", "migration", "platform"],
 }
 TYPES = [("/labs/cases/", "Catalogue"), ("/case-studies/", "Case study"), ("/writing/", "Article"), ("/book/", "Books"),
-         ("/tools/", "Tool"), ("/nhi-lab/book/", "Books"), ("/ca-mfa-lab/", "Lab"), ("/nhi-lab/", "Lab"), ("/ai-governance-lab/", "Lab"), ("/mcp-lab/", "Lab"),
+         ("/tools/", "Tool"), ("/nhi-lab/book/", "Books"), ("/ca-mfa-lab/book/", "Books"), ("/ca-mfa-lab/", "Lab"), ("/nhi-lab/", "Lab"), ("/ai-governance-lab/", "Lab"), ("/mcp-lab/", "Lab"),
          ("/mcp-human-approval-gateway/", "Lab"), ("/secure-india-exams/", "Research")]
 
 pal = (ROOT / "assets/palette-data.js").read_text(encoding="utf-8")
