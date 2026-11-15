@@ -1,6 +1,6 @@
 import csv, json, re, sys
 SITE="/home/claude/work/site/ca-mfa-lab"; ME="/home/claude/ca-mfa-lab"
-cat=list(csv.DictReader(open(SITE+"/ca-mfa-catalogue-v1.3.csv",encoding="utf-8")))
+cat=list(csv.DictReader(open(SITE+"/archive/ca-mfa-catalogue-v1.3.csv",encoding="utf-8")))
 add=list(csv.DictReader(open(ME+"/catalogue-v1.4-additions.csv",encoding="utf-8")))
 chk={"W01":("Confirmed","GitHub Docs OIDC reference: a trust condition must be set; the branch appears in the subject only when no environment is used and the run is not from a pull request."),
      "W05":("Confirmed with a qualifier","SonicWall advisory SNWLID-2026-0014 (6 Nov 2026) as quoted by SecurityWeek and others; CISA KEV. Vendor page itself not opened. SonicWall lists no workaround."),
@@ -32,6 +32,7 @@ for r in cat:
 allrows=cat+add+add6
 with open(ME+"/ca-mfa-catalogue-v1.7.csv","w",newline="",encoding="utf-8") as f:
     w=csv.DictWriter(f,fieldnames=FIELDS); w.writeheader(); [w.writerow({k:r.get(k,"") for k in FIELDS}) for r in allrows]
+import shutil; shutil.copyfile(ME+"/ca-mfa-catalogue-v1.7.csv", ME+"/ca-mfa-catalogue.csv")  # the always-latest copy (PUB-02)
 res={}; 
 r1=json.load(open(SITE+"/evidence/results-run1.json"))["rows"]
 for x in r1: res[x["id"]]={"cols":["No control","Control on","Control off alone"],"res":x["result"],"guess":x["guess"],"match":x["match"],"limres":x.get("limit_result"),"limdiff":bool(x.get("limit_diff"))}

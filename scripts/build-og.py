@@ -86,7 +86,7 @@ for p in sorted(ROOT.rglob("index.html")):
     if url in BADGE:
         label, accent = BADGE[url]
         label = "Case study · " + label
-        parts = SCENES[url]
+        parts = SCENES.get(url, ("idcard", "key", "shieldok"))  # newer case studies without a scene of their own
     else:
         label, accent = LABELS.get(key, "Roshan Trivedi"), "#a78bfa"
         parts = PAGE_SCENES.get(key, ("person", "shield", "check"))

@@ -31,12 +31,13 @@
     <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261115i" defer></script>
+        <script src="/assets/palette.js?v=20261115k" defer></script>
     <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
   <script src="/assets/nav.js?v=20261115i" defer></script>
   <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
       <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
     <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">
+    <link rel="stylesheet" href="/assets/vid-text.css?v=20261115a">
   </head>
   <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
@@ -63,7 +64,10 @@
         <!-- rv11:start -->
         <figure class="rvid" style="margin:18px 0;max-width:420px"><video controls playsinline preload="none" poster="/assets/share/agl-round-11-poster.jpg" style="width:100%;height:auto;border-radius:12px;background:#05061a"><source src="/assets/share/agl-round-11.mp4" type="video/mp4"></video><figcaption class="body-text" style="font-size:.9em">Round 11 as a short video, no sound: Agents handing work to agents, keys and mergers. <a href="/assets/share/agl-round-11.mp4">Download the MP4</a> (2.3 MB).</figcaption></figure>
         <!-- rv11:end -->
-        <p class="body-text">I wrote the expected result for 12 new cases (D1 to D12) and saved them before writing any code, on 25 Oct 2026 at 04:10 IST. The first run gave 11 of 12 as I guessed. The one that differed, D11, was a fault in my own test: it looked for one number written three different ways, so a hit in one document counted for all three. I fixed the test, not the guess, and all 12 then came out as guessed. I also reworked D12 after the first run, because the real limit is data handed from one agent to another, not permissions. Both result files are kept. I then switched off 11 controls one at a time in a copy of the code, and the matching case noticed 11 of 11. D12 has no such check, because it is a limit.</p>
+        <!-- vt:start -->
+        <details class="vid-text"><summary>What the video shows</summary><p>Silent, with on-screen text. In order:</p><ol><li>The question for the round, and a note that all data is made up.</li><li>Guesses first: when the expected results were saved, before any code, with the file's SHA-256.</li><li>A person starts a job for an agent: The job is tied to the person who started it.</li><li>The agent hands part of the job to another agent: The next agent gets less, never more: a token cut down to what it is registered for and what the task needs.</li><li>The hand-off cannot be replayed: A signed request or message carries a one-time number and a short window.</li><li>The gateway signs; the executor only checks: The gateway signs with a private key.</li><li>High-risk actions need a second signature: Deleting a user is not decided by one signing point.</li><li>The log names the person and every hop: One line shows the person who started the job and the agents it passed through, so the first question after an incident has an answer.</li><li>The person leaves, and everything handed on stops: Each handed-on token checks the one it came from, back to the start.</li><li>Companies merge, and IDs get a prefix: Two staff both called S001 do not become one person.</li><li>Documents are masked after normalising: A PAN written in lower case or with a space is masked like one written in capitals.</li><li>How many cases came out as guessed, how many switched-off controls were noticed, and the run on my MacBook Air.</li><li>What the round does not show.</li></ol></details>
+        <!-- vt:end -->
+                        <p class="body-text">I wrote the expected result for 12 new cases (D1 to D12) and saved them before writing any code, on 25 Oct 2026 at 04:10 IST. The first run gave 11 of 12 as I guessed. The one that differed, D11, was a fault in my own test: it looked for one number written three different ways, so a hit in one document counted for all three. I fixed the test, not the guess, and all 12 then came out as guessed. I also reworked D12 after the first run, because the real limit is data handed from one agent to another, not permissions. Both result files are kept. I then switched off 11 controls one at a time in a copy of the code, and the matching case noticed 11 of 11. D12 has no such check, because it is a limit.</p>
         <p class="body-text">The SHA-256 of the guesses file is <code style="word-break:break-all;font-size:1.08em">4fd307467dbe1a9975fd984edcb3bb69f2cb4cc8b43c4e428f6f32961ff350ad</code>. You can <a href="/assets/ai-governance-lab-round-eleven-guesses.json">download the file</a> and check it.</p>
         <div class="tbl-wrap">
           <table class="tbl wrap-first stack">
@@ -96,7 +100,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AI governance lab, round 11: Agents handing work to agents, keys and mergers","dateModified":"2026-11-14","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"url":"https://roshantrivedi.co.in/ai-governance-lab/round-11/","isPartOf":{"@type":"WebPage","url":"https://roshantrivedi.co.in/ai-governance-lab/"},"license":"https://creativecommons.org/licenses/by/4.0/"}</script>
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
   <script defer src="/assets/agl-lifecycle.js?v=20261025a"></script>
-  <script defer src="/assets/chatbot-widget.js?v=20261115j"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261115k"></script>
   <script defer src="/assets/events.js?v=20261115a"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>

@@ -31,12 +31,13 @@
     <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261115i" defer></script>
+        <script src="/assets/palette.js?v=20261115k" defer></script>
     <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
   <script src="/assets/nav.js?v=20261115i" defer></script>
   <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
       <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
     <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">
+    <link rel="stylesheet" href="/assets/vid-text.css?v=20261115a">
   </head>
   <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
@@ -63,7 +64,10 @@
         <!-- rv12:start -->
         <figure class="rvid" style="margin:18px 0;max-width:420px"><video controls playsinline preload="none" poster="/assets/share/agl-round-12-poster.jpg" style="width:100%;height:auto;border-radius:12px;background:#05061a"><source src="/assets/share/agl-round-12.mp4" type="video/mp4"></video><figcaption class="body-text" style="font-size:.9em">Round 12 as a short video, no sound: Who approved it, what exactly, and when. <a href="/assets/share/agl-round-12.mp4">Download the MP4</a> (1.8 MB).</figcaption></figure>
         <!-- rv12:end -->
-        <p class="body-text">I wrote the expected result for 7 new cases (F1 to F7) and saved them before writing any code, on 25 Oct 2026 at 04:58 IST. The first run gave 7 of 7 as I guessed. That is a warning about my guesses, not good news about the controls: they were easy. Switching off one control at a time, in a copy of the code, was noticed by the matching case 6 of 6 times. F7 is a limit, so it has no control to switch off. The files are on the <a href="/ai-governance-lab/run/#real-output">run page</a>.</p>
+        <!-- vt:start -->
+        <details class="vid-text"><summary>What the video shows</summary><p>Silent, with on-screen text. In order:</p><ol><li>The question for the round, and a note that all data is made up.</li><li>Guesses first: when the expected results were saved, before any code, with the file's SHA-256.</li><li>A person raises a request: A payment change is raised.</li><li>Someone else approves it: The approver must be a different person.</li><li>A single denial stops it: If one approver says no and another says yes, the request does not run.</li><li>Batches leave out the big ones: Twenty small requests can be approved in one click.</li><li>The approval lapses: An approval is good for 24 hours.</li><li>The approver leaves, and the queue moves: Requests waiting for a person who has left move to their manager, so nothing waits for someone who no longer exists.</li><li>What nobody can see: Two people can approve each other's requests and meet every rule above.</li><li>How many cases came out as guessed, how many switched-off controls were noticed, and the run on my MacBook Air.</li><li>What the round does not show.</li></ol></details>
+        <!-- vt:end -->
+                        <p class="body-text">I wrote the expected result for 7 new cases (F1 to F7) and saved them before writing any code, on 25 Oct 2026 at 04:58 IST. The first run gave 7 of 7 as I guessed. That is a warning about my guesses, not good news about the controls: they were easy. Switching off one control at a time, in a copy of the code, was noticed by the matching case 6 of 6 times. F7 is a limit, so it has no control to switch off. The files are on the <a href="/ai-governance-lab/run/#real-output">run page</a>.</p>
         <p class="body-text">The SHA-256 of the guesses file is <code style="word-break:break-all;font-size:1.08em">96da9fc693b4adea723715a95c26a4e5c1cce74c5a296549fc8028ed1055d20e</code>. You can <a href="/assets/ai-governance-lab-round-twelve-guesses.json">download the file</a> and check it.</p>
         <div class="tbl-wrap">
           <table class="tbl wrap-first stack">
@@ -95,7 +99,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AI governance lab, round 12: Who approved, what exactly, and when","dateModified":"2026-11-14","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"url":"https://roshantrivedi.co.in/ai-governance-lab/round-12/","isPartOf":{"@type":"WebPage","url":"https://roshantrivedi.co.in/ai-governance-lab/"},"license":"https://creativecommons.org/licenses/by/4.0/"}</script>
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
   <script defer src="/assets/agl-lifecycle.js?v=20261025a"></script>
-  <script defer src="/assets/chatbot-widget.js?v=20261115j"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261115k"></script>
   <script defer src="/assets/events.js?v=20261115a"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>

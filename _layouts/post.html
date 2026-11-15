@@ -101,10 +101,11 @@
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
     <link rel="stylesheet" href="/assets/reading.css?v=20261104h">
       <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
-      <script src="/assets/palette.js?v=20261115i" defer></script>
+      <script src="/assets/palette.js?v=20261115k" defer></script>
     <script src="/assets/nav.js?v=20261115i" defer></script>
       <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
     <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+    <link rel="stylesheet" href="/assets/signup-topics.css?v=20261115a">
   </head>
 <body class="read post">
   <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/" aria-current="page">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
@@ -124,7 +125,8 @@
     <form class="signup" action="https://buttondown.com/api/emails/embed-subscribe/trivedi" method="post" target="_blank">
       <label for="bd-email">Or get new write-ups by email</label>
       <div class="row"><input type="email" name="email" id="bd-email" autocomplete="email" placeholder="you@company.com" required><button type="submit">Subscribe</button></div>
-      <small>One or two emails a month. Unsubscribe any time. Sent with Buttondown.</small>
+      <!-- topics:start --><fieldset class="su-topics"><legend>Which topics? Optional. Leave them all unticked to get everything.</legend><label><input type="checkbox" name="tag" value="pam"> Privileged access and credentials</label><label><input type="checkbox" name="tag" value="nhi"> Machine identities and secrets</label><label><input type="checkbox" name="tag" value="ai-agents"> AI agents and AI governance</label><label><input type="checkbox" name="tag" value="sign-in"> Sign-in, MFA and conditional access</label></fieldset><!-- topics:end -->
+              <small>One or two emails a month. Unsubscribe any time. Sent with Buttondown.</small>
     </form>
   </aside>
   {% if page.previous or page.next %}<nav class="post-more" aria-label="More writing">
@@ -136,7 +138,7 @@
     <span><a href="/writing/">More writing</a> &middot; <a href="/case-studies/">Case studies</a></span>
   </footer>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a" />
-    <script defer src="/assets/chatbot-widget.js?v=20261115j"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261115k"></script>
     <script defer src="/assets/events.js?v=20261115a"></script>
     {% if page.diagrams %}<script src="/assets/diagram.js" defer></script>{% endif %}
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>

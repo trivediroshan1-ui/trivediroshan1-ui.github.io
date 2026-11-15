@@ -63,12 +63,13 @@
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
     <link rel="stylesheet" href="/assets/reading.css?v=20261104h">
       <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
-      <script src="/assets/palette.js?v=20261115i" defer></script>
+      <script src="/assets/palette.js?v=20261115k" defer></script>
     <script src="/assets/nav.js?v=20261115i" defer></script>
       <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Agentic AI Identity Governance", "item": "https://roshantrivedi.co.in/case-studies/agentic-ai-identity-governance/"}]}]}</script>
       <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
     <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
       <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
+    <link rel="stylesheet" href="/assets/vid-text.css?v=20261115a">
   </head>
   <body class="read" style="--c:#4de2ff">
     <a class="skip" href="#main">Skip to content</a>
@@ -368,7 +369,11 @@
           </video>
           <figcaption>A 55-second, captioned walk through who is acting when an AI agent calls a tool, and where the approval step sits.</figcaption>
         </figure>
-      </section>
+        <!-- mcpvid:end -->
+        <!-- vt:start -->
+        <details class="vid-text"><summary>What the video shows</summary><p>55 seconds, captioned. In order:</p><ol><li>Who is acting when an AI agent calls a tool? Rebuilt after feedback; open source; real-environment testing still pending.</li><li>Four hops between a person and an account: person, host app, MCP client, MCP server, downstream API. The host runs one client per server, and the tool touches a real account.</li><li>Three identities hide in one tool call: the user who authorises the client, the agent or client holding a token meant for one server, and the server with its own downstream credential. Tokens are audience-bound and never passed through.</li><li>Authenticated is not the same as approved: agent, policy, a human who is not the requester, then a hash-bound, single-use, time-limited grant, then execute. The AI analyst is advisory only.</li><li>What the gateway enforces: approval is tied to a hash of the exact request (a changed argument fails with binding_mismatch), a grant works once (replay_blocked), requesters cannot approve their own requests, unknown tools fail closed, and every step lands in a hash-chained audit log.</li><li>What if the response is lost: reserve with an idempotency key, dispatch, and if the outcome is unknown, no blind retry; a reviewer reconciles after five minutes.</li><li>What is tested and what is not: 203 automated tests pass; tools are synthetic and reviewers simulated; the prompt-injection check is a heuristic; a run in a real environment with a third-party MCP client is still pending.</li></ol></details>
+        <!-- vt:end -->
+                      </section>
 
       <section id="sources">
         <h2>Sources</h2>
@@ -411,7 +416,7 @@
 
     <script src="/assets/diagram.js" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a" />
-    <script defer src="/assets/chatbot-widget.js?v=20261115j"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261115k"></script>
     <script defer src="/assets/events.js?v=20261115a"></script>
       <script defer src="/assets/casestudy.js?v=20261021b"></script>
       <script defer src="/assets/cs-discuss.js?v=20261104a"></script>

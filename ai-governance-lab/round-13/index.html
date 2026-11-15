@@ -31,12 +31,13 @@
     <script src="/assets/theme.js?v=20261022b"></script>
     <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
     <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
-        <script src="/assets/palette.js?v=20261115i" defer></script>
+        <script src="/assets/palette.js?v=20261115k" defer></script>
     <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
   <script src="/assets/nav.js?v=20261115i" defer></script>
   <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
       <link rel="stylesheet" href="/assets/agl-lifecycle.css?v=20261111a">
     <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">
+    <link rel="stylesheet" href="/assets/vid-text.css?v=20261115a">
   </head>
   <body style="--c:#7df2d0">
     <a class="skip" href="#main">Skip to content</a>
@@ -63,7 +64,10 @@
         <!-- rv13:start -->
         <figure class="rvid" style="margin:18px 0;max-width:420px"><video controls playsinline preload="none" poster="/assets/share/agl-round-13-poster.jpg" style="width:100%;height:auto;border-radius:12px;background:#05061a"><source src="/assets/share/agl-round-13.mp4" type="video/mp4"></video><figcaption class="body-text" style="font-size:.9em">Round 13 as a short video, no sound: Finding documents by meaning. <a href="/assets/share/agl-round-13.mp4">Download the MP4</a> (2.0 MB).</figcaption></figure>
         <!-- rv13:end -->
-        <p class="body-text">I wrote the expected result for 6 new cases (S1 to S6) and saved them before writing any code, on 25 Oct 2026 at 05:14 IST. I ran them with a real embedding model on my MacBook Air: <b>sentence-transformers all-MiniLM-L6-v2</b>, about 90 MB, run locally. The cases came out 6 of 6 as I guessed. Switching off one control at a time, in a copy of the code, was noticed by the matching case 5 of 5 times. S6 is a limit, so it has no control to switch off. In the sandbox, which cannot download a real model, a toy stand-in gave the same verdicts (6 of 6 and 5 of 5); the toy is not a real model and proves only that the code works.</p>
+        <!-- vt:start -->
+        <details class="vid-text"><summary>What the video shows</summary><p>Silent, with on-screen text. In order:</p><ol><li>The question for the round, and a note that all data is made up.</li><li>Guesses first: when the expected results were saved, before any code, with the file's SHA-256.</li><li>A person asks a question: A support agent or a former HR person asks about pay, in their own words.</li><li>The question and the documents become numbers: A small model turns the question and each document into numbers, so that similar meanings sit close together.</li><li>Permissions are checked before the ranking: The person's team is read from the live directory, and restricted documents are removed before the best matches are chosen.</li><li>Sources show only what the person may see: A title is not shown if the text is not.</li><li>Personal numbers were masked when the text went in: An Aadhaar-format number was replaced with a mask when the note was indexed, so it stays hidden however the note is found.</li><li>What nobody checks: Two documents that anyone may read can add up to a fact that is restricted.</li><li>How many cases came out as guessed, how many switched-off controls were noticed, and the run on my MacBook Air.</li><li>What the round does not show.</li></ol></details>
+        <!-- vt:end -->
+                        <p class="body-text">I wrote the expected result for 6 new cases (S1 to S6) and saved them before writing any code, on 25 Oct 2026 at 05:14 IST. I ran them with a real embedding model on my MacBook Air: <b>sentence-transformers all-MiniLM-L6-v2</b>, about 90 MB, run locally. The cases came out 6 of 6 as I guessed. Switching off one control at a time, in a copy of the code, was noticed by the matching case 5 of 5 times. S6 is a limit, so it has no control to switch off. In the sandbox, which cannot download a real model, a toy stand-in gave the same verdicts (6 of 6 and 5 of 5); the toy is not a real model and proves only that the code works.</p>
         <p class="body-text">The SHA-256 of the guesses file is <code style="word-break:break-all;font-size:1.08em">9fd8ab82ea341b13390cb49e518dacbbe8c1d335e391641a098dd9e1302e6f7d</code>. You can <a href="/assets/ai-governance-lab-round-thirteen-guesses.json">download the file</a> and check it.</p>
         <div class="tbl-wrap">
           <table class="tbl wrap-first stack">
@@ -100,7 +104,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"AI governance lab, round 13: Finding documents by meaning","dateModified":"2026-11-14","author":{"@type":"Person","name":"Roshan Trivedi","url":"https://roshantrivedi.co.in/"},"url":"https://roshantrivedi.co.in/ai-governance-lab/round-13/","isPartOf":{"@type":"WebPage","url":"https://roshantrivedi.co.in/ai-governance-lab/"},"license":"https://creativecommons.org/licenses/by/4.0/"}</script>
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
   <script defer src="/assets/agl-lifecycle.js?v=20261025a"></script>
-  <script defer src="/assets/chatbot-widget.js?v=20261115j"></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261115k"></script>
   <script defer src="/assets/events.js?v=20261115a"></script>
   <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
   </body>
