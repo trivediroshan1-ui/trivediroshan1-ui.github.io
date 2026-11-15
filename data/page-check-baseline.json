@@ -492,6 +492,9 @@
  "/copyright/": [
   "small-text kbd:Ctrl K"
  ],
+ "/cover-letter/": [
+  "small-text kbd:Ctrl K"
+ ],
  "/design-system/": [
   "small-text kbd:Ctrl K",
   "tap-target a:roshantrivedi.co.in",
