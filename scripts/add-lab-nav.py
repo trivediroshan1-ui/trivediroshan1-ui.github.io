@@ -17,8 +17,10 @@ for lab, v in lab_nav.LABS.items():
             continue
         s = p.read_text(encoding="utf-8")
         nav = lab_nav.render(lab, path)
-        s = re.sub(r'<link rel="stylesheet" href="/assets/lab-nav\.css[^"]*">\s*', "", s)
-        s = s.replace("</head>", "  " + LINK + "\n  </head>", 1)
+        if "/assets/lab-nav.css" in s:  # update in place, so indentation never drifts
+            s = re.sub(r'<link rel="stylesheet" href="/assets/lab-nav\.css[^"]*">', LINK, s, count=1)
+        else:
+            s = s.replace("</head>", "  " + LINK + "\n  </head>", 1)
         if '<nav class="lab-nav"' in s:
             s = re.sub(r'<nav class="lab-nav".*?</nav>', lambda m: nav, s, count=1, flags=re.S)
         elif '<nav class="nsub"' in s:

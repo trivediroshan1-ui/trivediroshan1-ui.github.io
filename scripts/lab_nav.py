@@ -10,7 +10,7 @@ LABS = {
                  ("Results", "/ca-mfa-lab/#result"), ("Cases", "/ca-mfa-lab/register/"),
                  ("What I got wrong", "/ca-mfa-lab/what-i-got-wrong/"), ("Try it", "/ca-mfa-lab/virtual-lab/"),
                  ("Book", "/ca-mfa-lab/ca-mfa-lab-book.pdf")],
-        more=[("The method", "/ca-mfa-lab/method/"), ("Run 4", "/ca-mfa-lab/run-4/"), ("Run it in the browser", "/ca-mfa-lab/virtual-lab/run/"),
+        more=[("10-minute guide", "/ca-mfa-lab/guided/"), ("The method", "/ca-mfa-lab/method/"), ("Run 4", "/ca-mfa-lab/run-4/"), ("Run it in the browser", "/ca-mfa-lab/virtual-lab/run/"),
               ("Sources and events", "/ca-mfa-lab/sources/"), ("How I test", "/method/"), ("Related: NHI lab", "/nhi-lab/")]),
     "nhi": dict(
         name="Non-human identity lab",
@@ -18,7 +18,7 @@ LABS = {
                  ("Results", "/nhi-lab/audit/"), ("Cases", "/nhi-lab/register/"),
                  ("What I got wrong", "/nhi-lab/audit/#wrong"), ("Try it", "/nhi-lab/explainer/"),
                  ("Book", "/nhi-lab/nhi-lab-book.pdf")],
-        more=[("The method", "/nhi-lab/method/"), ("Sources and market", "/nhi-lab/market/"), ("Round 18", "/nhi-lab/round-18/"), ("Round 19", "/nhi-lab/round-19/"),
+        more=[("10-minute guide", "/nhi-lab/guided/"), ("The method", "/nhi-lab/method/"), ("Sources and market", "/nhi-lab/market/"), ("Round 18", "/nhi-lab/round-18/"), ("Round 19", "/nhi-lab/round-19/"),
               ("Stage 2", "/nhi-lab/stage-2/"), ("Roadmap", "/nhi-lab/roadmap/"), ("How I test", "/method/")]),
     "agl": dict(
         name="AI governance lab",
@@ -26,7 +26,7 @@ LABS = {
                  ("Results", "/ai-governance-lab/evidence/"), ("Cases", "/ai-governance-lab/cases/"),
                  ("What I got wrong", "/ai-governance-lab/what-i-got-wrong/"), ("Try it", "/ai-governance-lab/try/"),
                  ("Book", "/assets/ai-governance-lab-book.pdf")],
-        more=[("Implement it", "/ai-governance-lab/implement/"), ("Run it", "/ai-governance-lab/run/"),
+        more=[("10-minute guide", "/ai-governance-lab/guided/"), ("Implement it", "/ai-governance-lab/implement/"), ("Run it", "/ai-governance-lab/run/"),
               ("Mac commands", "/ai-governance-lab/mac/"), ("The story", "/ai-governance-lab/story/"),
               ("Transcripts", "/ai-governance-lab/transcripts/"), ("Appendix", "/ai-governance-lab/appendix/"),
               ("Rounds 5 to 13", "/ai-governance-lab/#rounds"), ("Standards map", "/ai-governance-lab/frameworks/"), ("Errata", "/ai-governance-lab/errata/"), ("How I test", "/method/")]),
@@ -36,7 +36,7 @@ LABS = {
                  ("Results", "/mcp-lab/results/"), ("Cases", "/mcp-lab/use-cases/"),
                  ("What I got wrong", "/mcp-lab/#wrong"), ("Try it", "/mcp-lab/portal/"),
                  ("Book", "/assets/who-approved-that-book.pdf")],
-        more=[("What the numbers mean", "/mcp-lab/#numbers"), ("Browser lab", "/mcp-human-approval-gateway/"),
+        more=[("10-minute guide", "/mcp-lab/guided/"), ("What the numbers mean", "/mcp-lab/#numbers"), ("Browser lab", "/mcp-human-approval-gateway/"),
               ("Full report (PDF)", "/assets/humangate-mcp-lab-final-report.pdf"), ("How I test", "/method/")]),
 }
 

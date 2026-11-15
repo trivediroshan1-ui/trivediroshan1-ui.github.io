@@ -7,19 +7,19 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 V = "20261114f"
 LABS = {
   "ca": {"dir": "ca-mfa-lab", "book": "/ca-mfa-lab/ca-mfa-lab-book.pdf",
-         "order": [("/ca-mfa-lab/", "Overview"), ("/ca-mfa-lab/framework/", "Framework"), ("/ca-mfa-lab/virtual-lab/", "Virtual lab"),
+         "order": [("/ca-mfa-lab/", "Overview"), ("/ca-mfa-lab/guided/", "10-minute guide"), ("/ca-mfa-lab/framework/", "Framework"), ("/ca-mfa-lab/virtual-lab/", "Virtual lab"),
                    ("/ca-mfa-lab/register/", "Register"), ("/ca-mfa-lab/run-4/", "Run 4"), ("/ca-mfa-lab/sources/", "Sources and events")]},
   "nhi": {"dir": "nhi-lab", "book": "/nhi-lab/nhi-lab-book.pdf",
-          "order": [("/nhi-lab/", "Overview"), ("/nhi-lab/framework/", "Framework"), ("/nhi-lab/market/", "Market"), ("/nhi-lab/method/", "What I did"),
+          "order": [("/nhi-lab/", "Overview"), ("/nhi-lab/guided/", "10-minute guide"), ("/nhi-lab/framework/", "Framework"), ("/nhi-lab/market/", "Market"), ("/nhi-lab/method/", "What I did"),
                     ("/nhi-lab/audit/", "Audit data"), ("/nhi-lab/round-18/", "Round 18"), ("/nhi-lab/round-19/", "Round 19"),
                     ("/nhi-lab/register/", "Register"), ("/nhi-lab/stage-2/", "Stage 2"), ("/nhi-lab/roadmap/", "Roadmap"), ("/nhi-lab/explainer/", "Explainer")]},
   "agl": {"dir": "ai-governance-lab", "book": "/assets/ai-governance-lab-book.pdf",
-          "order": [("/ai-governance-lab/", "Overview"), ("/ai-governance-lab/run/", "Run it"), ("/ai-governance-lab/try/", "Try it"),
+          "order": [("/ai-governance-lab/", "Overview"), ("/ai-governance-lab/guided/", "10-minute guide"), ("/ai-governance-lab/run/", "Run it"), ("/ai-governance-lab/try/", "Try it"),
                     ("/ai-governance-lab/cases/", "Every case"), ("/ai-governance-lab/diagrams/", "Diagrams"), ("/ai-governance-lab/evidence/", "Evidence"),
                     ("/ai-governance-lab/what-i-got-wrong/", "What I got wrong"), ("/ai-governance-lab/story/", "The story"), ("/ai-governance-lab/mac/", "Real assistant tests"),
                     ("/ai-governance-lab/transcripts/", "Transcripts"), ("/ai-governance-lab/implement/", "Implement it"), ("/ai-governance-lab/appendix/", "Appendix")]},
   "mcp": {"dir": None, "book": "/assets/who-approved-that-book.pdf",
-          "order": [("/mcp-lab/", "Overview"), ("/mcp-lab/results/", "Results"), ("/mcp-lab/use-cases/", "Use cases"),
+          "order": [("/mcp-lab/", "Overview"), ("/mcp-lab/guided/", "10-minute guide"), ("/mcp-lab/results/", "Results"), ("/mcp-lab/use-cases/", "Use cases"),
                     ("/mcp-lab/in-depth/", "In depth"), ("/mcp-lab/portal/", "Portal")]},
 }
 CSS = f'<link rel="stylesheet" href="/assets/lab-foot.css?v={V}">'
