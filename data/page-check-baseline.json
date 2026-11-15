@@ -1,0 +1,843 @@
+{
+ "/": [
+  "no-name a.bb-cover:",
+  "small-text kbd:Ctrl K",
+  "tap-target button.ns-x:×",
+  "tap-target button.rt-sbtn:SearchCtrl K",
+  "tap-target input:"
+ ],
+ "/about/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/appendix/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Glossary",
+  "tap-target a:Scope and out of scope",
+  "tap-target a:The held-out cases",
+  "tap-target a:The numbers in one place",
+  "tap-target a:Where everything is"
+ ],
+ "/ai-governance-lab/cases/": [
+  "small-text kbd:Ctrl K",
+  "tap-target input:"
+ ],
+ "/ai-governance-lab/diagrams/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/errata/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/evidence/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/frameworks/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/guided/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/implement/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/mac/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Download as a text file"
+ ],
+ "/ai-governance-lab/round-10/": [
+  "small-text kbd:Ctrl K",
+  "small-text li:Baseline access",
+  "small-text li:End date",
+  "small-text li:Hire event",
+  "tap-target a:C1",
+  "tap-target a:C10",
+  "tap-target a:C11",
+  "tap-target a:C12",
+  "tap-target a:C2",
+  "tap-target a:C3",
+  "tap-target a:C4",
+  "tap-target a:C5",
+  "tap-target a:C6",
+  "tap-target a:C7",
+  "tap-target a:C8",
+  "tap-target a:C9"
+ ],
+ "/ai-governance-lab/round-11/": [
+  "small-text kbd:Ctrl K",
+  "small-text li:Origin recorded",
+  "small-text li:Person",
+  "small-text li:Token",
+  "tap-target a:D1",
+  "tap-target a:D10",
+  "tap-target a:D11",
+  "tap-target a:D12",
+  "tap-target a:D2",
+  "tap-target a:D3",
+  "tap-target a:D4",
+  "tap-target a:D5",
+  "tap-target a:D6",
+  "tap-target a:D7",
+  "tap-target a:D8",
+  "tap-target a:D9"
+ ],
+ "/ai-governance-lab/round-12/": [
+  "small-text kbd:Ctrl K",
+  "small-text li:Fingerprint",
+  "small-text li:Request",
+  "small-text li:Requester",
+  "tap-target a:F1",
+  "tap-target a:F2",
+  "tap-target a:F3",
+  "tap-target a:F4",
+  "tap-target a:F5",
+  "tap-target a:F6",
+  "tap-target a:F7"
+ ],
+ "/ai-governance-lab/round-13/": [
+  "small-text kbd:Ctrl K",
+  "small-text li:Person",
+  "small-text li:Question",
+  "small-text li:Team",
+  "tap-target a:S1",
+  "tap-target a:S2",
+  "tap-target a:S3",
+  "tap-target a:S4",
+  "tap-target a:S5",
+  "tap-target a:S6"
+ ],
+ "/ai-governance-lab/round-5/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:E15",
+  "tap-target a:E16",
+  "tap-target a:I13",
+  "tap-target a:I14",
+  "tap-target a:I15",
+  "tap-target a:I16",
+  "tap-target a:I17",
+  "tap-target a:I18",
+  "tap-target a:R1",
+  "tap-target a:R2",
+  "tap-target a:V1",
+  "tap-target a:V2",
+  "tap-target a:V3",
+  "tap-target a:V4"
+ ],
+ "/ai-governance-lab/round-6/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:T1",
+  "tap-target a:T10",
+  "tap-target a:T11",
+  "tap-target a:T12",
+  "tap-target a:T13",
+  "tap-target a:T14",
+  "tap-target a:T15",
+  "tap-target a:T16",
+  "tap-target a:T17",
+  "tap-target a:T18",
+  "tap-target a:T2",
+  "tap-target a:T3",
+  "tap-target a:T4",
+  "tap-target a:T5",
+  "tap-target a:T6",
+  "tap-target a:T7",
+  "tap-target a:T8",
+  "tap-target a:T9"
+ ],
+ "/ai-governance-lab/round-7/": [
+  "small-text kbd:Ctrl K",
+  "small-text li:Address",
+  "small-text li:Contact",
+  "small-text li:Date of birth",
+  "small-text li:Job code",
+  "small-text li:Manager",
+  "small-text li:Name",
+  "small-text li:Start date",
+  "tap-target a:H1",
+  "tap-target a:H10",
+  "tap-target a:H11",
+  "tap-target a:H12",
+  "tap-target a:H2",
+  "tap-target a:H3",
+  "tap-target a:H4",
+  "tap-target a:H5",
+  "tap-target a:H6",
+  "tap-target a:H7",
+  "tap-target a:H8",
+  "tap-target a:H9"
+ ],
+ "/ai-governance-lab/round-8/": [
+  "small-text kbd:Ctrl K",
+  "small-text li:API change log",
+  "small-text li:Caller",
+  "small-text li:Credential id",
+  "tap-target a:B1",
+  "tap-target a:B10",
+  "tap-target a:B11",
+  "tap-target a:B12",
+  "tap-target a:B2",
+  "tap-target a:B3",
+  "tap-target a:B4",
+  "tap-target a:B5",
+  "tap-target a:B6",
+  "tap-target a:B7",
+  "tap-target a:B8",
+  "tap-target a:B9"
+ ],
+ "/ai-governance-lab/round-9/": [
+  "small-text kbd:Ctrl K",
+  "small-text li:Person's identity",
+  "small-text li:Question",
+  "tap-target a:Q1",
+  "tap-target a:Q10",
+  "tap-target a:Q11",
+  "tap-target a:Q12",
+  "tap-target a:Q2",
+  "tap-target a:Q3",
+  "tap-target a:Q4",
+  "tap-target a:Q5",
+  "tap-target a:Q6",
+  "tap-target a:Q7",
+  "tap-target a:Q8",
+  "tap-target a:Q9"
+ ],
+ "/ai-governance-lab/run/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/story/": [
+  "small-text kbd:Ctrl K",
+  "tap-target summary:Read the video as text"
+ ],
+ "/ai-governance-lab/transcripts/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/try/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai-governance-lab/what-i-got-wrong/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ai/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/book/": [
+  "contrast a.skip:Skip to content",
+  "small-text kbd:Ctrl K",
+  "tap-target a.home:Site →"
+ ],
+ "/ca-mfa-lab/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Get lab updates by email",
+  "tap-target a:Read the LinkedIn article: where the cas",
+  "tap-target a:Read the newsletter issue on this lab",
+  "tap-target a:Run it in your browser",
+  "tap-target a:The book (PDF, 72 pages)",
+  "tap-target a:The practitioner guide this lab tests"
+ ],
+ "/ca-mfa-lab/framework/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Download the book (PDF)"
+ ],
+ "/ca-mfa-lab/guided/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ca-mfa-lab/method/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Lab overview",
+  "tap-target a:What I got wrong"
+ ],
+ "/ca-mfa-lab/register/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Older versions"
+ ],
+ "/ca-mfa-lab/run-4/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ca-mfa-lab/sources/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CISA advisory",
+  "tap-target a:CISA alert",
+  "tap-target a:Exchange Team blog",
+  "tap-target a:Google Cloud blog",
+  "tap-target a:JFrog advisory",
+  "tap-target a:NetSPI blog",
+  "tap-target a:Okta blog",
+  "tap-target a:Okta newsroom",
+  "tap-target a:cloudsecurityalliance.org",
+  "tap-target a:docs.github.com",
+  "tap-target a:modelcontextprotocol.io",
+  "tap-target a:rfc-editor.org"
+ ],
+ "/ca-mfa-lab/virtual-lab/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ca-mfa-lab/virtual-lab/run/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/ca-mfa-lab/what-i-got-wrong/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:How the method works",
+  "tap-target a:Lab overview"
+ ],
+ "/case-studies/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Machine identity lab, round 19"
+ ],
+ "/case-studies/access-recertification/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CIS Controls v8, Control 5: Account Mana"
+ ],
+ "/case-studies/agentic-ai-identity-governance/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Model Context Protocol, Authorization (d",
+  "tap-target a:Model Context Protocol, Security Best Pr",
+  "tap-target a:NIST AI Risk Management Framework, AI RM",
+  "tap-target a:NIST SP 800-207, Zero Trust Architecture",
+  "tap-target a:OWASP AI Agent Security Cheat Sheet",
+  "tap-target a:OWASP GenAI Security Project, Top 10 for",
+  "tap-target a:OWASP Top 10 for LLM Applications 2025, ",
+  "tap-target a:RFC 8693, OAuth 2.0 Token Exchange",
+  "tap-target a:RFC 8707, Resource Indicators for OAuth ",
+  "tap-target a:RFC 9728, OAuth 2.0 Protected Resource M"
+ ],
+ "/case-studies/ai-agent-credential-sharing/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Model Context Protocol, Authorization (2",
+  "tap-target a:Model Context Protocol, Authorization Se",
+  "tap-target a:OWASP Secrets Management Cheat Sheet",
+  "tap-target a:OWASP Top 10 for LLM Applications 2025, ",
+  "tap-target a:RFC 8693, OAuth 2.0 Token Exchange"
+ ],
+ "/case-studies/ai-coworker/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Model Context Protocol specification 202",
+  "tap-target a:Model Context Protocol specification: Au",
+  "tap-target a:NIST AI 100-1, Artificial Intelligence R",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv",
+  "tap-target a:OWASP Gen AI Security Project: LLM01 Pro",
+  "tap-target a:OWASP Gen AI Security Project: LLM02:202",
+  "tap-target a:OWASP Gen AI Security Project: LLM06:202"
+ ],
+ "/case-studies/ai-processing-tax/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:NIST AI Risk Management Framework (AI RM",
+  "tap-target a:Regulation (EU) 2024/1689 (Artificial In",
+  "tap-target a:Yotzov, Barrero, Bloom and others, “Firm"
+ ],
+ "/case-studies/audit-mapping/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:NIST Cybersecurity Framework 2.0"
+ ],
+ "/case-studies/break-glass-access/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:AC-2 Account Management, Rev. 5 text (CS",
+  "tap-target a:AC-2(2) Automated Temporary and Emergenc",
+  "tap-target a:CP-2 Contingency Plan, Rev. 5 text (CSF ",
+  "tap-target a:IA-5 Authenticator Management, Rev. 5 te",
+  "tap-target a:ISO/IEC 27001:2022, Annex A",
+  "tap-target a:Microsoft Entra documentation: PCI DSS r",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv",
+  "tap-target a:PCI DSS v4.0, PCI Security Standards Cou"
+ ],
+ "/case-studies/ciem-at-scale/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:AWS Well-Architected: SEC03-BP05 Define ",
+  "tap-target a:AWS: Refine permissions using last acces",
+  "tap-target a:Google Cloud: Deny access to resources",
+  "tap-target a:Google Cloud: Overview of role recommend",
+  "tap-target a:Google Cloud: Review and apply role reco",
+  "tap-target a:Microsoft: Create an access review of Az",
+  "tap-target a:Microsoft: Plan a Microsoft Entra access",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv"
+ ],
+ "/case-studies/conditional-access-mfa-sso/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CISA fact sheet: Implementing number mat"
+ ],
+ "/case-studies/credential-platform/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:AWS: Security best practices in IAM",
+  "tap-target a:CIS Critical Security Controls v8",
+  "tap-target a:HashiCorp Vault: Lease, Renew, and Revok",
+  "tap-target a:ISO/IEC 27001:2022, Annex A",
+  "tap-target a:NIST CSF 2.0, PR.AA: Identity Management",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv",
+  "tap-target a:OWASP Secrets Management Cheat Sheet",
+  "tap-target a:PCI DSS v4.0, PCI Security Standards Cou"
+ ],
+ "/case-studies/credential-tiering-model/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:BeyondTrust press release on the 2025 Ga",
+  "tap-target a:Comparisec, Best PAM Software 2026 (carr",
+  "tap-target a:Gartner, What is Privileged Access Manag",
+  "tap-target a:Help Net Security, coverage of the GitGu",
+  "tap-target a:Microsoft Learn, Build an enterprise acc",
+  "tap-target a:Microsoft Learn, Securing privileged acc",
+  "tap-target a:NHI market consolidation tracker (indepe",
+  "tap-target a:NIST CSRC, Zero Trust Architecture: NIST",
+  "tap-target a:NIST SP 800-207, Zero Trust Architecture",
+  "tap-target a:NIST SP 800-53 AC-6, via CSF Tools (seco",
+  "tap-target a:NIST SP 800-53 IA-5, via CSF Tools (seco",
+  "tap-target a:NIST SP 800-53 SC-12, via CSF Tools (sec",
+  "tap-target a:NIST SP 800-53 SC-28, via CSF Tools (Rev",
+  "tap-target a:TechCloudPro, PAM comparison (carried ov",
+  "tap-target a:Try the 3-minute self-check →"
+ ],
+ "/case-studies/jit-jea-elevation/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:ISO/IEC 27001:2022, Annex A",
+  "tap-target a:MITRE ATT&CK: Valid Accounts (T1078)",
+  "tap-target a:Microsoft Learn: Approve or deny request",
+  "tap-target a:Microsoft Learn: Configure Microsoft Ent",
+  "tap-target a:Microsoft Learn: Manage emergency access",
+  "tap-target a:Microsoft Learn: Overview of Just Enough",
+  "tap-target a:Microsoft Learn: Plan a Privileged Ident",
+  "tap-target a:Microsoft Learn: Privileged Identity Man",
+  "tap-target a:Microsoft Learn: Renew Microsoft Entra r",
+  "tap-target a:Microsoft Learn: View audit log report f",
+  "tap-target a:Microsoft Learn: What is Privileged Iden",
+  "tap-target a:NIST SP 800-207, Zero Trust Architecture",
+  "tap-target a:UK NCSC: Use privileged access managemen"
+ ],
+ "/case-studies/migration-planning/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CIS Critical Security Controls v8",
+  "tap-target a:ISO/IEC 27001:2022, Annex A",
+  "tap-target a:NIST CSF 2.0, PR.AA: Identity Management",
+  "tap-target a:NIST SP 800-53 Rev. 5, AU-11 Audit Recor",
+  "tap-target a:NIST SP 800-53 Rev. 5, CP-10 System Reco",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv",
+  "tap-target a:PCI DSS v4.0, PCI Security Standards Cou",
+  "tap-target a:RSI Security: PCI DSS Requirement 10 (fo"
+ ],
+ "/case-studies/non-human-identity-at-scale/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:AWS Security Blog: Beyond IAM access key",
+  "tap-target a:AWS: Security best practices in IAM",
+  "tap-target a:GitHub Docs: Configuring OpenID Connect ",
+  "tap-target a:GitHub Docs: OpenID Connect reference",
+  "tap-target a:Google Cloud: Integrate Cloud Run and Wo",
+  "tap-target a:Microsoft Entra: Workload identity feder",
+  "tap-target a:NSA and CISA, Use Secure Cloud Identity ",
+  "tap-target a:OWASP Non-Human Identities Top 10 (2025)",
+  "tap-target a:SPIFFE Concepts",
+  "tap-target a:SPIRE Concepts"
+ ],
+ "/case-studies/pam-modernization/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CIS Critical Security Controls v8",
+  "tap-target a:CyberArk Privileged Access Manager (Self",
+  "tap-target a:ISO/IEC 27001:2022, Annex A",
+  "tap-target a:NIST CSF 2.0, PR.AA: Identity Management",
+  "tap-target a:NIST SP 800-207, Zero Trust Architecture",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv",
+  "tap-target a:PCI DSS v4.0, PCI Security Standards Cou"
+ ],
+ "/case-studies/passwordless-authentication/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CISA, Implementing Phishing-Resistant MF",
+  "tap-target a:FIDO Alliance, Passkeys",
+  "tap-target a:Microsoft Learn: Authentication methods ",
+  "tap-target a:Microsoft Learn: Conditional Access auth",
+  "tap-target a:Microsoft Learn: Conditional Access cond",
+  "tap-target a:Microsoft Learn: Configure a Temporary A",
+  "tap-target a:Microsoft Learn: Enable passkeys (FIDO2)",
+  "tap-target a:Microsoft Learn: Enable synced passkeys ",
+  "tap-target a:Microsoft Learn: Manage emergency access",
+  "tap-target a:Microsoft Learn: Require MFA for all use",
+  "tap-target a:OMB M-22-09, Moving the U.S. Government ",
+  "tap-target a:W3C, Web Authentication: An API for acce"
+ ],
+ "/case-studies/platform-evaluation/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CIS Critical Security Controls v8",
+  "tap-target a:ISO/IEC 27001:2022, Annex A",
+  "tap-target a:NIST CSF 2.0, PR.AA: Identity Management",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv",
+  "tap-target a:PCI DSS v4.0, PCI Security Standards Cou",
+  "tap-target a:SA-4: Acquisition Process (NIST SP 800-5",
+  "tap-target a:SA-9: External System Services (NIST SP "
+ ],
+ "/case-studies/privileged-access-program/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/case-studies/secrets-consolidation/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:CIS Critical Security Controls v8",
+  "tap-target a:GitHub Docs: Configuring OpenID Connect ",
+  "tap-target a:GitHub Docs: Push protection",
+  "tap-target a:GitHub Docs: Remediating a leaked secret",
+  "tap-target a:GitHub Docs: Secret scanning",
+  "tap-target a:HashiCorp Vault: Lease, Renew, and Revok",
+  "tap-target a:NIST SP 800-53 Rev. 5, Security and Priv",
+  "tap-target a:OWASP Secrets Management Cheat Sheet"
+ ],
+ "/case-studies/shadow-ai-discovery-gap/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:IBM: Cost of a Data Breach Report 2025 (",
+  "tap-target a:ISO/IEC 42001:2023, AI management system",
+  "tap-target a:Microsoft Learn: Configure how users con",
+  "tap-target a:Microsoft Learn: Configure the admin con",
+  "tap-target a:NIST AI 100-1, Artificial Intelligence R",
+  "tap-target a:OWASP GenAI Security Project: LLM02:2025"
+ ],
+ "/case-studies/vendor-privileged-access/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:NCSC, Supply chain security guidance"
+ ],
+ "/contact/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/copyright/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/design-system/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:roshantrivedi.co.in",
+  "tap-target a:← roshantrivedi.co.in"
+ ],
+ "/glossary/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/labs/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/labs/cases/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/library/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/mcp-lab/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Not tested",
+  "tap-target a:What I built",
+  "tap-target a:What held"
+ ],
+ "/mcp-lab/guided/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/mcp-lab/in-depth/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/mcp-lab/portal/": [
+  "contrast a.skip:Skip to content",
+  "contrast b:100",
+  "contrast b:26",
+  "contrast b:42",
+  "contrast b:44",
+  "contrast b:52",
+  "contrast b:85",
+  "contrast b:90",
+  "contrast b:92",
+  "contrast b:95",
+  "small-text kbd:Ctrl K",
+  "tap-target a.home:Site →",
+  "tap-target input#fCred:",
+  "tap-target input#fDest:",
+  "tap-target input#fPriv:",
+  "tap-target input#fProd:",
+  "tap-target input#short:"
+ ],
+ "/mcp-lab/results/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/mcp-lab/use-cases/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/method/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Conditional access, MFA and AI agent lab",
+  "tap-target a:MCP approval lab"
+ ],
+ "/nhi-lab/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:Gap cases (3 cases)",
+  "tap-target a:Round 17, shadow AI (4 cases)",
+  "tap-target a:Round 18, NHI4 and NHI8 (2 cases)",
+  "tap-target a:Round 19, the queued cases (19 cases)",
+  "tap-target a:Rounds 14 and 15 (20 cases)",
+  "tap-target a:Stretch cases and chain tests (19 cases)",
+  "tap-target input:"
+ ],
+ "/nhi-lab/audit/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:file"
+ ],
+ "/nhi-lab/book/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/about-the-author/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/appendix-a/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/appendix-b/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/appendix-c/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/appendix-d/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/before-you-start/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-1/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-10/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-11/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-12/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-13/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-14/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-15/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-2/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-3/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-4/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-5/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-6/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-7/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-8/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/book/chapter-9/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/explainer/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/framework/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:C-R16-C01",
+  "tap-target a:C-R16-C02",
+  "tap-target a:C-R16-C04",
+  "tap-target a:C-R16-C05",
+  "tap-target a:C-R16-C06",
+  "tap-target a:C-R16-C17",
+  "tap-target a:N-R14-01",
+  "tap-target a:N-R14-02",
+  "tap-target a:N-R14-03",
+  "tap-target a:N-R14-04",
+  "tap-target a:N-R14-05",
+  "tap-target a:N-R14-06",
+  "tap-target a:N-R14-07",
+  "tap-target a:N-R14-09",
+  "tap-target a:N-R14-10",
+  "tap-target a:N-R14-11",
+  "tap-target a:N-R14-12",
+  "tap-target a:N-R14-13",
+  "tap-target a:N-R14-14",
+  "tap-target a:N-R14-15",
+  "tap-target a:N-R14-16",
+  "tap-target a:N-R14-17",
+  "tap-target a:N-R14-18",
+  "tap-target a:N-R14-19",
+  "tap-target a:N-R14-20",
+  "tap-target a:N-R14-21",
+  "tap-target a:N-R14-22",
+  "tap-target a:N-R14-23",
+  "tap-target a:N-R14-24",
+  "tap-target a:N-R14-25",
+  "tap-target a:N-R18-01",
+  "tap-target a:N-R18-02",
+  "tap-target a:P-R15-01",
+  "tap-target a:P-R15-02",
+  "tap-target a:P-R15-03",
+  "tap-target a:P-R15-04",
+  "tap-target a:P-R15-05",
+  "tap-target a:P-R15-06",
+  "tap-target a:P-R15-07",
+  "tap-target a:P-R15-08",
+  "tap-target a:P-R15-09",
+  "tap-target a:P-R15-10",
+  "tap-target a:P-R15-11",
+  "tap-target a:P-R15-12",
+  "tap-target a:P-R15-13",
+  "tap-target a:P-R15-14",
+  "tap-target a:P-R15-15",
+  "tap-target a:P-R15-16",
+  "tap-target a:P-R15-17",
+  "tap-target a:P-R15-18",
+  "tap-target a:P-R15-19",
+  "tap-target a:P-R15-20",
+  "tap-target a:P-R15-21",
+  "tap-target a:P-R15-22",
+  "tap-target a:P-R15-23",
+  "tap-target a:P-R15-24",
+  "tap-target a:P-R15-25",
+  "tap-target a:S-R17-01",
+  "tap-target a:S-R17-02",
+  "tap-target a:S-R17-03",
+  "tap-target a:S-R17-04",
+  "tap-target a:S-R17-05",
+  "tap-target a:S-R17-06",
+  "tap-target a:S-R17-07",
+  "tap-target a:S-R17-08",
+  "tap-target a:S-R17-09",
+  "tap-target a:S-R17-10"
+ ],
+ "/nhi-lab/guided/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/market/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:N-R14-25"
+ ],
+ "/nhi-lab/method/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:C-R16-C01",
+  "tap-target a:C-R16-C04",
+  "tap-target a:N-R14-07",
+  "tap-target a:N-R14-25",
+  "tap-target a:N-R18-01",
+  "tap-target a:S-R17-05"
+ ],
+ "/nhi-lab/register/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:N-R14-01",
+  "tap-target a:N-R14-02",
+  "tap-target a:N-R14-03",
+  "tap-target a:N-R14-04",
+  "tap-target a:N-R14-05",
+  "tap-target a:N-R14-06",
+  "tap-target a:N-R14-07",
+  "tap-target a:N-R14-09",
+  "tap-target a:N-R14-10",
+  "tap-target a:N-R14-11",
+  "tap-target a:N-R14-12",
+  "tap-target a:N-R14-13",
+  "tap-target a:N-R14-14",
+  "tap-target a:N-R14-15",
+  "tap-target a:N-R14-16",
+  "tap-target a:N-R14-17",
+  "tap-target a:N-R14-18",
+  "tap-target a:N-R14-19",
+  "tap-target a:N-R14-20",
+  "tap-target a:N-R14-21",
+  "tap-target a:N-R14-22",
+  "tap-target a:N-R14-23",
+  "tap-target a:N-R14-24",
+  "tap-target a:N-R14-25",
+  "tap-target a:P-R15-01",
+  "tap-target a:P-R15-02",
+  "tap-target a:P-R15-03",
+  "tap-target a:P-R15-04",
+  "tap-target a:P-R15-05",
+  "tap-target a:P-R15-06",
+  "tap-target a:P-R15-07",
+  "tap-target a:P-R15-08",
+  "tap-target a:P-R15-09",
+  "tap-target a:P-R15-10",
+  "tap-target a:P-R15-11",
+  "tap-target a:P-R15-12",
+  "tap-target a:P-R15-13",
+  "tap-target a:P-R15-14",
+  "tap-target a:P-R15-15",
+  "tap-target a:P-R15-16",
+  "tap-target a:P-R15-17",
+  "tap-target a:P-R15-18",
+  "tap-target a:P-R15-19",
+  "tap-target a:P-R15-20",
+  "tap-target a:P-R15-21",
+  "tap-target a:P-R15-22",
+  "tap-target a:P-R15-23",
+  "tap-target a:P-R15-24",
+  "tap-target a:P-R15-25",
+  "tap-target a:S-R17-01",
+  "tap-target a:S-R17-02",
+  "tap-target a:S-R17-03",
+  "tap-target a:S-R17-04",
+  "tap-target a:S-R17-05",
+  "tap-target a:S-R17-06",
+  "tap-target a:S-R17-07",
+  "tap-target a:S-R17-08",
+  "tap-target a:S-R17-09",
+  "tap-target a:S-R17-10"
+ ],
+ "/nhi-lab/roadmap/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/nhi-lab/round-18/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:guesses-round-18.md"
+ ],
+ "/nhi-lab/round-19/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:P-R15-06",
+  "tap-target a:P-R15-12",
+  "tap-target a:P-R15-22",
+  "tap-target a:S-R17-08",
+  "tap-target a:S-R17-09",
+  "tap-target a:guesses-round-19.md"
+ ],
+ "/nhi-lab/stage-2/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/now/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/privacy/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/resume/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/search/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/secure-india-exams/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/speaking/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/start/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/talk/": [
+  "small-text kbd:Ctrl K",
+  "tap-target input:"
+ ],
+ "/tools/tier-check/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/topics/": [
+  "small-text kbd:Ctrl K"
+ ],
+ "/writing/": [
+  "small-text kbd:Ctrl K",
+  "tap-target a:About the series →",
+  "tap-target a:Subscribe via RSS"
+ ],
+ "/writing/pam-series/": [
+  "small-text kbd:Ctrl K"
+ ]
+}

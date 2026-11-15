@@ -12,7 +12,7 @@
 .cat-t{width:100%;border-collapse:collapse;font-size:.92rem;line-height:1.45}
 .cat-t th,.cat-t td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid rgba(127,127,127,.2)}
 .cat-t thead th{position:sticky;top:0;background:var(--hg-surface-1);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
-.cat-t tbody th a{font-family:var(--mono,monospace);white-space:nowrap;display:inline-block;min-height:24px}
+.cat-t tbody th a{font-family:var(--mono,monospace);white-space:nowrap;display:inline-flex;align-items:center;min-height:24px;min-width:24px}
 .cat-t td small{display:block;opacity:.7;font-size:.8rem;margin-top:3px}
 .cat-t td:last-child{font-size:.82rem;opacity:.8}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
