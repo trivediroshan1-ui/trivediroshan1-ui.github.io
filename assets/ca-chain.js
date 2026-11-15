@@ -9,7 +9,12 @@
   if (still) return;
   var b = document.createElement("button");
   b.type = "button"; b.className = "ca-ctl"; b.textContent = "Pause animation"; b.setAttribute("aria-pressed", "false");
+  fig.addEventListener("mg:done", function () { b.textContent = "Play again"; b.setAttribute("aria-pressed", "true"); });
   b.addEventListener("click", function () {
+    if (fig.hasAttribute("data-mg-done") && window.mgRestart) {
+      fig.classList.remove("is-paused"); window.mgRestart(fig);
+      b.textContent = "Pause animation"; b.setAttribute("aria-pressed", "false"); return;
+    }
     var p = fig.classList.toggle("is-paused");
     b.textContent = p ? "Play animation" : "Pause animation";
     b.setAttribute("aria-pressed", p ? "true" : "false");

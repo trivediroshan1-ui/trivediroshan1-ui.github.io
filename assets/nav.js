@@ -323,6 +323,6 @@
   }
   // Pause animations that are off screen (see motion-gate.js).
   if (!document.querySelector('script[src*="motion-gate.js"]')) {
-    var mg = document.createElement("script"); mg.src = "/assets/motion-gate.js?v=20261114e"; mg.defer = true; document.head.appendChild(mg);
+    var mg = document.createElement("script"); mg.src = "/assets/motion-gate.js?v=20261115m"; mg.defer = true; document.head.appendChild(mg);
   }
 })();
