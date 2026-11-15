@@ -62,7 +62,7 @@ PROBE = r"""() => {
     return b; };
   // text checks
   document.querySelectorAll("body *").forEach(el => {
-    if (el.closest("svg,script,style,noscript,template") || !ownText(el) || !vis(el)) return;
+    if (el.closest("svg,script,style,noscript,template,video,audio") || !ownText(el) || !vis(el)) return;
     const cs = getComputedStyle(el), fs = parseFloat(cs.fontSize);
     if (fs < 12) add("small-text", el);
     const fg = parse(cs.color), bg = bgOf(el);

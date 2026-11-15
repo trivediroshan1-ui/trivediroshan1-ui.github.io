@@ -213,5 +213,6 @@ html body.hg nav.hg-sitenav a.brand { color: inherit; }
 html[data-bg="notfound"] body { align-content: start; grid-template-rows: auto minmax(0, 1fr); row-gap: 0; }
 html[data-bg="notfound"] body > nav.hg-sitenav { justify-self: stretch; min-width: 0; margin: -32px -16px 0; position: relative; top: 0; }
 /* WCAG 2.2 2.5.8: links that sit alone in a list item or table cell get a 24 px target */
-.sources a,.nmeta a,.ntable td a,td>a:only-child,li>a:only-child{display:inline-block;min-height:24px;padding-block:3px;line-height:1.35}
+.sources a,.nmeta a,.ntable td a,td>a:only-child{display:inline-block;min-height:24px;padding-block:3px;line-height:1.35}
 html[data-theme=light] a.skip{background:#0a6f84;color:#fff}
+html[data-theme=light] a.skip,html[data-theme=light] .skip:focus{background:#0a6f84!important;color:#fff!important}
