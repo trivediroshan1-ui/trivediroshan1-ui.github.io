@@ -2,6 +2,8 @@
  "/": [
   "no-name a.bb-cover:",
   "small-text kbd:Ctrl K",
+  "tap-target button.ns-x:×",
+  "tap-target button.rt-sbtn:SearchCtrl K",
   "tap-target input:"
  ],
  "/about/": [

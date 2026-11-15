@@ -14,6 +14,7 @@ built by Jekyll and are not checked here. Needs Playwright with Chromium.
 What counts as an issue (each a short, stable signature, so the baseline can match it):
   overflow@W      the page scrolls sideways at width W (320, 390 or 1280 px)
   small-text      visible text under 12 px (not in SVG diagrams)
+                  (every check runs at all three widths, so phone-only problems are caught)
   tap-target      a control smaller than 24 x 24 px (WCAG 2.2 AA 2.5.8), links inside sentences excepted
   contrast        text below 4.5:1 (3:1 for large text) on a plain background; text over images or
                   gradients is skipped, because it cannot be measured this way
@@ -137,12 +138,9 @@ def check(pages):
                     pg.wait_for_timeout(2000 if w == 1280 else 600)
                     if pg.evaluate("document.documentElement.scrollWidth - innerWidth") > 1:
                         s.add(f"overflow@{w}")
-                    if w == 1280:
-                        if pg.evaluate("window.__cls") > 0.1:
-                            s.add("cls")
-                        s.update(pg.evaluate(PROBE))
-                    elif w == 390:
-                        s.update(x for x in pg.evaluate(PROBE) if x.startswith(("tap-target", "small-text")))
+                    if w == 1280 and pg.evaluate("window.__cls") > 0.1:
+                        s.add("cls")
+                    s.update(pg.evaluate(PROBE))  # every check at every width: phone-only problems count too
                     s.update("js-error " + e for e in errs)
                 ctx.close()
             b.close()
