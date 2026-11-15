@@ -1,7 +1,7 @@
 /* Site search: press Ctrl+K (or Cmd+K, or /) or use the search button in the menu.
    Plain JavaScript, no libraries. The list comes from /assets/palette-data.js (scripts/build-palette.py). */
 (function () {
-  var V = "20261115k", data = null, dlg, input, list, status, opener, active = -1, shown = [];
+  var V = "20261115n", data = null, dlg, input, list, status, opener, active = -1, shown = [];
   var css = ".rt-sbtn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;border:1px solid rgba(167,139,250,.35);background:transparent;color:inherit;font:600 14px/1 'DM Sans',system-ui,sans-serif;cursor:pointer;opacity:.9}" +
     ".rt-sbtn:hover{opacity:1;border-color:#a78bfa;background:rgba(124,58,237,.14)}.rt-sbtn svg{width:16px;height:16px}.rt-sbtn kbd{font:600 11px/1 'JetBrains Mono',monospace;padding:3px 5px;border-radius:5px;border:1px solid rgba(167,139,250,.35);opacity:.8}" +
     "@media (max-width:760px){.rt-sbtn kbd,.rt-sbtn .lbl{display:none}.rt-sbtn{width:40px;padding:0;justify-content:center;border-color:transparent}}.hg-sitenav li.srch{display:flex;align-items:center}@media (max-width:440px){.hg-sitenav li a{padding:0 .24rem}.rt-sbtn{width:30px}.rt-sbtn svg{width:17px;height:17px}}" +
@@ -61,10 +61,13 @@
     else shown = data.map(function (it) { return [score(it, words), it]; }).filter(function (p) { return p[0] >= 0; })
       .sort(function (a, b) { return b[0] - a[0]; }).map(function (p) { return p[1]; });
     shown = shown.slice(0, 30);
-    list.innerHTML = shown.length ? shown.map(function (it, i) {
+    var found = shown.length, raw = input.value.trim();
+    // Last option: search the full text of every page (/search/).
+    if (words.length) shown.push({ t: "Search every page for \u201c" + raw + "\u201d", g: "Search", u: "/search/?q=" + encodeURIComponent(raw), d: "Full-text search. It runs in your browser." });
+    list.innerHTML = (found ? "" : '<li class="rt-empty" role="option" aria-disabled="true">No page title matches that. Try a shorter word, or search the full text below.</li>') + shown.map(function (it, i) {
       return '<li role="option" id="rt-o' + i + '" data-i="' + i + '" aria-selected="false"><b>' + esc(it.t) + '</b><i>' + esc(it.g) + '</i>' + (it.d ? '<small>' + esc(it.d) + '</small>' : '') + '</li>';
-    }).join("") : '<li class="rt-empty" role="option" aria-disabled="true">Nothing matches that. Try a shorter word, like PAM, agent or audit.</li>';
-    status.textContent = shown.length ? shown.length + " results" : "No results";
+    }).join("");
+    status.textContent = found ? found + " results" : "No results";
     active = -1; if (shown.length) select(0); else input.removeAttribute("aria-activedescendant");
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }

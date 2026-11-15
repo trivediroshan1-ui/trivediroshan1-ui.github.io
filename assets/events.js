@@ -73,14 +73,14 @@
     }
   }
 
-  // Search with no result: only the length of what was typed, never the words.
+  // Search with no result (the palette or /search/): only the length of what was typed, never the words.
   var t;
   document.addEventListener("input", function (ev) {
     var i = ev.target;
-    if (!i || !i.closest || !i.closest(".rt-box")) return;
+    if (!i || !i.closest || !i.closest(".rt-box, [data-search]")) return;
     clearTimeout(t);
     t = setTimeout(function () {
-      if (document.querySelector(".rt-empty")) {
+      if (document.querySelector(".rt-empty, [data-search-empty]")) {
         var n = (i.value || "").trim().length;
         send("search_none", n < 4 ? "1-3" : n < 9 ? "4-8" : "9+", false);
       }

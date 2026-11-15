@@ -19,6 +19,9 @@ ca_cases = {ca.get(k) for k in ("cases", "cases_run_on_models", "cases_run1", "c
 legacy = [w.lower() for w in S["legacy_context_words"]]
 good_cases = {lab["cases"], lab["cases_rounds_1_to_4"], lab["cases_rounds_5_to_13"], mcp["cases"], mcp["round_one_cases"], mcp["round_one_first_run_cases"], nhi["cases"], nhi_all} | ca_cases
 good_pages = {nhi["book_pages"], lab["book_pages"], lab["addendum_pages"], book["pages"], book["print_interior_pages"], mcp["report_pages"]} | ({ca["book_pages"]} if ca.get("book_pages") else set())
+cat = S.get("catalogue", {})  # /labs/cases/ and /library/, kept up to date by their build scripts
+good_cases |= {cat.get("cases")} - {None}
+good_pages |= {cat.get("library_pages")} - {None}
 good_rounds = {lab["rounds"]}
 SKIP_DIRS = {".git", "node_modules", "worker", "_posts"}
 # Dated or recorded text that is true as written: a video transcript and the correction log.
