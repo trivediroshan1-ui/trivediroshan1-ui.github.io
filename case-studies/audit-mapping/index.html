@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-audit-mapping.png" />
     <title>IAM Audit & Control-Mapping Framework · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-3c68e45556.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-01cbcdaaf1.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
 <link rel="stylesheet" href="/assets/site.css?v=20261115a">
@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-3c68e45556.css">
+    <link rel="stylesheet" href="/assets/b-01cbcdaaf1.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -69,7 +69,7 @@
 }
     </script>
     <script src="/assets/theme.js?v=20261022b"></script>
-    <script src="/assets/palette.js?v=20261115p" defer></script>
+    <script src="/assets/palette.js?v=20261116a" defer></script>
     <script src="/assets/nav.js?v=20261115m" defer></script>
     <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "IAM Audit & Control-Mapping Framework", "item": "https://roshantrivedi.co.in/case-studies/audit-mapping/"}]}]}</script>
   </head>
@@ -143,7 +143,7 @@
 
       <section id="freshness">
         <h2>Freshness and sampling</h2>
-        <p class="body-text">Evidence goes stale. A screenshot from last year proves what a setting looked like last year. Each register row carries a freshness rule, and the collection job is built around it. Frequency also has to follow the strictest framework the control answers to. CIS Controls v8, for example, asks that active accounts are validated as authorized at a minimum of quarterly, and PCI DSS v4.0 asks for user accounts and privileges to be reviewed at least once every six months. A quarterly review satisfies both.</p>
+        <p class="body-text">Evidence goes stale. A screenshot from last year proves what a setting looked like last year. Each register row carries a freshness rule, and the collection job is built around it. Frequency also has to follow the strictest framework the control answers to. CIS Controls v8, for example, asks that active accounts are validated as authorized at a minimum of quarterly, and PCI DSS v4.0.1 asks for user accounts and privileges to be reviewed at least once every six months. A quarterly review satisfies both.</p>
         <p class="body-text">Sampling is the auditor&rsquo;s call, and how many items they pick is theirs to decide. What I can control is the population they pick from and how the picks are recorded.</p>
         <ul class="plain-list">
           <li><strong>The population is complete.</strong> A full export of accounts, tickets or changes for the period, with the date and query that produced it. A sample from an incomplete list proves nothing about the rest.</li>
@@ -199,7 +199,7 @@
       <section id="integrity">
         <h2>Evidence the audited cannot edit</h2>
         <p class="body-text">If the people running a control also control its evidence, the evidence is only as good as their honesty on the worst day. The people involved can be entirely trustworthy and the arrangement is still weak, because the auditor cannot tell the difference.</p>
-        <p class="body-text">NIST SP 800-53 Rev. 5 covers this under AU-9, protection of audit information. The base control is to protect audit information and audit logging tools from unauthorized access, modification and deletion, and to alert when it happens. Its enhancements describe the means. They include storing audit records on a physically different system from the one audited (<code class="ref">AU-9(2)</code>), limiting who can manage audit logging (<code class="ref">AU-9(4)</code>), dual authorization for moving or deleting audit information (<code class="ref">AU-9(5)</code>) and read-only access (<code class="ref">AU-9(6)</code>). PCI DSS v4.0 has the same intent in requirement 10.3.2, which asks that audit log files are protected to prevent modifications by individuals.</p>
+        <p class="body-text">NIST SP 800-53 Rev. 5 covers this under AU-9, protection of audit information. The base control is to protect audit information and audit logging tools from unauthorized access, modification and deletion, and to alert when it happens. Its enhancements describe the means. They include storing audit records on a physically different system from the one audited (<code class="ref">AU-9(2)</code>), limiting who can manage audit logging (<code class="ref">AU-9(4)</code>), dual authorization for moving or deleting audit information (<code class="ref">AU-9(5)</code>) and read-only access (<code class="ref">AU-9(6)</code>). PCI DSS v4.0.1 has the same intent in requirement 10.3.2, which asks that audit log files are protected to prevent modifications by individuals.</p>
         <ul class="plain-list">
           <li><strong>Separate the store from the system.</strong> Evidence for a platform lives somewhere the platform&rsquo;s admins cannot write.</li>
           <li><strong>Write once, read many.</strong> Control owners and admins read. A small, named group holds the right to manage the store itself, and its changes are logged.</li>
@@ -287,7 +287,7 @@
             <tr><td data-label="Standard">CIS Controls v8</td><td data-label="Reference"><code class="ref">5.1</code>, <code class="ref">5.3</code>, <code class="ref">5.5</code></td><td data-label="What it asks for">Inventory accounts and validate them at least quarterly, disable dormant accounts after 45 days where supported, and review service accounts at least quarterly.</td></tr>
             <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">6.1</code>, <code class="ref">6.2</code></td><td data-label="What it asks for">A documented process for granting access and for revoking it.</td></tr>
             <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">8.2</code>, <code class="ref">8.9</code>, <code class="ref">8.11</code></td><td data-label="What it asks for">Collect audit logs, centralize them, and review them to detect anomalies.</td></tr>
-            <tr><td data-label="Standard">PCI DSS v4.0 (read via secondary)</td><td data-label="Reference"><code class="ref">7.2.4</code>, <code class="ref">7.2.5.1</code></td><td data-label="What it asks for">Review user accounts and privileges at least every six months. Review application and system account access at a frequency set by targeted risk analysis.</td></tr>
+            <tr><td data-label="Standard">PCI DSS v4.0.1 (read via secondary)</td><td data-label="Reference"><code class="ref">7.2.4</code>, <code class="ref">7.2.5.1</code></td><td data-label="What it asks for">Review user accounts and privileges at least every six months. Review application and system account access at a frequency set by targeted risk analysis.</td></tr>
             <tr><td data-label="Standard"></td><td data-label="Reference"><code class="ref">10.2.1.2</code>, <code class="ref">10.3.2</code>, <code class="ref">10.5.1</code></td><td data-label="What it asks for">Log all administrative actions, protect audit logs from modification by individuals, and retain history for at least 12 months with the latest three months immediately available.</td></tr>
             <tr><td data-label="Standard">SOC 2 (AICPA TSC)</td><td data-label="Reference"><code class="ref">CC4.1</code>, <code class="ref">CC6.2</code>, <code class="ref">CC6.3</code>, <code class="ref">CC7.2</code></td><td data-label="What it asks for">Ongoing or separate evaluations of controls. Registering and authorizing users before access. Authorizing, modifying and removing access by role with least privilege and segregation of duties. Monitoring for anomalies.</td></tr>
           </tbody></table></div>
@@ -342,7 +342,7 @@
           <li><a href="https://nvlpubs.nist.gov/nistpubs/CSWP/NIST.CSWP.29.pdf">NIST Cybersecurity Framework 2.0</a></li>
           <li><a href="https://www.iso.org/standard/27001">ISO/IEC 27001:2022</a>. The standard is paid, so I did not read it directly. Clause 9.1 and the Annex A names come from secondary summaries (<a href="https://27kay.com/blog/iso-27001-clause-9-1-monitoring-measurement/">27kay</a>, <a href="https://iseoblue.com/iso-27001/annex-a/iso-27001-controls-list/">iseoblue</a>, <a href="https://www.urmconsulting.com/blog/iso-27001-2022-a-5-organisational-controls-access-management">URM</a>).</li>
           <li><a href="https://cas.docs.cisecurity.org/en/latest/source/Controls5/">CIS Controls Assessment Specification, Control 5</a>, <a href="https://cas.docs.cisecurity.org/en/latest/source/Controls6/">Control 6</a> and <a href="https://cas.docs.cisecurity.org/en/latest/source/Controls8/">Control 8</a>, published by the Center for Internet Security. These are v8 and v8.1 wording.</li>
-          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0, PCI Security Standards Council</a>. The standard needs a download agreement, so requirement wording was read through Microsoft Learn, a secondary source: <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-10">Requirement 10</a> and <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-7">Requirement 7</a>.</li>
+          <li><a href="https://www.pcisecuritystandards.org/document_library/">PCI DSS v4.0.1, PCI Security Standards Council</a>. The standard needs a download agreement, so requirement wording was read through Microsoft Learn, a secondary source: <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-10">Requirement 10</a> and <a href="https://learn.microsoft.com/en-us/entra/standards/pci-requirement-7">Requirement 7</a>.</li>
           <li><a href="https://www.aicpa-cima.com/resources/download/2017-trust-services-criteria-with-revised-points-of-focus-2022">AICPA 2017 Trust Services Criteria (with revised points of focus, 2022)</a>. The criteria text was read in a third-party <a href="https://gccertification.com/wp-content/uploads/2024/06/AICPA-TSP-Section-100-Trust-Services-Criteria-2022.pdf">hosted copy of TSP Section 100</a>, a secondary source.</li>
         </ol>
         <p class="note-box">This is a reference approach, not a description of any employer&rsquo;s system. It contains no client or internal data, and the worked example is illustrative. Control numbers and wording are as published in the sources above. Where a source is secondary, check the standard itself before you cite it in an audit.</p>
@@ -366,7 +366,7 @@
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
     <script src="/assets/diagram.js?v=20261115m" defer></script>
     <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a" />
-    <script defer src="/assets/chatbot-widget.js?v=20261115p"></script>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
     <script defer src="/assets/events.js?v=20261115b"></script>
       <script defer src="/assets/casestudy.js?v=20261021b"></script>
       <script defer src="/assets/cs-discuss.js?v=20261104a"></script>

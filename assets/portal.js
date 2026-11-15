@@ -144,7 +144,7 @@
       var t = T[r.tool], loose = /\.loose$/.test(r.tool), lv = r.predicted.level;
       var row = el("div", "crow" + (loose ? " loose" : "")); row.tabIndex = 0; row.setAttribute("role", "button");
       row.setAttribute("aria-label", t.label + ", " + r.env + ", score " + r.predicted.score + ", " + lv + ". Load into the score box.");
-      row.innerHTML = "<span class=\"nm\">" + esc(t.label) + (loose ? " <small>(careless)</small>" : "") + (r.env === "staging" ? " <small>(staging)</small>" : "") + "</span><span class=\"tr\"><i style=\"width:" + r.predicted.score + "%;--c:" + LCOL[lv] + "\"></i><b style=\"left:calc(" + r.predicted.score + "% - 34px)\">" + r.predicted.score + "</b></span>";
+      row.innerHTML = "<span class=\"nm\">" + esc(t.label) + (loose ? " <small>(careless)</small>" : "") + (r.env === "staging" ? " <small>(staging)</small>" : "") + "</span><span class=\"tr\" data-contrast-skip><i style=\"width:" + r.predicted.score + "%;--c:" + LCOL[lv] + "\"></i><b style=\"left:calc(" + r.predicted.score + "% - 34px)\">" + r.predicted.score + "</b></span>";
       function go() { window.loadToolRow(r.tool, r.env, r.requested); }
       row.addEventListener("click", go); row.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
       box.appendChild(row);

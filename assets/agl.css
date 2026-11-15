@@ -263,3 +263,4 @@ html[data-theme="light"] .agl-start,html[data-theme="light"] .agl-toc{background
 .agl-more{margin:.6rem 0 0}
 .agl-more>summary{cursor:pointer;display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--a-line,rgba(148,163,184,.3));border-radius:999px;font-weight:600;color:var(--a-accent,#4de2ff)}
 .agl-more[open]>summary{margin-bottom:.8rem}
+html[data-theme=light] .agl-more>summary{color:#5b3cc4}

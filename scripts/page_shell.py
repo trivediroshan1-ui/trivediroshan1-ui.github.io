@@ -7,13 +7,22 @@ import html, json, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://roshantrivedi.co.in"
+REVIEWED = "16 Nov 2026"  # bump when the generated pages are re-checked
+FOOT_MARK = "Privacy-safe portfolio</span>"
 
 
-def shell(url, title, desc, body, crumbs, nav_current=None, head_extra="", foot_extra="", og_image=None):
+def add_reviewed(page, date=REVIEWED):
+    """Put "Last reviewed <date>" in the footer line, once. Pages that already show a date are left alone."""
+    if re.search(r"Last (reviewed|updated)|and not updated since", page) or FOOT_MARK not in page:
+        return page
+    return page.replace(FOOT_MARK, f'Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed {date}</span></span>', 1)
+
+
+def shell(url, title, desc, body, crumbs, nav_current=None, head_extra="", foot_extra="", og_image=None, brand=True):
     src = (ROOT / "labs" / "index.html").read_text(encoding="utf-8")
     head, rest = src.split('<main id="main">', 1)
     foot = rest.split("</main>", 1)[1]
-    t, d = html.escape(title + " · Roshan Trivedi"), html.escape(desc)
+    t, d = html.escape(title + (" · Roshan Trivedi" if brand else "")), html.escape(desc)
     lit = lambda pat, rep, s: re.sub(pat, lambda m: rep, s)
     head = lit(r"<title>.*?</title>", f"<title>{t}</title>", head)
     head = lit(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{d}">', head)
@@ -39,7 +48,7 @@ def shell(url, title, desc, body, crumbs, nav_current=None, head_extra="", foot_
     if nav_current:
         head = head.replace(f'<a href="{nav_current}">', f'<a href="{nav_current}" aria-current="page">', 1)
     foot = foot.replace("</body>", foot_extra + "\n  </body>", 1)
-    return head + '<main id="main">\n' + body + "\n    </main>" + foot
+    return add_reviewed(head + '<main id="main">\n' + body + "\n    </main>" + foot)
 
 
 def write(url, page):

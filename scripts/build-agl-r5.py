@@ -94,7 +94,7 @@ extra_controls = [
  ("C22","Tokens are made for one service and end with the person",["I3","I16","I17"],"A.5.17, A.8.5","IA-5, SC-23, AC-12","8.3, 8.6","164.312(d)","IETF RFC 8707 (resource indicators), RFC 8693 (token exchange), for reference"),
  ("C23","Logs hold no personal data, and their dates can be trusted",["E5","E15","E16"],"A.5.34, A.8.15, A.8.17","AU-3, AU-8, AU-9","10.2, 10.3, 10.6","164.312(b)","DPDP s. 8(5), s. 8(7); CERT-In directions (log retention)"),
 ]
-old = {  # my reading of where the first sixteen controls sit in ISO 27001:2022, NIST SP 800-53 and PCI DSS 4.0
+old = {  # my reading of where the first sixteen controls sit in ISO 27001:2022, NIST SP 800-53 and PCI DSS 4.0.1
  "C1":("A.5.9","CM-8","12.5.1","","A register of AI uses is an inventory"),"C2":("A.5.3, A.5.4","AC-5, CA-6","","",""),
  "C3":("A.8.32","CM-3","","",""),"C4":("A.5.34, A.8.12","AC-4","","164.312(e)(1)",""),
  "C5":("A.8.12","SI-10","","",""),"C6":("A.5.26","IR-4","","",""),"C7":("A.8.15","AU-2, AU-3, AU-9","10.2, 10.3","164.312(b)",""),

@@ -74,6 +74,31 @@ for rel in sorted(_glob.glob("ca-mfa-lab/**/index.html", recursive=True)):
         if not any(w in near for w in ("before run 6", "at that point", "earlier", "then had", "v1.4", "v1.5", "v1.6")):
             bad.append(f"{rel}: '{m.group(0)}' looks like the old total; the lab has 130 cases and 124 run")
 
+# Case-study counts, in digits or words ("twenty case studies"), must match stats.json.
+# 22 = the 21 pages under /case-studies/ plus the exam study listed with them.
+WORDS = {w: i for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve thirteen "
+                                    "fourteen fifteen sixteen seventeen eighteen nineteen".split())}
+for i, t in enumerate("twenty thirty forty".split()):
+    WORDS[t] = 20 + 10 * i
+    for j, u in enumerate("one two three four five six seven eight nine".split(), 1):
+        WORDS[f"{t}-{u}"] = WORDS[f"{t} {u}"] = 20 + 10 * i + j
+cs = S.get("case_studies")
+NUM = r"\d{1,2}|(?:twenty|thirty|forty)(?:[- ](?:one|two|three|four|five|six|seven|eight|nine))?|" + "|".join(sorted(WORDS, key=len, reverse=True))
+for p in ROOT.rglob("*"):
+    if not cs or not p.is_file() or p.suffix not in {".html", ".md", ".txt", ".js", ".json"}:
+        continue
+    rel = p.relative_to(ROOT).as_posix()
+    if set(p.relative_to(ROOT).parts) & (SKIP_DIRS | {"agent-skills", "data"}) or rel in SKIP_FILES:
+        continue
+    for n, line in enumerate(p.read_text(errors="ignore").splitlines(), 1):
+        if any(w in line.lower() for w in legacy):
+            continue
+        for m in re.finditer(rf"(?<![\w-])({NUM})\s+(?:privacy-safe\s+|public-safe\s+)?case studies\b", line, re.I):
+            w = m.group(1).lower()
+            num = int(w) if w.isdigit() else WORDS.get(w)
+            if num is not None and num >= 10 and num != cs:
+                bad.append(f"{rel}:{n}: '{m.group(0)}' but data/stats.json says {cs} case studies")
+
 for b in bad:
     print(b)
 print(len(bad), "number mismatches")

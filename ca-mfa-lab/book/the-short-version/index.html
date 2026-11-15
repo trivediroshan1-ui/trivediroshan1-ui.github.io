@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The short version · sign-in lab book</title>
+    <meta name="description" content="The short version From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/the-short-version/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The short version · sign-in lab book">
+    <meta property="og:description" content="The short version From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/the-short-version/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-455565c79a.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-455565c79a.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "The short version", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/the-short-version/"}]}, {"@type": "CollectionPage", "name": "The short version · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/the-short-version/", "description": "The short version From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · Read this if you read nothing else</p>
+          <h1 id="wb-h">The short version</h1>
+          
+          <ul class="wb-tiles"><li><b>130</b> cases in the register</li><li><b>124</b> run on small models</li><li><b>118</b> guesses matched</li><li><b>6</b> guesses wrong, all in one run</li></ul><p>I ran 124 of the 130 cases. 118 matched the guess I had locked before any code. Six did not, and all six were in Run 2, the run where each case had two or three controls working together.</p><p>The score is the least useful result. Four things I would tell a team that owns sign-in:</p><ol><li>MFA was often not the control that decided the outcome. A stolen integration token never triggers a sign-in. A password reset that does not kill refresh tokens leaves a stolen session alive. A recovery path weaker than sign-in lets an attacker enroll their own authenticator.</li><li>The largest group of cases sits in link 4, Decide: a rule that does not cover the sign-in, an exception that grew, a legacy protocol that skips MFA. It holds 33 of the 130 cases and 3 of my 6 wrong guesses.</li><li>For AI agents, the controls that decided Run 6 were plain ones: a named human owner, an identity that expires with the task, and a check at the resource against the human's own rights. Narrowing a sub-agent's token and rotating its credential did not decide anything.</li><li>Each result rests on an assumption I chose. When I changed one assumption at a time, results flipped. A pass in this book holds only while its assumption holds.</li></ol><p>Six cases need a real tenant, a hardware key, a real agent product or a person on the phone. They are written up as hand tests for anyone to run, with my predictions locked.</p>
+          <nav class="wb-pn" aria-label="Chapters"><span></span><a rel="next" href="/ca-mfa-lab/book/chapter-1/"><span>Next</span>Chapter 1: The problem</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

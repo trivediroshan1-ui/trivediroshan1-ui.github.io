@@ -11,7 +11,7 @@
 html[data-theme="light"] {
   --bg: #f6f5ff; --bg2: #eceaff; --panel: #ffffff; --panel2: #f3f1ff; --line: rgba(76, 52, 160, .16); --line2: rgba(76, 52, 160, .3);
   --ink: #15122e; --mut: #4a4470; --dim: #5f5a85;
-  --cy: #0a6f84; --vi: #6d28d9; --em: #047857; --am: #a1580a; --ro: #be123c; --bl: #1d4ed8;
+  --cy: #0a6f84; --vi: #6d28d9; --em: #047857; --am: #8a4a06; --ro: #be123c; --bl: #1d4ed8;
   --cy-s: rgba(10, 111, 132, .1); --vi-s: rgba(109, 40, 217, .09); --em-s: rgba(4, 120, 87, .1); --am-s: rgba(161, 88, 10, .1); --ro-s: rgba(190, 18, 60, .08);
   --btn-ink: #ffffff; --bar-ink: #ffffff; --shadow: 0 14px 38px rgba(15, 23, 42, .12);
   color-scheme: light;

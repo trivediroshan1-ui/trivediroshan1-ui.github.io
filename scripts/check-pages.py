@@ -16,6 +16,7 @@ What counts as an issue (each a short, stable signature, so the baseline can mat
   small-text      visible text under 12 px (not in SVG diagrams)
                   (every check runs at all three widths, so phone-only problems are caught)
   tap-target      a control smaller than 24 x 24 px (WCAG 2.2 AA 2.5.8), links inside sentences excepted
+  light contrast  the same contrast check with the light theme switched on (390 px)
   contrast        text below 4.5:1 (3:1 for large text) on a plain background; text over images or
                   gradients is skipped, because it cannot be measured this way
   cls             layout shift over 0.1 in the first two seconds. Reported, never failing: it depends on
@@ -61,7 +62,7 @@ PROBE = r"""() => {
     return b; };
   // text checks
   document.querySelectorAll("body *").forEach(el => {
-    if (el.closest("svg,script,style,noscript,template") || !ownText(el) || !vis(el)) return;
+    if (el.closest("svg,script,style,noscript,template,video,audio") || !ownText(el) || !vis(el)) return;
     const cs = getComputedStyle(el), fs = parseFloat(cs.fontSize);
     if (fs < 12) add("small-text", el);
     const fg = parse(cs.color), bg = bgOf(el);
@@ -143,6 +144,21 @@ def check(pages):
                     s.update(pg.evaluate(PROBE))  # every check at every width: phone-only problems count too
                     s.update("js-error " + e for e in errs)
                 ctx.close()
+            # Light theme, phone width: contrast only, since layout does not change with the theme.
+            ctx = b.new_context(viewport={"width": 390, "height": 900}, reduced_motion="reduce", color_scheme="light")
+            ctx.route(re.compile(r"^https?://(?!localhost)"), lambda r: r.abort())
+            ctx.add_init_script("try{localStorage.setItem('theme','light')}catch(e){}")
+            pg = ctx.new_page()
+            for u in pages:
+                try:
+                    pg.goto(f"http://localhost:{PORT}{u}", wait_until="load", timeout=30000)
+                except Exception:
+                    continue
+                pg.wait_for_timeout(400)
+                if pg.evaluate("document.documentElement.getAttribute('data-theme')") != "light":
+                    continue  # the page has no light theme
+                found.setdefault(u, set()).update("light " + i for i in pg.evaluate(PROBE) if i.startswith("contrast"))
+            ctx.close()
             b.close()
     finally:
         srv.terminate()

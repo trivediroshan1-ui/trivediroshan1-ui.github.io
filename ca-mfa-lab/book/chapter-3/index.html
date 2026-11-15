@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: The framework: the access chain · sign-in lab book</title>
+    <meta name="description" content="The framework: the access chain From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-3/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 3: The framework: the access chain · sign-in lab book">
+    <meta property="og:description" content="The framework: the access chain From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-3/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-455565c79a.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-455565c79a.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 3: The framework: the access chain", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-3/"}]}, {"@type": "CollectionPage", "name": "Chapter 3: The framework: the access chain · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-3/", "description": "The framework: the access chain From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · Seven links every sign-in passes through</p>
+          <h1 id="wb-h">The framework: the access chain</h1>
+          
+          <p>Every sign-in, and every action an agent takes for a person, passes through seven links. A case belongs to the link where its deciding control sits. A weak link anywhere lets the bad outcome through, however strong MFA is at link 2.</p><ol class="wb-steps"><li><b>1. Enroll and recover</b> Who can add, move or reset a way to sign in? <i>17 cases.</i></li><li><b>2. Prove</b> How strong is the proof at sign-in? <i>14 cases.</i></li><li><b>3. Trust</b> Who vouches for the user, and is that voucher checked? <i>21 cases.</i></li><li><b>4. Decide</b> Does a rule cover this sign-in, and does it say the right thing? <i>33 cases.</i></li><li><b>5. Issue</b> What does the token allow, for how long, and to whom? <i>16 cases.</i></li><li><b>6. Act</b> Is the sensitive action checked when it happens, not only at sign-in? <i>14 cases.</i></li><li><b>7. Watch and end</b> When something changes, does access actually stop? <i>15 cases.</i></li></ol><p class="wb-small">Figure 1. The access chain. Read left to right, top row then bottom row. Each box shows the question the link asks and how many cases sit in it.</p><div class="wb-tw"><table><thead><tr><th scope="col">Link</th><th scope="col">The question</th><th scope="col">Controls that decide it</th><th scope="col">Cases</th><th scope="col">Run</th><th scope="col">One off lets it in</th><th scope="col">Wrong</th></tr></thead><tbody><tr><td><b>1. Enroll and recover</b></td><td>Who can add, move or reset a way to sign in?</td><td>Phishing-resistant enrollment, callback before reset, notice on change, delay on new methods</td><td>17</td><td>15</td><td>10</td><td>1</td></tr><tr><td><b>2. Prove</b></td><td>How strong is the proof at sign-in?</td><td>Phishing-resistant methods, number matching, rate limits, no weaker fallback</td><td>14</td><td>14</td><td>10</td><td>0</td></tr><tr><td><b>3. Trust</b></td><td>Who vouches for the user, and is that voucher checked?</td><td>Assertion replay and audience checks, exact redirects, PKCE, signing key care, pinned federation and CI/CD trust</td><td>21</td><td>21</td><td>17</td><td>0</td></tr><tr><td><b>4. Decide</b></td><td>Does a rule cover this sign-in, and does it say the right thing?</td><td>Default deny, no broad exceptions, report-only first, device and context signals that cannot be faked</td><td>33</td><td>32</td><td>26</td><td>3</td></tr><tr><td><b>5. Issue</b></td><td>What does the token allow, for how long, and to whom?</td><td>Narrow scope, short life, binding to the client, refresh rotation and a maximum age, no stored secrets</td><td>16</td><td>16</td><td>10</td><td>1</td></tr><tr><td><b>6. Act</b></td><td>Is the sensitive action checked when it happens, not only at sign-in?</td><td>Step-up checked by the server, every credential type covered, actions limited to what the human named and may do</td><td>14</td><td>13</td><td>12</td><td>1</td></tr><tr><td><b>7. Watch and end</b></td><td>When something changes, does access actually stop?</td><td>Revocation that reaches every token, continuous evaluation, expiry with the task, a named owner, logs that name the human</td><td>15</td><td>13</td><td>9</td><td>0</td></tr></tbody></table></div><p>Two counts stand out. Link 4, Decide, holds a quarter of the cases and half the wrong guesses. Link 6, Act, has the highest share of cases where switching off one control on its own let the bad outcome in: 12 of the 13 run.</p>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/chapter-2/"><span>Previous</span>Chapter 2: Scope and method</a><a rel="next" href="/ca-mfa-lab/book/chapter-4/"><span>Next</span>Chapter 4: Enroll and recover</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

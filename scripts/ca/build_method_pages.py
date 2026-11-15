@@ -146,7 +146,7 @@ def wrong_page():
   </section>
   <section class="nsec" id="check" aria-labelledby="chk-h">
     <h2 id="chk-h">Check it yourself</h2>
-    <p class="lede">The Run 2 guesses are in commit 7d31554, before the Run 2 code. {link(g2, "Run 2 guesses")} &middot; {link(r2, "Run 2 results")} &middot; {link(GH + "/evidence/run2.py", "Run 2 code")} &middot; {link("/ca-mfa-lab/register/", "Full register")} &middot; {link("/ca-mfa-lab/method/", "How the method works")}</p>
+    <p class="lede">The Run 2 guesses are in commit <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/commit/7d31554">7d31554</a>, before the Run 2 code. {link(g2, "Run 2 guesses")} &middot; {link(r2, "Run 2 results")} &middot; {link(GH + "/evidence/run2.py", "Run 2 code")} &middot; {link("/ca-mfa-lab/register/", "Full register")} &middot; {link("/ca-mfa-lab/method/", "How the method works")}</p>
   </section>'''
     return page("/ca-mfa-lab/what-i-got-wrong/", "What I got wrong in the CA and MFA lab",
                 "The 6 guesses I got wrong in my conditional access and MFA lab, what the script showed, and 3 mistakes in my own test code. Made-up data only.",
@@ -166,9 +166,9 @@ def method_page():
         ("Fix my code, never my guess.", "If the code was wrong, I fix the code and say so. If the guess was wrong, both stay on the page.", "Changing a guess after the fact would turn the record into a story I like."),
     ]
     sh = "".join(f'<li><b>{a}</b> {b} <i>Why: {c}</i></li>' for a, b, c in steps)
-    commits = ("The guesses were committed to this site&rsquo;s repository before any code existed. Commit 5875323 holds the Run 1 guesses. Commit 7d31554 holds the Run 2 guesses. "
-               "Commit 56b9622 holds the Run 1 and Run 2 code and results. Commit f8d6676 holds the Run 3 guesses, and commit 179b763 holds the Run 3 code and results. "
-               "Commit 64c3573 holds the predictions for the three tests I will run by hand.")
+    commits = ("The guesses were committed to this site&rsquo;s repository before any code existed. Commit <a href=\"https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/commit/5875323\">5875323</a> holds the Run 1 guesses. Commit <a href=\"https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/commit/7d31554\">7d31554</a> holds the Run 2 guesses. "
+               "Commit <a href=\"https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/commit/56b9622\">56b9622</a> holds the Run 1 and Run 2 code and results. Commit <a href=\"https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/commit/f8d6676\">f8d6676</a> holds the Run 3 guesses, and commit <a href=\"https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/commit/179b763\">179b763</a> holds the Run 3 code and results. "
+               "Commit <a href=\"https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/commit/64c3573\">64c3573</a> holds the predictions for the three tests I will run by hand. These commits sit on the pull request branches, because pull requests here are squash-merged into one commit each, so you will not find them by browsing the main branch. GitHub keeps them, and each link opens the commit with its date and files.")
     body = f'''  <section class="nsec" id="order" aria-labelledby="o-h">
     <h2 id="o-h">The order is the method</h2>
     <ol>{sh}</ol>

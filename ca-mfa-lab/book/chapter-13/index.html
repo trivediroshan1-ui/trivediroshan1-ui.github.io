@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 13: What companies are suffering · sign-in lab book</title>
+    <meta name="description" content="What companies are suffering From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-13/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 13: What companies are suffering · sign-in lab book">
+    <meta property="og:description" content="What companies are suffering From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-13/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-455565c79a.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-455565c79a.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 13: What companies are suffering", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-13/"}]}, {"@type": "CollectionPage", "name": "Chapter 13: What companies are suffering · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-13/", "description": "What companies are suffering From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · Dated events behind the cases</p>
+          <h1 id="wb-h">What companies are suffering</h1>
+          
+          <p>The cases come from public reports. Each event below has a date, the lab cases it relates to, the kind of source, and how far I trust it. Companies appear because the sources name them. A name here says nothing about that company's controls today.</p><div class="wb-tw"><table><thead><tr><th scope="col">Date</th><th scope="col">What was reported</th><th scope="col">Cases</th><th scope="col">Source and trust</th></tr></thead><tbody><tr><td>6 Nov 2026</td><td>SonicWall SSLVPN: a user with valid credentials for another login method can bypass SAML, including SAML-enforced MFA (CVE-2026-19868). Applies only when SAML is on for VPN logins. SonicWall’s advisory says it investigated a report indicating potential exploitation, and CISA added the flaw to its Known Exploited Vulnerabilities list the same day. Fixed in 7.3.4-7013 (Gen7) and 8.2.3-8015 (Gen8). Revision 1.1 on 9 November added a workaround: if SAML is in use and you cannot upgrade, disable or delete the active LDAP, RADIUS and TACACS+ servers.</td><td>W05</td><td>SonicWall advisory SNWLID-2026-0014, revision 1.1; CISA KEV entry. Confirmed against SonicWall’s own page on 14 November. My earlier note said there was no workaround; that was true until revision 1.1. The page’s revision table dates version 1.0 as 5 November, its header says 6 November.</td></tr><tr><td>28 Sep 2026</td><td>The official MCP Python SDK did not check the issuer on a fallback discovery path. A malicious MCP server could make an SDK-based client send its client secret, authorization code and PKCE verifier to an endpoint the server chose (GHSA-qx49-fqc8-xw99, CVSS 7.5). Fixed in 1.30.0 and 2.2.0. No attacks have been reported.</td><td>W11</td><td>Project security advisory, read through a Cloud Security Alliance note (30 Sep 2026) and The Hacker News. Confirmed, with a qualifier: I did not open the GitHub advisory. MCP was created by Anthropic, whose Claude model helped me draft this lab.</td></tr><tr><td>24 Aug 2026</td><td>Okta made Agent SSO generally available. It registers AI agents as identities, issues short-lived tokens in place of stored credentials, and moves agent authorization to the identity provider using Cross App Access. The release does not say how revocation works.</td><td>G01 E04</td><td>Vendor press release. Confirmed as Okta’s own announcement, read through a page summary on 14 November. Product claims are the vendor’s.</td></tr><tr><td>15 Jul 2026</td><td>GitHub moves new repositories, and repositories that opt in, to an immutable subject claim in OIDC tokens. Cloud trust policies must include the numeric owner and repository IDs.</td><td>W01</td><td>Vendor documentation. Confirmed against GitHub’s live docs on 14 November, through a page summary. Repositories created after the date use the new format by default, older ones can opt in, and renames and transfers after it also move. Not available on GitHub Enterprise Server.</td></tr><tr><td>Reported 17 Mar 2026</td><td>Researchers at NetSPI showed that certain nested app authentication flows could return Microsoft Graph tokens without Conditional Access being applied. They told Microsoft on 17 March, Microsoft rated it medium and deployed a fix, and a retest returned Conditional Access blocking errors. Other researchers presented further nested app paths at TROOPERS 2026.</td><td>Y06</td><td>Researcher write-up. Partly confirmed: I read excerpts of the NetSPI post and a news write-up, not Microsoft’s own statement. The fix covers the flows NetSPI named, not every nested app path.</td></tr><tr><td>27 Jan 2026</td><td>Microsoft revised the Exchange Online timeline for ending Basic authentication on SMTP AUTH (the path older printers and scanners use). It stays unchanged until December 2026, is then disabled by default for existing tenants and unavailable by default for new ones, and a final removal date is due in the second half of 2027. The earlier March to April 2026 dates were put on hold.</td><td>Z20</td><td>Vendor announcement (Exchange Team blog, updated 29 Jan). Confirmed, through a page summary. Dates have moved before, so check Microsoft’s page before you act.</td></tr><tr><td>22 Jan 2026</td><td>Okta Threat Intelligence described phishing kits built for phone callers. The caller steers what the user sees in step with their script, which defeats any MFA that is not phishing-resistant. Okta says number matching is not phishing-resistant by definition.</td><td>M01 M03 M04 Z01 W12</td><td>Vendor research by the identity provider; primary for what Okta observed. Confirmed as Okta’s own finding. The full advisory is for Okta customers only.</td></tr><tr><td>1 Oct 2025</td><td>Microsoft began enforcing MFA for Azure resource management at the Azure Resource Manager layer (Phase 2), for CLI, PowerShell, SDKs and REST calls. Tenants could postpone to 1 July 2026. Workload identities such as managed identities and service principals are not covered.</td><td>Y01 Y02 W08</td><td>Vendor documentation and announcement. Confirmed. Enforcement is gradual by tenant, so your tenant may differ.</td></tr><tr><td>8 to 20 Aug 2025</td><td>Stolen OAuth and refresh tokens from the Salesloft Drift integration were used to read data from many customers’ Salesforce instances between 8 and 18 August. Salesloft and Salesforce revoked all Drift tokens on 20 August. Google later confirmed Drift Email tokens were also compromised.</td><td>W06 W07</td><td>Google Threat Intelligence Group report, 26 Aug 2025. Confirmed by the investigating team. My reading: tokens like these are used without a fresh sign-in, so MFA had nothing to check.</td></tr><tr><td>9 Jul 2025</td><td>mcp-remote, a tool that connects AI clients to remote MCP servers, ran operating system commands from a crafted authorization endpoint sent by a malicious server (CVE-2025-6514, CVSS 9.6). Fixed in 0.1.16.</td><td>W11</td><td>Researcher advisory and CVE record. Confirmed. A related lesson to W11, not the same flaw: the client trusted values the server supplied. W11 matches the Python SDK advisory above.</td></tr><tr><td>14 to 18 Mar 2025</td><td>The GitHub Action tj-actions/changed-files was compromised and leaked CI/CD secrets through workflow logs (CVE-2025-30066). CISA added it to its Known Exploited Vulnerabilities list.</td><td>W02 W03</td><td>Government alert. Confirmed.</td></tr><tr><td>16 Nov 2023, updated 29 Jul 2025</td><td>CISA and the FBI described a group that phones IT help desks, poses as an employee and has the password reset and MFA moved to a device they control.</td><td>W12 E03</td><td>Government advisory AA23-320A. Confirmed.</td></tr></tbody></table></div>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/chapter-12/"><span>Previous</span>Chapter 12: What changes the answer</a><a rel="next" href="/ca-mfa-lab/book/chapter-14/"><span>Next</span>Chapter 14: Research and development: where vendors and standards are going</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

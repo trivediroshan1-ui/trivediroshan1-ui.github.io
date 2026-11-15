@@ -195,3 +195,8 @@ sup a{display:inline-block;min-width:24px;min-height:24px;line-height:24px;text-
 .nhi th a,.nhi td a.cid{display:inline-block;padding:3px 0}
 html[data-theme="light"] .nb.opinion{color:#5b3fb8;border-color:#5b3fb8}
 html[data-theme="light"] .nhero .lastrev{color:#51607a;opacity:1!important}
+
+/* buttons in the lab heroes (the CA lab uses .btn; light theme had no style for it) */
+.nhi .btn{display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;margin:4px 8px 4px 0;border-radius:10px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600}
+.nhi .btn:hover{border-color:var(--k)}
+.nhi .btn-primary{background:#5b3cc4;border-color:#5b3cc4;color:#fff}

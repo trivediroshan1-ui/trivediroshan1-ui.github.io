@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Scope and method · sign-in lab book</title>
+    <meta name="description" content="Scope and method From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-2/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 2: Scope and method · sign-in lab book">
+    <meta property="og:description" content="Scope and method From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-2/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-455565c79a.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-455565c79a.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 2: Scope and method", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-2/"}]}, {"@type": "CollectionPage", "name": "Chapter 2: Scope and method · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-2/", "description": "Scope and method From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · What is in, what is out, and how each case was run</p>
+          <h1 id="wb-h">Scope and method</h1>
+          
+          <h2>In scope</h2><ul><li>MFA and 2FA methods: SMS, TOTP, push, number matching, passkeys and security keys.</li><li>Single sign-on: SAML, OpenID Connect and OAuth flows, federation and signing keys.</li><li>Conditional access policy logic, context signals, exceptions and emergency accounts.</li><li>Account recovery and help desk resets.</li><li>Tokens: scope, lifetime, binding, refresh and revocation.</li><li>CI/CD cloud trust, API integrations, MCP clients and servers, and AI agents acting for people.</li></ul><h2>Out of scope</h2><ul><li>How any named product behaves. I did not test vendors.</li><li>Real tenants, real people and real data. Six hand tests are left for readers.</li><li>Performance, cost and user experience.</li></ul><h2>How a case was run</h2><ol><li>Pick a failure from the catalogue and the controls that should stop it. Write down the bad outcome first, so I know what I am counting.</li><li>Write the expected result with no controls, with all controls on, and with each control switched off on its own.</li><li>Save the guesses, hash the file with SHA-256 and commit it. Merge it before any model code exists.</li><li>Write the model, run it, and compare the output with the parsed guess file. The script refuses to run if the guess file's hash differs.</li><li>Record every miss. Fix my own coding mistakes in the open and keep the first-pass files.</li><li>For Runs 5 and 6, change one assumption at a time and record which results flip.</li></ol><h2>The six runs</h2><div class="wb-tw"><table><thead><tr><th scope="col">Run</th><th scope="col">What it covered</th><th scope="col">Cases</th><th scope="col">Matched</th><th scope="col">Guess file SHA-256 (first 16)</th></tr></thead><tbody><tr><td>1</td><td>Single controls: MFA methods, SSO protocols, recovery</td><td>41</td><td>41 of 41</td><td>2675a0efa8937fb5</td></tr><tr><td>2</td><td>Two or three controls working together</td><td>45</td><td>39 of 45</td><td>f7c8439b21cda129</td></tr><tr><td>3</td><td>Step-up, federation, mobile, passkeys, agents and MCP</td><td>16</td><td>16 of 16</td><td>a09daa459851a1d9</td></tr><tr><td>4</td><td>Hand tests E01 to E03 (predictions only)</td><td>3</td><td>not run</td><td>38f544b069739445</td></tr><tr><td>5</td><td>CI/CD, APIs and integrations, agents, recovery</td><td>12</td><td>12 of 12</td><td>bc344bbd00d01d16</td></tr><tr><td>6</td><td>AI agent identity, plus hand tests E04 to E06</td><td>10 + 3</td><td>10 of 10</td><td>1abdbf110b583755</td></tr></tbody></table></div><aside class="wb-note wb-warn"><p><b>Why the perfect runs prove little</b></p><p>I wrote each model after its guesses. A perfect score shows that my model and my reasoning agree. Nothing outside me tested the guesses. Run 2 was the only run that caught me out, and it taught me the most.</p></aside>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/chapter-1/"><span>Previous</span>Chapter 1: The problem</a><a rel="next" href="/ca-mfa-lab/book/chapter-3/"><span>Next</span>Chapter 3: The framework: the access chain</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

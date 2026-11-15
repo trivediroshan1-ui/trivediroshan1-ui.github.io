@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appendix C: Glossary · sign-in lab book</title>
+    <meta name="description" content="Glossary From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-c/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Appendix C: Glossary · sign-in lab book">
+    <meta property="og:description" content="Glossary From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-c/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-455565c79a.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-455565c79a.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Appendix C: Glossary", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-c/"}]}, {"@type": "CollectionPage", "name": "Appendix C: Glossary · sign-in lab book", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/appendix-c/", "description": "Glossary From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · Terms in plain words</p>
+          <h1 id="wb-h">Glossary</h1>
+          
+          <div class="wb-tw"><table><thead><tr><th scope="col">Term</th><th scope="col">Meaning</th></tr></thead><tbody><tr><td><b>AAL</b></td><td>Authenticator assurance level in NIST SP 800-63B. AAL3 needs a hardware-bound key that cannot be copied.</td></tr><tr><td><b>Access token</b></td><td>A short-lived credential an app presents to an API. Whoever holds it can usually use it.</td></tr><tr><td><b>AiTM</b></td><td>Adversary in the middle. A phishing proxy that relays the real sign-in and steals the session cookie after MFA.</td></tr><tr><td><b>Assertion</b></td><td>A signed statement from an identity provider that a user signed in, for example a SAML assertion.</td></tr><tr><td><b>Audience</b></td><td>The app or API a token or assertion is meant for. An app that does not check it may accept a token meant for another.</td></tr><tr><td><b>Authorization server</b></td><td>The service that issues OAuth tokens.</td></tr><tr><td><b>Break-glass account</b></td><td>An emergency account kept outside normal rules so admins are not locked out.</td></tr><tr><td><b>Conditional access</b></td><td>Rules that decide whether a sign-in is allowed, blocked or needs more proof, based on user, app, device and context.</td></tr><tr><td><b>Consent phishing</b></td><td>Tricking a user into granting a malicious app access, with no password stolen.</td></tr><tr><td><b>Continuous access evaluation</b></td><td>Re-checking a session after sign-in when something changes, such as a revoked user or a new network.</td></tr><tr><td><b>Cross App Access</b></td><td>An approach where an AI agent gets access to a second app through the enterprise identity provider.</td></tr><tr><td><b>Device code flow</b></td><td>An OAuth flow for devices without a keyboard. Attackers use it to get a victim to approve their code.</td></tr><tr><td><b>DPoP</b></td><td>Demonstrating Proof of Possession (RFC 9449). Binds a token to a key so a copied token fails from another machine.</td></tr><tr><td><b>Exclusion group</b></td><td>A group left out of a policy. It tends to grow.</td></tr><tr><td><b>Federation</b></td><td>Trusting another identity provider's sign-ins and claims.</td></tr><tr><td><b>FIDO2 and WebAuthn</b></td><td>Standards behind passkeys and security keys. The key signs only for the real site's origin.</td></tr><tr><td><b>Golden SAML</b></td><td>Forging SAML assertions with a stolen identity provider signing key.</td></tr><tr><td><b>Help desk reset</b></td><td>Staff resetting a password or MFA for a caller. A common way in for social engineers.</td></tr><tr><td><b>Identity provider (IdP)</b></td><td>The service that signs users in and vouches for them to apps.</td></tr><tr><td><b>Issuer</b></td><td>The identity provider or authorization server named in a token or metadata.</td></tr><tr><td><b>Legacy authentication</b></td><td>Old sign-in protocols, such as SMTP AUTH with a password, that cannot do MFA.</td></tr><tr><td><b>MCP</b></td><td>Model Context Protocol. A way for AI applications to connect to tools and data. Its authorization uses OAuth.</td></tr><tr><td><b>MFA, 2FA</b></td><td>Signing in with more than one kind of proof. 2FA means exactly two.</td></tr><tr><td><b>Nonce</b></td><td>A one-time value that ties a response to the request that asked for it.</td></tr><tr><td><b>Number matching</b></td><td>A push prompt where the user types a number shown on the sign-in screen, which stops blind approval.</td></tr><tr><td><b>OIDC</b></td><td>OpenID Connect. A sign-in layer on top of OAuth that issues ID tokens.</td></tr><tr><td><b>OAuth</b></td><td>A framework for granting apps limited access to resources with tokens.</td></tr><tr><td><b>On behalf of</b></td><td>An agent or service acting for a person. The token should carry who that person is.</td></tr><tr><td><b>Passkey</b></td><td>A FIDO credential that replaces a password. It can be synced across devices or bound to one.</td></tr><tr><td><b>Phishing-resistant MFA</b></td><td>MFA a look-alike site cannot relay, such as passkeys and security keys.</td></tr><tr><td><b>PKCE</b></td><td>Proof Key for Code Exchange. Stops an intercepted authorization code from being used by someone else.</td></tr><tr><td><b>Privileged access</b></td><td>Access that can change security settings, data or other people's access.</td></tr><tr><td><b>Push fatigue</b></td><td>Sending prompts until a tired user approves one.</td></tr><tr><td><b>Redirect URI</b></td><td>Where an authorization server sends the code or token. It must match exactly.</td></tr><tr><td><b>Refresh token</b></td><td>A longer-lived credential that gets new access tokens without signing in again.</td></tr><tr><td><b>Report-only mode</b></td><td>Running a policy that logs what it would do without enforcing it.</td></tr><tr><td><b>ROPC</b></td><td>Resource owner password credentials. Sending a password straight to the token endpoint, which cannot do MFA.</td></tr><tr><td><b>SAML</b></td><td>Security Assertion Markup Language. An older SSO standard based on signed XML assertions.</td></tr><tr><td><b>Service account</b></td><td>An account used by software, not a person.</td></tr><tr><td><b>Session</b></td><td>The period after sign-in when a cookie or token keeps a user signed in.</td></tr><tr><td><b>SIM swap</b></td><td>Moving a phone number to an attacker's SIM to receive SMS codes.</td></tr><tr><td><b>SSO</b></td><td>Single sign-on. One sign-in at the identity provider gives access to many apps.</td></tr><tr><td><b>Step-up</b></td><td>Asking for fresh, stronger proof before a sensitive action.</td></tr><tr><td><b>Sub-agent</b></td><td>An agent started by another agent to do part of a task.</td></tr><tr><td><b>Token binding</b></td><td>Tying a token to a device or key so it cannot be used elsewhere.</td></tr><tr><td><b>Token exchange</b></td><td>Swapping one token for another with narrower scope, for example when delegating (RFC 8693).</td></tr><tr><td><b>TOTP</b></td><td>Time-based one-time password from an authenticator app.</td></tr><tr><td><b>Trusted location</b></td><td>A network range a policy treats as safer, often to skip MFA.</td></tr><tr><td><b>Workload identity</b></td><td>An identity for software, such as a pipeline or a cloud function, that uses short-lived federated tokens.</td></tr></tbody></table></div>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/appendix-b/"><span>Previous</span>Appendix B: The full register</a><a rel="next" href="/ca-mfa-lab/book/appendix-d/"><span>Next</span>Appendix D: Sources</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>

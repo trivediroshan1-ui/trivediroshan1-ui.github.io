@@ -56,7 +56,7 @@ rows = "".join(
     f'<td data-label="My guess">{words(c["expected"])}</td><td data-label="What came out">{words(c["actual"])}</td></tr>' for c in R12["cases"])
 ctl_rows = "".join(
     f'<tr><td data-label="Control"><b>{c["id"]}</b> {e(c["control"])} <small>({", ".join(c["cases"])})</small></td><td data-label="ISO 27001:2022">{e(c["iso27001"])}</td>'
-    f'<td data-label="NIST 800-53">{e(c["nist80053"])}</td><td data-label="PCI DSS 4.0">{e(c["pci"]) or "—"}</td><td data-label="HIPAA">{e(c["hipaa"])}</td></tr>' for c in R12["controls"])
+    f'<td data-label="NIST 800-53">{e(c["nist80053"])}</td><td data-label="PCI DSS 4.0.1">{e(c["pci"]) or "—"}</td><td data-label="HIPAA">{e(c["hipaa"])}</td></tr>' for c in R12["controls"])
 m, fr = R12["mutations"], R12["first_run"]
 
 block = f'''<!-- r12:start -->
@@ -88,7 +88,7 @@ block = f'''<!-- r12:start -->
         <h3>Where the five new controls sit</h3>
         <div class="tbl-wrap">
           <table class="tbl wrap-first stack">
-            <thead><tr><th>Control</th><th>ISO 27001:2022</th><th>NIST 800-53</th><th>PCI DSS 4.0</th><th>HIPAA</th></tr></thead>
+            <thead><tr><th>Control</th><th>ISO 27001:2022</th><th>NIST 800-53</th><th>PCI DSS 4.0.1</th><th>HIPAA</th></tr></thead>
             <tbody>{ctl_rows}</tbody>
           </table>
         </div>

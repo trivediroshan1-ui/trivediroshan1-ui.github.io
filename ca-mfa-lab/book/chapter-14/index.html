@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-bg="labs" data-m="cubes">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 14: Research and development: where vendors and standards are going</title>
+    <meta name="description" content="Research and development: where vendors and standards are going From the sign-in lab book.">
+    <link rel="canonical" href="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-14/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Chapter 14: Research and development: where vendors and standards are going">
+    <meta property="og:description" content="Research and development: where vendors and standards are going From the sign-in lab book.">
+    <meta property="og:url" content="https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-14/">
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-post-page-labs.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#05061a">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <!-- css-bundle: these stylesheets are served joined as b-455565c79a.css. Edit the tags here, then run scripts/bundle-css.py
+<link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+<link rel="stylesheet" href="/assets/home2.css?v=20261114e">
+<link rel="stylesheet" href="/assets/tokens.css?v=20261115b">
+<link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a">
+<link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+<link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+<link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+<link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+<link rel="stylesheet" href="/assets/web-book.css?v=20261116a">
+-->
+    <link rel="stylesheet" href="/assets/b-455565c79a.css">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/palette.js?v=20261116a" defer></script>
+    <script src="/assets/nav.js?v=20261115m" defer></script>
+    <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Labs and projects", "item": "https://roshantrivedi.co.in/labs/"}, {"@type": "ListItem", "position": 3, "name": "Conditional access, MFA and AI agent lab", "item": "https://roshantrivedi.co.in/ca-mfa-lab/"}, {"@type": "ListItem", "position": 4, "name": "The book on the web", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/"}, {"@type": "ListItem", "position": 5, "name": "Chapter 14: Research and development: where vendors and standards are going", "item": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-14/"}]}, {"@type": "CollectionPage", "name": "Chapter 14: Research and development: where vendors and standards are going", "url": "https://roshantrivedi.co.in/ca-mfa-lab/book/chapter-14/", "description": "Research and development: where vendors and standards are going From the sign-in lab book."}]}</script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<div class="sky" aria-hidden="true"></div>
+    <main id="main">
+      <article class="sec wb" aria-labelledby="wb-h">
+        <div class="wrap wb-wrap">
+          <p class="ey"><a href="/ca-mfa-lab/book/">Who signs in?</a> · What I read, and how far to trust it</p>
+          <h1 id="wb-h">Research and development: where vendors and standards are going</h1>
+          
+          <p>I searched once, in November 2026, for what identity vendors and standards bodies are building for non-human identity, AI agents, MFA and SSO. Most of what came back is vendor material or a write-up of it, so each row says what kind of source it is. Product claims are the vendor's.</p><div class="wb-tw"><table><thead><tr><th scope="col">Who</th><th scope="col">What (date)</th><th scope="col">Source type</th><th scope="col">Used in</th></tr></thead><tbody><tr><td>Okta</td><td>Agent SSO generally available, built on Cross App Access; short-lived tokens in place of stored credentials; agent authorization moved to the identity provider. The release does not say how revocation works (24 Aug 2026).</td><td>Vendor press release, read</td><td>G01, E04</td></tr><tr><td>Okta</td><td>Okta for AI Agents generally available (30 Apr 2026); Blueprint Alliance for a reference architecture to secure agents (22 Sep 2026).</td><td>Secondary write-up citing Okta</td><td>Context</td></tr><tr><td>Okta</td><td>Argues that SSO and MFA leave session-hijack gaps that continuous identity checks close.</td><td>Vendor blog, excerpt</td><td>G07, E06</td></tr><tr><td>Ping Identity</td><td>Enterprise Personal Agent Access for agents employees run themselves (1 Sep 2026); admin agents for Gemini Enterprise that reset passwords and end sessions on request (late Sep 2026).</td><td>News excerpts</td><td>G02, G06, E05</td></tr><tr><td>Cloud Security Alliance</td><td>Defining Non-Human Identity: six risk areas for all non-human identities; for agents, a human sponsor each, minimal short-lived delegated access limited to the human's own permissions, and logs naming delegator, agent and intent (22 Jul 2026).</td><td>Industry research, read</td><td>G03, G04, G05, G10</td></tr><tr><td>IETF</td><td>AIMS, an emerging draft framework for agent identity using certificates.</td><td>Vendor explainer of a draft</td><td>G08 (verify)</td></tr><tr><td>MCP project</td><td>Authorization specification, 2026-07-28 revision: clients find the authorization server from protected resource metadata and check the issuer.</td><td>Specification, read</td><td>W11, Y11, Y12</td></tr><tr><td>GitHub</td><td>Immutable OIDC subject claims with owner and repository IDs for repositories created after 15 July 2026.</td><td>Vendor documentation, read</td><td>W01</td></tr><tr><td>Microsoft</td><td>SMTP AUTH Basic authentication disabled by default for existing tenants at the end of December 2026; final removal date due in the second half of 2027.</td><td>Vendor announcement, read</td><td>Z20</td></tr><tr><td>SANS</td><td>2026 survey: the challenge has moved from buying identity tools to making them work.</td><td>Survey, excerpt</td><td>Context</td></tr></tbody></table></div><aside class="wb-note wb-info"><p><b>What I could test from this</b></p><p>Everything that is rule logic went into Run 6 as a model. Everything that needs the real product went into the hand tests E04 to E06. None of it tests a vendor's product.</p></aside>
+          <nav class="wb-pn" aria-label="Chapters"><a rel="prev" href="/ca-mfa-lab/book/chapter-13/"><span>Previous</span>Chapter 13: What companies are suffering</a><a rel="next" href="/ca-mfa-lab/book/chapter-15/"><span>Next</span>Chapter 15: The lab for your people</a></nav>
+          <p class="wb-pdf"><a href="/ca-mfa-lab/book/">Contents</a> · <a href="/ca-mfa-lab/ca-mfa-lab-book.pdf">The PDF</a> · All data in this book is made up.</p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 16 Nov 2026</span></span>
+        <nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/feed.xml">RSS</a></nav>
+      </div>
+    </footer>
+    <script defer src="/assets/chatbot-widget.js?v=20261116a"></script>
+    <script defer src="/assets/events.js?v=20261115b"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  
+  </body>
+</html>
