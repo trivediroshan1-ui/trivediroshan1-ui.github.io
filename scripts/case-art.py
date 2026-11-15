@@ -69,7 +69,7 @@ SCENES = {  # href: (left, middle, right) ; a list means a small stack of icons 
  "/case-studies/access-recertification/": ("people", "list", "calendar"),
  "/case-studies/passwordless-authentication/": ("pwd", "finger", "phone"),
  "/case-studies/ciem-at-scale/": ("cloud", "search", "scissors"),
- "/mcp-lab-case-study/": ("robot", "person", "tool"),
+ "/mcp-lab/": ("robot", "person", "tool"),
  "/case-studies/agentic-ai-identity-governance/": ("robot", "idcard", "doc"),
  "/case-studies/ai-processing-tax/": ("robot", "gauge", "coin"),
  "/case-studies/ai-agent-credential-sharing/": ("key", "warn", ["robot", "robot", "robot"]),

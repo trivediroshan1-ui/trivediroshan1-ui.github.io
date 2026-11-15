@@ -11,7 +11,7 @@
 
 ## Research and labs
 - [Who Approved That? (free book)](https://roshantrivedi.co.in/book/): 138 pages on human approval for AI agent tool calls, 210 scripted checks
-- [HumanGate MCP lab](https://roshantrivedi.co.in/mcp-lab-case-study/): an approval gateway for MCP tool calls and what held under testing
+- [HumanGate MCP lab](https://roshantrivedi.co.in/mcp-lab/): an approval gateway for MCP tool calls and what held under testing
 - [Securing India's National Exams](https://roshantrivedi.co.in/secure-india-exams/): a Zero Trust reference architecture for exam security
 - [Credential tiering self-check](https://roshantrivedi.co.in/tools/tier-check/)
 - [Non-human identity lab](https://roshantrivedi.co.in/nhi-lab/): 67 machine-identity cases on made-up data, guesses hashed before the code, 10 wrong guesses recorded

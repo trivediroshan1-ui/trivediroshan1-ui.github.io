@@ -3,7 +3,7 @@
 one footer, and no old button row on the MCP lab pages. Safe to re-run."""
 import re, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SKIP = {"index.html", "labs/index.html", "book/index.html", "mcp-lab-portal/index.html",
+SKIP = {"index.html", "labs/index.html", "book/index.html", "mcp-lab/portal/index.html",
         "secure-india-exams/index.html", "design-system/index.html"}
 CSS = '<link rel="stylesheet" href="/assets/refresh.css?v=20261019e">'
 FOOT = ('<footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span>'

@@ -44,8 +44,8 @@ TOPICS = [
     (CS + "passwordless-authentication/", "Passwordless authentication rollout", "Case study"),
     ("/writing/130-conditional-access-mfa-and-ai-agent-cases/", "130 cases and six wrong guesses", "Article")]),
  ("agents", "AI agents and MCP", "An agent is an identity that acts. Who approved the action, with what credential, and what was recorded?", [
-    ("/mcp-lab-case-study/", "HumanGate MCP lab: a person in the loop", "Lab"),
-    ("/mcp-lab-portal/", "MCP lab portal: 161 case cards", "Lab"),
+    ("/mcp-lab/", "HumanGate MCP lab: a person in the loop", "Lab"),
+    ("/mcp-lab/portal/", "MCP lab portal: 161 case cards", "Lab"),
     ("/assets/who-approved-that-book.pdf", "Who Approved That? (138 pages)", "Book"),
     (CS + "agentic-ai-identity-governance/", "Agentic AI identity governance", "Case study"),
     (CS + "ai-agent-credential-sharing/", "One key, every agent", "Case study"),
@@ -88,14 +88,14 @@ GLOSSARY = [
  ("Credential tiering", "Sorting credentials into levels by what they can reach, so the most powerful ones get the strictest handling.", "/tools/tier-check/"),
  ("Default deny", "A rule set where a request that matches no rule is refused. Without it, the gaps between rules are open.", "/ca-mfa-lab/framework/"),
  ("Federation", "One system trusting another to say who a user is. Single sign-on is built on it.", None),
- ("Human in the loop", "A design where a person must approve a step before it runs. It only helps if the person sees exactly what will happen.", "/mcp-lab-case-study/"),
+ ("Human in the loop", "A design where a person must approve a step before it runs. It only helps if the person sees exactly what will happen.", "/mcp-lab/"),
  ("IAM", "Identity and access management. The whole field: who people and machines are, and what they may do.", None),
  ("Identity provider (IdP)", "The system that signs users in and tells other apps who they are.", None),
  ("IGA", "Identity governance and administration. Requests, approvals, reviews and the records that show access was granted for a reason.", CS + "access-recertification/"),
  ("Just-enough access (JEA)", "Granting only the specific rights a task needs, not a broad role.", CS + "jit-jea-elevation/"),
  ("Just-in-time access (JIT)", "Granting access when it is needed and removing it automatically afterwards, so nothing powerful sits idle.", CS + "jit-jea-elevation/"),
  ("Least privilege", "Give each identity the smallest set of rights that lets it do its job.", None),
- ("MCP", "Model Context Protocol. A standard way for an AI application to call tools and reach data. Each tool call is an action someone should be able to approve and trace.", "/mcp-lab-case-study/"),
+ ("MCP", "Model Context Protocol. A standard way for an AI application to call tools and reach data. Each tool call is an action someone should be able to approve and trace.", "/mcp-lab/"),
  ("MFA", "Multi-factor authentication. Signing in with two or more different kinds of proof. Not all methods are equal: codes and push prompts can be relayed by a phishing page.", "/ca-mfa-lab/"),
  ("Non-human identity (NHI)", "Any identity that is not a person: service accounts, API keys, workloads, bots and agents.", "/nhi-lab/"),
  ("OAuth and OpenID Connect", "OAuth lets an app act with limited rights without seeing the password. OpenID Connect adds sign-in on top of it.", None),
@@ -122,7 +122,7 @@ PATHS = [
  ("If you lead a security or identity team", "Fifteen minutes. The findings, and what they change.", [
     ("/ca-mfa-lab/", "Do sign-in controls hold up?", "130 cases. Most weak points sat after the MFA prompt."),
     ("/nhi-lab/", "Machine identities, tested", "67 cases. Ten of my own guesses were wrong, and which ones."),
-    ("/mcp-lab-case-study/", "A person in the loop for AI agents", "What an approval step stops, and what it does not."),
+    ("/mcp-lab/", "A person in the loop for AI agents", "What an approval step stops, and what it does not."),
     (CS + "privileged-access-program/", "Running a privileged access program", "How I structure the work and the evidence."),
     ("/resume/", "R&eacute;sum&eacute;", "Roles, dates and certifications.")]),
  ("If you design identity systems", "The models and the reasoning behind them.", [
@@ -134,7 +134,7 @@ PATHS = [
  ("If you build and run it", "Things you can run, change and break.", [
     ("/ca-mfa-lab/virtual-lab/run/", "Run the conditional access, MFA and AI agent lab in your browser", "Nothing to install. Change an assumption and rerun."),
     ("/ai-governance-lab/try/", "Try the AI governance lab", "The same cases, in your own hands."),
-    ("/mcp-lab-portal/", "MCP lab portal", "161 case cards with the request, the decision and the receipt."),
+    ("/mcp-lab/portal/", "MCP lab portal", "161 case cards with the request, the decision and the receipt."),
     ("/nhi-lab/audit/", "Audit data as CSV and JSON", "Every case, machine readable."),
     ("/tools/tier-check/", "Credential tier self-check", "Three minutes, runs in your browser.")]),
  ("If you audit or assess controls", "Evidence first: what was claimed, what was tested, what failed.", [

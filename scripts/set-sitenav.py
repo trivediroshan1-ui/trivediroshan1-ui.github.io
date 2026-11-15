@@ -15,7 +15,7 @@ LINKS = [
     ("About", "/about/", ("/about", "/now", "/ai")),
     ("Contact", "/#contact", ()),
 ]
-STATIC = {"book/index.html", "mcp-lab-portal/index.html", "secure-india-exams/index.html", "tools/tier-check/index.html"}  # these keep their own sticky section bar
+STATIC = {"book/index.html", "mcp-lab/portal/index.html", "secure-india-exams/index.html", "tools/tier-check/index.html"}  # these keep their own sticky section bar
 CSS = '<link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">'
 JS = '<script src="/assets/palette.js?v=20261114d" defer></script>'
 NAVCSS = '<link rel="stylesheet" href="/assets/nav.css?v=20261022a">'

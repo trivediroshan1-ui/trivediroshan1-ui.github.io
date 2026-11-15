@@ -100,7 +100,7 @@ One run each, on my machines, with synthetic tools. This shows what this gateway
 
 ## Read more, free
 
-The gateway, the 122-page report and the 138-page book *Who Approved That?* are all on my site: [the MCP approval lab](https://roshantrivedi.co.in/mcp-lab-case-study/), [the in-depth write-up](https://roshantrivedi.co.in/mcp-lab-in-depth/), and the source on [GitHub](https://github.com/trivediroshan1-ui/mcp-human-approval-gateway). If you see a weak case, tell me which one.
+The gateway, the 122-page report and the 138-page book *Who Approved That?* are all on my site: [the MCP approval lab](https://roshantrivedi.co.in/mcp-lab/), [the in-depth write-up](https://roshantrivedi.co.in/mcp-lab/in-depth/), and the source on [GitHub](https://github.com/trivediroshan1-ui/mcp-human-approval-gateway). If you see a weak case, tell me which one.
 
 **Roshan Trivedi** writes about privileged access, identity and AI governance at [roshantrivedi.co.in](https://roshantrivedi.co.in). Newsletter: [buttondown.com/trivedi](https://buttondown.com/trivedi).
 
