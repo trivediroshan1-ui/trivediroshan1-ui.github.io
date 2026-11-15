@@ -1,0 +1,10 @@
+name = "rt-events"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+# Runs only on this one path of the site. Every other request is untouched.
+routes = [{ pattern = "roshantrivedi.co.in/e", zone_name = "roshantrivedi.co.in" }]
+
+[[analytics_engine_datasets]]
+binding = "EVENTS"
+dataset = "rt_events"
