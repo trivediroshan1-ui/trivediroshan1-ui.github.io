@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Trivedi;Roshan;;;
+FN:Roshan Trivedi
+TITLE:Identity and privileged access security
+EMAIL;TYPE=INTERNET:trivedi.roshan1@gmail.com
+URL:https://roshantrivedi.co.in/
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/roshan-trivedi-ciam/
+X-SOCIALPROFILE;TYPE=github:https://github.com/trivediroshan1-ui
+ADR;TYPE=WORK:;;;Bengaluru;;;India
+NOTE:Labs\, case studies and free books on identity security: https://roshantrivedi.co.in/labs/
+END:VCARD
