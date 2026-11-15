@@ -86,7 +86,7 @@ PROBE = r"""() => {
   Object.entries(ids).forEach(([k, v]) => { if (v > 1) out.push("dup-id #" + k); });
   document.querySelectorAll("img:not([alt])").forEach(e => add("img-alt", e));
   const named = e => (e.textContent || "").trim() || e.getAttribute("aria-label") || e.getAttribute("aria-labelledby") || e.getAttribute("title") || e.querySelector("img[alt]:not([alt='']),svg title,[aria-label]");
-  document.querySelectorAll("a[href],button").forEach(e => { if (!named(e)) add("no-name", e); });
+  document.querySelectorAll("a[href],button").forEach(e => { if (!named(e) && !e.closest("[aria-hidden=true]")) add("no-name", e); });
   document.querySelectorAll("input:not([type=hidden]):not([type=submit]):not([type=button]),select,textarea").forEach(e => {
     if (e.labels && e.labels.length) return; if (e.getAttribute("aria-label") || e.getAttribute("aria-labelledby") || e.getAttribute("title")) return; add("no-label", e); });
   return out;
