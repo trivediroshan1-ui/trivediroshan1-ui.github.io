@@ -55,7 +55,7 @@ TOPICS = [
  ("aigov", "AI governance", "Whether the controls written for AI hold when someone tests them.", [
     ("/ai-governance-lab/", "AI governance lab: 13 rounds, 164 cases", "Lab"),
     ("/ai-governance-lab/what-i-got-wrong/", "What I got wrong", "Lab"),
-    ("/assets/ai-governance-lab-book.pdf", "Does AI Governance Hold? (69 pages)", "Book"),
+    ("/assets/ai-governance-lab-book.pdf", "Does AI Governance Hold? (71 pages)", "Book"),
     (CS + "ai-coworker/", "AI as a security product co-worker", "Case study"),
     (CS + "ai-processing-tax/", "The AI processing tax", "Case study"),
     ("/writing/do-ai-governance-controls-hold/", "Do AI governance controls hold?", "Article"),

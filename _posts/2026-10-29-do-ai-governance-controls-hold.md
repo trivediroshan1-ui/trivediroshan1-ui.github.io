@@ -119,7 +119,7 @@ One author wrote the controls, the tests and the guesses. The unseen sets are sm
 
 ## Sources
 
-All figures come from my own published lab. Read them at [the AI Governance Lab](https://roshantrivedi.co.in/ai-governance-lab/), the [story behind it](https://roshantrivedi.co.in/ai-governance-lab/story/), the [lab repository](https://github.com/trivediroshan1-ui/ai-governance-lab) and the free book *Does AI Governance Hold?* (69 pages).
+All figures come from my own published lab. Read them at [the AI Governance Lab](https://roshantrivedi.co.in/ai-governance-lab/), the [story behind it](https://roshantrivedi.co.in/ai-governance-lab/story/), the [lab repository](https://github.com/trivediroshan1-ui/ai-governance-lab) and the free book *Does AI Governance Hold?* (71 pages).
 
 **Roshan Trivedi** writes about privileged access, identity and AI governance at [roshantrivedi.co.in](https://roshantrivedi.co.in). The lab, both free books and every case are at [roshantrivedi.co.in/ai-governance-lab](https://roshantrivedi.co.in/ai-governance-lab/). Newsletter: [buttondown.com/trivedi](https://buttondown.com/trivedi).
 

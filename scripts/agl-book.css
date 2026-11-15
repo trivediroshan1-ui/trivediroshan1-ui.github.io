@@ -83,3 +83,5 @@ body.cover{background:#05061a;color:#e8eefc;width:7in;height:10in;position:relat
 .cover .back p{font:400 11pt/1.55 'DM Sans';color:#b6c3dd}
 .cover .back .url{font:700 11pt 'DM Sans';color:#4de2ff;margin-top:16pt}
 .cover .back .wb{margin-top:40pt}
+
+.sources td{vertical-align:top}.sources .url{font-size:7.4pt;word-break:break-all;color:#52617a}
