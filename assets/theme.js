@@ -28,7 +28,9 @@
     // over the page. Pages without a header bar keep the floating button.
     var bar = document.querySelector("nav.hg-sitenav");
     var homeRes = document.querySelector("header.top .wrap > .btn-res");
-    if (bar) { btn.classList.add("in-bar"); bar.appendChild(btn); }
+    var res = bar && bar.querySelector("li.res");
+    if (res) { btn.classList.add("in-bar"); var li = document.createElement("li"); li.className = "th"; li.appendChild(btn); res.parentNode.insertBefore(li, res); }
+    else if (bar) { btn.classList.add("in-bar"); bar.appendChild(btn); }
     else if (homeRes) { btn.classList.add("in-bar"); homeRes.parentNode.insertBefore(btn, homeRes); }
     else document.body.appendChild(btn);
   });

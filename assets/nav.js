@@ -326,3 +326,36 @@
     var mg = document.createElement("script"); mg.src = "/assets/motion-gate.js?v=20261115m"; mg.defer = true; document.head.appendChild(mg);
   }
 })();
+
+/* Phones and small tablets (up to 960 px, where the home page also switches): one row with the name,
+   search, the theme switch and a menu button. The links move into a panel the button opens.
+   Without this script the links stay in the bar as a row, so nothing is lost. */
+(function () {
+  "use strict";
+  var bar = document.querySelector("nav.hg-sitenav"); if (!bar || bar.querySelector(".nv-burger")) return;
+  var ul = bar.querySelector("ul"); if (!ul) return;
+  var links = Array.prototype.filter.call(ul.querySelectorAll(":scope > li > a[href]"), function (a) { return !a.closest(".srch,.th"); });
+  if (!links.length) return;
+  var panel = document.createElement("div"); panel.className = "nv-mpanel"; panel.id = "nv-mpanel"; panel.hidden = true;
+  links.forEach(function (a) {
+    var c = a.cloneNode(true); c.removeAttribute("class");
+    if (a.parentNode.classList.contains("res")) c.className = "nv-mres";
+    panel.appendChild(c);
+  });
+  var btn = document.createElement("button"); btn.type = "button"; btn.className = "nv-burger";
+  btn.setAttribute("aria-expanded", "false"); btn.setAttribute("aria-controls", "nv-mpanel"); btn.setAttribute("aria-label", "Menu");
+  btn.innerHTML = '<span aria-hidden="true"></span>';
+  bar.appendChild(btn); bar.appendChild(panel); bar.classList.add("nv-m");
+  function set(open, refocus) {
+    panel.hidden = !open; btn.setAttribute("aria-expanded", open ? "true" : "false"); bar.classList.toggle("nv-mopen", open);
+    if (!open && refocus) btn.focus();
+  }
+  btn.addEventListener("click", function (e) {
+    var open = panel.hidden; set(open);
+    if (open && e.detail === 0) { var f = panel.querySelector("a"); if (f) f.focus(); }
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) set(false, bar.contains(document.activeElement)); });
+  document.addEventListener("click", function (e) { if (!panel.hidden && !bar.contains(e.target)) set(false); });
+  panel.addEventListener("focusout", function (e) { var n = e.relatedTarget; if (n && !bar.contains(n)) set(false); });
+  window.matchMedia("(min-width: 961px)").addEventListener("change", function (m) { if (m.matches) set(false); });
+})();
