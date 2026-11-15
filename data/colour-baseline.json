@@ -1,7 +1,6 @@
 {
  "404.html": [
   "#030712",
-  "#05061a",
   "#0b1220",
   "#0f172a",
   "#1f2a40",
@@ -24,25 +23,21 @@
  ],
  "about/index.html": [
   "#03121a",
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "ai-governance-lab/appendix/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/cases/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "ai-governance-lab/diagrams/index.html": [
-  "#05061a",
   "#0a7285",
   "#0b1220",
   "#0b7a5b",
@@ -64,15 +59,12 @@
   "#ffffff"
  ],
  "ai-governance-lab/errata/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/evidence/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/frameworks/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/guided/index.html": [
@@ -80,7 +72,6 @@
   "#7df2d0"
  ],
  "ai-governance-lab/implement/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/index.html": [
@@ -94,7 +85,6 @@
   "#f7c873"
  ],
  "ai-governance-lab/mac/index.html": [
-  "#05061a",
   "#2b3a55",
   "#7df2d0"
  ],
@@ -115,30 +105,24 @@
   "#7df2d0"
  ],
  "ai-governance-lab/round-5/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/round-6/index.html": [
-  "#05061a",
   "#7df2d0",
   "#8b5cf6"
  ],
  "ai-governance-lab/round-7/index.html": [
-  "#05061a",
   "#7df2d0",
   "#8b5cf6"
  ],
  "ai-governance-lab/round-8/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/round-9/index.html": [
-  "#05061a",
   "#7df2d0",
   "#8b5cf6"
  ],
  "ai-governance-lab/run/index.html": [
-  "#05061a",
   "#2b3a55",
   "#4de2ff",
   "#7df2d0",
@@ -146,26 +130,21 @@
   "#f7c873"
  ],
  "ai-governance-lab/story/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/transcripts/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai-governance-lab/try/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "ai-governance-lab/what-i-got-wrong/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ai/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
@@ -816,11 +795,9 @@
   "#ffffff"
  ],
  "book/index.html": [
-  "#05061a",
   "#60a5fa"
  ],
  "ca-mfa-lab/framework/index.html": [
-  "#05061a",
   "#34d399",
   "#4de2ff",
   "#60a5fa",
@@ -847,105 +824,87 @@
   "#f87171"
  ],
  "ca-mfa-lab/method/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ca-mfa-lab/register/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ca-mfa-lab/run-4/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ca-mfa-lab/sources/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ca-mfa-lab/virtual-lab/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ca-mfa-lab/virtual-lab/run/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "ca-mfa-lab/what-i-got-wrong/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "case-studies/access-recertification/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/agentic-ai-identity-governance/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/ai-agent-credential-sharing/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/ai-coworker/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/ai-processing-tax/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/audit-mapping/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/break-glass-access/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/ciem-at-scale/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/conditional-access-mfa-sso/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/credential-platform/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/credential-tiering-model/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
@@ -954,7 +913,6 @@
  "case-studies/index.html": [
   "#030712",
   "#03121a",
-  "#05061a",
   "#0b1220",
   "#101a2c",
   "#1f2a40",
@@ -967,56 +925,48 @@
   "#f7c873"
  ],
  "case-studies/jit-jea-elevation/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/migration-planning/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/non-human-identity-at-scale/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/pam-modernization/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/passwordless-authentication/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/platform-evaluation/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/privileged-access-program/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/secrets-consolidation/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
@@ -1024,14 +974,12 @@
  ],
  "case-studies/shadow-ai-discovery-gap/index.html": [
   "#030712",
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "case-studies/vendor-privileged-access/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
@@ -1043,23 +991,17 @@
   "#ffffff"
  ],
  "copyright/index.html": [
-  "#05061a",
   "#4de2ff"
  ],
  "cover-letter/index.html": [
   "#000000",
-  "#05061a",
   "#070a1f",
   "#4de2ff",
   "#58e6f6",
   "#a78bfa",
   "#ffffff"
  ],
- "design-system/index.html": [
-  "#05061a"
- ],
  "glossary/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
@@ -1125,28 +1067,17 @@
   "#fff7d6",
   "#ffffff"
  ],
- "labs/cases/index.html": [
-  "#05061a"
- ],
- "labs/index.html": [
-  "#05061a"
- ],
- "library/index.html": [
-  "#05061a"
- ],
  "mcp-lab/guided/index.html": [
   "#05061a",
   "#4de2ff"
  ],
  "mcp-lab/in-depth/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "mcp-lab/index.html": [
-  "#05061a",
   "#059669",
   "#0891b2",
   "#4de2ff",
@@ -1158,7 +1089,6 @@
   "#f7c873"
  ],
  "mcp-lab/portal/index.html": [
-  "#05061a",
   "#34d399",
   "#4de2ff",
   "#60a5fa",
@@ -1167,7 +1097,6 @@
   "#fbbf24"
  ],
  "mcp-lab/results/index.html": [
-  "#05061a",
   "#059669",
   "#0891b2",
   "#4de2ff",
@@ -1179,7 +1108,6 @@
   "#f7c873"
  ],
  "mcp-lab/use-cases/index.html": [
-  "#05061a",
   "#059669",
   "#0891b2",
   "#2563eb",
@@ -1192,19 +1120,15 @@
   "#f7c873"
  ],
  "method/index.html": [
-  "#05061a",
   "#4de2ff"
  ],
  "nhi-lab/audit/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/explainer/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/framework/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/guided/index.html": [
@@ -1212,7 +1136,6 @@
   "#7df2d0"
  ],
  "nhi-lab/index.html": [
-  "#05061a",
   "#34d399",
   "#4de2ff",
   "#7df2d0",
@@ -1224,46 +1147,36 @@
   "#ff8fa3"
  ],
  "nhi-lab/market/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/method/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/register/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/roadmap/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/round-18/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/round-19/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "nhi-lab/stage-2/index.html": [
-  "#05061a",
   "#7df2d0"
  ],
  "now/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "privacy/index.html": [
-  "#05061a",
   "#4de2ff"
  ],
  "resume/index.html": [
-  "#05061a",
   "#070a1f",
   "#4de2ff",
   "#58e6f6",
@@ -1306,9 +1219,6 @@
   "#fdeed5",
   "#ffffff"
  ],
- "search/index.html": [
-  "#05061a"
- ],
  "secure-india-exams/index.html": [
   "#006d5f",
   "#00acc1",
@@ -1335,7 +1245,6 @@
   "#ffffff"
  ],
  "speaking/index.html": [
-  "#05061a",
   "#4de2ff",
   "#58e6f6",
   "#7df2d0",
@@ -1344,14 +1253,12 @@
   "#f7c873"
  ],
  "start/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
   "#f7c873"
  ],
  "talk/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
@@ -1359,12 +1266,10 @@
  ],
  "tools/tier-check/index.html": [
   "#03121a",
-  "#05061a",
   "#7df2d0",
   "#ffffff"
  ],
  "topics/index.html": [
-  "#05061a",
   "#4de2ff",
   "#7df2d0",
   "#c4b5fd",
@@ -1373,7 +1278,6 @@
  "writing/index.html": [
   "#000000",
   "#030712",
-  "#05061a",
   "#0b1220",
   "#1f2a40",
   "#4de2ff",
@@ -1386,7 +1290,6 @@
  "writing/pam-series/index.html": [
   "#000000",
   "#030712",
-  "#05061a",
   "#0b1220",
   "#1f2a40",
   "#4de2ff",

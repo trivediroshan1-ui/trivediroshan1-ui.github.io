@@ -28,7 +28,7 @@ def norm(h):
 def colours(path):
     s = path.read_text(encoding="utf-8", errors="ignore")
     if path.suffix == ".html":  # only what styles the page: <style> blocks and style="" attributes
-        parts = re.findall(r"<style[^>]*>(.*?)</style>", s, re.S) + re.findall(r'style="([^"]*)"', s) + re.findall(r'<meta name="theme-color" content="([^"]*)"', s)
+        parts = re.findall(r"<style[^>]*>(.*?)</style>", s, re.S) + re.findall(r'style="([^"]*)"', s)
         s = "\n".join(parts)
     else:
         s = re.sub(r"/\*.*?\*/", "", s, flags=re.S)
