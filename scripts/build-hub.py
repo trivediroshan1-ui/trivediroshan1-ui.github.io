@@ -154,7 +154,7 @@ def page(path, title, desc, eyebrow, h1, dek, body, ld_type="CollectionPage"):
     s = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m: m.group(1) + html.escape(title, quote=True), s, count=1)
     s = re.sub(r'(<meta property="og:description" content=")[^"]*', lambda m: m.group(1) + html.escape(desc, quote=True), s, count=1)
     s = re.sub(r'(<meta property="og:url" content=")[^"]*', lambda m: m.group(1) + url, s, count=1)
-    s = s.replace("https://roshantrivedi.co.in/assets/og-post-page-now.png", "https://roshantrivedi.co.in/og-image.png")
+    s = s.replace("https://roshantrivedi.co.in/assets/og-post-page-now.png", "https://roshantrivedi.co.in/assets/og-roshan-trivedi-2026.png")
     s = re.sub(r"<title>.*?</title>", "<title>" + html.escape(title) + " &middot; Roshan Trivedi</title>", s, count=1, flags=re.S)
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "BreadcrumbList", "itemListElement": [

@@ -185,7 +185,7 @@ for key, g in GUIDES.items():
     head = re.sub(r'<meta property="og:title" content="[^"]*" />', f'<meta property="og:title" content="{html.escape(g["title"])}" />', head)
     head = re.sub(r'<link rel="canonical" href="[^"]*" />', f'<link rel="canonical" href="{url}" />', head)
     head = re.sub(r'<meta property="og:url" content="[^"]*" />', f'<meta property="og:url" content="{url}" />', head)
-    og = g["og"] if (ROOT / g["og"].lstrip("/")).exists() else "/og-image.png"
+    og = g["og"] if (ROOT / g["og"].lstrip("/")).exists() else "/assets/og-roshan-trivedi-2026.png"
     head = re.sub(r'(og:image" content=")[^"]*', r"\g<1>https://roshantrivedi.co.in" + og, head)
     head = re.sub(r'(twitter:image" content=")[^"]*', r"\g<1>https://roshantrivedi.co.in" + og, head)
     head = re.sub(r"<title>.*?</title>", f"<title>{esc(g['short'])} in 10 minutes &middot; Roshan Trivedi</title>", head)

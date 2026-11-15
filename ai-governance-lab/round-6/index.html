@@ -12,11 +12,11 @@
     <meta property="og:description" content="An agent that only sends a request, while a gateway outside it decides and acts." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/ai-governance-lab/round-6/" />
-    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-ai-governance-lab.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-ai-governance-lab.png" />
     <title>Round 6: agents that instruct an API · AI governance lab</title>
     <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <link rel="stylesheet" href="/assets/site.css?v=20261115a">
@@ -57,7 +57,7 @@
         <p class="body-text">This zooms into steps 5 to 7 of the lifecycle above. An agent does not have to act on identities by itself. A safer pattern is that it only sends a request, and something else decides and acts. The request has a fixed shape, for example &ldquo;disable this account&rdquo;. A gateway outside the agent checks who the agent is, whether the action is on the list, whether a person must approve it and how many requests the agent has sent this hour. If everything passes, the gateway signs a decision. A separate program, the executor, checks the signature, borrows a short-lived credential from a vault, calls the identity API and gives the credential back.</p>
         <p class="body-text">The agent never holds the credential. That is the main design choice. Giving an agent &ldquo;read access to the vault&rdquo; so it can paste a password into an API call is the same mistake as giving an AI tool &ldquo;read access on your domain&rdquo;: it works, until something goes wrong.</p>
         <figure style="margin:1.4rem 0;overflow-x:auto">
-          <svg viewBox="0 0 460 470" role="img" aria-label="An agent sends a request to a gateway. A person approves risky requests. The gateway signs a decision for an executor. The executor borrows a short-lived credential from a vault and calls the identity API. The agent has no access to the vault. Every step is written to an audit log." style="min-width:460px;max-width:100%;height:auto;display:block;margin:0 auto;font-size:12px" font-family="inherit">
+          <svg viewBox="0 0 460 488" role="img" aria-label="An agent sends a request to a gateway. A person approves risky requests. The gateway signs a decision for an executor. The executor borrows a short-lived credential from a vault and calls the identity API. The agent has no access to the vault. Every step is written to an audit log." style="min-width:460px;max-width:100%;height:auto;display:block;margin:0 auto;font-size:12px" font-family="inherit">
             <defs><marker id="r6a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker></defs>
             <g fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="140" y="10" width="180" height="54" rx="8"/>
@@ -91,7 +91,7 @@
               <text x="332" y="82" text-anchor="start" fill="#ff8a80">no vault access</text>
               <text x="12" y="188" text-anchor="start" fill="#f7c873">risky actions wait</text>
             </g>
-          </svg>
+          <text class="svg-credit" x="453.4" y="482.2" text-anchor="end" font-size="11" fill="currentColor" opacity=".8" aria-hidden="true">roshantrivedi.co.in</text></svg>
           <figcaption class="body-text" style="font-size:.9em;margin-top:.6rem">The agent only proposes. The checks sit outside it, and the only program that can read a credential is the executor.</figcaption>
         </figure>
         <p class="body-text">I wrote the expected result for 18 new cases (T1 to T18) and saved them before writing any code, on 25 Oct 2026 at 00:28 IST. They cover a joiner, a leaver with approval, a prompt-injected delete, approvals by the wrong people, a request with a made-up address in it, an agent reaching for the vault, the kill switch with a credential already lent out, a repeated request, personal data in the reason text, 25 requests in an hour, a forged decision, a lease used after it ended, a static password that is rotated on check-in, and two cases about the limits of the whole idea.</p>
