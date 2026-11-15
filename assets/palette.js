@@ -107,7 +107,7 @@
       ICON + '<span class="lbl">Search</span><kbd>' + (mac ? "⌘K" : "Ctrl K") + "</kbd>");
     b.addEventListener("click", open);
     var res = document.querySelector("nav.hg-sitenav li.res");
-    if (res) { var li = el("li", { "class": "srch" }); li.appendChild(b); res.parentNode.insertBefore(li, res); return; }
+    if (res) { var li = el("li", { "class": "srch" }); li.appendChild(b); var th = res.parentNode.querySelector("li.th"); res.parentNode.insertBefore(li, th || res); return; }
     var hb = document.querySelector("header.top .btn-res");
     if (hb) { hb.parentNode.insertBefore(b, hb); }
   }

@@ -216,3 +216,36 @@ html[data-bg="notfound"] body > nav.hg-sitenav { justify-self: stretch; min-widt
 .sources a,.nmeta a,.ntable td a,td>a:only-child{display:inline-block;min-height:24px;padding-block:3px;line-height:1.35}
 html[data-theme=light] a.skip{background:#0a6f84;color:#fff}
 html[data-theme=light] a.skip,html[data-theme=light] .skip:focus{background:#0a6f84!important;color:#fff!important}
+
+/* One header everywhere (16 Nov 2026). Laptop: search, theme, Résumé, as on the home page.
+   Up to 960 px: name, search, theme and a menu button on one row; the links open in a panel. */
+.hg-sitenav li.th { display: flex; align-items: center; }
+.hg-sitenav li.th .theme-toggle { position: static !important; }
+.hg-sitenav .nv-burger { display: none; }
+.nv-mpanel[hidden] { display: none !important; }
+@media (max-width: 960px) {
+  nav.hg-sitenav.nv-m { gap: .4rem; min-height: 60px; padding-inline: 14px; flex-wrap: nowrap !important; }
+  html nav.hg-sitenav.nv-m > .brand { order: 0; flex: 1 1 auto; min-width: 0; }
+  html nav.hg-sitenav.nv-m > ul { order: 1; flex: 0 0 auto; width: auto; margin-left: auto; overflow: visible; }
+  nav.hg-sitenav.nv-m > .nv-burger { order: 2; }
+  nav.hg-sitenav.nv-m .brand span { display: inline; }
+  nav.hg-sitenav.nv-m > ul { margin-left: auto; flex: 0 0 auto; gap: .2rem; overflow: visible; justify-content: flex-end; }
+  nav.hg-sitenav.nv-m > ul > li:not(.srch):not(.th), nav.hg-sitenav.nv-m .nv-pill { display: none; }
+  nav.hg-sitenav.nv-m .nv-burger { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 12px; border: 1px solid rgba(148, 163, 184, .38); background: none; color: inherit; cursor: pointer; }
+  nav.hg-sitenav.nv-m .nv-burger span, nav.hg-sitenav.nv-m .nv-burger span::before, nav.hg-sitenav.nv-m .nv-burger span::after { display: block; width: 18px; height: 2px; border-radius: 2px; background: currentColor; position: relative; content: ""; }
+  nav.hg-sitenav.nv-m .nv-burger span::before { position: absolute; top: -6px; }
+  nav.hg-sitenav.nv-m .nv-burger span::after { position: absolute; top: 6px; }
+  nav.hg-sitenav.nv-mopen .nv-burger { border-color: #4de2ff; }
+  nav.hg-sitenav.nv-m .nv-burger:focus-visible { outline: 2px solid #4de2ff; outline-offset: 2px; }
+  .nv-mpanel { position: absolute; top: calc(100% + 6px); right: 12px; width: min(86vw, 320px); display: grid; padding: 8px; border-radius: 16px; background: #0b1020; border: 1px solid rgba(148, 163, 184, .28); box-shadow: 0 24px 60px rgba(0, 0, 0, .45); z-index: 70; }
+  .nv-mpanel a { display: flex; align-items: center; min-height: 46px; padding: 0 14px; border-radius: 10px; color: #eef1ff !important; text-decoration: none; font-weight: 600; font-size: 1rem; }
+  .nv-mpanel a:hover, .nv-mpanel a:focus-visible { background: rgba(77, 226, 255, .1); }
+  .nv-mpanel a:focus-visible { outline: 2px solid #4de2ff; outline-offset: -2px; }
+  .nv-mpanel a[aria-current="page"] { color: #4de2ff !important; box-shadow: inset 3px 0 0 #4de2ff; }
+  .nv-mpanel a.nv-mres { margin-top: 6px; border: 1px solid rgba(167, 139, 250, .6); justify-content: center; }
+  html[data-theme="light"] .nv-mpanel { background: #fff; border-color: #d5dcea; box-shadow: 0 20px 50px rgba(15, 23, 42, .18); }
+  html[data-theme="light"] .nv-mpanel a { color: #25344a !important; }
+  html[data-theme="light"] .nv-mpanel a[aria-current="page"] { color: #0a6178 !important; box-shadow: inset 3px 0 0 #0a6178; }
+  html[data-theme="light"] .nv-mpanel a.nv-mres { border-color: #6d4fd8; color: #3b2a8c !important; }
+}
+@media (max-width: 360px) { nav.hg-sitenav.nv-m .brand span { display: none; } }
