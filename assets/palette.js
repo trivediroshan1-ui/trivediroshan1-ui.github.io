@@ -1,9 +1,9 @@
 /* Site search: press Ctrl+K (or Cmd+K, or /) or use the search button in the menu.
    Plain JavaScript, no libraries. The list comes from /assets/palette-data.js (scripts/build-palette.py). */
 (function () {
-  var V = "20261115o", data = null, dlg, input, list, status, opener, active = -1, shown = [];
+  var V = "20261115p", data = null, dlg, input, list, status, opener, active = -1, shown = [];
   var css = ".rt-sbtn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 12px;border-radius:999px;border:1px solid rgba(167,139,250,.35);background:transparent;color:inherit;font:600 14px/1 'DM Sans',system-ui,sans-serif;cursor:pointer;opacity:.9}" +
-    ".rt-sbtn:hover{opacity:1;border-color:#a78bfa;background:rgba(124,58,237,.14)}.rt-sbtn svg{width:16px;height:16px}.rt-sbtn kbd{font:600 11px/1 'JetBrains Mono',monospace;padding:3px 5px;border-radius:5px;border:1px solid rgba(167,139,250,.35);opacity:.8}" +
+    ".rt-sbtn:hover{opacity:1;border-color:#a78bfa;background:rgba(124,58,237,.14)}.rt-sbtn svg{width:16px;height:16px}.rt-sbtn kbd{font:600 12px/1 'JetBrains Mono',monospace;padding:3px 5px;border-radius:5px;border:1px solid rgba(167,139,250,.35);opacity:.8}" +
     "@media (max-width:760px){.rt-sbtn kbd,.rt-sbtn .lbl{display:none}.rt-sbtn{width:40px;padding:0;justify-content:center;border-color:transparent}}.hg-sitenav li.srch{display:flex;align-items:center}@media (max-width:440px){.hg-sitenav li a{padding:0 .24rem}.rt-sbtn{width:30px}.rt-sbtn svg{width:17px;height:17px}}" +
     ".rt-pal{position:fixed;inset:0;z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:12vh max(16px,env(safe-area-inset-left,0px)) 16px max(16px,env(safe-area-inset-right,0px));background:rgba(3,4,16,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}" +
     ".rt-pal.on{display:flex}.rt-box{width:min(640px,100%);max-height:72vh;display:flex;flex-direction:column;border-radius:18px;border:1px solid rgba(167,139,250,.35);background:#0e0d2c;color:#f5f3ff;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(124,58,237,.25);overflow:hidden;font-family:'DM Sans',system-ui,sans-serif}" +
