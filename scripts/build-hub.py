@@ -164,7 +164,7 @@ def page(path, title, desc, eyebrow, h1, dek, body, ld_type="CollectionPage"):
          "author": {"@type": "Person", "name": "Roshan Trivedi", "url": "https://roshantrivedi.co.in/"}}]}
     s = re.sub(r'<script type="application/ld\+json" id="ld-site">.*?</script>',
                lambda m: '<script type="application/ld+json" id="ld-site">' + json.dumps(ld) + "</script>", s, count=1, flags=re.S)
-    s = s.replace('<link rel="stylesheet" href="/assets/site-2026.css', '<link rel="stylesheet" href="/assets/hub.css?v=20261114c">\n    <link rel="stylesheet" href="/assets/site-2026.css', 1)
+    s = s.replace('<link rel="stylesheet" href="/assets/site-2026.css', '<link rel="stylesheet" href="/assets/hub.css?v=20261115b">\n    <link rel="stylesheet" href="/assets/site-2026.css', 1)
     s = s.replace(' aria-current="page"', '')
     a = s.index('<header class="hero">'); b = s.index('<aside class="hg-next"')
     hub = ('<nav class="hub-nav" aria-label="Knowledge pages"><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a></nav>\n      ')
@@ -206,7 +206,7 @@ for term, d, link in sorted(GLOSSARY, key=lambda t: t[0].lower()):
     more = f' <a href="{link}">See it used</a>' if link else ""
     rows.append(f'<div><dt id="{re.sub(r"[^a-z0-9]+", "-", term.lower()).strip("-")}">{html.escape(term)}</dt><dd>{html.escape(d)}{more}</dd></div>')
 rows.append("</dl></section>")
-page("/glossary/", "Glossary: identity and access terms in plain words",
+page("/glossary/", "Identity and access glossary in plain words",
      f"{len(GLOSSARY)} identity and access terms in plain words, from PAM and MFA to MCP and zero standing privilege, each linked to where this site uses it.",
      "Glossary", "Identity and access terms, in plain words.",
      f"{len(GLOSSARY)} terms. Each one says what the thing is, and where it matters links to a page that uses or tests it. These are my working definitions, written to be understood, not to replace a standard.",

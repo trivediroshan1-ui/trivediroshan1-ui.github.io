@@ -17,6 +17,8 @@ jobs:
         run: python3 scripts/check-links.py
       - name: Lab numbers agree with data/stats.json
         run: python3 scripts/check-numbers.py
+      - name: Every public page and post is in sitemap.xml
+        run: python3 scripts/build-sitemap.py --check
       - name: No key-shaped secrets in tracked files
         run: python3 scripts/check-secrets.py
       - name: Self-hosted Pyodide files match the recorded hashes

@@ -13,7 +13,7 @@
 .hub-list a{display:flex;flex-direction:column;gap:6px;height:100%;padding:14px 16px;border:1px solid var(--border,#2a3350);border-radius:12px;background:var(--surface,#0f172a);text-decoration:none;color:var(--text,#f1f5f9)}
 .hub-list a:hover,.hub-list a:focus-visible{border-color:var(--accent,#4de2ff)}
 .hub-list b{font-size:15.5px;line-height:1.35}
-.hub-k{align-self:flex-start;font:700 11.5px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px;border:1px solid currentColor;color:var(--muted,#93a1bd)}
+.hub-k{align-self:flex-start;font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:6px;border:1px solid currentColor;color:var(--muted,#93a1bd)}
 .hub-k-lab{color:#4de2ff}.hub-k-case{color:#7df2d0}.hub-k-article{color:#c4b5fd}.hub-k-book{color:#f7c873}.hub-k-tool,.hub-k-paper{color:#f9a8d4}
 .hub-gaps{margin:12px 0;padding-left:20px;display:grid;gap:6px;color:var(--muted,#93a1bd)}
 .hub-steps{list-style:none;counter-reset:s;margin:14px 0 0;padding:0;display:grid;gap:10px}

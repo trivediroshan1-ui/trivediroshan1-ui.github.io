@@ -9,6 +9,8 @@ Used two ways:
 Safe to re-run."""
 import html, os, re, sys
 
+SHORT_TITLES = {5: 'gaps in my own audit', 6: 'agents that instruct an API', 7: 'from HR to the directory', 8: 'agents that bypass the gateway', 9: 'a document assistant', 10: 'credentials and sessions', 11: 'agent-to-agent handoffs', 12: 'who approved what, and when', 13: 'finding documents by meaning'}
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import lab_nav
@@ -97,7 +99,9 @@ def render_page(n, block):
     head, after = t[:i], t[j + len("</main>"):]
     url = f"{BASE}{path(n)}"
     ttl = f"AI governance lab, round {n}: {title}"
-    head = re.sub(r"<title>[^<]*</title>", lambda m: f"<title>{E(ttl)} · Roshan Trivedi</title>", head)
+    # Search results cut titles after about 60 characters, so the <title> uses a short form.
+    short = f"Round {n}: {SHORT_TITLES.get(n, title)} · AI governance lab"
+    head = re.sub(r"<title>[^<]*</title>", lambda m: f"<title>{E(short)}</title>", head)
     head = re.sub(r'<meta name="description" content="[^"]*" />', lambda m: f'<meta name="description" content="{E(line, quote=True)}" />', head)
     head = re.sub(r'<link rel="canonical" href="[^"]*" />', f'<link rel="canonical" href="{url}" />', head)
     head = re.sub(r'<meta property="og:title" content="[^"]*" />', lambda m: f'<meta property="og:title" content="{E(ttl, quote=True)}" />', head)

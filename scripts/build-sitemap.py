@@ -9,8 +9,10 @@ Order of evidence for each URL's lastmod:
   4. the date of the last git commit that touched the file
   5. whatever the old sitemap said
 Run from anywhere:  python3 scripts/build-sitemap.py
+New pages and posts are added automatically. With --check it changes nothing and exits 1
+if a public page or post is missing from sitemap.xml (CI runs this).
 """
-import datetime, pathlib, re, subprocess
+import datetime, pathlib, re, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://roshantrivedi.co.in"
@@ -58,6 +60,29 @@ def lastmod(loc, prev):
         d = git("log", "-1", "--format=%cs", "--", rel)
         if d: return d
     return prev or today
+
+def public_pages():
+    """Every page a visitor can reach: index.html files outside build folders, minus noindex pages, plus posts."""
+    skip = ("archive/", "scripts/", "assets/", "_site/", "node_modules/", "_layouts/", "_includes/", ".git/")
+    found = []
+    for f in sorted(ROOT.glob("**/index.html")):
+        rel = f.relative_to(ROOT).as_posix()
+        if rel.startswith(skip): continue
+        h = f.read_text(encoding="utf-8", errors="ignore")
+        if re.search(r'<meta name="robots" content="[^"]*noindex', h): continue
+        found.append(SITE + "/" + rel[: -len("index.html")])
+    found += [SITE + "/writing/" + slug + "/" for slug in sorted(POSTS)]
+    return found
+
+known = {loc for loc, _ in urls}
+missing = [u for u in public_pages() if u not in known]
+if "--check" in sys.argv:
+    if missing:
+        print("Missing from sitemap.xml (run python3 scripts/build-sitemap.py):"); [print("  " + u) for u in missing]
+        sys.exit(1)
+    print("sitemap complete:", len(urls), "urls"); sys.exit(0)
+urls += [(u, "") for u in missing]
+if missing: print("added:", *missing, sep="\n  ")
 
 out = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
 for loc, prev in urls:

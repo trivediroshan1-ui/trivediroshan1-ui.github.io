@@ -17,6 +17,7 @@
   // Set this to your deployed Worker URL to enable AI-powered answers, e.g.
   // "https://roshantrivedi-chatbot.yoursubdomain.workers.dev". Leave "" to
   // use only the free local keyword-search bot.
+  // If you set it, also add that exact host to connect-src (scripts/set-security-meta.py, _headers and the Cloudflare header rule).
   var AI_ENDPOINT = "";
   var AI_TIMEOUT_MS = 12000;
 
@@ -132,7 +133,7 @@
     INDEX_WAITERS.push(cb);
     if (INDEX_STATE === "loading") return;
     INDEX_STATE = "loading";
-    fetch("/assets/chatbot-index.json?v=20261115a")
+    fetch("/assets/chatbot-index.json?v=20261115b")
       .then(function (res) { if (!res.ok) throw new Error("status " + res.status); return res.json(); })
       .then(function (raw) { buildIndex(raw); INDEX_STATE = "ready"; })
       .catch(function () { INDEX_STATE = "failed"; })

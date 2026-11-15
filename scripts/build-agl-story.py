@@ -11,7 +11,7 @@ head = re.sub(r'<meta name="description" content=".*?" />', f'<meta name="descri
 head = head.replace("AI governance lab: architecture diagrams", T).replace('/ai-governance-lab/diagrams/', '/ai-governance-lab/story/')
 head = re.sub(r'<meta property="og:description" content=".*?" />', f'<meta property="og:description" content="{D}" />', head)
 head = re.sub(r'<title>.*?</title>', '<title>Why I built the lab &middot; AI governance lab</title>', head)
-head = head.replace('agl.css?v=20261024f">', 'agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/story.css?v=20261024c">')
+head = head.replace('agl.css?v=20261024f">', 'agl.css?v=20261024f">\n    <link rel="stylesheet" href="/assets/story.css?v=20261115b">')
 body = '''<main id="main">
       <header class="hero mcp-hero">
         <p class="eyebrow">AI governance lab</p>

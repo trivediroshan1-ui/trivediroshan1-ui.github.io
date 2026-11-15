@@ -55,7 +55,7 @@ html[data-theme="light"] {
   --hg-bg: #f5f7fb; --hg-surface-1: #ffffff; --hg-surface-2: #f1f5f9; --hg-surface-3: #e8eef6;
   --hg-line: rgba(15, 23, 42, .12); --hg-line-strong: rgba(15, 23, 42, .26);
   --hg-ink: #0f172a; --hg-ink-2: #475569; --hg-ink-3: #5b6a80;
-  --hg-policy: #0e7490; --hg-person: #6d28d9; --hg-exec: #047857; --hg-audit: #b45309; --hg-refuse: #be123c;
+  --hg-policy: #0b6378; --hg-person: #6d28d9; --hg-exec: #036649; --hg-audit: #964407; --hg-refuse: #be123c;
   --hg-policy-soft: rgba(14,116,144,.10); --hg-person-soft: rgba(109,40,217,.09); --hg-exec-soft: rgba(4,120,87,.10); --hg-audit-soft: rgba(180,83,9,.10); --hg-refuse-soft: rgba(190,18,60,.08);
   --hg-policy-line: rgba(14,116,144,.5); --hg-person-line: rgba(109,40,217,.45); --hg-exec-line: rgba(4,120,87,.5); --hg-audit-line: rgba(180,83,9,.5); --hg-refuse-line: rgba(190,18,60,.45);
   --hg-shadow-1: 0 1px 2px rgba(15,23,42,.08), 0 8px 24px rgba(15,23,42,.08);
