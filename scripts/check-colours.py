@@ -68,9 +68,18 @@ def main(argv):
     bad = {f: [c for c in v if c not in set(base.get(f, []))] for f, v in found.items()}
     bad = {f: v for f, v in bad.items() if v}
     total = len({c for v in found.values() for c in v})
-    if not bad:
-        print(f"No new raw colours. {total} different hex colours outside tokens.css, all known.")
+    # every page loads the shared colours (secure-india-exams is a dated, light standalone document)
+    no_tok = [p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*.html")
+              if not p.relative_to(ROOT).as_posix().startswith(("agent-skills/", "_site/", "node_modules/", ".git/", "scripts/", "_includes/"))
+              and p.relative_to(ROOT).as_posix() != "secure-india-exams/index.html"
+              and "<head" in (t := p.read_text(errors="ignore")) and 'http-equiv="refresh"' not in t and "/assets/tokens.css" not in t]
+    for f in no_tok:
+        print(f"NO TOKENS {f}: add <link rel=\"stylesheet\" href=\"/assets/tokens.css\"> as its first stylesheet")
+    if not bad and not no_tok:
+        print(f"No new raw colours. {total} different hex colours outside tokens.css, all known. Every page loads tokens.css.")
         return 0
+    if not bad:
+        return 1
     for f, v in bad.items():
         for c in v:
             print(f"NEW {f}: {c}  -> use {nearest(c, toks)}")
