@@ -14,14 +14,15 @@ def shell(url, title, desc, body, crumbs, nav_current=None, head_extra="", foot_
     head, rest = src.split('<main id="main">', 1)
     foot = rest.split("</main>", 1)[1]
     t, d = html.escape(title + " · Roshan Trivedi"), html.escape(desc)
-    head = re.sub(r"<title>.*?</title>", f"<title>{t}</title>", head)
-    head = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{d}">', head)
-    head = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{SITE}{url}">', head)
-    head = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{t}">', head)
-    head = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{d}">', head)
-    head = re.sub(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{SITE}{url}">', head)
+    lit = lambda pat, rep, s: re.sub(pat, lambda m: rep, s)
+    head = lit(r"<title>.*?</title>", f"<title>{t}</title>", head)
+    head = lit(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{d}">', head)
+    head = lit(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{SITE}{url}">', head)
+    head = lit(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{t}">', head)
+    head = lit(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{d}">', head)
+    head = lit(r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{SITE}{url}">', head)
     if og_image:
-        head = re.sub(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{SITE}{og_image}">', head)
+        head = lit(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{SITE}{og_image}">', head)
     head = re.sub(r'<meta name="twitter:(title|description)" content="[^"]*">',
                   lambda m: f'<meta name="twitter:{m.group(1)}" content="{t if m.group(1) == "title" else d}">', head)
     # the labs page's own scripts and styles
@@ -31,8 +32,8 @@ def shell(url, title, desc, body, crumbs, nav_current=None, head_extra="", foot_
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "BreadcrumbList", "itemListElement": items},
         {"@type": "CollectionPage", "name": title, "url": SITE + url, "description": desc}]}
-    head = re.sub(r'<script type="application/ld\+json" id="ld-site">.*?</script>',
-                  '<script type="application/ld+json" id="ld-site">' + json.dumps(ld) + "</script>", head, flags=re.S)
+    ldtag = '<script type="application/ld+json" id="ld-site">' + json.dumps(ld, ensure_ascii=False) + "</script>"
+    head = re.sub(r'<script type="application/ld\+json" id="ld-site">.*?</script>', lambda m: ldtag, head, flags=re.S)
     head = head.replace("</head>", head_extra + "\n  </head>", 1)
     head = head.replace(' aria-current="page"', "")
     if nav_current:

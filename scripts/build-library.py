@@ -35,7 +35,7 @@ WORDS = {  # checked in this order; the first collection with a match wins
     "pam": ["privileg", "pam", "vault", "break-glass", "credential", "jit", "recertif", "audit", "vendor", "migration", "platform"],
 }
 TYPES = [("/labs/cases/", "Catalogue"), ("/case-studies/", "Case study"), ("/writing/", "Article"), ("/book/", "Books"),
-         ("/tools/", "Tool"), ("/ca-mfa-lab/", "Lab"), ("/nhi-lab/", "Lab"), ("/ai-governance-lab/", "Lab"), ("/mcp-lab/", "Lab"),
+         ("/tools/", "Tool"), ("/nhi-lab/book/", "Books"), ("/ca-mfa-lab/", "Lab"), ("/nhi-lab/", "Lab"), ("/ai-governance-lab/", "Lab"), ("/mcp-lab/", "Lab"),
          ("/mcp-human-approval-gateway/", "Lab"), ("/secure-india-exams/", "Research")]
 
 pal = (ROOT / "assets/palette-data.js").read_text(encoding="utf-8")
@@ -131,7 +131,7 @@ for cid, name, about in COLLECTIONS:
             continue
         li = "".join(f'<li><a href="{r["url"]}">{esc(r["title"])}</a>' + (f'<span>{esc(r["summary"])}</span>' if r["summary"] else "") + "</li>" for r in rs)
         groups.append(f'<h3>{LABEL[k]} <small>{len(rs)}</small></h3><ul class="lib-l">{li}</ul>')
-    secs.append(f'<section class="lib-c" id="{cid}" aria-labelledby="h-{cid}"><h2 id="h-{cid}">{esc(name)} <small>{len(mine)} pages</small></h2>'
+    secs.append(f'<section class="lib-c" id="{cid}" aria-labelledby="h-{cid}"><h2 id="h-{cid}">{esc(name)} <small>{len(mine)} entries</small></h2>'
                 f'<p>{esc(about)}</p>{"".join(groups)}</section>')
 toc = "".join(f'<li><a href="#{c}">{esc(n)}</a></li>' for c, n, _ in COLLECTIONS)
 body = f'''      <section class="sec cat lib" aria-labelledby="lib-h">
