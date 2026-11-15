@@ -259,3 +259,7 @@ ol.ev-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns
 .agl-toc a:hover,.agl-toc a:focus-visible{border-color:currentColor}
 main section[id]{scroll-margin-top:80px}
 html[data-theme="light"] .agl-start,html[data-theme="light"] .agl-toc{background:#f1f8fb;border-color:#c5d3e0}
+/* Long overview sections open on request */
+.agl-more{margin:.6rem 0 0}
+.agl-more>summary{cursor:pointer;display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--a-line,rgba(148,163,184,.3));border-radius:999px;font-weight:600;color:var(--a-accent,#4de2ff)}
+.agl-more[open]>summary{margin-bottom:.8rem}

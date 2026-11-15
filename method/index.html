@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-bg="ai" data-m="topo">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05061a" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="description" content="How every lab on this site works: guesses locked before the test, what each count means, the evidence labels, and how mistakes are corrected." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/method/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How I test: the method behind every lab" />
+    <meta property="og:description" content="How every lab on this site works: guesses locked before the test, what each count means, the evidence labels, and how mistakes are corrected." />
+    <meta property="og:url" content="https://roshantrivedi.co.in/method/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/og-image.png" />
+    <title>How I test: the method behind every lab &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
+    <link rel="stylesheet" href="/assets/site.css?v=20261115a">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+    </style>
+    <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
+      <link rel="stylesheet" href="/assets/theme.css">
+    <script src="/assets/theme.js?v=20261022b"></script>
+    <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
+    <link rel="stylesheet" href="/assets/refresh.css?v=20261019e">
+      <link rel="stylesheet" href="/assets/nav.css?v=20261114e">
+      <script src="/assets/palette.js?v=20261115c" defer></script>
+    <script src="/assets/nav.js?v=20261115c" defer></script>
+      <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Method", "item": "https://roshantrivedi.co.in/method/"}]}, {"@type": "WebPage", "name": "Method", "url": "https://roshantrivedi.co.in/method/", "description": "How every lab on this site works: guesses locked before the test, what each count means, the evidence labels, and how mistakes are corrected.", "author": {"@id": "https://roshantrivedi.co.in/#person"}, "inLanguage": "en"}]}</script>
+      <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
+    <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
+  </head>
+  <body style="--c:#4de2ff">
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/" aria-current="page">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/resume/">R&eacute;sum&eacute;</a></li></ul></nav>
+<main id="main">
+      <header class="hero">
+        <p class="eyebrow">Method</p>
+        <h1>How I test, count and correct.</h1>
+        <p class="dek">Every lab on this site follows the same rules. This page is the short version, so you can judge a result before you trust it or quote it.</p>
+        <p class="dek" style="font-size:.95rem">Last reviewed 15 November 2026.</p>
+      </header>
+      <section><h2>The order is the method</h2>
+        <ol class="approach-list">
+          <li><strong>Write the case.</strong> A made-up company, the bad outcome I am looking for, and the controls that might stop it.</li>
+          <li><strong>Write my guess.</strong> For each case: does the bad outcome happen with the control on, and with it off?</li>
+          <li><strong>Lock the guess.</strong> I hash the guess file and commit it to the public repository before any code exists. After that I do not edit it.</li>
+          <li><strong>Only then write the code.</strong> A small model of the control on made-up data, with my assumptions written in comments.</li>
+          <li><strong>Run it, and run it again elsewhere.</strong> The results must come out the same on a second machine.</li>
+          <li><strong>Keep the wrong guesses.</strong> If my code was wrong, I fix the code and say so. If my guess was wrong, the guess stays on the page.</li>
+        </ol>
+        <p>A locked guess does not prove I did not cheat. It makes cheating visible to anyone who checks the commit history.</p></section>
+      <section><h2>What the numbers count</h2>
+        <p>The labs use a few words for things that are easy to mix up. Here is what each one means.</p>
+        <ul class="approach-list">
+          <li><strong>Case:</strong> one situation with a bad outcome and the controls that could stop it. &ldquo;130 cases&rdquo; in the conditional access lab means 130 of these.</li>
+          <li><strong>Run or round:</strong> one batch of cases, with its own locked guesses. The labs grew in runs, so early pages may quote a smaller number with words like &ldquo;at launch&rdquo;.</li>
+          <li><strong>Scripted check:</strong> one automated request against a real piece of software, used in the MCP lab. 210 scripted checks over three rounds.</li>
+          <li><strong>Case card:</strong> how checks are written up for reading. One card can cover a few closely related checks, so there are fewer cards (161) than checks (210).</li>
+          <li><strong>Use case:</strong> a situation written down before testing, in a catalogue. Not every use case became a case.</li>
+          <li><strong>Unit test:</strong> a test inside the code itself that protects it when I change it. These are not results.</li>
+        </ul>
+        <p>All of these numbers live in one file, and an automatic check fails if a page quotes a number that does not match it.</p></section>
+      <section><h2>What kind of evidence it is</h2>
+        <p>Not every result is the same kind of evidence. Each result is one of these:</p>
+        <ul class="approach-list">
+          <li><strong>Model on made-up data.</strong> A script reproduces the logic of a control. No vendor product was involved. Most cases in the conditional access, machine identity and AI governance labs.</li>
+          <li><strong>Hand-run against a real product.</strong> Real software, made-up data. The MCP lab used the official MCP Inspector and a real AI coding client against my own gateway.</li>
+          <li><strong>Prediction locked, not yet run.</strong> The guess is committed, the test is not done. Example: <a href="/ca-mfa-lab/run-4/">run 4 of the conditional access lab</a>.</li>
+          <li><strong>Drawn from practice, anonymised.</strong> The <a href="/case-studies/">case studies</a>. Built from experience, with no employer or client data.</li>
+          <li><strong>Opinion.</strong> My judgement, in articles and conclusions. I try to say when I am giving one.</li>
+        </ul></section>
+      <section><h2>How I correct mistakes</h2>
+        <p>Wrong guesses are published next to the right ones, case by case. When a published number turns out to be wrong, I correct the page, say what changed, and publish an errata note: see the <a href="/ai-governance-lab/errata/">AI governance lab errata</a>. If you find an error, <a href="/talk/?why=feedback">tell me</a>.</p></section>
+      <section><h2>What the labs cannot show</h2>
+        <ul class="approach-list">
+          <li>How a vendor product behaves. The models copy rule logic, not products.</li>
+          <li>Anything about a real company. All data is made up.</li>
+          <li>Speed, cost, scale or legal compliance.</li>
+          <li>That my assumptions are right. Several results depend on choices written in the code; change one and a result can change.</li>
+        </ul></section>
+      <section><h2>The method, lab by lab</h2>
+        <ul class="approach-list">
+          <li><a href="/ca-mfa-lab/method/">Conditional access, MFA and AI agent lab</a></li>
+          <li><a href="/nhi-lab/method/">Machine identity lab</a>, with every commit hash</li>
+          <li><a href="/ai-governance-lab/">AI governance lab</a>, and its <a href="/ai-governance-lab/mac/">second-machine rerun</a></li>
+          <li><a href="/mcp-lab-case-study/#numbers">MCP approval lab</a></li>
+        </ul></section>
+    </main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio</span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+    <link rel="stylesheet" href="/assets/chatbot-widget.css?v=20261114a" />
+    <script defer src="/assets/chatbot-widget.js?v=20261115c"></script>
+  <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "47bbd2a2a282459ab0adc598bc249ab1"}'></script><!-- End Cloudflare Web Analytics -->
+  </body>
+</html>

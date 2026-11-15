@@ -129,7 +129,7 @@ def _fw_markers(h):
 def refresh_overview(h):
     """Put the rounds table in the overview, once, in place of any earlier table."""
     h = re.sub(r"<!-- rounds:start -->.*?<!-- rounds:end -->\n\n      ", "", h, flags=re.S)
-    anchor = "<!-- fw:start -->"
+    anchor = "<!-- fw-stub -->"  # the full standards table moved to /ai-governance-lab/frameworks/ on 15 Nov 2026
     assert anchor in h, "overview has no frameworks marker"
     return h.replace(anchor, table() + anchor, 1)
 
@@ -137,12 +137,13 @@ def write_round(n, block):
     """Called by build-agl-rN-page.py with the round's block (start and end markers included)."""
     if n == 5 and os.path.exists(file_for(5)) and "--force" not in sys.argv:
         pass
-    elif n == 5:  # round five's block also carries the standards table, which stays on the overview
+    elif n == 5:  # round five's block also carries the standards table, which lives on /ai-governance-lab/frameworks/
         k = block.index('<section id="frameworks">')
         fw, block = block[k:].replace("<!-- r5:end -->", "").rstrip(), block[:k] + "<!-- r5:end -->"
-        h = open(OVERVIEW, encoding="utf-8").read()
+        fwp = os.path.join(os.path.dirname(OVERVIEW), "frameworks", "index.html")
+        h = open(fwp, encoding="utf-8").read()
         h = re.sub(r"<!-- fw:start -->.*?<!-- fw:end -->", lambda m: "<!-- fw:start -->\n      " + fw + "\n<!-- fw:end -->", h, flags=re.S)
-        open(OVERVIEW, "w", encoding="utf-8").write(h)
+        open(fwp, "w", encoding="utf-8").write(h)
     p = file_for(n)
     if os.path.exists(p) and "--force" not in sys.argv:
         print(f"round {n}: ai-governance-lab/round-{n}/index.html exists and has had edits since this script was written "
