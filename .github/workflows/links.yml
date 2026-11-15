@@ -1,4 +1,4 @@
-name: Link, number and secret check
+name: Link, number, secret and page checks
 
 on:
   pull_request:
@@ -23,6 +23,30 @@ jobs:
         run: python3 scripts/check-secrets.py
       - name: Self-hosted Pyodide files match the recorded hashes
         run: cd assets/pyodide && sha256sum -c SHA256SUMS
+      - name: No new raw hex colours outside assets/tokens.css
+        run: python3 scripts/check-colours.py
+      - name: Stylesheet bundles match the stylesheets
+        run: python3 scripts/bundle-css.py --check
+
+  pages:
+    # Opens the changed pages in Chromium at 320, 390 and 1280 px and fails on new layout,
+    # readability, tap-target, contrast, layout-shift, script or basic HTML issues.
+    # Issues already recorded in data/page-check-baseline.json do not fail the build.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+      - name: Install Playwright and Chromium
+        run: |
+          python3 -m pip install --user --break-system-packages playwright==1.63.0
+          python3 -m playwright install --with-deps chromium
+      - name: Check the pages this change touches
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/check-pages.py --changed "origin/${{ github.base_ref }}"
+      - name: Check every page
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/check-pages.py
 
   build:
     # Builds the site the way GitHub Pages does and fails if the build fails. It does not deploy.
