@@ -80,8 +80,8 @@ PAGES = {
     "ai/index.html": "ai", "resume/index.html": "resume", "labs/index.html": "labs", "book/index.html": "book",
     "writing/index.html": "writing", "writing/pam-series/index.html": "series", "design-system/index.html": "designsys",
     "tools/tier-check/index.html": "tiercheck", "secure-india-exams/index.html": "exams", "404.html": "notfound",
-    "mcp-lab-case-study/index.html": "mcp", "mcp-lab-in-depth/index.html": "mcpdepth", "mcp-lab-results/index.html": "mcpresult",
-    "mcp-lab-use-cases/index.html": "mcpcases", "mcp-lab-portal/index.html": "mcpportal",
+    "mcp-lab/index.html": "mcp", "mcp-lab/in-depth/index.html": "mcpdepth", "mcp-lab/results/index.html": "mcpresult",
+    "mcp-lab/use-cases/index.html": "mcpcases", "mcp-lab/portal/index.html": "mcpportal",
 }
 for d in sorted((ROOT / "case-studies").iterdir()):
     if d.is_dir() and (d / "index.html").exists():

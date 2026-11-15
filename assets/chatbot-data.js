@@ -299,15 +299,15 @@ window.SITE_QA = [
     url: "/mcp-human-approval-gateway/",
     keywords: ["mcp human approval gateway", "mcp lab", "mcp", "interactive lab", "human approval gateway", "agentic ai lab", "approval gateway", "ai agent approval"],
     answer:
-      "The MCP lab is a hands-on demo you can run in the browser at /mcp-human-approval-gateway/. An AI agent asks to use a tool, a deterministic policy engine decides (not an AI model), higher-risk requests wait for a person who is not the requester, and an approval is tied to the exact request, works once and expires after 10 to 60 minutes depending on risk. Every step, including refusals, goes into a hash-chained audit log. All tools are synthetic and the AI analyst is advisory only. Source, threat model and tests: github.com/trivediroshan1-ui/mcp-human-approval-gateway. Roshan tried to break it with 210 scripted checks over three rounds (76, 88 and 46), starting with a 76-case runner: 72 behaved as expected, 1 differed, 3 are for information. The write-ups are the case study (/mcp-lab-case-study/), 81 documented use cases (/mcp-lab-use-cases/), the results page (/mcp-lab-results/) and a 43-page PDF report. This shows what this gateway did on these cases; it does not prove it secure.",
+      "The MCP lab is a hands-on demo you can run in the browser at /mcp-human-approval-gateway/. An AI agent asks to use a tool, a deterministic policy engine decides (not an AI model), higher-risk requests wait for a person who is not the requester, and an approval is tied to the exact request, works once and expires after 10 to 60 minutes depending on risk. Every step, including refusals, goes into a hash-chained audit log. All tools are synthetic and the AI analyst is advisory only. Source, threat model and tests: github.com/trivediroshan1-ui/mcp-human-approval-gateway. Roshan tried to break it with 210 scripted checks over three rounds (76, 88 and 46), starting with a 76-case runner: 72 behaved as expected, 1 differed, 3 are for information. The write-ups are the case study (/mcp-lab/), 81 documented use cases (/mcp-lab/use-cases/), the results page (/mcp-lab/results/) and a 43-page PDF report. This shows what this gateway did on these cases; it does not prove it secure.",
   },
   {
     id: "mcp-lab-case-study",
     title: "MCP lab case study",
-    url: "/mcp-lab-case-study/",
+    url: "/mcp-lab/",
     keywords: ["mcp case study","mcp lab case study","can a person stay in control of an ai agent","what held","what did not hold","humangate"],
     answer:
-      "The MCP lab case study asks: can a person stay in control of an AI agent? Roshan built a small approval gate for MCP tool calls, then tried to break it in three rounds (210 scripted checks in all, starting with 76 cases). The page explains what held, what did not and what he still does not know. The whole story is also a free book, Who Approved That? (/book/). Colours show who acts: policy gate, a person, execution, audit or unknown, refused. Read it at /mcp-lab-case-study/.",
+      "The MCP lab case study asks: can a person stay in control of an AI agent? Roshan built a small approval gate for MCP tool calls, then tried to break it in three rounds (210 scripted checks in all, starting with 76 cases). The page explains what held, what did not and what he still does not know. The whole story is also a free book, Who Approved That? (/book/). Colours show who acts: policy gate, a person, execution, audit or unknown, refused. Read it at /mcp-lab/.",
   },
   {
     id: "ai-journey",
@@ -331,31 +331,31 @@ window.SITE_QA = [
     url: "/book/",
     keywords: ["book","the book","who approved that","your book","roshan's book","free book","download the book","book pdf","read the book","where is the book","ebook","pdf book","preface","book link","buy the book","print the book","printed copy","printed edition","is there a printed edition","print edition","hard copy","hardcopy","paperback","humangate book"],
     answer:
-      "Roshan's book is called Who Approved That? Its subtitle is: putting a human approval step in front of AI agent tool calls, and testing it 210 times. It is a learner's lab notebook: how a curious beginner built a small approval gateway for AI agents (MCP), tried to break it three times, and wrote down what held, what did not and twelve guesses that were wrong. It has 81 use cases, 161 case cards online, findings and fixes, an OWASP MCP Top 10 mapping and a checklist of 13 questions for any approval step. It is free as a PDF (138 pages with covers, 7 by 10 inch) at /book/, and the portal at /mcp-lab-portal/ lets you try the risk score and browse the cases. Print files (interior and cover wrap) are on the same page; there is no printed edition on sale yet. It is one of three free books; the Book page and the Book menu in the top bar list all of them. Everything in it ran on made-up tools and data, so it shows what one gateway did on these cases and does not prove anything safe.",
+      "Roshan's book is called Who Approved That? Its subtitle is: putting a human approval step in front of AI agent tool calls, and testing it 210 times. It is a learner's lab notebook: how a curious beginner built a small approval gateway for AI agents (MCP), tried to break it three times, and wrote down what held, what did not and twelve guesses that were wrong. It has 81 use cases, 161 case cards online, findings and fixes, an OWASP MCP Top 10 mapping and a checklist of 13 questions for any approval step. It is free as a PDF (138 pages with covers, 7 by 10 inch) at /book/, and the portal at /mcp-lab/portal/ lets you try the risk score and browse the cases. Print files (interior and cover wrap) are on the same page; there is no printed edition on sale yet. It is one of three free books; the Book page and the Book menu in the top bar list all of them. Everything in it ran on made-up tools and data, so it shows what one gateway did on these cases and does not prove anything safe.",
   },
   {
     id: "mcp-lab-portal",
     title: "MCP lab portal",
-    url: "/mcp-lab-portal/",
+    url: "/mcp-lab/portal/",
     keywords: ["portal","mcp portal","mcp lab portal","risk score","score calculator","161 cases","case explorer","explore the lab","web version of the book"],
     answer:
-      "The portal at /mcp-lab-portal/ is the web version of the MCP lab. You can follow one request through seven stages, play with the risk score calculator, open any of the 161 case cards, read the 32 findings, see the OWASP MCP Top 10 mapping and the checklist of 13 questions, and download the report and the book, Who Approved That? (/book/). Everything in it is synthetic.",
+      "The portal at /mcp-lab/portal/ is the web version of the MCP lab. You can follow one request through seven stages, play with the risk score calculator, open any of the 161 case cards, read the 32 findings, see the OWASP MCP Top 10 mapping and the checklist of 13 questions, and download the report and the book, Who Approved That? (/book/). Everything in it is synthetic.",
   },
   {
     id: "mcp-lab-results",
     title: "MCP lab test results",
-    url: "/mcp-lab-results/",
+    url: "/mcp-lab/results/",
     keywords: ["mcp results","mcp test results","how many tests","76 cases","210 tests","what failed","test report","mcp report pdf","report"],
     answer:
-      "The results page lists what happened in the MCP lab tests: 210 automated tests and a 76-case runner, with 72 as expected, 1 different and 3 for information. It records the gaps found and what was fixed, and the full 122-page final report (and a 138-page book edition titled Who Approved That?, with covers, free as a PDF), covering three rounds and 210 scripted checks (round three looked at the permit and receipt, identity, secrets and 20 made-up sector tools), is a PDF at /assets/humangate-mcp-lab-final-report.pdf. A separate portal at /mcp-lab-portal/ lets you explore the path, a risk score calculator, 161 cases and the findings. Tools are synthetic, reviewer names are typed rather than proven, and each case was run once on Roshan's own machines.",
+      "The results page lists what happened in the MCP lab tests: 210 automated tests and a 76-case runner, with 72 as expected, 1 different and 3 for information. It records the gaps found and what was fixed, and the full 122-page final report (and a 138-page book edition titled Who Approved That?, with covers, free as a PDF), covering three rounds and 210 scripted checks (round three looked at the permit and receipt, identity, secrets and 20 made-up sector tools), is a PDF at /assets/humangate-mcp-lab-final-report.pdf. A separate portal at /mcp-lab/portal/ lets you explore the path, a risk score calculator, 161 cases and the findings. Tools are synthetic, reviewer names are typed rather than proven, and each case was run once on Roshan's own machines.",
   },
   {
     id: "mcp-lab-use-cases",
     title: "MCP lab use cases",
-    url: "/mcp-lab-use-cases/",
+    url: "/mcp-lab/use-cases/",
     keywords: ["mcp use cases","use cases","81 use cases","replay","binding mismatch","expired approval","unknown outcome","lost reply"],
     answer:
-      "The use-cases page documents 81 scenarios for the MCP approval gateway, each with what was done, what was expected, what happened and why it matters. Examples: a low-risk call runs at once, a risky call waits for a person, an approval used twice is refused as a replay, a request changed after approval is refused as a binding mismatch, an approval expires after its window, and a lost reply stays unknown until a person settles it. 76 of the 81 were run in the runner. See /mcp-lab-use-cases/.",
+      "The use-cases page documents 81 scenarios for the MCP approval gateway, each with what was done, what was expected, what happened and why it matters. Examples: a low-risk call runs at once, a risky call waits for a person, an approval used twice is refused as a replay, a request changed after approval is refused as a binding mismatch, an approval expires after its window, and a lost reply stays unknown until a person settles it. 76 of the 81 were run in the runner. See /mcp-lab/use-cases/.",
   },
   {
     id: "request-explorer",

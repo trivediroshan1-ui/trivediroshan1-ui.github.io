@@ -21,7 +21,7 @@
           ["/case-studies/shadow-ai-discovery-gap/", "The shadow AI discovery gap", "eye"],
           ["/case-studies/non-human-identity-at-scale/", "Non-human identity at scale", "server"],
           ["/case-studies/ai-processing-tax/", "The AI decision tax", "coin"],
-          ["/mcp-lab-case-study/", "Can a person stay in control?", "shield"]] },
+          ["/mcp-lab/", "Can a person stay in control?", "shield"]] },
         { title: "Privileged access", k: "pam", items: [
           ["/case-studies/credential-platform/", "Credential platform strategy", "vault"],
           ["/case-studies/pam-modernization/", "PAM modernization and ZSP", "key"],
@@ -55,11 +55,11 @@
           ["/ca-mfa-lab/sources/", "Sources and events", "doc"],
           ["/ca-mfa-lab/ca-mfa-lab-book.pdf", "The book. 72 pages", "book"]] },
         { title: "HumanGate MCP lab", k: "ai", logo: "humangate", items: [
-          ["/mcp-lab-case-study/", "Overview: what held, what did not", "flask"],
-          ["/mcp-lab-results/", "Results", "check"],
-          ["/mcp-lab-use-cases/", "Use cases", "list"],
-          ["/mcp-lab-in-depth/", "In depth", "doc"],
-          ["/mcp-lab-portal/", "Portal: 161 case cards", "search"]] },
+          ["/mcp-lab/", "Overview: what held, what did not", "flask"],
+          ["/mcp-lab/results/", "Results", "check"],
+          ["/mcp-lab/use-cases/", "Use cases", "list"],
+          ["/mcp-lab/in-depth/", "In depth", "doc"],
+          ["/mcp-lab/portal/", "Portal: 161 case cards", "search"]] },
         { title: "AI governance lab", k: "ai", items: [
           ["/ai-governance-lab/", "Overview: what held, what broke", "shield"],
           ["/ai-governance-lab/story/", "Why I built this lab", "doc"],
@@ -105,7 +105,7 @@
           ["/assets/humangate-mcp-lab-final-report.pdf", "HumanGate MCP lab final report. 122 pages", "doc"],
           ["/secure-india-exams/", "Securing India's national exams. 30 pages", "india"]] },
         { title: "Read it on the web", k: "plat", items: [
-          ["/mcp-lab-portal/", "MCP lab portal, 161 case cards", "flask"],
+          ["/mcp-lab/portal/", "MCP lab portal, 161 case cards", "flask"],
           ["/ai-governance-lab/", "AI governance lab", "shield"],
           ["/nhi-lab/", "Non-human identity lab", "shield"],
           ["/ca-mfa-lab/", "Conditional access, MFA and AI agent lab", "shield"]] }

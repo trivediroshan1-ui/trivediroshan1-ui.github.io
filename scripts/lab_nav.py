@@ -11,15 +11,15 @@ LABS = {
                  ("What I got wrong", "/ca-mfa-lab/what-i-got-wrong/"), ("Try it", "/ca-mfa-lab/virtual-lab/"),
                  ("Book", "/ca-mfa-lab/ca-mfa-lab-book.pdf")],
         more=[("The method", "/ca-mfa-lab/method/"), ("Run 4", "/ca-mfa-lab/run-4/"), ("Run it in the browser", "/ca-mfa-lab/virtual-lab/run/"),
-              ("Sources and events", "/ca-mfa-lab/sources/"), ("Related: NHI lab", "/nhi-lab/")]),
+              ("Sources and events", "/ca-mfa-lab/sources/"), ("How I test", "/method/"), ("Related: NHI lab", "/nhi-lab/")]),
     "nhi": dict(
         name="Non-human identity lab",
         primary=[("Overview", "/nhi-lab/"), ("How it works", "/nhi-lab/framework/"),
                  ("Results", "/nhi-lab/audit/"), ("Cases", "/nhi-lab/register/"),
-                 ("What I got wrong", "/nhi-lab/method/"), ("Try it", "/nhi-lab/explainer/"),
+                 ("What I got wrong", "/nhi-lab/audit/#wrong"), ("Try it", "/nhi-lab/explainer/"),
                  ("Book", "/nhi-lab/nhi-lab-book.pdf")],
-        more=[("Market", "/nhi-lab/market/"), ("Round 18", "/nhi-lab/round-18/"), ("Round 19", "/nhi-lab/round-19/"),
-              ("Stage 2", "/nhi-lab/stage-2/"), ("Roadmap", "/nhi-lab/roadmap/")]),
+        more=[("The method", "/nhi-lab/method/"), ("Sources and market", "/nhi-lab/market/"), ("Round 18", "/nhi-lab/round-18/"), ("Round 19", "/nhi-lab/round-19/"),
+              ("Stage 2", "/nhi-lab/stage-2/"), ("Roadmap", "/nhi-lab/roadmap/"), ("How I test", "/method/")]),
     "agl": dict(
         name="AI governance lab",
         primary=[("Overview", "/ai-governance-lab/"), ("How it works", "/ai-governance-lab/diagrams/"),
@@ -29,14 +29,15 @@ LABS = {
         more=[("Implement it", "/ai-governance-lab/implement/"), ("Run it", "/ai-governance-lab/run/"),
               ("Mac commands", "/ai-governance-lab/mac/"), ("The story", "/ai-governance-lab/story/"),
               ("Transcripts", "/ai-governance-lab/transcripts/"), ("Appendix", "/ai-governance-lab/appendix/"),
-              ("Rounds 5 to 13", "/ai-governance-lab/#rounds"), ("Standards map", "/ai-governance-lab/frameworks/"), ("Errata", "/ai-governance-lab/errata/")]),
+              ("Rounds 5 to 13", "/ai-governance-lab/#rounds"), ("Standards map", "/ai-governance-lab/frameworks/"), ("Errata", "/ai-governance-lab/errata/"), ("How I test", "/method/")]),
     "mcp": dict(
         name="MCP lab",
-        primary=[("Overview", "/mcp-lab-case-study/"), ("How it works", "/mcp-lab-in-depth/"),
-                 ("Results", "/mcp-lab-results/"), ("Cases", "/mcp-lab-use-cases/"),
-                 ("What I got wrong", "/mcp-lab-case-study/#wrong"), ("Try it", "/mcp-lab-portal/"),
+        primary=[("Overview", "/mcp-lab/"), ("How it works", "/mcp-lab/in-depth/"),
+                 ("Results", "/mcp-lab/results/"), ("Cases", "/mcp-lab/use-cases/"),
+                 ("What I got wrong", "/mcp-lab/#wrong"), ("Try it", "/mcp-lab/portal/"),
                  ("Book", "/assets/who-approved-that-book.pdf")],
-        more=[]),
+        more=[("What the numbers mean", "/mcp-lab/#numbers"), ("Browser lab", "/mcp-human-approval-gateway/"),
+              ("Full report (PDF)", "/assets/humangate-mcp-lab-final-report.pdf"), ("How I test", "/method/")]),
 }
 
 def lab_of(path):
@@ -44,7 +45,7 @@ def lab_of(path):
         return "agl"
     for k, v in LABS.items():
         for t, h in v["primary"] + v["more"]:
-            if h.split("#")[0] == path and not t.startswith("Related"):
+            if h.split("#")[0] == path and not t.startswith("Related") and h != "/method/":
                 return k
     raise KeyError(path)
 

@@ -19,8 +19,8 @@ LABS = {
                     ("/ai-governance-lab/what-i-got-wrong/", "What I got wrong"), ("/ai-governance-lab/story/", "The story"), ("/ai-governance-lab/mac/", "Real assistant tests"),
                     ("/ai-governance-lab/transcripts/", "Transcripts"), ("/ai-governance-lab/implement/", "Implement it"), ("/ai-governance-lab/appendix/", "Appendix")]},
   "mcp": {"dir": None, "book": "/assets/who-approved-that-book.pdf",
-          "order": [("/mcp-lab-case-study/", "Overview"), ("/mcp-lab-results/", "Results"), ("/mcp-lab-use-cases/", "Use cases"),
-                    ("/mcp-lab-in-depth/", "In depth"), ("/mcp-lab-portal/", "Portal")]},
+          "order": [("/mcp-lab/", "Overview"), ("/mcp-lab/results/", "Results"), ("/mcp-lab/use-cases/", "Use cases"),
+                    ("/mcp-lab/in-depth/", "In depth"), ("/mcp-lab/portal/", "Portal")]},
 }
 CSS = f'<link rel="stylesheet" href="/assets/lab-foot.css?v={V}">'
 

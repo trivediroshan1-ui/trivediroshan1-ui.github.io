@@ -20,6 +20,8 @@ for p in sorted(ROOT.rglob("index.html")):
     if rel.startswith(("worker/", "archive/", ".git/", "_site/")) or rel in SKIP:
         continue
     h = p.read_text()
+    if re.search(r'<meta name="robots" content="[^"]*noindex', h) and "rt-moved-to" in h:
+        continue  # moved-page stubs
     url = "/" + rel[: -len("index.html")]
     t = re.sub(r"\s*[·|]\s*Roshan Trivedi.*$", "", meta(h, "og:title") or "").strip()
     if not t:

@@ -239,7 +239,7 @@
       q.appendChild(lab); q.appendChild(body); box.appendChild(q);
     });
     upd();
-    $("#copyChk").addEventListener("click", function () { copy("Thirteen questions for any approval step (Roshan Trivedi, HumanGate MCP lab, roshantrivedi.co.in/mcp-lab-portal/)\n\n" + ch.map(function (x, i) { return (i + 1) + ". " + x.q + "\n   " + x.a; }).join("\n\n"), "Questions copied"); });
+    $("#copyChk").addEventListener("click", function () { copy("Thirteen questions for any approval step (Roshan Trivedi, HumanGate MCP lab, roshantrivedi.co.in/mcp-lab/portal/)\n\n" + ch.map(function (x, i) { return (i + 1) + ". " + x.q + "\n   " + x.a; }).join("\n\n"), "Questions copied"); });
   }
 
   /* ---------- small things ---------- */
@@ -255,7 +255,7 @@
     Object.keys(map).forEach(function (id) { var s = document.getElementById(id); if (s) io.observe(s); });
   }
   $$("[data-copy]").forEach(function (b) { b.addEventListener("click", function () { copy(b.dataset.copy, "Checksum copied"); }); });
-  $("#copyLink").addEventListener("click", function () { copy("https://roshantrivedi.co.in/mcp-lab-portal/", "Link copied"); });
+  $("#copyLink").addEventListener("click", function () { copy("https://roshantrivedi.co.in/mcp-lab/portal/", "Link copied"); });
   $("#copyCmd").addEventListener("click", function () { copy($("#cmd").textContent.replace(/^\$ /gm, ""), "Commands copied"); });
   counters(); spy();
 
