@@ -1,6 +1,5 @@
 {
  "/": [
-  "cls",
   "no-name a.bb-cover:",
   "small-text kbd:Ctrl K",
   "tap-target input:"
@@ -20,7 +19,6 @@
   "tap-target a:Where everything is"
  ],
  "/ai-governance-lab/cases/": [
-  "cls",
   "small-text kbd:Ctrl K",
   "tap-target input:"
  ],
@@ -83,7 +81,6 @@
   "tap-target a:D9"
  ],
  "/ai-governance-lab/round-12/": [
-  "cls",
   "small-text kbd:Ctrl K",
   "small-text li:Fingerprint",
   "small-text li:Request",
@@ -214,7 +211,6 @@
   "small-text kbd:Ctrl K"
  ],
  "/ai-governance-lab/try/": [
-  "cls",
   "small-text kbd:Ctrl K"
  ],
  "/ai-governance-lab/what-i-got-wrong/": [
@@ -275,7 +271,6 @@
   "small-text kbd:Ctrl K"
  ],
  "/ca-mfa-lab/virtual-lab/run/": [
-  "cls",
   "small-text kbd:Ctrl K"
  ],
  "/ca-mfa-lab/what-i-got-wrong/": [
@@ -284,7 +279,6 @@
   "tap-target a:Lab overview"
  ],
  "/case-studies/": [
-  "cls",
   "small-text kbd:Ctrl K",
   "tap-target a:Machine identity lab, round 19"
  ],
@@ -502,7 +496,6 @@
   "tap-target a:← roshantrivedi.co.in"
  ],
  "/glossary/": [
-  "cls",
   "small-text kbd:Ctrl K"
  ],
  "/labs/": [
@@ -527,7 +520,6 @@
   "small-text kbd:Ctrl K"
  ],
  "/mcp-lab/portal/": [
-  "cls",
   "contrast a.skip:Skip to content",
   "contrast b:100",
   "contrast b:26",
@@ -547,7 +539,6 @@
   "tap-target input#short:"
  ],
  "/mcp-lab/results/": [
-  "cls",
   "small-text kbd:Ctrl K"
  ],
  "/mcp-lab/use-cases/": [
@@ -559,7 +550,6 @@
   "tap-target a:MCP approval lab"
  ],
  "/nhi-lab/": [
-  "cls",
   "small-text kbd:Ctrl K",
   "tap-target a:Gap cases (3 cases)",
   "tap-target a:Round 17, shadow AI (4 cases)",
@@ -725,7 +715,6 @@
   "tap-target a:S-R17-10"
  ],
  "/nhi-lab/roadmap/": [
-  "cls",
   "small-text kbd:Ctrl K"
  ],
  "/nhi-lab/round-18/": [
@@ -748,7 +737,6 @@
   "small-text kbd:Ctrl K"
  ],
  "/privacy/": [
-  "cls",
   "small-text kbd:Ctrl K"
  ],
  "/resume/": [
@@ -771,7 +759,6 @@
   "tap-target input:"
  ],
  "/tools/tier-check/": [
-  "cls",
   "small-text kbd:Ctrl K"
  ],
  "/topics/": [

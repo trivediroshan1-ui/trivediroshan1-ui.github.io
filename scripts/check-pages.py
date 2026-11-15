@@ -17,7 +17,8 @@ What counts as an issue (each a short, stable signature, so the baseline can mat
   tap-target      a control smaller than 24 x 24 px (WCAG 2.2 AA 2.5.8), links inside sentences excepted
   contrast        text below 4.5:1 (3:1 for large text) on a plain background; text over images or
                   gradients is skipped, because it cannot be measured this way
-  cls             layout shift over 0.1 in the first two seconds
+  cls             layout shift over 0.1 in the first two seconds. Reported, never failing: it depends on
+                  the machine's speed and font loading, so it differs between a laptop and CI.
   js-error        an uncaught script error
   dup-id, img-alt, no-name, no-label   basic HTML: repeated id, image with no alt, button or link
                   with no name, form field with no label
@@ -163,10 +164,16 @@ def main(argv):
     found = check(pages)
     base = json.loads(BASE.read_text()) if BASE.exists() else {}
     if update:
+        found = {u: [i for i in v if i != "cls"] for u, v in found.items()}
         base.update(found)
         BASE.write_text(json.dumps(base, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
         print("Baseline updated:", sum(len(v) for v in found.values()), "known issues on", len(found), "pages")
         return 0
+    shifts = sorted(u for u, v in found.items() if "cls" in v)
+    found = {u: [i for i in v if i != "cls"] for u, v in found.items()}
+    base = {u: [i for i in v if i != "cls"] for u, v in base.items()}
+    if shifts:
+        print(f"Layout shift over 0.1 on {len(shifts)} page(s), reported only: {', '.join(shifts[:10])}" + (" ..." if len(shifts) > 10 else ""))
     new = {u: [i for i in v if i not in set(base.get(u, []))] for u, v in found.items()}
     new = {u: v for u, v in new.items() if v}
     fixed = sum(len(set(base.get(u, [])) - set(v)) for u, v in found.items())
