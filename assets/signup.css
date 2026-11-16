@@ -3,7 +3,7 @@
 .lab-signup .signup label{font-weight:700;font-size:1.05rem}
 .lab-signup .signup .row{display:flex;gap:10px;flex-wrap:wrap}
 .lab-signup .signup input{flex:1 1 240px;min-height:48px;min-width:0;border-radius:999px;border:1px solid var(--line,rgba(127,127,127,.5));background:transparent;color:inherit;padding:0 18px;font:inherit}
-.lab-signup .signup input:focus-visible,.lab-signup .signup button:focus-visible{outline:2px solid #4de2ff;outline-offset:2px}
-.lab-signup .signup button{min-height:48px;padding:0 22px;border-radius:999px;border:0;background:#4de2ff;color:#04121a;font:700 15px/1 inherit;font-family:inherit;cursor:pointer}
+.lab-signup .signup input:focus-visible,.lab-signup .signup button:focus-visible{outline:2px solid var(--pal-cyan);outline-offset:2px}
+.lab-signup .signup button{min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--pal-cyan);color:#04121a;font:700 15px/1 inherit;font-family:inherit;cursor:pointer}
 html[data-theme="light"] .lab-signup .signup button{background:#0a6a85;color:#fff}
 .lab-signup .signup small{font-size:13px;color:var(--mut,var(--muted,inherit))}

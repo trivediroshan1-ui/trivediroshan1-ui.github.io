@@ -1,14 +1,14 @@
 /* Shared styles for the standard case-study pages. Page-specific pages (the hand-built case studies, the exam study) keep their own <style>. */
 :root {
-  --bg: #030712;
-  --surface: #0b1220;
-  --surface-2: #101a2c;
-  --border: #1f2a40;
-  --text: #f1f5f9;
-  --muted: #93a1bd;
-  --accent: #4de2ff;
-  --safe: #7df2d0;
-  --warn: #f7c873;
+  --bg: var(--pal-deep);
+  --surface: var(--pal-night-2);
+  --surface-2: var(--pal-card);
+  --border: var(--pal-navy-line);
+  --text: var(--pal-snow);
+  --muted: var(--pal-slate);
+  --accent: var(--pal-cyan);
+  --safe: var(--pal-mint);
+  --warn: var(--pal-amber);
   --danger: #ff7a93;
   --mono: "JetBrains Mono", ui-monospace, monospace;
   --display: "DM Sans", system-ui, sans-serif;

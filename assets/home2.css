@@ -1,11 +1,11 @@
 /* Home page, October 2026 redesign: "the approval path". Dark first, light via html[data-theme="light"]. */
 :root {
   color-scheme: dark;
-  --bg: #05061a; --bg2: #0a0b26; --card: rgba(18, 16, 48, 0.72); --card-solid: #110f30;
-  --ink: #f5f3ff; --muted: #c4bfe0; --subtle: #9590b8;
+  --bg: var(--pal-night); --bg2: #0a0b26; --card: rgba(18, 16, 48, 0.72); --card-solid: #110f30;
+  --ink: #f5f3ff; --muted: var(--pal-lavender); --subtle: #9590b8;
   --line: rgba(167, 139, 250, 0.2); --line2: rgba(167, 139, 250, 0.38);
-  --violet: #a78bfa; --violet-deep: #7c3aed; --cyan: #58e6f6; --amber: #fbbf24; --green: #65e5ad;
-  --grad: linear-gradient(90deg, #58e6f6, #a78bfa 70%);
+  --violet: var(--pal-violet); --violet-deep: #7c3aed; --cyan: var(--pal-aqua); --amber: #fbbf24; --green: #65e5ad;
+  --grad: linear-gradient(90deg, var(--pal-aqua), var(--pal-violet) 70%);
   --on-grad: #070a1f;
   --display: "DM Sans", system-ui, sans-serif; --body: "Manrope", "DM Sans", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
   --pad: clamp(16px, 5vw, 96px); --max: 1248px; --r: 18px;
@@ -15,8 +15,8 @@ html[data-theme="light"] {
   --bg: #f6f5ff; --bg2: #eceaff; --card: rgba(255, 255, 255, 0.86); --card-solid: #ffffff;
   --ink: #15122e; --muted: #433d66; --subtle: #5d5785;
   --line: rgba(76, 52, 160, 0.16); --line2: rgba(76, 52, 160, 0.32);
-  --violet: #6d4fd8; --violet-deep: #5b3cc4; --cyan: #0a7f93; --amber: #9a6100; --green: #0f7a50;
-  --grad: linear-gradient(90deg, #0a7f93, #6d4fd8 70%);
+  --violet: var(--pal-violet-deep); --violet-deep: var(--pal-violet-ink); --cyan: var(--pal-teal); --amber: #9a6100; --green: #0f7a50;
+  --grad: linear-gradient(90deg, var(--pal-teal), var(--pal-violet-deep) 70%);
   --on-grad: #ffffff;
 }
 * { box-sizing: border-box; }
@@ -45,7 +45,7 @@ main, header, footer { position: relative; }
 html[data-theme="light"] .top { background: rgba(246, 245, 255, 0.85); }
 .top .wrap { display: flex; align-items: center; gap: 28px; min-height: 72px; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 17px; }
-.brand i { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #58e6f6, #a78bfa); color: #070a1f; display: grid; place-items: center; font-style: normal; font-size: 14px; }
+.brand i { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--pal-aqua), var(--pal-violet)); color: #070a1f; display: grid; place-items: center; font-style: normal; font-size: 14px; }
 .nav { display: flex; gap: 4px; margin-left: auto; }
 .nav a { text-decoration: none; font-weight: 600; font-size: 15px; padding: 8px 12px; border-radius: 999px; color: var(--muted); }
 .nav a:hover { color: var(--ink); background: rgba(167, 139, 250, 0.12); }
@@ -306,7 +306,7 @@ html[data-theme="light"] .decide .r { color: #0b6b45; border-top-color: rgba(15,
 @media (prefers-reduced-motion: reduce) { .bb-cover img, .bb-cover:hover img { transition: none; } }
 
 /* -- Case-study cards: each one carries its own accent -- */
-.card.has-art { --c: #4de2ff; }
+.card.has-art { --c: var(--pal-cyan); }
 .card.has-art .art { color: var(--c); }
 .card.has-art .tag { color: var(--c); }
 a.card.has-art:hover { border-color: color-mix(in srgb, var(--c) 70%, transparent); box-shadow: 0 18px 40px -18px color-mix(in srgb, var(--c) 55%, transparent); }
@@ -315,9 +315,9 @@ a.card.has-art:hover { border-color: color-mix(in srgb, var(--c) 70%, transparen
 .quotes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .q { margin: 0; display: flex; flex-direction: column; gap: 16px; padding: 22px; border-radius: var(--r); border: 1px solid var(--line); background: var(--card); position: relative; }
 .q::before { content: ""; position: absolute; top: 12px; right: 14px; width: 46px; height: 46px; background: var(--violet); opacity: .8; transform: rotate(5deg); -webkit-mask: var(--dd, url(/assets/doodles/q1.svg)) center/contain no-repeat; mask: var(--dd, url(/assets/doodles/q1.svg)) center/contain no-repeat; pointer-events: none; transition: transform .5s cubic-bezier(.3,1.4,.5,1); }
-.q:nth-child(2)::before { --dd: url(/assets/doodles/q2.svg); background: var(--cyan, #4de2ff); transform: rotate(-6deg); }
+.q:nth-child(2)::before { --dd: url(/assets/doodles/q2.svg); background: var(--cyan, var(--pal-cyan)); transform: rotate(-6deg); }
 .q:nth-child(3)::before { --dd: url(/assets/doodles/q3.svg); transform: rotate(3deg); }
-.q:nth-child(4)::before { --dd: url(/assets/doodles/q4.svg); background: var(--cyan, #4de2ff); transform: rotate(-4deg); }
+.q:nth-child(4)::before { --dd: url(/assets/doodles/q4.svg); background: var(--cyan, var(--pal-cyan)); transform: rotate(-4deg); }
 .q:hover::before { transform: rotate(-4deg) scale(1.1); }
 html[data-theme="light"] .q::before { background: #5b3fd0; }
 html[data-theme="light"] .q:nth-child(2)::before, html[data-theme="light"] .q:nth-child(4)::before { background: #0a6178; }
@@ -331,7 +331,7 @@ html[data-theme="light"] .q:nth-child(2)::before, html[data-theme="light"] .q:nt
 .creds .ey { margin: 0; }
 .creds ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .creds li > a, .creds li > span { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 14px 6px 10px; border-radius: 999px; border: 1px solid var(--line2); background: rgba(124, 58, 237, 0.1); text-decoration: none; font-size: 14px; }
-.creds li > a::before, .creds li > span::before { content: ""; width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 12%, transparent 13%), linear-gradient(135deg, #58e6f6, #a78bfa); }
+.creds li > a::before, .creds li > span::before { content: ""; width: 22px; height: 22px; flex-shrink: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 12%, transparent 13%), linear-gradient(135deg, var(--pal-aqua), var(--pal-violet)); }
 .creds li > a::after { content: "\2197"; font-size: 12px; color: var(--violet); }
 .creds li > a:hover { border-color: var(--violet); background: rgba(124, 58, 237, 0.18); }
 .creds b { font-weight: 800; }

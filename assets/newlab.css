@@ -1,24 +1,24 @@
 /* "New" banner with a hand-drawn doodle, for the AI governance lab */
-.newlab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;margin:0 0 18px;padding:18px 20px;border:2px dashed var(--accent,#4de2ff);border-radius:16px;background:var(--surface,#0b1220);color:var(--text,#f1f5f9);text-decoration:none;position:relative;transition:transform .2s,border-color .2s}
+.newlab{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;margin:0 0 18px;padding:18px 20px;border:2px dashed var(--accent,var(--pal-cyan));border-radius:16px;background:var(--surface,var(--pal-night-2));color:var(--text,var(--pal-snow));text-decoration:none;position:relative;transition:transform .2s,border-color .2s}
 .newlab:hover{transform:translateY(-2px);border-style:solid}
-.newlab:focus-visible{outline:3px solid var(--accent,#4de2ff);outline-offset:3px}
-.newlab .doodle{width:96px;height:96px;color:var(--accent,#4de2ff);flex:none}
+.newlab:focus-visible{outline:3px solid var(--accent,var(--pal-cyan));outline-offset:3px}
+.newlab .doodle{width:96px;height:96px;color:var(--accent,var(--pal-cyan));flex:none}
 .newlab .doodle .ink{fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.newlab .doodle .fill{fill:color-mix(in srgb,var(--safe,#7df2d0) 22%,transparent);stroke:none}
-.newlab .doodle .spark{fill:none;stroke:var(--warn,#f7c873);stroke-width:3;stroke-linecap:round;transform-origin:center;transform-box:fill-box;animation:nl-twinkle 2.4s ease-in-out 3}
+.newlab .doodle .fill{fill:color-mix(in srgb,var(--safe,var(--pal-mint)) 22%,transparent);stroke:none}
+.newlab .doodle .spark{fill:none;stroke:var(--warn,var(--pal-amber));stroke-width:3;stroke-linecap:round;transform-origin:center;transform-box:fill-box;animation:nl-twinkle 2.4s ease-in-out 3}
 .newlab .doodle .spark.b{animation-delay:1.2s}
-.newlab .doodle .tick{stroke:var(--safe,#7df2d0)}
+.newlab .doodle .tick{stroke:var(--safe,var(--pal-mint))}
 .newlab .t{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.newlab h3,.newlab h2{margin:0;font:700 22px/1.2 var(--display,system-ui,sans-serif);color:var(--text,#f1f5f9)}
-.newlab p{margin:6px 0 8px;color:var(--muted,#93a1bd);font-size:15px}
-.newlab .go{font-weight:600;color:var(--accent,#4de2ff)}
-.newpill{display:inline-block;font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--warn,#f7c873);color:#1b1300;transform:rotate(-3deg);animation:nl-blink 1.2s steps(2,start) 3}
+.newlab h3,.newlab h2{margin:0;font:700 22px/1.2 var(--display,system-ui,sans-serif);color:var(--text,var(--pal-snow))}
+.newlab p{margin:6px 0 8px;color:var(--muted,var(--pal-slate));font-size:15px}
+.newlab .go{font-weight:600;color:var(--accent,var(--pal-cyan))}
+.newpill{display:inline-block;font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--warn,var(--pal-amber));color:#1b1300;transform:rotate(-3deg);animation:nl-blink 1.2s steps(2,start) 3}
 @keyframes nl-blink{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes nl-twinkle{0%,100%{transform:scale(.7);opacity:.5}50%{transform:scale(1.15);opacity:1}}
-html[data-theme="light"] .newlab{background:#fff;border-color:#0a7285;color:#0f172a}
-html[data-theme="light"] .newlab h3,.newlab h2{color:#0f172a}
-html[data-theme="light"] .newlab p{color:#52617a}
-html[data-theme="light"] .newlab .go,html[data-theme="light"] .newlab .doodle{color:#0a7285}
+html[data-theme="light"] .newlab{background:#fff;border-color:var(--pal-teal-2);color:var(--pal-ink-dark)}
+html[data-theme="light"] .newlab h3,.newlab h2{color:var(--pal-ink-dark)}
+html[data-theme="light"] .newlab p{color:var(--pal-slate-dark)}
+html[data-theme="light"] .newlab .go,html[data-theme="light"] .newlab .doodle{color:var(--pal-teal-2)}
 html[data-theme="light"] .newlab .doodle .spark{stroke:#8a5208}
 html[data-theme="light"] .newlab .doodle .tick{stroke:#0b7a5b}
 html[data-theme="light"] .newpill{background:#f2b84b}
@@ -27,12 +27,12 @@ html[data-theme="light"] .newpill{background:#f2b84b}
 .newlab-top{padding:14px 0 0}
 .newlab-top .wrap{width:min(1120px,100% - 32px);margin-inline:auto}
 .newlab-top .newlab{margin:0}
-.newlab{background:linear-gradient(120deg,color-mix(in srgb,var(--accent,#4de2ff) 12%,var(--surface,#0b1220)),var(--surface,#0b1220) 55%,color-mix(in srgb,var(--warn,#f7c873) 10%,var(--surface,#0b1220)))}
+.newlab{background:linear-gradient(120deg,color-mix(in srgb,var(--accent,var(--pal-cyan)) 12%,var(--surface,var(--pal-night-2))),var(--surface,var(--pal-night-2)) 55%,color-mix(in srgb,var(--warn,var(--pal-amber)) 10%,var(--surface,var(--pal-night-2))))}
 .newlab .doodle .eye{fill:currentColor;transform-origin:center;transform-box:fill-box;animation:nl-eye 3.2s 3}
 .newlab .doodle .shield{animation:nl-glow 2.4s ease-in-out 3}
 .newlab .doodle .tick{stroke-dasharray:60;animation:nl-draw 3.2s ease-in-out 3}
 @keyframes nl-eye{0%,44%,52%,100%{transform:scaleY(1)}48%{transform:scaleY(.08)}}
-@keyframes nl-glow{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 6px var(--accent,#4de2ff))}}
+@keyframes nl-glow{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 6px var(--accent,var(--pal-cyan)))}}
 @keyframes nl-draw{0%{stroke-dashoffset:60}35%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:60}}
 html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 55%,#fdf3dc)}
 @media (prefers-reduced-motion:reduce){.newlab .doodle .eye,.newlab .doodle .shield,.newlab .doodle .tick{animation:none;stroke-dasharray:none}}
@@ -40,7 +40,7 @@ html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 
 .newlab .links{display:flex;flex-wrap:wrap;gap:6px 22px}
 .newlab .stretch::after{content:"";position:absolute;inset:0;border-radius:16px}
 .newlab .book{position:relative;z-index:2;text-decoration:underline;text-underline-offset:3px}
-.newlab .book::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--warn,#f7c873);margin-right:7px;animation:nl-blink 1.2s steps(2,start) 3}
+.newlab .book::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--warn,var(--pal-amber));margin-right:7px;animation:nl-blink 1.2s steps(2,start) 3}
 .newlab .go{text-decoration:none}
 @media (prefers-reduced-motion:reduce){.newlab .book::before{animation:none}}
 
@@ -52,14 +52,14 @@ html[data-theme="light"] .newlab{background:linear-gradient(120deg,#e7f6f9,#fff 
 .newlab.nl-ca:hover{transform:none}
 .nl-ca .doodle{width:110px;height:110px;color:#60a5fa}
 .nl-ca .doodle .route{stroke-dasharray:6 7;animation:nl-march 1.6s linear 3}
-.nl-ca .doodle .tok{stroke:var(--warn,#f7c873);animation:nl-blink 1.4s steps(2,start) 3}
-.nl-ca .doodle .tick{stroke:var(--safe,#7df2d0)}
-.nl-ca .nl-date{font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,#93a1bd)}
+.nl-ca .doodle .tok{stroke:var(--warn,var(--pal-amber));animation:nl-blink 1.4s steps(2,start) 3}
+.nl-ca .doodle .tick{stroke:var(--safe,var(--pal-mint))}
+.nl-ca .nl-date{font:700 12px/1 var(--mono,ui-monospace,monospace);letter-spacing:.08em;text-transform:uppercase;color:var(--muted,var(--pal-slate))}
 .nl-ca h3{margin-top:8px}
 .nl-ca .nl-acts{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0 0;font-size:14.5px;font-weight:700}
-.nl-ca .nl-acts a{color:var(--accent,#4de2ff);text-decoration:underline;text-underline-offset:3px;min-height:24px}
+.nl-ca .nl-acts a{color:var(--accent,var(--pal-cyan));text-decoration:underline;text-underline-offset:3px;min-height:24px}
 .nl-ca .nl-acts a:first-child{display:inline-flex;align-items:center;min-height:38px;padding:0 16px;border-radius:999px;background:#60a5fa;color:#04121a;text-decoration:none}
-.nl-ca .nl-acts a:focus-visible{outline:2px solid var(--accent,#4de2ff);outline-offset:2px;border-radius:6px}
+.nl-ca .nl-acts a:focus-visible{outline:2px solid var(--accent,var(--pal-cyan));outline-offset:2px;border-radius:6px}
 @keyframes nl-march{to{stroke-dashoffset:-26}}
 html[data-theme="light"] .newlab.nl-ca{border-color:#1d5fc4}
 html[data-theme="light"] .nl-ca .doodle{color:#1d5fc4}

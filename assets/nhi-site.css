@@ -1,12 +1,12 @@
 /* NHI lab: shared design for the sub-pages (framework, market, method, audit, roadmap, explainer).
    Tokens come from the site. Motion is small and always has a reduced-motion fallback. */
-.nhi{--k:var(--accent,#4de2ff);--card:var(--surface-2,#101a2c);--line:var(--border,#1f2a40);--mut:var(--muted,#93a1bd);--ink:var(--text,#f1f5f9);
-  --good:#34d399;--bad:#ff8fa3;--warn:#f7c873;--info:#4de2ff}
-html[data-theme="light"] .nhi{--card:#ffffff;--line:#d5dcea;--mut:#51607a;--ink:#0f172a;--good:#047857;--bad:#be123c;--warn:#a16207;--info:#0369a1}
+.nhi{--k:var(--accent,var(--pal-cyan));--card:var(--surface-2,var(--pal-card));--line:var(--border,var(--pal-navy-line));--mut:var(--muted,var(--pal-slate));--ink:var(--text,var(--pal-snow));
+  --good:var(--pal-green);--bad:#ff8fa3;--warn:var(--pal-amber);--info:var(--pal-cyan)}
+html[data-theme="light"] .nhi{--card:#ffffff;--line:#d5dcea;--mut:#51607a;--ink:var(--pal-ink-dark);--good:#047857;--bad:#be123c;--warn:#a16207;--info:#0369a1}
 @media (prefers-color-scheme:light){html:not([data-theme="dark"]) .nhi.auto{--card:#fff}}
 
 /* page sub-navigation */
-.nsub{display:flex;gap:6px;overflow-x:auto;padding:10px 0;margin:0 0 6px;border-bottom:1px solid var(--line);scrollbar-width:thin;position:sticky;top:48px;z-index:6;background:var(--bg,#030712)}
+.nsub{display:flex;gap:6px;overflow-x:auto;padding:10px 0;margin:0 0 6px;border-bottom:1px solid var(--line);scrollbar-width:thin;position:sticky;top:48px;z-index:6;background:var(--bg,var(--pal-deep))}
 html[data-theme="light"] .nsub{background:var(--page,#f5f7fb)}
 .nsub a{flex:none;font-size:.88rem;padding:7px 14px;border-radius:999px;border:1px solid transparent;color:var(--mut);text-decoration:none;white-space:nowrap}
 .nsub a:hover{color:var(--ink);border-color:var(--line)}
@@ -52,7 +52,7 @@ html[data-theme="light"] .nsub{background:var(--page,#f5f7fb)}
 .nb.primary{color:var(--good);border-color:var(--good)}
 .nb.secondary{color:var(--info);border-color:var(--info)}
 .nb.vendor{color:var(--warn);border-color:var(--warn)}
-.nb.opinion{color:#c4b5fd;border-color:#c4b5fd}
+.nb.opinion{color:var(--pal-lilac);border-color:var(--pal-lilac)}
 .nb.high{color:var(--good);border-color:var(--good)}
 .nb.med{color:var(--warn);border-color:var(--warn)}
 .nb.low{color:var(--bad);border-color:var(--bad)}
@@ -199,4 +199,4 @@ html[data-theme="light"] .nhero .lastrev{color:#51607a;opacity:1!important}
 /* buttons in the lab heroes (the CA lab uses .btn; light theme had no style for it) */
 .nhi .btn{display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;margin:4px 8px 4px 0;border-radius:10px;border:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600}
 .nhi .btn:hover{border-color:var(--k)}
-.nhi .btn-primary{background:#5b3cc4;border-color:#5b3cc4;color:#fff}
+.nhi .btn-primary{background:var(--pal-violet-ink);border-color:var(--pal-violet-ink);color:#fff}
