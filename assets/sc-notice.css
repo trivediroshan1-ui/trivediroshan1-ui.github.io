@@ -5,8 +5,8 @@
   bottom: 84px;
   width: min(290px, calc(100vw - 40px));
   padding: 16px 18px 14px;
-  color: #f1f5f9;
-  background: #0b1220;
+  color: var(--pal-snow);
+  background: var(--pal-night-2);
   border-radius: 14px;
   box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
   transform: rotate(-1.5deg);
@@ -35,7 +35,7 @@
   stroke-dashoffset: 1;
   animation: sc-nd-draw 900ms ease-out 200ms forwards;
 }
-.sc-nd-box path { stroke: #f7c873; stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.sc-nd-box path { stroke: var(--pal-amber); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
 .sc-nd-arrow {
   position: absolute;
   right: 6px;
@@ -45,14 +45,14 @@
   overflow: visible;
   pointer-events: none;
 }
-.sc-nd-arrow path { stroke: #f7c873; stroke-width: 3; animation-delay: 900ms; }
+.sc-nd-arrow path { stroke: var(--pal-amber); stroke-width: 3; animation-delay: 900ms; }
 .sc-nd-line {
   display: block;
   width: 70%;
   height: 8px;
   margin-top: 4px;
 }
-.sc-nd-line path { stroke: #4de2ff; stroke-width: 2.5; vector-effect: non-scaling-stroke; animation-delay: 700ms; }
+.sc-nd-line path { stroke: var(--pal-cyan); stroke-width: 2.5; vector-effect: non-scaling-stroke; animation-delay: 700ms; }
 
 .sc-nd-kicker {
   display: flex;
@@ -68,7 +68,7 @@
   display: inline-flex;
   padding: 5px 10px;
   border-radius: 999px;
-  background: #f7c873;
+  background: var(--pal-amber);
   transform: rotate(-4deg);
 }
 .sc-nd-dot {
@@ -98,7 +98,7 @@
   min-height: 34px;
   padding: 0 14px;
   border-radius: 999px;
-  background: #4de2ff;
+  background: var(--pal-cyan);
   color: #03111d !important;
   font-weight: 700;
   font-size: 13.5px;
@@ -109,7 +109,7 @@
   padding: 0;
   background: none;
   border: 0;
-  color: #4de2ff;
+  color: var(--pal-cyan);
   font: 700 13.5px/1 system-ui, -apple-system, "Segoe UI", sans-serif;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -125,15 +125,15 @@
   background: none;
   border: 0;
   border-radius: 8px;
-  color: #93a1bd;
+  color: var(--pal-slate);
   font-size: 20px;
   line-height: 1;
   cursor: pointer;
 }
 .sc-nd-link:focus-visible,
 .sc-nd-ask:focus-visible,
-.sc-nd-close:focus-visible { outline: 2px solid #f7c873; outline-offset: 2px; }
-.sc-nd-close:hover { color: #f1f5f9; }
+.sc-nd-close:focus-visible { outline: 2px solid var(--pal-amber); outline-offset: 2px; }
+.sc-nd-close:hover { color: var(--pal-snow); }
 
 /* A gentle blinking ring on the chat button while there is news */
 .sc-launcher-news { position: relative; }
@@ -145,7 +145,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: #f7c873;
+  background: var(--pal-amber);
   border: 2px solid #03111d;
   animation: sc-nd-blink 1.2s steps(2, start) infinite;
 }
@@ -164,13 +164,13 @@
 @keyframes sc-nd-blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
 @keyframes sc-nd-ring { 0% { transform: scale(.9); opacity: .9; } 80%, 100% { transform: scale(1.35); opacity: 0; } }
 
-html[data-theme="light"] .sc-notice { background: #fff; color: #0f172a; box-shadow: 0 18px 44px rgba(15, 23, 42, .18); }
+html[data-theme="light"] .sc-notice { background: #fff; color: var(--pal-ink-dark); box-shadow: 0 18px 44px rgba(15, 23, 42, .18); }
 html[data-theme="light"] .sc-nd-box path,
 html[data-theme="light"] .sc-nd-arrow path { stroke: #c2410c; }
-html[data-theme="light"] .sc-nd-line path { stroke: #0a7285; }
+html[data-theme="light"] .sc-nd-line path { stroke: var(--pal-teal-2); }
 html[data-theme="light"] .sc-nd-ask { color: #0a5c6b; }
-html[data-theme="light"] .sc-nd-link { background: #0a7285; color: #fff !important; }
-html[data-theme="light"] .sc-nd-close { color: #52617a; }
+html[data-theme="light"] .sc-nd-link { background: var(--pal-teal-2); color: #fff !important; }
+html[data-theme="light"] .sc-nd-close { color: var(--pal-slate-dark); }
 
 @media (max-width: 640px) {
   .sc-notice { bottom: 70px; right: 0; width: min(270px, calc(100vw - 32px)); }

@@ -9,7 +9,7 @@
   --r-mute: #a8a4c2;
   --r-rule: rgba(167, 139, 250, .24);
   --r-card: rgba(20, 18, 58, .55);
-  --r-accent: var(--c, #a78bfa);
+  --r-accent: var(--c, var(--pal-violet));
   --r-serif: "Lora", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --r-sans: "DM Sans", system-ui, sans-serif;
   --r-display: "DM Sans", "Manrope", system-ui, sans-serif;
@@ -171,7 +171,7 @@ html[data-theme="light"] .read .tldr li { box-shadow: 0 1px 2px rgba(40, 30, 90,
 
 /* ---------- Floating contents rail ---------- */
 .rt-toc { max-height: calc(100vh - 280px); }
-.rt-toc a { color: var(--r-mute, #93a1bd); }
+.rt-toc a { color: var(--r-mute, var(--pal-slate)); }
 .rt-toc a::before { content: attr(data-n); display: inline-block; min-width: 1.7em; font: 600 12px/1 "JetBrains Mono", ui-monospace, monospace; opacity: .8; }
 .rt-toc a:not([data-n])::before { content: none; }
 .read .rt-toc a:hover { color: var(--r-ink); }

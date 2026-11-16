@@ -9,12 +9,12 @@
 .ca-chain .box{fill:var(--card,transparent);stroke-width:1.5}
 .ca-chain .lab{fill:currentColor;font:600 13.5px/1 system-ui,sans-serif;text-anchor:middle}
 .ca-chain .arw{stroke:var(--mut,#9aa3b8);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.ca-chain .dot{fill:var(--k,#7df2d0)}
+.ca-chain .dot{fill:var(--k,var(--pal-mint))}
 .ca-chain .l{animation:ca-lit 9s infinite both}
 .ca-chain .dot{animation:ca-run 9s infinite both}
 .ca-chain.is-paused .l,.ca-chain.is-paused .dot,.ca-chain.is-off .l,.ca-chain.is-off .dot{animation-play-state:paused}
 .ca-chain .ca-ctl{margin:6px 0 0;font:inherit;font-size:.85rem;color:var(--mut,#9aa3b8);background:none;border:1px solid var(--line,#2a3350);border-radius:999px;padding:3px 12px;cursor:pointer}
-.ca-chain .ca-ctl:hover,.ca-chain .ca-ctl:focus-visible{color:var(--ink,currentColor);border-color:var(--k,#7df2d0)}
+.ca-chain .ca-ctl:hover,.ca-chain .ca-ctl:focus-visible{color:var(--ink,currentColor);border-color:var(--k,var(--pal-mint))}
 @keyframes ca-lit{0%{opacity:.3}4%{opacity:1}90%{opacity:1}100%{opacity:.3}}
 @keyframes ca-run{0%{transform:translateX(0);opacity:1}55%{transform:translateX(264px);opacity:1}60%,100%{transform:translateX(264px);opacity:0}}
 @media (prefers-reduced-motion:reduce){

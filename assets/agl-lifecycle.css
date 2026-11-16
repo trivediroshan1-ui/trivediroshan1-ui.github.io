@@ -1,6 +1,6 @@
 /* AI governance lab: the animated identity lifecycle, from HR to the directory. Scoped under .lc. Works without script (all steps shown). */
-.lc{--lc-hr:#f7c873;--lc-bu:#ffb27a;--lc-iga:#7df2d0;--lc-ai:#4de2ff;--lc-dir:#c4b5fd;--lc-aud:#ff9db0;margin:18px 0;min-width:0}
-html[data-theme="light"] .lc{--lc-hr:#8a5208;--lc-bu:#a04a0c;--lc-iga:#0b7a5b;--lc-ai:#0a7285;--lc-dir:#5b45b5;--lc-aud:#b02350}
+.lc{--lc-hr:var(--pal-amber);--lc-bu:#ffb27a;--lc-iga:var(--pal-mint);--lc-ai:var(--pal-cyan);--lc-dir:var(--pal-lilac);--lc-aud:#ff9db0;margin:18px 0;min-width:0}
+html[data-theme="light"] .lc{--lc-hr:#8a5208;--lc-bu:#a04a0c;--lc-iga:#0b7a5b;--lc-ai:var(--pal-teal-2);--lc-dir:#5b45b5;--lc-aud:#b02350}
 .lc-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:0 0 14px;padding:0;list-style:none;font-size:12.5px;color:var(--a-muted)}
 .lc-legend li{display:flex;align-items:center;gap:6px}
 .lc-legend i{width:10px;height:10px;border-radius:50%;background:var(--lane);display:inline-block}
