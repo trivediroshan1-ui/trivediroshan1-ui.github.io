@@ -36,7 +36,7 @@ layout: null
     <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <style>
       :root {
-        --bg: #030712; --surface: #0b1220; --border: #1f2a40; --text: #f1f5f9; --muted: #93a1bd; --accent: #4de2ff;
+        --bg: var(--pal-deep); --surface: var(--pal-night-2); --border: var(--pal-navy-line); --text: var(--pal-snow); --muted: var(--pal-slate); --accent: var(--pal-cyan);
         --mono: "JetBrains Mono", ui-monospace, monospace; --display: "DM Sans", system-ui, sans-serif; --body: "Manrope", system-ui, sans-serif;
         color-scheme: dark;
       }
@@ -56,7 +56,7 @@ layout: null
       header.hero { position: relative; isolation: isolate; }
       header.hero::before { content: ""; position: absolute; z-index: -1; left: -8px; right: -8px; top: -30px; height: 240px; background: radial-gradient(ellipse 48% 50% at 16% 50%, rgba(77,226,255,0.15), transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%, #000 70%, transparent); mask-image: linear-gradient(90deg, transparent, #000 22%, #000 70%, transparent); pointer-events: none; }
       .post { position: relative; overflow: hidden; }
-      .post::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--accent), #7df2d0); opacity: .55; transition: opacity .2s; }
+      .post::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--accent), var(--pal-mint)); opacity: .55; transition: opacity .2s; }
       .post:hover::before, .post:focus-visible::before { opacity: 1; }
       .post::after { content: "Read \2192"; align-self: flex-start; margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--accent); }
       .post:hover::after { text-decoration: underline; text-underline-offset: 4px; }
@@ -77,7 +77,7 @@ layout: null
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-      <!-- css-bundle: these stylesheets are served joined as b-0a5867db2e.css. Edit the tags here, then run scripts/bundle-css.py
+      <!-- css-bundle: these stylesheets are served joined as b-ad2e0a54d2.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
 <link rel="stylesheet" href="/assets/theme.css">
@@ -87,7 +87,7 @@ layout: null
 <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-0a5867db2e.css">
+    <link rel="stylesheet" href="/assets/b-ad2e0a54d2.css">
     <script src="/assets/theme.js?v=20261116a"></script>
     <script src="/assets/palette.js?v=20261116b" defer></script>
     <script src="/assets/nav.js?v=20261116b" defer></script>
