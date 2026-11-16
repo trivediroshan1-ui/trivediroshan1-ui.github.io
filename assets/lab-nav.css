@@ -11,3 +11,6 @@
 .lab-nav .ln-more{flex-wrap:wrap;padding:0 0 4px}
 .lab-nav .ln-more a{min-height:32px;font-size:13px}
 @media (max-width:520px){.lab-nav .ln-top{gap:6px}.lab-nav a{padding:0 10px}}
+
+/* Phones and tablets: the extra pages scroll sideways in one row, like the main row, instead of wrapping onto 2 to 4 lines. */
+@media (max-width:960px){.lab-nav .ln-more{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;min-width:0}.lab-nav .ln-more li{flex:none}}

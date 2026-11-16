@@ -54,5 +54,5 @@ WB.write_book(chapters, book=BOOK, pdf="/ca-mfa-lab/ca-mfa-lab-book.pdf", title=
               lede=f"The whole book as web pages, one chapter per page: easier to read on a phone, to search and to use with a screen reader than the PDF. Edition 1, {EDITION}. The words are the same as in the PDF; each case links to its row in the register.",
               ey="Conditional access, MFA and AI agent lab · the book", short="sign-in lab book",
               crumb=[("Home", "/"), ("Labs and projects", "/labs/"), ("Conditional access, MFA and AI agent lab", "/ca-mfa-lab/")],
-              shell=shell, write=write, head='    <link rel="stylesheet" href="/assets/web-book.css?v=20261116a">', root_dir=ROOT / "ca-mfa-lab" / "book")
+              shell=shell, write=write, head='    <link rel="stylesheet" href="/assets/web-book.css?v=20261116b">', root_dir=ROOT / "ca-mfa-lab" / "book")
 print("chapters:", len(chapters))

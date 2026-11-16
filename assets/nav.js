@@ -359,3 +359,12 @@
   panel.addEventListener("focusout", function (e) { var n = e.relatedTarget; if (n && !bar.contains(n)) set(false); });
   window.matchMedia("(min-width: 961px)").addEventListener("change", function (m) { if (m.matches) set(false); });
 })();
+
+/* Lab sub-menus scroll sideways on small screens: bring the current page into view. */
+(function () {
+  "use strict";
+  Array.prototype.forEach.call(document.querySelectorAll(".lab-nav ul"), function (u) {
+    var a = u.querySelector('[aria-current="page"]');
+    if (a && u.scrollWidth > u.clientWidth + 1) u.scrollLeft = Math.max(0, a.parentNode.offsetLeft - u.offsetLeft - 16);
+  });
+})();

@@ -45,5 +45,5 @@ WB.write_book(chapters, book=BOOK, pdf="/nhi-lab/nhi-lab-book.pdf", title="Machi
               lede=f"The whole book as web pages, one chapter per page: easier to read on a phone, to search and to use with a screen reader than the PDF. Edition 2, {EDITION}. The words are the same as in the PDF; diagrams link to the same case on the lab pages.",
               ey="Machine identity lab · the book", short="NHI lab book",
               crumb=[("Home", "/"), ("Labs and projects", "/labs/"), ("Machine identity lab", "/nhi-lab/")],
-              shell=shell, write=write, head='    <link rel="stylesheet" href="/assets/web-book.css?v=20261116a">', root_dir=ROOT / "nhi-lab" / "book")
+              shell=shell, write=write, head='    <link rel="stylesheet" href="/assets/web-book.css?v=20261116b">', root_dir=ROOT / "nhi-lab" / "book")
 print("chapters:", len(chapters))
