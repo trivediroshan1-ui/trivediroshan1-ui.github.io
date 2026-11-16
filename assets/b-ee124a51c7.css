@@ -1833,6 +1833,35 @@ html[data-theme="light"] .nhero .lastrev{color:#51607a;opacity:1!important}
 .lastrev{margin:6px 0 0;font-size:14px;color:var(--muted,var(--pal-lavender))}
 html[data-theme=light] .lastrev{color:#4a4f68;opacity:1!important}
 
+/* signup.css */
+.lab-signup{margin:36px 0 0;padding:18px 20px;border:1px solid var(--line,var(--border,rgba(127,127,127,.35)));border-radius:14px}
+.lab-signup .signup{display:grid;gap:8px}
+.lab-signup .signup label{font-weight:700;font-size:1.05rem}
+.lab-signup .signup .row{display:flex;gap:10px;flex-wrap:wrap}
+.lab-signup .signup input{flex:1 1 240px;min-height:48px;min-width:0;border-radius:999px;border:1px solid var(--line,rgba(127,127,127,.5));background:transparent;color:inherit;padding:0 18px;font:inherit}
+.lab-signup .signup input:focus-visible,.lab-signup .signup button:focus-visible{outline:2px solid var(--pal-cyan);outline-offset:2px}
+.lab-signup .signup button{min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--pal-cyan);color:#04121a;font:700 15px/1 inherit;font-family:inherit;cursor:pointer}
+html[data-theme="light"] .lab-signup .signup button{background:#0a6a85;color:#fff}
+.lab-signup .signup small{font-size:13px;color:var(--mut,var(--muted,inherit))}
+
+/* lab-summary.css */
+/* One-screen summary at the top of a lab: question, answer, three numbers, what to check, limits. */
+.lab-sum{margin:20px 0 8px;padding:18px 20px;border:1px solid var(--line,var(--border,rgba(127,127,127,.3)));border-radius:14px;background:var(--card,rgba(127,127,127,.06));display:grid;gap:14px}
+.lab-sum h2{margin:0;font-size:1rem}
+.lab-sum .ls-k{margin:0 0 2px;font-size:13px;letter-spacing:.04em;color:var(--muted,var(--pal-lavender))}
+.lab-sum p{margin:0}
+.lab-sum .ls-q{font-size:1.1rem;font-weight:700;line-height:1.35}
+.lab-sum .ls-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.lab-sum .ls-nums li{padding:8px 12px;border-radius:10px;background:rgba(127,127,127,.1)}
+.lab-sum .ls-nums b{display:block;font-size:1.5rem;line-height:1.15}
+.lab-sum .ls-nums span{font-size:13px;color:var(--muted,var(--pal-lavender))}
+.lab-sum ol{margin:0;padding-left:1.25rem;line-height:1.55}
+.lab-sum .ls-lim{padding-top:12px;border-top:1px solid var(--line,var(--border,rgba(127,127,127,.3)));font-size:14px;color:var(--muted,var(--pal-lavender))}
+.lab-sum .ls-acts{display:flex;flex-wrap:wrap;gap:10px}
+.lab-sum .ls-acts a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line2,var(--line,rgba(127,127,127,.4)));font-weight:700;text-decoration:none}
+.lab-sum .ls-acts a:first-child{background:var(--grad,transparent);color:var(--on-grad,inherit)}
+@media (max-width:520px){.lab-sum{padding:16px}.lab-sum .ls-nums span{display:block}}
+
 /* lab-nav.css */
 /* One sub-nav for all four labs: same labels, same order. */
 .lab-nav{margin:0 0 10px;padding:8px 0 4px;border-bottom:1px solid var(--line,var(--border,rgba(127,127,127,.3)));display:grid;grid-template-columns:minmax(0,1fr);gap:4px;font-family:inherit;min-width:0}
@@ -1847,3 +1876,14 @@ html[data-theme=light] .lastrev{color:#4a4f68;opacity:1!important}
 .lab-nav .ln-more{flex-wrap:wrap;padding:0 0 4px}
 .lab-nav .ln-more a{min-height:32px;font-size:13px}
 @media (max-width:520px){.lab-nav .ln-top{gap:6px}.lab-nav a{padding:0 10px}}
+
+/* Phones and tablets: the extra pages scroll sideways in one row, like the main row, instead of wrapping onto 2 to 4 lines. */
+@media (max-width:960px){.lab-nav .ln-more{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;min-width:0}.lab-nav .ln-more li{flex:none}}
+
+/* signup-topics.css */
+/* Optional topic choices on the signup forms (AN-02). */
+.su-topics{border:0;margin:10px 0 6px;padding:0;display:flex;flex-wrap:wrap;gap:4px 14px}
+.su-topics legend{padding:0;margin:0 0 4px;font-size:.88rem;opacity:.85;width:100%}
+.su-topics label{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:.92rem;cursor:pointer}
+.su-topics input{width:20px;height:20px;margin:0;accent-color:currentColor;flex:none}
+.su-topics input:focus-visible{outline:3px solid currentColor;outline-offset:2px}

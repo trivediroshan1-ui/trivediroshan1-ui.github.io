@@ -1561,7 +1561,9 @@ html[data-theme="light"] .tldr .doodle { color: #0a6178; opacity: .9; }
 /* web-book.css */
 /* The NHI lab book as web chapters (/nhi-lab/book/). Readable line length, tables that scroll. */
 .wb-wrap{max-width:780px}
-.wb h1{font-size:clamp(1.9rem,4.5vw,2.8rem);line-height:1.15;margin:.3rem 0 .8rem}
+.wb h1{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.1;margin:.3rem 0 .8rem}
+/* the label above the title matches every other page: 12 px mono */
+.wb p.ey{font-size:12px;line-height:1.6}
 .wb h2{font-size:1.45rem;margin:2rem 0 .6rem;line-height:1.25}
 .wb h3{font-size:1.12rem;margin:1.5rem 0 .4rem;line-height:1.35}
 .wb h3.wb-case{margin-top:2.2rem;padding-top:1rem;border-top:1px solid var(--hg-line)}
