@@ -130,3 +130,6 @@ html[data-bg] body::after {
 ::view-transition-new(root) { animation: vt-in .4s cubic-bezier(.2, .7, .2, 1) both; }
 @keyframes vt-out { to { opacity: 0; transform: translateY(-6px); } }
 @keyframes vt-in { from { opacity: 0; transform: translateY(12px); } }
+
+/* Quieter backgrounds (16 Nov 2026): the pattern behind the page at a little over half its old strength. */
+html[data-bg]::after { opacity: calc(var(--tb-mo) * .55); }

@@ -416,7 +416,7 @@
     if (window.getComputedStyle(root).position !== "fixed") {
       var wcss = document.createElement("link");
       wcss.rel = "stylesheet";
-      wcss.href = "/assets/chatbot-widget.css?v=20261114a";
+      wcss.href = "/assets/chatbot-widget.css?v=20261116b";
       document.head.appendChild(wcss);
     }
 
@@ -598,7 +598,20 @@
       setTimeout(function () { if (n.parentNode) n.parentNode.removeChild(n); }, 300);
       if (forever) rememberNoticeClosed();
     }
-    if (noticeWanted()) {
+    // Phones: tuck the chat button away while the reader scrolls down, bring it back on the way up or at the end.
+    var narrow = window.matchMedia ? window.matchMedia("(max-width: 760px)") : null;
+    if (narrow) {
+      var lastY = window.scrollY;
+      window.addEventListener("scroll", function () {
+        var y = window.scrollY;
+        if (!narrow.matches || panel.style.display !== "none" || document.activeElement === launcher) { launcher.classList.remove("sc-tucked"); lastY = y; return; }
+        var atEnd = window.innerHeight + y >= document.documentElement.scrollHeight - 40;
+        if (y > lastY + 12 && y > 240 && !atEnd) { launcher.classList.add("sc-tucked"); lastY = y; }
+        else if (y < lastY - 12 || atEnd) { launcher.classList.remove("sc-tucked"); lastY = y; }
+      }, { passive: true });
+    }
+    // The "what's new" card covers text on a phone, so it shows on wider screens only.
+    if (noticeWanted() && !(narrow && narrow.matches)) {
       var showNotice = function () {
         if (panel.style.display !== "none") return;
         notice = el("aside", "sc-notice");
