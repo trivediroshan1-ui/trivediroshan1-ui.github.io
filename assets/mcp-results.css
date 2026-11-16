@@ -38,7 +38,7 @@
 @media (max-width:520px){.uc dl{grid-template-columns:1fr}}
 
 .mcp-hero{position:relative}
-.mcp-ribbon{height:5px;border-radius:5px;margin-top:18px;background:linear-gradient(90deg,#06b6d4,#7c3aed 38%,#10b981 68%,#f59e0b)}
+.mcp-ribbon{height:5px;border-radius:5px;margin-top:18px;background:linear-gradient(90deg,var(--hg-accent,var(--pal-cyan)),transparent)}
 .mcp-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
 .mcp-tabs a{font-size:.85rem;padding:7px 13px;min-height:36px;display:inline-flex;align-items:center;border-radius:999px;border:1px solid rgba(127,127,127,.45);text-decoration:none;color:inherit}
 .mcp-tabs a[aria-current="page"]{background:linear-gradient(90deg,#0e7490,#6d28d9);color:#fff;border-color:transparent}

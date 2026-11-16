@@ -303,3 +303,8 @@
   .theme-toggle { right: 72px !important; bottom: 20px !important; width: 38px !important; height: 38px !important; opacity: .92; }
   .theme-toggle svg { width: 17px !important; height: 17px !important; }
 }
+
+/* phones: the button slides out of the way while reading (chatbot-widget.js adds .sc-tucked) */
+.sc-launcher { transition: transform .2s ease, opacity .2s ease; }
+.sc-launcher.sc-tucked { transform: translateY(140%); opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .sc-launcher { transition: none; } }

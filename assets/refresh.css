@@ -15,6 +15,9 @@ body { background-color: transparent; }
 /* Background theme: a faint pattern of identity icons, fixed to the screen */
 body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; background: url(/assets/bg-icons.svg) repeat; background-size: 320px; }
 html[data-theme="light"] body::after { opacity: 0.85; }
+/* quieter icon pattern behind the lab pages (16 Nov 2026); pages with a themed background keep their reading veil */
+html:not([data-bg]) body::after { opacity: .5; }
+html[data-theme="light"]:not([data-bg]) body::after { opacity: .45; }
 body { position: relative; }
 body::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 760px; z-index: -1; pointer-events: none;
   background: radial-gradient(640px 460px at 88% 0%, rgba(124, 58, 237, 0.32), transparent 70%), radial-gradient(520px 380px at 0% 30%, rgba(76, 29, 149, 0.22), transparent 70%);
