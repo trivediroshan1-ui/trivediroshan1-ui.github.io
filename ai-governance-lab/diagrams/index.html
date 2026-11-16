@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-ai-governance-lab.png" />
     <title>Architecture diagrams &middot; AI governance lab</title>
-    <!-- css-bundle: these stylesheets are served joined as b-75134249e5.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-0efec2ee57.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/site.css?v=20261115a">
@@ -33,7 +33,7 @@
 <link rel="stylesheet" href="/assets/lab-foot.css?v=20261114f">
 <link rel="stylesheet" href="/assets/lab-nav.css?v=20261114h">
 -->
-    <link rel="stylesheet" href="/assets/b-75134249e5.css">
+    <link rel="stylesheet" href="/assets/b-0efec2ee57.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -55,8 +55,8 @@
       </header>
       <section><p class="body-text">These are drawn from the lab&rsquo;s own code, not from a vendor diagram. Everything in them is made up: a lender called Kaveri Finance and test data that follows real formats on purpose. For the cases behind each diagram, see <a href="/ai-governance-lab/cases/">every use case, one by one</a>.</p></section>
       <style>
-.dg{background:var(--d-bg,#ffffff);--d-ink:#0f172a;--d-mut:#52617a;--d-line:#b7c3d4;--d-panel:#f1f5fa;--d-acc:#0a7285;--d-accs:rgba(10,114,133,.12);--d-ok:#0b7a5b;--d-oks:rgba(11,122,91,.12);--d-bad:#c0264a;--d-bads:rgba(192,38,74,.12);--d-warn:#8a5208;--d-warns:rgba(138,82,8,.14);font-family:var(--a-fb,system-ui,-apple-system,"Segoe UI",sans-serif)}
-@media (prefers-color-scheme:dark){.dg{background:var(--d-bg,#0b1220);--d-ink:#f1f5f9;--d-mut:#93a1bd;--d-line:#2c3a55;--d-panel:#101a2c;--d-acc:#4de2ff;--d-accs:rgba(77,226,255,.12);--d-ok:#7df2d0;--d-oks:rgba(125,242,208,.12);--d-bad:#ff7a93;--d-bads:rgba(255,122,147,.14);--d-warn:#f7c873;--d-warns:rgba(247,200,115,.14)}}
+.dg{background:var(--d-bg,#ffffff);--d-ink:var(--pal-ink-dark);--d-mut:var(--pal-slate-dark);--d-line:#b7c3d4;--d-panel:#f1f5fa;--d-acc:var(--pal-teal-2);--d-accs:rgba(10,114,133,.12);--d-ok:#0b7a5b;--d-oks:rgba(11,122,91,.12);--d-bad:#c0264a;--d-bads:rgba(192,38,74,.12);--d-warn:#8a5208;--d-warns:rgba(138,82,8,.14);font-family:var(--a-fb,system-ui,-apple-system,"Segoe UI",sans-serif)}
+@media (prefers-color-scheme:dark){.dg{background:var(--d-bg,var(--pal-night-2));--d-ink:var(--pal-snow);--d-mut:var(--pal-slate);--d-line:#2c3a55;--d-panel:var(--pal-card);--d-acc:var(--pal-cyan);--d-accs:rgba(77,226,255,.12);--d-ok:var(--pal-mint);--d-oks:rgba(125,242,208,.12);--d-bad:#ff7a93;--d-bads:rgba(255,122,147,.14);--d-warn:var(--pal-amber);--d-warns:rgba(247,200,115,.14)}}
 .dg text{fill:var(--d-ink)}
 .dg .dg-t{font-weight:700;font-size:14px}
 .dg .dg-s{font-size:12px;fill:var(--d-mut)}
@@ -76,7 +76,7 @@
 .dg text.dg-good{fill:var(--d-ok)}.dg text.dg-bd{fill:var(--d-bad)}.dg text.dg-wn{fill:var(--d-warn)}
 .dg .dg-pkt{offset-rotate:0deg;opacity:0}
 @media (prefers-reduced-motion:reduce){.dg *{animation:none!important}.dg .dg-pkt{opacity:0}.dg .dg-badge{opacity:1!important}}
-.dg-menu{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.dg-menu a{font-size:13px;line-height:1.3;padding:8px 12px;border:1px solid var(--a-line,#2c3a55);border-radius:999px;color:inherit;text-decoration:none}.dg-menu a:hover{border-color:var(--a-accent,#4de2ff)}.dg-menu b{font-family:var(--a-fm,monospace);margin-right:4px;opacity:.7}</style>
+.dg-menu{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}.dg-menu a{font-size:13px;line-height:1.3;padding:8px 12px;border:1px solid var(--a-line,#2c3a55);border-radius:999px;color:inherit;text-decoration:none}.dg-menu a:hover{border-color:var(--a-accent,var(--pal-cyan))}.dg-menu b{font-family:var(--a-fm,monospace);margin-right:4px;opacity:.7}</style>
       <nav class="dg-menu" aria-label="Jump to a diagram"><a href="#lab"><b>1</b> The lab as a whole</a><a href="#flow"><b>2</b> One request through the gateway</a><a href="#filters"><b>3</b> Where the filters plug in</a><a href="#agent"><b>4</b> How an agent gets and uses access</a><a href="#audit"><b>5</b> The tamper-evident log</a><a href="#gate"><b>6</b> The agent proposes; a gateway decides; an executor acts</a><a href="#hr"><b>7</b> From HR to the directory</a><a href="#bypass"><b>8</b> How a bypass is noticed and answered</a><a href="#org"><b>9</b> One set of controls, many business units</a></nav>
       <div class="agl dg-page">
       <section id="lab">

@@ -49,7 +49,7 @@
 .nhi .case h3{margin:0 0 6px;font-size:1rem}.nhi .case h3 span{display:block;font-weight:400;color:var(--muted,var(--pal-slate));font-size:.9rem}
 .nhi .ntags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
 .nhi .pill{font-size:.76rem;border-radius:999px;padding:2px 9px;border:1px solid var(--border,var(--pal-navy-line))}
-.nhi .pill.grp{border-color:var(--k);color:var(--k)}.nhi .pill.ok{color:var(--pal-green);border-color:var(--pal-green)}
+.nhi .pill.grp{border-color:rgba(148,163,184,.45);color:var(--pal-slate)} /* group labels are neutral; colour is kept for held, wrong and warning */.nhi .pill.ok{color:var(--pal-green);border-color:var(--pal-green)}
 .nhi .pill.bad{color:#ff8fa3;border-color:#ff8fa3}.nhi .pill.warn{color:var(--pal-amber);border-color:var(--pal-amber)}
 /* lab */
 .nhi .lab{border:1px solid var(--border,var(--pal-navy-line));border-radius:14px;overflow:hidden;background:var(--surface-2,var(--pal-card))}

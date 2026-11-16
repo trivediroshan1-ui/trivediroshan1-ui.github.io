@@ -249,3 +249,9 @@ html[data-theme=light] a.skip,html[data-theme=light] .skip:focus{background:#0a6
   html[data-theme="light"] .nv-mpanel a.nv-mres { border-color: var(--pal-violet-deep); color: #3b2a8c !important; }
 }
 @media (max-width: 360px) { nav.hg-sitenav.nv-m .brand span { display: none; } }
+
+/* One card frame (16 Nov 2026): same corners and border everywhere. Colour stays only where it carries meaning.
+   The exam page keeps its own light document style. */
+body:not(.sie-doc) :is(.card, .diagram-card, .st-card, .rs-card) { border-radius: 16px; }
+body:not(.sie-doc) :is(.st-card) { border-color: rgba(167, 139, 250, .2); }
+html[data-theme="light"] body:not(.sie-doc) :is(.st-card) { border-color: rgba(15, 23, 42, .14); }

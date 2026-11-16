@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
     <style>
       :root {
-        --bg: #030712; --surface: #0b1220; --border: #1f2a40; --text: #f1f5f9; --muted: #93a1bd; --accent: #4de2ff;
+        --bg: var(--pal-deep); --surface: var(--pal-night-2); --border: var(--pal-navy-line); --text: var(--pal-snow); --muted: var(--pal-slate); --accent: var(--pal-cyan);
         --mono: "JetBrains Mono", ui-monospace, monospace; --display: "DM Sans", system-ui, sans-serif; --body: "Manrope", system-ui, sans-serif;
         color-scheme: dark;
       }
@@ -20,7 +20,7 @@
       html, body { background: var(--bg); }
       body { color: var(--text); font-family: var(--body); margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; line-height: 1.6; }
       .skip404 { position: absolute; left: -9999px; top: 8px; }
-      .skip404:focus { left: 12px; background: #fff; color: #0f172a; padding: 8px 12px; border-radius: 6px; z-index: 10; }
+      .skip404:focus { left: 12px; background: #fff; color: var(--pal-ink-dark); padding: 8px 12px; border-radius: 6px; z-index: 10; }
       main { max-width: 560px; display: flex; flex-direction: column; gap: 16px; }
       .code { font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0; }
       h1 { font-family: var(--display); font-weight: 800; font-size: clamp(30px, 6vw, 44px); letter-spacing: -0.02em; line-height: 1.12; margin: 0; }
@@ -35,7 +35,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-      <!-- css-bundle: these stylesheets are served joined as b-66b6876213.css. Edit the tags here, then run scripts/bundle-css.py
+      <!-- css-bundle: these stylesheets are served joined as b-31a9f47a84.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/theme.css">
 <link rel="stylesheet" href="/assets/sitebar.css?v=20261115b">
@@ -44,7 +44,7 @@
 <link rel="stylesheet" href="/assets/themes.css?v=20261114e">
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-66b6876213.css">
+    <link rel="stylesheet" href="/assets/b-31a9f47a84.css">
     <script src="/assets/theme.js?v=20261116a"></script>
     <link rel="canonical" href="https://roshantrivedi.co.in/404.html" />
     <meta property="og:image" content="https://roshantrivedi.co.in/assets/og-roshan-trivedi-2026.png" />
