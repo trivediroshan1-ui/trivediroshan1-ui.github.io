@@ -24,7 +24,7 @@
   --hg-ink-2: #a9b6c7;
   --hg-ink-3: #8393aa;
   /* actors (dark theme) */
-  --hg-policy: #22d3ee;  --hg-policy-soft: rgba(34, 211, 238, .12);  --hg-policy-line: rgba(34, 211, 238, .45);
+  --hg-policy: #4de2ff;  --hg-policy-soft: rgba(77, 226, 255, .12);  --hg-policy-line: rgba(77, 226, 255, .45);
   --hg-person: #a78bfa;  --hg-person-soft: rgba(167, 139, 250, .13); --hg-person-line: rgba(167, 139, 250, .45);
   --hg-exec:   #34d399;  --hg-exec-soft:   rgba(52, 211, 153, .12);  --hg-exec-line:   rgba(52, 211, 153, .45);
   --hg-audit:  #fbbf24;  --hg-audit-soft:  rgba(251, 191, 36, .12);  --hg-audit-line:  rgba(251, 191, 36, .45);
@@ -61,6 +61,34 @@ html[data-theme="light"] {
   --hg-shadow-1: 0 1px 2px rgba(15,23,42,.08), 0 8px 24px rgba(15,23,42,.08);
   --hg-shadow-2: 0 22px 50px rgba(15,23,42,.16);
 }
+/* Palette: fixed colours the site uses in many stylesheets. They do not change with the theme
+   (the --hg-* tokens above do). Use these instead of typing the hex again; check-colours.py counts the rest. */
+:root {
+  --pal-cyan: #4de2ff;
+  --pal-amber: #f7c873;
+  --pal-slate: #93a1bd;
+  --pal-mint: #7df2d0;
+  --pal-snow: #f1f5f9;
+  --pal-violet: #a78bfa;
+  --pal-aqua: #58e6f6;
+  --pal-night: #05061a;
+  --pal-navy-line: #1f2a40;
+  --pal-lilac: #c4b5fd;
+  --pal-violet-deep: #6d4fd8;
+  --pal-ink-dark: #0f172a;
+  --pal-night-2: #0b1220;
+  --pal-card: #101a2c;
+  --pal-teal: #0a7f93;
+  --pal-teal-2: #0a7285;
+  --pal-green: #34d399;
+  --pal-deep: #030712;
+  --pal-mist: #e8eefc;
+  --pal-violet-ink: #5b3cc4;
+  --pal-plum: #1a1340;
+  --pal-lavender: #c4bfe0;
+  --pal-slate-dark: #52617a;
+}
+
 @media (prefers-reduced-motion: reduce) { :root { --hg-dur-fast: 0ms; --hg-dur: 0ms; --hg-dur-slow: 0ms; } }
 
 /* ---- focus: one visible style everywhere ---- */

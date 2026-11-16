@@ -44,7 +44,7 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .node rect { fill: var(--surface-2); stroke: var(--border); stroke-width: 1.5; }
 .node { animation: node-hl 12s linear infinite; animation-delay: calc(var(--i) * 2.4s); }
 .node rect { animation: node-rect 12s linear infinite; animation-delay: calc(var(--i) * 2.4s); }
-@keyframes node-rect { 0%, 20% { stroke: var(--c); fill: color-mix(in srgb, var(--c) 14%, #101a2c); } 21%, 100% { stroke: #1f2a40; fill: #101a2c; } }
+@keyframes node-rect { 0%, 20% { stroke: var(--c); fill: color-mix(in srgb, var(--c) 14%, var(--pal-card)); } 21%, 100% { stroke: var(--pal-navy-line); fill: var(--pal-card); } }
 @keyframes node-hl { 0%, 100% { opacity: 1; } }
 .badge circle { fill: var(--c); } .badge text { fill: #03121a !important; font: 700 12px var(--mono); text-anchor: middle; }
 .flow { stroke: var(--c); stroke-width: 2; fill: none; stroke-dasharray: 6 8; animation: dash 1.4s linear infinite; opacity: .7; }
@@ -116,7 +116,7 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 .diagram-card svg.ring { max-width: 460px; }
 .node6 { animation: none; }
 .node6 rect { fill: var(--surface-2); stroke: var(--border); stroke-width: 1.5; animation: node-rect6 12s linear infinite; animation-delay: calc(var(--i) * 2s); }
-@keyframes node-rect6 { 0%, 16.6% { stroke: var(--c); fill: color-mix(in srgb, var(--c) 14%, #101a2c); } 17.6%, 100% { stroke: #1f2a40; fill: #101a2c; } }
+@keyframes node-rect6 { 0%, 16.6% { stroke: var(--c); fill: color-mix(in srgb, var(--c) 14%, var(--pal-card)); } 17.6%, 100% { stroke: var(--pal-navy-line); fill: var(--pal-card); } }
 .ring .ttl { font-size: 15px; } .ring .sub { font-size: 12px; }
 @media (max-width: 640px) { .ring .ttl { font-size: 16.5px; } .ring .sub { font-size: 14.6px; } }
 @media (prefers-reduced-motion: reduce) { .node6 rect { animation: none !important; } }

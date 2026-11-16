@@ -3,7 +3,7 @@
 .flow-lab .fl-lead{max-width:62ch;color:var(--hg-ink-2,#aab4c3);margin:.5rem 0 1.4rem}
 .fl-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
 .fl-chips .hg-chip{display:flex;flex-direction:column;align-items:flex-start;gap:.1rem;padding:.55rem .9rem;min-height:44px;text-align:left}
-.fl-chips .hg-chip small{font-size:.75rem;opacity:1;color:#52617a}
+.fl-chips .hg-chip small{font-size:.75rem;opacity:1;color:var(--pal-slate-dark)}
 .fl-track{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;position:relative}
 .fl-stage{--c:var(--hg-ink-3,#8893a4);position:relative;display:flex;flex-direction:column;gap:.35rem;padding:.8rem .8rem 1rem;border:1px solid var(--cl,var(--hg-line,#2a3342));border-top:3px solid var(--c);border-radius:10px;background:var(--cs,transparent);transition:opacity .25s,transform .25s}
 .fl-stage .fl-n{font:600 .75rem/1 "JetBrains Mono",monospace;color:var(--c)}
@@ -40,8 +40,8 @@ html:not([data-theme="light"]) .fl-chips .hg-chip small{color:#9aa8bf}
 .lab-latest a{white-space:nowrap}
 .lab-index{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:12px}
 .lab-index a{display:flex;flex-direction:column;gap:6px;height:100%;padding:16px;border:1px solid var(--hg-line,rgba(148,163,184,.25));border-radius:14px;background:var(--hg-surface-1,rgba(15,23,42,.55));color:inherit;text-decoration:none}
-.lab-index a:hover,.lab-index a:focus-visible{border-color:var(--hg-policy,#4de2ff)}
-.lab-index .k{font:600 .75rem/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--hg-policy,#4de2ff)}
+.lab-index a:hover,.lab-index a:focus-visible{border-color:var(--hg-policy,var(--pal-cyan))}
+.lab-index .k{font:600 .75rem/1 "JetBrains Mono",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--hg-policy,var(--pal-cyan))}
 .lab-index b{font-size:1.05rem;line-height:1.3}
 .lab-index span{font-size:.92rem;line-height:1.45}
-.lab-index .d{margin-top:auto;font-size:.8rem;color:var(--hg-ink-3,#93a1bd)}
+.lab-index .d{margin-top:auto;font-size:.8rem;color:var(--hg-ink-3,var(--pal-slate))}

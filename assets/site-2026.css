@@ -35,7 +35,7 @@ nav.hg-sitenav > .brand { min-height: 36px; }
   transition: background-color .2s ease, border-color .2s ease;
 }
 .theme-toggle.in-bar:hover { background: rgba(167, 139, 250, .14) !important; }
-.theme-toggle.in-bar:focus-visible { outline: 2px solid #4de2ff; outline-offset: 2px; }
+.theme-toggle.in-bar:focus-visible { outline: 2px solid var(--pal-cyan); outline-offset: 2px; }
 .theme-toggle.in-bar svg { width: 18px !important; height: 18px !important; }
 .theme-toggle.in-bar .moon { display: none; }
 html[data-theme="light"] .theme-toggle.in-bar { border-color: rgba(76, 52, 160, .35) !important; color: #25344a; }
@@ -91,7 +91,7 @@ html[data-theme="light"] .cred { background: #fff; border-color: rgba(76, 52, 16
 .cred small { font-size: 12.5px; color: var(--muted, #a8a4c2); }
 .cred .st { justify-self: start; align-self: start; font: 600 10.5px/1 var(--mono, "JetBrains Mono", monospace); letter-spacing: .12em; text-transform: uppercase; padding: 4px 8px; border-radius: 999px; margin-top: 4px; }
 .cred .st.ok { color: #65e5ad; background: rgba(101, 229, 173, .12); border: 1px solid rgba(101, 229, 173, .35); }
-.cred .st.exp { color: #c4bfe0; background: rgba(196, 191, 224, .08); border: 1px solid rgba(196, 191, 224, .25); }
+.cred .st.exp { color: var(--pal-lavender); background: rgba(196, 191, 224, .08); border: 1px solid rgba(196, 191, 224, .25); }
 html[data-theme="light"] .cred .st.ok { color: #0b6b45; background: rgba(15, 122, 80, .08); border-color: rgba(15, 122, 80, .3); }
 html[data-theme="light"] .cred .st.exp { color: #55516f; }
 .cred a.vf { font-size: 13px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; min-height: 32px; }
@@ -105,7 +105,7 @@ html[data-theme="light"] .cred .st.exp { color: #55516f; }
 .post-cta .signup .row { display: flex; gap: 8px; flex-wrap: wrap; }
 .post-cta .signup input { flex: 1 1 220px; min-height: 44px; border-radius: 999px; border: 1px solid rgba(167, 139, 250, .38); background: rgba(5, 6, 26, .5); color: inherit; padding: 0 16px; font: inherit; }
 html[data-theme="light"] .post-cta .signup input { background: #fff; }
-.post-cta .signup button { min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: linear-gradient(90deg, #58e6f6, #a78bfa); color: #070a1f; font-weight: 800; cursor: pointer; }
+.post-cta .signup button { min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: linear-gradient(90deg, var(--pal-aqua), var(--pal-violet)); color: #070a1f; font-weight: 800; cursor: pointer; }
 .post-cta .signup small { color: var(--muted); font-size: 12.5px; }
 
 /* -- After the hero, the moving pattern steps back so reading sections sit on a calmer surface (home-fx.js sets the class) -- */
@@ -125,7 +125,7 @@ html[data-theme="light"] .rt-sbtn { color: #25344a; border-color: rgba(76, 52, 1
 html[data-theme="light"] .rt-sbtn kbd { color: #3b4a63; border-color: rgba(76, 52, 160, .35); }
 /* Chat button: a visible keyboard focus ring (the base rule removes the outline) */
 html .sc-launcher:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #0a6178, 0 16px 40px rgba(0, 0, 0, .45); }
-html[data-theme="light"] .sc-launcher:focus-visible { outline-color: #0b1220; box-shadow: 0 0 0 6px #4de2ff, 0 16px 40px rgba(0, 0, 0, .3); }
+html[data-theme="light"] .sc-launcher:focus-visible { outline-color: var(--pal-night-2); box-shadow: 0 0 0 6px var(--pal-cyan), 0 16px 40px rgba(0, 0, 0, .3); }
 /* Tap targets: small text links get a 44px-tall hit area without changing how they look */
 .hg-tabs a.lab { display: inline-flex; align-items: center; min-height: 44px; }
 body > .nav a, .wrap > .nav a, .nav:not(.hg-sitenav) > a { display: inline-flex; align-items: center; min-height: 44px; }
@@ -139,7 +139,7 @@ html .pipe li b { font-size: 12px; }
 
 /* Case studies: one small hand-drawn doodle in the short-version box */
 .tldr { position: relative; }
-.tldr .doodle { position: absolute; top: -46px; right: 2px; width: 72px; height: 72px; margin: 0; color: var(--hg-accent, #4de2ff); opacity: .9; transform: rotate(4deg); pointer-events: none; }
+.tldr .doodle { position: absolute; top: -46px; right: 2px; width: 72px; height: 72px; margin: 0; color: var(--hg-accent, var(--pal-cyan)); opacity: .9; transform: rotate(4deg); pointer-events: none; }
 html[data-theme="light"] .tldr .doodle { color: #0a6178; opacity: .9; }
 @media (max-width: 520px) { .tldr .doodle { width: 52px; height: 52px; top: -40px; } }
 @media (prefers-reduced-motion: no-preference) {

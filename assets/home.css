@@ -5,13 +5,13 @@
   --ink: #f8fafc;
   --muted: #a9b6c7;
   --subtle: #728096;
-  --page: #030712;
+  --page: var(--pal-deep);
   --surface: #07101d;
   --surface-raised: #0a1627;
   --surface-soft: #0d1b2d;
   --line: rgba(148, 163, 184, 0.17);
   --line-strong: rgba(148, 163, 184, 0.29);
-  --cyan: #58e6f6;
+  --cyan: var(--pal-aqua);
   --cyan-strong: #16d9ef;
   --cyan-soft: rgba(34, 211, 238, 0.12);
   --amber: #ff9f43;
@@ -132,7 +132,7 @@ ul, ol { padding: 0; list-style: none; }
 }
 .hero h1 span {
   display: block;
-  background: linear-gradient(90deg, #4de2ff 0%, #7df2d0 45%, #ff9f43 100%);
+  background: linear-gradient(90deg, var(--pal-cyan) 0%, var(--pal-mint) 45%, #ff9f43 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .hero-role { font-size: clamp(1.15rem, 2.4vw, 1.5rem); font-weight: 600; max-width: 24em; line-height: 1.35; }
@@ -425,7 +425,7 @@ section.block::before { content: ""; position: absolute; top: 0; left: 50%; widt
 .lab-banner:hover,.lab-banner:focus-visible{background:#1b4aa3;text-decoration:underline}
 .lab-banner.pam{background:#0f3d33}
 .lab-banner.pam:hover,.lab-banner.pam:focus-visible{background:#15594a}
-.lab-banner .dot{flex:none;width:10px;height:10px;border-radius:50%;background:#34d399}
+.lab-banner .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--pal-green)}
 @media (prefers-reduced-motion: no-preference){.lab-banner .dot{animation:labblink 1.1s ease-in-out infinite}}
 @keyframes labblink{50%{opacity:.25}}
 .qr-row{display:flex;gap:20px;margin-top:22px;flex-wrap:wrap}
