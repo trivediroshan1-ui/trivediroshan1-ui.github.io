@@ -345,7 +345,9 @@
   var NOTICE = {
     id: "ca-mfa-lab-2026-11",
     until: "2026-12-31",
-    skip: /^\/((ca-mfa-lab|labs)\/.*)?$/, // the home and Labs pages have their own banner
+    // The home and lab pages have their own banner. Long reading pages (case studies, articles, books)
+    // are skipped too: the card sits over the contents list and the diagrams there.
+    skip: /^\/((ca-mfa-lab|labs|writing|case-studies|book|nhi-lab\/book|mcp-lab)\/.*|book|writing|case-studies)?$/,
     kicker: "New",
     text: "I tested 130 conditional access, MFA and AI agent cases. Free book, video and a lab you can run.",
     href: "/ca-mfa-lab/",
@@ -587,8 +589,8 @@
       if (e.key === "Escape" && panel.style.display !== "none") closePanel();
     });
 
-    // The doodle notice: appears after a short pause, blinks gently, and goes
-    // away for good once closed. Opening the chat also hides it for this visit.
+    // The doodle notice: appears after a short pause, blinks gently, and is shown
+    // once per visitor. Opening the chat also hides it for this visit.
     var notice = null;
     function hideNotice(forever) {
       if (!notice) return;
@@ -625,6 +627,7 @@
           '<button type="button" class="sc-nd-close" aria-label="Close this notice">&#215;</button>';
         root.insertBefore(notice, launcher);
         launcher.classList.add("sc-launcher-news");
+        rememberNoticeClosed(); // once per visitor: it does not come back on the next page or visit
         notice.querySelector(".sc-nd-close").addEventListener("click", function () { hideNotice(true); });
         notice.querySelector(".sc-nd-link").addEventListener("click", function () { rememberNoticeClosed(); });
         notice.querySelector(".sc-nd-ask").addEventListener("click", function () {

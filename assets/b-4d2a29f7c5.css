@@ -1480,7 +1480,7 @@ html[data-theme="light"] body:not(.sie-doc) :is(.st-card) { border-color: rgba(1
 .bl .kick i{width:8px;height:8px;border-radius:50%;background:var(--k);animation:bl-blink 1.2s steps(2,start) 3;flex:none}
 .bl .newp{padding:3px 7px;border-radius:999px;background:var(--warn,var(--pal-amber));color:#1b1300;font-size:12px;letter-spacing:.04em}
 .bl h3{margin:0 0 6px;font:700 19px/1.25 var(--display,system-ui,sans-serif);color:var(--text,var(--pal-snow));text-wrap:balance}
-.bl>p{margin:0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted,var(--pal-slate))}
+.bl>p{margin:0 0 14px;font-size:15.5px;line-height:1.55;color:var(--muted,var(--pal-slate))}
 .bl .st{display:flex;flex-wrap:wrap;gap:6px 18px;margin:auto 0 14px;padding:12px 0 0;border-top:1px solid color-mix(in srgb,var(--k) 22%,transparent);list-style:none}
 .bl .st li{display:flex;align-items:baseline;gap:6px;min-width:0}
 .bl .st b{font:700 22px/1 var(--display,system-ui,sans-serif);color:var(--k)}
@@ -1841,35 +1841,6 @@ html[data-theme="light"] .nhero .lastrev{color:#51607a;opacity:1!important}
 @media (max-width:520px){.lab-foot{grid-template-columns:1fr}.lab-foot .lf-next{text-align:left;align-items:flex-start}.lab-foot .off{display:none}}
 .lastrev{margin:6px 0 0;font-size:14px;color:var(--muted,var(--pal-lavender))}
 html[data-theme=light] .lastrev{color:#4a4f68;opacity:1!important}
-
-/* signup.css */
-.lab-signup{margin:36px 0 0;padding:18px 20px;border:1px solid var(--line,var(--border,rgba(127,127,127,.35)));border-radius:14px}
-.lab-signup .signup{display:grid;gap:8px}
-.lab-signup .signup label{font-weight:700;font-size:1.05rem}
-.lab-signup .signup .row{display:flex;gap:10px;flex-wrap:wrap}
-.lab-signup .signup input{flex:1 1 240px;min-height:48px;min-width:0;border-radius:999px;border:1px solid var(--line,rgba(127,127,127,.5));background:transparent;color:inherit;padding:0 18px;font:inherit}
-.lab-signup .signup input:focus-visible,.lab-signup .signup button:focus-visible{outline:2px solid var(--pal-cyan);outline-offset:2px}
-.lab-signup .signup button{min-height:48px;padding:0 22px;border-radius:999px;border:0;background:var(--pal-cyan);color:#04121a;font:700 15px/1 inherit;font-family:inherit;cursor:pointer}
-html[data-theme="light"] .lab-signup .signup button{background:#0a6a85;color:#fff}
-.lab-signup .signup small{font-size:13px;color:var(--mut,var(--muted,inherit))}
-
-/* lab-summary.css */
-/* One-screen summary at the top of a lab: question, answer, three numbers, what to check, limits. */
-.lab-sum{margin:20px 0 8px;padding:18px 20px;border:1px solid var(--line,var(--border,rgba(127,127,127,.3)));border-radius:14px;background:var(--card,rgba(127,127,127,.06));display:grid;gap:14px}
-.lab-sum h2{margin:0;font-size:1rem}
-.lab-sum .ls-k{margin:0 0 2px;font-size:13px;letter-spacing:.04em;color:var(--muted,var(--pal-lavender))}
-.lab-sum p{margin:0}
-.lab-sum .ls-q{font-size:1.1rem;font-weight:700;line-height:1.35}
-.lab-sum .ls-nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;list-style:none;margin:0;padding:0}
-.lab-sum .ls-nums li{padding:8px 12px;border-radius:10px;background:rgba(127,127,127,.1)}
-.lab-sum .ls-nums b{display:block;font-size:1.5rem;line-height:1.15}
-.lab-sum .ls-nums span{font-size:13px;color:var(--muted,var(--pal-lavender))}
-.lab-sum ol{margin:0;padding-left:1.25rem;line-height:1.55}
-.lab-sum .ls-lim{padding-top:12px;border-top:1px solid var(--line,var(--border,rgba(127,127,127,.3)));font-size:14px;color:var(--muted,var(--pal-lavender))}
-.lab-sum .ls-acts{display:flex;flex-wrap:wrap;gap:10px}
-.lab-sum .ls-acts a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line2,var(--line,rgba(127,127,127,.4)));font-weight:700;text-decoration:none}
-.lab-sum .ls-acts a:first-child{background:var(--grad,transparent);color:var(--on-grad,inherit)}
-@media (max-width:520px){.lab-sum{padding:16px}.lab-sum .ls-nums span{display:block}}
 
 /* lab-nav.css */
 /* One sub-nav for all four labs: same labels, same order. */
