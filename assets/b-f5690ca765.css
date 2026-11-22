@@ -1480,7 +1480,7 @@ html[data-theme="light"] body:not(.sie-doc) :is(.st-card) { border-color: rgba(1
 .bl .kick i{width:8px;height:8px;border-radius:50%;background:var(--k);animation:bl-blink 1.2s steps(2,start) 3;flex:none}
 .bl .newp{padding:3px 7px;border-radius:999px;background:var(--warn,var(--pal-amber));color:#1b1300;font-size:12px;letter-spacing:.04em}
 .bl h3{margin:0 0 6px;font:700 19px/1.25 var(--display,system-ui,sans-serif);color:var(--text,var(--pal-snow));text-wrap:balance}
-.bl>p{margin:0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted,var(--pal-slate))}
+.bl>p{margin:0 0 14px;font-size:15.5px;line-height:1.55;color:var(--muted,var(--pal-slate))}
 .bl .st{display:flex;flex-wrap:wrap;gap:6px 18px;margin:auto 0 14px;padding:12px 0 0;border-top:1px solid color-mix(in srgb,var(--k) 22%,transparent);list-style:none}
 .bl .st li{display:flex;align-items:baseline;gap:6px;min-width:0}
 .bl .st b{font:700 22px/1 var(--display,system-ui,sans-serif);color:var(--k)}
@@ -1870,32 +1870,6 @@ html[data-theme="light"] .lab-signup .signup button{background:#0a6a85;color:#ff
 .lab-sum .ls-acts a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line2,var(--line,rgba(127,127,127,.4)));font-weight:700;text-decoration:none}
 .lab-sum .ls-acts a:first-child{background:var(--grad,transparent);color:var(--on-grad,inherit)}
 @media (max-width:520px){.lab-sum{padding:16px}.lab-sum .ls-nums span{display:block}}
-
-/* ca-chain.css */
-/* CA lab hero: a dot walks the seven links, then guess, lock and run light up. One loop is 9 seconds.
-   Only opacity and a translate are animated. Without motion (reduced-motion setting, or no script) everything shows lit and still. */
-.ca-chain{max-width:520px;margin:20px 0 6px}
-.ca-chain svg{display:block;width:100%;height:auto;overflow:visible}
-.ca-chain .trk{stroke:var(--line,#2a3350);stroke-width:1.5;stroke-dasharray:3 5}
-.ca-chain .ring{fill:none;stroke-width:2.5}
-.ca-chain .num{fill:currentColor;font:600 13px/1 system-ui,sans-serif;text-anchor:middle}
-.ca-chain .cap{fill:var(--mut,#9aa3b8);font:500 12.5px/1 system-ui,sans-serif}
-.ca-chain .box{fill:var(--card,transparent);stroke-width:1.5}
-.ca-chain .lab{fill:currentColor;font:600 13.5px/1 system-ui,sans-serif;text-anchor:middle}
-.ca-chain .arw{stroke:var(--mut,#9aa3b8);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.ca-chain .dot{fill:var(--k,var(--pal-mint))}
-.ca-chain .l{animation:ca-lit 9s infinite both}
-.ca-chain .dot{animation:ca-run 9s infinite both}
-.ca-chain.is-paused .l,.ca-chain.is-paused .dot,.ca-chain.is-off .l,.ca-chain.is-off .dot{animation-play-state:paused}
-.ca-chain .ca-ctl{margin:6px 0 0;font:inherit;font-size:.85rem;color:var(--mut,#9aa3b8);background:none;border:1px solid var(--line,#2a3350);border-radius:999px;padding:3px 12px;cursor:pointer}
-.ca-chain .ca-ctl:hover,.ca-chain .ca-ctl:focus-visible{color:var(--ink,currentColor);border-color:var(--k,var(--pal-mint))}
-@keyframes ca-lit{0%{opacity:.3}4%{opacity:1}90%{opacity:1}100%{opacity:.3}}
-@keyframes ca-run{0%{transform:translateX(0);opacity:1}55%{transform:translateX(264px);opacity:1}60%,100%{transform:translateX(264px);opacity:0}}
-@media (prefers-reduced-motion:reduce){
-  .ca-chain .l,.ca-chain .dot{animation:none}
-  .ca-chain .dot{opacity:0}
-  .ca-chain .ca-ctl{display:none}
-}
 
 /* lab-nav.css */
 /* One sub-nav for all four labs: same labels, same order. */

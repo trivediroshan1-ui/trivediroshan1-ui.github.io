@@ -717,7 +717,7 @@ html { scroll-padding-top: 24px; }
 .bl .kick i{width:8px;height:8px;border-radius:50%;background:var(--k);animation:bl-blink 1.2s steps(2,start) 3;flex:none}
 .bl .newp{padding:3px 7px;border-radius:999px;background:var(--warn,var(--pal-amber));color:#1b1300;font-size:12px;letter-spacing:.04em}
 .bl h3{margin:0 0 6px;font:700 19px/1.25 var(--display,system-ui,sans-serif);color:var(--text,var(--pal-snow));text-wrap:balance}
-.bl>p{margin:0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted,var(--pal-slate))}
+.bl>p{margin:0 0 14px;font-size:15.5px;line-height:1.55;color:var(--muted,var(--pal-slate))}
 .bl .st{display:flex;flex-wrap:wrap;gap:6px 18px;margin:auto 0 14px;padding:12px 0 0;border-top:1px solid color-mix(in srgb,var(--k) 22%,transparent);list-style:none}
 .bl .st li{display:flex;align-items:baseline;gap:6px;min-width:0}
 .bl .st b{font:700 22px/1 var(--display,system-ui,sans-serif);color:var(--k)}
