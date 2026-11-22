@@ -3,7 +3,7 @@ title: "A Break-Glass Architecture, Tested: Six Cases and One Wrong Guess About 
 layout: post
 bg: post-plan
 motif: grid
-seo_title: "Break-Glass Emergency Access Architecture, Tested: What Held and What the Drill Missed"
+seo_title: "Break-Glass Architecture, Tested: What the Drill Missed"
 date: 2026-11-20 10:00:00 +0530
 author: Roshan Trivedi
 tags: [break-glass, emergency-access, privileged-access, pam, security-testing]
@@ -11,7 +11,7 @@ diagrams: true
 share_title: "Break-glass access, tested: six cases, one wrong guess"
 share_label: "Article · Privileged access"
 share_accent: green
-description: "Six tested cases on break-glass emergency access. Five matched my guess. The drill did not: it found one fault, not two, because another control had made the second one harmless."
+description: "Six tested cases on break-glass access. Five matched my guess. The drill found one fault, not two, because another control made the second one harmless."
 ---
 
 # A Break-Glass Architecture, Tested: Six Cases and One Wrong Guess About the Drill

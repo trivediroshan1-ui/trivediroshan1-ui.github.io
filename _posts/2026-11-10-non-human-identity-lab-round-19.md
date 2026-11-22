@@ -3,7 +3,7 @@ title: "I Ran the 19 Cases I Had Been Putting Off. Five Guesses Were Wrong."
 layout: post
 bg: post-plan
 motif: grid
-seo_title: "Non-Human Identity Lab Round 19: 19 More Cases, 5 Wrong Guesses"
+seo_title: "NHI Lab Round 19: 19 Cases, 5 Wrong Guesses"
 date: 2026-11-10 22:50:00 +0530
 author: Roshan Trivedi
 tags: [non-human-identity, nhi, pam, shadow-ai, security-testing]

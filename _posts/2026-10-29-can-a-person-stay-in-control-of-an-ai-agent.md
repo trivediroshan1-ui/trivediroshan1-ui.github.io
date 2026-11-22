@@ -3,7 +3,7 @@ title: "Can a Person Stay in Control of an AI Agent? I Tried to Break an Approva
 layout: post
 bg: post-plan
 motif: grid
-seo_title: "Can a Person Control an AI Agent? An MCP Approval Gate Test"
+seo_title: "Can a Person Control an AI Agent? An MCP Gate Test"
 date: 2026-10-29 12:00:00 +0530
 author: Roshan Trivedi
 tags: [mcp, ai-agents, human-approval, audit, agentic-ai, security-testing]

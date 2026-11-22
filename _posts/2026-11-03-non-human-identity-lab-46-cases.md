@@ -10,7 +10,7 @@ tags: [non-human-identity, nhi, pam, iam, service-accounts, security-testing]
 share_title: "I tested 46 machine identity cases"
 share_label: "Article · NHI lab"
 share_accent: green
-description: "46 machine identity cases on made-up data, with every guess hashed before the code ran. Four guesses were wrong, and in eight cases my tests could not see a control working."
+description: "46 machine identity cases on made-up data, each guess hashed before the code ran. Four guesses were wrong, and in eight my tests could not see a control work."
 ---
 
 # I Tested 46 Non-Human Identity Cases. My Guesses Were Wrong in Four.
