@@ -37,9 +37,13 @@
 ## Writing
 - [Break glass: eight ways to build it, and what to do when the tool is down](https://roshantrivedi.co.in/writing/break-glass-eight-ways/)
 - [A break-glass architecture, tested: six cases and one wrong guess about the drill](https://roshantrivedi.co.in/writing/break-glass-architecture-tested/)
+- [I tested 130 conditional access, MFA and AI agent cases. Six of my guesses were wrong.](https://roshantrivedi.co.in/writing/130-conditional-access-mfa-and-ai-agent-cases/)
 - [I tested 67 machine identity cases. Here is where the controls stopped.](https://roshantrivedi.co.in/writing/i-tested-67-machine-identity-cases/)
 - [I ran the 19 cases I had been putting off. Five guesses were wrong.](https://roshantrivedi.co.in/writing/non-human-identity-lab-round-19/)
 - [I tested 46 non-human identity cases. My guesses were wrong in four.](https://roshantrivedi.co.in/writing/non-human-identity-lab-46-cases/)
+- [Can a person stay in control of an AI agent? I tried to break an approval gate 210 ways](https://roshantrivedi.co.in/writing/can-a-person-stay-in-control-of-an-ai-agent/)
+- [Do AI governance controls hold? What I found in 13 rounds and 164 cases](https://roshantrivedi.co.in/writing/do-ai-governance-controls-hold/)
+- [From permanent admin rights to zero standing privilege: a practical PAM modernization path](https://roshantrivedi.co.in/writing/pam-modernization-and-zero-standing-privilege/)
 - [The Hugging Face intrusion, read as an identity incident](https://roshantrivedi.co.in/writing/openai-huggingface-breach-cybersecurity-analysis/)
 - [PAM framework and design](https://roshantrivedi.co.in/writing/pam-framework-and-design/)
 - [A PAM project plan by organisation tier](https://roshantrivedi.co.in/writing/pam-project-plan-by-organization-tier/)

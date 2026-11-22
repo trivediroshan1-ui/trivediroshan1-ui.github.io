@@ -3,22 +3,23 @@ title: "Break Glass: Eight Ways to Build It, and What to Do When the Tool Is the
 layout: post
 bg: post-plan
 motif: grid
-seo_title: "Break-Glass Emergency Access: Eight Ways to Build It, Roles, Vendors, Audit and AI Agents"
+seo_title: "Break-Glass Emergency Access: Eight Ways to Build It"
 date: 2026-11-20 11:30:00 +0530
+last_modified_at: 2026-11-22
 author: Roshan Trivedi
 tags: [break-glass, emergency-access, privileged-access, pam, ai-agents]
 diagrams: true
 share_title: "Break glass: eight ways to build it, and when the tool is down"
 share_label: "Guide · Privileged access"
 share_accent: green
-description: "Eight ways to build break-glass access, who does what, what to do when both PAM sites or a linked tool are down, what four vendors document, what auditors need, and where AI agents fit."
+description: "Eight ways to build break-glass access, what to do when the PAM tool is down, what four vendors document, what auditors need, and where AI agents fit."
 ---
 
 # Break Glass: Eight Ways to Build It, and What to Do When the Tool Is the Thing That Is Down
 
 *Filed under: Privileged access · Emergency access*
 
-*Independent work on my own time. Lab data is made up. Nothing here describes any employer's or client's systems. Vendor details come from each vendor's own pages as I read them on 20 November 2026, and pages change.*
+*Independent practitioner guide, last reviewed 22 November 2026. Written on my own time. Lab data is made up. Nothing here describes any employer's or client's systems. Vendor details come from each vendor's own pages as I read them on 20 November 2026, and pages change.*
 
 On this page: [the short version](#the-short-version) · [the question to ask first](#the-question-to-ask-first) · [eight ways](#eight-ways) · [three people](#three-people) · [when things are down](#when-things-are-down) · [guardrails and approval](#guardrails-and-approval) · [who owns it](#who-owns-it) · [four vendors](#four-vendors) · [three cloud platforms](#cloud-platforms) · [business, governance and audit](#business-governance-audit) · [AI](#ai) · [out of the box](#out-of-the-box) · [start here](#start-here)
 

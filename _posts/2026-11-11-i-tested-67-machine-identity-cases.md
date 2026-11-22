@@ -3,7 +3,7 @@ title: "I Tested 67 Machine Identity Cases. Here Is Where the Controls Stopped."
 layout: post
 bg: post-plan
 motif: grid
-seo_title: "67 Machine Identity Cases: Where Controls Stopped, and 10 Wrong Guesses"
+seo_title: "67 Machine Identity Cases: Where Controls Stopped"
 date: 2026-11-11 11:10:00 +0530
 author: Roshan Trivedi
 tags: [non-human-identity, nhi, pam, shadow-ai, security-testing]

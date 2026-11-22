@@ -3,7 +3,7 @@ title: "From Permanent Admin Rights to Zero Standing Privilege: A Practical PAM 
 layout: post
 bg: post-plan
 motif: grid
-seo_title: "PAM Modernization and Zero Standing Privilege: A Practical Path"
+seo_title: "PAM Modernization to Zero Standing Privilege"
 date: 2026-10-29 13:00:00 +0530
 author: Roshan Trivedi
 series: pam
@@ -11,7 +11,7 @@ tags: [pam, zero-standing-privilege, privileged-access, iam, just-in-time]
 share_title: "From Permanent Admin Rights to Zero Standing Privilege"
 share_label: "Article · Privileged access"
 share_accent: green
-description: "Most PAM programs stop once passwords are in a vault. Here is the path from standing admin rights to short, approved, recorded sessions, and how to prove it to an auditor."
+description: "Most PAM programs stop at the vault. This is the path from standing admin rights to short, approved, recorded sessions, with the proof an auditor will ask for."
 ---
 
 # From Permanent Admin Rights to Zero Standing Privilege: A Practical PAM Modernization Path

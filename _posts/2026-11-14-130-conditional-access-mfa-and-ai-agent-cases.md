@@ -3,14 +3,14 @@ title: "I Tested 130 Conditional Access, MFA and AI Agent Cases. Six of My Guess
 layout: post
 bg: post-plan
 motif: grid
-seo_title: "130 Conditional Access, MFA and AI Agent Cases: Six Wrong Guesses and What Decided the Outcome"
+seo_title: "130 Conditional Access and MFA Cases: Six Wrong Guesses"
 date: 2026-11-14 15:45:00 +0530
 author: Roshan Trivedi
 tags: [conditional-access, mfa, sso, ai-agents, identity, security-testing]
 share_title: "I tested 130 conditional access, MFA and AI agent cases"
 share_label: "Article · Conditional access lab"
 share_accent: green
-description: "I wrote every guess down before any code ran. 118 of 124 matched, 6 did not. MFA was often not the deciding control, and for AI agents the answer kept turning on one assumption."
+description: "I wrote every guess down before any code ran. 118 of 124 matched, 6 did not. MFA often was not the deciding control, and for AI agents one assumption decided."
 ---
 
 # I Tested 130 Conditional Access, MFA and AI Agent Cases. Six of My Guesses Were Wrong.
