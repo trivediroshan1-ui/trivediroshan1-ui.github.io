@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-agentic-ai-identity-governance.png" />
 <title>Agentic AI Identity Governance · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-fa87a0037e.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-db21189215.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 <link rel="stylesheet" href="/assets/vid-text.css?v=20261115a">
 -->
-    <link rel="stylesheet" href="/assets/b-fa87a0037e.css">
+    <link rel="stylesheet" href="/assets/b-db21189215.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -88,7 +88,7 @@
         <p class="dek">AI agents request permissions, spawn sub-agents and chain actions across systems while they run. This is a governance model for an identity that changes shape in the middle of a task: one owner per agent, a short-lived credential per task, a decision on every action, and a person for the risky ones.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer’s systems, data or projects.</p>
-        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Own identity, named owner</span></li><li><span>One credential per task</span></li><li><span>Decide on every action</span></li><li><span>Costly actions wait for a person</span></li><li><span>Record who it acted for</span></li></ol></figure><!-- cs-glance:end -->
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Own identity, named owner</span></li><li><span>One credential per task</span></li><li><span>Decide on every action</span></li><li><span>Hard-to-undo actions wait for a person</span></li><li><span>Record who it acted for</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -228,6 +228,7 @@
           <div class="good"><h3>After</h3><ul><li>The agent has its own identity and a named owner.</li><li>Each action gets a short-lived token for one tool.</li><li>The deletion waited for a person who saw the exact files.</li><li>The log shows the agent, the user it acted for, the approver and the result.</li></ul></div>
         </div>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>This is the zero standing privilege starting point: the agent holds no access between tasks.</p></aside><!-- cs-remember:end -->
 
       <section id="mcp">
         <h2>MCP connections and what the specification gives you</h2>
@@ -242,7 +243,6 @@
         </ul>
         <p class="body-text">The authorization section leaves the authorization server implementation out of scope. It says nothing about who owns an agent, which actions need approval, how to record delegation or how to retire an agent. Those pieces sit around the protocol, and they are what this page is about.</p>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Record who the agent acted for, not only that it acted.</p></aside><!-- cs-remember:end -->
 
       <section id="lifecycle">
         <h2>Kill switch, revocation and lifecycle</h2>
@@ -289,6 +289,7 @@
             <tr><td data-label="Guardrail">Tested kill switch</td><td data-label="What it stops">Not knowing how fast access really ends</td><td data-label="How you check it">Run a drill and time it from suspend to last accepted call</td></tr>
           </tbody></table></div>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The target still runs its own authorization, so a confused or manipulated agent meets a second check.</p></aside><!-- cs-remember:end -->
 
       <section id="audit">
         <h2>Audit: the questions, and the evidence</h2>

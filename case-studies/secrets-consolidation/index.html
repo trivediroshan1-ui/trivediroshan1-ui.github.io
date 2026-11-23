@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-secrets-consolidation.png" />
     <title>Secrets Sprawl & Consolidation · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -117,6 +117,7 @@
         </figure>
         <p class="body-text" style="margin-top:14px">The service can be one product or a small number of products behind one common way to request, rotate and report. OWASP&rsquo;s guidance is to standardize and centralize the secrets management solution &ldquo;with care&rdquo;, and to apply the same life cycle, authentication, authorization and accounting rules across every solution you keep. What matters is that one team owns the rules and every secret has one place of record.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>History matters because a secret deleted last year is still readable in an old commit.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>The workflow, step by step</h2>
@@ -142,7 +143,6 @@
         </div>
         <p class="body-text" style="margin-top:14px">The order is the point. Rotation happened first because the old values were already exposed. The pipeline moved to a federated identity because that removes the stored key entirely, and the database login moved to runtime fetch because the application could not use federation. The scan and the commit block then stayed on, so the same mistake would be caught the next time someone made it.</p>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Anything a scan finds is treated as compromised.</p></aside><!-- cs-remember:end -->
 
       <section id="roadmap">
         <h2>How to phase it</h2>
@@ -172,6 +172,7 @@
             <tr><td data-label="Guardrail">Old stores read-only, then removed</td><td data-label="What it stops">A second source of truth that quietly lives on</td><td data-label="How you check it">Read counts on the old store, then the decommission record</td></tr>
           </tbody></table></div>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The secret is never copied back into code, config or a pipeline variable.</p></aside><!-- cs-remember:end -->
 
       <section id="audit">
         <h2>What an auditor will ask about secrets</h2>

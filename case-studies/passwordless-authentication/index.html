@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-passwordless-authentication.png" />
     <title>Passwordless Authentication Rollout · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -186,6 +186,7 @@
         <p class="body-text">Read the numbers in the picture in order. The authenticator signs a challenge for one site (1). The identity provider checks the signature against the public key it holds for that user (2, with the policy engine asking who, what and how risky). If the policy is met, the resource gets a token (3). If the user has no usable key, the policy does not fall back to a weaker method. It sends them to recovery (4), and recovery ends with a new passkey (5). Break-glass accounts stay outside the policy so a bad rule cannot lock everyone out, and every use alerts a person (6).</p>
         <p class="body-text">Two details from the Microsoft documentation shape the design. An authentication strength is evaluated after the initial sign-in, so it does not by itself limit which method a user starts with. And sign-in risk and user risk need Entra ID Protection. The per-user score I describe below is a separate, advisory input for planning waves. It never blocks anyone on its own.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Registration is a sign-in that matters, so it needs a strong prior sign-in.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>The migration, in risk order</h2>
@@ -223,7 +224,6 @@
         </ul>
         <p class="body-text">The Entra documentation notes that a Temporary Access Pass cannot be used with the Network Policy Server extension or the AD FS adapter, so check where else a pass will not work. Whatever the product, the pass is itself a credential. It is short-lived, issued by a verified process, sent to a verified channel, and logged, and the user is told when it is issued.</p>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Recovery decides whether the program works.</p></aside><!-- cs-remember:end -->
 
       <section id="synced">
         <h2>Device-bound or synced, and what attestation changes</h2>
@@ -265,6 +265,7 @@
         </div>
         <p class="body-text">The fallback stayed in place for this group for the first weeks and was removed only after adoption and ticket data looked stable. The general population follows the same flow in a later wave, with synced passkeys on managed devices.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Recovery must end in a strong method again.</p></aside><!-- cs-remember:end -->
 
       <section id="roadmap">
         <h2>How I phase it</h2>

@@ -33,3 +33,10 @@
 .cs-remember { margin: 36px 0; padding: 20px 24px; border-left: 4px solid color-mix(in srgb, var(--c, var(--pal-violet)) 80%, var(--hg-ink)); border-radius: 0 14px 14px 0; background: var(--hg-surface-2); }
 .cs-remember .k { margin: 0 0 6px; font-family: var(--hg-font-mono); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--hg-ink-3); }
 .cs-remember p:last-child { margin: 0; font-family: var(--hg-font-display); font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.4; font-weight: 600; color: var(--hg-ink); }
+
+/* Where it goes wrong: the study's own failure list, laid out as cards so it reads as a figure
+   in the long page. The text is unchanged; each bold first line becomes the card's title. */
+.read #tradeoffs > ul { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.read #tradeoffs > ul > li { margin: 0; padding: 16px 18px 18px; border: 1px solid var(--hg-line); border-top: 3px solid var(--hg-audit); border-radius: 14px; background: var(--hg-surface-2); font-size: 15px; line-height: 1.55; color: var(--hg-ink-2); hyphens: manual; }
+.read #tradeoffs > ul > li::before { content: none; }
+.read #tradeoffs > ul > li > strong:first-child { display: block; margin-bottom: 6px; font-family: var(--hg-font-display); font-size: 1.02rem; line-height: 1.35; color: var(--hg-ink); }

@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-credential-tiering-model.png" />
     <title>Credential Tiering & the PAM Market · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -141,6 +141,7 @@
 </tbody></table></div>
         <p class="body-text" style="margin-top:14px">Machine and NHI credentials are the class I find least inventoried. An MCP server is a new case of the old service account problem: it usually holds a standing credential to whatever it connects to, and any agent that can reach it can use it. I treat it like a service account, with an owner, a tier, a scope and an expiry. The <a href="/case-studies/non-human-identity-at-scale/">non-human identity at scale</a> and <a href="/case-studies/agentic-ai-identity-governance/">agentic AI identity governance</a> studies go further on this.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>What it can change decides the class.</p></aside><!-- cs-remember:end -->
 
       <section id="controls">
         <h2>The control set for each tier</h2>
@@ -176,7 +177,6 @@
           <div class="good"><h3>After</h3><ul><li>The pipeline gets short-lived credentials through a workload identity and no stored key remains.</li><li>The role is cut down to deploy actions. Role creation is removed, so the credential drops to Tier 1.</li><li>The owner, tier and expiry sit in the inventory.</li><li>A change to the role triggers a tier check.</li></ul></div>
         </div>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>A tier describes blast radius.</p></aside><!-- cs-remember:end -->
 
       <section id="market">
         <h2>Where the PAM market fits the tiers</h2>
@@ -214,6 +214,7 @@
 <li><b>5. Tier 3, measure, retire the old paths</b>Bring the low-risk estate in, report on the measures below, and remove the old stores and habits.<small><em>Done when</em>The review rhythm runs without a project team pushing it.</small></li>
 </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Review on a rhythm, using usage evidence instead of memory.</p></aside><!-- cs-remember:end -->
 
       <section id="guardrails">
         <h2>Guardrails that keep the tiers honest</h2>

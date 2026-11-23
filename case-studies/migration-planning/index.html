@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-migration-planning.png" />
     <title>Privileged Access Migration Planning · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -86,7 +86,7 @@
         <p class="dek">How I plan a move from one privileged access tool to another, so that nothing the old tool quietly did gets lost on the way.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 22 Oct 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer’s systems, data or projects.</p>
-        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Analyse the current tool</span></li><li><span>Discovery</span></li><li><span>Plan signed off</span></li><li><span>Waves by dependency and risk</span></li><li><span>Cutover: rotate every secret</span></li></ol></figure><!-- cs-glance:end -->
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Analyze the current tool</span></li><li><span>Discovery</span></li><li><span>Plan signed off</span></li><li><span>Waves by dependency and risk</span></li><li><span>Cutover: rotate every secret</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -174,6 +174,7 @@
           <figcaption>The dot follows one batch of accounts from the old tool to its retirement. The words on the arrows are what has to exist before the next stage starts.</figcaption>
         </figure>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Every difference is either fixed or logged.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>The workflow, step by step</h2>
@@ -195,7 +196,6 @@
           <div class="good"><h3>What discovery shows and what I do</h3><ul><li>A scheduled job reads it through the old tool&rsquo;s API every night.</li><li>I record the job and its owner, and ask the owner to repoint it to the target before the wave.</li><li>The account moves in the same wave as the job, and is rotated after the job has run once successfully.</li></ul></div>
         </div>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>A migration moves more than accounts.</p></aside><!-- cs-remember:end -->
 
       <section id="waves">
         <h2>Designing the waves</h2>
@@ -242,6 +242,7 @@
           <li><strong>Switch off on an agreed date.</strong> Licenses, backups, keys and exported files are handled and recorded.</li>
         </ul>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Hard-coded uses become tasks for their owners.</p></aside><!-- cs-remember:end -->
 
       <section id="roadmap">
         <h2>Phases</h2>

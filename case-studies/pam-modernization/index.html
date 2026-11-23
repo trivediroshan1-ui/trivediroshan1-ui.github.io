@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-pam-modernization.png" />
     <title>PAM Modernization & Zero Standing Privilege · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -148,6 +148,7 @@
         </figure>
         <p class="body-text">Products split this work differently, but the functions are the same. In CyberArk&rsquo;s self-hosted architecture, for example, the Vault stores the secrets, the Central Policy Manager (CPM) generates new passwords and replaces them on the target machines, and the Privileged Session Manager (PSM) records sessions and can restrict commands. Other platforms combine or separate these roles. What matters is that all of the functions exist and that none can be skipped. <a href="https://docs.cyberark.com/pam-self-hosted/latest/en/content/pasimp/privileged-account-security-solution-architecture.htm">CyberArk architecture reference</a>.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The broker uses the credential on their behalf, so the person never sees or types the password.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>A privileged request, start to finish</h2>
@@ -167,7 +168,6 @@
           <div class="good"><h3>After</h3><ul><li>The engineer asks for two hours on that database, citing the incident ticket.</li><li>The on-call manager approves from their phone.</li><li>The session runs through the broker and is recorded.</li><li>At the end, access closes and the credential is rotated. The recording is linked to the ticket.</li></ul></div>
         </div>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The risk that is left is access that never expires.</p></aside><!-- cs-remember:end -->
 
       <section id="exposure">
         <h2>What &ldquo;zero standing&rdquo; changes</h2>
@@ -213,6 +213,7 @@
           <li><b>5. Extend to machines</b>Applications and pipelines that use secrets move to a secrets manager or short-lived credentials, so nothing important is hard-coded.<small><em>Done when</em>Scans of code and configuration find no live credentials.</small></li>
         </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The vault is there, but the old door is still open.</p></aside><!-- cs-remember:end -->
 
       <section id="guardrails">
         <h2>Guardrails that keep it honest</h2>

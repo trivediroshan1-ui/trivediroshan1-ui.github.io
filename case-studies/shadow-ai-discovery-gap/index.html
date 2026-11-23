@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-shadow-ai-discovery-gap.png" />
     <title>The AI Stack Nobody Approved &middot; Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -111,6 +111,7 @@
         <p class="body-text">Data security posture management (DSPM), described generally, inventories where data lives, labels what it is and shows what can reach it. In this picture it supplies the data half of the risk class. I make no claims for any particular product.</p>
         <p class="body-text">No single source is enough. Network logs show where traffic goes and say little about what it carried. Grant lists show what has access and miss tools that need none. Expense records catch paid tools and miss free ones. The value is in the overlap. A tool seen by three sources is almost certainly real, and one seen by a single source deserves a closer look.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Each source misses something the others catch, so no single one counts as discovery.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>From signal to decision, step by step</h2>
@@ -137,7 +138,6 @@
         </div>
         <p class="body-text" style="margin-top:14px">The conversation with the team lead is the step that matters most. The need was real: customer calls had to be written up and the old way took too long. A block alone would have left the team with the same problem.</p>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>A block on its own moves the use somewhere you cannot see.</p></aside><!-- cs-remember:end -->
 
       <section id="response">
         <h2>Responding without pushing it underground</h2>
@@ -161,6 +161,7 @@
         <p class="body-text">Compare against your own baseline from the first sweep. I do not rely on outside benchmarks here, because their methods vary too much to compare with.</p>
         <ul class="plain-list"><li><strong>Share of records with an owner, a class and a decision.</strong> The core measure. The count of tools found will rise at first as discovery improves, so track the share with a decision, not the raw total.</li><li><strong>Time from first sighting to decision.</strong> Measures how well the process works for the people waiting on it.</li><li><strong>Traffic to approved endpoints against unapproved ones.</strong> Taken from the same proxy categories each month, so the trend means something. When it moves toward the approved route, the route is working.</li><li><strong>Broad OAuth grants with no owner.</strong> Counts grants to AI apps that can read mail, files or calendars and have nobody accountable.</li><li><strong>Repeat finds.</strong> Tools rediscovered after a replace or block decision.</li><li><strong>Front door health.</strong> Requests received, median answer time, and the share approved, approved with controls, or declined.</li><li><strong>Exceptions past their end date.</strong> A rising number means exceptions are being granted and forgotten.</li></ul>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>A record with no owner stays open until someone is named.</p></aside><!-- cs-remember:end -->
 
       <section id="guardrails">
         <h2>Guardrails that keep it honest</h2>

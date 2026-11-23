@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-conditional-access-mfa-sso.png" />
     <title>Conditional Access, MFA and SSO · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -115,6 +115,7 @@
           <li><strong>Report-only mode:</strong> the rule is evaluated and logged, but not enforced.</li>
         </ul>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>SMS kept “just for recovery”, which becomes the way in.</p></aside><!-- cs-remember:end -->
 
       <section id="standards">
         <h2>What the standards say</h2>
@@ -138,7 +139,6 @@
           <li><strong>Remove the exceptions.</strong> Every exclusion has an owner and an end date, and is reviewed.</li>
         </ol>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The rollout fails at recovery, not at sign-in.</p></aside><!-- cs-remember:end -->
 
       <section id="naming">
         <h2>How I name and test rules</h2>
@@ -154,6 +154,7 @@
         <h2>The recovery problem</h2>
         <p class="body-text">Strong sign-in moves the attack to the help desk. An attacker with a name and a phone number asks for a reset. Before the rollout, put three things in place: identity proof that does not rely on things an attacker can look up, a notice to the person whenever their methods change, and a short delay on admin resets.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>No exception without an owner and an end date.</p></aside><!-- cs-remember:end -->
 
       <section id="example">
         <h2>Worked example (made up)</h2>

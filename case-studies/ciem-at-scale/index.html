@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ciem-at-scale.png" />
     <title>Cloud Entitlements (CIEM) at Scale &middot; Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -86,7 +86,7 @@
         <p class="dek">How to find the toxic entitlement combinations that individual cloud IAM rules miss, cut excess access from what people and workloads actually use, and keep it from growing back.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer’s systems, data or projects.</p>
-        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Granted</span></li><li><span>Effective</span></li><li><span>Used</span></li><li><span>Owner-approved cut with rollback</span></li><li><span>Guardrails stop it growing back</span></li></ol></figure><!-- cs-glance:end -->
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Granted</span></li><li><span>Effective</span></li><li><span>Used</span></li><li><span>Owner approves the cut, with a rollback</span></li><li><span>Guardrails stop it growing back</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -151,6 +151,7 @@
           <figcaption>The dot is one finding traveling the loop: from the estate into analysis, out as a proposal, through approval and enforcement, and into the evidence record, which feeds the next round of observation. The same data sources exist in every major cloud, so any equivalent combination fits these slots.</figcaption>
         </figure>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>An identity with no owner is the first thing to review, because nobody else can speak for it.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>One finding, start to finish</h2>
@@ -173,7 +174,6 @@
         </div>
         <p class="body-text" style="margin-top:14px">Three checks sat between the logs and the cut. The first window was 90 days, and the team mentioned a quarterly job, so we widened the window and held that permission until the owner confirmed. The permission to pass a role to another service does not appear in the usage data, so we reviewed it by hand. And the rollback copy was restored once in a test account before the change went to production.</p>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Cloud identities hold far more access than they use.</p></aside><!-- cs-remember:end -->
 
       <section id="drift">
         <h2>Keeping it from growing back</h2>
@@ -196,6 +196,7 @@
           <li><b>6. Run it on a rhythm</b>Schedule the loop, keep the exception register and report to owners.<small><em>Done when</em>The loop runs without me asking for it.</small></li>
         </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Add by hand any permission the logs cannot show.</p></aside><!-- cs-remember:end -->
 
       <section id="guardrails">
         <h2>Guardrails that keep it honest</h2>
