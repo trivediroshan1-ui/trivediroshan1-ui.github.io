@@ -6,6 +6,7 @@
 .wb h2{font-size:1.45rem;margin:2rem 0 .6rem;line-height:1.25}
 .wb h3{font-size:1.12rem;margin:1.5rem 0 .4rem;line-height:1.35}
 .wb h3.wb-case{margin-top:2.2rem;padding-top:1rem;border-top:1px solid var(--hg-line)}
+.wb h2.wb-case{font-size:1.12rem;line-height:1.35;margin:2.2rem 0 .4rem;padding-top:1rem;border-top:1px solid var(--hg-line)}
 .wb p,.wb li{line-height:1.7;font-size:1.02rem}
 .wb .lede{font-size:1.12rem}
 .wb .ey a,.wb p a,.wb li a,.wb td a{text-decoration:underline;text-underline-offset:3px}

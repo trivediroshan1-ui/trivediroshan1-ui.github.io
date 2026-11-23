@@ -1,5 +1,5 @@
 /* Shared slim navigation and "where next" band for inner pages. Uses tokens.css values with safe fallbacks. */
-.hg-sitenav{position:sticky;top:3px;z-index:60;display:flex;align-items:center;gap:1.1rem;padding:.55rem max(16px,calc((100vw - 1120px)/2));background:rgba(5,8,15,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(138,160,190,.16);font-family:"DM Sans","Manrope",system-ui,sans-serif}
+.hg-sitenav{position:sticky;top:3px;z-index:60;display:flex;align-items:center;gap:1.1rem;padding:.55rem max(16px,calc((100vw - 1120px)/2));background:rgba(5,8,15,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(138,160,190,.16);font-family:"DM Sans", "DM Sans Fallback","Manrope", "Manrope Fallback",system-ui,sans-serif}
 .hg-sitenav .brand{font-weight:700;letter-spacing:.01em;color:inherit;text-decoration:none;white-space:nowrap;display:flex;align-items:center;gap:.5rem}
 .hg-sitenav .brand i{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--pal-aqua),var(--pal-violet));color:#070a1f;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700;flex-shrink:0}
 .hg-sitenav ul{list-style:none;margin:0 0 0 auto;padding:0;display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
@@ -8,7 +8,7 @@
 .hg-sitenav li a:hover{opacity:1;background:rgba(77,226,255,.1)}
 .hg-sitenav li a[aria-current="page"]{opacity:1;background:rgba(77,226,255,.14);box-shadow:inset 0 -2px 0 var(--pal-cyan)}
 .hg-sitenav a:focus-visible,.hg-next a:focus-visible{outline:2px solid var(--pal-cyan);outline-offset:2px}
-.hg-next{max-width:1120px;margin:3.5rem auto 1.5rem;padding:0 16px;font-family:"DM Sans","Manrope",system-ui,sans-serif}
+.hg-next{max-width:1120px;margin:3.5rem auto 1.5rem;padding:0 16px;font-family:"DM Sans", "DM Sans Fallback","Manrope", "Manrope Fallback",system-ui,sans-serif}
 .hg-next .ttl{font-weight:700;font-size:clamp(1.3rem,3vw,1.7rem);margin:.2rem 0 .3rem}
 .hg-next .eyebrow{font:600 .72rem/1 "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--pal-cyan);margin:0}
 .hg-next .lede{margin:0 0 1.1rem;max-width:60ch;opacity:.8}
@@ -66,7 +66,7 @@ html[data-theme="light"] .hg-sitenav{background:rgba(245,247,251,.97)}
 html[data-theme="light"] .hg-sitenav li.res a{border-color:var(--pal-violet-deep);color:#3b2a8c}
 @media (max-width:520px){.hg-sitenav li.res a{margin-left:0;border-color:transparent}}
 /* MCP lab tab bar */
-.hg-tabs{border-bottom:1px solid rgba(138,160,190,.16);background:rgba(10,8,34,.6);font-family:"DM Sans","Manrope",system-ui,sans-serif}
+.hg-tabs{border-bottom:1px solid rgba(138,160,190,.16);background:rgba(10,8,34,.6);font-family:"DM Sans", "DM Sans Fallback","Manrope", "Manrope Fallback",system-ui,sans-serif}
 .hg-tabs>div{max-width:1120px;margin:0 auto;padding:.35rem 16px;display:flex;align-items:center;gap:.8rem}
 .hg-tabs .lab{font:700 .72rem/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--pal-violet);text-decoration:none;white-space:nowrap}
 .hg-tabs ul{list-style:none;margin:0;padding:0;display:flex;gap:.15rem;overflow-x:auto;scrollbar-width:none;flex:1}
@@ -111,7 +111,7 @@ html[data-theme="light"] nav.hg-sitenav a,html[data-theme="light"] nav.hg-sitena
 }
 
 /* One body font on every page: DM Sans, which the headings already use. Manrope stays loaded only where a page names it. */
-html:root { --body: "DM Sans", system-ui, sans-serif; }
+html:root { --body: "DM Sans", "DM Sans Fallback", system-ui, sans-serif; }
 
 @media (max-width: 390px) { html .hg-sitenav { padding-inline: 6px; gap: .1rem; } html .hg-sitenav li a { font-size: .76rem; } }
 html[data-theme="light"] /* November 2026: the theme switch styling for the header bar lives here too, so pages that do not
@@ -133,3 +133,25 @@ nav.hg-sitenav > .theme-toggle.in-bar{margin-left:.35rem}
 @media (max-width:520px){.hg-sitenav li.res{display:none}}
 /* motion-gate.js: animations that are off screen are paused */
 .mg-off,.mg-off::before,.mg-off::after{animation-play-state:paused!important}
+
+/* Page emblem: a hand-drawn mark beside the title of hub pages (scripts/add-page-emblems.py).
+   Decorative. It draws itself in once; with reduced motion it is simply there. */
+.page-emblem{float:right;width:clamp(120px,15vw,176px);height:auto;margin:0 0 12px 28px;color:var(--hg-policy,var(--pal-cyan));overflow:visible}
+.page-emblem .pe-a2{color:var(--hg-person,var(--pal-violet))}
+.page-emblem .pe-glow{fill:currentColor;opacity:.08}
+@media (prefers-reduced-motion:no-preference){
+  .page-emblem .pe-ink>*,.page-emblem .pe-a2>*{stroke-dasharray:1;stroke-dashoffset:1;animation:pe-draw 1.4s cubic-bezier(.3,.7,.2,1) .15s forwards}
+  .page-emblem .pe-a2>*{animation-delay:.9s;animation-duration:.9s}
+  .page-emblem .pe-glow{animation:pe-glow .8s ease-out both}
+}
+@keyframes pe-draw{to{stroke-dashoffset:0}}
+@keyframes pe-glow{from{opacity:0}}
+@media (max-width:700px){.page-emblem{float:none;display:block;width:68px;margin:0 0 10px}}
+/* Hero headers stack their children, so a float does not apply: below 900px the emblem sits small above
+   the eyebrow; from 900px the header keeps a right-hand column for it and the text stays about 70 characters wide. */
+header.hero>.page-emblem{float:none;display:block;width:72px;margin:0 0 10px}
+@media (min-width:900px){
+  header.hero:has(>.page-emblem){padding-right:clamp(170px,17vw,210px)}
+  header.hero>.page-emblem{position:absolute;top:0;right:0;width:clamp(140px,14vw,176px);margin:0}
+}
+@media print{.page-emblem{display:none}}

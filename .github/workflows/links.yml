@@ -33,6 +33,10 @@ jobs:
         run: python3 scripts/build-results-strip.py --check
       - name: Case study glance flows and callouts are current
         run: python3 scripts/case-glance.py --check
+      - name: Hub page emblems are current
+        run: python3 scripts/add-page-emblems.py --check
+      - name: No page skips a heading level
+        run: python3 scripts/fix-heading-levels.py
       - name: Every video has a size, a name and a VideoObject
         run: python3 scripts/fix-video-tags.py --check
       - name: Every page shows a date

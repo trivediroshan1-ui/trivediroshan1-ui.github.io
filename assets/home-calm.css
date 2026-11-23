@@ -9,7 +9,7 @@
 .hero .role-tag { display: block; margin-top: 2px; font-size: 0.82em; color: var(--muted); font-weight: 600; }
 
 /* 2  Two typefaces. Body text moves from Manrope to DM Sans, which the headings already use. */
-:root { --body: "DM Sans", system-ui, sans-serif; }
+:root { --body: "DM Sans", "DM Sans Fallback", system-ui, sans-serif; }
 body { font-family: var(--body); }
 
 /* 3  Proof where people decide: one short quote, named, under the numbers. */

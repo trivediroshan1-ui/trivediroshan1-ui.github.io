@@ -74,7 +74,7 @@ header.top .nv-toggle { width: 26px; height: 32px; }
   pointer-events: auto; position: relative; width: min(1080px, 100%); box-sizing: border-box;
   display: grid; grid-template-columns: minmax(230px, 1fr) minmax(0, 3.1fr); gap: 22px; padding: 22px;
   background: var(--nv-bg); color: var(--nv-ink); border: 1px solid var(--nv-edge); border-radius: 22px; box-shadow: var(--nv-shadow);
-  font-family: "DM Sans", "Manrope", system-ui, sans-serif; font-size: 15px; line-height: 1.4; text-align: left;
+  font-family: "DM Sans", "DM Sans Fallback", "Manrope", "Manrope Fallback", system-ui, sans-serif; font-size: 15px; line-height: 1.4; text-align: left;
   opacity: 0; transform: translateY(-10px) scale(.985); transform-origin: var(--nv-x, 50%) 0;
   transition: opacity .2s ease, transform .3s cubic-bezier(.2, .9, .25, 1);
 }
@@ -103,7 +103,7 @@ html .nv-panel .nv-inner .nv-art-line { flex: 1; height: 0; border-top: 2px dash
 html .nv-panel .nv-inner .nv-art-dot { position: absolute; left: 20px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--nv-ai); box-shadow: 0 0 12px var(--nv-ai); z-index: 2; }
 html .nv-panel .nv-inner .nv-portrait { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--nv-edge); box-shadow: 0 0 0 4px color-mix(in srgb, var(--nv-ai) 28%, transparent); }
 html .nv-panel .nv-inner .nv-kicker { font: 600 11.5px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .16em; text-transform: uppercase; color: var(--nv-mute); }
-html .nv-panel .nv-inner .nv-ftitle { font: 700 1.2rem/1.2 "DM Sans", system-ui, sans-serif; letter-spacing: -.01em; text-wrap: balance; }
+html .nv-panel .nv-inner .nv-ftitle { font: 700 1.2rem/1.2 "DM Sans", "DM Sans Fallback", system-ui, sans-serif; letter-spacing: -.01em; text-wrap: balance; }
 html .nv-panel .nv-inner .nv-ftext { color: var(--nv-soft); font-size: .92rem; }
 html .nv-panel .nv-inner .nv-cta { margin-top: auto; padding-top: .5rem; display: inline-flex; align-items: center; gap: .35rem; font-weight: 700; color: var(--nv-ai); font-size: .92rem; }
 html .nv-panel .nv-inner .nv-cta-i { width: 16px; height: 16px; transition: transform .25s; }
@@ -223,6 +223,8 @@ html[data-theme=light] a.skip,html[data-theme=light] .skip:focus{background:#0a6
 .hg-sitenav li.th .theme-toggle { position: static !important; }
 .hg-sitenav .nv-burger { display: none; }
 .nv-mpanel[hidden] { display: none !important; }
+/* Reserve the phone bar's final height (44px menu button plus padding) before nav.js runs, so the page does not move down. */
+@media (max-width: 960px) { nav.hg-sitenav { box-sizing: border-box; min-height: 62.6px; } }
 @media (max-width: 960px) {
   nav.hg-sitenav.nv-m { gap: .4rem; min-height: 60px; padding-inline: 14px; flex-wrap: nowrap !important; }
   html nav.hg-sitenav.nv-m > .brand { order: 0; flex: 1 1 auto; min-width: 0; }

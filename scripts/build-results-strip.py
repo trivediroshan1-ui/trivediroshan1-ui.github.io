@@ -22,7 +22,7 @@ KIND = {"As guessed": "ok", "Guess was wrong": "bad", "Not run here": "off"}
 SHORT, TALL = 10, 20              # mark heights
 
 
-def strip(lab, compact):
+def strip(lab, compact, page_url=""):
     cases = [c for c in cat["cases"] if c["lab"] == lab]
     kinds = [KIND.get(c["guess"]) for c in cases]
     if None in kinds:
@@ -55,7 +55,7 @@ def strip(lab, compact):
     else:
         cap = (f'Each mark is one of the {n} cases, in order. Short green: the result matched the guess I wrote down first. '
                f'Tall red: my guess was wrong ({bad}).' + (f' Hollow: not run here ({off}).' if off else "")
-               + f' <a href="{WRONG_URL[lab]}">See what I got wrong</a>')
+               + ("" if WRONG_URL[lab].split("#")[0] == page_url else f' <a href="{WRONG_URL[lab]}">See what I got wrong</a>'))
     return (f'<figure class="rstrip" style="margin:16px 0 0">{svg}'
             f'<figcaption style="margin-top:8px;font-size:13px;line-height:1.5;color:var(--hg-ink-2)">{cap}</figcaption></figure>')
 
@@ -68,7 +68,9 @@ for page in sorted(ROOT.rglob("*.html")):
     h = page.read_text(encoding="utf-8")
     if "<!-- rstrip:" not in h:
         continue
-    new = MARK.sub(lambda m: m.group(1) + strip(m.group(2), bool(m.group(3))) + m.group(4), h)
+    url = "/" + str(page.parent.relative_to(ROOT)).replace("\\", "/").strip(".") + "/"
+    url = url.replace("//", "/")
+    new = MARK.sub(lambda m: m.group(1) + strip(m.group(2), bool(m.group(3)), url) + m.group(4), h)
     if new != h:
         stale.append(str(page.relative_to(ROOT)))
         if not check:

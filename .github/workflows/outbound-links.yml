@@ -1,0 +1,33 @@
+name: Outbound links (report only)
+
+# Checks every external link the site cites (standards, vendor docs, articles) once a month and
+# writes the broken ones to the run summary. It never fails a merge: a source site being down for an
+# hour is not a reason to block a change. Read the summary, then fix the links that are really gone.
+
+on:
+  schedule:
+    - cron: "23 3 1 * *"   # the 1st of each month, 08:53 in India
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  outbound:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check external links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: false
+          jobSummary: true
+          # LinkedIn and Credly answer automated checks with 999 or 403 even when the page exists.
+          args: >-
+            --no-progress --max-concurrency 8 --timeout 30 --max-retries 2
+            --scheme https --scheme http
+            --exclude-path agent-skills --exclude-path archive
+            --exclude "roshantrivedi\.co\.in"
+            --exclude "linkedin\.com" --exclude "credly\.com"
+            --accept "200..=299,403,429"
+            "./**/*.html" "./_posts/*.md"

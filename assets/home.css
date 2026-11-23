@@ -21,8 +21,8 @@
   --max-width: 1240px;
   --radius: 20px;
   --radius-lg: 30px;
-  --display: "DM Sans", system-ui, sans-serif;
-  --body: "Manrope", "DM Sans", system-ui, sans-serif;
+  --display: "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
+  --body: "Manrope", "Manrope Fallback", "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
