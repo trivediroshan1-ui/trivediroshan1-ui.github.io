@@ -21,6 +21,8 @@ description: "Eight ways to build break-glass access, what to do when the PAM to
 
 *Independent practitioner guide, last reviewed 22 November 2026. Written on my own time. Lab data is made up. Nothing here describes any employer's or client's systems. Vendor details come from each vendor's own pages as I read them on 20 November 2026, and pages change.*
 
+*The short version is also on LinkedIn: [The key to your emergency box may be locked inside the vault that is down](https://www.linkedin.com/pulse/key-your-emergency-box-may-locked-inside-vault-down-roshan-trivedi-pvupf).*
+
 On this page: [the short version](#the-short-version) · [the question to ask first](#the-question-to-ask-first) · [eight ways](#eight-ways) · [three people](#three-people) · [when things are down](#when-things-are-down) · [guardrails and approval](#guardrails-and-approval) · [who owns it](#who-owns-it) · [four vendors](#four-vendors) · [three cloud platforms](#cloud-platforms) · [business, governance and audit](#business-governance-audit) · [AI](#ai) · [out of the box](#out-of-the-box) · [start here](#start-here)
 
 ## The short version {#the-short-version}
