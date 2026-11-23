@@ -78,7 +78,7 @@ html[data-theme="light"] .pill b { color: #ffffff; }
 .btn-1:hover { filter: brightness(1.08); }
 .btn-2 { border: 1px solid var(--line2); }
 .btn-2:hover { border-color: var(--violet); background: rgba(167, 139, 250, 0.1); }
-.proof { list-style: none; padding: 22px 0 0; margin: 34px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.proof { list-style: none; padding: 22px 0 0; margin: 34px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .proof li { padding: 0 16px; border-left: 1px solid var(--line); }
 .proof li:first-child { padding-left: 0; border-left: 0; }
 .proof b { display: block; font-family: var(--display); font-size: 2rem; line-height: 1.1; }
@@ -123,7 +123,7 @@ html[data-theme="light"] .tiles .g { color: #0b4b33; background: rgba(15, 122, 8
 a.card:hover { border-color: var(--violet); transform: translateY(-3px); }
 .card .tag { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan); }
 .card h3 { font-size: 1.15rem; line-height: 1.25; margin: 4px 0 2px; }
-.card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+.card p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.55; }
 .card .go { margin-top: auto; padding-top: 12px; font-weight: 700; font-size: 14px; color: var(--violet); }
 .feat { flex-direction: row; gap: 18px; align-items: flex-start; }
 .feat .vis { flex-shrink: 0; width: 72px; }
@@ -295,6 +295,9 @@ html[data-theme="light"] .decide .r { color: #0b6b45; border-top-color: rgba(15,
 .bb-facts li { border-left: 2px solid var(--line2); padding-left: 12px; }
 .bb-facts b { display: block; font-family: var(--display); font-size: 1.7rem; line-height: 1.1; }
 .bb-facts span { font-size: 13px; color: var(--subtle); }
+.bb-more { margin: 10px 0 0; font-size: 15px; color: var(--muted); }
+.bb-more b { color: var(--ink); font-weight: 600; }
+.bb-more a { color: var(--cyan, var(--pal-cyan)); text-decoration: underline; text-underline-offset: 3px; }
 .bb-text .acts { margin-top: 24px; }
 .bb-text .btn small { font-weight: 600; opacity: 0.75; margin-left: 8px; font-size: 12.5px; }
 .bb-note { margin: 12px 0 0; font-size: 13px; color: var(--subtle); }
@@ -367,3 +370,29 @@ html[data-theme="light"] .signup input { background: #fff; }
 
 /* light theme: the pastel card colours are fine for art and borders but too pale for the small label text */
 html[data-theme="light"] .card.has-art .tag { color: color-mix(in srgb, var(--c) 35%, #14203a); }
+
+/* Phones: the approval card sits right under the buttons instead of far down the page, and the
+   New lab pill wraps beside its badge. The seven stages stay in the page for screen readers. */
+@media (max-width: 760px) {
+  .hero .wrap { gap: 0; }
+  .hero .wrap > div:first-child { display: contents; }
+  .hero .open-to, .hero .proof, .hero .hero-q { order: 2; }
+  .path { order: 1; padding: 0; margin: 20px 0 4px; max-width: none; }
+  .path .tiles { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; transform: none; }
+  .decide { max-width: none; align-self: stretch; }
+}
+@media (max-width: 560px) {
+  .pill { flex-wrap: nowrap; align-items: flex-start; border-radius: 18px; padding: 8px 14px 8px 8px; line-height: 1.4; }
+  .pill b { flex: none; }
+}
+
+/* What I work on: each area lists its own case studies, labs and tools, so the home page asks the
+   reader to choose once instead of three times (it used to be three separate card grids). */
+.card.area h3 a { color: inherit; text-decoration: none; }
+.card.area h3 a:hover { color: var(--cyan); }
+.area-list { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.area-list a { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 48px; padding: 9px 0; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 600; font-size: 15px; line-height: 1.35; text-decoration: none; }
+.area-list a span { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--subtle); }
+.area-list a:hover { color: var(--cyan); }
+.area-list a:hover span { color: var(--subtle); }
+.card.area .go { text-decoration: none; }

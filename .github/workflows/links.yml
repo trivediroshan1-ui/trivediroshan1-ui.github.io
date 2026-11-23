@@ -27,6 +27,12 @@ jobs:
         run: python3 scripts/check-colours.py
       - name: Stylesheet bundles match the stylesheets
         run: python3 scripts/bundle-css.py --check
+      - name: Home page inline CSS matches its source files
+        run: python3 scripts/inline-home-css.py --check
+      - name: Lab results strips match data/catalogue.json
+        run: python3 scripts/build-results-strip.py --check
+      - name: Case study glance flows and callouts are current
+        run: python3 scripts/case-glance.py --check
       - name: Every video has a size, a name and a VideoObject
         run: python3 scripts/fix-video-tags.py --check
       - name: Every page shows a date

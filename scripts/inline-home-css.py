@@ -3,11 +3,13 @@
 separate stylesheet requests (the biggest mobile PageSpeed item). The source
 files stay as they are: edit them, then run this from the repo root.
 
-    python3 scripts/inline-home-css.py
+    python3 scripts/inline-home-css.py           # rewrite index.html
+    python3 scripts/inline-home-css.py --check   # fail if index.html is out of date (CI)
 
+Edit the source files, never the inline block: a hand edit there is lost on the next run.
 It rewrites the block between the inline-css markers in index.html.
 """
-import re, pathlib
+import re, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 FILES = ["fonts.css", "home2.css", "chatbot-widget.css"]
 css = ""
@@ -23,5 +25,10 @@ if "<!-- inline-css:start -->" in h:
 else:
     h = re.sub(r'    <link rel="stylesheet" href="/assets/fonts.css">\n    <link rel="stylesheet" href="/assets/home.css">\n    <link rel="stylesheet" href="/assets/upgrade.css[^"]*">\n', lambda m: block + "\n", h, count=1)
     h = h.replace('    <link rel="stylesheet" href="/assets/chatbot-widget.css" />\n', "")
-page.write_text(h)
-print("inlined", len(css), "bytes")
+if "--check" in sys.argv:
+    if h != page.read_text():
+        sys.exit("index.html inline CSS is out of date: edit assets/home2.css (or fonts.css, chatbot-widget.css), then run python3 scripts/inline-home-css.py")
+    print("home inline CSS up to date")
+else:
+    page.write_text(h)
+    print("inlined", len(css), "bytes")

@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-secrets-consolidation.png" />
     <title>Secrets Sprawl & Consolidation · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-6d016cfbe8.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-6d016cfbe8.css">
+    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -71,7 +71,7 @@
     </script>
     <script src="/assets/theme.js?v=20261116a"></script>
     <script src="/assets/palette.js?v=20261116b" defer></script>
-    <script src="/assets/nav.js?v=20261116b" defer></script>
+    <script src="/assets/nav.js?v=20261123a" defer></script>
     <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Secrets Sprawl & Consolidation", "item": "https://roshantrivedi.co.in/case-studies/secrets-consolidation/"}]}]}</script>
   </head>
   <body class="read" style="--c:#c4b5fd">
@@ -81,12 +81,12 @@
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/case-studies/">Work</a></nav>
 
       <header class="hero">
-        <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 112" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g stroke="currentColor" fill="none" stroke-width="1.2" opacity=".55" stroke-dasharray="3 4"><path d="M92 56H124"/><path d="M196 56H228"/></g><g fill="currentColor" opacity=".7"><path d="M124 52l6 4-6 4z"/><path d="M228 52l6 4-6 4z"/></g><circle class="ring" cx="160" cy="56" r="34" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/><circle cx="160" cy="56" r="25" fill="currentColor" opacity=".1"/><g opacity="0.78"><g transform="translate(47.0 41.0) scale(1.250)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="8" height="7" rx="1.5"/><path d="M4 9V7a2 2 0 0 1 4 0v2"/><rect x="14" y="5" width="8" height="7" rx="1.5"/><path d="M16 5V3.5a2 2 0 0 1 4 0V5"/><rect x="9" y="15" width="7" height="6" rx="1.5"/><path d="M11 15v-1.5a1.5 1.5 0 0 1 3 0V15"/></g></g><g opacity="1"><g transform="translate(143.0 39.0) scale(1.417)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></g></g><g opacity="0.78"><g transform="translate(243.0 41.0) scale(1.250)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="4"/><path d="M12 8v1.5M12 14.5V16M8 12h1.5M14.5 12H16M6 20v1.5M18 20v1.5"/></g></g></svg></div>
         <p class="eyebrow">Secrets governance &middot; Case study</p>
         <h1>Secrets Sprawl &amp; Consolidation</h1>
         <p class="dek">How to find the credentials scattered across code, pipelines and config files, deal with them safely, and move them into one governed service that applications read at runtime.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer’s systems, data or projects.</p>
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Scan</span></li><li><span>Rotate first</span></li><li><span>Clean the history</span></li><li><span>Move to a governed store</span></li><li><span>Block new secrets</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -142,6 +142,7 @@
         </div>
         <p class="body-text" style="margin-top:14px">The order is the point. Rotation happened first because the old values were already exposed. The pipeline moved to a federated identity because that removes the stored key entirely, and the database login moved to runtime fetch because the application could not use federation. The scan and the commit block then stayed on, so the same mistake would be caught the next time someone made it.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Anything a scan finds is treated as compromised.</p></aside><!-- cs-remember:end -->
 
       <section id="roadmap">
         <h2>How to phase it</h2>

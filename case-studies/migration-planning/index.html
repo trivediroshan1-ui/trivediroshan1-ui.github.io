@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-migration-planning.png" />
     <title>Privileged Access Migration Planning · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-6d016cfbe8.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-6d016cfbe8.css">
+    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -71,7 +71,7 @@
     </script>
     <script src="/assets/theme.js?v=20261116a"></script>
     <script src="/assets/palette.js?v=20261116b" defer></script>
-    <script src="/assets/nav.js?v=20261116b" defer></script>
+    <script src="/assets/nav.js?v=20261123a" defer></script>
     <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Privileged Access Migration Planning", "item": "https://roshantrivedi.co.in/case-studies/migration-planning/"}]}]}</script>
   </head>
   <body class="read" style="--c:#c4b5fd">
@@ -81,12 +81,12 @@
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/case-studies/">Work</a></nav>
 
       <header class="hero">
-        <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 112" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g stroke="currentColor" fill="none" stroke-width="1.2" opacity=".55" stroke-dasharray="3 4"><path d="M92 56H124"/><path d="M196 56H228"/></g><g fill="currentColor" opacity=".7"><path d="M124 52l6 4-6 4z"/><path d="M228 52l6 4-6 4z"/></g><circle class="ring" cx="160" cy="56" r="34" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/><circle cx="160" cy="56" r="25" fill="currentColor" opacity=".1"/><g opacity="0.78"><g transform="translate(47.0 41.0) scale(1.250)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="4"/><path d="M12 8v1.5M12 14.5V16M8 12h1.5M14.5 12H16M6 20v1.5M18 20v1.5"/></g></g><g opacity="1"><g transform="translate(143.0 39.0) scale(1.417)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></g></g><g opacity="0.78"><g transform="translate(243.0 41.0) scale(1.250)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="4"/><path d="M12 8v1.5M12 14.5V16M8 12h1.5M14.5 12H16M6 20v1.5M18 20v1.5"/></g></g></svg></div>
         <p class="eyebrow">Migration leadership &middot; Case study</p>
         <h1>Privileged Access Migration Planning</h1>
         <p class="dek">How I plan a move from one privileged access tool to another, so that nothing the old tool quietly did gets lost on the way.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 22 Oct 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer’s systems, data or projects.</p>
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Analyse the current tool</span></li><li><span>Discovery</span></li><li><span>Plan signed off</span></li><li><span>Waves by dependency and risk</span></li><li><span>Cutover: rotate every secret</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -195,6 +195,7 @@
           <div class="good"><h3>What discovery shows and what I do</h3><ul><li>A scheduled job reads it through the old tool&rsquo;s API every night.</li><li>I record the job and its owner, and ask the owner to repoint it to the target before the wave.</li><li>The account moves in the same wave as the job, and is rotated after the job has run once successfully.</li></ul></div>
         </div>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>A migration moves more than accounts.</p></aside><!-- cs-remember:end -->
 
       <section id="waves">
         <h2>Designing the waves</h2>

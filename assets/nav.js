@@ -368,3 +368,31 @@
     if (a && u.scrollWidth > u.clientWidth + 1) u.scrollLeft = Math.max(0, a.parentNode.offsetLeft - u.offsetLeft - 16);
   });
 })();
+
+/* Reading progress: a thin bar along the top of long pages (case studies, articles, books, lab
+   write-ups), so a reader can see how far through they are. Decorative, so screen readers skip it;
+   the on-page contents list already gives the same information in words. Not on the home page. */
+(function () {
+  "use strict";
+  if (location.pathname === "/" || !document.body) return;
+  var bar = document.createElement("div");
+  bar.className = "read-progress";
+  bar.setAttribute("aria-hidden", "true");
+  bar.style.cssText = "position:fixed;top:0;left:0;right:0;height:3px;z-index:60;pointer-events:none;" +
+    "transform-origin:0 50%;transform:scaleX(0);background:var(--grad,linear-gradient(90deg,var(--pal-aqua,currentColor),var(--pal-violet,currentColor) 70%));display:none";
+  document.body.appendChild(bar);
+  var queued = false;
+  function draw() {
+    queued = false;
+    var d = document.documentElement, max = d.scrollHeight - window.innerHeight;
+    // Only on pages several screens long; a short page does not need it.
+    if (max < window.innerHeight * 3) { bar.style.display = "none"; return; }
+    bar.style.display = "block";
+    bar.style.transform = "scaleX(" + Math.min(1, Math.max(0, window.scrollY / max)).toFixed(4) + ")";
+  }
+  function queue() { if (!queued) { queued = true; requestAnimationFrame(draw); } }
+  window.addEventListener("scroll", queue, { passive: true });
+  window.addEventListener("resize", queue);
+  window.addEventListener("load", queue);
+  queue();
+})();
