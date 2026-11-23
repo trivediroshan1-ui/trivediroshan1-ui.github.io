@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ai-coworker.png" />
     <title>AI as a Security Product Co-worker · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -158,6 +158,7 @@
         <p class="body-text">The MCP specification is useful here because it puts the access question in the protocol. Authorization is optional in MCP. When it is used over HTTP, the specification builds on OAuth 2.1 and treats the MCP server as a resource server. It requires clients to say which server a token is for, and it requires servers to accept only tokens issued for them. It also forbids a server from passing the token it received on to another API. If the server calls an upstream service, it uses a separate token for that. For a local server over standard input and output, the specification says to read credentials from the environment instead. I take two things from this. The assistant should hold narrow tokens that work in one place only, and a tool server in the middle should never become a way to launder access.</p>
         <p class="body-text">The specification also has the server tell the client which scope an operation needs, so the client asks for no more and steps up only when an operation requires it. That maps well to the checkpoint: the first request carries read scope, and a write needs a fresh decision.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>If nobody will put their name on it, it does not start.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>Bringing the assistant on, step by step</h2>
@@ -184,7 +185,6 @@
         </ul>
         <p class="body-text">The result is that the lead spends her time on judgment and the assistant spends its time on the reading. If the assistant misreads a row, the evidence column makes that visible in minutes, and nothing has been sent or changed in the meantime.</p>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Every connection to a company tool is an access decision.</p></aside><!-- cs-remember:end -->
 
       <section id="phases">
         <h2>Rolling it out in phases</h2>
@@ -214,6 +214,7 @@
           </tbody></table></div>
         <p class="body-text">On prompt injection, OWASP separates direct injection, where the user&rsquo;s own input changes the model&rsquo;s behavior, from indirect injection, where the model reads outside content such as a website or a file that carries instructions. The second kind matters most for a coworker, because reading outside content is its job. OWASP&rsquo;s mitigations match what I already do for people: restrict privileges to the minimum, put a human in the loop for privileged operations, and keep untrusted content clearly separated. A hijacked prompt can only do what the assistant could already do, which is the argument for narrow access.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>It does not use the owner’s login.</p></aside><!-- cs-remember:end -->
 
       <section id="audit">
         <h2>What an auditor will ask</h2>

@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ai-processing-tax.png" />
     <title>The Processing Tax · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -122,6 +122,7 @@
         <p class="body-text" style="margin-top:6px">Putting a person at the end of the line does not fix the problem, because people who check automated recommendations can drift into agreeing with them. Researchers call this automation bias. In a well-known 1999 study of a simulated flight task, Skitka and colleagues found that people using a slightly unreliable automated aid made two kinds of error: they missed events the system did not flag, and they followed its recommendations even when other valid indicators contradicted them. A 2012 systematic review by Goddard, Roudsari and Wyatt looked at how often this happens, what influences it and what reduces it.</p>
         <p class="body-text">Regulators have noticed too. Article 14 of the EU AI Act, on human oversight of high-risk AI systems, says the people assigned to oversight should remain aware of the possible tendency of automatically relying or over-relying on the output of the system. I read this as support for a design point. If a human is the safeguard, the way the work reaches them decides how well they can do it. A bare yes-or-no ask invites a quick yes. A package that sets out options, a recommendation and a confidence level gives the person something to disagree with.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>It does not judge whether the recommendation is good.</p></aside><!-- cs-remember:end -->
 
       <section id="architecture">
         <h2>How it fits together</h2>
@@ -229,7 +230,6 @@
           <li><h3>Check the recommendations afterwards</h3><p>Because the gate only checks completeness, correctness has to be checked somewhere else. A periodic look at a sample of past packages, comparing what the agent recommended with what the human decided and what happened next, shows whether the recommendations deserve the trust they get.</p><div class="why"><span><b>Guardrail</b>Regular sampled review of past handoffs</span><span><b>Evidence</b>Review notes and agreement rate with human decisions</span></div></li>
         </ol>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>It checks completeness, never correctness, so the human keeps the judgment.</p></aside><!-- cs-remember:end -->
 
       <section id="example">
         <h2>A worked example</h2>
@@ -268,6 +268,7 @@
           </tbody></table></div>
         <p class="body-text" style="margin-top:14px">A caution on the gate itself. A package can be complete and still wrong, and a confident, well-formatted wrong answer is more persuasive than a messy one. The gate keeps the work off the approver. It does not replace the approver&rsquo;s judgment.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The approval is time-boxed, so a stale request lapses instead of waiting to be approved by habit.</p></aside><!-- cs-remember:end -->
 
       <section id="audit">
         <h2>Audit: the questions, and the evidence</h2>

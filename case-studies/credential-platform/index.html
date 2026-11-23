@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-credential-platform.png" />
     <title>Credential Management Platform Strategy · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -149,6 +149,7 @@
           <figcaption>The same loop applies to a database password, an API key or a service account. Retire is part of the loop: a credential nobody uses should not outlive the system it served.</figcaption>
         </figure>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>A credential without an owner is not issued.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>Onboarding an application secret, start to finish</h2>
@@ -167,7 +168,6 @@
           <div class="good"><h3>After</h3><ul><li>The application fetches a short-lived database login when it starts.</li><li>No person ever sees or types it.</li><li>It expires and is reissued automatically.</li><li>The catalog names the owning team, and every read is logged.</li></ul></div>
         </div>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The best credential is one that does not exist.</p></aside><!-- cs-remember:end -->
 
       <section id="roadmap">
         <h2>How to build it without stalling</h2>
@@ -195,6 +195,7 @@
           </tbody></table></div>
         <p class="body-text" style="margin-top:14px">A note on rotation: it is not a goal in itself. For people, NIST&rsquo;s digital identity guidelines (SP 800-63B) tell organizations not to force periodic password changes without evidence of compromise. For machine credentials, rotation, or better still expiry, is how you limit how long a leaked secret works. PCI DSS 4.0.1 asks for service-account credentials to be rotated on a schedule based on risk, and immediately on suspected compromise.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Only what cannot avoid a secret goes into the vault.</p></aside><!-- cs-remember:end -->
 
       <section id="audit">
         <h2>Audit: the questions, and the evidence</h2>

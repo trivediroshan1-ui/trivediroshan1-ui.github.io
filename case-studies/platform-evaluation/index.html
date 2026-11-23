@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-platform-evaluation.png" />
     <title>PAM, NHI & Cloud Platform Evaluation · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -86,7 +86,7 @@
         <p class="dek">How I compare privileged access, non-human identity and cloud security platforms: written scenarios, the same test for every tool, and a decision someone can audit later.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 22 Oct 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer’s systems, data or projects.</p>
-        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Scenarios, weights, pass marks</span></li><li><span>Same scripts for every candidate</span></li><li><span>Score before the argument</span></li><li><span>A decision record</span></li></ol></figure><!-- cs-glance:end -->
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Scenarios, weights, pass marks</span></li><li><span>Same scripts for every candidate</span></li><li><span>Score before anyone argues</span></li><li><span>A decision record</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -137,6 +137,7 @@
         <p class="body-text">Scenario results are one input. I group the rest into nine criteria and agree the weights with the sponsor before the first demo. A few items are gates that a tool must pass regardless of its score, such as a data-residency requirement. Gates are pass or fail and sit outside the weighting.</p>
         <div class="tbl-wrap"><table class="tbl wrap-first stack"><thead><tr><th>Criterion</th><th>What I ask</th><th>Example evidence</th></tr></thead><tbody><tr><td data-label="Criterion">Security controls</td><td data-label="What I ask">Does it enforce least privilege, approval, session control and secret protection in our scenarios?</td><td data-label="Example evidence">POC script results</td></tr><tr><td data-label="Criterion">Coverage</td><td data-label="What I ask">How many of our scenarios does it handle directly, and how many need a workaround?</td><td data-label="Example evidence">Scenario catalog, marked per tool</td></tr><tr><td data-label="Criterion">Integration</td><td data-label="What I ask">Does it work with our service desk, directory and SIEM without custom glue?</td><td data-label="Example evidence">Integration test with ServiceNow, Entra and the SIEM</td></tr><tr><td data-label="Criterion">High availability and DR</td><td data-label="What I ask">What happens to access when it is down, and how fast can it be restored?</td><td data-label="Example evidence">Outage test and recovery notes</td></tr><tr><td data-label="Criterion">Deployment model</td><td data-label="What I ask">Does SaaS, self-hosted or hybrid fit our regions and data rules?</td><td data-label="Example evidence">Architecture review</td></tr><tr><td data-label="Criterion">Operating model and skills</td><td data-label="What I ask">Who runs it, what skills do they need, and how much daily effort does it take?</td><td data-label="Example evidence">Run-book draft and effort estimate</td></tr><tr><td data-label="Criterion">Audit evidence</td><td data-label="What I ask">Can I answer who, what, when and approved by whom, from the tool itself?</td><td data-label="Example evidence">Sample reports and log export</td></tr><tr><td data-label="Criterion">Licensing and total cost</td><td data-label="What I ask">How is it priced, and what does it cost once services, training and support are in?</td><td data-label="Example evidence">Quote with assumptions written down</td></tr><tr><td data-label="Criterion">Vendor viability, roadmap and support</td><td data-label="What I ask">Will the vendor and the product be here in five years, and how do they handle problems?</td><td data-label="Example evidence">Due-diligence pack, references, support terms</td></tr></tbody></table></div>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Every bit of vendor help is logged, because help during a trial may not exist in production.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>The evaluation, step by step</h2>
@@ -163,7 +164,6 @@
           <li><strong>Failure cases on purpose.</strong> Take the vault offline, break a rotation, revoke access while a session is open, lose the connection to the directory. The way a tool fails says more than the way it works.</li>
         </ul>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Feature lists do not settle a platform decision.</p></aside><!-- cs-remember:end -->
 
       <section id="example">
         <h2>A worked example of scoring</h2>
@@ -214,6 +214,7 @@
           <li><b>6. Procure and hand over</b>Licenses, then the SOW, engagement letter, training and support. Scripts become acceptance tests.<small><em>Done when</em>Professional services have the scenarios and the architecture inputs.</small></li>
         </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Where scores differ by two points or more, we go back to the evidence and not to opinion.</p></aside><!-- cs-remember:end -->
 
       <section id="guardrails">
         <h2>Guardrails that keep it honest</h2>

@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png" />
     <title>Non-Human Identity at Scale · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -144,6 +144,7 @@
           <li><h3>Guard the front door</h3><p>The cleanup only holds if new identities arrive through a path that asks for an owner, a purpose and an expiry. Secret scanning on commits keeps new keys out of code. Anything created outside the path shows up in the next scan and counts against the owner of the system.</p><div class="why"><span><b>Guardrail</b>Creation path requires owner and expiry, secret scanning on commit</span><span><b>Evidence</b>Blocked-commit log, exceptions register</span></div></li>
         </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Ownership has to be accepted, because being named by someone else does not make a person accountable.</p></aside><!-- cs-remember:end -->
 
       <section id="scoring">
         <h2>Scoring: how I rank the list</h2>
@@ -180,7 +181,6 @@
         <p class="body-text" style="margin-top:14px">The lesson I draw from this is that ownership and rotation cut the score a long way and still left it at 7. The privilege cut and the removal of the stored secret finished the job. That is why the order in step 5 starts with retiring and replacing, and leaves rotation for last.</p>
         <p class="body-text">What the score leaves out matters too. It does not see whether the secret has already been found in code, or whether the identity has been used in the last quarter. Once the inventory is trustworthy I add those two as extra factors. An identity with a known exposure moves to the top whatever its other numbers say.</p>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The best fix removes the secret.</p></aside><!-- cs-remember:end -->
 
       <section id="federation">
         <h2>Removing the secret: federation and short-lived tokens</h2>
@@ -211,6 +211,7 @@
           <li><b>6. Guard creation and run it as a routine</b>Require owner and expiry at creation, schedule rescans and put owner attestation on a calendar.<small><em>Done when</em>New identities outside the path appear in the next scan and are acted on.</small></li>
         </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>A half-filled record is still better than no record.</p></aside><!-- cs-remember:end -->
 
       <section id="guardrails">
         <h2>Guardrails that keep it honest</h2>

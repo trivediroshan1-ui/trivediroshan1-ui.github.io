@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-vendor-privileged-access.png" />
     <title>Third-Party Privileged Access Governance · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-f3fddb59c6.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
+    <link rel="stylesheet" href="/assets/b-f3fddb59c6.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -131,6 +131,7 @@
         </figure>
         <p class="body-text">The broker is what removes the standing network path. A VPN gives a vendor a place on your network and trusts them to behave once inside. A broker gives them one session to one target, which the company opens and closes. Because the broker also records, the same component answers the audit question about what actually happened.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Nobody gets a shared login, including the team that “only ever needs one”.</p></aside><!-- cs-remember:end -->
 
       <section id="workflow">
         <h2>The workflow, one step at a time</h2>
@@ -145,7 +146,6 @@
           <div class="good"><h3>After</h3><ul><li>The engineer has a named account and a sponsor from the application team.</li><li>The request is for one database server, a read-only diagnostic role, for three days.</li><li>The sponsor approves after reading the plain-language summary, then the engineer signs in with MFA and works through the broker.</li><li>The session is recorded. On day three the access closes, and a further day needs a new approval.</li></ul></div>
         </div>
       </section>
-      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Expiry does the offboarding.</p></aside><!-- cs-remember:end -->
 
       <section id="emergency">
         <h2>When a vendor is needed at 2 a.m.</h2>
@@ -185,6 +185,7 @@
             <tr><td data-label="Guardrail">Leaver and idle checks</td><td data-label="What it stops">Accounts that stay open after the person has gone</td><td data-label="How you check it">Count of idle external accounts, and time to remove after a leaver notice</td></tr>
             </tbody></table></div>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The vendor has no VPN account and no inbound route to the network.</p></aside><!-- cs-remember:end -->
 
       <section id="audit">
         <h2>Audit: the questions, and the evidence</h2>
