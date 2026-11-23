@@ -5,7 +5,7 @@ obsolete <meta name="keywords"> tag. Safe to re-run: it rewrites one block marke
   * every page: BreadcrumbList (Home > section > page)
   * home: Person (expanded) + WebSite
   * /book/: Book          * /labs/: CollectionPage + SoftwareSourceCode (HumanGate)
-  * /resume/: ProfilePage  * /tools/tier-check/: WebApplication
+  * /background/: ProfilePage  * /tools/tier-check/: WebApplication
   * MCP lab pages, /ai/, /now/, /design-system/: WebPage with author
 
 Run from anywhere:  python3 scripts/add-structured-data.py
@@ -17,7 +17,7 @@ SITE = "https://roshantrivedi.co.in"
 PERSON_ID = SITE + "/#person"
 AUTHOR = {"@id": PERSON_ID}
 
-CREDS = [  # current credentials only; lapsed ones stay on the résumé page, not in structured data
+CREDS = [  # current credentials only; lapsed ones stay on the background page, not in structured data
     ("SailPoint Identity Security Leader Credential", "SailPoint", "https://api.badgr.io/public/assertions/H46D7mXzQ7edGUcrimvcXg"),
     ("CyberArk Certified Delivery Engineer - CPC", "CyberArk", "https://www.credly.com/badges/1e903be6-002b-48c5-9cc4-e5c262cb8bd7/public_url"),
     ("CyberArk Certified Delivery Engineer - PAM", "CyberArk", None),
@@ -87,7 +87,7 @@ def graph_for(rel, h):
                   "codeRepository": "https://github.com/trivediroshan1-ui/mcp-human-approval-gateway",
                   "programmingLanguage": "JavaScript", "license": "https://opensource.org/licenses/MIT",
                   "description": "Privacy-safe research prototype for deterministic policy and human approval of AI-agent tool actions."})
-    elif rel == "resume/index.html":
+    elif rel == "background/index.html":
         g.append({"@type": "ProfilePage", "name": name, "url": SITE + url, "mainEntity": PERSON})
     elif rel == "tools/tier-check/index.html":
         g.append({"@type": "WebApplication", "name": name, "url": SITE + url, "description": desc, "applicationCategory": "SecurityApplication",

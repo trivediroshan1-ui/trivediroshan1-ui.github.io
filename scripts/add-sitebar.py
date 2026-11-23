@@ -5,7 +5,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SKIP = {"index.html", "404.html", "design-system/index.html", "secure-india-exams/index.html", "worker"}
 LINKS = [("Case studies", "/case-studies/", "/case-studies"), ("Writing", "/writing/", "/writing"),
          ("MCP lab", "/mcp-lab/", "/mcp-lab"), ("Book", "/book/", "/book"), ("About", "/about/", "/about"),
-         ("R&eacute;sum&eacute;", "/resume/", "/resume")]
+         ("Background", "/background/", "/background")]
 def nav(path):
     items = ""
     for label, href, prefix in LINKS:
@@ -20,7 +20,7 @@ NEXT = '''<aside class="hg-next" aria-labelledby="hg-next-t">
         <div class="grid">
           <a href="/case-studies/" style="--k:#7df2d0"><b>All case studies</b><span>Privileged access, credentials, governance and agent identity.</span></a>
           <a href="/#mcp-flow" style="--k:#4de2ff"><b>The MCP approval lab</b><span>Follow one request through the gateway, with the tests behind it.</span></a>
-          <a href="/Roshan_Trivedi_Resume.pdf" style="--k:#c4b5fd"><b>R&eacute;sum&eacute;</b><span>Roles, focus areas and background (PDF).</span></a>
+          <a href="/background/" style="--k:#c4b5fd"><b>Background</b><span>Experience, focus areas and certifications.</span></a>
           <a href="/#contact" style="--k:#f7c873"><b>Contact</b><span>LinkedIn, GitHub and email, all in one place.</span></a>
         </div>
       </aside>

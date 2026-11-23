@@ -101,7 +101,7 @@
     hire: ["role", "leadership"], experience: ["years", "career"], exams: ["exam", "nta"], nta: ["exam", "national"],
     privileged: ["pam"], "non-human": ["nhi"], machine: ["nhi", "non-human"], standing: ["zsp"], "just-in-time": ["jit"],
     secrets: ["vault", "credential"], certification: ["certified", "cyberark", "sailpoint"], certifications: ["certified", "cyberark", "sailpoint"],
-    recruiter: ["resume", "role"], roles: ["experience", "career"], years: ["experience", "career"]
+    roles: ["experience", "career"], years: ["experience", "career"]
   };
   function stem(w) {
     w = w.replace(/'s$/, "");
@@ -221,7 +221,7 @@
       ],
     },
     {
-      test: /^\/(resume\/?)?$/,
+      test: /^\/(background\/?)?$/,
       suggestions: [
         "Years and roles",
         "Certifications",
@@ -320,7 +320,7 @@
       '<div class="sc-actions">' +
       '<a class="sc-action" href="mailto:trivedi.roshan1@gmail.com">Email</a>' +
       '<a class="sc-action" href="https://www.linkedin.com/in/roshan-trivedi-ciam/" target="_blank" rel="noopener">LinkedIn</a>' +
-      '<a class="sc-action" href="/resume/">R\u00e9sum\u00e9</a>' +
+      '<a class="sc-action" href="/background/">Background</a>' +
       "</div>"
     );
   }
@@ -334,7 +334,7 @@
     if (DATA_STATE === "loading") return;
     DATA_STATE = "loading";
     var s = document.createElement("script");
-    s.src = "/assets/chatbot-data.js?v=20261115i";
+    s.src = "/assets/chatbot-data.js?v=20261123a";
     s.onload = s.onerror = function () { DATA_STATE = "ready"; var w = DATA_WAITERS; DATA_WAITERS = []; w.forEach(function (f) { f(); }); };
     document.head.appendChild(s);
   }

@@ -135,10 +135,10 @@
           ["/now/", "What I am doing now", "clock"],
           ["/method/", "How I test: the method behind every lab", "check"],
           ["/ai/", "How I use AI, and where I stop", "spark"],
-          ["/resume/", "Résumé", "doc"]] },
+          ["/background/", "Background", "doc"]] },
         { title: "Get in touch", k: "gov", items: [
-          ["/#contact", "LinkedIn, GitHub and email", "mail"],
-          ["/Roshan_Trivedi_Resume.pdf", "Résumé (PDF)", "arrow"]] }
+          ["/#contact", "LinkedIn, GitHub and email", "mail"]
+          ] }
       ],
       all: ["/#contact", "Say hello"]
     }

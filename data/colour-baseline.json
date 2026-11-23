@@ -1005,14 +1005,6 @@
  "copyright/index.html": [
   "#4de2ff"
  ],
- "cover-letter/index.html": [
-  "#000000",
-  "#070a1f",
-  "#4de2ff",
-  "#58e6f6",
-  "#a78bfa",
-  "#ffffff"
- ],
  "glossary/index.html": [
   "#4de2ff",
   "#7df2d0",
@@ -1190,16 +1182,6 @@
  "privacy/index.html": [
   "#4de2ff"
  ],
- "resume/index.html": [
-  "#070a1f",
-  "#4de2ff",
-  "#58e6f6",
-  "#7df2d0",
-  "#a78bfa",
-  "#c4b5fd",
-  "#f7c873",
-  "#ffffff"
- ],
  "scripts/agl-book.css": [
   "#05061a",
   "#0a7285",
@@ -1232,14 +1214,6 @@
   "#fbe3e9",
   "#fdeed5",
   "#ffffff"
- ],
- "scripts/resume/print.css": [
-  "#11131f",
-  "#1b1d2a",
-  "#3b3ed1",
-  "#4a4f68",
-  "#9aa0b8",
-  "#c9cdf2"
  ],
  "secure-india-exams/index.html": [
   "#006d5f",
@@ -1320,5 +1294,15 @@
   "#c4b5fd",
   "#f1f5f9",
   "#f7c873"
+ ],
+ "background/index.html": [
+  "#070a1f",
+  "#4de2ff",
+  "#58e6f6",
+  "#7df2d0",
+  "#a78bfa",
+  "#c4b5fd",
+  "#f7c873",
+  "#ffffff"
  ]
 }

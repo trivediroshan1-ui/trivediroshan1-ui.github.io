@@ -10,9 +10,9 @@
   bar.className = 'nextstep';
   bar.setAttribute('aria-label', 'Next step');
   bar.innerHTML =
-    '<span class="ns-q">Hiring or curious?</span>' +
+    '<span class="ns-q">Questions or a problem to share?</span>' +
     '<a class="ns-p" href="https://www.linkedin.com/in/roshan-trivedi-ciam/">Message me</a>' +
-    '<a class="ns-s" href="/resume/">Résumé</a>' +
+    '<a class="ns-s" href="/background/">Background</a>' +
     '<button type="button" class="ns-x" aria-label="Hide this bar">×</button>';
   document.body.appendChild(bar);
 
