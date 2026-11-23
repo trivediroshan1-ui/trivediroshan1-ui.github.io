@@ -182,7 +182,7 @@ def write_book(chapters, *, book, pdf, title, desc, lede, ey, short, crumb, shel
           <p class="ey">{ey}</p>
           <h1 id="wb-h">{html.escape(title)}</h1>
           <p class="lede">{lede}</p>
-          <p class="wb-pdf"><a href="{pdf}">Download the PDF</a> · <a href="{crumb[-1][1]}">The lab</a> · Creative Commons Attribution 4.0</p>
+          <p class="wb-pdf"><a href="{pdf}">Download the PDF</a> · <a href="{pdf[:-4]}-accessible.pdf">Screen reader PDF (tagged)</a> · <a href="{crumb[-1][1]}">The lab</a> · Creative Commons Attribution 4.0</p>
           <h2>Contents</h2>
           <ol class="wb-toc">{toc}</ol>
         </div>
