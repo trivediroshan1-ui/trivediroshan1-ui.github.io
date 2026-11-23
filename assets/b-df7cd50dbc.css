@@ -201,6 +201,87 @@ a.hg-card:hover, .hg-card.is-interactive:hover { border-color: var(--cl, var(--h
 @font-face { font-family: 'Lora'; font-style: italic; font-display: swap; font-weight: 400 700;
   src: url(/assets/lora-latin-italic-var.woff2) format('woff2'), url(/assets/lora-latin-italic-var.woff) format('woff'); }
 
+/* polish.css */
+/* Small, additive touches shared by every case-study, writing and index page.
+   Nothing here changes layout: it adds a reading-progress line, previous/next
+   navigation, nicer text selection and a clean print view. */
+::selection { background: rgba(88, 230, 246, 0.28); color: #fff; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Reading-progress line at the very top (CSS only; ignored where unsupported) */
+body::before {
+  content: ""; position: fixed; z-index: 90; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--pal-cyan), var(--pal-mint), var(--pal-amber));
+  transform-origin: 0 50%; transform: scaleX(0); pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    body::before { animation: rt-progress linear both; animation-timeline: scroll(root); }
+    @keyframes rt-progress { to { transform: scaleX(1); } }
+  }
+}
+
+/* Previous / next case study */
+.pager { padding: 40px 20px 8px; }
+main .pager { padding: 8px 0 0; }
+.pager-inner { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
+@media (min-width: 640px) { .pager-inner { grid-template-columns: 1fr 1fr; } }
+.pager a {
+  --c: var(--pal-cyan); display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+  padding: 16px 18px; border-radius: 14px; color: var(--pal-snow);
+  background: rgba(16, 26, 44, 0.6); border: 1px solid var(--pal-navy-line);
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.pager a:hover, .pager a:focus-visible { transform: translateY(-2px); border-color: color-mix(in srgb, var(--c) 55%, transparent); background: rgba(16, 26, 44, 0.9); }
+.pager small { font: 600 12px/1.3 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--pal-slate); display: flex; align-items: center; gap: 8px; }
+.pager small i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.pager strong { font: 700 16px/1.3 "DM Sans", system-ui, sans-serif; letter-spacing: -0.01em; }
+.pager .next { text-align: right; }
+.pager .next small { justify-content: flex-end; }
+.pager .all strong { color: var(--pal-slate); font-weight: 600; }
+
+@media print {
+  body::before, .pager, #nhi-announce, [class^="sc-"], [id^="sc-"] { display: none !important; }
+  body { background: #fff !important; color: #111 !important; }
+  a { color: #0b5cad !important; }
+}
+
+/* Keyboard access */
+:focus-visible { outline: 2px solid var(--c, var(--pal-cyan)); outline-offset: 3px; border-radius: 4px; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 200; background: var(--pal-cyan); color: #03121a; font-weight: 700; padding: 10px 16px; border-radius: 10px; text-decoration: none; }
+.skip:focus { top: 12px; }
+@media print { .skip, .filters, .filter-count { display: none !important; } }
+
+/* Animated pull quote */
+.pull { position: relative; margin: 22px 0 10px; padding: 10px 0 10px 26px; font-family: var(--display, "DM Sans", system-ui, sans-serif); font-size: clamp(20px, 3.6vw, 27px); font-weight: 700; line-height: 1.38; letter-spacing: -.01em; }
+.pull p { margin: 0; text-wrap: balance; }
+.pull::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 2px; background: linear-gradient(180deg, var(--pal-cyan), var(--pal-mint)); transform-origin: top; }
+.pull::after { content: "\201C"; position: absolute; left: 22px; top: -34px; font-size: 110px; line-height: 1; color: var(--pal-cyan); opacity: .14; pointer-events: none; }
+.pull span { display: inline-block; }
+.pull .hl { background: linear-gradient(100deg, var(--pal-cyan) 20%, var(--pal-mint) 45%, var(--pal-lilac) 60%, var(--pal-cyan) 85%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: pull-shimmer 7s linear infinite; }
+.pull cite { display: block; margin-top: 12px; font: 12px var(--mono, monospace); letter-spacing: .08em; color: var(--muted, var(--pal-slate)); font-style: normal; }
+@keyframes pull-shimmer { to { background-position: -250% 0; } }
+@keyframes pull-word { from { opacity: 0; transform: translateY(14px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes pull-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes pull-fade { from { opacity: 0; } to { opacity: 1; } }
+@supports (animation-timeline: view()) {
+  .pull::before { animation: pull-bar linear both; animation-timeline: view(); animation-range: entry 5% entry 70%; }
+  .pull span { animation: pull-word linear both; animation-timeline: view(); animation-range: entry calc(6% + var(--i) * 2.2%) entry calc(34% + var(--i) * 2.2%); }
+  .pull cite { animation: pull-fade linear both; animation-timeline: view(); animation-range: entry 70% entry 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pull::before, .pull span, .pull cite { animation: none !important; }
+  .pull .hl { animation: none !important; background-position: 0 0; }
+}
+@media print { .pull .hl { color: inherit; background: none; -webkit-background-clip: initial; } .pull::after { display: none; } }
+
+/* Touch targets: stand-alone links get at least 28px of height (WCAG 2.2 asks for 24px). Links inside sentences are untouched. */
+.back, .page-footer a, .footer-links a, .nav-desktop a, .start-grid a, .site-footer a, .filters + a { display: inline-flex; align-items: center; min-height: 28px; }
+@media (pointer: coarse) { .back, .page-footer a, .footer-links a, .start-grid a, .site-footer a { min-height: 40px; } }
+
+main table, article table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
 /* site.css */
 /* Shared styles for the standard case-study pages. Page-specific pages (the hand-built case studies, the exam study) keep their own <style>. */
 :root {
@@ -418,87 +499,6 @@ table.tbl { border-collapse: collapse; width: 100%; min-width: 560px; font-size:
 
 .diagram-card .ic { fill: none; stroke: var(--c); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
-/* polish.css */
-/* Small, additive touches shared by every case-study, writing and index page.
-   Nothing here changes layout: it adds a reading-progress line, previous/next
-   navigation, nicer text selection and a clean print view. */
-::selection { background: rgba(88, 230, 246, 0.28); color: #fff; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-/* Reading-progress line at the very top (CSS only; ignored where unsupported) */
-body::before {
-  content: ""; position: fixed; z-index: 90; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--pal-cyan), var(--pal-mint), var(--pal-amber));
-  transform-origin: 0 50%; transform: scaleX(0); pointer-events: none;
-}
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    body::before { animation: rt-progress linear both; animation-timeline: scroll(root); }
-    @keyframes rt-progress { to { transform: scaleX(1); } }
-  }
-}
-
-/* Previous / next case study */
-.pager { padding: 40px 20px 8px; }
-main .pager { padding: 8px 0 0; }
-.pager-inner { max-width: 820px; margin: 0 auto; display: grid; gap: 12px; }
-@media (min-width: 640px) { .pager-inner { grid-template-columns: 1fr 1fr; } }
-.pager a {
-  --c: var(--pal-cyan); display: flex; flex-direction: column; gap: 6px; text-decoration: none;
-  padding: 16px 18px; border-radius: 14px; color: var(--pal-snow);
-  background: rgba(16, 26, 44, 0.6); border: 1px solid var(--pal-navy-line);
-  transition: transform .2s ease, border-color .2s ease, background .2s ease;
-}
-.pager a:hover, .pager a:focus-visible { transform: translateY(-2px); border-color: color-mix(in srgb, var(--c) 55%, transparent); background: rgba(16, 26, 44, 0.9); }
-.pager small { font: 600 12px/1.3 "JetBrains Mono", ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: var(--pal-slate); display: flex; align-items: center; gap: 8px; }
-.pager small i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 10px var(--c); }
-.pager strong { font: 700 16px/1.3 "DM Sans", system-ui, sans-serif; letter-spacing: -0.01em; }
-.pager .next { text-align: right; }
-.pager .next small { justify-content: flex-end; }
-.pager .all strong { color: var(--pal-slate); font-weight: 600; }
-
-@media print {
-  body::before, .pager, #nhi-announce, [class^="sc-"], [id^="sc-"] { display: none !important; }
-  body { background: #fff !important; color: #111 !important; }
-  a { color: #0b5cad !important; }
-}
-
-/* Keyboard access */
-:focus-visible { outline: 2px solid var(--c, var(--pal-cyan)); outline-offset: 3px; border-radius: 4px; }
-.skip { position: absolute; left: 12px; top: -60px; z-index: 200; background: var(--pal-cyan); color: #03121a; font-weight: 700; padding: 10px 16px; border-radius: 10px; text-decoration: none; }
-.skip:focus { top: 12px; }
-@media print { .skip, .filters, .filter-count { display: none !important; } }
-
-/* Animated pull quote */
-.pull { position: relative; margin: 22px 0 10px; padding: 10px 0 10px 26px; font-family: var(--display, "DM Sans", system-ui, sans-serif); font-size: clamp(20px, 3.6vw, 27px); font-weight: 700; line-height: 1.38; letter-spacing: -.01em; }
-.pull p { margin: 0; text-wrap: balance; }
-.pull::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 2px; background: linear-gradient(180deg, var(--pal-cyan), var(--pal-mint)); transform-origin: top; }
-.pull::after { content: "\201C"; position: absolute; left: 22px; top: -34px; font-size: 110px; line-height: 1; color: var(--pal-cyan); opacity: .14; pointer-events: none; }
-.pull span { display: inline-block; }
-.pull .hl { background: linear-gradient(100deg, var(--pal-cyan) 20%, var(--pal-mint) 45%, var(--pal-lilac) 60%, var(--pal-cyan) 85%); background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: pull-shimmer 7s linear infinite; }
-.pull cite { display: block; margin-top: 12px; font: 12px var(--mono, monospace); letter-spacing: .08em; color: var(--muted, var(--pal-slate)); font-style: normal; }
-@keyframes pull-shimmer { to { background-position: -250% 0; } }
-@keyframes pull-word { from { opacity: 0; transform: translateY(14px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
-@keyframes pull-bar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-@keyframes pull-fade { from { opacity: 0; } to { opacity: 1; } }
-@supports (animation-timeline: view()) {
-  .pull::before { animation: pull-bar linear both; animation-timeline: view(); animation-range: entry 5% entry 70%; }
-  .pull span { animation: pull-word linear both; animation-timeline: view(); animation-range: entry calc(6% + var(--i) * 2.2%) entry calc(34% + var(--i) * 2.2%); }
-  .pull cite { animation: pull-fade linear both; animation-timeline: view(); animation-range: entry 70% entry 100%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .pull::before, .pull span, .pull cite { animation: none !important; }
-  .pull .hl { animation: none !important; background-position: 0 0; }
-}
-@media print { .pull .hl { color: inherit; background: none; -webkit-background-clip: initial; } .pull::after { display: none; } }
-
-/* Touch targets: stand-alone links get at least 28px of height (WCAG 2.2 asks for 24px). Links inside sentences are untouched. */
-.back, .page-footer a, .footer-links a, .nav-desktop a, .start-grid a, .site-footer a, .filters + a { display: inline-flex; align-items: center; min-height: 28px; }
-@media (pointer: coarse) { .back, .page-footer a, .footer-links a, .start-grid a, .site-footer a { min-height: 40px; } }
-
-main table, article table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-
 /* casestudy.css */
 /* Case-study page extras: floating contents list, reading time, video block. */
 .rt-toc { position: fixed; top: 110px; z-index: 40; max-height: calc(100vh - 150px); overflow: auto; font-family: "DM Sans", system-ui, sans-serif; }
@@ -514,6 +514,27 @@ main table, article table { display: block; max-width: 100%; overflow-x: auto; -
 .watch { margin: 18px 0 0; display: grid; gap: 12px; }
 .watch video { width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; border: 1px solid var(--pal-navy-line); background: #050b14; }
 .watch figcaption { color: var(--pal-slate); font-size: 13px; line-height: 1.6; }
+
+/* At a glance: the study's own flow in four or five steps, under the title.
+   Arrows are decorative (empty alt text), so screen readers hear a plain numbered list. */
+.cs-glance { margin: 18px 0 0; }
+.read .cs-glance figcaption, .cs-glance figcaption { font-family: var(--hg-font-mono); font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--hg-ink-3); margin: 0 0 10px; }
+.cs-glance ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 0; counter-reset: glance; }
+.cs-glance li { counter-increment: glance; display: flex; align-items: center; }
+.cs-glance li + li::before { content: "\2192" / ""; margin: 0 10px; color: var(--hg-ink-3); font-size: 15px; }
+.cs-glance li span { display: inline-flex; align-items: center; gap: 9px; padding: 8px 14px 8px 8px; border: 1px solid var(--hg-line-strong); border-radius: 12px; background: var(--hg-surface-2); color: var(--hg-ink); font-size: 14.5px; font-weight: 600; line-height: 1.3; }
+.cs-glance li span::before { content: counter(glance); flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 8px; background: color-mix(in srgb, var(--c, var(--pal-violet)) 26%, transparent); color: var(--hg-ink); font-family: var(--hg-font-mono); font-size: 12px; font-weight: 700; }
+@media (max-width: 700px) {
+  .cs-glance ol { flex-direction: column; align-items: stretch; gap: 0; }
+  .cs-glance li { flex-direction: column; align-items: flex-start; }
+  .cs-glance li + li::before { content: "\2193" / ""; margin: 3px 0 3px 15px; }
+  .cs-glance li span { width: 100%; box-sizing: border-box; }
+}
+
+/* If you remember one thing: one sentence copied from the study itself, halfway down. */
+.cs-remember { margin: 36px 0; padding: 20px 24px; border-left: 4px solid color-mix(in srgb, var(--c, var(--pal-violet)) 80%, var(--hg-ink)); border-radius: 0 14px 14px 0; background: var(--hg-surface-2); }
+.cs-remember .k { margin: 0 0 6px; font-family: var(--hg-font-mono); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--hg-ink-3); }
+.cs-remember p:last-child { margin: 0; font-family: var(--hg-font-display); font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.4; font-weight: 600; color: var(--hg-ink); }
 
 /* theme.css */
 /* Light theme. Dark stays the default; the toggle sets data-theme="light" on <html>. */

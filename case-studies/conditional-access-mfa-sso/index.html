@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-conditional-access-mfa-sso.png" />
     <title>Conditional Access, MFA and SSO · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-6d016cfbe8.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-6d016cfbe8.css">
+    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -71,7 +71,7 @@
     </script>
     <script src="/assets/theme.js?v=20261116a"></script>
     <script src="/assets/palette.js?v=20261116b" defer></script>
-    <script src="/assets/nav.js?v=20261116b" defer></script>
+    <script src="/assets/nav.js?v=20261123a" defer></script>
     <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Conditional Access, MFA and SSO", "item": "https://roshantrivedi.co.in/case-studies/conditional-access-mfa-sso/"}]}]}</script>
   </head>
   <body class="read" style="--c:#4de2ff">
@@ -81,13 +81,13 @@
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/case-studies/">Work</a></nav>
 
       <header class="hero">
-        <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 112" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g stroke="currentColor" fill="none" stroke-width="1.2" opacity=".55" stroke-dasharray="3 4"><path d="M92 56H124"/><path d="M196 56H228"/></g><g fill="currentColor" opacity=".7"><path d="M124 52l6 4-6 4z"/><path d="M228 52l6 4-6 4z"/></g><circle class="ring" cx="160" cy="56" r="34" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/><circle cx="160" cy="56" r="25" fill="currentColor" opacity=".1"/><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="76" cy="48" r="7"/><path d="M63 70c2-8 8-12 13-12s11 4 13 12"/><path d="M160 38l15 6v10c0 10-7 17-15 20-8-3-15-10-15-20V44z"/><path d="M153 56l5 5 9-10"/><rect x="236" y="40" width="34" height="30" rx="4"/><path d="M236 49h34"/><circle cx="242" cy="44.5" r="1" fill="currentColor"/></g></svg></div>
         <p class="eyebrow">Identity and access &middot; Case study</p>
         <h1>Conditional Access, MFA and SSO</h1>
         <p class="dek">How to put sign-in rules in front of every app: one front door, proof that holds up against phishing, and rules that decide when to ask for more. Rolled out without locking anyone out.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 4 Nov 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer&rsquo;s systems, data or projects.</p>
         <p class="meta">I tested these ideas in a public lab: <a href="/ca-mfa-lab/">130 conditional access, MFA and AI agent cases</a>, with every guess locked before the code ran.</p>
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>Admins first</span></li><li><span>Phishing-resistant methods</span></li><li><span>Every rule report-only first</span></li><li><span>Plan the recovery path</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -138,6 +138,7 @@
           <li><strong>Remove the exceptions.</strong> Every exclusion has an owner and an end date, and is reviewed.</li>
         </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The rollout fails at recovery, not at sign-in.</p></aside><!-- cs-remember:end -->
 
       <section id="naming">
         <h2>How I name and test rules</h2>

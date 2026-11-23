@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-non-human-identity-at-scale.png" />
     <title>Non-Human Identity at Scale · Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-6d016cfbe8.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-6d016cfbe8.css">
+    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -70,7 +70,7 @@
     </script>
     <script src="/assets/theme.js?v=20261116a"></script>
     <script src="/assets/palette.js?v=20261116b" defer></script>
-    <script src="/assets/nav.js?v=20261116b" defer></script>
+    <script src="/assets/nav.js?v=20261123a" defer></script>
     <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Non-Human Identity at Scale", "item": "https://roshantrivedi.co.in/case-studies/non-human-identity-at-scale/"}]}]}</script>
   </head>
   <body class="read" style="--c:#4de2ff">
@@ -80,12 +80,12 @@
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/case-studies/">Work</a></nav>
 
       <header class="hero">
-        <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 112" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g stroke="currentColor" fill="none" stroke-width="1.2" opacity=".55" stroke-dasharray="3 4"><path d="M92 56H124"/><path d="M196 56H228"/></g><g fill="currentColor" opacity=".7"><path d="M124 52l6 4-6 4z"/><path d="M228 52l6 4-6 4z"/></g><circle class="ring" cx="160" cy="56" r="34" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/><circle cx="160" cy="56" r="25" fill="currentColor" opacity=".1"/><g opacity="0.78"><g transform="translate(44.7 29.0) scale(0.775)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g><g transform="translate(60.7 46.7) scale(0.775)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01M11 7.5h6M11 16.5h6"/></g><g transform="translate(44.7 64.4) scale(0.775)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g></g><g opacity="1"><g transform="translate(143.0 39.0) scale(1.417)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></g></g><g opacity="0.78"><g transform="translate(243.0 41.0) scale(1.250)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v4h-4"/></g></g></svg></div>
         <p class="eyebrow">Emerging practice &middot; Case study</p>
         <h1>Non-Human Identity at Scale</h1>
         <p class="dek">How to find the service accounts, keys, tokens and agents nobody wrote down, give each one an owner, rank them by risk, and replace the long-lived ones with credentials that expire.</p>
         <p class="meta">Independent practitioner guide &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
         <p class="meta">A general guide from my own practice and public sources. Not a description of any employer’s systems, data or projects.</p>
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>One inventory</span></li><li><span>An owner on every entry</span></li><li><span>Score it into a queue</span></li><li><span>Remove the secret where you can</span></li><li><span>Rotate what is left</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -180,6 +180,7 @@
         <p class="body-text" style="margin-top:14px">The lesson I draw from this is that ownership and rotation cut the score a long way and still left it at 7. The privilege cut and the removal of the stored secret finished the job. That is why the order in step 5 starts with retiring and replacing, and leaves rotation for last.</p>
         <p class="body-text">What the score leaves out matters too. It does not see whether the secret has already been found in code, or whether the identity has been used in the last quarter. Once the inventory is trustworthy I add those two as extra factors. An identity with a known exposure moves to the top whatever its other numbers say.</p>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>The best fix removes the secret.</p></aside><!-- cs-remember:end -->
 
       <section id="federation">
         <h2>Removing the secret: federation and short-lived tokens</h2>

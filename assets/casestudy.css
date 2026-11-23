@@ -12,3 +12,24 @@
 .watch { margin: 18px 0 0; display: grid; gap: 12px; }
 .watch video { width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; border: 1px solid var(--pal-navy-line); background: #050b14; }
 .watch figcaption { color: var(--pal-slate); font-size: 13px; line-height: 1.6; }
+
+/* At a glance: the study's own flow in four or five steps, under the title.
+   Arrows are decorative (empty alt text), so screen readers hear a plain numbered list. */
+.cs-glance { margin: 18px 0 0; }
+.read .cs-glance figcaption, .cs-glance figcaption { font-family: var(--hg-font-mono); font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--hg-ink-3); margin: 0 0 10px; }
+.cs-glance ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 0; counter-reset: glance; }
+.cs-glance li { counter-increment: glance; display: flex; align-items: center; }
+.cs-glance li + li::before { content: "\2192" / ""; margin: 0 10px; color: var(--hg-ink-3); font-size: 15px; }
+.cs-glance li span { display: inline-flex; align-items: center; gap: 9px; padding: 8px 14px 8px 8px; border: 1px solid var(--hg-line-strong); border-radius: 12px; background: var(--hg-surface-2); color: var(--hg-ink); font-size: 14.5px; font-weight: 600; line-height: 1.3; }
+.cs-glance li span::before { content: counter(glance); flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 8px; background: color-mix(in srgb, var(--c, var(--pal-violet)) 26%, transparent); color: var(--hg-ink); font-family: var(--hg-font-mono); font-size: 12px; font-weight: 700; }
+@media (max-width: 700px) {
+  .cs-glance ol { flex-direction: column; align-items: stretch; gap: 0; }
+  .cs-glance li { flex-direction: column; align-items: flex-start; }
+  .cs-glance li + li::before { content: "\2193" / ""; margin: 3px 0 3px 15px; }
+  .cs-glance li span { width: 100%; box-sizing: border-box; }
+}
+
+/* If you remember one thing: one sentence copied from the study itself, halfway down. */
+.cs-remember { margin: 36px 0; padding: 20px 24px; border-left: 4px solid color-mix(in srgb, var(--c, var(--pal-violet)) 80%, var(--hg-ink)); border-radius: 0 14px 14px 0; background: var(--hg-surface-2); }
+.cs-remember .k { margin: 0 0 6px; font-family: var(--hg-font-mono); font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--hg-ink-3); }
+.cs-remember p:last-child { margin: 0; font-family: var(--hg-font-display); font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.4; font-weight: 600; color: var(--hg-ink); }

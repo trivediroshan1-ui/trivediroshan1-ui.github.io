@@ -20,7 +20,7 @@
     <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/og-case-ai-agent-credential-sharing.png" />
     <title>One Key, Every Agent &middot; Roshan Trivedi</title>
 
-    <!-- css-bundle: these stylesheets are served joined as b-6d016cfbe8.css. Edit the tags here, then run scripts/bundle-css.py
+    <!-- css-bundle: these stylesheets are served joined as b-df7cd50dbc.css. Edit the tags here, then run scripts/bundle-css.py
 <link rel="stylesheet" href="/assets/tokens.css?v=20261116a">
 <link rel="stylesheet" href="/assets/fonts.css?v=20261022b">
 <link rel="stylesheet" href="/assets/polish.css?v=20261019d">
@@ -36,7 +36,7 @@
 <link rel="stylesheet" href="/assets/site-2026.css?v=20261104a">
 <link rel="stylesheet" href="/assets/cs-discuss.css?v=20261104a">
 -->
-    <link rel="stylesheet" href="/assets/b-6d016cfbe8.css">
+    <link rel="stylesheet" href="/assets/b-df7cd50dbc.css">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -65,7 +65,7 @@
     </script>
     <script src="/assets/theme.js?v=20261116a"></script>
     <script src="/assets/palette.js?v=20261116b" defer></script>
-    <script src="/assets/nav.js?v=20261116b" defer></script>
+    <script src="/assets/nav.js?v=20261123a" defer></script>
     <script type="application/ld+json" id="ld-site">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://roshantrivedi.co.in/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://roshantrivedi.co.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "One Key, Every Agent", "item": "https://roshantrivedi.co.in/case-studies/ai-agent-credential-sharing/"}]}]}</script>
   </head>
   <body class="read" style="--c:#4de2ff">
@@ -75,11 +75,11 @@
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/case-studies/">Work</a></nav>
 
       <header class="hero">
-        <div class="cs-art" aria-hidden="true"><svg viewBox="0 0 320 112" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><g stroke="currentColor" fill="none" stroke-width="1.2" opacity=".55" stroke-dasharray="3 4"><path d="M92 56H124"/><path d="M196 56H228"/></g><g fill="currentColor" opacity=".7"><path d="M124 52l6 4-6 4z"/><path d="M228 52l6 4-6 4z"/></g><circle class="ring" cx="160" cy="56" r="34" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/><circle cx="160" cy="56" r="25" fill="currentColor" opacity=".1"/><g opacity="0.78"><g transform="translate(47.0 41.0) scale(1.250)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></g></g><g opacity="1"><g transform="translate(143.0 39.0) scale(1.417)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></g></g><g opacity="0.78"><g transform="translate(240.7 29.0) scale(0.775)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9.5 13h.01M14.5 13h.01M9.5 16h5M3 12v3M21 12v3"/><circle cx="12" cy="3.5" r="1"/></g><g transform="translate(256.7 46.7) scale(0.775)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9.5 13h.01M14.5 13h.01M9.5 16h5M3 12v3M21 12v3"/><circle cx="12" cy="3.5" r="1"/></g><g transform="translate(240.7 64.4) scale(0.775)" fill="none" stroke="currentColor" stroke-width="1.13" stroke-linecap="round" stroke-linejoin="round" opacity=".85"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9.5 13h.01M14.5 13h.01M9.5 16h5M3 12v3M21 12v3"/><circle cx="12" cy="3.5" r="1"/></g></g></svg></div>
         <p class="eyebrow">AI governance &middot; Non-human identity</p>
         <h1>Every agent gets a name. Almost none get their own key.</h1>
         <p class="dek">The quickest way to connect an AI agent to five systems is to hand it one long-lived credential. This is what that costs, and how I would issue credentials to agents instead.</p>
         <p class="meta">Independent research &amp; control design &middot; <span class="reviewed">Last reviewed 1 Oct 2026</span></p>
+        <!-- cs-glance:start --><figure class="cs-glance"><figcaption>At a glance</figcaption><ol><li><span>The agent has its own identity</span></li><li><span>A broker issues a short-lived credential</span></li><li><span>One task, one target</span></li><li><span>Logs name the agent and the person</span></li></ol></figure><!-- cs-glance:end -->
       </header>
 
       <div class="tldr">
@@ -210,6 +210,7 @@
           <li><h3>Expire, revoke and review</h3><p>The credential ends with the task or at its expiry. If the agent misbehaves, you disable the agent&rsquo;s identity and everything it can obtain stops with it. The owner re-confirms the agent and its scopes on a regular rhythm, and unused scopes are removed.</p><div class="why"><span><b>Guardrail</b>Kill switch on the agent identity; periodic owner attestation</span><span><b>Evidence</b>Revocation drill result and attestation record</span></div></li>
         </ol>
       </section>
+      <!-- cs-remember:start --><aside class="cs-remember" aria-label="If you remember one thing"><p class="k">If you remember one thing</p><p>Every record then shows two names: the agent that acted and the person it acted for.</p></aside><!-- cs-remember:end -->
 
       <section id="example">
         <h2>Example: a support agent that summarizes and closes tickets</h2>
