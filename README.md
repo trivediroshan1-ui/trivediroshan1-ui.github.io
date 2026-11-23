@@ -1,121 +1,74 @@
-# roshantrivedi.co.in
+<p align="center">
+  <a href="https://roshantrivedi.co.in"><img src=".github/social-preview.png" width="100%" alt="Roshan Trivedi. Identity security, tested in public. Labs, free books and case studies. Every guess written down first, and the wrong ones kept. One mark per lab case: sign-in and MFA 130 cases with 6 wrong guesses, machine identity 67 cases with 10 wrong, AI governance 164 cases with 3 wrong."></a>
+</p>
 
-Source for [roshantrivedi.co.in](https://roshantrivedi.co.in), the personal site of **Roshan Trivedi**: privileged access, identity, three open labs, free books and 22 case studies. Plain HTML and Jekyll on GitHub Pages, behind Cloudflare.
+<p align="center">
+  <a href="https://roshantrivedi.co.in"><img alt="Website" src="https://img.shields.io/badge/website-roshantrivedi.co.in-4de2ff?style=flat-square"></a>
+  <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/actions/workflows/links.yml"><img alt="Checks" src="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/actions/workflows/links.yml/badge.svg"></a>
+  <img alt="Jekyll on GitHub Pages" src="https://img.shields.io/badge/Jekyll-GitHub%20Pages-8b5cf6?style=flat-square">
+  <img alt="Strict CSP" src="https://img.shields.io/badge/CSP-no%20inline%20scripts-34d399?style=flat-square">
+  <img alt="Licence" src="https://img.shields.io/badge/code-MIT%20·%20writing%20CC%20BY%204.0-f7c873?style=flat-square">
+</p>
 
-![GitHub Pages](https://img.shields.io/badge/hosted%20on-GitHub%20Pages-4de2ff?style=flat-square) ![No build step](https://img.shields.io/badge/build%20step-none-34d399?style=flat-square) ![Strict CSP](https://img.shields.io/badge/CSP-no%20inline%20scripts-8b5cf6?style=flat-square) ![Licence](https://img.shields.io/badge/code-MIT%20·%20writing%20CC%20BY%204.0-f7c873?style=flat-square)
+The source of [roshantrivedi.co.in](https://roshantrivedi.co.in), Roshan Trivedi's site on privileged access, machine identity, sign-in and AI agents. It holds four public labs, five free books, 22 case studies and the writing. Every lab follows the same rule: the guess is written down and committed before the test runs, and the wrong guesses stay on the page.
 
-## What's here
+## What is in it
 
-| Path | What it is |
+| | Where | What it is |
+|---|---|---|
+| 🔐 | [`ca-mfa-lab/`](ca-mfa-lab/) | Conditional access, MFA and AI agent lab: 130 cases, 124 run, 6 wrong guesses. Runs in the browser. |
+| 🤖 | [`nhi-lab/`](nhi-lab/) | Machine identity lab: 67 cases on service accounts, keys, tokens and break-glass. 10 wrong guesses. |
+| 🧭 | [`ai-governance-lab/`](ai-governance-lab/) | AI governance lab: 13 rounds, 164 cases on made-up Indian data. |
+| ✋ | [`mcp-lab/`](mcp-lab/) | HumanGate MCP lab: a human approval gate for AI tool calls, 81 use cases and 210 scripted checks. |
+| 📚 | [`book/`](book/), the lab folders | Five free books, 71 to 138 pages, as PDFs and on the web. |
+| 🗂️ | [`case-studies/`](case-studies/) | 21 practitioner guides, written without employer or client data. With the exam security research in [`secure-india-exams/`](secure-india-exams/), they make the 22 case studies. |
+| ✍️ | [`_posts/`](_posts/) | The writing, built by Jekyll and served under `/writing/`. |
+| 🧰 | [`scripts/`](scripts/) | The Python that builds pages, books, share images, bundles and checks. |
+| 📊 | [`data/`](data/) | `stats.json` (every number the site quotes) and `catalogue.json` (every lab case and whether the guess held). |
+
+Every case in every lab is in one filterable list at [/labs/cases/](https://roshantrivedi.co.in/labs/cases/).
+
+## How it is built
+
+- **Plain HTML first.** Most pages are hand-editable HTML. Only the posts go through Jekyll, which GitHub Pages runs on every push to `main`.
+- **Generated parts are marked.** Anything a script writes sits between comment markers, for example `<!-- cs-glance:start -->`. Edit the script or its data, not the marked block.
+- **Stylesheets are bundled.** Each page's stylesheets are joined into one `assets/b-HASH.css` file. Edit the source CSS or the commented link list at the top of the page, then run `python3 scripts/bundle-css.py`.
+- **The home page CSS is inline** for a fast first paint on phones. Edit `assets/home2.css`, `fonts.css` or `chatbot-widget.css`, then run `python3 scripts/inline-home-css.py`.
+- **Cloudflare sits in front.** It serves the security headers (the source copy is `_headers`) and a managed robots.txt that blocks AI training crawlers and AI assistants. Search engines are allowed.
+- **Light on readers.** Page counts come from Cloudflare Web Analytics, which sets no cookies; the [privacy page](https://roshantrivedi.co.in/privacy/) says what it records. There are no ad or social scripts. The chat helper answers from the site's own pages in the browser, with no API behind it.
+
+## Checks on every pull request
+
+[`.github/workflows/links.yml`](.github/workflows/links.yml) runs these. The same scripts run locally from the repo root.
+
+| Check | Script |
 |---|---|
-| `index.html`, `assets/home.css`, `assets/home.js` | The homepage: plain, hand-editable HTML and CSS (no build step, no JavaScript needed to read it). Sections are in order: hero, stats, perspective, expertise, case studies, platforms, research, career, contact. The dismissible announcement banner, the Cloudflare beacon and the chatbot widget sit at the bottom of `index.html`. |
-| `case-studies/*/`, `secure-india-exams/` | All 21 case study pages are standalone, hand-editable HTML/CSS. 5 have extra hand-built diagrams/sections (`credential-tiering-model`, `shadow-ai-discovery-gap`, `non-human-identity-at-scale`, `ai-agent-credential-sharing`, `ai-processing-tax`); the other 14 use a shared, simpler template (hero, challenge, approach, outcome, tags). |
-| `_posts/`, `_layouts/post.html`, `writing/index.html` | Jekyll blog posts, built by GitHub Pages automatically (no `.nojekyll` file) and served under `/writing/:title/`. `/writing/` lists every post automatically. Plain HTML/CSS, genuinely hand-editable. |
-| `assets/site.css`, `assets/polish.css` | `site.css` holds the shared styles for the 14 standard case-study pages (colors are variables at the top; each page sets its theme color with `<body style="--c:#hex">`). The five hand-built case studies and the exam study keep their own `<style>` blocks. `polish.css` is small and additive and loads on every case-study, index and writing page: reading-progress line, previous/next cards, print view. |
-| `assets/fonts.css` | Self-hosted DM Sans, Manrope and JetBrains Mono (all SIL OFL) for every standalone page. Don't link Google Fonts: the site's CSP only allows fonts from this domain, so they'd be blocked. |
-| `ai-governance-lab/`, `nhi-lab/`, `mcp-lab-*/`, `labs/` | The lab pages: the AI governance lab (13 rounds, 164 cases), the machine identity lab (67 cases) and the MCP approval lab, plus the `labs/` index. Plain HTML; the case cards and audit data are generated from the lab files. |
-| `book/`, `speaking/`, `talk/`, `tools/tier-check/` | The free books page, the talks and workshops page, the contact and message builder page, and the 3 minute credential tiering self-check (runs in the browser, stores nothing). |
-| `assets/chatbot-data.js`, `assets/chatbot-index.json`, `scripts/build-chat-index.py` | The site chatbot. Hand-written answers live in `chatbot-data.js`; the search index is rebuilt from the pages with `python3 scripts/build-chat-index.py`. Bump the `?v=` numbers in `chatbot-widget.js` after a rebuild. |
-| `404.html` | Custom not-found page; GitHub Pages serves it for any missing URL. |
-| `favicon.svg`, `favicon.ico`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, `site.webmanifest` | Site icons (RT monogram), linked from every page. |
-| `Roshan_Trivedi_Resume.pdf` | Current resume, linked from the homepage. |
-| `Securing_India_Exams_Master.pdf` | Full 30-page whitepaper for the exam-security proposal. |
-| `assets/*.pdf`, `*/*.pdf`, `scripts/pdf_access.py` | The books and reports. `python3 scripts/pdf_access.py report` lists which are tagged for screen readers, their language and bookmarks. Two files are deliberate legacy copies of the file the site links to: `assets/humangate-mcp-lab-test-results.pdf` (same bytes as `humangate-mcp-lab-final-report.pdf`) and the root `Securing_India_Exams_Master.pdf` (same as `secure-india-exams/`). Nothing on the site links to them. They stay so old shared links keep working, and they must be re-saved together with the real file so their checksums stay equal. |
-| `og-image.png` | Social-share preview image (Open Graph / Twitter cards). |
-| `CNAME` | Custom domain config for GitHub Pages (`roshantrivedi.co.in`). |
-| `robots.txt`, `sitemap.xml`, `.well-known/security.txt` | Standard SEO / security metadata files. |
-| `_headers` | The source of truth for the site's security headers (CSP, HSTS, etc.). GitHub Pages ignores this file; the headers are actually served by a Cloudflare Transform Rule that copies these values. If you change one, update the rule too; see `worker/README.md`. |
+| Internal links point at real files | `scripts/check-links.py` |
+| Every number agrees with `data/stats.json` | `scripts/check-numbers.py` |
+| Every public page is in the sitemap | `scripts/build-sitemap.py --check` |
+| No key-shaped secrets in tracked files | `scripts/check-secrets.py` |
+| No new raw colours outside `assets/tokens.css` | `scripts/check-colours.py` |
+| Stylesheet bundles and the home page's inline CSS are current | `scripts/bundle-css.py --check`, `scripts/inline-home-css.py --check` |
+| Lab results strips match the catalogue | `scripts/build-results-strip.py --check` |
+| Case study flows and callouts are current, and quote the study word for word | `scripts/case-glance.py --check` |
+| Videos have a size, a name and structured data; every page shows a date | `scripts/fix-video-tags.py --check`, `scripts/add-reviewed.py --check` |
+| Pages lay out at 320, 390 and 1280 px with no new problems | `scripts/check-pages.py` (Playwright) |
+| The Jekyll build works | `jekyll build` |
 
-**The homepage used to be a compiled React app, and is now plain HTML.** Until September 2026 `index.html` loaded a minified React/Vite bundle whose source code was never committed anywhere, which made the homepage impossible to edit cleanly. It was rebuilt as ordinary HTML and CSS that looks and reads the same, and the old bundle was removed. If you ever need it back, it is in git history (commit `cf86fab` and earlier: `assets/main-DkBXTN6c.js` and `assets/main-Dilp92U4.css`).
+## Editing
 
-Things that changed in the rebuild, so nothing surprises you:
+- **Change words on a page:** edit the HTML and commit. Pages redeploys in a minute or two.
+- **Add a post:** add `_posts/YYYY-MM-DD-slug.md` with a `description:` line, then run `python3 scripts/build-sitemap.py`.
+- **Change a lab number:** change `data/stats.json` first, then the pages. `check-numbers.py` fails until they agree.
+- **After a content change, run these in order:** `add-structured-data.py`, `set-security-meta.py`, `inline-home-css.py`, `build-chat-index.py`, `build-sitemap.py`, then `bundle-css.py`.
+- **When `chatbot-widget.js` or `nav.js` changes,** bump its `?v=` stamp on every page so browsers fetch the new file.
 
-- The homepage now lists all 20 case studies (the React version listed 18 and left out Credential Tiering). Each row links to its own page; the old in-page "Preview" panels were dropped because every case study has a full page.
-- The nav gained a **Writing** link. On phones the menu is a plain HTML `<details>` element, so it works without JavaScript.
-- Scroll-reveal animations are gone; the hero has a small load-in animation that switches off for people who prefer reduced motion.
-- Case-study titles and categories on the homepage match the pages themselves. The one-line summaries are the homepage's original wording.
-- Fonts come from `assets/fonts.css` like every other page.
+## Licence
 
-**Editing the homepage:** open `index.html` and change the text directly. The markup is in section order, and every style is in `assets/home.css` (colors are variables at the top). `assets/home.js` is optional: it only closes the phone menu after you tap a link, and the page works without it. To add a case study to the list, copy an existing `<article class="cs-row">` block and update the number, category, title, link and summary.
-
-## How to update this site yourself
-
-You don't need git installed or any tooling for the genuinely hand-editable files above. Everything below can be done from github.com in a browser, and GitHub Pages redeploys automatically (usually within 1 to 2 minutes) every time you commit to `main`.
-
-**Edit existing text in a hand-editable file (a blog post, a case study's hand-written section, the chatbot's knowledge):**
-1. Open the file in this repo.
-2. Click the pencil icon (top-right of the file view) to edit.
-3. Make your change and click **Commit changes** at the bottom.
-
-**Add or replace a file (e.g. a new resume PDF, a new image):**
-1. Go to **Add file → Upload files** (or visit `/upload/main` on this repo).
-2. Drag in your file. If it has the *same name* as an existing file (e.g. `Roshan_Trivedi_Resume.pdf`), it will replace it on commit.
-3. Add a short commit message and click **Commit changes**.
-
-**Remove something:**
-1. Open the file, click the **⋯** (or the trash icon on the file page) and choose **Delete file**.
-2. Commit the deletion.
-
-**Add a new blog post:**
-Add a new file under `_posts/` named `YYYY-MM-DD-a-short-slug.md`, following the frontmatter shape of the existing post there. It'll be live at `/writing/a-short-slug/` and appear on `/writing/` automatically. Add a `description:` line to the frontmatter (it's used for the listing, search results and share previews), and add the URL to `sitemap.xml`.
-
-**Change the homepage's layout or nav:** edit `index.html` and `assets/home.css` like any other page.
-
-**Add a new case study:** copy `case-studies/access-recertification/index.html` as a starting template (it uses `/assets/site.css`, so you only write content), fill in the content, set `--c` on `<body>` to the theme color, and add the new URL to `sitemap.xml`. Then add it to the homepage list and to the previous/next order: each case study has a `<nav class="pager">` near the bottom, and the neighbours of the new page need their links updated by hand.
-
-**Check it went live:**
-Watch the green checkmark under **Deployments → github-pages** on the repo's main page, then refresh [roshantrivedi.co.in](https://roshantrivedi.co.in) (hard-refresh / add `?v=2` to the URL if your browser cached the old version).
-
+The code (HTML, CSS, JavaScript and the Python scripts) is under the [MIT licence](LICENSE). The writing, books, diagrams and videos are under [CC BY 4.0](LICENSE-CONTENT.md). Credit "Roshan Trivedi, roshantrivedi.co.in".
 
 ## Contact
 
-- LinkedIn: [linkedin.com/in/roshan-trivedi-ciam](https://www.linkedin.com/in/roshan-trivedi-ciam/)
-- Email: trivedi.roshan1@gmail.com
+[LinkedIn](https://www.linkedin.com/in/roshan-trivedi-ciam/) · [Newsletter](https://buttondown.com/trivedi) · [Contact page](https://roshantrivedi.co.in/contact/)
 
-## Newer pages and assets
-
-- `/about/`, `/resume/`, `/now/`, `/ai/` are hand-written pages using `assets/site.css`. `/resume/` mirrors the public PDF minus the phone number; update it when the PDF changes.
-- `/tools/tier-check/` is a client-side self-check driven by `assets/tier-check.js` (nothing is sent anywhere).
-- `/case-studies/` filter chips use `assets/filter.js` and each card's `data-group`.
-- `feed.xml` is the RSS feed (Jekyll builds it from `_posts`).
-- Share images `assets/og-case-*.png` were generated from the case-study titles and group colors (1200x630).
-
-## Site chatbot index
-
-The chatbot answers from the site's own pages, in the browser, with no API. After you add or change a page, rebuild its search index and commit the result:
-
-    python3 scripts/build-chat-index.py
-
-## Article share images
-
-Each article can have its own 1200x630 preview image, in the same style as the case-study ones. Add three lines to the post's front matter:
-
-    share_title: "Short title for the image"
-    share_label: "Article · Privileged access"
-    share_accent: green        # cyan, green, amber or violet
-
-Then run `python3 scripts/build-share-images.py` and commit the new `assets/og-post-<slug>.png`. Drafts are skipped on purpose, because an image file is public: make the image when the post moves from `_drafts/` to `_posts/`. A post without `share_title` falls back to the profile card.
-
-## Home page CSS is inline
-
-To keep the first paint fast on phones, the home page's four stylesheets are inlined into `index.html`. Edit the files in `assets/` as usual (`fonts.css`, `home.css`, `upgrade.css`, `chatbot-widget.css`), then run `python3 scripts/inline-home-css.py` and commit `index.html`.
-
-## Design system
-
-Shared colours, type, spacing and components live in `assets/tokens.css` (prefix `hg-`) and are documented, with measured contrast, at `/design-system/`. The idea: colour says who acts (cyan policy gate, violet a person, green verified execution, amber audit or unknown, rose refused). After editing the home page's stylesheets, run `python3 scripts/inline-home-css.py`.
-
-The slim top bar and the "Where next" band on inner pages are added by `python3 scripts/add-sitebar.py` (safe to re-run; styles in `assets/sitebar.css`).
-
-## October 2026 audit changes (what to know when editing)
-
-- `assets/site-2026.css` is loaded last on every page (linked by `scripts/set-page-themes.py`). It holds the shared heading font, the theme switch in the header, 44px footer targets, credential badges and the newsletter form styles.
-- Page themes now share the brand's violet and cyan glows; each page keeps its own motif and accent. Edit the table in `scripts/set-page-themes.py`, not `assets/themes.css`.
-- `scripts/add-structured-data.py` writes one `id="ld-site"` JSON-LD block per page (breadcrumbs, Person, WebSite, Book, ProfilePage and so on). Re-run it after adding a page.
-- `scripts/build-sitemap.py` rebuilds `sitemap.xml` with real `lastmod` dates. Run it after any content change.
-- `assets/chatbot-data.js` now loads only when someone opens the chat. Don't add it back as a `<script>` tag.
-- The newsletter form posts to Buttondown (username `trivedi`) in `index.html` and `_layouts/post.html`. The CSS still hides any form whose action contains `YOUR-BUTTONDOWN-USERNAME`, so a placeholder keeps it hidden.
-- Run order after edits: `set-page-themes.py`, `add-structured-data.py`, `set-security-meta.py`, `inline-home-css.py`, `build-palette.py`, `build-chat-index.py`, `build-sitemap.py`.
-
-## Newsletter
-
-Lab updates and new rounds: [buttondown.com/trivedi](https://buttondown.com/trivedi). You can also subscribe from the home page.
+<sub>All lab data is made up. Nothing here describes any employer's or client's systems.</sub>
