@@ -156,6 +156,20 @@ def label(c):
     return (f"Chapter {n}: " if n.isdigit() else f"Appendix {n}: " if n else "") + c["title"]
 
 
+def fix_levels(body):
+    """Keep the heading outline unbroken under the chapter's h1 (screen readers navigate by level).
+    Headings at level 3 before the first h2 move up to h2; with no h2 at all, every heading moves up one."""
+    import re as _re
+    levels = [int(x) for x in _re.findall(r"<h([2-6])\b", body)]
+    if not levels or levels[0] <= 2:
+        return body
+    if 2 not in levels:
+        return _re.sub(r"<(/?)h([3-6])\b", lambda m: f"<{m.group(1)}h{int(m.group(2)) - 1}", body)
+    first_h2 = _re.search(r"<h2\b", body).start()
+    head = _re.sub(r"<(/?)h3\b", r"<\1h2", body[:first_h2])
+    return head + body[first_h2:]
+
+
 def write_book(chapters, *, book, pdf, title, desc, lede, ey, short, crumb, shell, write, head, root_dir):
     """Write the contents page and one page per chapter."""
     import shutil
@@ -185,7 +199,7 @@ def write_book(chapters, *, book, pdf, title, desc, lede, ey, short, crumb, shel
           <p class="ey"><a href="{book}">{html.escape(title)}</a> · {html.escape(c["kicker"])}</p>
           <h1 id="wb-h">{html.escape(c["title"])}</h1>
           {f'<p class="lede">{html.escape(c["sub"])}</p>' if c["sub"] else ""}
-          {"".join(c["html"])}
+          {fix_levels("".join(c["html"]))}
           {nav}
           <p class="wb-pdf"><a href="{book}">Contents</a> · <a href="{pdf}">The PDF</a> · All data in this book is made up.</p>
         </div>

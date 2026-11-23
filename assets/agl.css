@@ -4,7 +4,7 @@
   --a-accent:var(--pal-cyan);--a-accent-soft:rgba(77,226,255,.12);--a-ok:var(--pal-mint);--a-ok-soft:rgba(125,242,208,.12);
   --a-bad:#ff7a93;--a-bad-soft:rgba(255,122,147,.14);--a-warn:var(--pal-amber);--a-warn-soft:rgba(247,200,115,.14);
   --a-term:#060b14;--a-term-ink:#d6e4f0;--a-term-dim:#7d8db0;--a-term-cmd:var(--pal-mint);--a-term-hot:#0f2230;--a-term-bad:#ff9db0;
-  --a-fd:var(--display,"DM Sans",system-ui,sans-serif);--a-fb:var(--body,"Manrope",system-ui,sans-serif);--a-fm:var(--mono,"JetBrains Mono",ui-monospace,Menlo,monospace);
+  --a-fd:var(--display,"DM Sans", "DM Sans Fallback",system-ui,sans-serif);--a-fb:var(--body,"Manrope", "Manrope Fallback",system-ui,sans-serif);--a-fm:var(--mono,"JetBrains Mono",ui-monospace,Menlo,monospace);
   color:var(--a-ink);font-family:var(--a-fb);line-height:1.55;min-width:0
 }
 html[data-theme="light"] .agl{

@@ -11,8 +11,8 @@
   --warn: var(--pal-amber);
   --danger: #ff7a93;
   --mono: "JetBrains Mono", ui-monospace, monospace;
-  --display: "DM Sans", system-ui, sans-serif;
-  --body: "Manrope", system-ui, sans-serif;
+  --display: "DM Sans", "DM Sans Fallback", system-ui, sans-serif;
+  --body: "Manrope", "Manrope Fallback", system-ui, sans-serif;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }

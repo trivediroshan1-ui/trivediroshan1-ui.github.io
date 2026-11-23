@@ -45,3 +45,9 @@
   src: url(/assets/lora-latin-var.woff2) format('woff2'), url(/assets/lora-latin-var.woff) format('woff'); }
 @font-face { font-family: 'Lora'; font-style: italic; font-display: swap; font-weight: 400 700;
   src: url(/assets/lora-latin-italic-var.woff2) format('woff2'), url(/assets/lora-latin-italic-var.woff) format('woff'); }
+
+/* Fallbacks sized to match DM Sans and Manrope, so text does not jump when the web font arrives
+   (the page used to shift by a line on load). Metrics measured from the font files against Arial's,
+   using Liberation Sans, which shares Arial's widths. */
+@font-face { font-family: "DM Sans Fallback"; src: local("Arial"), local("Liberation Sans"), local("Arimo"), local("Helvetica"); size-adjust: 105.81%; ascent-override: 93.75%; descent-override: 29.3%; line-gap-override: 0%; }
+@font-face { font-family: "Manrope Fallback"; src: local("Arial"), local("Liberation Sans"), local("Arimo"), local("Helvetica"); size-adjust: 104.28%; ascent-override: 102.23%; descent-override: 28.77%; line-gap-override: 0%; }
