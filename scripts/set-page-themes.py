@@ -77,7 +77,7 @@ MOTIFS = ["grid", "dots", "waves", "topo", "circuit", "hex", "cubes", "rings", "
 # page file -> theme name. Veil strength: how much of the middle is calmed so text stays easy to read.
 PAGES = {
     "index.html": "home", "case-studies/index.html": "work", "about/index.html": "about", "now/index.html": "now",
-    "ai/index.html": "ai", "resume/index.html": "resume", "labs/index.html": "labs", "book/index.html": "book",
+    "ai/index.html": "ai", "background/index.html": "resume", "labs/index.html": "labs", "book/index.html": "book",
     "writing/index.html": "writing", "writing/pam-series/index.html": "series", "design-system/index.html": "designsys",
     "tools/tier-check/index.html": "tiercheck", "secure-india-exams/index.html": "exams", "404.html": "notfound",
     "mcp-lab/index.html": "mcp", "mcp-lab/in-depth/index.html": "mcpdepth", "mcp-lab/results/index.html": "mcpresult",

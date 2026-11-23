@@ -13,13 +13,13 @@ SCENES, scene = ns["SCENES"], ns["scene"]
 
 PAGE_SCENES = {  # pages that are not case studies
     "about": ("person", "list", "shieldok"), "ai": ("person", "robot", "check"), "now": ("clock", "list", "check"),
-    "resume": ("idcard", "list", "docok"), "writing": ("doc", "list", "check"), "pam-series": ("vault", "doc", "doc"),
+    "background": ("idcard", "list", "docok"), "writing": ("doc", "list", "check"), "pam-series": ("vault", "doc", "doc"),
     "case-studies": ("grid", "search", "doc"), "tier-check": ("key", "pyramid", "shield"), "labs": ("robot", "person", "tool"),
     "mcp-lab-case-study": ("robot", "person", "tool"), "mcp-lab-results": ("list", "check", "doc"),
     "mcp-lab-use-cases": ("robot", "list", "check"), "mcp-lab-in-depth": ("robot", "search", "doc"),
     "mcp-lab-portal": ("grid", "gauge", "doc"),
 }
-LABELS = {"about": "About", "ai": "How I use AI", "now": "Now", "resume": "Résumé", "writing": "Writing",
+LABELS = {"about": "About", "ai": "How I use AI", "now": "Now", "background": "Background", "writing": "Writing",
           "pam-series": "The PAM series", "case-studies": "Work · 22 case studies", "tier-check": "Tool · self-check",
           "labs": "Labs and projects", "mcp-lab-case-study": "HumanGate MCP lab", "mcp-lab-results": "HumanGate MCP lab · results",
           "mcp-lab-use-cases": "HumanGate MCP lab · use cases", "mcp-lab-in-depth": "HumanGate MCP lab · in depth",

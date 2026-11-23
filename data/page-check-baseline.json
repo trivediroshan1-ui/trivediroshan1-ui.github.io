@@ -249,7 +249,6 @@
  "/case-studies/vendor-privileged-access/": [],
  "/contact/": [],
  "/copyright/": [],
- "/cover-letter/": [],
  "/design-system/": [
   "tap-target a:roshantrivedi.co.in",
   "tap-target a:← roshantrivedi.co.in"
@@ -394,7 +393,6 @@
  "/nhi-lab/stage-2/": [],
  "/now/": [],
  "/privacy/": [],
- "/resume/": [],
  "/search/": [],
  "/secure-india-exams/": [],
  "/speaking/": [],
@@ -408,5 +406,6 @@
   "tap-target a:About the series →",
   "tap-target a:Subscribe via RSS"
  ],
- "/writing/pam-series/": []
+ "/writing/pam-series/": [],
+ "/background/": []
 }

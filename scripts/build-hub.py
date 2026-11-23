@@ -124,7 +124,7 @@ PATHS = [
     ("/nhi-lab/", "Machine identities, tested", "67 cases. Ten of my own guesses were wrong, and which ones."),
     ("/mcp-lab/", "A person in the loop for AI agents", "What an approval step stops, and what it does not."),
     (CS + "privileged-access-program/", "Running a privileged access program", "How I structure the work and the evidence."),
-    ("/resume/", "R&eacute;sum&eacute;", "Roles, dates and certifications.")]),
+    ("/background/", "Background", "Roles, dates and certifications.")]),
  ("If you design identity systems", "The models and the reasoning behind them.", [
     ("/ca-mfa-lab/framework/", "The access chain", "Seven links, with 15 attack patterns you can play."),
     ("/nhi-lab/framework/", "A seven-step framework for machine identity", "From inventory to retirement."),

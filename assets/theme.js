@@ -24,7 +24,7 @@
       paint(btn);
     });
     paint(btn);
-    // October 2026: the switch sits in the header bar (after search, before Résumé) instead of floating
+    // October 2026: the switch sits in the header bar (after search, before Background) instead of floating
     // over the page. Pages without a header bar keep the floating button.
     var bar = document.querySelector("nav.hg-sitenav");
     var homeRes = document.querySelector("header.top .wrap > .btn-res");

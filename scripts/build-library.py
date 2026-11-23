@@ -22,7 +22,7 @@ COLLECTIONS = [
 ]
 PREFIX = [("/ca-mfa-lab/", "signin"), ("/nhi-lab/", "nhi"), ("/ai-governance-lab/", "ai"), ("/mcp-lab/", "ai"),
           ("/mcp-human-approval-gateway/", "ai"), ("/writing/pam-", "pam"), ("/tools/tier-check/", "pam")]
-SITE_PAGES = {"/", "/about/", "/resume/", "/ai/", "/talk/", "/speaking/", "/now/", "/writing/", "/case-studies/", "/book/",
+SITE_PAGES = {"/", "/about/", "/background/", "/ai/", "/talk/", "/speaking/", "/now/", "/writing/", "/case-studies/", "/book/",
               "/labs/", "/labs/cases/", "/design-system/", "/start/", "/topics/", "/glossary/", "/privacy/", "/method/",
               "/contact/", "/copyright/", "/search/", "/library/"}
 OVERRIDE = {"/secure-india-exams/": "pam", "/case-studies/credential-tiering-model/": "pam", "/case-studies/platform-evaluation/": "pam",

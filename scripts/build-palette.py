@@ -45,7 +45,7 @@ for f in sorted((ROOT / "_posts").glob("*.md")):
 EXTRA = {"/start/": "start here where to begin reading path",
          "/topics/": "topics subjects index iam pam pim nhi mfa sso",
          "/glossary/": "glossary definitions terms meaning",
-         "/resume/": "cv cyberark sailpoint beyondtrust hashicorp vault entra delinea saviynt strongdm wiz clutch certifications",
+         "/background/": "cv cyberark sailpoint beyondtrust hashicorp vault entra delinea saviynt strongdm wiz clutch certifications",
          "/ca-mfa-lab/": "conditional access mfa 2fa sso single sign-on ai agents sign-in lab passkey token phishing",
          "/ca-mfa-lab/framework/": "access chain seven links mfa sso conditional access attack patterns animated enroll prove trust decide issue act watch",
          "/ca-mfa-lab/virtual-lab/": "replay cases mfa conditional access python",
@@ -61,7 +61,6 @@ for it in items:
         it["k"] = (it["k"] + " " + EXTRA[it["u"]]).strip()
 items += [
     {"t": "The approval gateway code", "u": "/mcp-human-approval-gateway/", "g": "Lab", "d": "Try the MCP human approval gateway yourself", "k": "mcp code github try demo"},
-    {"t": "Download my résumé (PDF)", "u": "/Roshan_Trivedi_Resume.pdf", "g": "Action", "d": "", "k": "resume cv download"},
     {"t": "Download the book (PDF)", "u": "/assets/who-approved-that-book.pdf", "g": "Action", "d": "Who Approved That? 138 pages, free", "k": "book download pdf mcp"},
     {"t": "Who signs in? The conditional access, MFA and AI agent lab book (PDF)", "u": "/ca-mfa-lab/ca-mfa-lab-book.pdf", "g": "Action", "d": "Conditional access, MFA, SSO and AI agents. 72 pages, free", "k": "book download pdf mfa sso conditional access who signs in access chain"},
     {"t": "Machine identities, tested in public (PDF)", "u": "/nhi-lab/nhi-lab-book.pdf", "g": "Action", "d": "The non-human identity lab book. 83 pages, free", "k": "book download pdf nhi machine identity"},

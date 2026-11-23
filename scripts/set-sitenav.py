@@ -17,9 +17,9 @@ LINKS = [
 ]
 STATIC = {"book/index.html", "mcp-lab/portal/index.html", "secure-india-exams/index.html", "tools/tier-check/index.html"}  # these keep their own sticky section bar
 CSS = '<link rel="stylesheet" href="/assets/sitebar.css?v=20261111a">'
-JS = '<script src="/assets/palette.js?v=20261116b" defer></script>'
+JS = '<script src="/assets/palette.js?v=20261123a" defer></script>'
 NAVCSS = '<link rel="stylesheet" href="/assets/nav.css?v=20261022a">'
-NAVJS = '<script src="/assets/nav.js?v=20261123a" defer></script>'
+NAVJS = '<script src="/assets/nav.js?v=20261123b" defer></script>'
 
 def nav(url, static):
     items = ""
@@ -27,8 +27,8 @@ def nav(url, static):
         cur = ' aria-current="page"' if prefixes and any(url.startswith(p) for p in prefixes) else ""
         cls = ' class="ct"' if label == "Contact" else ""
         items += f'<li{cls}><a href="{href}"{cur}>{label}</a></li>'
-    res_cur = ' aria-current="page"' if url.startswith("/resume") else ""
-    items += f'<li class="res"><a href="/resume/"{res_cur}>R&eacute;sum&eacute;</a></li>'
+    res_cur = ' aria-current="page"' if url.startswith("/background") else ""
+    items += f'<li class="res"><a href="/background/"{res_cur}>Background</a></li>'
     cls = "hg-sitenav is-static" if static else "hg-sitenav"
     return (f'<nav class="{cls}" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i>'
             f'<span>Roshan Trivedi</span></a><ul>{items}</ul></nav>')
