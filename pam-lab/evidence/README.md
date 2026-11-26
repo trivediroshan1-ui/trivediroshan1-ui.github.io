@@ -30,3 +30,17 @@ To write them somewhere else, set `PAM_LAB_OUT=/some/folder` before the command.
 ## Change an assumption
 
 Every number the guess file leaves open is in `PARAMS` at the top of `round1.py`, with a comment. Change one and run again. The "Assumptions that change results" table shows which cases move for six of them.
+
+## Round 3: the gaps around the lane
+
+10 cases, PA-R3-01 to PA-R3-10: help desk recovery, movers and contractors, outside vendors, sub-agents, signing keys, Kubernetes, OT while IT is down, two insiders together, and session recordings.
+
+- `guesses/guesses-round-3.md`: the predictions, merged before any code (pull request #189). Locked: never edited.
+- `round3.py`: the 10 case models, built the same way as round 1.
+
+```
+shasum -a 256 pam-lab/evidence/guesses/guesses-round-3.md
+python3 pam-lab/evidence/round3.py
+```
+
+The hash must be `fa235a1b2f6d7269474346c29d76b09ffb270734c3689a30d8a313adb53082e8`. The script writes `results-round-3.json` and `RESULTS-round-3.md`. Joint checks compare only the numbers the guess file states.
