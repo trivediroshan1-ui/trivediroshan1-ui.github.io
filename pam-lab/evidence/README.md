@@ -44,3 +44,14 @@ python3 pam-lab/evidence/round3.py
 ```
 
 The hash must be `fa235a1b2f6d7269474346c29d76b09ffb270734c3689a30d8a313adb53082e8`. The script writes `results-round-3.json` and `RESULTS-round-3.md`. Joint checks compare only the numbers the guess file states.
+
+## Round 4: on real software
+
+5 cases, PA-R4-01 to PA-R4-05, measured (not modelled) on Keycloak, OpenBao with PostgreSQL, OpenSSH with sudo, and Kubernetes in kind.
+
+- `guesses/guesses-round-4.md`: the predictions, merged before any code (pull request #194). Locked. sha256 `0a7cac425ed7d3b6a265e56dc69880eb130e6ab72cd8cd95b7be3823b4cb2381`.
+- `round4/run_case.py`: measures one case under one setting. A setup failure is recorded as an error, never as a number.
+- `round4/round4.py`: checks the guess file's hash and compares the measurements with the guesses.
+- `.github/workflows/pam-lab-round4.yml`: runs all 27 measurements on GitHub Actions. Started by hand from the Actions tab; read-only, no secrets. The full log of every run is public, and the results appear on the run's summary page and as the `round-4-results` download.
+
+The passwords in `run_case.py` are throwaway values for containers that exist only for the length of one job.

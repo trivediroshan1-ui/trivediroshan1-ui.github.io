@@ -1,0 +1,82 @@
+name: PAM lab round 4
+
+# Measures the five round 4 cases on real open-source software (Keycloak, OpenBao, PostgreSQL,
+# OpenSSH with sudo, kind). Started by hand only. Read-only permissions, no secrets.
+# The guesses were locked in pam-lab/evidence/guesses/guesses-round-4.md before this file existed.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pam-lab-round4
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: The locked guesses have not changed
+        run: python3 pam-lab/evidence/round4/round4.py --verify
+
+  measure:
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        case: ["01", "02", "03", "04", "05"]
+        setting: [none, all, off_a, off_b, off_c, joint]
+        exclude:
+          - {case: "02", setting: joint}
+          - {case: "03", setting: joint}
+          - {case: "05", setting: joint}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Python packages for the checks (pinned)
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet "requests==2.32.3" "pyjwt[crypto]==2.10.1" "pyyaml==6.0.2"
+      - name: kind and kubectl (case 05 only, pinned)
+        if: matrix.case == '05'
+        run: |
+          curl -fsSLo kind https://github.com/kubernetes-sigs/kind/releases/download/v0.31.0/kind-linux-amd64
+          curl -fsSLo kubectl https://dl.k8s.io/release/v1.35.0/bin/linux/amd64/kubectl
+          chmod +x kind kubectl
+          sudo mv kind kubectl /usr/local/bin/
+          kind version
+      - name: Measure PA-R4-${{ matrix.case }}, setting ${{ matrix.setting }}
+        run: .venv/bin/python pam-lab/evidence/round4/run_case.py --case "${{ matrix.case }}" --setting "${{ matrix.setting }}" --out out
+      - name: Keep the measurement, even if it failed
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r4-${{ matrix.case }}-${{ matrix.setting }}
+          path: out/
+          if-no-files-found: warn
+          retention-days: 90
+
+  results:
+    needs: measure
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r4-*
+          path: measured
+      - name: Compare the measurements with the locked guesses
+        run: |
+          python3 pam-lab/evidence/round4/round4.py --aggregate measured --out results
+          cat results/RESULTS-round-4.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: round-4-results
+          path: results/
+          retention-days: 90
