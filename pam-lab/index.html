@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; object-src 'none'; base-uri 'self'; form-action 'self' https://buttondown.com; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0e1116" />
+    <meta name="description" content="A vendor-neutral privileged access architecture, mapped to four PAM vendors and the whole estate, tested in an open lab: 36 predictions locked before any code, 33 exactly right." />
+    <link rel="canonical" href="https://roshantrivedi.co.in/pam-lab/" />
+    <meta property="og:title" content="The privileged access map: 36 predictions, 33 right, three misses explained" />
+    <meta property="og:description" content="A vendor-neutral privileged access architecture, mapped to four PAM vendors and the whole estate, tested in an open lab: 36 predictions locked before any code, 33 exactly right." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://roshantrivedi.co.in/pam-lab/" />
+    <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-pam-lab.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://roshantrivedi.co.in/assets/share/og-pam-lab.png" />
+    <title>Privileged access lab &middot; Roshan Trivedi</title>
+    <link rel="stylesheet" href="/assets/b-4ecdc93070.css">
+    <link rel="stylesheet" href="/assets/b-18cd40bda7.css">
+    <link rel="stylesheet" href="/assets/pam-lab.css?v=20261128a">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <script src="/assets/theme.js?v=20261116a"></script>
+    <script src="/assets/palette.js?v=20261123a" defer></script>
+    <script src="/assets/nav.js?v=20261123b" defer></script>
+  </head>
+    <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <nav class="hg-sitenav" aria-label="Main"><a class="brand" href="/"><i aria-hidden="true">RT</i><span>Roshan Trivedi</span></a><ul><li><a href="/case-studies/">Work</a></li><li><a href="/labs/" aria-current="page">Labs</a></li><li><a href="/book/">Book</a></li><li><a href="/writing/">Writing</a></li><li><a href="/about/">About</a></li><li class="ct"><a href="/#contact">Contact</a></li><li class="res"><a href="/background/">Background</a></li></ul></nav>
+<main id="main" class="pamx">
+<header class="band top"><div class="wrap">
+<h1>The privileged access map</h1>
+<p class="lede">One vendor-neutral architecture for privileged access, from the person or agent asking to the system they change, with every control station on the route. It covers the whole estate, maps four PAM vendors to it, and is tested in an open lab: 36 predictions locked before any code, 33 exactly right, and the three misses explained.</p>
+<p class="by">Roshan Trivedi · Independent practitioner guide · Last reviewed 28 Nov 2026. Lab run 28 Nov 2026. A general reference from public sources and my own lab, not a description of any employer's systems.</p>
+</div></header>
+
+<section class="band" id="map" style="padding-top:20px"><div class="wrap">
+<h2>Every privileged action rides one of six lines</h2>
+<p class="mute">Pick a line. The token shows the route a request takes, station by station. The pale red zone is Tier 0: the PAM layer itself, which is why it is guarded like the domain controllers it protects.</p>
+<div class="lines" id="lineBtns" role="group" aria-label="Choose a line"></div>
+<div class="mapgrid">
+<div class="mapbox"><svg id="arch" viewBox="0 0 1200 740" role="img" aria-label="Reference architecture: requesters on the left pass identity, decision and Tier 0 privilege stations before reaching the target estate on the right; every route ends in the evidence rail at the bottom."></svg></div>
+<div class="story" id="story" aria-live="polite"></div>
+</div>
+<p class="foot">Tier here means blast radius of a credential (Tier 0 = can change identity or the PAM layer itself). Organisation sizes are called small, mid-size and large in the build paths below, so the two never mix.</p>
+</div></section>
+<section class="band alt" style="padding-block:8px 28px"><div class="wrap"><div class="figs">
+<div><span class="big" data-n="31" data-f="#%">31%</span><small>of breaches began with an exploited flaw in 2026, overtaking stolen credentials for the first time in 19 years of the Verizon DBIR.</small></div>
+<div><span class="big" data-n="1300" data-f="$#">$1,300</span><small>median price of admin access on criminal markets, about twice a standard account (DBIR 2026, via Delinea).</small></div>
+<div><span class="big" data-n="109" data-f="# : 1">109 : 1</span><small>machine identities per human, from Idira's 2026 survey (vendor figure).</small></div>
+<div><span class="big" data-n="33" data-f="# of 36">33 of 36</span><small>lab predictions matched exactly, locked before any code. All 7 joint checks matched. Run 28 Nov 2026.</small></div>
+</div>
+</div></section>
+<nav class="nav" aria-label="Sections">
+<a href="#results">Lab results</a><a href="#why">Why PAM now</a><a href="#signin">Sign-in strength</a><a href="#views">Gartner and my view</a><a href="#map">The map</a><a href="#estate">The estate</a><a href="#cap">Vendors</a><a href="#comply">Frameworks</a><a href="#paths">Build paths</a><a href="#flows">Workflows</a><a href="#words">Glossary</a><a href="#gaps">Gaps</a><a href="#sources">Sources</a>
+</nav>
+
+
+
+
+<section class="band sec k-green" id="results"><div class="wrap">
+<h2>The lab: 36 predictions locked before any code, 33 exactly right</h2>
+<p>Each case is a small model of rule logic on made-up data (Kaveri Finance). It runs with no controls, with all three, and with each control switched off alone. A control is <b>noticed</b> when switching it off alone changes the counted outcome. The predictions were written, hashed and merged before the models existed. Roshan ran both rounds on his own Mac on 28 Nov 2026, and a second run gave identical numbers.</p>
+<div class="score" id="score" role="img" aria-label="36 predictions: 33 matched, 3 missed"></div>
+<p class="legend"><span class="sq ok"></span> matched exactly <span class="sq miss"></span> missed, explained below</p>
+<div class="figs" style="margin:14px 0 6px"><div><span class="big" data-n="19" data-f="# of 21">19 of 21</span><small>round 1 rows matched: the activation lane</small></div><div><span class="big" data-n="14" data-f="# of 15">14 of 15</span><small>round 3 rows matched: the gaps around the lane</small></div><div><span class="big" data-n="7" data-f="# of 7">7 of 7</span><small>joint checks matched, two controls off together</small></div><div><span class="big" data-n="6" data-f="# rows">6 rows</span><small>where no single control is noticed, but two together are</small></div></div>
+<div class="cols2" style="margin-top:22px">
+<div><h3>The three misses, explained</h3>
+<div class="scroll"><table class="stack"><thead><tr><th>Miss</th><th>Guess</th><th>Model</th><th>Why</th></tr></thead><tbody>
+<tr><td>PA-R1-07, hours of admin left over, task-bound tokens off</td><td>30</td><td>27</td><td>The scope rule still refused the 3 injected requests, so they never held admin. One control cut damage another was built for.</td></tr>
+<tr><td>PA-R1-13, rule changes, two-person rule off</td><td>0</td><td>1</td><td>JIT on the PAM tool's admin role stops outsiders, not a real tool admin whose activation is approved. Flagged as likely before the run.</td></tr>
+<tr><td>PA-R3-05, sub-agents holding the parent's admin, no controls</td><td>3</td><td>4</td><td>The sub-agent's own sub-agent got the token too. The guess missed the grandchild; disclosed before the run.</td></tr>
+</tbody></table></div></div>
+<div><h3>What the run shows beyond the score</h3><ul class="finds">
+<li><b>Layers hide in single-control tests.</b> In six rows no one control is noticed, yet two off together change the outcome. Test controls in pairs.</li>
+<li><b>Plain code stopped the planted requests, not the AI's mode.</b> In case 12 the code checks and the structured-fields limit did the work; recommend mode only set how many requests a person reads.</li>
+<li><b>Alerts don't block.</b> The outage alert in case 06 was never acted on in time, and an alert removed no admin rights in case 10.</li>
+<li><b>JIT guards the PAM rules from outsiders, not from their own admins.</b> Only a second person on each rule change stops an insider (case 13).</li>
+<li><b>The weakest control is the sponsor's attestation.</b> Changing how often sponsors attest wrongly moved nothing (round 3 case 03).</li></ul></div>
+</div>
+<h3 style="margin-top:26px">Every case, with every number</h3>
+<p class="mute">Each card shows the scenario, the three controls (the noticed ones are marked), and the five settings: the model's number, with the locked guess beside any that differ.</p>
+<div class="ctl" id="rfilter" role="group" aria-label="Filter cases" style="flex-wrap:wrap">
+<button type="button" data-r="all" aria-pressed="true">All 26 cases</button><button type="button" data-r="1" aria-pressed="false">Round 1</button><button type="button" data-r="3" aria-pressed="false">Round 3</button><button type="button" data-r="miss" aria-pressed="false">Misses only</button><button type="button" data-r="layer" aria-pressed="false">Layered: nothing noticed alone</button></div>
+<div class="cases" id="cases"><p class="mute">Loading the results files&hellip; If nothing appears, they are in <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/tree/main/pam-lab/evidence">pam-lab/evidence on GitHub</a>.</p></div>
+<div class="cols2" style="margin-top:24px">
+<div><h3>Joint checks: two controls off together</h3><div class="scroll"><table class="stack" id="jointT"><thead><tr><th>Case</th><th>Check</th><th>Guess</th><th>Model</th><th>Result</th></tr></thead><tbody></tbody></table></div></div>
+<div><h3>Assumptions that change results</h3><p class="mute">Change one stated assumption and these cases move. Everything else holds.</p><div class="scroll"><table class="stack" id="sensT"><thead><tr><th>Round</th><th>Assumption</th><th>Was</th><th>Tried</th><th>Cases that move</th></tr></thead><tbody></tbody></table></div></div>
+</div>
+<h3 style="margin-top:24px">Run it yourself</h3>
+<p>You need Python 3.8 or later and nothing else. The script refuses to run if a single character of the locked guesses has changed.</p>
+<div class="code"><button type="button" id="copyrun">Copy</button><pre id="runcmd">git clone https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io.git
+cd trivediroshan1-ui.github.io
+shasum -a 256 pam-lab/evidence/guesses/guesses-round-*.md
+python3 pam-lab/evidence/round1.py
+python3 pam-lab/evidence/round3.py</pre></div>
+<p class="foot">Guess hashes: round 1 <code>6c3acc1c3da56c1c381ccec312205d55a15b23fdfd5c1791d8240e74890a80aa</code>, round 3 <code>fa235a1b2f6d7269474346c29d76b09ffb270734c3689a30d8a313adb53082e8</code>. Findings: <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/pam-lab/evidence/FINDINGS-rounds-1-and-3.md">FINDINGS-rounds-1-and-3.md</a>. The same person wrote the guesses and the models, which favours the guesses. The blind AI forecast prompts let anyone score a model the same way.</p>
+</div></section>
+<section class="band sec k-red" id="why"><div class="wrap">
+<h2>Why PAM now: attackers buy admin access, call the help desk, and go after the PAM tools themselves</h2>
+<div class="cols3" style="margin-top:16px">
+<div class="card k-red"><span class="tag solid">Breach data</span><h3 style="margin-top:8px">Credentials still carry the attack</h3><p>Exploited flaws became the top way in (31%) in the 2026 DBIR, but stolen credentials are how attackers move sideways and climb. Admin access sells for about $1,300, and VPN logins make up 44% of what access brokers sell.</p><p class="src">Verizon DBIR 2026, published 19 May 2026; SpyCloud and Delinea summaries.</p></div>
+<div class="card k-amber"><span class="tag solid">Help desk</span><h3 style="margin-top:8px">The reset is the new phish</h3><p>In Q3 2026 Cisco Talos saw fake IT callers, armed with little more than names and email addresses, talk staff into remote sessions. One case ended in ransomware. In 2025 cases Coveware studied, attackers moved through help desk resets and MFA enrolment to privileged access.</p><p class="src">Help Net Security on Talos IR, 30 Oct 2026; Coveware by Veeam.</p></div>
+<div class="card k-blue"><span class="tag solid">The PAM layer</span><h3 style="margin-top:8px">Remote access tools are targets</h3><p>CVE-2026-1731, a pre-authentication remote code flaw rated 9.9, hit a widely used remote support and privileged remote access product in February 2026 and showed up in 16.7% of remote-tool incidents ReliaQuest tracked. Every vendor ships fixes; patch this layer first.</p><p class="src">ReliaQuest threat spotlight, Dec 2025 to Feb 2026.</p></div>
+<div class="card k-amber"><span class="tag solid">AI agents</span><h3 style="margin-top:8px">Agents ask for shell, at machine speed</h3><p>One vendor's telemetry counted 1.28 million shell commands requested from about 132,000 prompts in four weeks. In another vendor's survey, 87% had seen an AI tool reach data beyond its scope, and only 36% could always trace that access to a named person.</p><p class="src">BeyondTrust Phantom Labs, Oct 2026; Delinea 2026 Identity Security Report. Vendor data.</p></div>
+<div class="card k-green"><span class="tag solid">Machines</span><h3 style="margin-top:8px">Most privilege has no person behind it</h3><p>Service accounts, API keys, pipeline identities and certificates outnumber people many times over. Nobody resets their password at a help desk, so nobody notices when one is stolen.</p><p class="src">Idira 2026 Identity Security Landscape (vendor survey).</p></div>
+<div class="card k-violet"><span class="tag solid">Market</span><h3 style="margin-top:8px">The vendors are merging</h3><p>Palo Alto Networks bought CyberArk (closed 12 Feb 2026) and renamed the products Idira in May. Delinea bought StrongDM (closed March 2026). Buyers choosing today pick a roadmap as much as a product.</p><p class="src">Vendor announcements, 2026.</p></div>
+</div>
+</div></section>
+
+<section class="band sec k-violet" id="signin"><div class="wrap">
+<h2>Sign-in strength for privileged access: SSO gets you in, the key you hold decides how safe it is</h2>
+<p class="mute">Strength against phishing and relay, for the sign-in that opens an admin session. Based on NIST SP 800-63B-4 (final, 31 July 2025) and CISA guidance. Round 1 case 11 tests these against each other.</p>
+<div class="meter" id="meter"></div>
+<p class="foot" style="margin-top:8px">Face ID and fingerprints aren't on the scale on purpose. NIST 800-63B-4 doesn't recognise a biometric as an authenticator by itself; it unlocks a key on the device, so its strength is the key's. SSO is one strong sign-in at the IdP; the PAM layer still asks again (step-up) before Tier 0.</p>
+</div></section>
+<section class="band sec k-blue" id="views"><div class="wrap">
+<h2>Gartner sorts PAM by capability. I sort it by what fails.</h2>
+<div class="cols2" style="margin-top:12px">
+<div>
+<h3>What Gartner published</h3>
+<p>The 2026 Magic Quadrant for Privileged Access Management came out on 21 October 2026. Its public abstract says the market is evolving to manage privileged access "for machines, including AI agents". BeyondTrust, Delinea and Palo Alto Networks (Idira) each announced a Leader placement.</p>
+<p>In Idira's reading of Gartner's 2026 Critical Capabilities, there are four use cases: password vaulting and sessions (PASM), endpoint elevation (PEDM), remote PAM, and PAM for machines. Just-in-time access is now expected, not optional.</p>
+<p class="foot">The quadrant graphic and report text are Gartner's and are not reproduced here. Placements are taken from the vendors' own announcements.</p>
+</div>
+<div>
+<h3>My working theory <span class="tag">DRAFT, for Roshan to approve</span></h3>
+<ol class="theory">
+<li><b>Privilege is a length of time, not a role.</b> Count hours of admin held, not number of admins.</li>
+<li><b>An alert is not a control.</b> Only something that blocks, expires or removes counts. Rotation is not expiry.</li>
+<li><b>Controls hide each other.</b> Switch each one off alone. The one whose absence changes nothing is either covered by another or was never tested.</li>
+<li><b>The PAM layer is Tier 0.</b> Whoever can change the rules owns everything behind them.</li>
+<li><b>Rules check, people decide, AI recommends.</b> Machine-speed requests go to rules; judgement goes to people; AI never decides Tier 0 alone.</li>
+<li><b>Write the guess before the test.</b> Evidence you could have been wrong about is the only kind worth publishing.</li>
+</ol>
+</div>
+</div>
+</div></section>
+
+<section class="band sec k-green" id="estate"><div class="wrap">
+<h2>The estate: where privilege actually lives, and what to watch on each system</h2>
+<p class="mute">The end stations of the map. Account names are the common defaults; check each system's own documentation.</p>
+<div class="scroll"><table class="stack" id="estateT"><thead><tr><th>System</th><th>Accounts that matter</th><th>The path in</th><th>Credentials</th><th>Watch for</th></tr></thead><tbody></tbody></table></div>
+</div></section>
+
+<section class="band sec k-amber" id="capsec"><div class="wrap" id="cap-wrap">
+<h2 id="cap">Four vendors, mapped to the same stations</h2>
+<p class="mute">Component names from public product pages and docs read on 26 and 28 Nov 2026. This is a map, not a rating: no scores, no winner. Names change after mergers, so check with each vendor before you rely on a cell. Vendor names are plain text, not logos; column colours are only markers, not brand colours.</p>
+<div class="scroll"><table id="capT"><thead><tr><th>Station</th><th><span class="vchip k-green">Idira (CyberArk)</span></th><th><span class="vchip k-blue">BeyondTrust</span></th><th><span class="vchip k-red">Delinea</span></th><th><span class="vchip k-amber">StrongDM</span><br><small class="mute">part of Delinea since Mar 2026</small></th></tr></thead><tbody></tbody></table></div>
+<p class="foot">"Not on pages read" means I didn't find it on the pages I read, not that it doesn't exist.</p>
+</div></section>
+
+<section class="band sec k-ink" id="comply"><div class="wrap">
+<h2>Where the map meets the frameworks auditors use</h2>
+<p class="mute">Read as a direction, not a certificate. Check the current text of each standard and how your auditor reads it.</p>
+<div class="scroll"><table class="stack" id="compT"><thead><tr><th>Framework</th><th>What it asks</th><th>Where it lands on the map</th></tr></thead><tbody></tbody></table></div>
+</div></section>
+<section class="band dark sec k-red" id="paths"><div class="wrap">
+<h2>Three build paths on the same map</h2>
+<p class="mute">Same architecture, different starting stations. Each path keeps what the previous one built.</p>
+<div class="paths" style="margin-top:14px;border-color:#eef1f6">
+<div><h3>Small or growing</h3><p class="mute">One or two people own identity. Most systems are SaaS and cloud.</p><ul><li>Vault and rotate every domain, cloud root and SaaS admin login; no shared passwords in chat or sheets</li><li>Passkeys or security keys for every admin</li><li>Vendors through a broker, never a VPN account</li><li>Cloud admin roles activated just in time</li><li>Two sealed break-glass accounts, tested twice a year</li></ul><p class="mute">Leave for later: session farms, endpoint elevation at scale.</p></div>
+<div><h3>Mid-size, some regulation</h3><p class="mute">A small IAM team, an ITSM tool, a SIEM, auditors once a year.</p><ul><li>Everything on the left, plus</li><li>Session recording for Tier 0 and Tier 1</li><li>A ticket check that compares the system in the ticket with the system asked for</li><li>Endpoint privilege: elevate the app, not the user</li><li>Secrets out of code; pipelines sign in with OIDC, no static keys</li><li>Three SIEM alerts first: activation outside hours, new owner on a secret, admin granted outside PAM</li><li>An onboarding factory that brings accounts in by waves</li></ul></div>
+<div><h3>Large, regulated, global</h3><p class="mute">Several platforms, SAP or mainframe, plants, many vendors, AI agents.</p><ul><li>Everything to the left, plus</li><li>Tier 0 isolation: admin workstations, separate admin plane</li><li>Vault pairs across regions with failover you actually test</li><li>SAP firefighter, JD Edwards, IBM i and mainframe brought into the broker</li><li>IT/OT boundary brokers with site-local break-glass</li><li>Agent registry, per-task tokens, gateway checks on every call</li><li>ITDR on the identity layer; PAM admins watched like domain admins</li><li>An operating model: a product owner, a platform team, the onboarding factory, a RACI and board-level KPIs</li></ul></div>
+</div>
+<h3 style="margin-top:22px">Measures that tell the truth</h3>
+<div class="kpis"><div>Standing admins left, against a target of break-glass only</div><div>Hours of admin held per week, per tier</div><div>Share of Tier 0 sessions recorded and reviewed</div><div>Time from leaver to last privilege removed</div><div>Machine identities with a named owner and an expiry</div><div>Exceptions that carry an end date</div></div>
+</div></section>
+
+<section class="band sec k-blue" id="flows"><div class="wrap">
+<h2>Eight workflows, step by step, each tied to a lab case</h2>
+<p class="mute">Each workflow plays through. The coloured step is where it is now; the line under it shows which control decides that step.</p>
+<div class="wtabs" id="wtabs" role="tablist" aria-label="Workflows"></div>
+<div class="wf">
+<div><ol class="steps" id="wsteps"></ol><div class="ctl"><button id="wplay" type="button">Pause</button><button id="wreplay" type="button">Replay</button></div></div>
+<div class="card" id="wside"></div>
+</div>
+</div></section>
+
+<section class="band sec k-violet" id="words"><div class="wrap">
+<h2>Words leaders will hear, in plain English</h2>
+<div class="gloss" id="gloss"></div>
+</div></section>
+
+
+<section class="band sec k-red" id="gaps"><div class="wrap">
+<h2>What this does not cover yet</h2>
+<div class="cols2"><ul>
+<li>Real products. The lab tests rule logic, not any vendor's software.</li>
+<li>Round 2: real AI approvers fooled on purpose. Waiting on the choice of local models.</li>
+<li>Customer identity, and passwordless rollout for people who aren't admins.</li>
+</ul><ul>
+<li>The legal answer on how long session recordings may be kept (GDPR, India's DPDP Act). The lab uses a made-up 90 days.</li>
+<li>Cost and licensing. These vary too much by contract to put on a public page.</li>
+<li>Your own estate. Use the map as a checklist, not an inventory.</li>
+</ul></div>
+</div></section>
+
+<section class="band alt" id="sources"><div class="wrap">
+<h2>Sources</h2>
+<ul class="foot" id="srcs"></ul>
+<p class="foot">Vendor figures are the vendors' own, labelled as such. Nothing here is endorsed by Gartner or any vendor. Made-up data only in the lab.</p>
+</div></section>
+</main>
+    <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 28 Nov 2026</span></span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
+  <script src="/assets/pam-lab.js?v=20261128a" defer></script>
+  <script defer src="/assets/chatbot-widget.js?v=20261123b"></script>
+  <script defer src="/assets/events.js?v=20261115b"></script>
+  </body>
+</html>
