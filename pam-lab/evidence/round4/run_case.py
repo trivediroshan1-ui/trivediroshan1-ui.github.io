@@ -131,6 +131,13 @@ def case01(on):
               "standardFlowEnabled": False})
     k.client({"clientId": "pam-api", "secret": "api-secret", "publicClient": False, "directAccessGrantsEnabled": False,
               "standardFlowEnabled": False, "serviceAccountsEnabled": True})
+    # Ask Keycloak to put realm roles in the introspection answer, so an API that checks online can read them.
+    scopes = k.adm("GET", "/kaveri/client-scopes").json()
+    rs = [x for x in scopes if x["name"] == "roles"][0]
+    for mp in k.adm("GET", "/kaveri/client-scopes/%s/protocol-mappers/models" % rs["id"]).json():
+        if mp.get("protocolMapper") == "oidc-usermodel-realm-role-mapper":
+            mp.setdefault("config", {})["introspection.token.claim"] = "true"
+            k.adm("PUT", "/kaveri/client-scopes/%s/protocol-mappers/models/%s" % (rs["id"], mp["id"]), json=mp)
     uid = k.user("asha", "Lab-pass-01!")
     k.adm("POST", "/kaveri/users/%s/role-mappings/realm" % uid, json=[role])
     tok = k.token("pam-cli", "cli-secret", "asha", "Lab-pass-01!")
@@ -151,7 +158,9 @@ def case01(on):
         return "pam-admin" in c.get("realm_access", {}).get("roles", [])
 
     if not api_accepts():
-        raise RuntimeError("setup: the API refuses the token before the role is removed")
+        body = requests.post("http://localhost:8080/realms/kaveri/protocol/openid-connect/token/introspect", timeout=10,
+                             data={"token": tok, "client_id": "pam-api", "client_secret": "api-secret"}).text[:600]
+        raise RuntimeError("setup: the API refuses the token before the role is removed; introspection said: " + body)
     k.adm("DELETE", "/kaveri/users/%s/role-mappings/realm" % uid, json=[role])
     if "c" in on:
         k.adm("POST", "/kaveri/users/%s/logout" % uid)
@@ -311,9 +320,10 @@ def case04(on):
     VERSIONS["debian"] = digest(DEBIAN)
     VERSIONS["sudo"] = sh(["docker", "exec", "sshlab", "sudo", "-V"]).stdout.splitlines()[0]
     VERSIONS["openssh"] = (sh(["docker", "exec", "sshlab", "sshd", "-V"], check=False).stderr or "").strip().splitlines()[0:1]
+    if "a" in on:  # group_source lives in /etc/sudo.conf
+        sh(["docker", "exec", "-i", "sshlab", "sh", "-c", "cat >> /etc/sudo.conf"], input="Set group_source dynamic\n")
+        log("sudo.conf: Set group_source dynamic")
     rules = []
-    if "a" in on:
-        rules.append("Defaults group_source=dynamic")
     if "c" in on:
         rules.append("Defaults logfile=/var/log/sudo-alert.log")
     if rules:
