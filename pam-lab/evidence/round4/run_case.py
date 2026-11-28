@@ -127,10 +127,14 @@ def case01(on):
     k.realm = "kaveri"
     k.adm("POST", "/kaveri/roles", json={"name": "pam-admin"})
     role = k.adm("GET", "/kaveri/roles/pam-admin").json()
-    k.client({"clientId": "pam-cli", "secret": "cli-secret", "publicClient": False, "directAccessGrantsEnabled": True,
-              "standardFlowEnabled": False})
     k.client({"clientId": "pam-api", "secret": "api-secret", "publicClient": False, "directAccessGrantsEnabled": False,
               "standardFlowEnabled": False, "serviceAccountsEnabled": True})
+    k.client({"clientId": "pam-cli", "secret": "cli-secret", "publicClient": False, "directAccessGrantsEnabled": True,
+              "standardFlowEnabled": False,
+              # The token is meant for the API, so the API is in its audience (Keycloak answered active:false without it).
+              "protocolMappers": [{"name": "aud-pam-api", "protocol": "openid-connect", "protocolMapper": "oidc-audience-mapper",
+                                   "config": {"included.client.audience": "pam-api", "access.token.claim": "true",
+                                              "introspection.token.claim": "true"}}]})
     # Ask Keycloak to put realm roles in the introspection answer, so an API that checks online can read them.
     scopes = k.adm("GET", "/kaveri/client-scopes").json()
     rs = [x for x in scopes if x["name"] == "roles"][0]

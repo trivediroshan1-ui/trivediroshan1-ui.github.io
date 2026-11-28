@@ -10,3 +10,11 @@ The first run stopped on two setup errors. Both were caught by the setup checks 
 - **PA-R4-04, every setting with the group re-read on:** the harness put `group_source=dynamic` in the sudoers rules, where sudo rejects it. `group_source` is a `/etc/sudo.conf` setting. Fix: write `Set group_source dynamic` to `/etc/sudo.conf`.
 
 Neither fix changes what is measured or the counting rule. The results come from a fresh full run after this fix.
+
+## Fix 2, 28 Nov 2026, after the second run (run 46131328729)
+
+Fix 1 worked for PA-R4-04. PA-R4-01 still stopped at its setup check in the three settings with the online check on. Keycloak answered `{"active":false}` for a fresh, valid token, which the harness now records.
+
+- **PA-R4-01:** the token's audience did not include the test API. The fix adds the API to the token's audience, as a real API would be set up, and makes sure the audience is also included in the introspection answer.
+
+This doesn't change what is measured or the counting rule. The settings with the online check off (no controls, off a, the joint check) were not affected. Results come from a fresh full run after this fix.
