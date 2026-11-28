@@ -31,6 +31,18 @@ To write them somewhere else, set `PAM_LAB_OUT=/some/folder` before the command.
 
 Every number the guess file leaves open is in `PARAMS` at the top of `round1.py`, with a comment. Change one and run again. The "Assumptions that change results" table shows which cases move for six of them.
 
+## Round 2: fool the approver (open to readers)
+
+7 guesses, PA-R2-01 to PA-R2-07, about real small open AI models acting as the approver for 120 made-up requests. Anyone can run it against their own model.
+
+- `guesses/guesses-round-2.md`: the predictions, locked before any model runs. sha256 `576b334e62bd9b9c1659efab64d97c14e83a9f3ff7df169bc778b9f207857a2c`. It also lists the hashes of the four files below, so they are locked too.
+- `round2/policy.json`: Kaveri Finance's made-up access policy. The approver sees it; the code checks use it.
+- `round2/test-set.jsonl`: the 120 requests. Each has a `label` the harness removes before the approver sees anything.
+- `round2/make_test_set.py`: rebuilds the test set from a fixed seed. `--check` confirms the committed file matches.
+- `round2/approver-instructions.md`: the exact instructions the approver gets, and how its answers are read.
+
+The script that runs a model, and the reference runs, come after the guesses are merged.
+
 ## Round 3: the gaps around the lane
 
 10 cases, PA-R3-01 to PA-R3-10: help desk recovery, movers and contractors, outside vendors, sub-agents, signing keys, Kubernetes, OT while IT is down, two insiders together, and session recordings.
