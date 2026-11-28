@@ -1,0 +1,600 @@
+{
+ "guess_file": "guesses/guesses-round-4.md",
+ "sha256": "0a7cac425ed7d3b6a265e56dc69880eb130e6ab72cd8cd95b7be3823b4cb2381",
+ "versions": {
+  "keycloak": "quay.io/keycloak/keycloak@sha256:3f3c5f8e03c614774b4bd9173b88391fefa4153bfc010d8012d59ad825377332",
+  "openbao": "openbao/openbao@sha256:cf2340fc9a22cb9358ca0defd1f39b65673836bd23fe2bb8984a07e11fe13ef4",
+  "postgres": "postgres@sha256:f2f98726820d0342055351c6e9d36e705f5bfffb3dd53ff556325114b08afb6d",
+  "debian": "docker.io/library/debian:bookworm-slim",
+  "sudo": "Sudo version 1.9.13p3",
+  "openssh": [
+   "OpenSSH_9.2, OpenSSL 3.0.22 25 Aug 2026"
+  ],
+  "kind": "kind v0.31.0 go1.25.5 linux/amd64",
+  "kind_node": "kindest/node:v1.35.0@sha256:452d707d4862f52530247495d180205e029056831160e22870e37e3f6c1ac31f",
+  "kubernetes": "{   \"clientVersion\": {     \"major\": \"1\",     \"minor\": \"35\",     \"gitVersion\": \"v1.35.0\",     \"gitCommit\": \"66452049f3d692768c39c797b21b793dce80314e\",     \"gitTreeState\": \"clean\",     \"buildDate\": \"2025-12-17T12:41:05Z\",     \"goVersion\": \"go1.25.5\",     \"compiler\": \"gc\",     \"platform\": \"linux/amd64\"   },   \"kustomizeVersion\": \"v5.7.1\",   \"serverVersion\": {     \"major\": \"1\",     \"minor\": \"35\",     "
+ },
+ "rows": [
+  {
+   "id": "PA-R4-01",
+   "counted": "first check, in seconds after the role is removed, at which the API refuses the admin token (checked every 15 s from 0; 600 if never refused)",
+   "guess": [
+    300,
+    0,
+    60,
+    0,
+    60
+   ],
+   "measured": [
+    300,
+    0,
+    60,
+    0,
+    0
+   ],
+   "complete": true,
+   "mismatch": [
+    "off c"
+   ],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R4-02",
+   "counted": "direct sub-agents (3 tried) that reach the database API's admin endpoint",
+   "guess": [
+    3,
+    0,
+    3,
+    0,
+    0
+   ],
+   "measured": [
+    3,
+    0,
+    3,
+    0,
+    0
+   ],
+   "complete": true,
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R4-03",
+   "counted": "first check, in minutes after the task ends, at which a login with the copied database credential fails (checked every minute from 0; 30 if it never fails)",
+   "guess": [
+    30,
+    0,
+    30,
+    0,
+    3
+   ],
+   "measured": [
+    30,
+    0,
+    30,
+    0,
+    3
+   ],
+   "complete": true,
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R4-04",
+   "counted": "sudo commands (5 tried over 2 minutes) that succeed in an already-open SSH session after the user is removed from the admin group",
+   "guess": [
+    5,
+    0,
+    0,
+    0,
+    0
+   ],
+   "measured": [
+    5,
+    0,
+    0,
+    0,
+    0
+   ],
+   "complete": true,
+   "mismatch": [],
+   "noticed": []
+  },
+  {
+   "id": "PA-R4-05",
+   "counted": "paths (3 tried) that reach cluster-admin from a developer's kubeconfig",
+   "guess": [
+    3,
+    0,
+    1,
+    2,
+    0
+   ],
+   "measured": [
+    3,
+    0,
+    1,
+    2,
+    0
+   ],
+   "complete": true,
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  }
+ ],
+ "joint": [
+  {
+   "id": "PA-R4-01",
+   "check": "online check and session logout both off",
+   "guess": 60,
+   "measured": 60,
+   "match": true
+  },
+  {
+   "id": "PA-R4-04",
+   "check": "group re-read and session end both off",
+   "guess": 5,
+   "measured": 5,
+   "match": true
+  }
+ ],
+ "errors": [],
+ "summary": {
+  "rows": 5,
+  "scored": 5,
+  "matched": 4,
+  "joint_matched": 2,
+  "joint_scored": 2,
+  "errors": 0
+ },
+ "runs": {
+  "PA-R4-01 all": {
+   "value": 0,
+   "error": null,
+   "seconds": 27.4,
+   "log": [
+    "   25.8s Keycloak is up",
+    "   27.3s token issued with pam-admin, life 60s",
+    "   27.4s role removed, sessions logged out",
+    "   27.4s t=0s accepted=False",
+    "   27.4s measured value: 0"
+   ]
+  },
+  "PA-R4-01 joint": {
+   "value": 60,
+   "error": null,
+   "seconds": 89.7,
+   "log": [
+    "   27.7s Keycloak is up",
+    "   29.6s token issued with pam-admin, life 60s",
+    "   29.6s role removed",
+    "   29.6s t=0s accepted=True",
+    "   44.6s t=15s accepted=True",
+    "   59.7s t=30s accepted=True",
+    "   74.7s t=45s accepted=True",
+    "   89.7s t=60s accepted=False",
+    "   89.7s measured value: 60"
+   ]
+  },
+  "PA-R4-01 none": {
+   "value": 300,
+   "error": null,
+   "seconds": 336.3,
+   "log": [
+    "   33.8s Keycloak is up",
+    "   36.1s token issued with pam-admin, life 300s",
+    "   36.1s role removed",
+    "   36.2s t=0s accepted=True",
+    "   51.2s t=15s accepted=True",
+    "   66.2s t=30s accepted=True",
+    "   81.2s t=45s accepted=True",
+    "   96.2s t=60s accepted=True",
+    "  111.2s t=75s accepted=True",
+    "  126.2s t=90s accepted=True",
+    "  141.3s t=105s accepted=True",
+    "  156.3s t=120s accepted=True",
+    "  171.3s t=135s accepted=True",
+    "  186.3s t=150s accepted=True",
+    "  201.3s t=165s accepted=True",
+    "  216.3s t=180s accepted=True",
+    "  231.2s t=195s accepted=True",
+    "  246.2s t=210s accepted=True",
+    "  261.2s t=225s accepted=True",
+    "  276.2s t=240s accepted=True",
+    "  291.2s t=255s accepted=True",
+    "  306.2s t=270s accepted=True",
+    "  321.2s t=285s accepted=True",
+    "  336.3s t=300s accepted=False",
+    "  336.3s measured value: 300"
+   ]
+  },
+  "PA-R4-01 off_a": {
+   "value": 60,
+   "error": null,
+   "seconds": 87.2,
+   "log": [
+    "   25.7s Keycloak is up",
+    "   27.0s token issued with pam-admin, life 60s",
+    "   27.1s role removed, sessions logged out",
+    "   27.1s t=0s accepted=True",
+    "   42.2s t=15s accepted=True",
+    "   57.2s t=30s accepted=True",
+    "   72.2s t=45s accepted=True",
+    "   87.2s t=60s accepted=False",
+    "   87.2s measured value: 60"
+   ]
+  },
+  "PA-R4-01 off_b": {
+   "value": 0,
+   "error": null,
+   "seconds": 36.3,
+   "log": [
+    "   34.3s Keycloak is up",
+    "   36.1s token issued with pam-admin, life 300s",
+    "   36.3s role removed, sessions logged out",
+    "   36.3s t=0s accepted=False",
+    "   36.3s measured value: 0"
+   ]
+  },
+  "PA-R4-01 off_c": {
+   "value": 0,
+   "error": null,
+   "seconds": 32.7,
+   "log": [
+    "   30.8s Keycloak is up",
+    "   32.7s token issued with pam-admin, life 60s",
+    "   32.7s role removed",
+    "   32.7s t=0s accepted=False",
+    "   32.7s measured value: 0"
+   ]
+  },
+  "PA-R4-02 all": {
+   "value": 0,
+   "error": null,
+   "seconds": 26.7,
+   "log": [
+    "   24.9s Keycloak is up",
+    "   26.6s parent token aud=['db-api', 'sub-agent', 'account'] scope=openid profile email db-admin",
+    "   26.7s sub-agent 1: aud=account scope=profile email reached=False",
+    "   26.7s sub-agent 2: aud=account scope=profile email reached=False",
+    "   26.7s sub-agent 3: aud=account scope=profile email reached=False",
+    "   26.7s measured value: 0"
+   ]
+  },
+  "PA-R4-02 none": {
+   "value": 3,
+   "error": null,
+   "seconds": 32.8,
+   "log": [
+    "   30.4s Keycloak is up",
+    "   32.8s parent token aud=['sub-agent', 'db-api', 'account'] scope=openid email profile db-admin",
+    "   32.8s sub-agent 1: aud=['sub-agent', 'db-api', 'account'] scope=openid email profile db-admin reached=True",
+    "   32.8s sub-agent 2: aud=['sub-agent', 'db-api', 'account'] scope=openid email profile db-admin reached=True",
+    "   32.8s sub-agent 3: aud=['sub-agent', 'db-api', 'account'] scope=openid email profile db-admin reached=True",
+    "   32.8s measured value: 3"
+   ]
+  },
+  "PA-R4-02 off_a": {
+   "value": 3,
+   "error": null,
+   "seconds": 26.6,
+   "log": [
+    "   25.0s Keycloak is up",
+    "   26.6s parent token aud=['sub-agent', 'db-api', 'account'] scope=openid profile email db-admin",
+    "   26.6s sub-agent 1: aud=['sub-agent', 'db-api', 'account'] scope=openid profile email db-admin reached=True",
+    "   26.6s sub-agent 2: aud=['sub-agent', 'db-api', 'account'] scope=openid profile email db-admin reached=True",
+    "   26.6s sub-agent 3: aud=['sub-agent', 'db-api', 'account'] scope=openid profile email db-admin reached=True",
+    "   26.6s measured value: 3"
+   ]
+  },
+  "PA-R4-02 off_b": {
+   "value": 0,
+   "error": null,
+   "seconds": 35.7,
+   "log": [
+    "   33.8s Keycloak is up",
+    "   35.5s parent token aud=['db-api', 'sub-agent', 'account'] scope=openid db-admin email profile",
+    "   35.6s sub-agent 1: aud=account scope=email profile reached=False",
+    "   35.6s sub-agent 2: aud=account scope=email profile reached=False",
+    "   35.7s sub-agent 3: aud=account scope=email profile reached=False",
+    "   35.7s measured value: 0"
+   ]
+  },
+  "PA-R4-02 off_c": {
+   "value": 0,
+   "error": null,
+   "seconds": 32.1,
+   "log": [
+    "   30.7s Keycloak is up",
+    "   32.0s parent token aud=['sub-agent', 'db-api', 'account'] scope=openid db-admin profile email",
+    "   32.1s sub-agent 1: aud=account scope=profile email reached=False",
+    "   32.1s sub-agent 2: aud=account scope=profile email reached=False",
+    "   32.1s sub-agent 3: aud=account scope=profile email reached=False",
+    "   32.1s measured value: 0"
+   ]
+  },
+  "PA-R4-03 all": {
+   "value": 0,
+   "error": null,
+   "seconds": 131.1,
+   "log": [
+    "   10.7s OpenBao and PostgreSQL are up",
+    "   10.7s per-task credential issued, lease 5m",
+    "  130.9s lease revoked at task end",
+    "  131.1s minute 0: login works=False",
+    "  131.1s measured value: 0"
+   ]
+  },
+  "PA-R4-03 none": {
+   "value": 30,
+   "error": null,
+   "seconds": 1932.0,
+   "log": [
+    "   11.1s OpenBao and PostgreSQL are up",
+    "   11.2s stored password in use",
+    "  131.5s minute 0: login works=True",
+    "  191.7s minute 1: login works=True",
+    "  251.8s minute 2: login works=True",
+    "  312.0s minute 3: login works=True",
+    "  371.7s minute 4: login works=True",
+    "  431.8s minute 5: login works=True",
+    "  492.0s minute 6: login works=True",
+    "  551.7s minute 7: login works=True",
+    "  611.8s minute 8: login works=True",
+    "  672.0s minute 9: login works=True",
+    "  731.7s minute 10: login works=True",
+    "  791.8s minute 11: login works=True",
+    "  852.0s minute 12: login works=True",
+    "  911.7s minute 13: login works=True",
+    "  971.8s minute 14: login works=True",
+    " 1031.5s minute 15: login works=True",
+    " 1091.7s minute 16: login works=True",
+    " 1151.8s minute 17: login works=True",
+    " 1211.5s minute 18: login works=True",
+    " 1271.7s minute 19: login works=True",
+    " 1331.8s minute 20: login works=True",
+    " 1391.5s minute 21: login works=True",
+    " 1451.7s minute 22: login works=True",
+    " 1511.8s minute 23: login works=True",
+    " 1571.5s minute 24: login works=True",
+    " 1631.7s minute 25: login works=True",
+    " 1691.8s minute 26: login works=True",
+    " 1752.0s minute 27: login works=True",
+    " 1811.7s minute 28: login works=True",
+    " 1871.8s minute 29: login works=True",
+    " 1932.0s minute 30: login works=True",
+    " 1932.0s measured value: 30"
+   ]
+  },
+  "PA-R4-03 off_a": {
+   "value": 30,
+   "error": null,
+   "seconds": 1931.2,
+   "log": [
+    "   10.4s OpenBao and PostgreSQL are up",
+    "   10.4s stored password in use",
+    "  130.8s minute 0: login works=True",
+    "  190.9s minute 1: login works=True",
+    "  251.1s minute 2: login works=True",
+    "  311.3s minute 3: login works=True",
+    "  370.9s minute 4: login works=True",
+    "  431.1s minute 5: login works=True",
+    "  491.3s minute 6: login works=True",
+    "  550.9s minute 7: login works=True",
+    "  611.1s minute 8: login works=True",
+    "  671.2s minute 9: login works=True",
+    "  730.9s minute 10: login works=True",
+    "  791.1s minute 11: login works=True",
+    "  851.2s minute 12: login works=True",
+    "  910.9s minute 13: login works=True",
+    "  971.1s minute 14: login works=True",
+    " 1031.2s minute 15: login works=True",
+    " 1090.9s minute 16: login works=True",
+    " 1151.0s minute 17: login works=True",
+    " 1211.2s minute 18: login works=True",
+    " 1270.9s minute 19: login works=True",
+    " 1331.0s minute 20: login works=True",
+    " 1391.2s minute 21: login works=True",
+    " 1450.9s minute 22: login works=True",
+    " 1511.0s minute 23: login works=True",
+    " 1571.2s minute 24: login works=True",
+    " 1630.9s minute 25: login works=True",
+    " 1691.0s minute 26: login works=True",
+    " 1751.2s minute 27: login works=True",
+    " 1810.9s minute 28: login works=True",
+    " 1871.0s minute 29: login works=True",
+    " 1931.2s minute 30: login works=True",
+    " 1931.2s measured value: 30"
+   ]
+  },
+  "PA-R4-03 off_b": {
+   "value": 0,
+   "error": null,
+   "seconds": 130.1,
+   "log": [
+    "    9.8s OpenBao and PostgreSQL are up",
+    "    9.8s per-task credential issued, lease 768h",
+    "  130.0s lease revoked at task end",
+    "  130.1s minute 0: login works=False",
+    "  130.1s measured value: 0"
+   ]
+  },
+  "PA-R4-03 off_c": {
+   "value": 3,
+   "error": null,
+   "seconds": 312.9,
+   "log": [
+    "   12.1s OpenBao and PostgreSQL are up",
+    "   12.1s per-task credential issued, lease 5m",
+    "  132.4s minute 0: login works=True",
+    "  192.6s minute 1: login works=True",
+    "  252.7s minute 2: login works=True",
+    "  312.9s minute 3: login works=False",
+    "  312.9s measured value: 3"
+   ]
+  },
+  "PA-R4-04 all": {
+   "value": 0,
+   "error": null,
+   "seconds": 130.3,
+   "log": [
+    "    9.6s sudo.conf: Set group_source dynamic",
+    "   10.2s user removed from pamadmins, sessions ended",
+    "   10.2s sudo 1 at 0s: refused or session gone",
+    "   40.2s sudo 2 at 30s: refused or session gone",
+    "   70.2s sudo 3 at 60s: refused or session gone",
+    "  100.2s sudo 4 at 90s: refused or session gone",
+    "  130.2s sudo 5 at 120s: refused or session gone",
+    "  130.3s alert log lines: 1 (an alert, it blocks nothing)",
+    "  130.3s measured value: 0"
+   ]
+  },
+  "PA-R4-04 joint": {
+   "value": 5,
+   "error": null,
+   "seconds": 131.5,
+   "log": [
+    "   11.3s user removed from pamadmins",
+    "   11.4s sudo 1 at 0s: succeeded",
+    "   41.4s sudo 2 at 30s: succeeded",
+    "   71.4s sudo 3 at 60s: succeeded",
+    "  101.4s sudo 4 at 90s: succeeded",
+    "  131.4s sudo 5 at 120s: succeeded",
+    "  131.5s alert log lines: 6 (an alert, it blocks nothing)",
+    "  131.5s measured value: 5"
+   ]
+  },
+  "PA-R4-04 none": {
+   "value": 5,
+   "error": null,
+   "seconds": 128.6,
+   "log": [
+    "    8.5s user removed from pamadmins",
+    "    8.5s sudo 1 at 0s: succeeded",
+    "   38.5s sudo 2 at 30s: succeeded",
+    "   68.6s sudo 3 at 60s: succeeded",
+    "   98.6s sudo 4 at 90s: succeeded",
+    "  128.6s sudo 5 at 120s: succeeded",
+    "  128.6s measured value: 5"
+   ]
+  },
+  "PA-R4-04 off_a": {
+   "value": 0,
+   "error": null,
+   "seconds": 132.1,
+   "log": [
+    "   11.9s user removed from pamadmins, sessions ended",
+    "   11.9s sudo 1 at 0s: refused or session gone",
+    "   42.0s sudo 2 at 30s: refused or session gone",
+    "   72.0s sudo 3 at 60s: refused or session gone",
+    "  102.0s sudo 4 at 90s: refused or session gone",
+    "  132.0s sudo 5 at 120s: refused or session gone",
+    "  132.1s alert log lines: 1 (an alert, it blocks nothing)",
+    "  132.1s measured value: 0"
+   ]
+  },
+  "PA-R4-04 off_b": {
+   "value": 0,
+   "error": null,
+   "seconds": 128.9,
+   "log": [
+    "    8.2s sudo.conf: Set group_source dynamic",
+    "    8.8s user removed from pamadmins",
+    "    8.8s sudo 1 at 0s: refused or session gone",
+    "   38.8s sudo 2 at 30s: refused or session gone",
+    "   68.8s sudo 3 at 60s: refused or session gone",
+    "   98.8s sudo 4 at 90s: refused or session gone",
+    "  128.9s sudo 5 at 120s: refused or session gone",
+    "  128.9s alert log lines: 11 (an alert, it blocks nothing)",
+    "  128.9s measured value: 0"
+   ]
+  },
+  "PA-R4-04 off_c": {
+   "value": 0,
+   "error": null,
+   "seconds": 131.0,
+   "log": [
+    "   10.4s sudo.conf: Set group_source dynamic",
+    "   11.0s user removed from pamadmins, sessions ended",
+    "   11.0s sudo 1 at 0s: refused or session gone",
+    "   41.0s sudo 2 at 30s: refused or session gone",
+    "   71.0s sudo 3 at 60s: refused or session gone",
+    "  101.0s sudo 4 at 90s: refused or session gone",
+    "  131.0s sudo 5 at 120s: refused or session gone",
+    "  131.0s measured value: 0"
+   ]
+  },
+  "PA-R4-05 all": {
+   "value": 0,
+   "error": null,
+   "seconds": 101.7,
+   "log": [
+    "   82.7s audit logging for exec into system namespaces is on",
+    "  101.5s path 1, impersonate engineer: False",
+    "  101.6s path 2, service account token read from tools: False",
+    "  101.7s privileged pod refused: Error from server (Forbidden): error when creating \"STDIN\": pods \"escape\" is forbidden: violates PodSecurity \"restricted:latest\": privileged (container \"c\" must not set securityContext.privileged=true",
+    "  101.7s path 3, privileged pod reads the node's admin.conf: False",
+    "  101.7s measured value: 0"
+   ]
+  },
+  "PA-R4-05 none": {
+   "value": 3,
+   "error": null,
+   "seconds": 44.6,
+   "log": [
+    "   41.5s path 1, impersonate engineer: True",
+    "   41.6s path 2, service account token read from tools: True",
+    "   44.6s path 3, privileged pod reads the node's admin.conf: True",
+    "   44.6s measured value: 3"
+   ]
+  },
+  "PA-R4-05 off_a": {
+   "value": 1,
+   "error": null,
+   "seconds": 100.7,
+   "log": [
+    "   82.0s audit logging for exec into system namespaces is on",
+    "  100.6s path 1, impersonate engineer: True",
+    "  100.6s path 2, service account token read from tools: False",
+    "  100.7s privileged pod refused: Error from server (Forbidden): error when creating \"STDIN\": pods \"escape\" is forbidden: violates PodSecurity \"restricted:latest\": privileged (container \"c\" must not set securityContext.privileged=true",
+    "  100.7s path 3, privileged pod reads the node's admin.conf: False",
+    "  100.7s measured value: 1"
+   ]
+  },
+  "PA-R4-05 off_b": {
+   "value": 2,
+   "error": null,
+   "seconds": 117.1,
+   "log": [
+    "   84.9s audit logging for exec into system namespaces is on",
+    "  106.5s path 1, impersonate engineer: False",
+    "  106.5s path 2, service account token read from tools: True",
+    "  117.1s path 3, privileged pod reads the node's admin.conf: True",
+    "  117.1s measured value: 2"
+   ]
+  },
+  "PA-R4-05 off_c": {
+   "value": 0,
+   "error": null,
+   "seconds": 44.2,
+   "log": [
+    "   43.9s path 1, impersonate engineer: False",
+    "   44.1s path 2, service account token read from tools: False",
+    "   44.2s privileged pod refused: Error from server (Forbidden): error when creating \"STDIN\": pods \"escape\" is forbidden: violates PodSecurity \"restricted:latest\": privileged (container \"c\" must not set securityContext.privileged=true",
+    "   44.2s path 3, privileged pod reads the node's admin.conf: False",
+    "   44.2s measured value: 0"
+   ]
+  }
+ }
+}

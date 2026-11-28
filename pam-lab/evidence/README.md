@@ -55,3 +55,9 @@ The hash must be `fa235a1b2f6d7269474346c29d76b09ffb270734c3689a30d8a313adb53082
 - `.github/workflows/pam-lab-round4.yml`: runs all 27 measurements on GitHub Actions. Started by hand from the Actions tab; read-only, no secrets. The full log of every run is public, and the results appear on the run's summary page and as the `round-4-results` download.
 
 The passwords in `run_case.py` are throwaway values for containers that exist only for the length of one job.
+
+Results, from run 46133108171 on 28 Nov 2026:
+
+- `RESULTS-round-4.md` and `results-round-4.json`: copied unchanged from that run's `round-4-results` download (sha256 `40e530e2…` and `ab26c366…`). 4 of 5 rows matched, both joint checks matched, no harness errors.
+- `FINDINGS-round-4.md`: what the run shows, including the one miss.
+- `round4/HARNESS-CHANGES.md`: the two setup fixes made before this run.
