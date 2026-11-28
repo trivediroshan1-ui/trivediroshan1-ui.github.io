@@ -6,10 +6,10 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0e1116" />
-    <meta name="description" content="A vendor-neutral privileged access architecture, mapped to four PAM vendors and the whole estate, tested in an open lab: 36 predictions locked before any code, 33 exactly right." />
+    <meta name="description" content="A vendor-neutral privileged access architecture, mapped to four PAM vendors and the whole estate, tested in an open lab: 41 predictions locked before any code, 37 exactly right, 5 of them measured on real software." />
     <link rel="canonical" href="https://roshantrivedi.co.in/pam-lab/" />
-    <meta property="og:title" content="The privileged access map: 36 predictions, 33 right, three misses explained" />
-    <meta property="og:description" content="A vendor-neutral privileged access architecture, mapped to four PAM vendors and the whole estate, tested in an open lab: 36 predictions locked before any code, 33 exactly right." />
+    <meta property="og:title" content="The privileged access map: 41 predictions, 37 right, four misses explained" />
+    <meta property="og:description" content="A vendor-neutral privileged access architecture, mapped to four PAM vendors and the whole estate, tested in an open lab: 41 predictions locked before any code, 37 exactly right, 5 of them measured on real software." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://roshantrivedi.co.in/pam-lab/" />
     <meta property="og:image" content="https://roshantrivedi.co.in/assets/share/og-pam-lab.png" />
@@ -45,7 +45,7 @@
 <main id="main" class="pamx">
 <header class="band top"><div class="wrap">
 <h1>The privileged access map</h1>
-<p class="lede">One vendor-neutral architecture for privileged access, from the person or agent asking to the system they change, with every control station on the route. It covers the whole estate, maps four PAM vendors to it, and is tested in an open lab: 36 predictions locked before any code, 33 exactly right, and the three misses explained.</p>
+<p class="lede">One vendor-neutral architecture for privileged access, from the person or agent asking to the system they change, with every control station on the route. It covers the whole estate, maps four PAM vendors to it, and is tested in an open lab: 41 predictions locked before any code, 37 exactly right, and the four misses explained. Five of them were measured on real open-source software.</p>
 <p class="by">Roshan Trivedi · Independent practitioner guide · Last reviewed 28 Nov 2026. Lab run 28 Nov 2026. A general reference from public sources and my own lab, not a description of any employer's systems.</p>
 </div></header>
 
@@ -74,32 +74,34 @@
 
 
 <section class="band sec k-green" id="results"><div class="wrap">
-<h2>The lab: 36 predictions locked before any code, 33 exactly right</h2>
-<p>Each case is a small model of rule logic on made-up data (Kaveri Finance). It runs with no controls, with all three, and with each control switched off alone. A control is <b>noticed</b> when switching it off alone changes the counted outcome. The predictions were written, hashed and merged before the models existed. Roshan ran both rounds on his own Mac on 28 Nov 2026, and a second run gave identical numbers.</p>
-<div class="score" id="score" role="img" aria-label="36 predictions: 33 matched, 3 missed"></div>
+<h2>The lab: 41 predictions locked before any code, 37 exactly right</h2>
+<p>Each case is a small model of rule logic on made-up data (Kaveri Finance). It runs with no controls, with all three, and with each control switched off alone. A control is <b>noticed</b> when switching it off alone changes the counted outcome. The predictions were written, hashed and merged before the models existed. Roshan ran rounds 1 and 3 on his own Mac on 28 Nov 2026, and a second run gave identical numbers. Round 4 is different: it measures the same ideas on real open-source software (Keycloak, OpenBao with PostgreSQL, OpenSSH with sudo, and Kubernetes in kind) in a <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/actions/runs/46133108171">public GitHub Actions run</a> on the same day.</p>
+<div class="score" id="score" role="img" aria-label="41 predictions: 37 matched, 4 missed"></div>
 <p class="legend"><span class="sq ok"></span> matched exactly <span class="sq miss"></span> missed, explained below</p>
-<div class="figs" style="margin:14px 0 6px"><div><span class="big" data-n="19" data-f="# of 21">19 of 21</span><small>round 1 rows matched: the activation lane</small></div><div><span class="big" data-n="14" data-f="# of 15">14 of 15</span><small>round 3 rows matched: the gaps around the lane</small></div><div><span class="big" data-n="7" data-f="# of 7">7 of 7</span><small>joint checks matched, two controls off together</small></div><div><span class="big" data-n="6" data-f="# rows">6 rows</span><small>where no single control is noticed, but two together are</small></div></div>
+<div class="figs" style="margin:14px 0 6px"><div><span class="big" data-n="19" data-f="# of 21">19 of 21</span><small>round 1 rows matched: the activation lane</small></div><div><span class="big" data-n="14" data-f="# of 15">14 of 15</span><small>round 3 rows matched: the gaps around the lane</small></div><div><span class="big" data-n="4" data-f="# of 5">4 of 5</span><small>round 4 rows matched, measured on real software</small></div><div><span class="big" data-n="9" data-f="# of 9">9 of 9</span><small>joint checks matched, two controls off together</small></div><div><span class="big" data-n="7" data-f="# rows">7 rows</span><small>where no single control is noticed, but two together are</small></div></div>
 <div class="cols2" style="margin-top:22px">
-<div><h3>The three misses, explained</h3>
-<div class="scroll"><table class="stack"><thead><tr><th>Miss</th><th>Guess</th><th>Model</th><th>Why</th></tr></thead><tbody>
+<div><h3>The four misses, explained</h3>
+<div class="scroll"><table class="stack"><thead><tr><th>Miss</th><th>Guess</th><th>Result</th><th>Why</th></tr></thead><tbody>
 <tr><td>PA-R1-07, hours of admin left over, task-bound tokens off</td><td>30</td><td>27</td><td>The scope rule still refused the 3 injected requests, so they never held admin. One control cut damage another was built for.</td></tr>
 <tr><td>PA-R1-13, rule changes, two-person rule off</td><td>0</td><td>1</td><td>JIT on the PAM tool's admin role stops outsiders, not a real tool admin whose activation is approved. Flagged as likely before the run.</td></tr>
 <tr><td>PA-R3-05, sub-agents holding the parent's admin, no controls</td><td>3</td><td>4</td><td>The sub-agent's own sub-agent got the token too. The guess missed the grandchild; disclosed before the run.</td></tr>
+<tr><td>PA-R4-01, seconds an admin token still works after the role is removed, session logout off (Keycloak)</td><td>60</td><td>0</td><td>Keycloak's online check saw the removed role at once, so the API refused the token at the first check. The software was safer than the guess.</td></tr>
 </tbody></table></div></div>
 <div><h3>What the run shows beyond the score</h3><ul class="finds">
-<li><b>Layers hide in single-control tests.</b> In six rows no one control is noticed, yet two off together change the outcome. Test controls in pairs.</li>
+<li><b>Real software agreed with 4 of 5 guesses.</b> Round 4 found what the models predicted: sub-agents need their own tokens, per-task database credentials need revoking at the end, and an open SSH session keeps admin unless something re-reads the groups or ends it.</li>
+<li><b>Layers hide in single-control tests.</b> In seven rows no one control is noticed, yet two off together change the outcome. Test controls in pairs.</li>
 <li><b>Plain code stopped the planted requests, not the AI's mode.</b> In case 12 the code checks and the structured-fields limit did the work; recommend mode only set how many requests a person reads.</li>
 <li><b>Alerts don't block.</b> The outage alert in case 06 was never acted on in time, and an alert removed no admin rights in case 10.</li>
 <li><b>JIT guards the PAM rules from outsiders, not from their own admins.</b> Only a second person on each rule change stops an insider (case 13).</li>
 <li><b>The weakest control is the sponsor's attestation.</b> Changing how often sponsors attest wrongly moved nothing (round 3 case 03).</li></ul></div>
 </div>
 <h3 style="margin-top:26px">Every case, with every number</h3>
-<p class="mute">Each card shows the scenario, the three controls (the noticed ones are marked), and the five settings: the model's number, with the locked guess beside any that differ.</p>
+<p class="mute">Each card shows the scenario, the three controls (the noticed ones are marked), and the five settings: the model's or the measured number, with the locked guess beside any that differ.</p>
 <div class="ctl" id="rfilter" role="group" aria-label="Filter cases" style="flex-wrap:wrap">
-<button type="button" data-r="all" aria-pressed="true">All 26 cases</button><button type="button" data-r="1" aria-pressed="false">Round 1</button><button type="button" data-r="3" aria-pressed="false">Round 3</button><button type="button" data-r="miss" aria-pressed="false">Misses only</button><button type="button" data-r="layer" aria-pressed="false">Layered: nothing noticed alone</button></div>
+<button type="button" data-r="all" aria-pressed="true">All 31 cases</button><button type="button" data-r="1" aria-pressed="false">Round 1</button><button type="button" data-r="3" aria-pressed="false">Round 3</button><button type="button" data-r="4" aria-pressed="false">Round 4: real software</button><button type="button" data-r="miss" aria-pressed="false">Misses only</button><button type="button" data-r="layer" aria-pressed="false">Layered: nothing noticed alone</button></div>
 <div class="cases" id="cases"><p class="mute">Loading the results files&hellip; If nothing appears, they are in <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/tree/main/pam-lab/evidence">pam-lab/evidence on GitHub</a>.</p></div>
 <div class="cols2" style="margin-top:24px">
-<div><h3>Joint checks: two controls off together</h3><div class="scroll"><table class="stack" id="jointT"><thead><tr><th>Case</th><th>Check</th><th>Guess</th><th>Model</th><th>Result</th></tr></thead><tbody></tbody></table></div></div>
+<div><h3>Joint checks: two controls off together</h3><div class="scroll"><table class="stack" id="jointT"><thead><tr><th>Case</th><th>Check</th><th>Guess</th><th>Result</th><th>Match</th></tr></thead><tbody></tbody></table></div></div>
 <div><h3>Assumptions that change results</h3><p class="mute">Change one stated assumption and these cases move. Everything else holds.</p><div class="scroll"><table class="stack" id="sensT"><thead><tr><th>Round</th><th>Assumption</th><th>Was</th><th>Tried</th><th>Cases that move</th></tr></thead><tbody></tbody></table></div></div>
 </div>
 <h3 style="margin-top:24px">Run it yourself</h3>
@@ -109,7 +111,8 @@ cd trivediroshan1-ui.github.io
 shasum -a 256 pam-lab/evidence/guesses/guesses-round-*.md
 python3 pam-lab/evidence/round1.py
 python3 pam-lab/evidence/round3.py</pre></div>
-<p class="foot">Guess hashes: round 1 <code>6c3acc1c3da56c1c381ccec312205d55a15b23fdfd5c1791d8240e74890a80aa</code>, round 3 <code>fa235a1b2f6d7269474346c29d76b09ffb270734c3689a30d8a313adb53082e8</code>. Findings: <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/pam-lab/evidence/FINDINGS-rounds-1-and-3.md">FINDINGS-rounds-1-and-3.md</a>. The same person wrote the guesses and the models, which favours the guesses. The blind AI forecast prompts let anyone score a model the same way.</p>
+<p>Round 4 needs Docker, so it runs on GitHub. Anyone with a fork can start the <code>PAM lab round 4</code> workflow from the Actions tab. It checks the same guess hash first, and every measurement's log is public.</p>
+<p class="foot">Guess hashes: round 1 <code>6c3acc1c3da56c1c381ccec312205d55a15b23fdfd5c1791d8240e74890a80aa</code>, round 3 <code>fa235a1b2f6d7269474346c29d76b09ffb270734c3689a30d8a313adb53082e8</code>, round 4 <code>0a7cac425ed7d3b6a265e56dc69880eb130e6ab72cd8cd95b7be3823b4cb2381</code>. Findings: <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/pam-lab/evidence/FINDINGS-rounds-1-and-3.md">FINDINGS-rounds-1-and-3.md</a> and <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/pam-lab/evidence/FINDINGS-round-4.md">FINDINGS-round-4.md</a>. Round 4 had two setup fixes before its clean run, listed in <a href="https://github.com/trivediroshan1-ui/trivediroshan1-ui.github.io/blob/main/pam-lab/evidence/round4/HARNESS-CHANGES.md">HARNESS-CHANGES.md</a>. The same person wrote the guesses and the models, which favours the guesses. The blind AI forecast prompts let anyone score a model the same way.</p>
 </div></section>
 <section class="band sec k-red" id="why"><div class="wrap">
 <h2>Why PAM now: attackers buy admin access, call the help desk, and go after the PAM tools themselves</h2>
@@ -218,7 +221,7 @@ python3 pam-lab/evidence/round3.py</pre></div>
 </div></section>
 </main>
     <footer class="hg-foot"><div><span>&copy; 2026 Roshan Trivedi &middot; Bengaluru, India &middot; Privacy-safe portfolio &middot; <span class="reviewed">Last reviewed 28 Nov 2026</span></span><nav aria-label="Footer"><a href="/case-studies/">Work</a><a href="/labs/">Labs</a><a href="/book/">Book</a><a href="/start/">Start here</a><a href="/topics/">Topics</a><a href="/glossary/">Glossary</a><a href="/writing/">Writing</a><a href="/about/">About</a><a href="/now/">Now</a><a href="/method/">Method</a><a href="/ai/">How I use AI</a><a href="/privacy/">Privacy</a><a href="/copyright/">Copyright</a><a href="/speaking/">Speaking</a><a href="/#contact">Contact</a><a href="/feed.xml">RSS</a></nav></div></footer>
-  <script src="/assets/pam-lab.js?v=20261128a" defer></script>
+  <script src="/assets/pam-lab.js?v=20261128b" defer></script>
   <script defer src="/assets/chatbot-widget.js?v=20261123b"></script>
   <script defer src="/assets/events.js?v=20261115b"></script>
   </body>
