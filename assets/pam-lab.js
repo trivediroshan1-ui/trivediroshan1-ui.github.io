@@ -154,7 +154,7 @@ document.getElementById('srcs').innerHTML=S.map(s=>`<li><a href="${s[1]}">${s[0]
 // ---- Lab results, read from the committed evidence files so the page always matches them
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SET=['No controls','All on','a off','b off','c off'];
-const NOTE={'PA-R1-07|1':'The scope rule still refused the 3 injected requests, so only 27 activations held admin. The guess counted all 30 tasks.','PA-R1-13|0':'JIT on the tool admin role stops an outsider, but a real tool admin\'s activation is approved and nothing then stops them. Flagged before the run.','PA-R3-05|0':'The sub-agent\'s own sub-agent got the parent\'s token too. The guess missed the grandchild; disclosed before the run.'};
+const NOTE={'PA-R1-07|1':'The scope rule still refused the 3 injected requests, so only 27 activations held admin. The guess counted all 30 tasks.','PA-R1-13|0':'JIT on the tool admin role stops an outsider, but a real tool admin\'s activation is approved and nothing then stops them. Flagged before the run.','PA-R3-05|0':'The sub-agent\'s own sub-agent got the parent\'s token too. The guess missed the grandchild; disclosed before the run.','PA-R4-01|0':'Keycloak\'s online check saw the removed role at once, so the API refused the token at the first check, before any logout. Measured, not modelled.'};
 const JOINTCASES=new Set();
 function parseGuess(md){const out={};md.split(/^### /m).slice(1).forEach(sec=>{const id=(sec.match(/^(PA-R\d-\d\d)/)||[])[1];if(!id)return;
  const title=sec.split('\n')[0].replace(id,'').replace(/\(gap \d\)/,'').trim();
@@ -163,9 +163,11 @@ function parseGuess(md){const out={};md.split(/^### /m).slice(1).forEach(sec=>{c
  out[id]={title,scn,cs}});return out}
 const get=u=>fetch(u,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(u);return r})
 const base='/pam-lab/evidence/';
-Promise.all([get(base+'results-round-1.json').then(r=>r.json()),get(base+'results-round-3.json').then(r=>r.json()),get(base+'guesses/guesses-round-1.md').then(r=>r.text()),get(base+'guesses/guesses-round-3.md').then(r=>r.text())]).then(([j1,j3,g1,g3])=>{
- const G=Object.assign(parseGuess(g1),parseGuess(g3));
- const all=[];[[j1,'1'],[j3,'3']].forEach(([j,rd])=>{j.joint.forEach(x=>JOINTCASES.add(x.id));j.rows.forEach(r=>all.push(Object.assign({rd},r)))});
+Promise.all([get(base+'results-round-1.json').then(r=>r.json()),get(base+'results-round-3.json').then(r=>r.json()),get(base+'guesses/guesses-round-1.md').then(r=>r.text()),get(base+'guesses/guesses-round-3.md').then(r=>r.text()),get(base+'results-round-4.json').then(r=>r.json()),get(base+'guesses/guesses-round-4.md').then(r=>r.text())]).then(([j1,j3,g1,g3,j4,g4])=>{
+ // round 4 is measured: same shape as the models once its fields are renamed
+ j4.rows.forEach(r=>{r.model=r.measured});j4.joint.forEach(x=>{x.model=[x.measured];x.guess=[x.guess]});
+ const G=Object.assign(parseGuess(g1),parseGuess(g3),parseGuess(g4));
+ const all=[];[[j1,'1'],[j3,'3'],[j4,'4']].forEach(([j,rd])=>{j.joint.forEach(x=>JOINTCASES.add(x.id));j.rows.forEach(r=>all.push(Object.assign({rd},r)))});
  // scoreboard
  const sc=document.getElementById('score');sc.innerHTML=all.map((r,i)=>`<i class="${r.mismatch.length?'miss':'ok'}" title="${esc(r.id)}: ${r.mismatch.length?'missed':'matched'}" style="transition-delay:${i*40}ms"></i>`).join('');
  requestAnimationFrame(()=>requestAnimationFrame(()=>sc.classList.add('go')));
@@ -178,13 +180,13 @@ Promise.all([get(base+'results-round-1.json').then(r=>r.json()),get(base+'result
   const rows=c.rows.map((r,ri)=>{const lbl=r.counted.replace(/^second count:\s*/,'');
    const cells=r.model.map((v,k)=>{const miss=r.guess[k]!==v,nb=k>1&&v!==r.model[1];return `<span class="cell${miss?' miss':''}${nb?' nb':''}"><small>${SET[k]}</small><b>${esc(v)}</b>${miss?`<s>guess ${esc(r.guess[k])}</s>`:''}</span>`}).join('');
    const note=NOTE[c.id+'|'+ri];return `<div class="crow"><span class="lbl">${esc(lbl)}</span><div class="cells">${cells}</div>${note?`<p class="mnote">${esc(note)}</p>`:''}</div>`}).join('');
-  return `<article class="case ${cls}" data-rd="${c.rd}" data-miss="${c.miss}" data-layer="${c.layer}" style="--k:${c.miss?'var(--red)':c.layer?'var(--blue)':'var(--green)'}"><header><span class="cid">${esc(c.id)}</span><b>${esc(g.title)}</b>${c.miss?'<span class="badge">Missed, explained</span>':'<span class="badge">Matched</span>'}${c.layer?'<span class="badge lay">Layered</span>':''}</header><p class="scn">${esc(g.scn)}</p><ul class="ctrls">${ctrls}</ul>${rows}</article>`};
+  return `<article class="case ${cls}" data-rd="${c.rd}" data-miss="${c.miss}" data-layer="${c.layer}" style="--k:${c.miss?'var(--red)':c.layer?'var(--blue)':'var(--green)'}"><header><span class="cid">${esc(c.id)}</span><b>${esc(g.title)}</b>${c.miss?'<span class="badge">Missed, explained</span>':'<span class="badge">Matched</span>'}${c.layer?'<span class="badge lay">Layered</span>':''}${c.rd==='4'?'<span class="badge">Real software</span>':''}</header><p class="scn">${esc(g.scn)}</p><ul class="ctrls">${ctrls}</ul>${rows}</article>`};
  const box=document.getElementById('cases');box.innerHTML=cases.map(card).join('');
  const fl=document.getElementById('rfilter');fl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const f=b.dataset.r;
   fl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
   box.querySelectorAll('.case').forEach(a=>{a.hidden=!(f==='all'||a.dataset.rd===f||(f==='miss'&&a.dataset.miss==='true')||(f==='layer'&&a.dataset.layer==='true'))})});
  // joint checks and sensitivity
- const jt=[];[j1,j3].forEach(j=>j.joint.forEach(x=>jt.push(`<tr><td>${esc(x.id)}</td><td>${esc(x.check)}</td><td>${esc(x.guess.map(v=>v===null?'not stated':v).join(', '))}</td><td>${esc(x.model.join(', '))}</td><td>${x.match?'Matched':'Missed'}</td></tr>`)));
+ const jt=[];[j1,j3,j4].forEach(j=>j.joint.forEach(x=>jt.push(`<tr><td>${esc(x.id)}</td><td>${esc(x.check)}</td><td>${esc(x.guess.map(v=>v===null?'not stated':v).join(', '))}</td><td>${esc(x.model.join(', '))}</td><td>${x.match?'Matched':'Missed'}</td></tr>`)));
  document.querySelector('#jointT tbody').innerHTML=jt.join('');
  const st=[];[[j1,'1'],[j3,'3']].forEach(([j,rd])=>j.sensitivity.forEach(x=>st.push(`<tr><td>${rd}</td><td><code>${esc(x.param)}</code></td><td>${esc(x.was)}</td><td>${esc(x.now)}</td><td>${esc(x.cases_that_move.join(', ')||'none')}</td></tr>`)));
  document.querySelector('#sensT tbody').innerHTML=st.join('');
