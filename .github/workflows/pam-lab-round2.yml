@@ -1,0 +1,84 @@
+name: PAM lab round 2
+
+# Puts two small open AI models in the approver's seat for the 120 made-up requests of round 2,
+# under five settings. Started by hand only. Read-only permissions, no secrets.
+# The guesses, test set, policy and instructions were locked in
+# pam-lab/evidence/guesses/guesses-round-2.md (pull request #200) before this file existed.
+# The models run on the runner's CPU through Ollama; the Ollama version and each model's digest
+# are recorded with the results.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pam-lab-round2
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: The locked files have not changed
+        run: |
+          python3 pam-lab/evidence/round2/round2.py --verify
+          python3 pam-lab/evidence/round2/make_test_set.py --check
+
+  measure:
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        model:
+          - {tag: "gemma4:e4b", size: small, slug: gemma4-e4b}
+          - {tag: "qwen3.5:9b", size: medium, slug: qwen3.5-9b}
+        setting: [none, all, off_a, off_b, off_c]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - name: Ollama, and the model
+        run: |
+          curl -fsSL https://ollama.com/install.sh | sh
+          if ! curl -fs http://127.0.0.1:11434/api/version; then
+            (OLLAMA_NUM_PARALLEL=1 nohup ollama serve > ollama.log 2>&1 &)
+            for i in $(seq 1 30); do curl -fs http://127.0.0.1:11434/api/version && break; sleep 2; done
+          fi
+          echo
+          ollama pull "${{ matrix.model.tag }}"
+          ollama list
+      - name: Run ${{ matrix.model.tag }}, setting ${{ matrix.setting }}
+        run: |
+          python3 pam-lab/evidence/round2/round2.py --api ollama --endpoint http://127.0.0.1:11434 \
+            --model "${{ matrix.model.tag }}" --size "${{ matrix.model.size }}" \
+            --setting "${{ matrix.setting }}" --out out
+      - name: Keep the answers, even if the run failed
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r2-${{ matrix.model.slug }}-${{ matrix.setting }}
+          path: out/
+
+  results:
+    needs: measure
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: r2-*
+          path: measured
+      - name: Score against the locked guesses
+        run: |
+          python3 pam-lab/evidence/round2/round2.py --aggregate measured --out results
+          cat results/*.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: round-2-results
+          path: results/
+          retention-days: 90

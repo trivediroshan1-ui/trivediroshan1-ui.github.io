@@ -41,7 +41,11 @@ Every number the guess file leaves open is in `PARAMS` at the top of `round1.py`
 - `round2/make_test_set.py`: rebuilds the test set from a fixed seed. `--check` confirms the committed file matches.
 - `round2/approver-instructions.md`: the exact instructions the approver gets, and how its answers are read.
 
-The script that runs a model, and the reference runs, come after the guesses are merged.
+- `round2/round2.py`: runs a model under all five settings, or one, and scores it against the guesses for its size. Standard library only. It refuses to run if any locked file changed.
+- `.github/workflows/pam-lab-round2.yml`: the public reference run of Gemma 4 E4B (small) and Qwen3.5 9B (medium) through Ollama on GitHub's CPU runners. Started by hand; read-only, no secrets. The Ollama version and each model's digest are recorded with the results.
+- `round2/community/`: readers' own runs. Its README says how to add one.
+
+The script was written after the guesses were merged (pull request #200).
 
 ## Round 3: the gaps around the lane
 
