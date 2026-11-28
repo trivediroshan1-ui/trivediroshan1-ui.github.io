@@ -1,0 +1,445 @@
+{
+ "guess_file": "guesses/guesses-round-3.md",
+ "sha256": "fa235a1b2f6d7269474346c29d76b09ffb270734c3689a30d8a313adb53082e8",
+ "params": {
+  "hold_hours": 24,
+  "review_day": 90,
+  "sponsor_wrong_attestations": 1,
+  "grandchild_gets_token": true,
+  "sample_catches": 1,
+  "masked_per_month": 30,
+  "retention_months": 3
+ },
+ "rows": [
+  {
+   "id": "PA-R3-01",
+   "counted": "attacker admin activations within 24 hours",
+   "guess": [
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   "model": [
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": []
+  },
+  {
+   "id": "PA-R3-01",
+   "counted": "second count: attacker authenticators enrolled",
+   "guess": [
+    3,
+    0,
+    2,
+    1,
+    0
+   ],
+   "model": [
+    3,
+    0,
+    2,
+    1,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R3-02",
+   "counted": "movers holding eligibility they don't need, 30 days after the move",
+   "guess": [
+    4,
+    0,
+    4,
+    0,
+    0
+   ],
+   "model": [
+    4,
+    0,
+    4,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R3-02",
+   "counted": "second count: movers blocked from work they need",
+   "guess": [
+    0,
+    0,
+    0,
+    2,
+    0
+   ],
+   "model": [
+    0,
+    0,
+    0,
+    2,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R3-03",
+   "counted": "ended contractors who can still activate admin 30 days after the end",
+   "guess": [
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   "model": [
+    3,
+    0,
+    0,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": []
+  },
+  {
+   "id": "PA-R3-04",
+   "counted": "harmful Tier 0 commands run by the attacker",
+   "guess": [
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   "model": [
+    1,
+    0,
+    1,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R3-05",
+   "counted": "sub-agents able to use the parent's database admin rights",
+   "guess": [
+    3,
+    0,
+    3,
+    0,
+    0
+   ],
+   "model": [
+    4,
+    0,
+    3,
+    0,
+    0
+   ],
+   "mismatch": [
+    "none"
+   ],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R3-06",
+   "counted": "malicious artifacts signed",
+   "guess": [
+    2,
+    0,
+    1,
+    1,
+    0
+   ],
+   "model": [
+    2,
+    0,
+    1,
+    1,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R3-06",
+   "counted": "second count: days until a malicious signature is found (-1 = never, 0 = none made)",
+   "guess": [
+    -1,
+    0,
+    1,
+    1,
+    0
+   ],
+   "model": [
+    -1,
+    0,
+    1,
+    1,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R3-07",
+   "counted": "paths to cluster-admin from a developer's kubeconfig",
+   "guess": [
+    3,
+    0,
+    1,
+    2,
+    0
+   ],
+   "model": [
+    3,
+    0,
+    1,
+    2,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R3-08",
+   "counted": "attacker writes to the PLC",
+   "guess": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "model": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": []
+  },
+  {
+   "id": "PA-R3-08",
+   "counted": "second count: urgent plant changes blocked",
+   "guess": [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   "model": [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R3-09",
+   "counted": "collusive grants unnoticed after a week",
+   "guess": [
+    4,
+    1,
+    3,
+    3,
+    2
+   ],
+   "model": [
+    4,
+    1,
+    3,
+    3,
+    2
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R3-10",
+   "counted": "recordings with personal data still held after a year",
+   "guess": [
+    480,
+    30,
+    120,
+    30,
+    120
+   ],
+   "model": [
+    480,
+    30,
+    120,
+    30,
+    120
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R3-10",
+   "counted": "second count: recording views with no ticket",
+   "guess": [
+    6,
+    0,
+    0,
+    6,
+    0
+   ],
+   "model": [
+    6,
+    0,
+    0,
+    6,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "b"
+   ]
+  }
+ ],
+ "joint": [
+  {
+   "id": "PA-R3-01",
+   "check": "video check and 24 hour hold both off",
+   "guess": [
+    2,
+    null
+   ],
+   "model": [
+    2,
+    2
+   ],
+   "match": true,
+   "note": "only the activation count is stated in the guess"
+  },
+  {
+   "id": "PA-R3-03",
+   "check": "end date rule and vendor feed both off",
+   "guess": [
+    1
+   ],
+   "model": [
+    1
+   ],
+   "match": true,
+   "note": ""
+  },
+  {
+   "id": "PA-R3-08",
+   "check": "broker rule and read-only rule both off",
+   "guess": [
+    1,
+    null
+   ],
+   "model": [
+    1,
+    0
+   ],
+   "match": true,
+   "note": "only the write count is stated in the guess"
+  }
+ ],
+ "sensitivity": [
+  {
+   "param": "review_day",
+   "was": 90,
+   "now": 20,
+   "cases_that_move": [
+    "PA-R3-02"
+   ]
+  },
+  {
+   "param": "sponsor_wrong_attestations",
+   "was": 1,
+   "now": 0,
+   "cases_that_move": []
+  },
+  {
+   "param": "grandchild_gets_token",
+   "was": true,
+   "now": false,
+   "cases_that_move": [
+    "PA-R3-05"
+   ]
+  },
+  {
+   "param": "sample_catches",
+   "was": 1,
+   "now": 0,
+   "cases_that_move": [
+    "PA-R3-09"
+   ]
+  },
+  {
+   "param": "masked_per_month",
+   "was": 30,
+   "now": 20,
+   "cases_that_move": [
+    "PA-R3-10"
+   ]
+  },
+  {
+   "param": "retention_months",
+   "was": 3,
+   "now": 1,
+   "cases_that_move": [
+    "PA-R3-10"
+   ]
+  }
+ ],
+ "summary": {
+  "rows": 15,
+  "matched": 14,
+  "mismatched": 1,
+  "joint_matched": 3,
+  "joint_total": 3
+ }
+}

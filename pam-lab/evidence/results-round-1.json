@@ -1,0 +1,600 @@
+{
+ "guess_file": "guesses/guesses-round-1.md",
+ "sha256": "6c3acc1c3da56c1c381ccec312205d55a15b23fdfd5c1791d8240e74890a80aa",
+ "params": {
+  "used_in_90_days": 22,
+  "heavy_extenders_approved": 2,
+  "person_approves_injected": 2,
+  "alert_response_min": 120,
+  "token_life_default_min": 60,
+  "token_life_short_min": 15,
+  "diff_after_min": 60,
+  "alert_after_min": 5,
+  "insider_activation_approved": true,
+  "approver_capacity_per_hour": 30,
+  "backlog_flip_threshold": 60,
+  "exception_expiry_hours": 72
+ },
+ "rows": [
+  {
+   "id": "PA-R1-01",
+   "counted": "people who can get admin, standing or eligible, break-glass excluded",
+   "guess": [
+    36,
+    22,
+    36,
+    36,
+    22
+   ],
+   "model": [
+    36,
+    22,
+    36,
+    36,
+    22
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R1-02",
+   "counted": "people who can still act more than 15 minutes after their window",
+   "guess": [
+    10,
+    0,
+    10,
+    4,
+    3
+   ],
+   "model": [
+    10,
+    0,
+    10,
+    4,
+    3
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R1-03",
+   "counted": "people who are close to standing admin and not seen",
+   "guess": [
+    4,
+    0,
+    2,
+    0,
+    1
+   ],
+   "model": [
+    4,
+    0,
+    2,
+    0,
+    1
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R1-04",
+   "counted": "takeovers of a Tier 0 admin",
+   "guess": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "model": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": []
+  },
+  {
+   "id": "PA-R1-05",
+   "counted": "bad requests approved (2 ticket mismatches, 1 at 3 a.m.)",
+   "guess": [
+    3,
+    0,
+    1,
+    1,
+    2
+   ],
+   "model": [
+    3,
+    0,
+    1,
+    1,
+    2
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R1-06",
+   "counted": "people who get access with no check while the broker is down",
+   "guess": [
+    6,
+    0,
+    6,
+    0,
+    0
+   ],
+   "model": [
+    6,
+    0,
+    6,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R1-06",
+   "counted": "second count: people blocked from working",
+   "guess": [
+    0,
+    0,
+    0,
+    6,
+    0
+   ],
+   "model": [
+    0,
+    0,
+    0,
+    6,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R1-07",
+   "counted": "injected grants that go through",
+   "guess": [
+    3,
+    0,
+    0,
+    2,
+    0
+   ],
+   "model": [
+    3,
+    0,
+    0,
+    2,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R1-07",
+   "counted": "second count: hours of admin the agent holds after its tasks end (30 tasks)",
+   "guess": [
+    30,
+    0,
+    0,
+    0,
+    30
+   ],
+   "model": [
+    30,
+    0,
+    0,
+    0,
+    27
+   ],
+   "mismatch": [
+    "off c"
+   ],
+   "noticed": [
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R1-08",
+   "counted": "attacker admin actions that succeed (1 Tier 0, 1 Tier 1 tried)",
+   "guess": [
+    2,
+    0,
+    1,
+    1,
+    0
+   ],
+   "model": [
+    2,
+    0,
+    1,
+    1,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R1-09",
+   "counted": "back-door items created (new secret, new owner)",
+   "guess": [
+    2,
+    1,
+    1,
+    1,
+    2
+   ],
+   "model": [
+    2,
+    1,
+    1,
+    1,
+    2
+   ],
+   "mismatch": [],
+   "noticed": [
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R1-09",
+   "counted": "second count: minutes until both are found (-1 = never)",
+   "guess": [
+    -1,
+    5,
+    60,
+    5,
+    5
+   ],
+   "model": [
+    -1,
+    5,
+    60,
+    5,
+    5
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R1-10",
+   "counted": "standing admins left one day later",
+   "guess": [
+    2,
+    0,
+    2,
+    2,
+    0
+   ],
+   "model": [
+    2,
+    0,
+    2,
+    2,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b"
+   ]
+  },
+  {
+   "id": "PA-R1-11",
+   "counted": "attacker activations",
+   "guess": [
+    6,
+    0,
+    4,
+    0,
+    0
+   ],
+   "model": [
+    6,
+    0,
+    4,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R1-12",
+   "counted": "planted requests approved",
+   "guess": [
+    4,
+    0,
+    0,
+    2,
+    2
+   ],
+   "model": [
+    4,
+    0,
+    0,
+    2,
+    2
+   ],
+   "mismatch": [],
+   "noticed": [
+    "b",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R1-12",
+   "counted": "second count: requests a person reads in the week",
+   "guess": [
+    0,
+    5,
+    0,
+    5,
+    5
+   ],
+   "model": [
+    0,
+    5,
+    0,
+    5,
+    5
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R1-13",
+   "counted": "rule changes the attacker makes",
+   "guess": [
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "model": [
+    2,
+    0,
+    1,
+    0,
+    0
+   ],
+   "mismatch": [
+    "off a"
+   ],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R1-14",
+   "counted": "hidden admins missed",
+   "guess": [
+    6,
+    0,
+    3,
+    2,
+    1
+   ],
+   "model": [
+    6,
+    0,
+    3,
+    2,
+    1
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a",
+    "b",
+    "c"
+   ]
+  },
+  {
+   "id": "PA-R1-15",
+   "counted": "permanent assignments left after a week",
+   "guess": [
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "model": [
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": []
+  },
+  {
+   "id": "PA-R1-15",
+   "counted": "second count: minutes the incident requests wait",
+   "guess": [
+    -1,
+    0,
+    30,
+    0,
+    0
+   ],
+   "model": [
+    -1,
+    0,
+    30,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": [
+    "a"
+   ]
+  },
+  {
+   "id": "PA-R1-16",
+   "counted": "destructive steps that run",
+   "guess": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "model": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "mismatch": [],
+   "noticed": []
+  }
+ ],
+ "joint": [
+  {
+   "id": "PA-R1-04",
+   "check": "pair rule and group rule both off",
+   "guess": [
+    1
+   ],
+   "model": [
+    1
+   ],
+   "match": true,
+   "note": ""
+  },
+  {
+   "id": "PA-R1-13",
+   "check": "two-person rule and the tool admin's own JIT both off",
+   "guess": [
+    2
+   ],
+   "model": [
+    2
+   ],
+   "match": true,
+   "note": ""
+  },
+  {
+   "id": "PA-R1-15",
+   "check": "rota and escalation both off",
+   "guess": [
+    0,
+    -1
+   ],
+   "model": [
+    0,
+    -1
+   ],
+   "match": true,
+   "note": "the guess says 2 exception assignments are made and removed after 72 hours: 0 left after a week"
+  },
+  {
+   "id": "PA-R1-16",
+   "check": "plan approval and policy both off",
+   "guess": [
+    1
+   ],
+   "model": [
+    1
+   ],
+   "match": true,
+   "note": ""
+  }
+ ],
+ "sensitivity": [
+  {
+   "param": "person_approves_injected",
+   "was": 2,
+   "now": 0,
+   "cases_that_move": [
+    "PA-R1-07"
+   ]
+  },
+  {
+   "param": "heavy_extenders_approved",
+   "was": 2,
+   "now": 3,
+   "cases_that_move": [
+    "PA-R1-03"
+   ]
+  },
+  {
+   "param": "alert_response_min",
+   "was": 120,
+   "now": 30,
+   "cases_that_move": [
+    "PA-R1-06"
+   ]
+  },
+  {
+   "param": "insider_activation_approved",
+   "was": true,
+   "now": false,
+   "cases_that_move": [
+    "PA-R1-13"
+   ]
+  },
+  {
+   "param": "backlog_flip_threshold",
+   "was": 60,
+   "now": 200,
+   "cases_that_move": [
+    "PA-R1-16"
+   ]
+  },
+  {
+   "param": "token_life_short_min",
+   "was": 15,
+   "now": 30,
+   "cases_that_move": [
+    "PA-R1-02"
+   ]
+  }
+ ],
+ "summary": {
+  "rows": 21,
+  "matched": 19,
+  "mismatched": 2,
+  "joint_matched": 4,
+  "joint_total": 4
+ }
+}
